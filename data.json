@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-07-18 06:00",
+  "run_type": "morning",
+  "us_market": {
+    "sp500": {"value": "7,572.40", "change_pct": 0.38, "asof": "7/17終値"},
+    "dow": {"value": "52,637.01", "change_pct": 0.29, "asof": "7/17終値"},
+    "nasdaq": {"value": "26,269.22", "change_pct": 0.62, "asof": "7/17終値"}
+  },
+  "fx": {"value": "160.17円", "change_pct": null, "asof": "7/18早朝"},
+  "nikkei_futures": {"value": "―", "change_pct": null, "asof": "取得できず(次回改善)"},
+  "nikkei225": {"value": "68,557.73", "change_pct": 1.20, "asof": "7/17終値"},
+  "overnight_news": [
+    {
+      "title": "自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など",
+      "url": "https://finance.yahoo.co.jp/",
+      "source": "トレーダーズ・ウェブ",
+      "time": "7/17"
+    },
+    {
+      "title": "本日の【CB発行】銘柄 (16日大引け後 発表分)",
+      "url": "https://finance.yahoo.co.jp/",
+      "source": "フィスコ",
+      "time": "7/16 引け後"
+    }
+  ],
+  "tdnet_morning": [
+    {"time": "17:32", "code": "―", "company": "能美防災", "title": "コーポレート・ガバナンスに関する報告書 2026/06/26", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260513531087.pdf", "tag": "他"},
+    {"time": "17:32", "code": "―", "company": "ゼンショHD", "title": "Corporate Governance Report 20260626", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626582350.pdf", "tag": "他"},
+    {"time": "17:32", "code": "―", "company": "山九", "title": "コーポレート・ガバナンスに関する報告書 2026/06/26", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260616572084.pdf", "tag": "他"},
+    {"time": "17:30", "code": "―", "company": "ナカボテック", "title": "人事異動に関するお知らせ", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626582335.pdf", "tag": "他"},
+    {"time": "17:30", "code": "―", "company": "東京エネシス", "title": "譲渡制限付株式報酬としての自己株式の処分に関するお知らせ", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260625581039.pdf", "tag": "エク"},
+    {"time": "17:30", "code": "―", "company": "オルトP", "title": "ゲームアプリ『ヒプノシスマイク』イベント関連告知", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626581396.pdf", "tag": "他"},
+    {"time": "17:30", "code": "―", "company": "参天薬", "title": "Corporate Governance Report", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626582372.pdf", "tag": "他"},
+    {"time": "17:30", "code": "4901", "company": "富士フイルム", "title": "譲渡制限付株式報酬としての自己株式の処分に関するお知らせ", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260625579948.pdf", "tag": "エク"},
+    {"time": "17:30", "code": "―", "company": "日農薬", "title": "支配株主等に関する事項について", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260618573841.pdf", "tag": "他"},
+    {"time": "17:30", "code": "8141", "company": "新光商", "title": "加賀電子TOBに関する意見表明の一部変更について", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626581861.pdf", "tag": "他"}
+  ],
+  "movers_morning": [],
+  "tdnet_afterclose": [
+    {"time": "17:30", "code": "8141", "company": "加賀電子", "title": "新光商事(証券コード:8141)株式に対する公開買付期間延長のお知らせ", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626582356.pdf", "tag": "他"},
+    {"time": "17:30", "code": "―", "company": "日本ロジ", "title": "国内資産(匿名組合出資)の取得に関するお知らせ", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626581606.pdf", "tag": "他"},
+    {"time": "17:30", "code": "―", "company": "SKジャパン", "title": "譲渡制限付株式報酬としての新株式発行の払込完了に関するお知らせ", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626582276.pdf", "tag": "エク"},
+    {"time": "17:30", "code": "―", "company": "日曹達", "title": "コーポレート・ガバナンスに関する報告書 2026/06/26", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260420506862.pdf", "tag": "他"},
+    {"time": "17:30", "code": "―", "company": "東京証券取引所", "title": "TOKYO PRO Marketへの上場目的の開示", "url": "https://tdnet-pdf.kabutan.jp/20260626/140120260626581307.pdf", "tag": "他"}
+  ],
+  "afterclose_news": [],
+  "movers_afterclose": [],
+  "technical": [
+    {
+      "code": "7203",
+      "name": "トヨタ自動車",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "-2.01%",
+      "ma25_dev": "+0.87%",
+      "rsi": 57.64,
+      "signal": "中立(やや強気)",
+      "summary": "売り0/中立6/買い1。25日線は上向きだが5日線はやや下回る。RSIは中立域。"
+    },
+    {
+      "code": "6758",
+      "name": "ソニーグループ",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "+3.40%",
+      "ma25_dev": "-2.46%",
+      "rsi": 42.71,
+      "signal": "中立(やや強気)",
+      "summary": "売り0/中立6/買い1。5日線は上抜けも25日線はマイナス圏。RSIは中立。"
+    },
+    {
+      "code": "8306",
+      "name": "三菱UFJフィナンシャル・グループ",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "-0.15%",
+      "ma25_dev": "+8.51%",
+      "rsi": 73.24,
+      "signal": "弱気(過熱感)",
+      "summary": "売り2/中立5/買い0。中長期線は大きく上向きだがRSIは70超で過熱感、短期的な反落リスクに留意。"
+    },
+    {
+      "code": "9984",
+      "name": "ソフトバンクグループ",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "+8.71%",
+      "ma25_dev": "+12.17%",
+      "rsi": 52.07,
+      "signal": "弱気(乖離大)",
+      "summary": "売り2/中立5/買い0。全期間の移動平均から大きく上方乖離しており、短期的な過熱・調整リスクに留意。RSI自体は中立。"
+    }
+  ]
+}

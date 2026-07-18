@@ -24,10 +24,14 @@ h1 { font-size: 22px; margin: 0 0 4px; }
   border-radius: 10px; padding: 14px 16px; font-size: 13px; margin: 16px 20px;
 }
 .disclaimer b { color: #ffb0b0; }
-nav.tabs { display: flex; gap: 10px; margin: 0 20px 8px; flex-wrap: wrap; }
+nav.tabs {
+  display: flex; gap: 10px; margin: 0 0 8px; flex-wrap: wrap; padding: 10px 20px;
+  position: sticky; top: 0; z-index: 20; background: rgba(15,23,32,0.92);
+  backdrop-filter: blur(6px); border-bottom: 1px solid var(--border);
+}
 nav.tabs a {
   color: var(--accent); text-decoration: none; font-size: 13px; border: 1px solid var(--border);
-  padding: 6px 12px; border-radius: 20px; background: var(--panel2);
+  padding: 7px 14px; border-radius: 20px; background: var(--panel2); white-space: nowrap;
 }
 section { margin: 28px 20px; }
 section > h2 {
@@ -56,11 +60,18 @@ section > h2 {
 .news-list a { color: var(--text); text-decoration: none; }
 .news-list a:hover { color: var(--accent); }
 .news-list .meta { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+.scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tdnet-table { min-width: 560px; }
+.movers-table { min-width: 680px; }
+.technical-table { min-width: 820px; }
 th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border); }
 th { color: var(--muted); font-weight: 600; font-size: 12px; white-space: nowrap; }
 td.mono { font-family: "SF Mono", Menlo, monospace; white-space: nowrap; }
 td.reason { color: var(--muted); }
+tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
+tbody tr:hover { background: rgba(77,163,255,0.08); }
 .badge { padding: 2px 9px; border-radius: 12px; font-size: 12px; font-weight: 600; }
 .badge.bull { background: rgba(255,92,92,0.15); color: var(--bull); }
 .badge.bear { background: rgba(77,208,163,0.15); color: var(--bear); }
@@ -72,345 +83,34 @@ footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
 .run-badge { display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px; background:var(--panel2); border:1px solid var(--border); margin-left:8px; }
-</style>
-</head>
-<body>
-<div class="wrap">
-  <header class="top">
-    <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-    <div class="subtitle">最終更新: 2026-07-18 06:00 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
-  </header>
 
-  <div class="disclaimer">
-    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
-  </div>
+/* --- PC(広い画面): 余白と最大幅を少し広げて読みやすくする --- */
+@media (min-width: 1200px) {
+  .wrap { max-width: 1240px; }
+  body { font-size: 15.5px; }
+  .idx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+}
 
-  <nav class="tabs">
-    <a href="#morning">🌅 寄り付き前</a>
-    <a href="#evening">🌙 引け後</a>
-    <a href="#technical">📊 株価診断</a>
-  </nav>
-
-  
-    <section id="morning">
-      <h2>🌅 寄り付き前セクション</h2>
-      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
-      <div class="card">
-        <h3>米国市場・為替・日経先物</h3>
-        <div class="idx-grid">
-    <div class="idx-card">
-      <div class="idx-label">S&amp;P500</div>
-      <div class="idx-value">7,572.40</div>
-      <span class="chg up">+0.38%</span>
-      <div class="note">7/17終値</div>
-    </div>
-    <div class="idx-card">
-      <div class="idx-label">NYダウ</div>
-      <div class="idx-value">52,637.01</div>
-      <span class="chg up">+0.29%</span>
-      <div class="note">7/17終値</div>
-    </div>
-    <div class="idx-card">
-      <div class="idx-label">ナスダック総合</div>
-      <div class="idx-value">26,269.22</div>
-      <span class="chg up">+0.62%</span>
-      <div class="note">7/17終値</div>
-    </div>
-    <div class="idx-card">
-      <div class="idx-label">USD/JPY</div>
-      <div class="idx-value">160.17円</div>
-      
-      <div class="note">7/18早朝</div>
-    </div>
-    <div class="idx-card">
-      <div class="idx-label">日経225先物(CME/大阪)</div>
-      <div class="idx-value">―</div>
-      
-      <div class="note">取得できず(次回改善)</div>
-    </div>
-    <div class="idx-card">
-      <div class="idx-label">日経平均(現物・前回終値)</div>
-      <div class="idx-value">68,557.73</div>
-      <span class="chg up">+1.20%</span>
-      <div class="note">7/17終値</div>
-    </div></div>
-      </div>
-      <div class="card">
-        <h3>時間外・朝の主要ニュース</h3>
-        <ul class="news-list"><li><a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener">自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など</a><span class="meta">7/17 / トレーダーズ・ウェブ</span></li><li><a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener">本日の CB発行開示</a><span class="meta">7/16 引け後 / フィスコ</span></li></ul>
-      </div>
-      <div class="card">
-        <h3>TDnet 鉩時開示(朝までの分)</h3>
-        
-    <table class="tdnet-table">
-      <thead><tr><th>時黻</th><th>コード</th><th>会男名</th><th>開示タイトル</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="mono">17:32</td>
-          <td class="mono">―</td>
-          <td>能美防災</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260513531087.pdf" target="_blank" rel="noopener">コーポレート・ガバナンスに関する報告書 2026/06/26</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:32</td>
-          <td class="mono">―</td>
-          <td>ゼンショHD</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626582350.pdf" target="_blank" rel="noopener">Corporate Governance Report 20260626</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:32</td>
-          <td class="mono">―</td>
-          <td>山九</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260616572084.pdf" target="_blank" rel="noopener">コーポレート・カヌピースに関する報告書 2026/06/26</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>ナカボテック</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626582335.pdf" target="_blank" rel="noopener">仺未ェ深二に関するお知らせ</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>東京証券取引所</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260625581039.pdf" target="_blank" rel="noopener">譲渡制限付株式報酬としての自己株式の処分に関するお知らせ</a> <span class="tag">エク</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>オルトP</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626581396.pdf" target="_blank" rel="noopener">ゲーダアプリ『ヒプノシスマイク』アベント関連告知</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>参天薬</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626582372.pdf" target="_blank" rel="noopener">Corporate Governance Report</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">4901</td>
-          <td>富士フイルム</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260625579948.pdf" target="_blank" rel="noopener">譲渡制限付株式報酬としての自己株式の処分に関するお知らせ</a> <span class="tag">エク</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>日枲般</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260618573841.pdf" target="_blank" rel="noopener">支配株主等に関する事項について</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">8141</td>
-          <td>新光商</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626581861.pdf" target="_blank" rel="noopener">加賀電子TOBに関する意衋表明の一部変書について</a> <span class="tag">他</span></td>
-        </tr></tbody>
-    </table>
-      </div>
-      <div class="card">
-        <h3>出来高・値動きで話題の銘柄</h3>
-        <p class="empty">該当データが取得できませんでした。</p>
-      </div>
-    </section>
-  
-    <section id="evening">
-      <h2>🌙 引け後セクション</h2>
-      <p class="section-desc">本日のTDnet鉩時開示(決禗ほ断廾修正ほ自己株式買いなど)と引け後の重要ニュースをまとめつます。翌日以饍の仕込み銘柄検討の参考情報です。</p>
-      <div class="card">
-        <h3>本日のTDnet適時開示</h3>
-        
-    <table class="tdnet-table">
-      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">8141</td>
-          <td>加賀電子</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626582356.pdf" target="_blank" rel="noopener">新光商事(証券コード:8141)株式に対する公開買仸期間延長のお知らせ</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>日本ロジ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626581606.pdf" target="_blank" rel="noopener">国内資産(匿名組合出資)の取得に関するお知らせ</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>SKジャパン</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626582276.pdf" target="_blank" rel="noopener">譲渡制限付株式報酬としての新株式発行の払込完了に関するお知らせ</a> <span class="tag">エク</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>日杹達</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260420506862.pdf" target="_blank" rel="noopener">コーポレート・ガバナンスに関する報告書 2026/06/26</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">17:30</td>
-          <td class="mono">―</td>
-          <td>東京譲券取引所</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626581307.pdf" target="_blank" rel="noopener">TOKYO PRO Marketへの上場目的の開示</a> <span class="tag">他</span></td>
-        </tr></tbody>
-    </table>
-      </div>
-      <div class="card">
-        <h3>引け後の任要ニュース</h3>
-        <p class="empty">現時点で該当するニュースは取得できませんでした。</p>
-      </div>
-      <div class="card">
-        <h3>本日の値動きが出来高して舒題の銘柄</h3>
-        <p class="empty">該当データが取得できませんでした　</p>
-      </div>
-    </section>
-  
-    <section id="technical">
-      <h2>📊 株価誸断缿クニカル指標)</h2>
-      <p class="section-desc">
-        移動平均線・RSIなど無料で取得できるテクニカル指標にもとづく客観的な「強気/弱気シグナル」の一覧です。
-        <b>将来の株価を予想・保証するものではありません。</b>
-      </p>
-      <div class="card">
-        
-    <table class="technical-table">
-      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="mono">7203</td>
-          <td>トヨタ自動車</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">-2.01%</td>
-          <td class="mono">+0.87%</td>
-          <td class="mono">57.64</td>
-          <td><span class="badge bull">中立(やや強気)</span></td>
-          <td class="reason">売り0/中立6/買い1。25日線は上向きだが5日線はやや下回る。RSIは中立域。</td>
-        </tr>
-        <tr>
-          <td class="mono">6758</td>
-          <td>ソニーグループ</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">+3.40%</td>
-          <td class="mono">-2.46%</td>
-          <td class="mono">42.71</td>
-          <td><span class="badge bull">中立(やや強気)</span></td>
-          <td class="reason">売り0/中立6/買い1。5日線は上抜けも25日線はマイナス圏。RSIは中立。"
-        </tr>
-        <tr>
-          <td class="mono">8306</td>
-          <td>三菱UFJフィナンシャル・グループ</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">-0.15%</td>
-          <td class="mono">+8.51%</td>
-          <td class="mono">73.24 <span class="tag tag-warn">過熱感</span></td>
-          <td><span class="badge bear">弱気(過熱感)</span></td>
-          <td class="reason">売り2/中立5/買い0。中長期線は大きく上向きだがRSIは70超で過熱感、短期的な過熱感・叁�нリスクに留意。</td>
-        </tr>
-        <tr>
-          <td class="mono">9984</td>
-          <td>ソフトバンクグループ</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">+8.71%</td>
-          <td class="mono">+12.17%</td>
-          <td class="mono">52.07</td>
-          <td><span class="badge bear">弱気(乖離大)</span></td>
-          <td class="reason">売り2/中立5/買い0。全期間の緽動平均から大きく上方旦团しており、短期的な過熱感・調整リスクに留意。</td>
-        </tr></tbody>
-    </table>
-      </div>
-    </section>
-
-  <footer>
-    <div class="disclaimer">
-      ⚠️ 再掲: 本ページの情報は Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
-    </div>
-    
-    <div class="sources">
-      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
-      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
-      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてはみ利用してください。
-    </div>
-  </footer>
-</div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>日本株デイトレード情報ダッシュボード</title>
-<style>
-:root {
-  --bg: #0f1720; --panel: #161f2b; --panel2: #1b2531; --border: #2a3646;
-  --text: #e6edf3; --muted: #92a1b3; --accent: #4da3ff; --up: #ff5c5c; --down: #4dd0a3;
-  --warn: #ffb84d; --bull: #ff5c5c; --bear: #4dd0a3;
+/* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
+@media (max-width: 640px) {
+  .wrap { padding: 12px 12px 48px; }
+  header.top { padding: 12px 8px 10px; }
+  h1 { font-size: 17px; line-height: 1.4; }
+  .subtitle { font-size: 11.5px; }
+  .disclaimer { margin: 12px 8px; padding: 10px 12px; font-size: 12px; }
+  nav.tabs { margin: 0 0 8px; padding: 8px 8px; gap: 6px; }
+  nav.tabs a { font-size: 12px; padding: 6px 10px; }
+  section { margin: 20px 8px; }
+  section > h2 { font-size: 15.5px; }
+  .section-desc { font-size: 11.5px; }
+  .card { padding: 12px 12px; margin-bottom: 12px; }
+  .idx-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
+  .idx-value { font-size: 16px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 6px; }
+  .scroll-hint { display: block; }
+  footer { margin: 28px 8px 10px; }
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0; font-family: -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.6;
-}
-.wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
-header.top { padding: 20px 20px 16px; }
-h1 { font-size: 22px; margin: 0 0 4px; }
-.subtitle { color: var(--muted); font-size: 13px; }
-.disclaimer {
-  background: #2a1f1f; border: 1px solid #5a3a3a; color: #ffcfcf;
-  border-radius: 10px; padding: 14px 16px; font-size: 13px; margin: 16px 20px;
-}
-.disclaimer b { color: #ffb0b0; }
-nav.tabs { display: flex; gap: 10px; margin: 0 20px 8px; flex-wrap: wrap; }
-nav.tabs a {
-  color: var(--accent); text-decoration: none; font-size: 13px; border: 1px solid var(--border);
-  padding: 6px 12px; border-radius: 20px; background: var(--panel2);
-}
-section { margin: 28px 20px; }
-section > h2 {
-  font-size: 17px; border-left: 4px solid var(--accent); padding-left: 10px; margin-bottom: 4px;
-}
-.section-desc { color: var(--muted); font-size: 12.5px; margin: 2px 0 14px; }
-.card {
-  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-  padding: 16px 18px; margin-bottom: 16px;
-}
-.card h3 { font-size: 14px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
-.idx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
-.idx-card {
-  background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
-}
-.idx-label { font-size: 12px; color: var(--muted); }
-.idx-value { font-size: 18px; font-weight: 700; margin-top: 2px; }
-.chg { font-size: 13px; font-weight: 600; }
-.chg.up, .up { color: var(--up); }
-.chg.down, .down { color: var(--down); }
-.chg.flat, .flat { color: var(--muted); }
-.note { font-size: 11px; color: var(--muted); margin-top: 4px; }
-.news-list { list-style: none; margin: 0; padding: 0; }
-.news-list li { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
-.news-list li:last-child { border-bottom: none; }
-.news-list a { color: var(--text); text-decoration: none; }
-.news-list a:hover { color: var(--accent); }
-.news-list .meta { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border); }
-th { color: var(--muted); font-weight: 600; font-size: 12px; white-space: nowrap; }
-td.mono { font-family: "SF Mono", Menlo, monospace; white-space: nowrap; }
-td.reason { color: var(--muted); }
-.badge { padding: 2px 9px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-.badge.bull { background: rgba(255,92,92,0.15); color: var(--bull); }
-.badge.bear { background: rgba(77,208,163,0.15); color: var(--bear); }
-.badge.neutral { background: rgba(146,161,179,0.15); color: var(--muted); }
-.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border); color: var(--muted); margin-left: 4px; }
-.tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
-.empty { color: var(--muted); font-size: 13px; }
-footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--border); padding-top: 16px; }
-footer .disclaimer { margin: 0 0 12px; }
-.sources { font-size: 11px; color: var(--muted); }
-.run-badge { display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px; background:var(--panel2); border:1px solid var(--border); margin-left:8px; }
 </style>
 </head>
 <body>
@@ -481,6 +181,8 @@ footer .disclaimer { margin: 0 0 12px; }
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>
         
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
     <table class="tdnet-table">
       <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>
@@ -545,6 +247,7 @@ footer .disclaimer { margin: 0 0 12px; }
           <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626581861.pdf" target="_blank" rel="noopener">加賀電子TOBに関する意見表明の一部変更について</a> <span class="tag">他</span></td>
         </tr></tbody>
     </table>
+    </div>
       </div>
       <div class="card">
         <h3>出来高・値動きで話題の銘柄</h3>
@@ -558,6 +261,8 @@ footer .disclaimer { margin: 0 0 12px; }
       <div class="card">
         <h3>本日のTDnet適時開示</h3>
         
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
     <table class="tdnet-table">
       <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>
@@ -592,6 +297,7 @@ footer .disclaimer { margin: 0 0 12px; }
           <td><a href="https://tdnet-pdf.kabutan.jp/20260626/140120260626581307.pdf" target="_blank" rel="noopener">TOKYO PRO Marketへの上場目的の開示</a> <span class="tag">他</span></td>
         </tr></tbody>
     </table>
+    </div>
       </div>
       <div class="card">
         <h3>引け後の主要ニュース</h3>
@@ -611,6 +317,8 @@ footer .disclaimer { margin: 0 0 12px; }
       </p>
       <div class="card">
         
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
     <table class="technical-table">
       <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
       <tbody>
@@ -659,6 +367,7 @@ footer .disclaimer { margin: 0 0 12px; }
           <td class="reason">売り2/中立5/買い0。全期間の移動平均から大きく上方乖離しており、短期的な過熱・調整リスクに留意。RSI自体は中立。</td>
         </tr></tbody>
     </table>
+    </div>
       </div>
     </section>
 
