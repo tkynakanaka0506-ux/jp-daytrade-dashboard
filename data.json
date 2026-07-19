@@ -1,6 +1,6 @@
 {
-  "generated_at" : "2026-07-19 22:16",
-  "run_type" : "evening",
+  "generated_at" : "2026-07-20 06:54",
+  "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,457.69",
@@ -19,9 +19,9 @@
     }
   },
   "fx" : {
-    "value" : "162.35円",
-    "change_pct" : -0.01,
-    "asof" : "7/18終値"
+    "value" : "162.41円",
+    "change_pct" : 0.02,
+    "asof" : "7/20終値"
   },
   "nikkei_futures" : {
     "value" : "65,145.00",
