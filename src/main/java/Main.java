@@ -140,8 +140,12 @@ public class Main {
             JsonNode meta = result.path("meta");
 
             double price = meta.path("regularMarketPrice").asDouble(Double.NaN);
-            double prevClose = meta.path("chartPreviousClose").asDouble(Double.NaN);
-            if (Double.isNaN(prevClose)) prevClose = meta.path("previousClose").asDouble(Double.NaN);
+            // 注: chartPreviousCloseはrange引数(ここでは5d)の開始日より前の終値であり、
+            // 「前営業日比」には使えない(週末などを挟むと直近の終値と一致しない)。
+            // 前営業日比の計算にはmeta.previousCloseを優先し、それが無い場合のみ
+            // chartPreviousCloseにフォールバックする。
+            double prevClose = meta.path("previousClose").asDouble(Double.NaN);
+            if (Double.isNaN(prevClose)) prevClose = meta.path("chartPreviousClose").asDouble(Double.NaN);
             if (Double.isNaN(price) || Double.isNaN(prevClose) || prevClose == 0) return false;
 
             double changePct = (price - prevClose) / prevClose * 100.0;
