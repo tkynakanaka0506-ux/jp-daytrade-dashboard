@@ -140,11 +140,27 @@ public class Main {
             JsonNode meta = result.path("meta");
 
             double price = meta.path("regularMarketPrice").asDouble(Double.NaN);
-            // 注: chartPreviousCloseはrange引数(ここでは5d)の開始日より前の終値であり、
-            // 「前営業日比」には使えない(週末などを挟むと直近の終値と一致しない)。
-            // 前営業日比の計算にはmeta.previousCloseを優先し、それが無い場合のみ
-            // chartPreviousCloseにフォールバックする。
-            double prevClose = meta.path("previousClose").asDouble(Double.NaN);
+
+            // 注: meta.chartPreviousCloseは「range引数(ここでは5d)のチャート開始日より前の終値」であり、
+            // 直近の営業日の終値とは異なる(例: 週末を挟むと1週間近く前の値になり得る)。
+            // また実際にはmeta.previousCloseフィールド自体がこのAPIのレスポンスに含まれないことが多く、
+            // これを優先条件にしても実質的にchartPreviousCloseへフォールバックし続けてしまう。
+            // そこで「前営業日比」には、日次ローソク足配列(indicators.quote[0].close)の
+            // 「直近から2番目の終値」を使う。配列の最後の要素は直近の取引日(=regularMarketPriceの日)の
+            // 終値(取引時間中は未確定でnullの場合もある)、その1つ前が正しい「前営業日の終値」になる。
+            double prevClose = Double.NaN;
+            JsonNode closesNode = result.path("indicators").path("quote").get(0).path("close");
+            if (closesNode.isArray()) {
+                List<Double> closes = new java.util.ArrayList<>();
+                for (JsonNode c : closesNode) {
+                    if (c.isNumber()) closes.add(c.asDouble());
+                }
+                if (closes.size() >= 2) {
+                    prevClose = closes.get(closes.size() - 2);
+                }
+            }
+            // 万一日次終値配列が取得できない場合のみ、従来のchartPreviousCloseにフォールバックする
+            // (精度は落ちるが、値を丸ごと諦めるよりは良い)。
             if (Double.isNaN(prevClose)) prevClose = meta.path("chartPreviousClose").asDouble(Double.NaN);
             if (Double.isNaN(price) || Double.isNaN(prevClose) || prevClose == 0) return false;
 
@@ -160,8 +176,14 @@ public class Main {
                 case "POST" -> "アフターマーケット";
                 default -> "終値";
             };
-            ZonedDateTime nowJst = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-            String asof = nowJst.format(DateTimeFormatter.ofPattern("M/d")) + stateLabel;
+            // 注: 日付ラベルには「取得した今この瞬間」ではなく、実際にこの値が観測された時刻
+            // (meta.regularMarketTime、取引中の指標はその時点、取引終了後の指標は直近終値の時刻)を使う。
+            // 土日や祝日にジョブを走らせても、実際の最終取引日の日付が正しく表示されるようにするため。
+            long regularMarketTime = meta.path("regularMarketTime").asLong(0);
+            ZonedDateTime dataTimeJst = regularMarketTime > 0
+                ? ZonedDateTime.ofInstant(java.time.Instant.ofEpochSecond(regularMarketTime), ZoneId.of("Asia/Tokyo"))
+                : ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+            String asof = dataTimeJst.format(DateTimeFormatter.ofPattern("M/d")) + stateLabel;
 
             target.put("value", valueStr);
             target.put("change_pct", Math.round(changePct * 100) / 100.0);
