@@ -123,7 +123,10 @@ public class Main {
 
     private static boolean fillQuote(ObjectNode target, String symbol, boolean isFx) {
         try {
-            String url = "https://query1.finance.yahoo.com/v8/finance/chart/" + symbol + "?interval=1d&range=5d";
+            // "^"はRFC3986上パス中の合法文字ではなくURI.create()が例外を投げるため、
+            // ^GSPC/^DJI/^IXIC/^N225等のインデックスシンボルは事前にパーセントエンコードする。
+            String encodedSymbol = symbol.replace("^", "%5E");
+            String url = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodedSymbol + "?interval=1d&range=5d";
             HttpRequest req = HttpRequest.newBuilder(URI.create(url))
                 .header("User-Agent", UA)
                 .timeout(Duration.ofSeconds(15))
@@ -183,7 +186,7 @@ public class Main {
                 System.err.println("[WARN] kabutan page " + page + " fetch failed: " + e);
                 break;
             }
-            // 開示PDFへの直リンクだけを対象にする(ナビゲーション等のノイズを臦然に除外できる)
+            // 開示PDFへの直リンクだけを対象にする(ナビゲーション等のノイズを自然に除外できる)
             List<Element> links = doc.select("a[href^=https://tdnet-pdf.kabutan.jp/]");
             if (links.isEmpty()) break;
             for (Element a : links) {
