@@ -1,21 +1,21 @@
 {
-  "generated_at" : "2026-07-19 11:07",
+  "generated_at" : "2026-07-19 19:59",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
-      "value" : "7,572.40",
-      "change_pct" : 0.38,
-      "asof" : "7/17終値"
+      "value" : "7,457.69",
+      "change_pct" : -1.55,
+      "asof" : "7/19終値"
     },
     "dow" : {
-      "value" : "52,637.01",
-      "change_pct" : 0.29,
-      "asof" : "7/17終値"
+      "value" : "52,146.42",
+      "change_pct" : -0.93,
+      "asof" : "7/19終値"
     },
     "nasdaq" : {
-      "value" : "26,269.22",
-      "change_pct" : 0.62,
-      "asof" : "7/17終値"
+      "value" : "25,520.24",
+      "change_pct" : -2.9,
+      "asof" : "7/19終値"
     }
   },
   "fx" : {
@@ -25,13 +25,13 @@
   },
   "nikkei_futures" : {
     "value" : "65,145.00",
-    "change_pct" : -3.27,
+    "change_pct" : -4.4,
     "asof" : "7/19終値"
   },
   "nikkei225" : {
-    "value" : "68,557.73",
-    "change_pct" : 1.2,
-    "asof" : "7/17終値"
+    "value" : "64,141.12",
+    "change_pct" : -4.61,
+    "asof" : "7/19終値"
   },
   "overnight_news" : [ {
     "title" : "自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など",
