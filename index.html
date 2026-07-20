@@ -4,97 +4,167 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>日本株デイトレード情報ダッシュボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f1720; --panel: #161f2b; --panel2: #1b2531; --border: #2a3646;
-  --text: #e6edf3; --muted: #92a1b3; --accent: #4da3ff; --up: #ff5c5c; --down: #4dd0a3;
-  --warn: #ffb84d; --bull: #ff5c5c; --bear: #4dd0a3;
+  --bg-deep: #04060c; --bg-mid: #0a0f1c; --bg-soft: #0d1424;
+  --panel: linear-gradient(155deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015));
+  --panel2: rgba(255,255,255,0.035);
+  --border: rgba(255,255,255,0.09); --border-soft: rgba(255,255,255,0.06);
+  --text: #eef1f8; --muted: #8b93a8;
+  --accent: #f2b64c; --accent-soft: rgba(242,182,76,0.16); --accent-line: rgba(242,182,76,0.4);
+  --neon: #4fd6ff;
+  --up: #ff6b7a; --down: #35d9b4;
+  --warn: #ffb84d; --bull: #ff6b7a; --bear: #35d9b4;
+  --radius: 16px; --radius-sm: 11px;
+  --shadow: 0 10px 34px rgba(0,0,0,0.38);
 }
 * { box-sizing: border-box; }
 body {
-  margin: 0; font-family: -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
-  background: var(--bg); color: var(--text); line-height: 1.6;
+  margin: 0;
+  font-family: 'Inter', -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  color: var(--text); line-height: 1.6;
+  background-color: var(--bg-deep);
+  background-image:
+    radial-gradient(circle at 12% 6%, rgba(242,182,76,0.16), transparent 38%),
+    radial-gradient(circle at 88% 4%, rgba(79,214,255,0.12), transparent 42%),
+    radial-gradient(circle at 30% 92%, rgba(242,182,76,0.08), transparent 45%),
+    radial-gradient(circle at 78% 70%, rgba(79,214,255,0.06), transparent 40%),
+    linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-mid) 45%, var(--bg-soft) 100%);
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
 }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
-header.top { padding: 20px 20px 16px; }
-h1 { font-size: 22px; margin: 0 0 4px; }
-.subtitle { color: var(--muted); font-size: 13px; }
-.disclaimer {
-  background: #2a1f1f; border: 1px solid #5a3a3a; color: #ffcfcf;
-  border-radius: 10px; padding: 14px 16px; font-size: 13px; margin: 16px 20px;
+
+/* --- ヒーロー: 東京の夜景写真がゆっくりクロスフェードする帯 --- */
+.hero { position: relative; width: 100%; height: 300px; overflow: hidden; background: var(--bg-deep); }
+.hero-slides { position: absolute; inset: 0; }
+.hero-slide {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  opacity: 0; transform: scale(1.08);
+  filter: blur(1.5px) saturate(1.15) brightness(0.72);
+  animation: heroFade 24s ease-in-out infinite;
 }
-.disclaimer b { color: #ffb0b0; }
+@keyframes heroFade {
+  0% { opacity: 0; }
+  5% { opacity: 1; }
+  22% { opacity: 1; }
+  30% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(242,182,76,0.22), transparent 42%),
+    radial-gradient(circle at 86% 8%, rgba(79,214,255,0.16), transparent 45%),
+    linear-gradient(180deg, rgba(4,6,12,0.15) 0%, rgba(4,6,12,0.55) 55%, var(--bg-deep) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2; height: 100%; max-width: 1080px; margin: 0 auto;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px 20px;
+}
+h1 {
+  font-size: 22px; margin: 0 0 6px; font-weight: 700; letter-spacing: 0.2px;
+  text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+}
+.subtitle { color: var(--muted); font-size: 13px; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+.disclaimer {
+  background: rgba(242,182,76,0.08); border: 1px solid rgba(242,182,76,0.28); color: #ffdca8;
+  border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; margin: 16px 20px;
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+.disclaimer b { color: #ffc773; }
 nav.tabs {
-  display: flex; gap: 10px; margin: 0 0 8px; flex-wrap: wrap; padding: 10px 20px;
-  position: sticky; top: 0; z-index: 20; background: rgba(15,23,32,0.92);
-  backdrop-filter: blur(6px); border-bottom: 1px solid var(--border);
+  display: flex; gap: 10px; margin: 0 0 8px; flex-wrap: wrap; padding: 12px 20px;
+  position: sticky; top: 0; z-index: 20; background: rgba(6,9,16,0.72);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
 }
 nav.tabs a {
-  color: var(--accent); text-decoration: none; font-size: 13px; border: 1px solid var(--border);
+  color: var(--text); text-decoration: none; font-size: 13px; border: 1px solid var(--border);
   padding: 7px 14px; border-radius: 20px; background: var(--panel2); white-space: nowrap;
+  transition: border-color .15s ease, box-shadow .15s ease, color .15s ease;
+}
+nav.tabs a:hover {
+  color: var(--accent); border-color: var(--accent-line);
+  box-shadow: 0 0 0 1px var(--accent-line), 0 0 16px rgba(242,182,76,0.18);
 }
 section { margin: 28px 20px; }
 section > h2 {
   font-size: 17px; border-left: 4px solid var(--accent); padding-left: 10px; margin-bottom: 4px;
+  font-weight: 700;
 }
 .section-desc { color: var(--muted); font-size: 12.5px; margin: 2px 0 14px; }
 .card {
-  background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
-  padding: 16px 18px; margin-bottom: 16px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 16px 18px; margin-bottom: 16px; box-shadow: var(--shadow);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
 }
 .card h3 { font-size: 14px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
 .idx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
 .idx-card {
-  background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px;
+  background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
+  padding: 10px 12px; transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.idx-card:hover {
+  border-color: var(--accent-line); box-shadow: 0 0 18px rgba(242,182,76,0.14);
+  transform: translateY(-1px);
 }
 .idx-label { font-size: 12px; color: var(--muted); }
-.idx-value { font-size: 18px; font-weight: 700; margin-top: 2px; }
+.idx-value { font-size: 18px; font-weight: 700; margin-top: 2px; letter-spacing: 0.2px; }
 .chg { font-size: 13px; font-weight: 600; }
 .chg.up, .up { color: var(--up); }
 .chg.down, .down { color: var(--down); }
 .chg.flat, .flat { color: var(--muted); }
 .note { font-size: 11px; color: var(--muted); margin-top: 4px; }
 .news-list { list-style: none; margin: 0; padding: 0; }
-.news-list li { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+.news-list li { padding: 7px 0; border-bottom: 1px solid var(--border-soft); font-size: 13.5px; }
 .news-list li:last-child { border-bottom: none; }
 .news-list a { color: var(--text); text-decoration: none; }
 .news-list a:hover { color: var(--accent); }
 .news-list .meta { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
 .scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
-.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .tdnet-table { min-width: 560px; }
 .movers-table { min-width: 680px; }
 .technical-table { min-width: 820px; }
-th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border); }
+th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border-soft); }
 th { color: var(--muted); font-weight: 600; font-size: 12px; white-space: nowrap; }
 td.mono { font-family: "SF Mono", Menlo, monospace; white-space: nowrap; }
 td.reason { color: var(--muted); }
-tbody tr:nth-child(even) { background: rgba(255,255,255,0.025); }
-tbody tr:hover { background: rgba(77,163,255,0.08); }
+tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+tbody tr:hover { background: rgba(242,182,76,0.08); }
 .badge { padding: 2px 9px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-.badge.bull { background: rgba(255,92,92,0.15); color: var(--bull); }
-.badge.bear { background: rgba(77,208,163,0.15); color: var(--bear); }
-.badge.neutral { background: rgba(146,161,179,0.15); color: var(--muted); }
-.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border); color: var(--muted); margin-left: 4px; }
+.badge.bull { background: rgba(255,107,122,0.15); color: var(--bull); border: 1px solid rgba(255,107,122,0.3); }
+.badge.bear { background: rgba(53,217,180,0.15); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
+.badge.neutral { background: rgba(139,147,168,0.15); color: var(--muted); border: 1px solid var(--border-soft); }
+.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
-footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--border); padding-top: 16px; }
+footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--border-soft); padding-top: 16px; }
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
-.run-badge { display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px; background:var(--panel2); border:1px solid var(--border); margin-left:8px; }
+.run-badge {
+  display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px;
+  background: var(--accent-soft); border:1px solid var(--accent-line); color: var(--accent); margin-left:8px;
+}
 
 /* --- PC(広い画面): 余白と最大幅を少し広げて読みやすくする --- */
 @media (min-width: 1200px) {
   .wrap { max-width: 1240px; }
   body { font-size: 15.5px; }
   .idx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .hero { height: 360px; }
+  .hero-content { max-width: 1240px; }
 }
 
 /* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
 @media (max-width: 640px) {
   .wrap { padding: 12px 12px 48px; }
-  header.top { padding: 12px 8px 10px; }
+  .hero { height: 190px; }
+  .hero-content { padding: 14px 12px 12px; }
   h1 { font-size: 17px; line-height: 1.4; }
   .subtitle { font-size: 11.5px; }
   .disclaimer { margin: 12px 8px; padding: 10px 12px; font-size: 12px; }
@@ -114,14 +184,19 @@ footer .disclaimer { margin: 0 0 12px; }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
+<div class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-154095973332-eab4deabeeaf?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:0s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:6s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:12s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:18s;"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
     <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-    <div class="subtitle">最終更新: 2026-07-20 06:54 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
-  </header>
-
+    <div class="subtitle">最終更新: 2026-07-20 06:00 (JST) ・ 毎日  朝6:00 / 夜21:00 に自動更新</div>
+  </div>
+</div>
+<div class="wrap">
   <div class="disclaimer">
-    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
+    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ペースの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言はなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
   </div>
 
   <nav class="tabs">
@@ -133,7 +208,7 @@ footer .disclaimer { margin: 0 0 12px; }
   
     <section id="morning">
       <h2>🌅 寄り付き前セクション</h2>
-      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
+      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめたが，当日の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
         <h3>米国市場・為替・日経先物</h3>
         <div class="idx-grid">
@@ -141,177 +216,97 @@ footer .disclaimer { margin: 0 0 12px; }
       <div class="idx-label">S&amp;P500</div>
       <div class="idx-value">7,457.69</div>
       <span class="chg down">-1.01%</span>
-      <div class="note">7/18終値</div>
+      <div class="note">7/17終値</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">NYダウ</div>
       <div class="idx-value">52,146.42</div>
       <span class="chg down">-0.77%</span>
-      <div class="note">7/18終値</div>
+      <div class="note">7/17終値</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">ナスダック総合</div>
-      <div class="idx-value">25,520.24</div>
+      <div class="idx-value">25,520.25</div>
       <span class="chg down">-1.40%</span>
-      <div class="note">7/18終値</div>
+      <div class="note">7/17終値</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">USD/JPY</div>
-      <div class="idx-value">162.41円</div>
-      <span class="chg up">+0.02%</span>
-      <div class="note">7/20終値</div>
+      <div class="idx-value">162.30〜162.40円</div>
+      
+      <div class="note">7/17 NY市場終値</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">日経225先物(CME/大阪)</div>
-      <div class="idx-value">65,145.00</div>
-      <span class="chg down">-1.13%</span>
-      <div class="note">7/18終値</div>
+      <div class="idx-value">64,060円(CME清算値)</div>
+      
+      <div class="note">7/17夜間・大阪日中比2,780円安</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">日経平均(現物・前回終値)</div>
-      <div class="idx-value">64,141.12</div>
+      <div class="idx-value">64,141.12円</div>
       <span class="chg down">-4.03%</span>
-      <div class="note">7/17終値</div>
+      <div class="note">7/17終値(前週末比)</div>
     </div></div>
       </div>
       <div class="card">
         <h3>時間外・朝の主要ニュース</h3>
-        <ul class="news-list"><li><a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener">自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など</a><span class="meta">7/17 / トレーダーズ・ウェブ</span></li><li><a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener">本日の【CB発行】銘柄 (16日大引け後 発表分)</a><span class="meta">7/16 引け後 / フィスコ</span></li></ul>
+        <ul class="news-list"><li><a href="https://nikkeiyosoku.com/stock/holiday/" target="_blank" rel="noopener">本日7/20(月)は「海の日」で東京証券取引所は休場です。次の取引日は7/21(火)。</a><span class="meta">休場情報 / 投資の森</span></li><li><a href="https://www.zaikei.co.jp/article/20260718/861841.html" target="_blank" rel="noopener">17日のNY株式市場、半導体安とイラン緊迫で続落 週間でも下落</a><span class="meta">7/18 / 財経新聞</span></li><li><a href="https://www.bloomberg.com/jp/news/articles/2026-07-17/TIBKGIKJH6V400" target="_blank" rel="noopener">【米国市況】S&amp;P500続落、半導体株が弱気相場入り－イラン情勢も意識</a><span class="meta">7/17 / Bloomberg</span></li><li><a href="https://www.nikkei.com/article/DGXZQOUB171TA0X10C26A7000000/" target="_blank" rel="noopener">アドバンテストの株価が急落 AI半導体株安が波及</a><span class="meta">7/17 / 日本経済新聞</span></li><li><a href="https://www.gaitame.com/media/entry/2026/07/19/060400" target="_blank" rel="noopener">来週のドル円相場はどうなる？7/20週のイベント予定</a><span class="meta">7/19 / 外為どっとコム マネ育チャンネル</span></li></ul>
       </div>
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>
-        
-    <div class="scroll-hint">← 横にスクロールできます</div>
-    <div class="table-scroll">
-    <table class="tdnet-table">
-      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596230.pdf" target="_blank" rel="noopener">ブックオフＧ、2026年5月期決算説明会 書き起こし記事公開のお知らせ 他 7月17日(金) 20:05</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596231.pdf" target="_blank" rel="noopener">昭和ＨＤ、更生手続開始の申立てに関するお知らせ 他 7月17日(金) 20:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260714593488.pdf" target="_blank" rel="noopener">放電精密、コーポレート・ガバナンスに関する報告書 2026/07/16 他 7月17日(金) 19:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596224.pdf" target="_blank" rel="noopener">カカクコム、Notice Regarding Extension of Tender Offer for Shares of Kakaku.com, Inc. by Kamgras 1 K.K. 他 7月17日(金) 19:05</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596222.pdf" target="_blank" rel="noopener">ゲームウィズ、個人投資家向けオンライン決算説明会開催のお知らせ 他 7月17日(金) 19:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260716595512.pdf" target="_blank" rel="noopener">はてな、特別調査委員会の調査報告書受領に関するお知らせ 他 7月17日(金) 18:36</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596207.pdf" target="_blank" rel="noopener">北の達人、Financial Results Meeting for Institutional Investors and Analysts Held 他 7月17日(金) 18:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596171.pdf" target="_blank" rel="noopener">北の達人、機関投資家・アナリスト向け決算説明会を開催いたしました 追訂 7月17日(金) 18:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596215.pdf" target="_blank" rel="noopener">ｕｎｂａｎｋ、独立役員届出書 他 7月17日(金) 18:25</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596203.pdf" target="_blank" rel="noopener">ダイヤＨＤ、公正取引委員会からの勧告について 他 7月17日(金) 18:15</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596199.pdf" target="_blank" rel="noopener">マルシェ、第三者割当による新株式発行により調達した資金の使途変更に関するお知らせ エク 7月17日(金) 18:01</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717595969.pdf" target="_blank" rel="noopener">ストリーム、当社連結子会社における債権の取立不能に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260716595482.pdf" target="_blank" rel="noopener">ＳＹＳＨＤ、連結子会社間の合併に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260714593539.pdf" target="_blank" rel="noopener">テリロジＨＤ、株式報酬型ストック・オプション（新株予約権）の発行内容確定に関するお知らせ エク 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596187.pdf" target="_blank" rel="noopener">ＴＷＯＳＴ、2026年８月期 第３四半期決算説明会書き起こし記事と説明動画公開のお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596194.pdf" target="_blank" rel="noopener">山大、臨時株主総会招集のための基準日の取消し及び再設定に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596133.pdf" target="_blank" rel="noopener">山大、（変更）「ナイス株式会社による当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨のお知らせ」の一部変更について 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260716595443.pdf" target="_blank" rel="noopener">ナイス、株式会社山大（証券コード：7426）に対する公開買付けの買付条件等の変更に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596102.pdf" target="_blank" rel="noopener">ａｂｃ、子会社クレーンゲームジャパンがプロ野球・前田健太投手の人気キャラクター「マエケン画伯」とのコラボレーション景品を展開 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596188.pdf" target="_blank" rel="noopener">ＳＢ、Notice Regarding Determination of Details of Issuance of Stock Acquisition Rights (Stock Options) 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr></tbody>
-    </table>
-    </div>
+        <p class="empty">対象期間の適時開示は取得できませんでした。</p>
       </div>
       <div class="card">
         <h3>出来高・値動きで話題の銘柄</h3>
-        <p class="empty">該当データが取得できませんでした。</p>
+        
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
+    <table class="movers-table">
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>出来高メモ</th><th>話題の背景</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="mono">285A</td>
+          <td>キオクシアホールディングス</td>
+          <td class="mono">52,110円</td>
+          <td class="mono down">-16.10%</td>
+          <td>週間値下がり率1位(7/17時点)</td>
+          <td class="reason">米特許侵害訴訟の賠償評決を受けストップ安となり急落、週間では-32.3%</td>
+        </tr>
+        <tr>
+          <td class="mono">9439</td>
+          <td>ＭＨグループ</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td>値上がり率上位(7/17時点)</td>
+          <td class="reason">値上がり率ランキング上位にランクイン</td>
+        </tr>
+        <tr>
+          <td class="mono">2034</td>
+          <td>NF日経ダブルインバース(コスピベア)</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td>値上がり率上位(7/17時点)</td>
+          <td class="reason">日経平均急落を受け夙ア型ETFに資金流入</td>
+        </tr>
+        <tr>
+          <td class="mono">6857</td>
+          <td>アドバンテスト</td>
+          <td class="mono">―</td>
+          <td class="mono down">-10.80%</td>
+          <td>日経平均寄与度マイナス上位(7/17)</td>
+          <td class="reason">米半導体株安を受けAI・半導体関連に売りが波及、指数を約772円押し下げ</td>
+        </tr>
+        <tr>
+          <td class="mono">8035</td>
+          <td>東京エレクトロン</td>
+          <td class="mono">―</td>
+          <td class="mono down">-8.17%</td>
+          <td>日経平均寄与度マイナス上位(7/17)</td>
+          <td class="reason">同じく半導体安の流れで売られ、指数を約617円押し下げ</td>
+        </tr></tbody>
+    </table>
+    </div>
       </div>
     </section>
   
@@ -320,138 +315,11 @@ footer .disclaimer { margin: 0 0 12px; }
       <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
         <h3>本日のTDnet適時開示</h3>
-        
-    <div class="scroll-hint">← 横にスクロールできます</div>
-    <div class="table-scroll">
-    <table class="tdnet-table">
-      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596230.pdf" target="_blank" rel="noopener">ブックオフＧ、2026年5月期決算説明会 書き起こし記事公開のお知らせ 他 7月17日(金) 20:05</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596231.pdf" target="_blank" rel="noopener">昭和ＨＤ、更生手続開始の申立てに関するお知らせ 他 7月17日(金) 20:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260714593488.pdf" target="_blank" rel="noopener">放電精密、コーポレート・ガバナンスに関する報告書 2026/07/16 他 7月17日(金) 19:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596224.pdf" target="_blank" rel="noopener">カカクコム、Notice Regarding Extension of Tender Offer for Shares of Kakaku.com, Inc. by Kamgras 1 K.K. 他 7月17日(金) 19:05</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596222.pdf" target="_blank" rel="noopener">ゲームウィズ、個人投資家向けオンライン決算説明会開催のお知らせ 他 7月17日(金) 19:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260716595512.pdf" target="_blank" rel="noopener">はてな、特別調査委員会の調査報告書受領に関するお知らせ 他 7月17日(金) 18:36</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596207.pdf" target="_blank" rel="noopener">北の達人、Financial Results Meeting for Institutional Investors and Analysts Held 他 7月17日(金) 18:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596171.pdf" target="_blank" rel="noopener">北の達人、機関投資家・アナリスト向け決算説明会を開催いたしました 追訂 7月17日(金) 18:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596215.pdf" target="_blank" rel="noopener">ｕｎｂａｎｋ、独立役員届出書 他 7月17日(金) 18:25</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596203.pdf" target="_blank" rel="noopener">ダイヤＨＤ、公正取引委員会からの勧告について 他 7月17日(金) 18:15</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596199.pdf" target="_blank" rel="noopener">マルシェ、第三者割当による新株式発行により調達した資金の使途変更に関するお知らせ エク 7月17日(金) 18:01</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717595969.pdf" target="_blank" rel="noopener">ストリーム、当社連結子会社における債権の取立不能に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260716595482.pdf" target="_blank" rel="noopener">ＳＹＳＨＤ、連結子会社間の合併に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260714593539.pdf" target="_blank" rel="noopener">テリロジＨＤ、株式報酬型ストック・オプション（新株予約権）の発行内容確定に関するお知らせ エク 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596187.pdf" target="_blank" rel="noopener">ＴＷＯＳＴ、2026年８月期 第３四半期決算説明会書き起こし記事と説明動画公開のお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596194.pdf" target="_blank" rel="noopener">山大、臨時株主総会招集のための基準日の取消し及び再設定に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596133.pdf" target="_blank" rel="noopener">山大、（変更）「ナイス株式会社による当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨のお知らせ」の一部変更について 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260716595443.pdf" target="_blank" rel="noopener">ナイス、株式会社山大（証券コード：7426）に対する公開買付けの買付条件等の変更に関するお知らせ 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596102.pdf" target="_blank" rel="noopener">ａｂｃ、子会社クレーンゲームジャパンがプロ野球・前田健太投手の人気キャラクター「マエケン画伯」とのコラボレーション景品を展開 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260717/140120260717596188.pdf" target="_blank" rel="noopener">ＳＢ、Notice Regarding Determination of Details of Issuance of Stock Acquisition Rights (Stock Options) 他 7月17日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr></tbody>
-    </table>
-    </div>
+        <p class="empty">本日の適時開示データは取得できませんでした。</p>
       </div>
       <div class="card">
         <h3>引け後の主要ニュース</h3>
-        <p class="empty">現時点で該当するニュースは取得できませんでした。</p>
+        <p class="empty">玾時点で該当するニュースは取得できませんでした。</p>
       </div>
       <div class="card">
         <h3>本日の値動き・出来高で話題の銘柄</h3>
@@ -473,63 +341,48 @@ footer .disclaimer { margin: 0 0 12px; }
       <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
       <tbody>
         <tr>
-          <td class="mono">7203</td>
-          <td>トヨタ自動車</td>
-          <td class="mono">2,899.5</td>
-          <td class="mono down">-0.33%</td>
-          <td class="mono">+1.18%</td>
-          <td class="mono">+3.10%</td>
-          <td class="mono">62.22</td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+          <td class="mono">6857</td>
+          <td>アドバンテスト</td>
+          <td class="mono">29,885円(取得時点データ、5/8終値ベース)</td>
+          <td class="mono up">+0.57%</td>
+          <td class="mono">+2.75%</td>
+          <td class="mono">+13.70%</td>
+          <td class="mono">60.84</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り1・中立6・買い0(取得時点)。7/17終値は前日比10.8%安の急落で、指標データが直近の値動きを反映してぉない可能性に留意。市場は7/21(火)まで休場。</td>
         </tr>
         <tr>
-          <td class="mono">6758</td>
-          <td>ソニーグループ</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">+1.93%</td>
-          <td class="mono">+4.54%</td>
-          <td class="mono">64.47</td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+          <td class="mono">8035</td>
+          <td>東京エレクトロン</td>
+          <td class="mono">73,200円(取得時点データ、7/7終値ベース)</td>
+          <td class="mono up">+0.36%</td>
+          <td class="mono">-2.86%</td>
+          <td class="mono">+6.87%</td>
+          <td class="mono">50.58</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り3・中立4・買い0(取得時点)。7/17終値は前日比8%超安で急落しており、当指標は直近の下落を反映していない可能性がある。市場は7/21(火)まで休場。</td>
+        </tr>
+        <tr>
+          <td class="mono">7203</td>
+          <td>トヨタ自動車</td>
+          <td class="mono">2,823円(取得時点データ、7/10終値ベース)</td>
+          <td class="mono down">-0.04%</td>
+          <td class="mono">-2.01%</td>
+          <td class="mono">+0.87%</td>
+          <td class="mono">57.64</td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td class="reason">売り0・中立6・買い1(取得時点)。MACDは買いシグナルだがRSIは50台で過熱感は見られない。市場は7/21(火)まで休場。</td>
         </tr>
         <tr>
           <td class="mono">8306</td>
-          <td>三菱UFJフィナンシャル・グループ</td>
-          <td class="mono">3,473.0</td>
-          <td class="mono down">-4.30%</td>
-          <td class="mono">-3.21%</td>
-          <td class="mono">+3.32%</td>
-          <td class="mono">66.75</td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
-        </tr>
-        <tr>
-          <td class="mono">9984</td>
-          <td>ソフトバンクグループ</td>
-          <td class="mono">5,424.0</td>
-          <td class="mono down">-9.01%</td>
-          <td class="mono">-11.61%</td>
-          <td class="mono">-15.07%</td>
-          <td class="mono">41.35</td>
-          <td><span class="badge bull">強気(乖離大)</span></td>
-          <td class="reason">売り0/中立5/買い2。RSIは中立域。</td>
-        </tr></tbody>
-    </table>
-    </div>
-      </div>
-    </section>
-
-  <footer>
-    <div class="disclaimer">
-      ⚠️ 再掲: 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
-    </div>
-    
-    <div class="sources">
-      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
-      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
-      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
+          <td>三菱ＵＦＪフィナンシャル・グループ</td>
+          <td class="mono">2,752円(取得時点データ、4/23終値ベース・やや古い)</td>
+          <td class="mono down">-1.50%</td>
+          <td class="mono">-2.53%</td>
+          <td class="mono">-0.91%</td>
+          <td class="mono">49.02</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り1・中立6・買—
     </div>
   </footer>
 </div>
