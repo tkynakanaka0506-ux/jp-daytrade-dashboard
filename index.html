@@ -6,20 +6,20 @@
 <title>日本株デイトレード情報ダッシュボード</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-deep: #04060c; --bg-mid: #0a0f1c; --bg-soft: #0d1424;
-  --panel: linear-gradient(155deg, rgba(255,255,255,0.055), rgba(255,255,255,0.015));
-  --panel2: rgba(255,255,255,0.035);
-  --border: rgba(255,255,255,0.09); --border-soft: rgba(255,255,255,0.06);
-  --text: #eef1f8; --muted: #8b93a8;
-  --accent: #f2b64c; --accent-soft: rgba(242,182,76,0.16); --accent-line: rgba(242,182,76,0.4);
+  --panel: linear-gradient(155deg, rgba(22,28,44,0.94), rgba(14,19,31,0.94));
+  --panel2: rgba(255,255,255,0.04);
+  --border: rgba(242,182,76,0.16); --border-soft: rgba(255,255,255,0.07);
+  --text: #f1ede2; --muted: #99a0b5;
+  --accent: #f2b64c; --accent-soft: rgba(242,182,76,0.16); --accent-line: rgba(242,182,76,0.45);
   --neon: #4fd6ff;
   --up: #ff6b7a; --down: #35d9b4;
   --warn: #ffb84d; --bull: #ff6b7a; --bear: #35d9b4;
-  --radius: 16px; --radius-sm: 11px;
-  --shadow: 0 10px 34px rgba(0,0,0,0.38);
+  --radius: 14px; --radius-sm: 10px;
+  --shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
 * { box-sizing: border-box; }
 body {
@@ -43,7 +43,7 @@ body {
 .hero-slide {
   position: absolute; inset: 0; background-size: cover; background-position: center;
   opacity: 0; transform: scale(1.08);
-  filter: blur(1.5px) saturate(1.15) brightness(0.72);
+  filter: saturate(1.15) brightness(0.7);
   animation: heroFade 24s ease-in-out infinite;
 }
 @keyframes heroFade {
@@ -60,48 +60,63 @@ body {
     radial-gradient(circle at 86% 8%, rgba(79,214,255,0.16), transparent 45%),
     linear-gradient(180deg, rgba(4,6,12,0.15) 0%, rgba(4,6,12,0.55) 55%, var(--bg-deep) 100%);
 }
-.hero-content {
-  position: relative; z-index: 2; height: 100%; max-width: 1080px; margin: 0 auto;
-  display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px 20px;
+/* --- 固定見出しバー: 常に画面上部に表示される --- */
+.topbar {
+  position: sticky; top: 0; z-index: 25;
+  background: linear-gradient(180deg, rgba(7,10,18,0.98), rgba(7,10,18,0.94));
+  border-bottom: 1px solid rgba(242,182,76,0.22);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
 }
+.topbar-inner {
+  max-width: 1080px; margin: 0 auto; padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.topbar-title { min-width: 0; }
 h1 {
-  font-size: 22px; margin: 0 0 6px; font-weight: 700; letter-spacing: 0.2px;
-  text-shadow: 0 2px 18px rgba(0,0,0,0.55);
+  font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
+  font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.4px;
+  color: #f2b64c;
+  background: linear-gradient(120deg, #ffe3ad 0%, #f2b64c 45%, #d9a441 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.subtitle { color: var(--muted); font-size: 13px; text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
+.subtitle { color: var(--muted); font-size: 11.5px; letter-spacing: 0.2px; }
 .disclaimer {
-  background: rgba(242,182,76,0.08); border: 1px solid rgba(242,182,76,0.28); color: #ffdca8;
+  background: linear-gradient(155deg, rgba(38,28,14,0.92), rgba(28,20,10,0.92));
+  border: 1px solid rgba(242,182,76,0.28); color: #ffdca8;
   border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; margin: 16px 20px;
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
 .disclaimer b { color: #ffc773; }
 nav.tabs {
-  display: flex; gap: 10px; margin: 0 0 8px; flex-wrap: wrap; padding: 12px 20px;
-  position: sticky; top: 0; z-index: 20; background: rgba(6,9,16,0.72);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-soft);
+  display: flex; gap: 10px; flex-wrap: wrap;
 }
 nav.tabs a {
-  color: var(--text); text-decoration: none; font-size: 13px; border: 1px solid var(--border);
-  padding: 7px 14px; border-radius: 20px; background: var(--panel2); white-space: nowrap;
-  transition: border-color .15s ease, box-shadow .15s ease, color .15s ease;
+  color: var(--text); text-decoration: none; font-size: 12.5px; letter-spacing: 0.2px;
+  border: 1px solid var(--border);
+  padding: 7px 15px; border-radius: 20px; background: rgba(255,255,255,0.04); white-space: nowrap;
+  transition: border-color .15s ease, box-shadow .15s ease, color .15s ease, background .15s ease;
 }
 nav.tabs a:hover {
   color: var(--accent); border-color: var(--accent-line);
   box-shadow: 0 0 0 1px var(--accent-line), 0 0 16px rgba(242,182,76,0.18);
 }
-section { margin: 28px 20px; }
+section { margin: 32px 20px; }
 section > h2 {
-  font-size: 17px; border-left: 4px solid var(--accent); padding-left: 10px; margin-bottom: 4px;
-  font-weight: 700;
+  font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
+  font-size: 18px; border-left: 2px solid var(--accent); padding-left: 12px; margin-bottom: 4px;
+  font-weight: 700; letter-spacing: 0.3px;
 }
 .section-desc { color: var(--muted); font-size: 12.5px; margin: 2px 0 14px; }
 .card {
   background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px 18px; margin-bottom: 16px; box-shadow: var(--shadow);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  padding: 18px 20px; margin-bottom: 16px; box-shadow: var(--shadow);
+  transition: border-color .2s ease;
 }
-.card h3 { font-size: 14px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
+.card:hover { border-color: var(--accent-line); }
+.card h3 {
+  font-size: 12.5px; margin: 0 0 12px; color: var(--accent); font-weight: 600;
+  letter-spacing: 0.6px; text-transform: uppercase;
+}
 .idx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
 .idx-card {
   background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
@@ -157,21 +172,21 @@ footer .disclaimer { margin: 0 0 12px; }
   body { font-size: 15.5px; }
   .idx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
   .hero { height: 360px; }
-  .hero-content { max-width: 1240px; }
+  .topbar-inner { max-width: 1240px; }
 }
 
 /* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
 @media (max-width: 640px) {
   .wrap { padding: 12px 12px 48px; }
-  .hero { height: 190px; }
-  .hero-content { padding: 14px 12px 12px; }
-  h1 { font-size: 17px; line-height: 1.4; }
-  .subtitle { font-size: 11.5px; }
+  .hero { height: 150px; }
+  .topbar-inner { padding: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  h1 { font-size: 15.5px; line-height: 1.4; }
+  .subtitle { font-size: 11px; }
   .disclaimer { margin: 12px 8px; padding: 10px 12px; font-size: 12px; }
-  nav.tabs { margin: 0 0 8px; padding: 8px 8px; gap: 6px; }
+  nav.tabs { gap: 6px; }
   nav.tabs a { font-size: 12px; padding: 6px 10px; }
   section { margin: 20px 8px; }
-  section > h2 { font-size: 15.5px; }
+  section > h2 { font-size: 15px; }
   .section-desc { font-size: 11.5px; }
   .card { padding: 12px 12px; margin-bottom: 12px; }
   .idx-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
@@ -186,29 +201,32 @@ footer .disclaimer { margin: 0 0 12px; }
 <body>
 <div class="hero">
   <div class="hero-slides">
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-154095973332-eab4deabeeaf?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:0s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:6s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:12s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:18s;"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:0s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:6s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:12s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:18s;"></div>
   </div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-    <div class="subtitle">最終更新: 2026-07-20 06:00 (JST) ・ 毎日  朝6:00 / 夜21:00 に自動更新</div>
-  </div>
 </div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title">
+      <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
+      <div class="subtitle">最終更新: 2026-07-20 06:00 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+    </div>
+    <nav class="tabs">
+      <a href="#morning">🌅 寄り付き前</a>
+      <a href="#evening">🌙 引け後</a>
+      <a href="#technical">📊 株価診断</a>
+    </nav>
+  </div>
+</header>
 <div class="wrap">
   <div class="disclaimer">
-    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ペースの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言はなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
+    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
   </div>
-
-  <nav class="tabs">
-    <a href="#morning">🌅 寄り付き前</a>
-    <a href="#evening">🌙 引け後</a>
-    <a href="#technical">📊 株価診断</a>
-  </nav>
 
   
     <section id="morning">
       <h2>🌅 寄り付き前セクション</h2>
-      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめたが，当日の仕込み銘柄検討の参考情報です。</p>
+      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
         <h3>米国市場・為替・日経先物</h3>
         <div class="idx-grid">
@@ -287,7 +305,7 @@ footer .disclaimer { margin: 0 0 12px; }
           <td class="mono">―</td>
           <td class="mono flat">―</td>
           <td>値上がり率上位(7/17時点)</td>
-          <td class="reason">日経平均急落を受け夙ア型ETFに資金流入</td>
+          <td class="reason">日経平均急落を受けベア型ETFに資金流入</td>
         </tr>
         <tr>
           <td class="mono">6857</td>
@@ -319,7 +337,7 @@ footer .disclaimer { margin: 0 0 12px; }
       </div>
       <div class="card">
         <h3>引け後の主要ニュース</h3>
-        <p class="empty">玾時点で該当するニュースは取得できませんでした。</p>
+        <p class="empty">現時点で該当するニュースは取得できませんでした。</p>
       </div>
       <div class="card">
         <h3>本日の値動き・出来高で話題の銘柄</h3>
@@ -349,18 +367,18 @@ footer .disclaimer { margin: 0 0 12px; }
           <td class="mono">+13.70%</td>
           <td class="mono">60.84</td>
           <td><span class="badge bear">中立(やや弱気)</span></td>
-          <td class="reason">売り1・中立6・買い0(取得時点)。7/17終値は前日比10.8%安の急落で、指標データが直近の値動きを反映してぉない可能性に留意。市場は7/21(火)まで休場。</td>
+          <td class="reason">売り1・中立6・買い0(取得時点)。7/17終値は前日比10.8%安の急落で、指標データが直近の値動きを反映していない可能性に留意。市場は7/21(火)まで休場。</td>
         </tr>
         <tr>
           <td class="mono">8035</td>
           <td>東京エレクトロン</td>
-          <td class="mono">73,200円(取得時点データ、7/7終値ベース)</td>
+          <td class="mono">73,200円(取得時点データ、7/3終値ベース)</td>
           <td class="mono up">+0.36%</td>
           <td class="mono">-2.86%</td>
           <td class="mono">+6.87%</td>
           <td class="mono">50.58</td>
           <td><span class="badge bear">中立(やや弱気)</span></td>
-          <td class="reason">売り3・中立4・買い0(取得時点)。7/17終値は前日比8%超安で急落しており、当指標は直近の下落を反映していない可能性がある。市場は7/21(火)まで休場。</td>
+          <td class="reason">売り3・中立4・買い0(取得時点)。7/17終値は前日比8%超安で急落しており、当指標は直近の下落を反映していなぁ可能性がある。市場は7/21(火)まで休場。</td>
         </tr>
         <tr>
           <td class="mono">7203</td>
@@ -382,7 +400,44 @@ footer .disclaimer { margin: 0 0 12px; }
           <td class="mono">-0.91%</td>
           <td class="mono">49.02</td>
           <td><span class="badge bear">中立(やや弱気)</span></td>
-          <td class="reason">売り1・中立6・買—
+          <td class="reason">売り1・中立6・買い0(取得時点、データがやや古い点に留意)。MACDは売りシグナルで、25日線近辺で方向感に乏しい。市場は7/21(火)まで休場。</td>
+        </tr>
+        <tr>
+          <td class="mono">6920</td>
+          <td>レーザーテック</td>
+          <td class="mono">―(取得元の株価表示未確認)</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+7.13%</td>
+          <td class="mono">+33.11%</td>
+          <td class="mono">77.98 <span class="tag tag-warn">過熱感</span></td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り3・中立4・買い0(取得時点)。RSIが77台と過熱圏に入っており、短期的な調整局面への注意が指摘される水準。市場は7/21(火)まで休場。</td>
+        </tr>
+        <tr>
+          <td class="mono">9984</td>
+          <td>ソフトバンクグループ</td>
+          <td class="mono">5,424円(7/17終値)</td>
+          <td class="mono down">-9.01%</td>
+          <td class="mono">-11.61%</td>
+          <td class="mono">-15.07%</td>
+          <td class="mono">41.35</td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td class="reason">売り0・中立5・買い2(7/17時点)。前日比9%超の急落で移動平均線から大きく下方乖離、RSIは40台で売られ過ぎ圏に接近。押し目狙いの買いシグナルも一部点灯。市場は7/21(火)まで休場。</td>
+        </tr></tbody>
+    </table>
+    </div>
+      </div>
+    </section>
+
+  <footer>
+    <div class="disclaimer">
+      ⚠️ 再掲: 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
+    </div>
+    
+    <div class="sources">
+      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
+      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
+      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
     </div>
   </footer>
 </div>
