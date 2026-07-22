@@ -1,36 +1,36 @@
 {
-  "generated_at" : "2026-07-22 22:51",
-  "run_type" : "evening",
+  "generated_at" : "2026-07-23 07:04",
+  "run_type" : "morning",
   "us_market" : {
     "sp500" : {
-      "value" : "7,501.74",
-      "change_pct" : -0.1,
-      "asof" : "7/22終値"
+      "value" : "7,498.96",
+      "change_pct" : -0.14,
+      "asof" : "7/23終値"
     },
     "dow" : {
-      "value" : "52,360.47",
-      "change_pct" : 0.26,
-      "asof" : "7/22終値"
+      "value" : "52,218.58",
+      "change_pct" : -0.01,
+      "asof" : "7/23終値"
     },
     "nasdaq" : {
-      "value" : "25,732.28",
-      "change_pct" : -0.41,
-      "asof" : "7/22終値"
+      "value" : "25,690.90",
+      "change_pct" : -0.57,
+      "asof" : "7/23終値"
     }
   },
   "fx" : {
-    "value" : "163.05円",
-    "change_pct" : 0.35,
-    "asof" : "7/22終値"
+    "value" : "163.09円",
+    "change_pct" : -0.06,
+    "asof" : "7/23終値"
   },
   "nikkei_futures" : {
-    "value" : "65,995.00",
-    "change_pct" : -1.77,
-    "asof" : "7/22終値"
+    "value" : "66,330.00",
+    "change_pct" : -1.27,
+    "asof" : "7/23終値"
   },
   "nikkei225" : {
     "value" : "66,115.60",
-    "change_pct" : -0.18,
+    "change_pct" : 3.08,
     "asof" : "7/22終値"
   },
   "overnight_news" : [ {
@@ -45,144 +45,144 @@
     "time" : "7/16 引け後"
   } ],
   "tdnet_morning" : [ {
-    "time" : "―",
+    "time" : "00:30",
     "code" : "―",
-    "company" : "―",
-    "title" : "ブックオフＧ、2026年5月期決算説明会 書き起こし記事公開のお知らせ 他 7月17日(金) 20:05",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596230.pdf",
+    "company" : "エフピコ",
+    "title" : "エフピコレポート2026",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260721597050.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "昭和ＨＤ、更生手続開始の申立てに関するお知らせ 他 7月17日(金) 20:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596231.pdf",
+    "title" : "三井物、Non-binding Proposal with Penske Corporation to Acquire Free-float Shares of Penske Automotive Group, Inc. 他 7月22日(水) 21:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597648.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "放電精密、コーポレート・ガバナンスに関する報告書 2026/07/16 他 7月17日(金) 19:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260714593488.pdf",
+    "title" : "三井物、米国Penske Automotive Group, Inc.の浮動株買収を目的とした、法的拘束力を持たない提案書のPenske Corporationとの共同提出 他 7月22日(水) 21:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597630.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "カカクコム、Notice Regarding Extension of Tender Offer for Shares of Kakaku.com, Inc. by Kamgras 1 K.K. 他 7月17日(金) 19:05",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596224.pdf",
+    "title" : "ＩＤＥＣ、コーポレート・ガバナンスに関する報告書 2026/07/23 他 7月22日(水) 20:49",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721597117.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ゲームウィズ、個人投資家向けオンライン決算説明会開催のお知らせ 他 7月17日(金) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596222.pdf",
+    "title" : "フェローテク、（開示事項の訂正）2026年12月期通期連結業績予想の修正に関するお知らせ 追訂 7月22日(水) 19:35",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597893.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "はてな、特別調査委員会の調査報告書受領に関するお知らせ 他 7月17日(金) 18:36",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260716595512.pdf",
+    "title" : "ウェッジＨＤ、当社が取得した子会社株式等についての処分禁止の仮処分命令の送達について 他 7月22日(水) 19:10",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597828.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "北の達人、Financial Results Meeting for Institutional Investors and Analysts Held 他 7月17日(金) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596207.pdf",
+    "title" : "ＭＸ前向き、「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ 他 7月22日(水) 19:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597869.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "北の達人、機関投資家・アナリスト向け決算説明会を開催いたしました 追訂 7月17日(金) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596171.pdf",
+    "title" : "千葉興、株式報酬型ストックオプション（新株予約権）発行内容確定のお知らせ エク 7月22日(水) 19:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597524.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ｕｎｂａｎｋ、独立役員届出書 他 7月17日(金) 18:25",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596215.pdf",
+    "title" : "千葉興、Notice Regarding Finalization of Terms for Issuance of Stock Options (Share Acquisition Rights) Offered as Stock-Based Compensation 他 7月22日(水) 19:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597851.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ダイヤＨＤ、公正取引委員会からの勧告について 他 7月17日(金) 18:15",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596203.pdf",
+    "title" : "トラスコ中山、[Summary] Notice of the Resignation of Director and Personnel Changes 他 7月22日(水) 19:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597848.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "マルシェ、第三者割当による新株式発行により調達した資金の使途変更に関するお知らせ エク 7月17日(金) 18:01",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596199.pdf",
+    "title" : "リーダー電子、コーポレート・ガバナンスに関する報告書 2026/07/22 他 7月22日(水) 18:53",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260714592797.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ストリーム、当社連結子会社における債権の取立不能に関するお知らせ 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717595969.pdf",
+    "title" : "フェローテク、2026年12月期通期連結業績予想の修正に関するお知らせ 業修 7月22日(水) 18:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597821.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ＳＹＳＨＤ、連結子会社間の合併に関するお知らせ 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260716595482.pdf",
+    "title" : "福岡リート、Notice Concerning Extension of Contract Period of Committed Line of Credit 他 7月22日(水) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721596837.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "テリロジＨＤ、株式報酬型ストック・オプション（新株予約権）の発行内容確定に関するお知らせ エク 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260714593539.pdf",
+    "title" : "福岡リート、コミットメントライン契約の期間延長に関するお知らせ 他 7月22日(水) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721596828.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ＴＷＯＳＴ、2026年８月期 第３四半期決算説明会書き起こし記事と説明動画公開のお知らせ 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596187.pdf",
+    "title" : "マクセル、Selected as a Constituent of ESG Investment Indices \"FTSE JPX Blossom Japan Index\" and \"FTSE JPX Blossom Japan Sector Relative Index\" 他 7月22日(水) 17:50",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597663.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "山大、臨時株主総会招集のための基準日の取消し及び再設定に関するお知らせ 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596194.pdf",
+    "title" : "マクセル、マクセルが、ESG投資指数「FTSE JPX Blossom Japan Index」および「FTSE JPX Blossom Japan Sector Relative Index」の構成銘柄に選定 他 7月22日(水) 17:50",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597653.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "山大、（変更）「ナイス株式会社による当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨のお知らせ」の一部変更について 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596133.pdf",
+    "title" : "ＪＳＰ、定款 2026/06/26 他 7月22日(水) 17:33",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597803.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ナイス、株式会社山大（証券コード：7426）に対する公開買付けの買付条件等の変更に関するお知らせ 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260716595443.pdf",
+    "title" : "インタライフ、[Delayed]Consolidated Financial Results for the Three Months Ended May 31, 2026[Japanese GAAP] 他 7月22日(水) 17:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597775.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ａｂｃ、子会社クレーンゲームジャパンがプロ野球・前田健太投手の人気キャラクター「マエケン画伯」とのコラボレーション景品を展開 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596102.pdf",
+    "title" : "オーテック、支配株主等に関する事項について 他 7月22日(水) 17:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597790.pdf",
     "tag" : "他"
   }, {
     "time" : "―",
     "code" : "―",
     "company" : "―",
-    "title" : "ＳＢ、Notice Regarding Determination of Details of Issuance of Stock Acquisition Rights (Stock Options) 他 7月17日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260717/140120260717596188.pdf",
+    "title" : "Ｇキッズ、ラジオNIKKEI『企業トップが語る！威風堂々』ゲスト出演のお知らせ 他 7月22日(水) 17:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597539.pdf",
     "tag" : "他"
   } ],
   "movers_morning" : [ ],
