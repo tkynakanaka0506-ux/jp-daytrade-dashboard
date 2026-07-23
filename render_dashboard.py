@@ -223,6 +223,9 @@ CSS = """
   --shadow: 0 12px 34px rgba(0,0,0,0.6);
 }
 * { box-sizing: border-box; }
+a { color: var(--accent-bright); text-decoration: none; }
+a:visited { color: var(--accent-deep); }
+a:hover { color: var(--accent); text-decoration: underline; }
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
