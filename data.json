@@ -1,37 +1,37 @@
 {
-  "generated_at" : "2026-07-23 07:04",
-  "run_type" : "morning",
+  "generated_at" : "2026-07-23 22:57",
+  "run_type" : "evening",
   "us_market" : {
     "sp500" : {
-      "value" : "7,498.96",
-      "change_pct" : -0.14,
+      "value" : "7,423.95",
+      "change_pct" : -1.0,
       "asof" : "7/23終値"
     },
     "dow" : {
-      "value" : "52,218.58",
-      "change_pct" : -0.01,
+      "value" : "51,672.32",
+      "change_pct" : -1.05,
       "asof" : "7/23終値"
     },
     "nasdaq" : {
-      "value" : "25,690.90",
-      "change_pct" : -0.57,
+      "value" : "25,246.89",
+      "change_pct" : -1.73,
       "asof" : "7/23終値"
     }
   },
   "fx" : {
-    "value" : "163.09円",
-    "change_pct" : -0.06,
+    "value" : "163.94円",
+    "change_pct" : 0.46,
     "asof" : "7/23終値"
   },
   "nikkei_futures" : {
-    "value" : "66,330.00",
-    "change_pct" : -1.27,
+    "value" : "65,960.00",
+    "change_pct" : -0.69,
     "asof" : "7/23終値"
   },
   "nikkei225" : {
-    "value" : "66,115.60",
-    "change_pct" : 3.08,
-    "asof" : "7/22終値"
+    "value" : "66,422.60",
+    "change_pct" : 0.46,
+    "asof" : "7/23終値"
   },
   "overnight_news" : [ {
     "title" : "自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など",
@@ -187,144 +187,144 @@
   } ],
   "movers_morning" : [ ],
   "tdnet_afterclose" : [ {
-    "time" : "21:30",
+    "time" : "19:32",
     "code" : "―",
-    "company" : "三井物",
-    "title" : "Non-binding Proposal with Penske Corporation to Acquire Free-float Shares of Penske Automotive Group, Inc.",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597648.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "21:30",
-    "code" : "―",
-    "company" : "三井物",
-    "title" : "米国Penske Automotive Group, Inc.の浮動株買収を目的とした、法的拘束力を持たない提案書のPenske Corporationとの共同提出",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597630.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "20:49",
-    "code" : "―",
-    "company" : "ＩＤＥＣ",
+    "company" : "大黒屋",
     "title" : "コーポレート・ガバナンスに関する報告書 2026/07/23",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721597117.pdf",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598700.pdf",
     "tag" : "他"
-  }, {
-    "time" : "19:35",
-    "code" : "―",
-    "company" : "フェローテク",
-    "title" : "（開示事項の訂正）2026年12月期通期連結業績予想の修正に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597893.pdf",
-    "tag" : "追訂"
   }, {
     "time" : "19:10",
     "code" : "―",
-    "company" : "ウェッジＨＤ",
-    "title" : "当社が取得した子会社株式等についての処分禁止の仮処分命令の送達について",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597828.pdf",
-    "tag" : "他"
+    "company" : "ＳＳ米高配",
+    "title" : "（訂正）「ETFの収益分配のお知らせ」の一部訂正について",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598680.pdf",
+    "tag" : "配当"
   }, {
-    "time" : "19:00",
+    "time" : "18:30",
     "code" : "―",
-    "company" : "ＭＸ前向き",
-    "title" : "「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597869.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "19:00",
-    "code" : "―",
-    "company" : "千葉興",
-    "title" : "Notice Regarding Finalization of Terms for Issuance of Stock Options (Share Acquisition Rights) Offered as Stock-Based Compensation",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597851.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "19:00",
-    "code" : "―",
-    "company" : "千葉興",
-    "title" : "株式報酬型ストックオプション（新株予約権）発行内容確定のお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597524.pdf",
-    "tag" : "エク"
-  }, {
-    "time" : "19:00",
-    "code" : "―",
-    "company" : "トラスコ中山",
-    "title" : "[Summary] Notice of the Resignation of Director and Personnel Changes",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597848.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "18:53",
-    "code" : "―",
-    "company" : "リーダー電子",
-    "title" : "コーポレート・ガバナンスに関する報告書 2026/07/22",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260714592797.pdf",
+    "company" : "グッドパッチ",
+    "title" : "【Delayed】Consolidated Financial Results for the Nine Months Ended May 31 2026",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598644.pdf",
     "tag" : "他"
   }, {
     "time" : "18:30",
     "code" : "―",
-    "company" : "フェローテク",
-    "title" : "2026年12月期通期連結業績予想の修正に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597821.pdf",
-    "tag" : "業修"
+    "company" : "日本ライフＬ",
+    "title" : "Japan Lifeline Announces Organizational Restructuring and Personnel Changes",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598600.pdf",
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "18:30",
     "code" : "―",
-    "company" : "福岡リート",
-    "title" : "Notice Concerning Extension of Contract Period of Committed Line of Credit",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721596837.pdf",
+    "company" : "日本ライフＬ",
+    "title" : "組織変更および人事異動に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598596.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "18:15",
+    "code" : "―",
+    "company" : "アクリート",
+    "title" : "（経過開示）新たな事業の開始及び固定資産の取得に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598631.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "18:13",
+    "code" : "―",
+    "company" : "大黒屋",
+    "title" : "コーポレート・ガバナンスに関する報告書 2026/07/23",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598450.pdf",
     "tag" : "他"
   }, {
     "time" : "18:00",
     "code" : "―",
-    "company" : "福岡リート",
-    "title" : "コミットメントライン契約の期間延長に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721596828.pdf",
+    "company" : "アエリア",
+    "title" : "株式会社サイバード　『イケメンヴィラン 闇夜にひらく悪の恋』ウィリアム・レックス(CV:立花慎之介)&リアム・エヴァンス(CV:西山宏太朗)続編ストーリー配信開始",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598174.pdf",
     "tag" : "他"
   }, {
-    "time" : "17:50",
+    "time" : "18:00",
     "code" : "―",
-    "company" : "マクセル",
-    "title" : "Selected as a Constituent of ESG Investment Indices \"FTSE JPX Blossom Japan Index\" and \"FTSE JPX Blossom Japan Sector Relative Index\"",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597663.pdf",
+    "company" : "ＴＯＲＩＣＯ",
+    "title" : "【ドラマ「フェイクファクトリップス」ファンミーティング in 台湾】26年8月29日に開催決定！豪華特典内容を公開！",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598551.pdf",
     "tag" : "他"
   }, {
-    "time" : "17:50",
+    "time" : "17:40",
     "code" : "―",
-    "company" : "マクセル",
-    "title" : "マクセルが、ESG投資指数「FTSE JPX Blossom Japan Index」および「FTSE JPX Blossom Japan Sector Relative Index」の構成銘柄に選定",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597653.pdf",
+    "company" : "マクニカＨＤ",
+    "title" : "Notice Regarding the Completion of Payment for the Disposition of Treasury Shares under Restricted Share Remuneration",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598284.pdf",
     "tag" : "他"
   }, {
-    "time" : "17:33",
+    "time" : "17:40",
     "code" : "―",
-    "company" : "ＪＳＰ",
-    "title" : "定款 2026/06/26",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597803.pdf",
+    "company" : "マクニカＨＤ",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598280.pdf",
+    "tag" : "エク"
+  }, {
+    "time" : "17:30",
+    "code" : "―",
+    "company" : "ＳＡＡＦＨＤ",
+    "title" : "当社株式等の大規模買付等に関する対応策 （買収への対応方針）の継続・更新について",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598412.pdf",
     "tag" : "他"
   }, {
     "time" : "17:30",
     "code" : "―",
-    "company" : "インタライフ",
-    "title" : "[Delayed]Consolidated Financial Results for the Three Months Ended May 31, 2026[Japanese GAAP]",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597775.pdf",
+    "company" : "ツカダＧＨＤ",
+    "title" : "連結子会社による「雅叙園東京」のウエディング事業受託に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598587.pdf",
     "tag" : "他"
   }, {
     "time" : "17:30",
     "code" : "―",
-    "company" : "オーテック",
-    "title" : "支配株主等に関する事項について",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597790.pdf",
+    "company" : "オルトＰ",
+    "title" : "カードRPG『忘却前夜』7月23日（木）17時より新覚醒体「溶壊・ドール」が登場&Version2.1「星辰正しき刻」を公開！",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598258.pdf",
     "tag" : "他"
   }, {
     "time" : "17:30",
     "code" : "―",
-    "company" : "Ｇキッズ",
-    "title" : "ラジオNIKKEI『企業トップが語る！威風堂々』ゲスト出演のお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597539.pdf",
+    "company" : "日本管財ＨＤ",
+    "title" : "組織変更及び人事異動に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598130.pdf",
     "tag" : "他"
   }, {
-    "time" : "17:25",
+    "time" : "17:30",
     "code" : "―",
-    "company" : "ピックルス",
-    "title" : "株式報酬型ストックオプション（新株予約権）の発行内容確定に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597802.pdf",
+    "company" : "日本管財ＨＤ",
+    "title" : "Notice Concerning Organizational Changes and Personnel Changes",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598145.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "17:04",
+    "code" : "―",
+    "company" : "グリーンエナ",
+    "title" : "コーポレート・ガバナンスに関する報告書 2026/07/23",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260721596652.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "17:00",
+    "code" : "―",
+    "company" : "Ｋ＆Ｏエナジ",
+    "title" : "Notice Regarding Introduction of Shareholder Benefit Program",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598278.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "17:00",
+    "code" : "―",
+    "company" : "Ｋ＆Ｏエナジ",
+    "title" : "株主優待制度の導入に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598158.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "17:00",
+    "code" : "―",
+    "company" : "田辺工業",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260722597366.pdf",
     "tag" : "エク"
   } ],
   "afterclose_news" : [ ],
@@ -332,21 +332,21 @@
   "technical" : [ {
     "code" : "7203",
     "name" : "トヨタ自動車",
-    "price" : "2,939.0",
-    "change_pct" : -0.19,
-    "ma5_dev" : "+0.88%",
-    "ma25_dev" : "+4.31%",
-    "rsi" : 70.45,
-    "signal" : "中立(やや弱気)",
-    "summary" : "売り1/中立6/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。"
+    "price" : "―",
+    "change_pct" : null,
+    "ma5_dev" : "+0.74%",
+    "ma25_dev" : "+4.49%",
+    "rsi" : 66.81,
+    "signal" : "中立",
+    "summary" : "売り0/中立7/買い0。RSIは中立域。"
   }, {
     "code" : "6758",
     "name" : "ソニーグループ",
-    "price" : "3,444.0",
-    "change_pct" : -0.4,
-    "ma5_dev" : "+0.12%",
-    "ma25_dev" : "+3.38%",
-    "rsi" : 67.08,
+    "price" : "―",
+    "change_pct" : null,
+    "ma5_dev" : "-0.17%",
+    "ma25_dev" : "+3.21%",
+    "rsi" : 61.76,
     "signal" : "中立",
     "summary" : "売り0/中立7/買い0。RSIは中立域。"
   }, {
@@ -354,20 +354,20 @@
     "name" : "三菱UFJフィナンシャル・グループ",
     "price" : "―",
     "change_pct" : null,
-    "ma5_dev" : "+1.62%",
-    "ma25_dev" : "+8.12%",
-    "rsi" : 72.56,
+    "ma5_dev" : "+3.59%",
+    "ma25_dev" : "+9.91%",
+    "rsi" : 73.22,
     "signal" : "弱気(過熱感)",
     "summary" : "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。"
   }, {
     "code" : "9984",
     "name" : "ソフトバンクグループ",
-    "price" : "5,703.0",
-    "change_pct" : -0.83,
-    "ma5_dev" : "-2.34%",
-    "ma25_dev" : "-9.12%",
-    "rsi" : 45.03,
-    "signal" : "強気",
-    "summary" : "売り0/中立5/買い2。RSIは中立域。"
+    "price" : "―",
+    "change_pct" : null,
+    "ma5_dev" : "+2.90%",
+    "ma25_dev" : "-5.11%",
+    "rsi" : 45.39,
+    "signal" : "中立(やや強気)",
+    "summary" : "売り0/中立6/買い1。RSIは中立域。"
   } ]
 }
