@@ -334,6 +334,37 @@ def topic_ranking_html(tdnet_morning, tdnet_afterclose, empty_msg="本日はTDne
     return "".join(rows)
 
 
+def growth_candidates_html(items, empty_msg="現時点で好材料開示に基づく成長株候補は見つかりませんでした。"):
+    """TDnet「業績予想の修正」開示のうち、上方修正・増配など明確な好材料キーワードを含む開示のみを
+    機械的に抽出した「成長株候補」一覧。各候補には実際の開示PDFへの直リンクが付き、
+    根拠(決算・好材料)を開示原文で確認できる。将来の株価上昇を保証するものではない。"""
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+    rows = []
+    for it in items:
+        company = esc(it.get("company", ""))
+        title = esc(it.get("title", ""))
+        url = esc(it.get("url", "")) or "#"
+        catalyst = esc(it.get("catalyst", ""))
+        reason = esc(it.get("reason", ""))
+        asof = esc(it.get("asof", ""))
+        rows.append(f"""
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              {company}
+              <span class="badge bull">{catalyst}</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="{url}" target="_blank" rel="noopener">{title}</a>
+            </div>
+            <div class="rank-desc">{reason} ・ 開示日時: {asof}</div>
+          </div>
+        </div>""")
+    return "".join(rows)
+
+
 def photo_banner_html(photo):
     url = esc(photo["url"])
     caption = esc(photo["caption"])
@@ -689,6 +720,21 @@ def build_html(data: dict) -> str:
       </div>
     </section>"""
 
+    growth_html = f"""
+    <section id="growth">
+      <h2>🌱 成長株ウォッチ(決算・好材料ベース)</h2>
+      <p class="section-desc">
+        主力ウォッチリストは値位置が高めの銘柄も含むため、別枠として、TDnet「業績予想の修正」開示のうち
+        <b>上方修正・増配など明確な好材料キーワードを含む開示のみ</b>を機械的に抽出した候補一覧です。
+        各候補には実際の開示PDFへの直リンクを付けており、根拠は開示原文でご確認いただけます。
+        <b>投資助言ではなく、将来の株価上昇を保証するものではありません。</b>
+      </p>
+      <div class="card">
+        <h3>好材料開示に基づく成長株候補</h3>
+        {growth_candidates_html(data.get("growth_candidates", []))}
+      </div>
+    </section>"""
+
     disclaimer_text = (
         "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など"
         "無料で公開されている情報源をもとに自動的にまとめたものです。"
@@ -746,6 +792,7 @@ def build_html(data: dict) -> str:
       <a href="#morning">🌅 寄り付き前</a>
       <a href="#evening">🌙 引け後</a>
       <a href="#technical">📊 株価診断</a>
+      <a href="#growth">🌱 成長株</a>
     </nav>
   </div>
 </header>
@@ -759,6 +806,7 @@ def build_html(data: dict) -> str:
   {evening_html}
   {photo_banner_2}
   {technical_html}
+  {growth_html}
 
   <footer>
     <div class="disclaimer">
