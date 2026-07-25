@@ -1,6 +1,6 @@
 {
-  "generated_at" : "2026-07-25 16:41",
-  "run_type" : "morning",
+  "generated_at" : "2026-07-25 22:24",
+  "run_type" : "evening",
   "us_market" : {
     "sp500" : {
       "value" : "7,411.98",
@@ -187,144 +187,144 @@
   } ],
   "movers_morning" : [ ],
   "tdnet_afterclose" : [ {
-    "time" : "19:30",
+    "time" : "10:30",
     "code" : "―",
-    "company" : "はてな",
-    "title" : "特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ",
+    "company" : "王将フード",
+    "title" : "〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "09:30",
+    "code" : "―",
+    "company" : "セブン＆アイ",
+    "title" : "Notice Regarding Conclusion of Discussions on Potential Investment in European CVS",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "09:30",
+    "code" : "―",
+    "company" : "セブン＆アイ",
+    "title" : "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "08:00",
+    "code" : "―",
+    "company" : "ＷＨＤＣ",
+    "title" : "（訂正）第22回定時株主総会招集ご通知",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "08:00",
+    "code" : "―",
+    "company" : "ＷＨＤＣ",
+    "title" : "（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項）",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "00:30",
+    "code" : "―",
+    "company" : "あおぞら銀",
+    "title" : "統合報告書 ディスクロージャー誌 資料編 2026",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "00:30",
+    "code" : "―",
+    "company" : "あおぞら銀",
+    "title" : "統合報告書 ディスクロージャー誌 本編 2026",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "00:00",
+    "code" : "―",
+    "company" : "ＦＣＣ",
+    "title" : "［Delayed］Corporate Governance Report",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "―",
+    "code" : "―",
+    "company" : "―",
+    "title" : "はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf",
     "tag" : "他"
   }, {
-    "time" : "18:55",
+    "time" : "―",
     "code" : "―",
-    "company" : "中外炉",
-    "title" : "(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026",
+    "company" : "―",
+    "title" : "中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf",
     "tag" : "他"
   }, {
-    "time" : "18:55",
+    "time" : "―",
     "code" : "―",
-    "company" : "信金中央",
-    "title" : "定款 2026/07/24",
+    "company" : "―",
+    "title" : "信金中央、定款 2026/07/24 他 7月24日(金) 18:55",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf",
     "tag" : "他"
   }, {
-    "time" : "18:33",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＮＥ",
-    "title" : "コーポレート・ガバナンスに関する報告書 2026/07/24",
+    "company" : "―",
+    "title" : "ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf",
     "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸ超短米債",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸ優証隔月",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸＵＳ配ヘ",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸＵＳ配当",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸＡＩビグ",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸウラン",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸＵＳＤＶ",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf",
-    "tag" : "配当"
+    "tag" : "他"
   }, {
-    "time" : "18:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＧＸ高配日株",
-    "title" : "ETFの収益分配のお知らせ",
+    "company" : "―",
+    "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
-    "tag" : "配当"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "ＧＸデジ日株",
-    "title" : "ETFの収益分配のお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599495.pdf",
-    "tag" : "配当"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "ＧＸｅコ日株",
-    "title" : "ETFの収益分配のお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599485.pdf",
-    "tag" : "配当"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "ＧＸ高配Ｅ日",
-    "title" : "ETFの収益分配のお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599496.pdf",
-    "tag" : "配当"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "海帆",
-    "title" : "第23期定時株主総会の継続会の開催中止及び臨時株主総会の開催に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599560.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "Ｇ－ＦＡＣ",
-    "title" : "法定事前開示書類（会社分割）（双日食品株式会社）",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599082.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "ＤＧ",
-    "title" : "シンジケート型コミットメントライン契約（増額変更）の締結に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599394.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "アエリア",
-    "title" : "株式会社サイバード　『イケメンヴィラン 闇夜にひらく悪の恋』 ３周年を記念した公開生放送イベントのチケット販売を開始！",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599533.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "18:00",
-    "code" : "―",
-    "company" : "アクセルＨＤ",
-    "title" : "Notice of Establishment of Compensation Advisory Committee",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599202.pdf",
     "tag" : "他"
   } ],
   "afterclose_news" : [ ],
