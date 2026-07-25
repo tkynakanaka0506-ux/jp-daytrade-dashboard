@@ -226,19 +226,24 @@ def tdnet_table(items, empty_msg="対象期間の適時開示は取得できま�
         time_ = esc(it.get("time", ""))
         code = it.get("code", "")
         company = esc(it.get("company", ""))
-        title = esc(it.get("title", ""))
+        title_raw = it.get("title", "") or ""
+        title = esc(title_raw)
         url = esc(it.get("url", "")) or "#"
-        tag = esc(it.get("tag", ""))
+        tag_raw = it.get("tag", "") or ""
+        tag = esc(tag_raw)
         tag_html = f'<span class="tag">{tag}</span>' if tag else ""
+        sent_cls, sent_label = disclosure_sentiment(tag_raw, title_raw)
+        sent_html = f'<span class="badge {sent_cls} sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">{sent_label}</span>'
         rows.append(f"""
         <tr>
           <td class="mono">{time_}</td>
           <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
           <td>{company}</td>
-          <td><a href="{url}" target="_blank" rel="noopener">{title}</a> {tag_html}</td>
+          <td>{sent_html}<a href="{url}" target="_blank" rel="noopener">{title}</a> {tag_html}</td>
         </tr>""")
     return f"""
     {table_tools_html("時刻・コード・会社名・タイトルで検索")}
+    <p class="rank-note">💡 <b>ポジティブ/ネガティブ/中立</b>は開示タイトルのキーワード一致による機械的な参考判定です。AIによる詳細分析ではなく、投資助言でもありません。</p>
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="tdnet-table" data-sortable="true">
@@ -536,6 +541,196 @@ US_CATALYST_INFO = {
         "reason": "株主還元強化の姿勢が評価されやすいため",
     },
 }
+
+
+def disclosure_sentiment(tag, title):
+    """TDnet開示1件のタイトル・タグ文字列から、既存のJP_NEGATIVE_KEYWORDS(弱材料)・
+    JP_CATALYST_INFO(好材料)のキーワード一致だけで機械的にポジティブ/ネガティブ/中立を判定する。
+    AIによる文脈理解ではなく単純なキーワード一致であり、投資助言ではない。
+    戻り値: (バッジ用CSSクラス, 表示ラベル)"""
+    combined = f"{tag or ''} {title or ''}"
+    if any(k in combined for k in JP_NEGATIVE_KEYWORDS):
+        return ("bear", "ネガティブ")
+    if any(k in combined for k in JP_CATALYST_INFO):
+        return ("bull", "ポジティブ")
+    return ("neutral", "中立")
+
+
+def _has_positive_jp_catalyst(tdnet_morning, tdnet_afterclose):
+    """当日のTDnet開示(朝・引け後の両方)に、明確な好材料キーワードを含む開示が
+    (弱材料を除いて)1件でもあるかどうかを判定する。"""
+    items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
+    for it in items:
+        combined = f"{it.get('tag', '') or ''} {it.get('title', '') or ''}"
+        if any(k in combined for k in JP_NEGATIVE_KEYWORDS):
+            continue
+        if any(k in combined for k in JP_CATALYST_INFO):
+            return True
+    return False
+
+
+def _has_negative_jp_news(tdnet_morning, tdnet_afterclose):
+    """当日のTDnet開示に、下方修正・減配など明確な弱材料キーワードを含む開示が
+    1件でもあるかどうかを判定する。"""
+    items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
+    for it in items:
+        combined = f"{it.get('tag', '') or ''} {it.get('title', '') or ''}"
+        if any(k in combined for k in JP_NEGATIVE_KEYWORDS):
+            return True
+    return False
+
+
+def _has_positive_us_catalyst(us_good_news):
+    """収集済みの米国株好材料ニュースに、既知の好材料カテゴリが1件でもあるかを判定する。"""
+    for it in us_good_news or []:
+        if (it.get("category") or "") in US_CATALYST_INFO:
+            return True
+    return False
+
+
+def market_mood_signal(data):
+    """デイトレード初心者向けの直感的な「信号機」判定。
+    米国3指数の平均前日比・国内TDnet開示の好材料/弱材料の有無・テクニカル指標の過熱感(RSI>=70)の
+    3つだけを組み合わせた、あくまで機械的な簡易判定であり、AIによる高度な分析や投資助言ではない。
+    実際の相場は個別要因が複雑に絡むため、最終判断は必ず自身の責任で行うこと。
+    戻り値: {"level": "green"|"yellow"|"red", "icon": str, "label": str, "desc": str, "reasons": [str, ...]}"""
+    us = data.get("us_market", {}) or {}
+    changes = []
+    for key in ("sp500", "dow", "nasdaq"):
+        v = (us.get(key) or {}).get("change_pct")
+        if isinstance(v, (int, float)):
+            changes.append(v)
+    us_avg = sum(changes) / len(changes) if changes else None
+
+    technical = data.get("technical", []) or []
+    rsi_values = []
+    for t in technical:
+        try:
+            rsi_values.append(float(t.get("rsi")))
+        except (TypeError, ValueError):
+            continue
+    overheat_flag = bool(rsi_values) and (sum(1 for r in rsi_values if r >= 70) / len(rsi_values)) >= 0.5
+
+    has_good = _has_positive_jp_catalyst(data.get("tdnet_morning", []), data.get("tdnet_afterclose", [])) \
+        or _has_positive_us_catalyst(data.get("us_good_news", []))
+    has_bad_jp = _has_negative_jp_news(data.get("tdnet_morning", []), data.get("tdnet_afterclose", []))
+
+    reasons = []
+    if us_avg is not None:
+        reasons.append(f"米国3指数平均 {fmt_pct(us_avg)}")
+    if has_good:
+        reasons.append("好材料ニュース・開示あり")
+    if has_bad_jp:
+        reasons.append("国内に弱材料(下方修正等)の開示あり")
+    if overheat_flag:
+        reasons.append("RSI過熱(70以上)の銘柄が多い")
+
+    if (us_avg is not None and us_avg <= -0.5) or (has_bad_jp and (us_avg is None or us_avg < 0)):
+        level = "red"
+        icon, label = "🔴", "見送りが無難な地合い"
+        desc = "米国株安、または国内に弱材料の開示があります。新規の買いは慎重に検討しましょう。"
+    elif has_good and overheat_flag:
+        level = "yellow"
+        icon, label = "🟡", "材料はあるが過熱感に注意"
+        desc = "好材料はありますが、値上がりが大きく短期的な過熱感(RSI高め)があります。焦って追いかけず様子を見るのも一案です。"
+    elif us_avg is not None and us_avg >= 0.3 and has_good and not overheat_flag:
+        level = "green"
+        icon, label = "🟢", "買いを検討しやすい地合い"
+        desc = "米国株高・明確な好材料があり、過熱感も目立ちません。比較的仕込みやすい地合いと言えます。"
+    else:
+        level = "yellow"
+        icon, label = "🟡", "様子見が無難な地合い"
+        desc = "米国株や好材料の方向感が乏しく、無理に動く必要はありません。"
+
+    return {"level": level, "icon": icon, "label": label, "desc": desc, "reasons": reasons}
+
+
+def market_mood_html(data):
+    mood = market_mood_signal(data)
+    reasons_html = "".join(f'<span class="tag">{esc(r)}</span>' for r in mood["reasons"])
+    return f"""
+    <div class="mood-card mood-{mood['level']}">
+      <div class="mood-icon" aria-hidden="true">{mood['icon']}</div>
+      <div class="mood-body">
+        <div class="mood-label">{esc(mood['label'])}</div>
+        <div class="mood-desc">{esc(mood['desc'])}</div>
+        <div class="mood-reasons">{reasons_html}</div>
+        <div class="mood-caveat">⚠️ 米国株の方向・好材料の有無・過熱感だけを組み合わせた機械的な簡易判定です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</div>
+      </div>
+    </div>"""
+
+
+def theme_summary_html(data, empty_msg="現時点で投資関連分野・注目企業のデータがありません。"):
+    """時間外・引け後の各ニュースに付与された投資関連分野(investment_sector)と
+    注目企業(investment_companies)を集約し、「本日の注目テーマ」として一覧化する。
+    ニュース見出しから機械的に抽出した参考情報であり、投資助言ではない。"""
+    all_news = list(data.get("overnight_news", []) or []) + list(data.get("afterclose_news", []) or [])
+    themes = {}
+    order = []
+    for it in all_news:
+        sector = (it.get("investment_sector") or "").strip()
+        if not sector:
+            continue
+        companies_raw = it.get("investment_companies") or []
+        if isinstance(companies_raw, str):
+            companies_raw = [c.strip() for c in re.split(r"[、,]", companies_raw) if c.strip()]
+        entry = themes.setdefault(sector, {"count": 0, "companies": [], "news": []})
+        if sector not in order:
+            order.append(sector)
+        entry["count"] += 1
+        for c in companies_raw:
+            c = str(c).strip()
+            if c and c not in entry["companies"]:
+                entry["companies"].append(c)
+        entry["news"].append(it)
+
+    if not themes:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+
+    ranked = sorted(order, key=lambda s: -themes[s]["count"])
+    cards = []
+    for sector in ranked[:6]:
+        entry = themes[sector]
+        if entry["companies"]:
+            companies_html = "".join(f'<span class="theme-company">{esc(c)}</span>' for c in entry["companies"][:6])
+        else:
+            companies_html = '<span class="theme-company muted">個別銘柄は特定されていません</span>'
+        news_titles = "、".join(esc(it.get("title", "")) for it in entry["news"][:2])
+        cards.append(f"""
+        <div class="theme-card">
+          <div class="theme-head"><span class="theme-name">{esc(sector)}</span><span class="tag">関連ニュース{entry['count']}件</span></div>
+          <div class="theme-companies">{companies_html}</div>
+          <div class="theme-source">きっかけ: {news_titles}</div>
+        </div>""")
+    return f'<div class="theme-grid">{"".join(cards)}</div>'
+
+
+def economic_calendar_html(items, empty_msg="経済カレンダーのデータは今回取得できませんでした。"):
+    """雇用統計・CPI・日銀会合など、相場変動が起きやすいイベントを重要度(★1〜5)付きで一覧化する。
+    重要度はイベントの一般的な市場インパクトの大きさを示す参考値であり、実際の変動を保証しない。"""
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+    rows = []
+    for it in items:
+        date_ = esc(it.get("date", ""))
+        event = esc(it.get("event", ""))
+        try:
+            imp = max(1, min(5, int(it.get("importance", 1))))
+        except (TypeError, ValueError):
+            imp = 1
+        stars = "★" * imp + "☆" * (5 - imp)
+        note = esc(it.get("note", ""))
+        note_html = f'<div class="note">{note}</div>' if note else ""
+        rows.append(f"""
+        <div class="calendar-item">
+          <div class="calendar-date mono">{date_}</div>
+          <div class="calendar-body">
+            <div class="calendar-event">{event}</div>
+            <div class="calendar-stars" aria-label="重要度{imp}/5" title="重要度{imp}/5">{stars}</div>
+            {note_html}
+          </div>
+        </div>""")
+    return f'<div class="calendar-list">{"".join(rows)}</div>'
 
 
 def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text, reason_text,
@@ -890,6 +1085,48 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
+.sentiment-badge { margin-right: 6px; vertical-align: middle; cursor: help; }
+
+/* --- 市場ムード信号機 --- */
+.mood-card {
+  display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; margin-bottom: 16px;
+  border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.mood-icon { font-size: 40px; line-height: 1; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0,0,0,0.35)); }
+.mood-label { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.3px; }
+.mood-desc { font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+.mood-reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.mood-reasons .tag { margin-left: 0; }
+.mood-caveat { font-size: 10.5px; color: var(--muted); opacity: 0.85; margin-top: 8px; line-height: 1.6; }
+.mood-card.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 24px rgba(63,196,116,0.14); }
+.mood-card.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,184,77,0.14); }
+.mood-card.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,90,90,0.14); }
+
+/* --- 経済カレンダー --- */
+.calendar-list { display: flex; flex-direction: column; gap: 2px; }
+.calendar-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
+.calendar-item:last-child { border-bottom: none; }
+.calendar-date { width: 76px; flex-shrink: 0; font-size: 12px; color: var(--muted); padding-top: 1px; }
+.calendar-body { flex: 1; min-width: 0; }
+.calendar-event { font-size: 13.5px; color: var(--text); font-weight: 600; }
+.calendar-stars { font-size: 13px; color: var(--accent-bright); letter-spacing: 1px; margin-top: 2px; }
+
+/* --- 本日の注目テーマ --- */
+.theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.theme-card {
+  background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.theme-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--text); flex-wrap: wrap; }
+.theme-name { color: var(--accent-bright); }
+.theme-companies { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.theme-company {
+  font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.04); color: var(--text);
+}
+.theme-company.muted { color: var(--muted); }
+.theme-source { font-size: 11px; color: var(--muted); margin-top: 6px; }
 
 /* --- ランキング(強気シグナル数 / TDnet好材料) --- */
 .rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
@@ -1316,13 +1553,17 @@ def build_html(data: dict) -> str:
     fut = data.get("nikkei_futures", {})
 
     idx_cards = ""
-    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合")]:
+    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合"), ("sox", "SOX指数(半導体)")]:
         d = us.get(key, {})
         idx_cards += section_index_row(label, d.get("value", "―"), d.get("change_pct"), d.get("asof"))
     idx_cards += section_index_row("USD/JPY", fx.get("value", "―"), fx.get("change_pct"), fx.get("asof"))
     idx_cards += section_index_row("日経225先物(CME/大阪)", fut.get("value", "―"), fut.get("change_pct"), fut.get("asof"))
     idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
                                      data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
+
+    mood_html = market_mood_html(data)
+    theme_html = theme_summary_html(data)
+    calendar_html = economic_calendar_html(data.get("economic_calendar", []))
 
     morning_html = f"""
     <section id="morning">
@@ -1331,6 +1572,16 @@ def build_html(data: dict) -> str:
       <div class="card">
         <h3>米国市場・為替・日経先物</h3>
         <div class="idx-grid">{idx_cards}</div>
+      </div>
+      <div class="card">
+        <h3>📅 経済カレンダー(重要度)</h3>
+        <p class="section-desc">雇用統計・CPI・日銀会合など、相場が動きやすいイベントを重要度(★)で示しています。<b>実際の相場変動を保証するものではありません。</b></p>
+        {calendar_html}
+      </div>
+      <div class="card">
+        <h3>🎯 本日の注目テーマと関連銘柄</h3>
+        <p class="section-desc">ニュースの投資関連分野・注目企業タグを集約した参考情報です。<b>投資助言ではなく、実際に株価が動くことを保証するものではありません。</b></p>
+        {theme_html}
       </div>
       <div class="card">
         <h3>時間外・朝の主要ニュース</h3>
@@ -1497,6 +1748,7 @@ def build_html(data: dict) -> str:
   <div class="disclaimer">
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
   </div>
+  {mood_html}
   <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
 
   {morning_html}
