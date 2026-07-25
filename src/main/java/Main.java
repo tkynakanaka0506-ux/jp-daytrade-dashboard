@@ -92,6 +92,16 @@ public class Main {
             root.set("technical", technical);
         }
 
+        // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
+        try {
+            ArrayNode growth = scrapeGrowthCandidates(8, 8);
+            if (growth.size() > 0) {
+                root.set("growth_candidates", growth);
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] growth candidates fetch failed: " + e);
+        }
+
         // 注: overnight_news / afterclose_news / movers_morning / movers_afterclose は
         // 「話題性のあるニュース・銘柄」を選ぶ性質上、無料の決定論的APIだけでは再現できないため
         // このJava版では更新対象外(既存の値をそのまま保持する)。
@@ -238,6 +248,79 @@ public class Main {
                 }
                 out.add(row);
                 collected++;
+            }
+        }
+        return out;
+    }
+
+    // ---------------- 成長株候補(決算・好材料ベース) ----------------
+
+    /**
+     * 既存の主力ウォッチリストは値位置が高めのため、別枠で「決算・好材料に基づく成長株候補」を
+     * 機械的に抽出する。
+     *
+     * 判定方法: TDnetの「業績予想の修正」開示(株探の category_group=mod_forecast 一覧)の
+     * タイトル文言に、上方修正・増配など明確な好材料キーワードが含まれ、かつ下方修正・特別損失
+     * などの悪材料キーワードを含まない開示だけを採用する。
+     * 「決算が良い」「好材料がある」という判断そのものをLLMや主観に頼らず、
+     * 会社が実際にTDnetへ開示した文言のキーワードマッチのみで機械的・決定論的に判定するため、
+     * 每回の自動実行でも再現性がある。各候補には実際の開示PDFへの直リンクを必ず添付し、
+     * 根拠を開示原文で確認できるようにする。
+     */
+    private static ArrayNode scrapeGrowthCandidates(int maxPages, int maxResults) {
+        ArrayNode out = MAPPER.createArrayNode();
+        Pattern rowPattern = Pattern.compile(
+            "^(.*?)、(.*?)\\s*(業修)?\\s*(今日|明日|\\d{1,2}/\\d{1,2}|\\d{1,2}月\\d{1,2}日\\([月火水木金土日]\\))\\s+(\\d{1,2}:\\d{2})\\s*(New!)?$"
+        );
+        String[] positiveKeywords = {"上方修正", "増配", "特別配当", "復配", "増額"};
+        String[] negativeKeywords = {"下方修正", "減配", "減額", "無配", "特別損失"};
+
+        java.util.Set<String> seenCompanies = new java.util.LinkedHashSet<>();
+        for (int page = 1; page <= maxPages && out.size() < maxResults; page++) {
+            String url = "https://s.kabutan.jp/disclosures/?category_group=mod_forecast" + (page == 1 ? "" : "&page=" + page);
+            Document doc;
+            try {
+                doc = Jsoup.connect(url).userAgent(UA).timeout(15000).get();
+            } catch (Exception e) {
+                System.err.println("[WARN] kabutan mod_forecast page " + page + " fetch failed: " + e);
+                break;
+            }
+            List<Element> links = doc.select("a[href^=https://tdnet-pdf.kabutan.jp/]");
+            if (links.isEmpty()) break;
+            for (Element a : links) {
+                if (out.size() >= maxResults) break;
+                String text = a.text().trim();
+
+                boolean hasNegative = false;
+                for (String neg : negativeKeywords) {
+                    if (text.contains(neg)) { hasNegative = true; break; }
+                }
+                if (hasNegative) continue;
+
+                String matchedKeyword = null;
+                for (String pos : positiveKeywords) {
+                    if (text.contains(pos)) { matchedKeyword = pos; break; }
+                }
+                if (matchedKeyword == null) continue;
+
+                Matcher m = rowPattern.matcher(text);
+                if (!m.matches()) continue; // 会社名が特定できない行は根拠不明として除外
+
+                String company = m.group(1).trim();
+                String title = m.group(2).trim();
+                String date = m.group(4);
+                String time = m.group(5);
+                if (company.isEmpty() || company.equals("―") || seenCompanies.contains(company)) continue;
+                seenCompanies.add(company);
+
+                ObjectNode row = MAPPER.createObjectNode();
+                row.put("company", company);
+                row.put("title", title);
+                row.put("catalyst", matchedKeyword);
+                row.put("reason", "TDnet適時開示「" + title + "」より、" + matchedKeyword + "を確認。");
+                row.put("asof", date + " " + time);
+                row.put("url", a.absUrl("href"));
+                out.add(row);
             }
         }
         return out;
