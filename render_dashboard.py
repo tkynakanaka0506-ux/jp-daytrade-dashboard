@@ -387,7 +387,7 @@ a:visited { color: var(--accent-deep); }
 a:hover { color: var(--accent); text-decoration: underline; }
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  font-family: 'Inter', "Noto Sans JP", -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
   color: var(--text); line-height: 1.6;
   background-color: var(--bg-deep);
   background-image:
@@ -425,7 +425,7 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
 }
 .eyebrow::before { content: "◆ "; color: var(--accent); }
 h1 {
-  font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
+  font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.4px;
   color: var(--accent);
   background: linear-gradient(120deg, var(--accent-bright) 0%, var(--accent) 45%, var(--accent-deep) 100%);
@@ -455,7 +455,7 @@ nav.tabs a:hover {
 }
 section { margin: 32px 20px; }
 section > h2 {
-  font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
+  font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
   font-weight: 700; letter-spacing: 0.3px; color: var(--accent-bright);
   background: rgba(10,8,5,0.55); border-radius: 0 8px 8px 0; width: fit-content;
@@ -719,7 +719,7 @@ def build_html(data: dict) -> str:
 <title>日本株デイトレード情報ダッシュボード</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>{page_css}</style>
 </head>
 <body>
