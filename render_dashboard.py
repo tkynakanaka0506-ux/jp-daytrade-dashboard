@@ -43,7 +43,9 @@ HERO_IMAGES = [
 ]
 
 # 本文中に差し込む装飾用フォトバナー(HERO_IMAGESから抜粋)
-PHOTO_BANNERS = [HERO_IMAGES[2], HERO_IMAGES[4]]
+# ※ 六本木ヒルズ・東京シティビュー(人物入り)はサイト全体の背景で使用中のため、
+#   本文バナーとしては重複を避け、東京スカイツリーのみを使用する。
+PHOTO_BANNERS = [HERO_IMAGES[4]]
 
 
 def esc(x):
@@ -402,7 +404,7 @@ body {
     radial-gradient(circle at 90% 2%, rgba(212,175,55,0.07), transparent 42%),
     radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
     radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
-    linear-gradient(180deg, rgba(0,0,0,0.82) 0%, rgba(4,3,2,0.88) 45%, rgba(6,5,4,0.94) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(4,3,2,0.58) 45%, rgba(6,5,4,0.68) 100%),
     url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&fit=crop&w=2400&q=90');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto, auto, cover;
@@ -578,7 +580,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
   position: relative; width: 100%; height: 170px; margin: 26px 0;
   border-radius: var(--radius); border: 1px solid var(--border);
   background-size: cover; background-position: center;
-  filter: saturate(1.1) brightness(0.75); overflow: hidden;
+  filter: saturate(1.1) brightness(0.9); overflow: hidden;
   box-shadow: var(--shadow);
 }
 .photo-banner .photo-credit {
@@ -764,8 +766,7 @@ def build_html(data: dict) -> str:
         f'<span class="hero-credit">{esc(p["caption"])}</span></div>'
         for i, p in enumerate(HERO_IMAGES)
     )
-    photo_banner_1 = photo_banner_html(PHOTO_BANNERS[0])
-    photo_banner_2 = photo_banner_html(PHOTO_BANNERS[1])
+    photo_banner_2 = photo_banner_html(PHOTO_BANNERS[0])
 
     html_out = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -806,7 +807,6 @@ def build_html(data: dict) -> str:
   </div>
 
   {morning_html}
-  {photo_banner_1}
   {evening_html}
   {photo_banner_2}
   {technical_html}
