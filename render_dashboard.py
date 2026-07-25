@@ -395,7 +395,7 @@ body {
     radial-gradient(circle at 90% 2%, rgba(212,175,55,0.07), transparent 42%),
     radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
     radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
-    linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(4,3,2,0.14) 45%, rgba(6,5,4,0.22) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(4,3,2,0.5) 45%, rgba(6,5,4,0.6) 100%),
     url('__BG_URL__');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto, auto, cover;
@@ -458,8 +458,12 @@ section > h2 {
   font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding-left: 12px; margin-bottom: 4px;
   font-weight: 700; letter-spacing: 0.3px; color: var(--accent-bright);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.85), 0 0 14px rgba(0,0,0,0.5);
 }
-.section-desc { color: var(--muted); font-size: 12.5px; margin: 2px 0 14px; }
+.section-desc {
+  color: var(--muted); font-size: 12.5px; margin: 2px 0 14px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+}
 .card {
   background: var(--panel); border: 1px solid var(--border); border-top: 1px solid var(--accent-line);
   border-radius: var(--radius);
@@ -537,9 +541,13 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
   white-space: nowrap;
 }
 
-footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--accent-line); padding-top: 16px; }
-footer .disclaimer { margin: 0 0 12px; }
-.sources { font-size: 11px; color: var(--muted); }
+footer {
+  margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px;
+  border-top: 1px solid var(--accent-line); padding-top: 16px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+}
+footer .disclaimer { margin: 0 0 12px; text-shadow: none; }
+.sources { font-size: 11px; color: var(--muted); text-shadow: 0 1px 3px rgba(0,0,0,0.85); }
 .run-badge {
   display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px;
   background: rgba(0,0,0,0.4); border:1px solid var(--accent-line); color: var(--accent-bright); margin-left:8px;
