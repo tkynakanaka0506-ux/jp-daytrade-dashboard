@@ -25,22 +25,28 @@ from datetime import datetime
 
 BASE_DIR = Path(__file__).resolve().parent
 
-# 東京の夜景・観光スポット写真(Unsplash・商用利用可・クレジット表記不要)
-# ヘッダー上部でゆっくりクロスフェードさせる背景写真。場所名は各写真の隅に小さく表示する。
-HERO_IMAGES = [
-    {"url": "https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&fit=crop&w=1600&q=75",
-     "caption": "東京タワー"},
-    {"url": "https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&fit=crop&w=1600&q=75",
-     "caption": "渋谷スクランブル交差点"},
-    {"url": "https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&fit=crop&w=1600&q=75",
-     "caption": "六本木ヒルズ・東京シティビュー"},
-    {"url": "https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&fit=crop&w=1600&q=75",
-     "caption": "レインボーブリッジ・お台場"},
-    {"url": "https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&fit=crop&w=1600&q=75",
-     "caption": "東京スカイツリー"},
-    {"url": "https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=1600&q=75",
-     "caption": "新宿"},
+# 東京の夜景写真(Unsplash・商用利用可・クレジット表記不要)
+# サイト全体の背景に使う写真。実行日と朝/夜の更新タイミングに応じて自動的に切り替える。
+# (六本木ヒルズの室内窓越しカットは彩度が低くモノクロに見えるため除外している)
+BACKGROUND_IMAGES = [
+    "https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22",  # 東京タワー
+    "https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22",  # 渋谷スクランブル交差点
+    "https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22",  # レインボーブリッジ・お台場
+    "https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22",  # 東京スカイツリー
+    "https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=2400&q=90&sat=40&con=10&vib=25",  # 新宿
 ]
+
+
+def pick_background_image(generated_at: str, run_type: str) -> str:
+    """実行日(YYYY-MM-DD)と朝/夜の区分から背景写真を決定する。
+    同じ日でも朝と夜で違う写真になり、日が変わるとローテーションが進む。"""
+    try:
+        day_ordinal = datetime.strptime(generated_at[:10], "%Y-%m-%d").toordinal()
+    except (ValueError, TypeError):
+        day_ordinal = datetime.now().toordinal()
+    slot = 0 if run_type == "morning" else 1
+    idx = (day_ordinal * 2 + slot) % len(BACKGROUND_IMAGES)
+    return BACKGROUND_IMAGES[idx]
 
 def esc(x):
     if x is None:
@@ -390,7 +396,7 @@ body {
     radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
     radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
     linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(4,3,2,0.14) 45%, rgba(6,5,4,0.22) 100%),
-    url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=2400&q=90&sat=40&con=10&vib=25');
+    url('__BG_URL__');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto, auto, cover;
   background-position: 12% 4%, 90% 2%, 30% 94%, 80% 72%, center, center;
@@ -401,35 +407,6 @@ body::-webkit-scrollbar-track { background: #000; }
 body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-deep)); border-radius: 6px; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 
-/* --- ヒーロー: 東京の夜景写真がゆっくりクロスフェードする帯 --- */
-.hero { position: relative; width: 100%; height: 300px; overflow: hidden; background: var(--bg-deep); }
-.hero-slides { position: absolute; inset: 0; }
-.hero-slide {
-  position: absolute; inset: 0; background-size: cover; background-position: center;
-  opacity: 0; transform: scale(1.08);
-  filter: saturate(1.15) brightness(0.7);
-  animation-name: heroFade; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
-}
-@keyframes heroFade {
-  0% { opacity: 0; }
-  5% { opacity: 1; }
-  22% { opacity: 1; }
-  30% { opacity: 0; }
-  100% { opacity: 0; }
-}
-.hero-credit {
-  position: absolute; right: 10px; bottom: 8px; z-index: 2;
-  font-family: -apple-system, "Hiragino Sans", sans-serif;
-  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
-  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
-}
-.hero-overlay {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(circle at 14% 18%, rgba(212,175,55,0.20), transparent 42%),
-    radial-gradient(circle at 86% 8%, rgba(212,175,55,0.10), transparent 45%),
-    linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.6) 55%, var(--bg-deep) 100%);
-}
 /* --- 固定見出しバー: 常に画面上部に表示される --- */
 .topbar {
   position: sticky; top: 0; z-index: 25;
@@ -560,20 +537,6 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
   white-space: nowrap;
 }
 
-/* --- 本文中の装飾フォトバナー --- */
-.photo-banner {
-  position: relative; width: 100%; height: 170px; margin: 26px 0;
-  border-radius: var(--radius); border: 1px solid var(--border);
-  background-size: cover; background-position: center;
-  filter: saturate(1.1) brightness(0.9); overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.photo-banner .photo-credit {
-  position: absolute; right: 10px; bottom: 8px;
-  font-family: -apple-system, "Hiragino Sans", sans-serif;
-  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
-  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
-}
 footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--accent-line); padding-top: 16px; }
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
@@ -588,14 +551,12 @@ footer .disclaimer { margin: 0 0 12px; }
   .wrap { max-width: 1240px; }
   body { font-size: 15.5px; }
   .idx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-  .hero { height: 360px; }
   .topbar-inner { max-width: 1240px; }
 }
 
 /* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
 @media (max-width: 640px) {
   .wrap { padding: 12px 12px 48px; }
-  .hero { height: 150px; }
   .topbar-inner { padding: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
   h1 { font-size: 15.5px; line-height: 1.4; }
   .subtitle { font-size: 11px; }
@@ -612,11 +573,8 @@ footer .disclaimer { margin: 0 0 12px; }
   th, td { padding: 6px 6px; }
   .scroll-hint { display: block; }
   footer { margin: 28px 8px 10px; }
-  .hero-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
   .rank-num { width: 26px; font-size: 15px; }
   .rank-head { font-size: 12.5px; }
-  .photo-banner { height: 100px; margin: 16px 0; }
-  .photo-banner .photo-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
 }
 """
 
@@ -742,15 +700,8 @@ def build_html(data: dict) -> str:
       各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
     </div>"""
 
-    n_slides = len(HERO_IMAGES)
-    slot_seconds = 6
-    total_duration = n_slides * slot_seconds
-    hero_slides_html = "".join(
-        f'<div class="hero-slide" style="background-image:url(\'{esc(p["url"])}\');'
-        f' animation-duration:{total_duration}s; animation-delay:{i * slot_seconds}s;">'
-        f'<span class="hero-credit">{esc(p["caption"])}</span></div>'
-        for i, p in enumerate(HERO_IMAGES)
-    )
+    bg_url = pick_background_image(generated_at, run_type)
+    page_css = CSS.replace("__BG_URL__", bg_url)
     html_out = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -760,15 +711,9 @@ def build_html(data: dict) -> str:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<style>{CSS}</style>
+<style>{page_css}</style>
 </head>
 <body>
-<div class="hero">
-  <div class="hero-slides">
-    {hero_slides_html}
-  </div>
-  <div class="hero-overlay"></div>
-</div>
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-title">
