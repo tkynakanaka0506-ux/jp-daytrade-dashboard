@@ -75,6 +75,68 @@ def pct_class(v):
     return "flat"
 
 
+def mini_bar_html(value, scale=8.0):
+    """前日比などの数値を、中心から左右に伸びるミニ diverging bar として可視化する。
+    真のローソク足チャートには時系列OHLCデータが必要でdata.jsonには含まれないため、
+    既存の数値(前日比%など)を視覚的に把握しやすくする簡易ミニグラフとして提供する。"""
+    try:
+        v = float(value)
+    except (TypeError, ValueError):
+        return ""
+    cls = pct_class(v)
+    if cls == "flat":
+        return '<span class="mini-bar" aria-hidden="true"></span>'
+    magnitude = min(abs(v), scale) / scale * 50.0
+    side = "right" if v > 0 else "left"
+    return (
+        f'<span class="mini-bar" aria-hidden="true">'
+        f'<span class="mini-bar-fill {cls}" style="{side}:50%; width:{magnitude:.1f}%;"></span>'
+        f'</span>'
+    )
+
+
+def rsi_gauge_html(rsi):
+    """RSI(14)を0-100の帯グラフ+マーカーで可視化する簡易ゲージ。"""
+    try:
+        v = float(rsi)
+    except (TypeError, ValueError):
+        return esc(rsi)
+    v_clamped = max(0.0, min(100.0, v))
+    zone = "warn-hot" if v >= 70 else ("warn-cold" if v <= 30 else "normal")
+    return (
+        f'<span class="rsi-gauge">'
+        f'<span class="rsi-gauge-track">'
+        f'<span class="rsi-gauge-marker {zone}" style="left:{v_clamped:.1f}%;"></span>'
+        f'</span>'
+        f'<span class="rsi-gauge-num">{v:.1f}</span>'
+        f'</span>'
+    )
+
+
+def code_link(code):
+    """銘柄コードをYahoo!ファイナンスの該当ページへのリンクにする(4桁前後の証券コードのみ)。"""
+    c = (code or "").strip()
+    if not c:
+        return ""
+    if re.match(r"^\d{3,5}[A-Z]?$", c):
+        return f'<a href="https://finance.yahoo.co.jp/quote/{esc(c)}.T" target="_blank" rel="noopener">{esc(c)}</a>'
+    return esc(c)
+
+
+def fav_btn_html(code):
+    c = esc((code or "").strip())
+    if not c:
+        return ""
+    return (
+        f'<button class="fav-btn" type="button" data-code="{c}" '
+        f'aria-label="お気に入り登録" aria-pressed="false">★</button> '
+    )
+
+
+def table_tools_html(placeholder="銘柄名・コードで検索"):
+    return f'<div class="table-tools"><input type="search" class="table-search" placeholder="🔍 {esc(placeholder)}"></div>'
+
+
 def signal_badge(signal):
     """signal: '強気' / '弱気' / '中立' などの文字列 -> 色付きバッジHTML"""
     s = (signal or "中立").strip()
@@ -89,7 +151,7 @@ def signal_badge(signal):
 def section_index_row(label, value, change=None, note=None):
     change_html = ""
     if change is not None and change != "":
-        change_html = f'<span class="chg {pct_class(change)}">{fmt_pct(change)}</span>'
+        change_html = f'<span class="chg {pct_class(change)}">{fmt_pct(change)}</span>{mini_bar_html(change)}'
     note_html = f'<div class="note">{esc(note)}</div>' if note else ""
     return f"""
     <div class="idx-card">
@@ -123,7 +185,7 @@ def tdnet_table(items, empty_msg="対象期間の適時開示は取得できま�
     rows = []
     for it in items:
         time_ = esc(it.get("time", ""))
-        code = esc(it.get("code", ""))
+        code = it.get("code", "")
         company = esc(it.get("company", ""))
         title = esc(it.get("title", ""))
         url = esc(it.get("url", "")) or "#"
@@ -132,14 +194,15 @@ def tdnet_table(items, empty_msg="対象期間の適時開示は取得できま�
         rows.append(f"""
         <tr>
           <td class="mono">{time_}</td>
-          <td class="mono">{code}</td>
+          <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
           <td>{company}</td>
           <td><a href="{url}" target="_blank" rel="noopener">{title}</a> {tag_html}</td>
         </tr>""")
     return f"""
+    {table_tools_html("時刻・コード・会社名・タイトルで検索")}
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
-    <table class="tdnet-table">
+    <table class="tdnet-table" data-sortable="true">
       <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
@@ -151,7 +214,7 @@ def movers_table(items, empty_msg="該当データが取得できませんでし
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
     for it in items:
-        code = esc(it.get("code", ""))
+        code = it.get("code", "")
         name = esc(it.get("name", ""))
         price = esc(it.get("price", ""))
         chg = it.get("change_pct")
@@ -159,17 +222,18 @@ def movers_table(items, empty_msg="該当データが取得できませんでし
         reason = esc(it.get("reason", ""))
         rows.append(f"""
         <tr>
-          <td class="mono">{code}</td>
+          <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
           <td>{name}</td>
           <td class="mono">{price}</td>
-          <td class="mono {pct_class(chg)}">{fmt_pct(chg)}</td>
+          <td class="mono {pct_class(chg)}">{fmt_pct(chg)}{mini_bar_html(chg)}</td>
           <td>{vol_note}</td>
           <td class="reason">{reason}</td>
         </tr>""")
     return f"""
+    {table_tools_html()}
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
-    <table class="movers-table">
+    <table class="movers-table" data-sortable="true">
       <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>出来高メモ</th><th>話題の背景</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
@@ -181,14 +245,14 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
     for it in items:
-        code = esc(it.get("code", ""))
+        code = it.get("code", "")
         name = esc(it.get("name", ""))
         price = esc(it.get("price", ""))
         chg = it.get("change_pct")
         ma5 = esc(it.get("ma5_dev", ""))
         ma25 = esc(it.get("ma25_dev", ""))
         rsi = it.get("rsi", "")
-        rsi_disp = esc(rsi)
+        rsi_html = rsi_gauge_html(rsi)
         rsi_note = ""
         try:
             rsi_f = float(rsi)
@@ -202,20 +266,21 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
         summary = esc(it.get("summary", ""))
         rows.append(f"""
         <tr>
-          <td class="mono">{code}</td>
+          <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
           <td>{name}</td>
           <td class="mono">{price}</td>
-          <td class="mono {pct_class(chg)}">{fmt_pct(chg)}</td>
+          <td class="mono {pct_class(chg)}">{fmt_pct(chg)}{mini_bar_html(chg)}</td>
           <td class="mono">{ma5}</td>
           <td class="mono">{ma25}</td>
-          <td class="mono">{rsi_disp}{rsi_note}</td>
+          <td class="mono">{rsi_html}{rsi_note}</td>
           <td>{signal_badge(signal)}</td>
           <td class="reason">{summary}</td>
         </tr>""")
     return f"""
+    {table_tools_html()}
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
-    <table class="technical-table">
+    <table class="technical-table" data-sortable="true">
       <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
@@ -392,17 +457,26 @@ body {
   font-feature-settings: "palt" 1; font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-deep);
+}
+
+/* --- 背景写真: 画質を落とさずopacityのみでゆっくりクロスフェードするスライドショー --- */
+.bg-photo-stack { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg-deep); }
+.bg-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  opacity: 0; transition: opacity 4s ease-in-out;
+  will-change: opacity;
+}
+.bg-photo.is-active { opacity: 1; }
+.bg-overlay {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-repeat: no-repeat;
   background-image:
     radial-gradient(circle at 12% 4%, rgba(212,175,55,0.14), transparent 38%),
     radial-gradient(circle at 90% 2%, rgba(212,175,55,0.07), transparent 42%),
     radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
     radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
-    linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(4,3,2,0.5) 45%, rgba(6,5,4,0.6) 100%),
-    url('__BG_URL__');
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-size: auto, auto, auto, auto, auto, cover;
-  background-position: 12% 4%, 90% 2%, 30% 94%, 80% 72%, center, center;
-  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+    linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(4,3,2,0.5) 45%, rgba(6,5,4,0.6) 100%);
 }
 body::-webkit-scrollbar { width: 10px; }
 body::-webkit-scrollbar-track { background: #000; }
@@ -594,6 +668,346 @@ footer .disclaimer { margin: 0 0 12px; }
   .rank-num { width: 26px; font-size: 15px; }
   .rank-head { font-size: 12.5px; }
 }
+
+/* ==================== 追加機能: ライトテーマ / お気に入り / 検索・ソート / ミニグラフ / アニメーション ==================== */
+
+:root[data-theme="light"] {
+  --bg-deep: #f6f0e3; --bg-mid: #f6f0e3; --bg-soft: #f6f0e3;
+  --panel: linear-gradient(155deg, rgba(255,255,255,0.92), rgba(250,244,230,0.95));
+  --panel2: rgba(90,60,10,0.05);
+  --border: rgba(150,108,20,0.35); --border-soft: rgba(60,40,10,0.12);
+  --text: #241c0f; --muted: #6d6252;
+  --accent: #9c7a22; --accent-bright: #7c5e14; --accent-deep: #5c440e;
+  --accent-soft: rgba(156,122,34,0.14); --accent-line: rgba(156,122,34,0.55);
+  --up: #c23b4a; --down: #0f8f72;
+  --warn: #a5690a; --bull: #c23b4a; --bear: #0f8f72;
+  --shadow: 0 10px 26px rgba(90,70,20,0.14);
+}
+:root[data-theme="light"] .bg-overlay {
+  background-image:
+    radial-gradient(circle at 12% 4%, rgba(156,122,34,0.10), transparent 38%),
+    radial-gradient(circle at 90% 2%, rgba(156,122,34,0.06), transparent 42%),
+    radial-gradient(circle at 30% 94%, rgba(156,122,34,0.05), transparent 45%),
+    radial-gradient(circle at 80% 72%, rgba(156,122,34,0.03), transparent 40%),
+    linear-gradient(180deg, rgba(255,251,242,0.72) 0%, rgba(250,244,230,0.78) 45%, rgba(246,240,227,0.86) 100%);
+}
+:root[data-theme="light"] body::-webkit-scrollbar-track { background: #efe6d0; }
+
+.top-controls { display: flex; align-items: center; gap: 10px; }
+.theme-toggle {
+  border: 1px solid var(--border); background: rgba(212,175,55,0.08); color: var(--accent-bright);
+  border-radius: 20px; width: 34px; height: 34px; font-size: 15px; cursor: pointer; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center; font-family: inherit;
+  transition: border-color .15s ease, background .15s ease, transform .25s ease;
+}
+.theme-toggle:hover { border-color: var(--accent); background: rgba(212,175,55,0.18); transform: rotate(14deg); }
+
+.rel-time { color: var(--muted); font-size: 11px; margin-left: 2px; }
+
+.fav-filter {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted);
+  margin: 10px 20px 0; cursor: pointer; user-select: none;
+}
+.fav-filter input { accent-color: var(--accent); cursor: pointer; }
+
+.fav-btn {
+  background: none; border: none; cursor: pointer; color: var(--border-soft); font-size: 13px;
+  padding: 0 3px 0 0; vertical-align: middle; line-height: 1; transition: color .15s ease, transform .15s ease;
+}
+.fav-btn:hover { color: var(--accent); transform: scale(1.2); }
+.fav-btn.active { color: var(--accent-bright); }
+
+tr.fav-hidden, tr.search-hidden { display: none; }
+
+.table-tools { margin: 0 0 8px; }
+.table-search {
+  width: 100%; max-width: 280px; background: rgba(255,255,255,0.04); color: var(--text);
+  border: 1px solid var(--border-soft); border-radius: 16px; padding: 6px 12px; font-size: 12.5px;
+  font-family: inherit; outline: none; transition: border-color .15s ease, background .15s ease;
+}
+.table-search::placeholder { color: var(--muted); }
+.table-search:focus { border-color: var(--accent-line); background: rgba(212,175,55,0.06); }
+
+table[data-sortable] thead th { position: relative; user-select: none; cursor: pointer; }
+table[data-sortable] thead th:hover { color: var(--accent-bright); }
+table[data-sortable] thead th::after { content: "⇕"; margin-left: 5px; font-size: 9px; opacity: 0.35; }
+table[data-sortable] thead th[data-dir="asc"]::after { content: "▲"; opacity: 0.9; }
+table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity: 0.9; }
+
+.mini-bar {
+  position: relative; display: inline-block; width: 44px; height: 6px; margin-left: 8px;
+  background: var(--border-soft); border-radius: 3px; vertical-align: middle;
+}
+.mini-bar::before {
+  content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--border-soft);
+}
+.mini-bar-fill { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+.mini-bar-fill.up { background: var(--up); }
+.mini-bar-fill.down { background: var(--down); }
+
+.rsi-gauge { display: inline-flex; align-items: center; gap: 6px; }
+.rsi-gauge-track {
+  position: relative; width: 54px; height: 6px; border-radius: 3px; flex-shrink: 0;
+  background: linear-gradient(90deg, var(--down) 0%, var(--down) 28%, var(--border-soft) 30%, var(--border-soft) 68%, var(--up) 70%, var(--up) 100%);
+}
+.rsi-gauge-marker {
+  position: absolute; top: -3px; width: 2px; height: 12px; background: var(--text);
+  border-radius: 1px; transform: translateX(-1px);
+}
+.rsi-gauge-marker.warn-hot { background: var(--warn); box-shadow: 0 0 6px rgba(255,184,77,0.7); }
+.rsi-gauge-marker.warn-cold { background: var(--down); box-shadow: 0 0 6px rgba(53,217,180,0.5); }
+.rsi-gauge-num { font-size: 11.5px; color: var(--muted); }
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+#backToTop {
+  position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--accent-line); background: linear-gradient(155deg, rgba(20,17,10,0.92), rgba(8,7,5,0.96));
+  color: var(--accent-bright); font-size: 16px; cursor: pointer; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+}
+#backToTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#backToTop:hover { border-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .bg-photo { transition: none; }
+  #backToTop { transition: opacity .01s linear; }
+}
+
+@media (max-width: 640px) {
+  .table-search { max-width: 100%; }
+  .fav-filter { margin: 8px 8px 0; }
+  #backToTop { right: 12px; bottom: 12px; width: 38px; height: 38px; }
+  .top-controls { width: 100%; justify-content: space-between; }
+}
+
+@media print {
+  .topbar, .theme-toggle, .fav-filter, .table-tools, #backToTop, .fav-btn, .bg-photo-stack, .bg-overlay { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .card, .disclaimer, footer, section > h2, .section-desc {
+    background: #fff !important; color: #000 !important; border-color: #999 !important; box-shadow: none !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  }
+  a { color: #000 !important; text-decoration: underline; }
+}
+"""
+
+
+JS_SCRIPT = r"""
+<script>
+(function () {
+  "use strict";
+
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  /* ---------- 背景スライドショー(画質を落とさずopacityのみでゆっくりクロスフェード) ---------- */
+  (function () {
+    var photos = document.querySelectorAll(".bg-photo-stack .bg-photo");
+    if (photos.length < 2 || reduceMotion) { return; }
+    var idx = 0;
+    setInterval(function () {
+      photos[idx].classList.remove("is-active");
+      idx = (idx + 1) % photos.length;
+      photos[idx].classList.add("is-active");
+    }, 17000);
+  })();
+
+  /* ---------- テーマ切替(ライト/ダーク) ---------- */
+  var THEME_KEY = "jpdt_theme";
+  var themeToggle = document.getElementById("themeToggle");
+  function applyTheme(mode) {
+    if (mode === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      var next = cur === "light" ? "dark" : "light";
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    });
+  }
+
+  /* ---------- お気に入り(★) ---------- */
+  var FAV_KEY = "jpdt_favorites";
+  function loadFavorites() {
+    try {
+      var raw = localStorage.getItem(FAV_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function saveFavorites(list) {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  var favorites = loadFavorites();
+  function isFav(code) { return favorites.indexOf(code) !== -1; }
+  function paintFavButtons() {
+    var btns = document.querySelectorAll(".fav-btn");
+    for (var i = 0; i < btns.length; i++) {
+      var btn = btns[i];
+      var code = btn.getAttribute("data-code");
+      var fav = isFav(code);
+      btn.classList.toggle("active", fav);
+      btn.setAttribute("aria-pressed", fav ? "true" : "false");
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest(".fav-btn") : null;
+    if (!btn) { return; }
+    var code = btn.getAttribute("data-code");
+    if (!code) { return; }
+    var idx = favorites.indexOf(code);
+    if (idx === -1) { favorites.push(code); } else { favorites.splice(idx, 1); }
+    saveFavorites(favorites);
+    paintFavButtons();
+    applyFavFilter();
+  });
+  paintFavButtons();
+
+  var favFilter = document.getElementById("favFilterToggle");
+  function applyFavFilter() {
+    var on = !!(favFilter && favFilter.checked);
+    var rows = document.querySelectorAll("table[data-sortable] tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+      var tr = rows[i];
+      if (!on) { tr.classList.remove("fav-hidden"); continue; }
+      var star = tr.querySelector(".fav-btn");
+      var fav = star && isFav(star.getAttribute("data-code"));
+      tr.classList.toggle("fav-hidden", !fav);
+    }
+  }
+  if (favFilter) { favFilter.addEventListener("change", applyFavFilter); }
+
+  /* ---------- テーブル検索 ---------- */
+  var searchInputs = document.querySelectorAll(".table-search");
+  for (var s = 0; s < searchInputs.length; s++) {
+    (function (input) {
+      input.addEventListener("input", function () {
+        var wrap = input.closest(".table-tools");
+        var card = wrap ? wrap.parentElement : null;
+        var table = card ? card.querySelector("table") : null;
+        if (!table) { return; }
+        var q = input.value.trim().toLowerCase();
+        var trs = table.querySelectorAll("tbody tr");
+        for (var i = 0; i < trs.length; i++) {
+          var tr = trs[i];
+          var hit = !q || tr.textContent.toLowerCase().indexOf(q) !== -1;
+          tr.classList.toggle("search-hidden", !hit);
+        }
+      });
+    })(searchInputs[s]);
+  }
+
+  /* ---------- テーブルソート(見出しクリック) ---------- */
+  function parseCell(text) {
+    var t = text.replace(/[,円%★]/g, "").trim();
+    var n = parseFloat(t);
+    return isNaN(n) ? null : n;
+  }
+  var sortHeads = document.querySelectorAll('table[data-sortable] thead th');
+  for (var h = 0; h < sortHeads.length; h++) {
+    (function (th) {
+      var colIndex = Array.prototype.indexOf.call(th.parentElement.children, th);
+      th.addEventListener("click", function () {
+        var table = th.closest("table");
+        var tbody = table.querySelector("tbody");
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+        var dir = th.getAttribute("data-dir") === "asc" ? "desc" : "asc";
+        var heads = table.querySelectorAll("thead th");
+        for (var i = 0; i < heads.length; i++) { heads[i].removeAttribute("data-dir"); }
+        th.setAttribute("data-dir", dir);
+        rows.sort(function (a, b) {
+          var ca = a.children[colIndex] ? a.children[colIndex].textContent.trim() : "";
+          var cb = b.children[colIndex] ? b.children[colIndex].textContent.trim() : "";
+          var na = parseCell(ca), nb = parseCell(cb);
+          var cmp;
+          if (na !== null && nb !== null) { cmp = na - nb; } else { cmp = ca.localeCompare(cb, "ja"); }
+          return dir === "asc" ? cmp : -cmp;
+        });
+        for (var r = 0; r < rows.length; r++) { tbody.appendChild(rows[r]); }
+      });
+    })(sortHeads[h]);
+  }
+
+  /* ---------- スクロール時フェードイン ---------- */
+  var revealTargets = document.querySelectorAll(".card, .idx-card, .rank-item");
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    for (var rt = 0; rt < revealTargets.length; rt++) { revealTargets[rt].classList.add("reveal"); }
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          io.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    for (var rt2 = 0; rt2 < revealTargets.length; rt2++) { io.observe(revealTargets[rt2]); }
+  }
+
+  /* ---------- 指標カードの数値カウントアップ ---------- */
+  if (!reduceMotion) {
+    var idxValues = document.querySelectorAll(".idx-value");
+    for (var v = 0; v < idxValues.length; v++) {
+      (function (el) {
+        var raw = el.textContent;
+        var m = raw.match(/^-?[\d,]+(\.\d+)?/);
+        if (!m) { return; }
+        var target = parseFloat(m[0].replace(/,/g, ""));
+        if (isNaN(target)) { return; }
+        var suffix = raw.slice(m[0].length);
+        var decimals = m[1] ? (m[1].length - 1) : 0;
+        var t0 = null;
+        var duration = 700;
+        function step(ts) {
+          if (!t0) { t0 = ts; }
+          var p = Math.min(1, (ts - t0) / duration);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = target * eased;
+          el.textContent = val.toLocaleString("ja-JP", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+          if (p < 1) { requestAnimationFrame(step); }
+        }
+        requestAnimationFrame(step);
+      })(idxValues[v]);
+    }
+  }
+
+  /* ---------- 相対更新時刻 ---------- */
+  var relTimes = document.querySelectorAll(".rel-time");
+  for (var rtm = 0; rtm < relTimes.length; rtm++) {
+    (function (el) {
+      var gen = el.getAttribute("data-generated");
+      if (!gen) { return; }
+      var iso = gen.replace(" ", "T") + ":00+09:00";
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) { return; }
+      var diffMin = Math.round((Date.now() - d.getTime()) / 60000);
+      var text;
+      if (diffMin < 1) { text = "たった今"; }
+      else if (diffMin < 60) { text = "約" + diffMin + "分前"; }
+      else if (diffMin < 60 * 24) { text = "約" + Math.round(diffMin / 60) + "時間前"; }
+      else { text = "約" + Math.round(diffMin / 1440) + "日前"; }
+      el.textContent = "(" + text + ")";
+    })(relTimes[rtm]);
+  }
+
+  /* ---------- トップへ戻る ---------- */
+  var backToTop = document.getElementById("backToTop");
+  if (backToTop) {
+    window.addEventListener("scroll", function () {
+      backToTop.classList.toggle("show", window.scrollY > 480);
+    }, { passive: true });
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
+})();
+</script>
 """
 
 
@@ -720,11 +1134,26 @@ def build_html(data: dict) -> str:
 
     bg_url = pick_background_image(generated_at, run_type)
     page_css = CSS.replace("__BG_URL__", bg_url)
+
+    # 背景スライドショー: 現在時刻/朝夜に応じた「本来の写真」を先頭(=最初に表示)にして、
+    # 残りの写真をゆっくりクロスフェードで巡回させる。画質は元画像のまま(opacityのみで遷移)。
+    if bg_url in BACKGROUND_IMAGES:
+        start = BACKGROUND_IMAGES.index(bg_url)
+        rotation = BACKGROUND_IMAGES[start:] + BACKGROUND_IMAGES[:start]
+    else:
+        rotation = [bg_url] + [u for u in BACKGROUND_IMAGES if u != bg_url]
+    bg_photo_divs = "".join(
+        f'<div class="bg-photo{" is-active" if i == 0 else ""}" '
+        f'style="background-image:url(\'{esc(u)}\')" data-order="{i}"></div>'
+        for i, u in enumerate(rotation)
+    )
+
     html_out = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{{if(localStorage.getItem('jpdt_theme')==='light'){{document.documentElement.setAttribute('data-theme','light');}}}}catch(e){{}}</script>
 <title>日本株デイトレード情報ダッシュボード</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -732,25 +1161,31 @@ def build_html(data: dict) -> str:
 <style>{page_css}</style>
 </head>
 <body>
+<div class="bg-photo-stack" aria-hidden="true">{bg_photo_divs}</div>
+<div class="bg-overlay" aria-hidden="true"></div>
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">{esc(run_label)}</span></h1>
-      <div class="subtitle">最終更新: {esc(generated_at)} (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: {esc(generated_at)} (JST)<span class="rel-time" data-generated="{esc(generated_at)}"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
-    <nav class="tabs">
-      <a href="#morning">🌅 寄り付き前</a>
-      <a href="#evening">🌙 引け後</a>
-      <a href="#technical">📊 株価診断</a>
-      <a href="#growth">🌱 成長株</a>
-    </nav>
+    <div class="top-controls">
+      <nav class="tabs">
+        <a href="#morning">🌅 寄り付き前</a>
+        <a href="#evening">🌙 引け後</a>
+        <a href="#technical">📊 株価診断</a>
+        <a href="#growth">🌱 成長株</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
+    </div>
   </div>
 </header>
 <div class="wrap">
   <div class="disclaimer">
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
   </div>
+  <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
 
   {morning_html}
   {evening_html}
@@ -764,6 +1199,8 @@ def build_html(data: dict) -> str:
     {sources_html}
   </footer>
 </div>
+<button id="backToTop" type="button" aria-label="ページ上部へ戻る" title="トップへ戻る">↑</button>
+{JS_SCRIPT}
 </body>
 </html>
 """
