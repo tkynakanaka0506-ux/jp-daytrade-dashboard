@@ -42,12 +42,6 @@ HERO_IMAGES = [
      "caption": "新宿"},
 ]
 
-# 本文中に差し込む装飾用フォトバナー(HERO_IMAGESから抜粋)
-# ※ 六本木ヒルズ・東京シティビュー(人物入り)はサイト全体の背景で使用中のため、
-#   本文バナーとしては重複を避け、東京スカイツリーのみを使用する。
-PHOTO_BANNERS = [HERO_IMAGES[4]]
-
-
 def esc(x):
     if x is None:
         return ""
@@ -367,15 +361,6 @@ def growth_candidates_html(items, empty_msg="現時点で好材料開示に基�
     return "".join(rows)
 
 
-def photo_banner_html(photo):
-    url = esc(photo["url"])
-    caption = esc(photo["caption"])
-    return f"""
-    <div class="photo-banner" style="background-image:url('{url}');">
-      <span class="photo-credit">{caption}</span>
-    </div>"""
-
-
 CSS = """
 :root {
   --bg-deep: #000000; --bg-mid: #07060a; --bg-soft: #0a0908;
@@ -405,7 +390,7 @@ body {
     radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
     radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
     linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(4,3,2,0.3) 45%, rgba(6,5,4,0.4) 100%),
-    url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&fit=crop&w=2400&q=90&sat=30&con=10&vib=20');
+    url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&fit=crop&w=2400&q=90&sat=60&con=15&vib=40');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto, auto, cover;
   background-position: 12% 4%, 90% 2%, 30% 94%, 80% 72%, center, center;
@@ -766,8 +751,6 @@ def build_html(data: dict) -> str:
         f'<span class="hero-credit">{esc(p["caption"])}</span></div>'
         for i, p in enumerate(HERO_IMAGES)
     )
-    photo_banner_2 = photo_banner_html(PHOTO_BANNERS[0])
-
     html_out = f"""<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -808,7 +791,6 @@ def build_html(data: dict) -> str:
 
   {morning_html}
   {evening_html}
-  {photo_banner_2}
   {technical_html}
   {growth_html}
 
