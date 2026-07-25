@@ -1,5 +1,5 @@
 {
-  "generated_at" : "2026-07-25 07:05",
+  "generated_at" : "2026-07-25 12:29",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
@@ -45,6 +45,41 @@
     "time" : "7/16 引け後"
   } ],
   "tdnet_morning" : [ {
+    "time" : "10:30",
+    "code" : "―",
+    "company" : "王将フード",
+    "title" : "〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "09:30",
+    "code" : "―",
+    "company" : "セブン＆アイ",
+    "title" : "Notice Regarding Conclusion of Discussions on Potential Investment in European CVS",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "09:30",
+    "code" : "―",
+    "company" : "セブン＆アイ",
+    "title" : "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "08:00",
+    "code" : "―",
+    "company" : "ＷＨＤＣ",
+    "title" : "（訂正）第22回定時株主総会招集ご通知",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "08:00",
+    "code" : "―",
+    "company" : "ＷＨＤＣ",
+    "title" : "（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項）",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
+    "tag" : "他"
+  }, {
     "time" : "00:30",
     "code" : "―",
     "company" : "あおぞら銀",
@@ -148,41 +183,6 @@
     "company" : "―",
     "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸデジ日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599495.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸｅコ日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599485.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ高配Ｅ日、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599496.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "海帆、第23期定時株主総会の継続会の開催中止及び臨時株主総会の開催に関するお知らせ 他 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599560.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "Ｇ－ＦＡＣ、法定事前開示書類（会社分割）（双日食品株式会社） 他 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599082.pdf",
     "tag" : "他"
   } ],
   "movers_morning" : [ ],
@@ -369,5 +369,62 @@
     "rsi" : 40.16,
     "signal" : "中立(やや強気)",
     "summary" : "売り0/中立6/買い1。RSIは中立域。"
+  } ],
+  "growth_candidates" : [ {
+    "company" : "アーバネット",
+    "title" : "通期連結業績予想の修正（上方修正）に関するお知らせ",
+    "catalyst" : "上方修正",
+    "reason" : "TDnet適時開示「通期連結業績予想の修正（上方修正）に関するお知らせ」より、上方修正を確認。",
+    "asof" : "7月23日(木) 15:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260722597179.pdf"
+  }, {
+    "company" : "未来工業",
+    "title" : "連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ",
+    "catalyst" : "増配",
+    "reason" : "TDnet適時開示「連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
+    "asof" : "7月23日(木) 15:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598028.pdf"
+  }, {
+    "company" : "三井松島ＨＤ",
+    "title" : "2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせ",
+    "catalyst" : "上方修正",
+    "reason" : "TDnet適時開示「2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせ」より、上方修正を確認。",
+    "asof" : "7月22日(水) 16:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597578.pdf"
+  }, {
+    "company" : "ブロンコＢ",
+    "title" : "第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末配当予想の修正（増配）に関するお知らせ",
+    "catalyst" : "増配",
+    "reason" : "TDnet適時開示「第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
+    "asof" : "7月22日(水) 15:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721597038.pdf"
+  }, {
+    "company" : "十六ＦＧ",
+    "title" : "業績予想の修正及び配当予想の修正（増配）に関するお知らせ",
+    "catalyst" : "増配",
+    "reason" : "TDnet適時開示「業績予想の修正及び配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
+    "asof" : "7月22日(水) 15:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260717596038.pdf"
+  }, {
+    "company" : "パラカ",
+    "title" : "通期業績予想の修正及び配当予想の修正（増配）に関するお知らせ",
+    "catalyst" : "増配",
+    "reason" : "TDnet適時開示「通期業績予想の修正及び配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
+    "asof" : "7月16日(木) 12:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260716/140120260701586503.pdf"
+  }, {
+    "company" : "マニー",
+    "title" : "通期業績予想の上方修正に関するお知らせ",
+    "catalyst" : "上方修正",
+    "reason" : "TDnet適時開示「通期業績予想の上方修正に関するお知らせ」より、上方修正を確認。",
+    "asof" : "7月15日(水) 15:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260715/140120260619574493.pdf"
+  }, {
+    "company" : "ホリイフード",
+    "title" : "2026年11月期通期連結業績予想の修正（上方修正）に関するお知らせ",
+    "catalyst" : "上方修正",
+    "reason" : "TDnet適時開示「2026年11月期通期連結業績予想の修正（上方修正）に関するお知らせ」より、上方修正を確認。",
+    "asof" : "7月15日(水) 14:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260715/140120260715594280.pdf"
   } ]
 }
