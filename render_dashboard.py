@@ -456,13 +456,13 @@ nav.tabs a:hover {
 section { margin: 32px 20px; }
 section > h2 {
   font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
-  font-size: 18px; border-left: 2px solid var(--accent); padding-left: 12px; margin-bottom: 4px;
+  font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
   font-weight: 700; letter-spacing: 0.3px; color: var(--accent-bright);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.85), 0 0 14px rgba(0,0,0,0.5);
+  background: rgba(10,8,5,0.55); border-radius: 0 8px 8px 0; display: inline-block;
 }
 .section-desc {
-  color: var(--muted); font-size: 12.5px; margin: 2px 0 14px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+  color: var(--muted); font-size: 12.5px; margin: 6px 0 14px; padding: 5px 10px;
+  background: rgba(10,8,5,0.48); border-radius: 8px; display: inline-block;
 }
 .card {
   background: var(--panel); border: 1px solid var(--border); border-top: 1px solid var(--accent-line);
@@ -543,11 +543,12 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 
 footer {
   margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px;
-  border-top: 1px solid var(--accent-line); padding-top: 16px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.85);
+  border-top: 1px solid var(--accent-line);
+  background: rgba(10,8,5,0.5); border-radius: var(--radius-sm);
+  padding: 16px 18px; border: 1px solid var(--border);
 }
-footer .disclaimer { margin: 0 0 12px; text-shadow: none; }
-.sources { font-size: 11px; color: var(--muted); text-shadow: 0 1px 3px rgba(0,0,0,0.85); }
+footer .disclaimer { margin: 0 0 12px; }
+.sources { font-size: 11px; color: var(--muted); }
 .run-badge {
   display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px;
   background: rgba(0,0,0,0.4); border:1px solid var(--accent-line); color: var(--accent-bright); margin-left:8px;
