@@ -390,7 +390,7 @@ body {
     radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
     radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
     linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(4,3,2,0.14) 45%, rgba(6,5,4,0.22) 100%),
-    url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&fit=crop&w=2400&q=90&sat=85&con=20&vib=60');
+    url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=2400&q=90&sat=40&con=10&vib=25');
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   background-size: auto, auto, auto, auto, auto, cover;
   background-position: 12% 4%, 90% 2%, 30% 94%, 80% 72%, center, center;
