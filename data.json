@@ -1,20 +1,20 @@
 {
-  "generated_at" : "2026-07-25 22:24",
-  "run_type" : "evening",
+  "generated_at" : "2026-07-26 06:58",
+  "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,411.98",
-      "change_pct" : -1.16,
+      "change_pct" : 0.05,
       "asof" : "7/25終値"
     },
     "dow" : {
       "value" : "51,947.25",
-      "change_pct" : -0.52,
+      "change_pct" : 0.46,
       "asof" : "7/25終値"
     },
     "nasdaq" : {
       "value" : "24,975.82",
-      "change_pct" : -2.78,
+      "change_pct" : -0.64,
       "asof" : "7/25終値"
     }
   },
@@ -30,7 +30,7 @@
   },
   "nikkei225" : {
     "value" : "64,611.15",
-    "change_pct" : -2.28,
+    "change_pct" : -2.73,
     "asof" : "7/24終値"
   },
   "overnight_news" : [ {
@@ -45,59 +45,59 @@
     "time" : "7/16 引け後"
   } ],
   "tdnet_morning" : [ {
-    "time" : "10:30",
+    "time" : "―",
     "code" : "―",
-    "company" : "王将フード",
-    "title" : "〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026",
+    "company" : "―",
+    "title" : "王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
     "tag" : "他"
   }, {
-    "time" : "09:30",
+    "time" : "―",
     "code" : "―",
-    "company" : "セブン＆アイ",
-    "title" : "Notice Regarding Conclusion of Discussions on Potential Investment in European CVS",
+    "company" : "―",
+    "title" : "セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
     "tag" : "他"
   }, {
-    "time" : "09:30",
+    "time" : "―",
     "code" : "―",
-    "company" : "セブン＆アイ",
-    "title" : "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
+    "company" : "―",
+    "title" : "セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
     "tag" : "他"
   }, {
-    "time" : "08:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＷＨＤＣ",
-    "title" : "（訂正）第22回定時株主総会招集ご通知",
+    "company" : "―",
+    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
     "tag" : "他"
   }, {
-    "time" : "08:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＷＨＤＣ",
-    "title" : "（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項）",
+    "company" : "―",
+    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
     "tag" : "他"
   }, {
-    "time" : "00:30",
+    "time" : "―",
     "code" : "―",
-    "company" : "あおぞら銀",
-    "title" : "統合報告書 ディスクロージャー誌 資料編 2026",
+    "company" : "―",
+    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
     "tag" : "他"
   }, {
-    "time" : "00:30",
+    "time" : "―",
     "code" : "―",
-    "company" : "あおぞら銀",
-    "title" : "統合報告書 ディスクロージャー誌 本編 2026",
+    "company" : "―",
+    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
     "tag" : "他"
   }, {
-    "time" : "00:00",
+    "time" : "―",
     "code" : "―",
-    "company" : "ＦＣＣ",
-    "title" : "［Delayed］Corporate Governance Report",
+    "company" : "―",
+    "title" : "ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00",
     "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
     "tag" : "他"
   }, {
