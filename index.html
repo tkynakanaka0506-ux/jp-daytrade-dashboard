@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
   position: absolute; inset: 0; background-size: cover; background-position: center;
   opacity: 0; transform: scale(1.08);
   filter: saturate(1.15) brightness(0.7);
-  animation: heroFade 24s ease-in-out infinite;
+  animation-name: heroFade; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
 }
 @keyframes heroFade {
   0% { opacity: 0; }
@@ -58,6 +58,12 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
   22% { opacity: 1; }
   30% { opacity: 0; }
   100% { opacity: 0; }
+}
+.hero-credit {
+  position: absolute; right: 10px; bottom: 8px; z-index: 2;
+  font-family: -apple-system, "Hiragino Sans", sans-serif;
+  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
+  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -180,6 +186,36 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
+
+/* --- ランキング(強気シグナル数 / TDnet話題度) --- */
+.rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.rank-item:last-child { border-bottom: none; }
+.rank-num { width: 34px; flex-shrink: 0; font-size: 19px; text-align: center; line-height: 1.4; }
+.rank-body { flex: 1; min-width: 0; }
+.rank-head { font-size: 13.5px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rank-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.rank-news a { color: var(--accent-bright); }
+.rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
+.score-tag {
+  font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
+  background: rgba(212,175,55,0.12); color: var(--accent-bright); border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* --- 本文中の装飾フォトバナー --- */
+.photo-banner {
+  position: relative; width: 100%; height: 170px; margin: 26px 0;
+  border-radius: var(--radius); border: 1px solid var(--border);
+  background-size: cover; background-position: center;
+  filter: saturate(1.1) brightness(0.75); overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.photo-banner .photo-credit {
+  position: absolute; right: 10px; bottom: 8px;
+  font-family: -apple-system, "Hiragino Sans", sans-serif;
+  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
+  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
+}
 footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--accent-line); padding-top: 16px; }
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
@@ -218,13 +254,18 @@ footer .disclaimer { margin: 0 0 12px; }
   th, td { padding: 6px 6px; }
   .scroll-hint { display: block; }
   footer { margin: 28px 8px 10px; }
+  .hero-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
+  .rank-num { width: 26px; font-size: 15px; }
+  .rank-head { font-size: 12.5px; }
+  .photo-banner { height: 100px; margin: 16px 0; }
+  .photo-banner .photo-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
 }
 </style>
 </head>
 <body>
 <div class="hero">
   <div class="hero-slides">
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:0s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:6s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:12s;"></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-delay:18s;"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:0s;"><span class="hero-credit">東京タワー</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:6s;"><span class="hero-credit">渋谷スクランブル交差点</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:12s;"><span class="hero-credit">六本木ヒルズ・東京シティビュー</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:18s;"><span class="hero-credit">レインボーブリッジ・お台場</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:24s;"><span class="hero-credit">東京スカイツリー</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:30s;"><span class="hero-credit">新宿</span></div>
   </div>
   <div class="hero-overlay"></div>
 </div>
@@ -233,7 +274,7 @@ footer .disclaimer { margin: 0 0 12px; }
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-25 07:05 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-25 06:00 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <nav class="tabs">
       <a href="#morning">🌅 寄り付き前</a>
@@ -256,315 +297,104 @@ footer .disclaimer { margin: 0 0 12px; }
         <div class="idx-grid">
     <div class="idx-card">
       <div class="idx-label">S&amp;P500</div>
-      <div class="idx-value">7,411.98</div>
-      <span class="chg up">+0.05%</span>
-      <div class="note">7/25終値</div>
+      <div class="idx-value">7,408.30</div>
+      <span class="chg down">-1.21%</span>
+      <div class="note">7/23(木) NY引け</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">NYダウ</div>
-      <div class="idx-value">51,947.25</div>
-      <span class="chg up">+0.46%</span>
-      <div class="note">7/25終値</div>
+      <div class="idx-value">51,711.65</div>
+      <span class="chg down">-0.97%</span>
+      <div class="note">7/23(木) NY引け(506.93ドル安)</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">ナスダック総合</div>
-      <div class="idx-value">24,975.82</div>
-      <span class="chg down">-0.64%</span>
-      <div class="note">7/25終値</div>
+      <div class="idx-value">25,137.70</div>
+      <span class="chg down">-2.15%</span>
+      <div class="note">7/23(木) NY引け(553.20pt安)</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">USD/JPY</div>
-      <div class="idx-value">163.79円</div>
-      <span class="chg down">-0.03%</span>
-      <div class="note">7/25終値</div>
+      <div class="idx-value">163.75円</div>
+      
+      <div class="note">7/25 00:37時点(NY市場終盤、参考値)</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">日経225先物(CME/大阪)</div>
-      <div class="idx-value">64,290.00</div>
-      <span class="chg down">-1.71%</span>
-      <div class="note">7/25終値</div>
+      <div class="idx-value">65,430円</div>
+      <span class="chg down">-1.39%</span>
+      <div class="note">7/24 夜間取引終了(大阪取引所、7/25 6:00引け、前日清算値比920円安)</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">日経平均(現物・前回終値)</div>
-      <div class="idx-value">64,611.15</div>
-      <span class="chg down">-2.28%</span>
-      <div class="note">7/24終値</div>
+      <div class="idx-value">64,611.15円</div>
+      <span class="chg down">-2.73%</span>
+      <div class="note">7/24 現物終値(前日比-1,811.45円)</div>
     </div></div>
       </div>
       <div class="card">
         <h3>時間外・朝の主要ニュース</h3>
-        <ul class="news-list"><li><a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener">自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など</a><span class="meta">7/17 / トレーダーズ・ウェブ</span></li><li><a href="https://finance.yahoo.co.jp/" target="_blank" rel="noopener">本日の【CB発行】銘柄 (16日大引け後 発表分)</a><span class="meta">7/16 引け後 / フィスコ</span></li></ul>
+        <ul class="news-list"><li><a href="https://www.nikkei.com/article/DGXZQOFL245D80U6A720C2000000/" target="_blank" rel="noopener">東証大引け 日経平均反落、1811円安 AI半導体株に売り</a><span class="meta">7/24 / 日本経済新聞</span></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NY株式：NYダウは506.93ドル安、AI過剰投資や原油高を懸念</a><span class="meta">7/24 06:23 / 財経新聞(フィスコ)</span></li><li><a href="https://www.zaikei.co.jp/article/20260724/862679.html" target="_blank" rel="noopener">日経平均は大幅反落、東エレクが1銘柄で約448円分押し下げ</a><span class="meta">7/24 12:43 / 財経新聞</span></li><li><a href="https://fx.minkabu.jp/news/374194" target="_blank" rel="noopener">ドル円はロンドン朝の安値割り込む、原油安などがドル安誘う＝ＮＹ為替</a><span class="meta">7/25 00:37 / みんかぶ FX/為替</span></li><li><a href="https://www.zaikei.co.jp/article/20260724/862637.html" target="_blank" rel="noopener">ディスコ 大幅反落、7-9月期見通しは市場予想を下振れ</a><span class="meta">7/24 / 財経新聞</span></li></ul>
       </div>
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>
+        <p class="empty">対象期間の適時開示は取得できませんでした。</p>
+      </div>
+      <div class="card">
+        <h3>出来高・値動きで話題の銘柄</h3>
         
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
-    <table class="tdnet-table">
-      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
+    <table class="movers-table">
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>出来高メモ</th><th>話題の背景</th></tr></thead>
       <tbody>
         <tr>
-          <td class="mono">00:30</td>
-          <td class="mono">―</td>
-          <td>あおぞら銀</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf" target="_blank" rel="noopener">統合報告書 ディスクロージャー誌 資料編 2026</a> <span class="tag">他</span></td>
+          <td class="mono">8035</td>
+          <td>東京エレクトロン</td>
+          <td class="mono">61,490円</td>
+          <td class="mono down">-6.76%</td>
+          <td>前日(24日)日経平均押し下げ寄与度1位(前引け時点、1銘柄で約448円押し下げ)</td>
+          <td class="reason">米アルファベット・テスラの決算を受けAI過剰投資懸念が再燃し、値がさ半導体株の中心として売られた。</td>
         </tr>
         <tr>
-          <td class="mono">00:30</td>
-          <td class="mono">―</td>
-          <td>あおぞら銀</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf" target="_blank" rel="noopener">統合報告書 ディスクロージャー誌 本編 2026</a> <span class="tag">他</span></td>
+          <td class="mono">6857</td>
+          <td>アドバンテスト</td>
+          <td class="mono">29,130円</td>
+          <td class="mono down">-5.42%</td>
+          <td>押し下げ寄与度2位(前引け時点)</td>
+          <td class="reason">半導体関連の主力株として東エレクに連れ安。</td>
         </tr>
         <tr>
-          <td class="mono">00:00</td>
-          <td class="mono">―</td>
-          <td>ＦＣＣ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf" target="_blank" rel="noopener">［Delayed］Corporate Governance Report</a> <span class="tag">他</span></td>
+          <td class="mono">6146</td>
+          <td>ディスコ</td>
+          <td class="mono">59,680円</td>
+          <td class="mono down">-14.02%</td>
+          <td>値下がり率上位(前引け時点)</td>
+          <td class="reason">7/23引け後発表の7-9月期業績見通しが市場予想を下回ったと報じられ、決算を材料に急落。</td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf" target="_blank" rel="noopener">はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf" target="_blank" rel="noopener">中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf" target="_blank" rel="noopener">信金中央、定款 2026/07/24 他 7月24日(金) 18:55</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf" target="_blank" rel="noopener">ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf" target="_blank" rel="noopener">ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf" target="_blank" rel="noopener">ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf" target="_blank" rel="noopener">ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf" target="_blank" rel="noopener">ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf" target="_blank" rel="noopener">ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf" target="_blank" rel="noopener">ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf" target="_blank" rel="noopener">ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf" target="_blank" rel="noopener">ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599495.pdf" target="_blank" rel="noopener">ＧＸデジ日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599485.pdf" target="_blank" rel="noopener">ＧＸｅコ日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599496.pdf" target="_blank" rel="noopener">ＧＸ高配Ｅ日、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599560.pdf" target="_blank" rel="noopener">海帆、第23期定時株主総会の継続会の開催中止及び臨時株主総会の開催に関するお知らせ 他 7月24日(金) 18:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
-          <td>―</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599082.pdf" target="_blank" rel="noopener">Ｇ－ＦＡＣ、法定事前開示書類（会社分割）（双日食品株式会社） 他 7月24日(金) 18:00</a> <span class="tag">他</span></td>
+          <td class="mono">9433</td>
+          <td>ＫＤＤＩ</td>
+          <td class="mono">2,922.5円</td>
+          <td class="mono up">+1.81%</td>
+          <td>値上がり寄与度2位。RSI(14)87.41と過熱感が強い水準</td>
+          <td class="reason">地合い悪化の中でも内需・ディフェンシブ株として資金シフトの受け皿になった。</td>
         </tr></tbody>
     </table>
     </div>
       </div>
-      <div class="card">
-        <h3>出来高・値動きで話題の銘柄</h3>
-        <p class="empty">該当データが取得できませんでした。</p>
-      </div>
     </section>
+  
+    <div class="photo-banner" style="background-image:url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&amp;fit=crop&amp;w=1600&amp;q=75');">
+      <span class="photo-credit">六本木ヒルズ・東京シティビュー</span>
+    </div>
   
     <section id="evening">
       <h2>🌙 引け後セクション</h2>
       <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
         <h3>本日のTDnet適時開示</h3>
-        
-    <div class="scroll-hint">← 横にスクロールできます</div>
-    <div class="table-scroll">
-    <table class="tdnet-table">
-      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="mono">19:30</td>
-          <td class="mono">―</td>
-          <td>はてな</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf" target="_blank" rel="noopener">特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:55</td>
-          <td class="mono">―</td>
-          <td>中外炉</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf" target="_blank" rel="noopener">(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:55</td>
-          <td class="mono">―</td>
-          <td>信金中央</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf" target="_blank" rel="noopener">定款 2026/07/24</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:33</td>
-          <td class="mono">―</td>
-          <td>ＮＥ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf" target="_blank" rel="noopener">コーポレート・ガバナンスに関する報告書 2026/07/24</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸ超短米債</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸ優証隔月</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸＵＳ配ヘ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸＵＳ配当</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸＡＩビグ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸウラン</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸＵＳＤＶ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸ高配日株</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸデジ日株</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599495.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸｅコ日株</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599485.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＧＸ高配Ｅ日</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599496.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">配当</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>海帆</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599560.pdf" target="_blank" rel="noopener">第23期定時株主総会の継続会の開催中止及び臨時株主総会の開催に関するお知らせ</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>Ｇ－ＦＡＣ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599082.pdf" target="_blank" rel="noopener">法定事前開示書類（会社分割）（双日食品株式会社）</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>ＤＧ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599394.pdf" target="_blank" rel="noopener">シンジケート型コミットメントライン契約（増額変更）の締結に関するお知らせ</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>アエリア</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599533.pdf" target="_blank" rel="noopener">株式会社サイバード　『イケメンヴィラン 闇夜にひらく悪の恋』 ３周年を記念した公開生放送イベントのチケット販売を開始！</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">18:00</td>
-          <td class="mono">―</td>
-          <td>アクセルＨＤ</td>
-          <td><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599202.pdf" target="_blank" rel="noopener">Notice of Establishment of Compensation Advisory Committee</a> <span class="tag">他</span></td>
-        </tr></tbody>
-    </table>
-    </div>
+        <p class="empty">本日の適時開示データは取得できませんでした。</p>
       </div>
       <div class="card">
         <h3>引け後の主要ニュース</h3>
@@ -574,7 +404,19 @@ footer .disclaimer { margin: 0 0 12px; }
         <h3>本日の値動き・出来高で話題の銘柄</h3>
         <p class="empty">該当データが取得できませんでした。</p>
       </div>
+      <div class="card">
+        <h3>TDnet開示 話題度ランキング</h3>
+        <p class="rank-note">
+          本日のTDnet開示(決算・業績修正など)を件数・内容の重みで機械的に集計した「話題性」の順位です。
+          <b>株価が上昇することを確約・予想するものではありません。</b>
+        </p>
+        <p class="empty">本日はTDnet開示に基づく話題性データがありません。</p>
+      </div>
     </section>
+  
+    <div class="photo-banner" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=1600&amp;q=75');">
+      <span class="photo-credit">東京スカイツリー</span>
+    </div>
   
     <section id="technical">
       <h2>📊 株価診断(テクニカル指標)</h2>
@@ -592,49 +434,101 @@ footer .disclaimer { margin: 0 0 12px; }
         <tr>
           <td class="mono">7203</td>
           <td>トヨタ自動車</td>
-          <td class="mono">2,897.0</td>
+          <td class="mono">2,897.0円</td>
           <td class="mono down">-1.80%</td>
           <td class="mono">-0.99%</td>
           <td class="mono">+2.46%</td>
           <td class="mono">57.11</td>
           <td><span class="badge bear">中立(やや弱気)</span></td>
-          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
+          <td class="reason">シグナル判定は中立6/売り1/買い0とやや売りが優勢。RSI(14)は57.11で中立圏。25日線からは+2.46%上方乖離にとどまり過熱感は限定的。（7/24終値時点）</td>
+        </tr>
+        <tr>
+          <td class="mono">9433</td>
+          <td>ＫＤＤＩ</td>
+          <td class="mono">2,922.5円</td>
+          <td class="mono up">+1.81%</td>
+          <td class="mono">+1.35%</td>
+          <td class="mono">+5.47%</td>
+          <td class="mono">87.41 <span class="tag tag-warn">過熱感</span></td>
+          <td><span class="badge bear">中立(やや弱気/過熱感)</span></td>
+          <td class="reason">シグナル判定は中立5/売り2/買い0。RSI(14)は87.41と大幅な買われすぎ水準にあり、短期的な過熱感に留意。25日線から+5.47%上方乖離。（7/24終値時点）</td>
+        </tr>
+        <tr>
+          <td class="mono">8306</td>
+          <td>三菱ＵＦＪフィナンシャル・グループ</td>
+          <td class="mono">3,750.0円</td>
+          <td class="mono up">+2.24%</td>
+          <td class="mono">+3.59%</td>
+          <td class="mono">+9.91%</td>
+          <td class="mono">73.22 <span class="tag tag-warn">過熱感</span></td>
+          <td><span class="badge bear">中立(やや弱気/過熱感)</span></td>
+          <td class="reason">シグナル判定は中立5/売り2/買い0。RSI(14)は73.22で買われすぎ水準。25日線から+9.91%上方乖離しており過熱感に留意。（7/23終値時点、やや古いデータ）</td>
         </tr>
         <tr>
           <td class="mono">6758</td>
           <td>ソニーグループ</td>
-          <td class="mono">3,409.0</td>
-          <td class="mono down">-1.04%</td>
-          <td class="mono">-1.05%</td>
-          <td class="mono">+1.94%</td>
-          <td class="mono">53.05</td>
+          <td class="mono">3,458.0円</td>
+          <td class="mono down">-0.35%</td>
+          <td class="mono">+0.89%</td>
+          <td class="mono">+4.01%</td>
+          <td class="mono">65.24</td>
           <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
-        </tr>
-        <tr>
-          <td class="mono">8306</td>
-          <td>三菱UFJフィナンシャル・グループ</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">+2.99%</td>
-          <td class="mono">+9.54%</td>
-          <td class="mono">72.77 <span class="tag tag-warn">過熱感</span></td>
-          <td><span class="badge bear">弱気(過熱感)</span></td>
-          <td class="reason">売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。</td>
-        </tr>
-        <tr>
-          <td class="mono">9984</td>
-          <td>ソフトバンクグループ</td>
-          <td class="mono">5,500.0</td>
-          <td class="mono down">-7.06%</td>
-          <td class="mono">-2.81%</td>
-          <td class="mono">-10.84%</td>
-          <td class="mono">40.16</td>
-          <td><span class="badge bull">中立(やや強気)</span></td>
-          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
+          <td class="reason">シグナル判定は中立7/売り0/買い0で方向感に乏しい。RSI(14)は65.24でやや買われ気味の中立圏。（7/21終値時点、4営業日前とやや古いデータのため参考程度）</td>
         </tr></tbody>
     </table>
     </div>
+      </div>
+      <div class="card">
+        <h3>強気シグナル数ランキング</h3>
+        <p class="rank-note">
+          移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
+          <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
+        </p>
+        
+        <div class="rank-item">
+          <div class="rank-num">🥇</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">6758</span> ソニーグループ
+              <span class="mono down">-0.35%</span>
+              <span class="score-tag">強気スコア +0</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立7/売り0/買い0 ・ RSI(14) 65.24</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥈</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">7203</span> トヨタ自動車
+              <span class="mono down">-1.80%</span>
+              <span class="score-tag">強気スコア -1</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立6/売り1/買い0 ・ RSI(14) 57.11</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥉</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">8306</span> 三菱ＵＦＪフィナンシャル・グループ
+              <span class="mono up">+2.24%</span>
+              <span class="score-tag">強気スコア -2</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立5/売り2/買い0 ・ RSI(14) 73.22 <span class="tag tag-warn">過熱感に注意</span></div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">4位</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">9433</span> ＫＤＤＩ
+              <span class="mono up">+1.81%</span>
+              <span class="score-tag">強気スコア -2</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立5/売り2/買い0 ・ RSI(14) 87.41 <span class="tag tag-warn">過熱感に注意</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
