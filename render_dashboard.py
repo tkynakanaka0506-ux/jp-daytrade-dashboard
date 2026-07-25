@@ -35,6 +35,10 @@ BACKGROUND_IMAGES = [
     ("https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "レインボーブリッジ・お台場"),
     ("https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "東京スカイツリー"),
     ("https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=2400&q=90&sat=40&con=10&vib=25", "新宿"),
+    ("https://images.unsplash.com/photo-1624434512895-2d1887ebfccf?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "六本木"),
+    ("https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "秋葉原"),
+    ("https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "丸の内・東京駅"),
+    ("https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "銀座"),
 ]
 
 
@@ -394,25 +398,146 @@ def _outlook_comment(code, tech_lookup):
     return "、".join(parts) + "。直近の値動き傾向に基づく機械的な参考情報であり、将来の株価変動を保証するものではありません。"
 
 
-def good_news_ranking_html(tdnet_morning, tdnet_afterclose, technical,
-                            empty_msg="本日はTDnet開示に基づく明確な好材料データがありません。"):
+
+# 日本株(TDnet開示)の好材料カテゴリ定義:重み・強さラベル・具体的な好材料内容・
+# 過去の類似開示に基づく想定インパクト(参考値)・好材料と判断する理由をまとめて保持する。
+# 想定インパクトはあくまで過去の類似ケースの一般的な傾向を示す参考値であり、
+# 株価が実際にその通り上昇することを確約・予想するものではない。
+JP_CATALYST_INFO = {
+    "最高益": {
+        "weight": 5, "strength": "非常に強い好材料",
+        "content": "過去最高の業績(純利益・営業利益など)を記録・更新したことを開示",
+        "impact": "+5%〜+12%程度",
+        "reason": "業績が市場の想定を上回るペースで伸びていることを示し、今後の増益期待から株価評価が見直されやすいため",
+    },
+    "増収増益": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "売上・利益がいずれも前期比で増加したことを開示",
+        "impact": "+3%〜+8%程度",
+        "reason": "収益性と成長性の両方が改善していることが確認され、業績の質の高さが評価されやすいため",
+    },
+    "特別配当": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "通常配当に加えて特別配当を実施することを開示",
+        "impact": "+2%〜+6%程度",
+        "reason": "会社の資金余力や株主還元姿勢の強さを示すシグナルとして受け止められやすいため",
+    },
+    "上方修正": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "業績予想(売上・利益)を上方修正したことを開示",
+        "impact": "+3%〜+8%程度",
+        "reason": "会社自身が業績見通しを引き上げたことで、アナリスト予想や市場期待の上振れにつながりやすいため",
+    },
+    "業績上方修正": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "業績予想(売上・利益)を上方修正したことを開示",
+        "impact": "+3%〜+8%程度",
+        "reason": "会社自身が業績見通しを引き上げたことで、アナリスト予想や市場期待の上振れにつながりやすいため",
+    },
+    "增配": {
+        "weight": 3, "strength": "やや強い好材料",
+        "content": "1株当たり配当を増額(増配)することを開示",
+        "impact": "+2%〜+5%程度",
+        "reason": "配当増額は経営陣が業績の先行きに自信を持っていることの表れとされ、株主還元強化への評価が高まりやすいため",
+    },
+    "増配": {
+        "weight": 3, "strength": "やや強い好材料",
+        "content": "1株当たり配当を増額(増配)することを開示",
+        "impact": "+2%〜+5%程度",
+        "reason": "配当増額は経営陣が業績の先行きに自信を持っていることの表れとされ、株主還元強化への評価が高まりやすいため",
+    },
+    "自己株買い": {
+        "weight": 2, "strength": "やや強い好材料",
+        "content": "自己株式の取得(株主還元策)を実施することを開示",
+        "impact": "+1%〜+4%程度",
+        "reason": "株式数の減少により1株当たり指標(EPSなど)が改善しやすく、需給面でも買い支え要因になりやすいため",
+    },
+    "株式分割": {
+        "weight": 2, "strength": "軽めの好材料",
+        "content": "株式分割を実施することを開示",
+        "impact": "+1%〜+3%程度",
+        "reason": "1株当たりの購入単価が下がり個人投資家が買いやすくなることで、需給が改善しやすいため",
+    },
+    "配当": {
+        "weight": 1, "strength": "軽めの好材料",
+        "content": "配当に関する開示",
+        "impact": "+1%〜+3%程度",
+        "reason": "株主還元に関するプラスの情報として受け止められやすいため",
+    },
+}
+# 弱材料キーワード。含まれる開示は「好材料ランキング」の対象から除外する。
+JP_NEGATIVE_KEYWORDS = ["下方修正", "減配", "特別損失", "業績悪化", "赤字"]
+
+# 米国株の好材料カテゴリ定義(データ収集タスク側が headline/category 付きで収集した
+# 好材料ニュースを対象とする。カテゴリごとの想定インパクトは、過去の類似ニュースに対する
+# 一般的な株価反応傾向を示す参考値であり、確約・予想ではない)。
+US_CATALYST_INFO = {
+    "earnings_beat": {
+        "weight": 5, "strength": "強い好材料",
+        "content": "市場予想(アナリスト予想)を上回る決算(売上・EPSなど)を発表",
+        "impact": "+3%〜+10%程度",
+        "reason": "実績が事前のアナリスト予想を上回ったことで、業績への評価が上向きに見直されやすいため",
+    },
+    "guidance_raise": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "次期以降の業績見通し(ガイダンス)を上方修正",
+        "impact": "+3%〜+8%程度",
+        "reason": "会社自身が先行きの成長期待を引き上げたことで、将来の増益期待が高まりやすいため",
+    },
+    "upgrade": {
+        "weight": 3, "strength": "やや強い好材料",
+        "content": "大手証券・アナリストが目標株価や評価(レーティング)を上方修正",
+        "impact": "+1%〜+5%程度",
+        "reason": "有力な第三者評価の改善は、他の投資家の見方にも影響を与えやすいため",
+    },
+    "buyback": {
+        "weight": 2, "strength": "やや強い好材料",
+        "content": "大規模な自社株買いプログラムを発表",
+        "impact": "+1%〜+4%程度",
+        "reason": "株式数減少によるEPS改善期待と、経営陣の自信表明として受け止められやすいため",
+    },
+    "dividend_hike": {
+        "weight": 2, "strength": "やや強い好材料",
+        "content": "増配を発表",
+        "impact": "+1%〜+3%程度",
+        "reason": "株主還元強化の姿勢が評価されやすいため",
+    },
+}
+
+
+def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text, reason_text,
+                        news_title, news_url, extra_note, outlook_html):
+    """好材料ランキング1件分の行HTML。具体的な好材料内容・想定インパクト(参考値)・
+    好材料と判断する理由をそれぞれ明記する。"""
+    return f"""
+        <div class="rank-item">
+          <div class="rank-num">{rank_label(i)}</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">{esc(code)}</span> {esc(name)}
+              <span class="score-tag">{esc(strength_label)}</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: {esc(content_text)}</div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: {esc(impact_text)}<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: {esc(reason_text)}</div>
+            <div class="rank-desc rank-news">
+              <a href="{esc(news_url) or '#'}" target="_blank" rel="noopener">{esc(news_title)}</a>{esc(extra_note)}
+            </div>
+            <div class="rank-desc rank-outlook">📊 {outlook_html}</div>
+          </div>
+        </div>"""
+
+
+def good_news_ranking_html_jp(tdnet_morning, tdnet_afterclose, technical,
+                               empty_msg="本日はTDnet開示に基づく明確な好材料データ(日本株)がありません。"):
     """本日のTDnet開示のうち、上方修正・増配・最高益など「明確な好材料」とみなせる開示のみを対象に、
     内容の強さ(好材料の質)でランキング化したもの。下方修正・減配など弱材料は対象外とし、
     件数や話題性(注目度)ではなく好材料としての質を重視する。
-    各順位には直近テクニカル指標に基づく端的な見通しコメントを併記する。
-    株価上昇を確約・予想するものではない。"""
+    各順位には「何が」「どれくらいの好材料か」「想定インパクト(参考値)」「なぜ好材料か」
+    「直近テクニカル指標に基づく参考コメント」を併記する。株価上昇を確約・予想するものではない。"""
     items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
-
-    # 好材料キーワードとその強さ(高いほど明確に強い好材料)
-    positive_weight = {
-        "最高益": 5, "増収増益": 4, "特別配当": 4,
-        "上方修正": 4, "業績上方修正": 4,
-        "增配": 3, "増配": 3, "自己株買い": 2, "株式分割": 2, "配当": 1,
-    }
-    # 弱材料キーワード。含まれる開示は「好材料ランキング」の対象から除外する。
-    negative_keywords = ["下方修正", "減配", "特別損失", "業績悪化", "赤字"]
 
     scores = {}
     for it in items:
@@ -422,19 +547,23 @@ def good_news_ranking_html(tdnet_morning, tdnet_afterclose, technical,
         title = it.get("title", "") or ""
         combined = f"{tag} {title}"
 
-        if any(k in combined for k in negative_keywords):
+        if any(k in combined for k in JP_NEGATIVE_KEYWORDS):
             continue  # 弱材料は好材料ランキングの対象外
 
         weight = 0
-        for k, w in positive_weight.items():
-            if k in combined:
-                weight = max(weight, w)
+        keyword = None
+        for k, info in JP_CATALYST_INFO.items():
+            if k in combined and info["weight"] > weight:
+                weight = info["weight"]
+                keyword = k
         if weight == 0:
             continue  # 明確な好材料キーワードが無ければ対象外(単なる話題性では加点しない)
 
         key = (code, company)
-        entry = scores.setdefault(key, {"score": 0, "count": 0, "items": []})
-        entry["score"] = max(entry["score"], weight)  # 最も強い好材料の強さを採用
+        entry = scores.setdefault(key, {"score": 0, "count": 0, "items": [], "keyword": None})
+        if entry["keyword"] is None or weight > entry["score"]:
+            entry["score"] = weight
+            entry["keyword"] = keyword
         entry["count"] += 1
         entry["items"].append(it)
 
@@ -446,24 +575,64 @@ def good_news_ranking_html(tdnet_morning, tdnet_afterclose, technical,
     rows = []
     for i, ((code, company), entry) in enumerate(ranked[:5]):
         latest = entry["items"][-1]
-        title = esc(latest.get("title", ""))
-        url = esc(latest.get("url", "")) or "#"
+        title = latest.get("title", "")
+        url = latest.get("url", "") or "#"
         extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
         outlook = _outlook_comment(code, tech_lookup)
-        rows.append(f"""
-        <div class="rank-item">
-          <div class="rank-num">{rank_label(i)}</div>
-          <div class="rank-body">
-            <div class="rank-head">
-              <span class="mono">{esc(code)}</span> {esc(company)}
-              <span class="score-tag">好材料スコア {entry['score']}</span>
-            </div>
-            <div class="rank-desc rank-news">
-              <a href="{url}" target="_blank" rel="noopener">{title}</a>{extra}
-            </div>
-            <div class="rank-desc rank-outlook">📊 {outlook}</div>
-          </div>
-        </div>""")
+        info = JP_CATALYST_INFO.get(entry["keyword"], {})
+        rows.append(_catalyst_rank_row(
+            i, code, company, info.get("strength", "好材料"),
+            info.get("content", title), info.get("impact", "算定不可"),
+            info.get("reason", ""), title, url, extra, outlook,
+        ))
+    return "".join(rows)
+
+
+def good_news_ranking_html_us(us_good_news,
+                               empty_msg="本日は米国株の明確な好材料データがありません(データ取得は今後の更新に対応予定です)。"):
+    """データ収集タスクが収集した米国株の好材料ニュース(ticker/company/headline/category/url)を
+    対象に、カテゴリの強さでランキング化したもの。日本株と同様に「何が」「どれくらいの好材料か」
+    「想定インパクト(参考値)」「なぜ好材料か」を明記する。株価上昇を確約・予想するものではない。
+    米国株は日本のTDnetのような統一的な適時開示システムが無いため、テクニカル指標コメントは対象外。"""
+    items = list(us_good_news or [])
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+
+    scores = {}
+    for it in items:
+        ticker = it.get("ticker", "") or it.get("code", "")
+        company = it.get("company", "") or it.get("name", "")
+        category = it.get("category", "")
+        info = US_CATALYST_INFO.get(category)
+        if not info:
+            continue  # 未知のカテゴリ・好材料に該当しないものは対象外
+
+        key = (ticker, company)
+        entry = scores.setdefault(key, {"score": 0, "count": 0, "items": [], "category": None})
+        if entry["category"] is None or info["weight"] > entry["score"]:
+            entry["score"] = info["weight"]
+            entry["category"] = category
+        entry["count"] += 1
+        entry["items"].append(it)
+
+    if not scores:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+
+    ranked = sorted(scores.items(), key=lambda kv: -kv[1]["score"])
+    rows = []
+    for i, ((ticker, company), entry) in enumerate(ranked[:5]):
+        latest = entry["items"][-1]
+        headline = latest.get("headline", "") or latest.get("title", "")
+        url = latest.get("url", "") or "#"
+        extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
+        info = US_CATALYST_INFO.get(entry["category"], {})
+        content_text = headline or info.get("content", "")
+        rows.append(_catalyst_rank_row(
+            i, ticker, company, info.get("strength", "好材料"),
+            content_text, info.get("impact", "算定不可"),
+            info.get("reason", ""), headline, url, extra,
+            "米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。",
+        ))
     return "".join(rows)
 
 
@@ -534,9 +703,9 @@ body {
   will-change: opacity;
 }
 .bg-photo.is-active { opacity: 1; }
-.bg-spacer { position: relative; height: 200px; }
+.bg-spacer { position: relative; height: 90vh; min-height: 650px; }
 .bg-caption {
-  position: absolute; right: 20px; bottom: 16px;
+  position: absolute; left: 20px; bottom: 16px;
   font-size: 11px; color: var(--text); background: rgba(0,0,0,0.4);
   padding: 5px 12px; border-radius: 10px; border: 1px solid var(--border-soft);
   backdrop-filter: blur(2px); letter-spacing: 0.02em;
@@ -691,6 +860,10 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .rank-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .rank-news a { color: var(--accent-bright); }
 .rank-outlook { font-style: italic; opacity: 0.9; }
+.rank-content { color: var(--text); opacity: 0.92; }
+.rank-impact { color: var(--accent-bright); }
+.rank-impact .tag { margin-left: 6px; }
+.rank-reason { opacity: 0.9; }
 .rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
 .score-tag {
   font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
@@ -1133,8 +1306,11 @@ def build_html(data: dict) -> str:
       </div>
     </section>"""
 
-    good_news_rank_html = good_news_ranking_html(
+    good_news_rank_html_jp = good_news_ranking_html_jp(
         data.get("tdnet_morning", []), data.get("tdnet_afterclose", []), data.get("technical", [])
+    )
+    good_news_rank_html_us = good_news_ranking_html_us(
+        data.get("us_good_news", [])
     )
 
     evening_html = f"""
@@ -1154,13 +1330,23 @@ def build_html(data: dict) -> str:
         {movers_table(data.get("movers_afterclose", []))}
       </div>
       <div class="card">
-        <h3>TDnet開示 好材料ランキング</h3>
+        <h3>TDnet開示 好材料ランキング(日本株 TOP5)</h3>
         <p class="rank-note">
           本日のTDnet開示のうち、上方修正・最高益・増配など<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています
-          (下方修正・減配など弱材料の開示は対象外)。各銘柄には直近のテクニカル指標に基づく参考コメントを併記しています。
-          <b>株価が上昇することを確約・予想するものではありません。</b>
+          (下方修正・減配など弱材料の開示は対象外)。各銘柄について、①具体的に何が開示されたか、②過去の類似開示に基づく想定インパクト(参考値)、
+          ③好材料と判断する理由、④直近のテクニカル指標に基づく参考コメント、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
-        {good_news_rank_html}
+        {good_news_rank_html_jp}
+      </div>
+      <div class="card">
+        <h3>好材料ランキング(米国株 TOP5)</h3>
+        <p class="rank-note">
+          決算上振れ・ガイダンス上方修正・アナリスト評価引き上げなど<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています。
+          各銘柄について、①具体的に何が発表されたか、②過去の類似ニュースに基づく想定インパクト(参考値)、③好材料と判断する理由、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
+        </p>
+        {good_news_rank_html_us}
       </div>
     </section>"""
 
