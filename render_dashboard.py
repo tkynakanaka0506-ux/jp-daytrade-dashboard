@@ -17,6 +17,7 @@ data.json (このスクリプトと同じフォルダに置く) を読み込み�
     出力先    ./jp_daytrade_dashboard.html
 """
 import json
+import re
 import sys
 import html as html_lib
 from pathlib import Path
@@ -24,14 +25,25 @@ from datetime import datetime
 
 BASE_DIR = Path(__file__).resolve().parent
 
-# 東京の夜景写真(Unsplash・商用利用可・クレジット表記不要)
-# ヘッダー上部でゆっくりクロスフェードさせる背景写真
+# 東京の夜景・観光スポット写真(Unsplash・商用利用可・クレジット表記不要)
+# ヘッダー上部でゆっくりクロスフェードさせる背景写真。場所名は各写真の隅に小さく表示する。
 HERO_IMAGES = [
-    "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1600&q=75",
-    "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1600&q=75",
-    "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?auto=format&fit=crop&w=1600&q=75",
-    "https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&fit=crop&w=1600&q=75",
+    {"url": "https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&fit=crop&w=1600&q=75",
+     "caption": "東京タワー"},
+    {"url": "https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&fit=crop&w=1600&q=75",
+     "caption": "渋谷スクランブル交差点"},
+    {"url": "https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&fit=crop&w=1600&q=75",
+     "caption": "六本木ヒルズ・東京シティビュー"},
+    {"url": "https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&fit=crop&w=1600&q=75",
+     "caption": "レインボーブリッジ・お台場"},
+    {"url": "https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&fit=crop&w=1600&q=75",
+     "caption": "東京スカイツリー"},
+    {"url": "https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=1600&q=75",
+     "caption": "新宿"},
 ]
+
+# 本文中に差し込む装飾用フォトバナー(HERO_IMAGESから抜粋)
+PHOTO_BANNERS = [HERO_IMAGES[2], HERO_IMAGES[4]]
 
 
 def esc(x):
@@ -208,6 +220,129 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
     </div>"""
 
 
+def parse_signal_counts(summary):
+    """summary文字列から「中立X/売りY/買いZ」のシグナル内訳を抽出する。見つからなければNone。"""
+    if not summary:
+        return None
+    m = re.search(r"中立\s*(\d+)\s*/\s*売り\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
+    if not m:
+        return None
+    neutral, sell, buy = (int(x) for x in m.groups())
+    return {"neutral": neutral, "sell": sell, "buy": buy}
+
+
+def rank_label(i):
+    medals = ["🥇", "🥈", "🥉"]
+    return medals[i] if i < len(medals) else f"{i + 1}位"
+
+
+def bull_ranking_html(items, empty_msg="シグナルデータが取得できませんでした。"):
+    """テクニカル指標の「買いシグナル数」を軸にした、過去データベースの機械的ランキング。
+    将来の株価上昇を予想・保証するものではない。"""
+    ranked = []
+    for it in items:
+        counts = parse_signal_counts(it.get("summary", ""))
+        if not counts:
+            continue
+        score = counts["buy"] * 2 - counts["sell"]
+        ranked.append((score, counts, it))
+    if not ranked:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+
+    def rsi_key(entry):
+        try:
+            return float(entry[2].get("rsi", 50))
+        except (TypeError, ValueError):
+            return 50.0
+
+    ranked.sort(key=lambda e: (-e[0], rsi_key(e)))
+    rows = []
+    for i, (score, counts, it) in enumerate(ranked[:5]):
+        code = esc(it.get("code", ""))
+        name = esc(it.get("name", ""))
+        chg = it.get("change_pct")
+        rsi = it.get("rsi", "")
+        detail = f"中立{counts['neutral']}/売り{counts['sell']}/買い{counts['buy']}"
+        overheat = ""
+        try:
+            if float(rsi) >= 70:
+                overheat = ' <span class="tag tag-warn">過熱感に注意</span>'
+        except (TypeError, ValueError):
+            pass
+        rows.append(f"""
+        <div class="rank-item">
+          <div class="rank-num">{rank_label(i)}</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">{code}</span> {name}
+              <span class="mono {pct_class(chg)}">{fmt_pct(chg)}</span>
+              <span class="score-tag">強気スコア {score:+d}</span>
+            </div>
+            <div class="rank-desc">シグナル判定: {esc(detail)} ・ RSI(14) {esc(rsi)}{overheat}</div>
+          </div>
+        </div>""")
+    return "".join(rows)
+
+
+def topic_ranking_html(tdnet_morning, tdnet_afterclose, empty_msg="本日はTDnet開示に基づく話題性データがありません。"):
+    """本日のTDnet開示(決算・業績修正など)を件数・内容の重みで集計した「話題度」ランキング。
+    株価上昇を確約するものではなく、あくまで開示の注目度を示す指標。"""
+    items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+
+    tag_weight = {
+        "上方修正": 3, "下方修正": 3, "業績修正": 3, "決算": 2,
+        "自己株買い": 2, "株式分割": 2, "配当": 1, "增配": 1, "増配": 1,
+    }
+    scores = {}
+    for it in items:
+        code = it.get("code", "")
+        company = it.get("company", "")
+        tag = it.get("tag", "") or ""
+        title = it.get("title", "") or ""
+        weight = 1
+        for k, w in tag_weight.items():
+            if k in tag or k in title:
+                weight = max(weight, w)
+        key = (code, company)
+        entry = scores.setdefault(key, {"score": 0, "count": 0, "items": []})
+        entry["score"] += weight
+        entry["count"] += 1
+        entry["items"].append(it)
+
+    ranked = sorted(scores.items(), key=lambda kv: -kv[1]["score"])
+    rows = []
+    for i, ((code, company), entry) in enumerate(ranked[:5]):
+        latest = entry["items"][-1]
+        title = esc(latest.get("title", ""))
+        url = esc(latest.get("url", "")) or "#"
+        extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
+        rows.append(f"""
+        <div class="rank-item">
+          <div class="rank-num">{rank_label(i)}</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">{esc(code)}</span> {esc(company)}
+              <span class="score-tag">話題度スコア {entry['score']}</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="{url}" target="_blank" rel="noopener">{title}</a>{extra}
+            </div>
+          </div>
+        </div>""")
+    return "".join(rows)
+
+
+def photo_banner_html(photo):
+    url = esc(photo["url"])
+    caption = esc(photo["caption"])
+    return f"""
+    <div class="photo-banner" style="background-image:url('{url}');">
+      <span class="photo-credit">{caption}</span>
+    </div>"""
+
+
 CSS = """
 :root {
   --bg-deep: #000000; --bg-mid: #07060a; --bg-soft: #0a0908;
@@ -251,7 +386,7 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
   position: absolute; inset: 0; background-size: cover; background-position: center;
   opacity: 0; transform: scale(1.08);
   filter: saturate(1.15) brightness(0.7);
-  animation: heroFade 24s ease-in-out infinite;
+  animation-name: heroFade; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
 }
 @keyframes heroFade {
   0% { opacity: 0; }
@@ -259,6 +394,12 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
   22% { opacity: 1; }
   30% { opacity: 0; }
   100% { opacity: 0; }
+}
+.hero-credit {
+  position: absolute; right: 10px; bottom: 8px; z-index: 2;
+  font-family: -apple-system, "Hiragino Sans", sans-serif;
+  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
+  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -381,6 +522,36 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
+
+/* --- ランキング(強気シグナル数 / TDnet話題度) --- */
+.rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.rank-item:last-child { border-bottom: none; }
+.rank-num { width: 34px; flex-shrink: 0; font-size: 19px; text-align: center; line-height: 1.4; }
+.rank-body { flex: 1; min-width: 0; }
+.rank-head { font-size: 13.5px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rank-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.rank-news a { color: var(--accent-bright); }
+.rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
+.score-tag {
+  font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
+  background: rgba(212,175,55,0.12); color: var(--accent-bright); border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* --- 本文中の装飾フォトバナー --- */
+.photo-banner {
+  position: relative; width: 100%; height: 170px; margin: 26px 0;
+  border-radius: var(--radius); border: 1px solid var(--border);
+  background-size: cover; background-position: center;
+  filter: saturate(1.1) brightness(0.75); overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.photo-banner .photo-credit {
+  position: absolute; right: 10px; bottom: 8px;
+  font-family: -apple-system, "Hiragino Sans", sans-serif;
+  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
+  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
+}
 footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--accent-line); padding-top: 16px; }
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
@@ -419,174 +590,15 @@ footer .disclaimer { margin: 0 0 12px; }
   th, td { padding: 6px 6px; }
   .scroll-hint { display: block; }
   footer { margin: 28px 8px 10px; }
+  .hero-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
+  .rank-num { width: 26px; font-size: 15px; }
+  .rank-head { font-size: 12.5px; }
+  .photo-banner { height: 100px; margin: 16px 0; }
+  .photo-banner .photo-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
 }
 """
 
 
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    run_type = data.get("run_type", "")
-    run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
-
-    us = data.get("us_market", {})
-    fx = data.get("fx", {})
-    fut = data.get("nikkei_futures", {})
-
-    idx_cards = ""
-    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合")]:
-        d = us.get(key, {})
-        idx_cards += section_index_row(label, d.get("value", "―"), d.get("change_pct"), d.get("asof"))
-    idx_cards += section_index_row("USD/JPY", fx.get("value", "―"), fx.get("change_pct"), fx.get("asof"))
-    idx_cards += section_index_row("日経225先物(CME/大阪)", fut.get("value", "―"), fut.get("change_pct"), fut.get("asof"))
-    idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
-                                     data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
-
-    morning_html = f"""
-    <section id="morning">
-      <h2>🌅 寄り付き前セクション</h2>
-      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
-      <div class="card">
-        <h3>米国市場・為替・日経先物</h3>
-        <div class="idx-grid">{idx_cards}</div>
-      </div>
-      <div class="card">
-        <h3>時間外・朝の主要ニュース</h3>
-        {news_list(data.get("overnight_news", []))}
-      </div>
-      <div class="card">
-        <h3>TDnet 適時開示(朝までの分)</h3>
-        {tdnet_table(data.get("tdnet_morning", []))}
-      </div>
-      <div class="card">
-        <h3>出来高・値動きで話題の銘柄</h3>
-        {movers_table(data.get("movers_morning", []))}
-      </div>
-    </section>"""
-
-    evening_html = f"""
-    <section id="evening">
-      <h2>🌙 引け後セクション</h2>
-      <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
-      <div class="card">
-        <h3>本日のTDnet適時開示</h3>
-        {tdnet_table(data.get("tdnet_afterclose", []), empty_msg="本日の適時開示データは取得できませんでした。")}
-      </div>
-      <div class="card">
-        <h3>引け後の主要ニュース</h3>
-        {news_list(data.get("afterclose_news", []))}
-      </div>
-      <div class="card">
-        <h3>本日の値動き・出来高で話題の銘柄</h3>
-        {movers_table(data.get("movers_afterclose", []))}
-      </div>
-    </section>"""
-
-    technical_html = f"""
-    <section id="technical">
-      <h2>📊 株価診断(テクニカル指標)</h2>
-      <p class="section-desc">
-        移動平均線・RSIなど無料で取得できるテクニカル指標にもとづく客観的な「強気/弱気シグナル」の一覧です。
-        <b>将来の株価を予想・保証するものではありません。</b>
-      </p>
-      <div class="card">
-        {technical_table(data.get("technical", []))}
-      </div>
-    </section>"""
-
-    disclaimer_text = (
-        "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など"
-        "無料で公開されている情報源をもとに自動的にまとめたものです。"
-        "内容の正確性・完全性・最新性は保証されません。"
-        "「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、"
-        "<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>"
-        "投資に関する最終判断は、必ずご自身の責任で行ってください。"
-    )
-
-    sources_html = """
-    <div class="sources">
-      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
-      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
-      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
-    </div>"""
-
-    n_slides = len(HERO_IMAGES)
-    hero_slides_html = "".join(
-        f'<div class="hero-slide" style="background-image:url(\'{esc(url)}\');'
-        f' animation-delay:{i * (24 // n_slides)}s;"></div>'
-        for i, url in enumerate(HERO_IMAGES)
-    )
-
-    html_out = f"""<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>日本株デイトレード情報ダッシュボード</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<style>{CSS}</style>
-</head>
-<body>
-<div class="hero">
-  <div class="hero-slides">
-    {hero_slides_html}
-  </div>
-  <div class="hero-overlay"></div>
-</div>
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-title">
-      <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
-      <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">{esc(run_label)}</span></h1>
-      <div class="subtitle">最終更新: {esc(generated_at)} (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
-    </div>
-    <nav class="tabs">
-      <a href="#morning">🌅 寄り付き前</a>
-      <a href="#evening">🌙 引け後</a>
-      <a href="#technical">📊 株価診断</a>
-    </nav>
-  </div>
-</header>
-<div class="wrap">
-  <div class="disclaimer">
-    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
-  </div>
-
-  {morning_html}
-  {evening_html}
-  {technical_html}
-
-  <footer>
-    <div class="disclaimer">
-      ⚠️ 再掲: {disclaimer_text}
-    </div>
-    {sources_html}
-  </footer>
-</div>
-</body>
-</html>
-"""
-    return html_out
-
-
-def main():
-    data_path = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "data.json"
-    out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else BASE_DIR / "jp_daytrade_dashboard.html"
-
-    if not data_path.exists():
-        print(f"[ERROR] data.json が見つかりません: {data_path}", file=sys.stderr)
-        sys.exit(1)
-
-    with open(data_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    html_out = build_html(data)
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(html_out)
-
-    print(f"[OK] ダッシュボードを生成しました: {out_path}")
-
-
-if __name__ == "__main__":
-    main()
+    run_type = data.get("run_type"
