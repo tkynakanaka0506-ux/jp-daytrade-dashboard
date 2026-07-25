@@ -28,7 +28,9 @@ a:hover { color: var(--accent); text-decoration: underline; }
 body {
   margin: 0;
   font-family: 'Inter', "Noto Sans JP", -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
-  color: var(--text); line-height: 1.6;
+  color: var(--text); line-height: 1.68; letter-spacing: 0.15px;
+  font-feature-settings: "palt" 1; font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-deep);
   background-image:
     radial-gradient(circle at 12% 4%, rgba(212,175,55,0.14), transparent 38%),
@@ -66,26 +68,29 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
 .eyebrow::before { content: "◆ "; color: var(--accent); }
 h1 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
-  font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.4px;
+  font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.6px;
   color: var(--accent);
   background: linear-gradient(120deg, var(--accent-bright) 0%, var(--accent) 45%, var(--accent-deep) 100%);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.subtitle { color: var(--muted); font-size: 11.5px; letter-spacing: 0.2px; }
+.subtitle { color: var(--muted); font-size: 11.5px; letter-spacing: 0.3px; }
 .disclaimer {
   background: linear-gradient(155deg, rgba(24,19,8,0.94), rgba(10,8,4,0.96));
   border: 1px solid var(--accent-line); color: #e9d29c;
-  border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; margin: 16px 20px;
+  border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; line-height: 1.7; margin: 16px 20px;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .disclaimer b { color: var(--accent-bright); }
 nav.tabs {
   display: flex; gap: 10px; flex-wrap: wrap;
 }
 nav.tabs a {
-  color: var(--accent-bright); text-decoration: none; font-size: 12.5px; letter-spacing: 0.3px;
+  color: var(--accent-bright); text-decoration: none; font-size: 12px; letter-spacing: 0.8px;
+  text-transform: uppercase; font-weight: 500;
   border: 1px solid var(--border);
   padding: 7px 16px; border-radius: 20px; background: rgba(212,175,55,0.05); white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
   transition: border-color .15s ease, box-shadow .15s ease, color .15s ease, background .15s ease;
 }
 nav.tabs a:hover {
@@ -97,12 +102,14 @@ section { margin: 32px 20px; }
 section > h2 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
-  font-weight: 700; letter-spacing: 0.3px; color: var(--accent-bright);
+  font-weight: 600; letter-spacing: 0.5px; color: var(--accent-bright);
   background: rgba(10,8,5,0.55); border-radius: 0 8px 8px 0; width: fit-content;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .section-desc {
-  color: var(--muted); font-size: 12.5px; margin: 6px 0 14px; padding: 5px 10px;
+  color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 6px 0 14px; padding: 5px 10px;
   background: rgba(10,8,5,0.48); border-radius: 8px; width: fit-content;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .card {
   background: var(--panel); border: 1px solid var(--border); border-top: 1px solid var(--accent-line);
@@ -113,7 +120,7 @@ section > h2 {
 .card:hover { border-color: var(--accent-line); box-shadow: var(--shadow), 0 0 24px rgba(212,175,55,0.08); }
 .card h3 {
   font-size: 12px; margin: 0 0 12px; color: var(--accent); font-weight: 600;
-  letter-spacing: 1.2px; text-transform: uppercase;
+  letter-spacing: 1.4px; text-transform: uppercase;
   padding-bottom: 8px; border-bottom: 1px solid var(--border-soft);
   position: relative;
 }
@@ -124,14 +131,15 @@ section > h2 {
 .idx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
 .idx-card {
   background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
-  padding: 10px 12px; transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  padding: 10px 12px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 .idx-card:hover {
-  border-color: var(--accent-line); box-shadow: 0 0 18px rgba(212,175,55,0.16);
+  border-color: var(--accent-line); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 18px rgba(212,175,55,0.16);
   transform: translateY(-1px);
 }
-.idx-label { font-size: 11.5px; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
-.idx-value { font-size: 18px; font-weight: 700; margin-top: 3px; letter-spacing: 0.2px; color: var(--accent-bright); }
+.idx-label { font-size: 11.5px; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; }
+.idx-value { font-size: 18px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px; color: var(--accent-bright); }
 .chg { font-size: 13px; font-weight: 600; }
 .chg.up, .up { color: var(--up); }
 .chg.down, .down { color: var(--down); }
@@ -158,9 +166,9 @@ td.mono { font-family: "SF Mono", Menlo, monospace; white-space: nowrap; }
 td.reason { color: var(--muted); }
 tbody tr:nth-child(even) { background: rgba(212,175,55,0.02); }
 tbody tr:hover { background: rgba(212,175,55,0.08); }
-.badge { padding: 2px 9px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-.badge.bull { background: rgba(255,107,122,0.15); color: var(--bull); border: 1px solid rgba(255,107,122,0.3); }
-.badge.bear { background: rgba(53,217,180,0.15); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
+.badge { padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
+.badge.bull { background: linear-gradient(120deg, rgba(255,107,122,0.2), rgba(255,107,122,0.08)); color: var(--bull); border: 1px solid rgba(255,107,122,0.3); }
+.badge.bear { background: linear-gradient(120deg, rgba(53,217,180,0.2), rgba(53,217,180,0.08)); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
 .badge.neutral { background: rgba(212,175,55,0.1); color: var(--muted); border: 1px solid var(--border-soft); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
@@ -182,10 +190,11 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 }
 
 footer {
-  margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px;
+  margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; line-height: 1.7;
   border-top: 1px solid var(--accent-line);
   background: rgba(10,8,5,0.5); border-radius: var(--radius-sm);
   padding: 16px 18px; border: 1px solid var(--border);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
@@ -233,7 +242,7 @@ footer .disclaimer { margin: 0 0 12px; }
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-25 15:39 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-25 15:55 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <nav class="tabs">
       <a href="#morning">🌅 寄り付き前</a>
@@ -258,19 +267,19 @@ footer .disclaimer { margin: 0 0 12px; }
     <div class="idx-card">
       <div class="idx-label">S&amp;P500</div>
       <div class="idx-value">7,411.98</div>
-      <span class="chg down">-1.16%</span>
+      <span class="chg up">+0.05%</span>
       <div class="note">7/25終値</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">NYダウ</div>
       <div class="idx-value">51,947.25</div>
-      <span class="chg down">-0.52%</span>
+      <span class="chg up">+0.46%</span>
       <div class="note">7/25終値</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">ナスダック総合</div>
       <div class="idx-value">24,975.82</div>
-      <span class="chg down">-2.78%</span>
+      <span class="chg down">-0.64%</span>
       <div class="note">7/25終値</div>
     </div>
     <div class="idx-card">
@@ -288,7 +297,7 @@ footer .disclaimer { margin: 0 0 12px; }
     <div class="idx-card">
       <div class="idx-label">日経平均(現物・前回終値)</div>
       <div class="idx-value">64,611.15</div>
-      <span class="chg down">-2.28%</span>
+      <span class="chg down">-2.73%</span>
       <div class="note">7/24終値</div>
     </div></div>
       </div>
