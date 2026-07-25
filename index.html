@@ -47,35 +47,6 @@ body::-webkit-scrollbar-track { background: #000; }
 body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-deep)); border-radius: 6px; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 
-/* --- ヒーロー: 東京の夜景写真がゆっくりクロスフェードする帯 --- */
-.hero { position: relative; width: 100%; height: 300px; overflow: hidden; background: var(--bg-deep); }
-.hero-slides { position: absolute; inset: 0; }
-.hero-slide {
-  position: absolute; inset: 0; background-size: cover; background-position: center;
-  opacity: 0; transform: scale(1.08);
-  filter: saturate(1.15) brightness(0.7);
-  animation-name: heroFade; animation-timing-function: ease-in-out; animation-iteration-count: infinite;
-}
-@keyframes heroFade {
-  0% { opacity: 0; }
-  5% { opacity: 1; }
-  22% { opacity: 1; }
-  30% { opacity: 0; }
-  100% { opacity: 0; }
-}
-.hero-credit {
-  position: absolute; right: 10px; bottom: 8px; z-index: 2;
-  font-family: -apple-system, "Hiragino Sans", sans-serif;
-  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
-  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
-}
-.hero-overlay {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(circle at 14% 18%, rgba(212,175,55,0.20), transparent 42%),
-    radial-gradient(circle at 86% 8%, rgba(212,175,55,0.10), transparent 45%),
-    linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.6) 55%, var(--bg-deep) 100%);
-}
 /* --- 固定見出しバー: 常に画面上部に表示される --- */
 .topbar {
   position: sticky; top: 0; z-index: 25;
@@ -206,20 +177,6 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
   white-space: nowrap;
 }
 
-/* --- 本文中の装飾フォトバナー --- */
-.photo-banner {
-  position: relative; width: 100%; height: 170px; margin: 26px 0;
-  border-radius: var(--radius); border: 1px solid var(--border);
-  background-size: cover; background-position: center;
-  filter: saturate(1.1) brightness(0.9); overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.photo-banner .photo-credit {
-  position: absolute; right: 10px; bottom: 8px;
-  font-family: -apple-system, "Hiragino Sans", sans-serif;
-  font-size: 9.5px; letter-spacing: 0.2px; color: rgba(255,255,255,0.82);
-  background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 8px;
-}
 footer { margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; border-top: 1px solid var(--accent-line); padding-top: 16px; }
 footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
@@ -234,14 +191,12 @@ footer .disclaimer { margin: 0 0 12px; }
   .wrap { max-width: 1240px; }
   body { font-size: 15.5px; }
   .idx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-  .hero { height: 360px; }
   .topbar-inner { max-width: 1240px; }
 }
 
 /* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
 @media (max-width: 640px) {
   .wrap { padding: 12px 12px 48px; }
-  .hero { height: 150px; }
   .topbar-inner { padding: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
   h1 { font-size: 15.5px; line-height: 1.4; }
   .subtitle { font-size: 11px; }
@@ -258,27 +213,18 @@ footer .disclaimer { margin: 0 0 12px; }
   th, td { padding: 6px 6px; }
   .scroll-hint { display: block; }
   footer { margin: 28px 8px 10px; }
-  .hero-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
   .rank-num { width: 26px; font-size: 15px; }
   .rank-head { font-size: 12.5px; }
-  .photo-banner { height: 100px; margin: 16px 0; }
-  .photo-banner .photo-credit { font-size: 8px; padding: 1px 6px; right: 6px; bottom: 5px; }
 }
 </style>
 </head>
 <body>
-<div class="hero">
-  <div class="hero-slides">
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:0s;"><span class="hero-credit">東京タワー</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:6s;"><span class="hero-credit">渋谷スクランブル交差点</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1544205488-81573fc2aefb?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:12s;"><span class="hero-credit">六本木ヒルズ・東京シティビュー</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:18s;"><span class="hero-credit">レインボーブリッジ・お台場</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:24s;"><span class="hero-credit">東京スカイツリー</span></div><div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=1600&amp;q=75'); animation-duration:36s; animation-delay:30s;"><span class="hero-credit">新宿</span></div>
-  </div>
-  <div class="hero-overlay"></div>
-</div>
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-25 14:11 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-25 14:55 (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <nav class="tabs">
       <a href="#morning">🌅 寄り付き前</a>
