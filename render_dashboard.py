@@ -458,11 +458,11 @@ section > h2 {
   font-family: "Playfair Display", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
   font-weight: 700; letter-spacing: 0.3px; color: var(--accent-bright);
-  background: rgba(10,8,5,0.55); border-radius: 0 8px 8px 0; display: inline-block;
+  background: rgba(10,8,5,0.55); border-radius: 0 8px 8px 0; width: fit-content;
 }
 .section-desc {
   color: var(--muted); font-size: 12.5px; margin: 6px 0 14px; padding: 5px 10px;
-  background: rgba(10,8,5,0.48); border-radius: 8px; display: inline-block;
+  background: rgba(10,8,5,0.48); border-radius: 8px; width: fit-content;
 }
 .card {
   background: var(--panel); border: 1px solid var(--border); border-top: 1px solid var(--accent-line);
