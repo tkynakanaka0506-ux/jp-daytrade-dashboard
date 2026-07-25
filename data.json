@@ -1,5 +1,5 @@
 {
-  "generated_at" : "2026-07-25 12:29",
+  "generated_at" : "2026-07-25 13:14",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
@@ -30,7 +30,7 @@
   },
   "nikkei225" : {
     "value" : "64,611.15",
-    "change_pct" : -2.28,
+    "change_pct" : -2.73,
     "asof" : "7/24終値"
   },
   "overnight_news" : [ {
