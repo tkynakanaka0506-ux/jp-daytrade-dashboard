@@ -44,6 +44,14 @@ body {
   will-change: opacity;
 }
 .bg-photo.is-active { opacity: 1; }
+.bg-spacer { position: relative; height: 200px; }
+.bg-caption {
+  position: absolute; right: 20px; bottom: 16px;
+  font-size: 11px; color: var(--text); background: rgba(0,0,0,0.4);
+  padding: 5px 12px; border-radius: 10px; border: 1px solid var(--border-soft);
+  backdrop-filter: blur(2px); letter-spacing: 0.02em;
+}
+:root[data-theme="light"] .bg-caption { background: rgba(255,255,255,0.55); color: var(--text); }
 .bg-overlay {
   position: fixed; inset: 0; z-index: -1; pointer-events: none;
   background-repeat: no-repeat;
@@ -184,7 +192,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
 
-/* --- ランキング(強気シグナル数 / TDnet話題度) --- */
+/* --- ランキング(強気シグナル数 / TDnet好材料) --- */
 .rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
 .rank-item:last-child { border-bottom: none; }
 .rank-num { width: 34px; flex-shrink: 0; font-size: 19px; text-align: center; line-height: 1.4; }
@@ -192,6 +200,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .rank-head { font-size: 13.5px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .rank-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
 .rank-news a { color: var(--accent-bright); }
+.rank-outlook { font-style: italic; opacity: 0.9; }
 .rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
 .score-tag {
   font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
@@ -360,7 +369,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
 }
 
 @media print {
-  .topbar, .theme-toggle, .fav-filter, .table-tools, #backToTop, .fav-btn, .bg-photo-stack, .bg-overlay { display: none !important; }
+  .topbar, .theme-toggle, .fav-filter, .table-tools, #backToTop, .fav-btn, .bg-photo-stack, .bg-overlay, .bg-spacer { display: none !important; }
   body { background: #fff !important; color: #000 !important; }
   .card, .disclaimer, footer, section > h2, .section-desc {
     background: #fff !important; color: #000 !important; border-color: #999 !important; box-shadow: none !important;
@@ -371,7 +380,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
 </style>
 </head>
 <body>
-<div class="bg-photo-stack" aria-hidden="true"><div class="bg-photo is-active" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=40&amp;con=10&amp;vib=25')" data-order="0"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="1"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="2"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="3"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="4"></div></div>
+<div class="bg-photo-stack" aria-hidden="true"><div class="bg-photo is-active" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=40&amp;con=10&amp;vib=25')" data-order="0" data-caption="新宿"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="1" data-caption="東京タワー"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="2" data-caption="渋谷スクランブル交差点"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="3" data-caption="レインボーブリッジ・お台場"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="4" data-caption="東京スカイツリー"></div></div>
 <div class="bg-overlay" aria-hidden="true"></div>
 <header class="topbar">
   <div class="topbar-inner">
@@ -727,9 +736,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
         <p class="empty">該当データが取得できませんでした。</p>
       </div>
       <div class="card">
-        <h3>TDnet開示 話題度ランキング</h3>
+        <h3>TDnet開示 好材料ランキング</h3>
         <p class="rank-note">
-          本日のTDnet開示(決算・業績修正など)を件数・内容の重みで機械的に集計した「話題性」の順位です。
+          本日のTDnet開示のうち、上方修正・最高益・増配など<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています
+          (下方修正・減配など弱材料の開示は対象外)。各銘柄には直近のテクニカル指標に基づく参考コメントを併記しています。
           <b>株価が上昇することを確約・予想するものではありません。</b>
         </p>
         
@@ -738,59 +748,64 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <div class="rank-body">
             <div class="rank-head">
               <span class="mono">―</span> ―
-              <span class="score-tag">話題度スコア 12</span>
+              <span class="score-tag">好材料スコア 1</span>
             </div>
             <div class="rank-desc rank-news">
-              <a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf" target="_blank" rel="noopener">ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> ほか11件
+              <a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf" target="_blank" rel="noopener">ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> ほか7件
             </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
           </div>
         </div>
         <div class="rank-item">
           <div class="rank-num">🥈</div>
           <div class="rank-body">
             <div class="rank-head">
-              <span class="mono">―</span> セブン＆アイ
-              <span class="score-tag">話題度スコア 2</span>
+              <span class="mono">―</span> ＧＸ超短米債
+              <span class="score-tag">好材料スコア 1</span>
             </div>
             <div class="rank-desc rank-news">
-              <a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf" target="_blank" rel="noopener">欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ</a> ほか1件
+              <a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a>
             </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
           </div>
         </div>
         <div class="rank-item">
           <div class="rank-num">🥉</div>
           <div class="rank-body">
             <div class="rank-head">
-              <span class="mono">―</span> ＷＨＤＣ
-              <span class="score-tag">話題度スコア 2</span>
+              <span class="mono">―</span> ＧＸ優証隔月
+              <span class="score-tag">好材料スコア 1</span>
             </div>
             <div class="rank-desc rank-news">
-              <a href="https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf" target="_blank" rel="noopener">（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項）</a> ほか1件
+              <a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a>
             </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
           </div>
         </div>
         <div class="rank-item">
           <div class="rank-num">4位</div>
           <div class="rank-body">
             <div class="rank-head">
-              <span class="mono">―</span> あおぞら銀
-              <span class="score-tag">話題度スコア 2</span>
+              <span class="mono">―</span> ＧＸＵＳ配ヘ
+              <span class="score-tag">好材料スコア 1</span>
             </div>
             <div class="rank-desc rank-news">
-              <a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf" target="_blank" rel="noopener">統合報告書 ディスクロージャー誌 本編 2026</a> ほか1件
+              <a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a>
             </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
           </div>
         </div>
         <div class="rank-item">
           <div class="rank-num">5位</div>
           <div class="rank-body">
             <div class="rank-head">
-              <span class="mono">―</span> 王将フード
-              <span class="score-tag">話題度スコア 1</span>
+              <span class="mono">―</span> ＧＸＵＳ配当
+              <span class="score-tag">好材料スコア 1</span>
             </div>
             <div class="rank-desc rank-news">
-              <a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf" target="_blank" rel="noopener">〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026</a>
+              <a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a>
             </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
           </div>
         </div>
       </div>
@@ -997,6 +1012,9 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     </div>
   </footer>
 </div>
+<div class="bg-spacer" aria-hidden="true">
+  <div class="bg-caption" id="bgCaption">📍 東京・新宿</div>
+</div>
 <button id="backToTop" type="button" aria-label="ページ上部へ戻る" title="トップへ戻る">↑</button>
 
 <script>
@@ -1008,12 +1026,19 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   /* ---------- 背景スライドショー(画質を落とさずopacityのみでゆっくりクロスフェード) ---------- */
   (function () {
     var photos = document.querySelectorAll(".bg-photo-stack .bg-photo");
+    var captionEl = document.getElementById("bgCaption");
+    function updateCaption(photo) {
+      if (!captionEl || !photo) { return; }
+      var cap = photo.getAttribute("data-caption") || "";
+      captionEl.textContent = "📍 東京・" + (cap || "東京");
+    }
     if (photos.length < 2 || reduceMotion) { return; }
     var idx = 0;
     setInterval(function () {
       photos[idx].classList.remove("is-active");
       idx = (idx + 1) % photos.length;
       photos[idx].classList.add("is-active");
+      updateCaption(photos[idx]);
     }, 17000);
   })();
 
