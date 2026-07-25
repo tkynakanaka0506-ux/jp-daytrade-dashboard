@@ -39,6 +39,21 @@ BACKGROUND_IMAGES = [
     ("https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "秋葉原"),
     ("https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "丸の内・東京駅"),
     ("https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "銀座"),
+    ("https://images.unsplash.com/photo-1671247913568-050c0bb925f5?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "表参道イルミネーション"),
+    ("https://images.unsplash.com/photo-1771385706304-19ab1fb5fd61?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "浅草・雷門"),
+    ("https://images.unsplash.com/photo-1703702238930-237f139e8115?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "神楽坂の路地"),
+    ("https://images.unsplash.com/photo-1764418366176-0f273a921fab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "伏見稲荷大社(京都)"),
+    ("https://images.unsplash.com/photo-1711006876033-8baac5dfa718?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "汐留イルミネーション"),
+    ("https://images.unsplash.com/photo-1739614537933-11eed8f5d449?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "横浜みなとみらい"),
+    ("https://images.unsplash.com/photo-1660292318896-0c684c801e3f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "六本木ヒルズ展望台"),
+    ("https://images.unsplash.com/photo-1764268845521-a115101cdde5?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "池袋"),
+    ("https://images.unsplash.com/photo-1493515322954-4fa727e97985?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "上野の裏路地"),
+    ("https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "有楽町・銀座"),
+    ("https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "歌舞伎町"),
+    ("https://images.unsplash.com/photo-1626846136629-aa437fcb29a8?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "西新宿の高層ビル群"),
+    ("https://images.unsplash.com/photo-1734753050499-e766acbe80ce?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "品川・高層ビル街"),
+    ("https://images.unsplash.com/photo-1781525981877-ce6d8d80bcf8?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "渋谷センター街"),
+    ("https://images.unsplash.com/photo-1617870314635-fc819547ec11?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "新宿・思い出横丁"),
 ]
 
 
@@ -178,9 +193,27 @@ def news_list(items, empty_msg="現時点で該当するニュースは取得で
         source = esc(it.get("source", ""))
         time_ = esc(it.get("time", ""))
         meta = " / ".join(x for x in [time_, source] if x)
+
+        # 投資関連分野・注目企業(データにあれば表示。無い場合は何も出さない=旧データとの後方互換)
+        sector = esc((it.get("investment_sector") or "").strip())
+        companies_raw = it.get("investment_companies") or ""
+        if isinstance(companies_raw, list):
+            companies = "、".join(esc(str(c)) for c in companies_raw if str(c).strip())
+        else:
+            companies = esc(str(companies_raw).strip())
+        impact_html = ""
+        if sector or companies:
+            bits = []
+            if sector:
+                bits.append(f'<span class="impact-sector">関連分野: {sector}</span>')
+            if companies:
+                bits.append(f'<span class="impact-companies">注目企業: {companies}</span>')
+            impact_html = f'<div class="news-impact">{"".join(bits)}</div>'
+
         rows.append(
             f'<li><a href="{url}" target="_blank" rel="noopener">{title}</a>'
-            f'<span class="meta">{meta}</span></li>'
+            f'<span class="meta">{meta}</span>'
+            f'{impact_html}</li>'
         )
     return "<ul class=\"news-list\">" + "".join(rows) + "</ul>"
 
@@ -828,6 +861,13 @@ section > h2 {
 .news-list a { color: var(--text); text-decoration: none; }
 .news-list a:hover { color: var(--accent-bright); }
 .news-list .meta { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+.news-impact { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.news-impact .impact-sector, .news-impact .impact-companies {
+  display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px;
+  border: 1px solid var(--border-soft); color: var(--accent-bright); background: rgba(212,175,55,0.08);
+  line-height: 1.5;
+}
+.news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.04); }
 .scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
