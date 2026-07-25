@@ -601,4 +601,195 @@ footer .disclaimer { margin: 0 0 12px; }
 
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    run_type = data.get("run_type"
+    run_type = data.get("run_type", "")
+    run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
+
+    us = data.get("us_market", {})
+    fx = data.get("fx", {})
+    fut = data.get("nikkei_futures", {})
+
+    idx_cards = ""
+    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合")]:
+        d = us.get(key, {})
+        idx_cards += section_index_row(label, d.get("value", "―"), d.get("change_pct"), d.get("asof"))
+    idx_cards += section_index_row("USD/JPY", fx.get("value", "―"), fx.get("change_pct"), fx.get("asof"))
+    idx_cards += section_index_row("日経225先物(CME/大阪)", fut.get("value", "―"), fut.get("change_pct"), fut.get("asof"))
+    idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
+                                     data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
+
+    morning_html = f"""
+    <section id="morning">
+      <h2>🌅 寄り付き前セクション</h2>
+      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
+      <div class="card">
+        <h3>米国市場・為替・日経先物</h3>
+        <div class="idx-grid">{idx_cards}</div>
+      </div>
+      <div class="card">
+        <h3>時間外・朝の主要ニュース</h3>
+        {news_list(data.get("overnight_news", []))}
+      </div>
+      <div class="card">
+        <h3>TDnet 適時開示(朝までの分)</h3>
+        {tdnet_table(data.get("tdnet_morning", []))}
+      </div>
+      <div class="card">
+        <h3>出来高・値動きで話題の銘柄</h3>
+        {movers_table(data.get("movers_morning", []))}
+      </div>
+    </section>"""
+
+    topic_rank_html = topic_ranking_html(data.get("tdnet_morning", []), data.get("tdnet_afterclose", []))
+
+    evening_html = f"""
+    <section id="evening">
+      <h2>🌙 引け後セクション</h2>
+      <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
+      <div class="card">
+        <h3>本日のTDnet適時開示</h3>
+        {tdnet_table(data.get("tdnet_afterclose", []), empty_msg="本日の適時開示データは取得できませんでした。")}
+      </div>
+      <div class="card">
+        <h3>引け後の主要ニュース</h3>
+        {news_list(data.get("afterclose_news", []))}
+      </div>
+      <div class="card">
+        <h3>本日の値動き・出来高で話題の銘柄</h3>
+        {movers_table(data.get("movers_afterclose", []))}
+      </div>
+      <div class="card">
+        <h3>TDnet開示 話題度ランキング</h3>
+        <p class="rank-note">
+          本日のTDnet開示(決算・業績修正など)を件数・内容の重みで機械的に集計した「話題性」の順位です。
+          <b>株価が上昇することを確約・予想するものではありません。</b>
+        </p>
+        {topic_rank_html}
+      </div>
+    </section>"""
+
+    bull_rank_html = bull_ranking_html(data.get("technical", []))
+
+    technical_html = f"""
+    <section id="technical">
+      <h2>📊 株価診断(テクニカル指標)</h2>
+      <p class="section-desc">
+        移動平均線・RSIなど無料で取得できるテクニカル指標にもとづく客観的な「強気/弱気シグナル」の一覧です。
+        <b>将来の株価を予想・保証するものではありません。</b>
+      </p>
+      <div class="card">
+        {technical_table(data.get("technical", []))}
+      </div>
+      <div class="card">
+        <h3>強気シグナル数ランキング</h3>
+        <p class="rank-note">
+          移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
+          <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
+        </p>
+        {bull_rank_html}
+      </div>
+    </section>"""
+
+    disclaimer_text = (
+        "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など"
+        "無料で公開されている情報源をもとに自動的にまとめたものです。"
+        "内容の正確性・完全性・最新性は保証されません。"
+        "「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、"
+        "<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>"
+        "投資に関する最終判断は、必ずご自身の責任で行ってください。"
+    )
+
+    sources_html = """
+    <div class="sources">
+      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
+      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
+      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
+    </div>"""
+
+    n_slides = len(HERO_IMAGES)
+    slot_seconds = 6
+    total_duration = n_slides * slot_seconds
+    hero_slides_html = "".join(
+        f'<div class="hero-slide" style="background-image:url(\'{esc(p["url"])}\');'
+        f' animation-duration:{total_duration}s; animation-delay:{i * slot_seconds}s;">'
+        f'<span class="hero-credit">{esc(p["caption"])}</span></div>'
+        for i, p in enumerate(HERO_IMAGES)
+    )
+    photo_banner_1 = photo_banner_html(PHOTO_BANNERS[0])
+    photo_banner_2 = photo_banner_html(PHOTO_BANNERS[1])
+
+    html_out = f"""<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本株デイトレード情報ダッシュボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>{CSS}</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-slides">
+    {hero_slides_html}
+  </div>
+  <div class="hero-overlay"></div>
+</div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title">
+      <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
+      <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">{esc(run_label)}</span></h1>
+      <div class="subtitle">最終更新: {esc(generated_at)} (JST) ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+    </div>
+    <nav class="tabs">
+      <a href="#morning">🌅 寄り付き前</a>
+      <a href="#evening">🌙 引け後</a>
+      <a href="#technical">📊 株価診断</a>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+  <div class="disclaimer">
+    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
+  </div>
+
+  {morning_html}
+  {photo_banner_1}
+  {evening_html}
+  {photo_banner_2}
+  {technical_html}
+
+  <footer>
+    <div class="disclaimer">
+      ⚠️ 再掲: {disclaimer_text}
+    </div>
+    {sources_html}
+  </footer>
+</div>
+</body>
+</html>
+"""
+    return html_out
+
+
+def main():
+    data_path = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "data.json"
+    out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else BASE_DIR / "jp_daytrade_dashboard.html"
+
+    if not data_path.exists():
+        print(f"[ERROR] data.json が見つかりません: {data_path}", file=sys.stderr)
+        sys.exit(1)
+
+    with open(data_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    html_out = build_html(data)
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html_out)
+
+    print(f"[OK] ダッシュボードを生成しました: {out_path}")
+
+
+if __name__ == "__main__":
+    main()
