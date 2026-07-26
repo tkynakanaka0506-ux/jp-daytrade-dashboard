@@ -1,13 +1,3 @@
-        // ---- 信用情報(空売り比率・信用倍率) ----
-        try {
-            ObjectNode creditInfo = scrapeMarketCredit();
-            if (creditInfo != null) {
-                root.set("credit_info", creditInfo);
-            }
-        } catch (Exception e) {
-            System.err.println("[WARN] credit info fetch failed: " + e);
-        }
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -498,7 +488,7 @@ public class Main {
 
             // 空売り比率を抽出
             String shortRatio = null;
-            Pattern srPattern = Pattern.compile("空売り比率[\s\S]{0,20}?([\d.]+)%");
+            Pattern srPattern = Pattern.compile("空売り比率[\\s\\S]{0,20}?([\\d.]+)%");
             Matcher srM = srPattern.matcher(text);
             if (srM.find()) {
                 shortRatio = srM.group(1) + "%";
@@ -506,7 +496,7 @@ public class Main {
 
             // 信用倍率を抽出
             String creditRatio = null;
-            Pattern crPattern = Pattern.compile("信用倍率[\s\S]{0,20}?([\d.]+)倍");
+            Pattern crPattern = Pattern.compile("信用倍率[\\s\\S]{0,20}?([\\d.]+)倍");
             Matcher crM = crPattern.matcher(text);
             if (crM.find()) {
                 creditRatio = crM.group(1) + "倍";
