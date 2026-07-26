@@ -1721,27 +1721,27 @@ def strategy_summary_html(data):
 
 
 # ---------------------------------------------------------------------------
-# ��գ��: S�s�	~_o�Mn1+nh:
+# 鮮度フィルター: 当日（平日）または直前の週末分のみ表示
 # ---------------------------------------------------------------------------
 def _freshness_cutoff(generated_at_str):
-    """�B�W(YYYY-MM-DD HH:MM)K�h:YyM �n�ؒ�Y
-    �: +�+�+���Mn�K�	
-    ��: �+ / +� �+��
-    k�: S�n"""
+    """生成日時文字列(YYYY-MM-DD HH:MM)から表示すべき最古の日付を返す。
+    月曜: 土+日+月分を含める（直前の土曜から）
+    土・日: 金+土 / 土+日 を含める
+    火〜金: 当日のみ"""
     from datetime import date as _d, datetime as _dt, timedelta as _td
     try:
         dt = _dt.strptime(generated_at_str[:10], "%Y-%m-%d").date()
     except Exception:
         return None
-    wd = dt.weekday()  # 0=, 5=, 6=�
-    if wd == 0:    return dt - _td(days=2)   # �: ~ga�
-    elif wd == 5:  return dt - _td(days=1)   # �: �~ga�
-    elif wd == 6:  return dt - _td(days=1)   # ��: ~ga�
-    else:          return dt                  # k�: S�n
+    wd = dt.weekday()  # 0=月, 5=土, 6=日
+    if wd == 0:    return dt - _td(days=2)   # 月曜: 土まで遡る
+    elif wd == 5:  return dt - _td(days=1)   # 土曜: 金まで遡る
+    elif wd == 6:  return dt - _td(days=1)   # 日曜: 土まで遡る
+    else:          return dt                  # 火〜金: 当日のみ
 
 
 def _parse_item_date(s, year):
-    """'7/24' � '723�(() 15:00' jiK� date �֊�Y1WBo None"""
+    """'7/24' や '7月23日(木) 15:00' などから date を取り出す。失敗時は None。"""
     if not s:
         return None
     s = str(s)
@@ -1752,7 +1752,7 @@ def _parse_item_date(s, year):
             return _d(year, int(m.group(1)), int(m.group(2)))
         except ValueError:
             pass
-    m = re.search(r"(\d{1,2})\u6708(\d{1,2})\u65e5", s)  # MD�
+    m = re.search(r"(\d{1,2})\u6708(\d{1,2})\u65e5", s)  # M月D日
     if m:
         try:
             from datetime import date as _d
@@ -1763,8 +1763,8 @@ def _parse_item_date(s, year):
 
 
 def _filter_by_freshness(items, date_key, generated_at_str):
-    """date_key գ���n��L cutoff �Mn����n�Y
-    ���k1WW_����o]n~~+��"""
+    """date_key フィールドの日付が cutoff 以降のアイテムのみ返す。
+    日付解析に失敗したアイテムはそのまま含める。"""
     cutoff = _freshness_cutoff(generated_at_str)
     if cutoff is None:
         return list(items)
@@ -1775,7 +1775,7 @@ def _filter_by_freshness(items, date_key, generated_at_str):
 
 
 def _filter_tdnet_freshness(items, generated_at_str):
-    """TDnet ����n title +>kˁ�~�_�� ('MD�') g��գ��"""
+    """TDnet アイテムの title 末尾に埋め込まれた日付 ('M月D日') で鮮度フィルター。"""
     cutoff = _freshness_cutoff(generated_at_str)
     if cutoff is None:
         return list(items)
@@ -1787,7 +1787,7 @@ def _filter_tdnet_freshness(items, generated_at_str):
 
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    # ��գ��: S��Mn�D}P��w*����^h:
+    # 鮮度フィルター: 当日以前の古い好材料・成長株データを非表示
     fresh_us_good_news = _filter_by_freshness(data.get("us_good_news", []), "time", generated_at)
     fresh_growth = _filter_by_freshness(data.get("growth_candidates", []), "asof", generated_at)
     fresh_tdnet_morning = _filter_tdnet_freshness(data.get("tdnet_morning", []), generated_at)
