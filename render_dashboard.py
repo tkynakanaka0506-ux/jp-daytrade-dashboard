@@ -367,20 +367,22 @@ def bull_ranking_html(items, empty_msg="シグナルデータが取得できま�
             return 50.0
 
     ranked.sort(key=lambda e: (-e[0], rsi_key(e)))
-    rows = []
-    for i, (score, counts, it) in enumerate(ranked[:5]):
-        code = esc(it.get("code", ""))
-        name = esc(it.get("name", ""))
-        chg = it.get("change_pct")
-        rsi = it.get("rsi", "")
-        detail = f"中立{counts['neutral']}/売り{counts['sell']}/買い{counts['buy']}"
-        overheat = ""
-        try:
-            if float(rsi) >= 70:
-                overheat = ' <span class="tag tag-warn">過熱感に注意</span>'
-        except (TypeError, ValueError):
-            pass
-        rows.append(f"""
+
+    def build_rows(group):
+        rows = []
+        for i, (score, counts, it) in enumerate(group[:5]):
+            code = esc(it.get("code", ""))
+            name = esc(it.get("name", ""))
+            chg = it.get("change_pct")
+            rsi = it.get("rsi", "")
+            detail = f"中立{counts['neutral']}/売り{counts['sell']}/買い{counts['buy']}"
+            overheat = ""
+            try:
+                if float(rsi) >= 70:
+                    overheat = ' <span class="tag tag-warn">過熱感に注意</span>'
+            except (TypeError, ValueError):
+                pass
+            rows.append(f"""
         <div class="rank-item">
           <div class="rank-num">{rank_label(i)}</div>
           <div class="rank-body">
@@ -392,7 +394,23 @@ def bull_ranking_html(items, empty_msg="シグナルデータが取得できま�
             <div class="rank-desc">シグナル判定: {esc(detail)} ・ RSI(14) {esc(rsi)}{overheat}</div>
           </div>
         </div>""")
-    return "".join(rows)
+        return rows
+
+    bull_items = sorted([(s, c, it) for s, c, it in ranked if s > 0], key=lambda e: (-e[0], rsi_key(e)))
+    bear_items = sorted([(s, c, it) for s, c, it in ranked if s < 0], key=lambda e: (e[0], rsi_key(e)))
+
+    html_parts = []
+    html_parts.append('<h4 style="margin:0.5em 0 0.4em;color:var(--up)">🟢 強気（買いシグナル優勢）</h4>')
+    if bull_items:
+        html_parts.extend(build_rows(bull_items))
+    else:
+        html_parts.append('<p class="empty">現在、買いシグナル優勢の銘柄はありません。</p>')
+    html_parts.append('<h4 style="margin:1.2em 0 0.4em;color:var(--down)">🔴 弱気（売りシグナル優勢）</h4>')
+    if bear_items:
+        html_parts.extend(build_rows(bear_items))
+    else:
+        html_parts.append('<p class="empty">現在、売りシグナル優勢の銘柄はありません。</p>')
+    return "".join(html_parts)
 
 
 def _technical_lookup(technical):
@@ -1654,7 +1672,7 @@ def build_html(data: dict) -> str:
         {technical_table(data.get("technical", []))}
       </div>
       <div class="card">
-        <h3>強気シグナル数ランキング</h3>
+        <h3>強気・弱気シグナルランキング</h3>
         <p class="rank-note">
           移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
           <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
