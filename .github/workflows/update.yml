@@ -2,14 +2,14 @@ name: Update JP Daytrade Dashboard
 
 on:
   schedule:
-    - cron: '0 21 * * *'→ Runs at 21:00   # 06:00 JST = 21:00 UTC(前日) → 朝の更新
-    - cron: '0 12 * * *'→ Runs at 12:00   # 21:00 JST = 12:00 UTC → 夜(引け後)の更新
-    - cron: '0 0 * * 1-5'   # 09:00 JST = 00:00 UTC - intraday (weekdays)
-    - cron: '0 3 * * 1-5'   # 12:00 JST = 03:00 UTC - midday (weekdays)
+    - cron: '0 21 * * *'   # 06:00 JST -> morning
+    - cron: '0 12 * * *'   # 21:00 JST -> evening
+    - cron: '0 0 * * 1-5'  # 09:00 JST -> intraday (weekdays only)
+    - cron: '0 3 * * 1-5'  # 12:00 JST -> midday (weekdays only)
   workflow_dispatch:
     inputs:
       mode:
-        description: '実行モード(morning または evening)'
+        description: 'morning or evening'
         required: false
         default: 'morning'
 
@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: 実行モードを判定
+      - name: Determine run mode
         id: mode
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -33,6 +33,35 @@ jobs:
             echo "mode=morning" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Java 21 セットアップ
+      - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Build Java
+        run: mvn -q -B package
+
+      - name: Update data.json (Java)
+        run: java -jar target/dashboard-updater.jar "${{ steps.mode.outputs.mode }}" data.json
+
+      - name: Render HTML (Python)
+        run: python3 render_dashboard.py data.json index.html
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data.json index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Auto update (${{ steps.mode.outputs.mode }}) $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
