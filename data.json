@@ -1,32 +1,32 @@
 {
-  "generated_at" : "2026-07-26 22:26",
-  "run_type" : "evening",
+  "generated_at" : "2026-07-27 06:53",
+  "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,411.98",
-      "change_pct" : 0.05,
+      "change_pct" : -1.16,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "dow" : {
       "value" : "51,947.25",
-      "change_pct" : 0.46,
+      "change_pct" : -0.52,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "nasdaq" : {
       "value" : "24,975.82",
-      "change_pct" : -0.64,
+      "change_pct" : -2.78,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "sox" : {
       "value" : "11,818.89",
-      "change_pct" : -4.25,
+      "change_pct" : -4.77,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
   "fx" : {
-    "value" : "163.79Ã¥ÂÂ",
-    "change_pct" : -0.03,
-    "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "163.57Ã¥ÂÂ",
+    "change_pct" : -0.16,
+    "asof" : "7/27Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
     "value" : "64,395.00",
@@ -35,7 +35,7 @@
   },
   "nikkei225" : {
     "value" : "64,611.15",
-    "change_pct" : -2.73,
+    "change_pct" : -2.28,
     "asof" : "7/24Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
@@ -82,159 +82,145 @@
     "money_flow_type" : "expected"
   } ],
   "tdnet_morning" : [ {
-    "time" : "07/25 09:30",
-    "code" : "3382",
-    "company" : "７＆ｉＨＤ",
-    "title" : "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599579.pdf",
-    "tag" : "他"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 17:00",
-    "code" : "1721",
-    "company" : "コムシスＨＤ",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595400.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 17:00",
-    "code" : "4116",
-    "company" : "大日精化",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596405.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 17:00",
-    "code" : "4684",
-    "company" : "オービック",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595421.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 17:00",
-    "code" : "6770",
-    "company" : "アルプスアルパイン",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了及び一部失権に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598996.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 17:00",
-    "code" : "7220",
-    "company" : "武蔵精密",
-    "title" : "譲渡制限付株式報酬としての新株式の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599194.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 17:00",
-    "code" : "8700",
-    "company" : "丸八証券",
-    "title" : "2027年３月期 第１四半期決算速報値に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598268.pdf",
-    "tag" : "決算"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:30",
-    "code" : "2804",
-    "company" : "ブルドックソース",
-    "title" : "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598662.pdf",
-    "tag" : "決算"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:30",
-    "code" : "8060",
-    "company" : "キヤノンＭＪ",
-    "title" : "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596930.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:30",
-    "code" : "8707",
-    "company" : "岩井コスモ",
-    "title" : "2027年3月期 第1四半期決算短信［日本基準］（連結）",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598646.pdf",
-    "tag" : "決算"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "2593",
-    "company" : "伊藤園",
-    "title" : "譲渡制限付株式報酬のための自己株式の処分に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260722597741.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "信金中央、定款 2026/07/24 他 7月24日(金) 18:55",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "3402",
-    "company" : "東レ",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分について",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599339.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "4212",
-    "company" : "積水樹脂",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598962.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "4519",
-    "company" : "中外薬",
-    "title" : "2026年12月期 第2四半期（中間期）決算短信〔ＩＦＲＳ〕（連結）",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598715.pdf",
-    "tag" : "決算"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "6804",
-    "company" : "ホシデン",
-    "title" : "取締役に対する譲渡制限付株式としての自己株式処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599225.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "6875",
-    "company" : "メガチップス",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598380.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "7974",
-    "company" : "任天堂",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599114.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "8154",
-    "company" : "加賀電子",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599290.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "9012",
-    "company" : "秩父鉄道",
-    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599223.pdf",
-    "tag" : "自社株"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf",
+    "tag" : "Ã¤Â»Â"
   }, {
-    "time" : "07/24 16:00",
-    "code" : "9409",
-    "company" : "テレビ朝日ＨＤ",
-    "title" : "譲渡制限付株式報酬としての新株式の払込完了に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260708589996.pdf",
-    "tag" : "自社株"
-  }, {
-    "time" : "07/24 15:45",
-    "code" : "3197",
-    "company" : "すかいらーくＨＤ",
-    "title" : "第6回無担保社債発行のお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599351.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "07/24 15:30",
-    "code" : "3386",
-    "company" : "コスモ・バイオ",
-    "title" : "業績予想の修正に関するお知らせ",
-    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599233.pdf",
-    "tag" : "他"
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
+    "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
     "code" : "5240",
