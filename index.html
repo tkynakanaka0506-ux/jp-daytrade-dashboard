@@ -440,7 +440,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-26 06:00 (JST)<span class="rel-time" data-generated="2026-07-26 06:00"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-26 09:06 (JST)<span class="rel-time" data-generated="2026-07-26 09:06"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
@@ -458,12 +458,12 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
   </div>
   
-    <div class="mood-card mood-yellow">
-      <div class="mood-icon" aria-hidden="true">🟡</div>
+    <div class="mood-card mood-red">
+      <div class="mood-icon" aria-hidden="true">🔴</div>
       <div class="mood-body">
-        <div class="mood-label">様子見が無難な地合い</div>
-        <div class="mood-desc">米国株や好材料の方向感が乏しく、無理に動く必要はありません。</div>
-        <div class="mood-reasons"><span class="tag">米国3指数平均 -0.04%</span><span class="tag">好材料ニュース・開示あり</span></div>
+        <div class="mood-label">見送りが無難な地合い</div>
+        <div class="mood-desc">米国株安、または国内に弱材料の開示があります。新規の買いは慎重に検討しましょう。</div>
+        <div class="mood-reasons"><span class="tag">米国3指数平均 -0.04%</span><span class="tag">好材料ニュース・開示あり</span><span class="tag">国内に弱材料(下方修正等)の開示あり</span></div>
         <div class="mood-caveat">⚠️ 米国株の方向・好材料の有無・過熱感だけを組み合わせた機械的な簡易判定です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</div>
       </div>
     </div>
@@ -550,7 +550,172 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
       </div>
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>
-        <p class="empty">対象期間の適時開示は取得できませんでした。</p>
+        
+    <div class="table-tools"><input type="search" class="table-search" placeholder="🔍 時刻・コード・会社名・タイトルで検索"></div>
+    <p class="rank-note">💡 <b>ポジティブ/ネガティブ/中立</b>は開示タイトルのキーワード一致による機械的な参考判定です。AIによる詳細分析ではなく、投資助言でもありません。</p>
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
+    <table class="tdnet-table" data-sortable="true">
+      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="mono">07/25 09:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3382" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3382.T" target="_blank" rel="noopener">3382</a></td>
+          <td>７＆ｉＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599579.pdf" target="_blank" rel="noopener">欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 19:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3930" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3930.T" target="_blank" rel="noopener">3930</a></td>
+          <td>Ｇ－はてな</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599177.pdf" target="_blank" rel="noopener">特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="133A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 133A0</td>
+          <td>ＧＸ超短期米国債</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599488.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="2019" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/2019.T" target="_blank" rel="noopener">2019</a></td>
+          <td>ＧＸ優先証券隔月</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599489.pdf" target="_blank" rel="noopener">ETFの収益分配のお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3133" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3133.T" target="_blank" rel="noopener">3133</a></td>
+          <td>Ｇ－海帆</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599560.pdf" target="_blank" rel="noopener">第23期定時株主総会の継続会の開催中止及び臨時株主総会の開催に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="350A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 350A0</td>
+          <td>Ｇ－デジタルグリッド</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599394.pdf" target="_blank" rel="noopener">シンジケート型コミットメントライン契約（増額変更）の締結に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="402A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 402A0</td>
+          <td>Ｇ－アクセルスペース</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599203.pdf" target="_blank" rel="noopener">取締役の選任議案に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="402A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 402A0</td>
+          <td>Ｇ－アクセルスペース</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599200.pdf" target="_blank" rel="noopener">報酬諮問委員会の設置に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="402A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 402A0</td>
+          <td>Ｇ－アクセルスペース</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599159.pdf" target="_blank" rel="noopener">資本準備金の額の減少及び剰余金の処分に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="402A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 402A0</td>
+          <td>Ｇ－アクセルスペース</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599197.pdf" target="_blank" rel="noopener">事後交付型株式報酬制度の導入に関するお知らせ</a> <span class="tag">エク</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="402A0" aria-label="お気に入り登録" aria-pressed="false">★</button> 402A0</td>
+          <td>Ｇ－アクセルスペース</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599198.pdf" target="_blank" rel="noopener">業績連動型株式報酬制度の導入に関するお知らせ</a> <span class="tag">エク</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4222" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4222.T" target="_blank" rel="noopener">4222</a></td>
+          <td>児玉化</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599532.pdf" target="_blank" rel="noopener">親会社以外の支配株主の異動に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 18:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7090" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7090.T" target="_blank" rel="noopener">7090</a></td>
+          <td>Ｇ－リグア</td>
+          <td><span class="badge bear sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ネガティブ</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598544.pdf" target="_blank" rel="noopener">支払解決金（特別損失）の計上に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:50</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4978" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4978.T" target="_blank" rel="noopener">4978</a></td>
+          <td>Ｇ－リプロセル</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599552.pdf" target="_blank" rel="noopener">AMED公募事業「再生医療・遺伝子治療の産業化に向けた基盤技術開発事業」に係る提案の採択に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:40</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6837" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6837.T" target="_blank" rel="noopener">6837</a></td>
+          <td>京写</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599542.pdf" target="_blank" rel="noopener">取締役に対する譲渡制限付株式としての自己株式処分の払込完了に関するお知らせ</a> <span class="tag">自社</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="2130" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/2130.T" target="_blank" rel="noopener">2130</a></td>
+          <td>メンバーズ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260722597809.pdf" target="_blank" rel="noopener">「コーポレート・ガバナンスに関する基本方針」一部改定に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9308" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9308.T" target="_blank" rel="noopener">9308</a></td>
+          <td>乾汽船</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595435.pdf" target="_blank" rel="noopener">当社役職員に対する譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ</a> <span class="tag">自社</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:15</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6380" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6380.T" target="_blank" rel="noopener">6380</a></td>
+          <td>オリチエン工業</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598625.pdf" target="_blank" rel="noopener">募集新株予約権（税制適格ストック・オプション）の発行内容確定及び一部失権に関するお知らせ</a> <span class="tag">エク</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="1721" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/1721.T" target="_blank" rel="noopener">1721</a></td>
+          <td>コムシスＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595400.pdf" target="_blank" rel="noopener">譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ</a> <span class="tag">自社</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="1934" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/1934.T" target="_blank" rel="noopener">1934</a></td>
+          <td>ユアテック</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260623576530.pdf" target="_blank" rel="noopener">譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ</a> <span class="tag">自社</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3282" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3282.T" target="_blank" rel="noopener">3282</a></td>
+          <td>Ｒ－コンフォリア</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598709.pdf" target="_blank" rel="noopener">資金の借入れ及び既存借入金の返済に関するお知らせ</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3375" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3375.T" target="_blank" rel="noopener">3375</a></td>
+          <td>ＺＯＡ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724597934.pdf" target="_blank" rel="noopener">譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ</a> <span class="tag">自社</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4829" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4829.T" target="_blank" rel="noopener">4829</a></td>
+          <td>日本エンタープライズ</td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598974.pdf" target="_blank" rel="noopener">剰余金の配当に関するお知らせ</a> <span class="tag">配当</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 17:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6653" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6653.T" target="_blank" rel="noopener">6653</a></td>
+          <td>正興電機製作所</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599132.pdf" target="_blank" rel="noopener">2026年12月期第２四半期（中間期）決算短信〔日本基準〕(連結)</a> <span class="tag">決算</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 15:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="2722" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/2722.T" target="_blank" rel="noopener">2722</a></td>
+          <td>ＩＫホールディングス</td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599359.pdf" target="_blank" rel="noopener">剰余金の配当に関するお知らせ</a> <span class="tag">配当</span></td>
+        </tr>
+        <tr>
+          <td class="mono">07/24 15:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3791" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3791.T" target="_blank" rel="noopener">3791</a></td>
+          <td>ＩＧポート</td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599103.pdf" target="_blank" rel="noopener">剰余金の配当に関するお知らせ</a> <span class="tag">配当</span></td>
+        </tr></tbody>
+    </table>
+    </div>
       </div>
       <div class="card">
         <h3>出来高・値動きで話題の銘柄</h3>
@@ -621,7 +786,55 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           ③好材料と判断する理由、④直近のテクニカル指標に基づく参考コメント、を明記しています。
           <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
-        <p class="empty">本日はTDnet開示に基づく明確な好材料データ(日本株)がありません。</p>
+        
+        <div class="rank-item">
+          <div class="rank-num">🥇</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">4829</span> 日本エンタープライズ
+              <span class="score-tag">軽めの好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: 配当に関する開示</div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜+3%程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 株主還元に関するプラスの情報として受け止められやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598974.pdf" target="_blank" rel="noopener">剰余金の配当に関するお知らせ</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥈</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">2722</span> ＩＫホールディングス
+              <span class="score-tag">軽めの好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: 配当に関する開示</div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜+3%程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 株主還元に関するプラスの情報として受け止められやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599359.pdf" target="_blank" rel="noopener">剰余金の配当に関するお知らせ</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥉</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">3791</span> ＩＧポート
+              <span class="score-tag">軽めの好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: 配当に関する開示</div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜+3%程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 株主還元に関するプラスの情報として受け止められやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599103.pdf" target="_blank" rel="noopener">剰余金の配当に関するお知らせ</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
       </div>
       <div class="card">
         <h3>好材料ランキング(米国株 TOP5)</h3>

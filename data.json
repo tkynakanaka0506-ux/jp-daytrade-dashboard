@@ -1,430 +1,421 @@
 {
-  "generated_at" : "2026-07-26 06:58",
-  "run_type" : "morning",
-  "us_market" : {
-    "sp500" : {
-      "value" : "7,411.98",
-      "change_pct" : 0.05,
-      "asof" : "7/25終値"
+  "generated_at": "2026-07-26 09:06",
+  "run_type": "morning",
+  "us_market": {
+    "sp500": {
+      "value": "7,411.98",
+      "change_pct": 0.05,
+      "asof": "7/24(金) NY引け(+3.68pt)"
     },
-    "dow" : {
-      "value" : "51,947.25",
-      "change_pct" : 0.46,
-      "asof" : "7/25終値"
+    "dow": {
+      "value": "51,947.25",
+      "change_pct": 0.46,
+      "asof": "7/24(金) NY引け(+235.60ドル、3日ぶり反発)"
     },
-    "nasdaq" : {
-      "value" : "24,975.82",
-      "change_pct" : -0.64,
-      "asof" : "7/25終値"
+    "nasdaq": {
+      "value": "24,975.82",
+      "change_pct": -0.64,
+      "asof": "7/24(金) NY引け(-161.87pt、3日続落)"
     }
   },
-  "fx" : {
-    "value" : "163.79円",
-    "change_pct" : -0.03,
-    "asof" : "7/25終値"
+  "fx": {
+    "value": "163.64円",
+    "change_pct": -0.13,
+    "asof": "7/24(金) NY市場引け時点(前日163.86円)"
   },
-  "nikkei_futures" : {
-    "value" : "64,395.00",
-    "change_pct" : -1.55,
-    "asof" : "7/25終値"
+  "nikkei_futures": {
+    "value": "65,430円",
+    "change_pct": -1.39,
+    "asof": "7/24 夜間取引終値(大阪取引所、前日比920円安)"
   },
-  "nikkei225" : {
-    "value" : "64,611.15",
-    "change_pct" : -2.73,
-    "asof" : "7/24終値"
+  "nikkei225": {
+    "value": "64,611.15円",
+    "change_pct": -2.73,
+    "asof": "7/24 現物終値(前日比-1,811.45円)"
   },
-  "overnight_news" : [ {
-    "title" : "自社株取得枠設定銘柄（10日）－ＴＫＣ、アイダ、吉野家ＨＤ、北興化など",
-    "url" : "https://finance.yahoo.co.jp/",
-    "source" : "トレーダーズ・ウェブ",
-    "time" : "7/17"
-  }, {
-    "title" : "本日の【CB発行】銘柄 (16日大引け後 発表分)",
-    "url" : "https://finance.yahoo.co.jp/",
-    "source" : "フィスコ",
-    "time" : "7/16 引け後"
-  } ],
-  "tdnet_morning" : [ {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "信金中央、定款 2026/07/24 他 7月24日(金) 18:55",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
-    "tag" : "他"
-  } ],
-  "movers_morning" : [ ],
-  "tdnet_afterclose" : [ {
-    "time" : "10:30",
-    "code" : "―",
-    "company" : "王将フード",
-    "title" : "〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "09:30",
-    "code" : "―",
-    "company" : "セブン＆アイ",
-    "title" : "Notice Regarding Conclusion of Discussions on Potential Investment in European CVS",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "09:30",
-    "code" : "―",
-    "company" : "セブン＆アイ",
-    "title" : "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "08:00",
-    "code" : "―",
-    "company" : "ＷＨＤＣ",
-    "title" : "（訂正）第22回定時株主総会招集ご通知",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "08:00",
-    "code" : "―",
-    "company" : "ＷＨＤＣ",
-    "title" : "（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項）",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "00:30",
-    "code" : "―",
-    "company" : "あおぞら銀",
-    "title" : "統合報告書 ディスクロージャー誌 資料編 2026",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "00:30",
-    "code" : "―",
-    "company" : "あおぞら銀",
-    "title" : "統合報告書 ディスクロージャー誌 本編 2026",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "00:00",
-    "code" : "―",
-    "company" : "ＦＣＣ",
-    "title" : "［Delayed］Corporate Governance Report",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "信金中央、定款 2026/07/24 他 7月24日(金) 18:55",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf",
-    "tag" : "他"
-  }, {
-    "time" : "―",
-    "code" : "―",
-    "company" : "―",
-    "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
-    "tag" : "他"
-  } ],
-  "afterclose_news" : [ ],
-  "movers_afterclose" : [ ],
-  "technical" : [ {
-    "code" : "7203",
-    "name" : "トヨタ自動車",
-    "price" : "2,897.0",
-    "change_pct" : -1.8,
-    "ma5_dev" : "-0.99%",
-    "ma25_dev" : "+2.46%",
-    "rsi" : 57.11,
-    "signal" : "中立(やや弱気)",
-    "summary" : "売り1/中立6/買い0。RSIは中立域。"
-  }, {
-    "code" : "6758",
-    "name" : "ソニーグループ",
-    "price" : "3,409.0",
-    "change_pct" : -1.04,
-    "ma5_dev" : "-1.05%",
-    "ma25_dev" : "+1.94%",
-    "rsi" : 53.05,
-    "signal" : "中立",
-    "summary" : "売り0/中立7/買い0。RSIは中立域。"
-  }, {
-    "code" : "8306",
-    "name" : "三菱UFJフィナンシャル・グループ",
-    "price" : "―",
-    "change_pct" : null,
-    "ma5_dev" : "+2.99%",
-    "ma25_dev" : "+9.54%",
-    "rsi" : 72.77,
-    "signal" : "弱気(過熱感)",
-    "summary" : "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。"
-  }, {
-    "code" : "9984",
-    "name" : "ソフトバンクグループ",
-    "price" : "5,500.0",
-    "change_pct" : -7.06,
-    "ma5_dev" : "-2.81%",
-    "ma25_dev" : "-10.84%",
-    "rsi" : 40.16,
-    "signal" : "中立(やや強気)",
-    "summary" : "売り0/中立6/買い1。RSIは中立域。"
-  } ],
-  "growth_candidates" : [ {
-    "company" : "アーバネット",
-    "title" : "通期連結業績予想の修正（上方修正）に関するお知らせ",
-    "catalyst" : "上方修正",
-    "reason" : "TDnet適時開示「通期連結業績予想の修正（上方修正）に関するお知らせ」より、上方修正を確認。",
-    "asof" : "7月23日(木) 15:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260722597179.pdf"
-  }, {
-    "company" : "未来工業",
-    "title" : "連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ",
-    "catalyst" : "増配",
-    "reason" : "TDnet適時開示「連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
-    "asof" : "7月23日(木) 15:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260723/140120260723598028.pdf"
-  }, {
-    "company" : "三井松島ＨＤ",
-    "title" : "2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせ",
-    "catalyst" : "上方修正",
-    "reason" : "TDnet適時開示「2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせ」より、上方修正を確認。",
-    "asof" : "7月22日(水) 16:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260722597578.pdf"
-  }, {
-    "company" : "ブロンコＢ",
-    "title" : "第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末配当予想の修正（増配）に関するお知らせ",
-    "catalyst" : "増配",
-    "reason" : "TDnet適時開示「第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
-    "asof" : "7月22日(水) 15:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260721597038.pdf"
-  }, {
-    "company" : "十六ＦＧ",
-    "title" : "業績予想の修正及び配当予想の修正（増配）に関するお知らせ",
-    "catalyst" : "増配",
-    "reason" : "TDnet適時開示「業績予想の修正及び配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
-    "asof" : "7月22日(水) 15:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260722/140120260717596038.pdf"
-  }, {
-    "company" : "パラカ",
-    "title" : "通期業績予想の修正及び配当予想の修正（増配）に関するお知らせ",
-    "catalyst" : "増配",
-    "reason" : "TDnet適時開示「通期業績予想の修正及び配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
-    "asof" : "7月16日(木) 12:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260716/140120260701586503.pdf"
-  }, {
-    "company" : "マニー",
-    "title" : "通期業績予想の上方修正に関するお知らせ",
-    "catalyst" : "上方修正",
-    "reason" : "TDnet適時開示「通期業績予想の上方修正に関するお知らせ」より、上方修正を確認。",
-    "asof" : "7月15日(水) 15:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260715/140120260619574493.pdf"
-  }, {
-    "company" : "ホリイフード",
-    "title" : "2026年11月期通期連結業績予想の修正（上方修正）に関するお知らせ",
-    "catalyst" : "上方修正",
-    "reason" : "TDnet適時開示「2026年11月期通期連結業績予想の修正（上方修正）に関するお知らせ」より、上方修正を確認。",
-    "asof" : "7月15日(水) 14:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260715/140120260715594280.pdf"
-  } ]
+  "overnight_news": [
+    {
+      "title": "日経平均、AI特需の持続懸念で1811円安の急落",
+      "url": "https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/",
+      "source": "日本経済新聞",
+      "time": "7/24",
+      "investment_sector": "半導体・AI関連",
+      "investment_companies": [
+        "イビデン"
+      ]
+    },
+    {
+      "title": "来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる",
+      "url": "https://s.kabutan.jp/news/n202607241176/",
+      "source": "株探",
+      "time": "7/24",
+      "investment_sector": "半導体",
+      "investment_companies": [
+        "キオクシアホールディングス"
+      ]
+    },
+    {
+      "title": "ドル円、一時163円台後半まで上昇し約40年ぶり高値圏に接近。来週はFOMCと日銀会合に注目",
+      "url": "https://www.gaitame.com/media/entry/2026/07/25/060400",
+      "source": "外為どっとコム",
+      "time": "7/25"
+    },
+    {
+      "title": "NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷に",
+      "url": "https://www.zaikei.co.jp/article/20260724/862565.html",
+      "source": "財経新聞",
+      "time": "7/24",
+      "investment_sector": "AI・ハイテク株"
+    },
+    {
+      "title": "今週の株式市況：半導体株は一時下げ止まりも中東情勢の再緊迫化で上値重い",
+      "url": "https://s.kabutan.jp/news/n202607250090/",
+      "source": "株探",
+      "time": "7/25",
+      "investment_sector": "半導体"
+    }
+  ],
+  "tdnet_morning": [
+    {
+      "time": "07/25 09:30",
+      "code": "3382",
+      "company": "７＆ｉＨＤ",
+      "title": "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599579.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 19:30",
+      "code": "3930",
+      "company": "Ｇ－はてな",
+      "title": "特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599177.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "133A0",
+      "company": "ＧＸ超短期米国債",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599488.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "2019",
+      "company": "ＧＸ優先証券隔月",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599489.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "3133",
+      "company": "Ｇ－海帆",
+      "title": "第23期定時株主総会の継続会の開催中止及び臨時株主総会の開催に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599560.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "350A0",
+      "company": "Ｇ－デジタルグリッド",
+      "title": "シンジケート型コミットメントライン契約（増額変更）の締結に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599394.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "402A0",
+      "company": "Ｇ－アクセルスペース",
+      "title": "取締役の選任議案に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599203.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "402A0",
+      "company": "Ｇ－アクセルスペース",
+      "title": "報酬諮問委員会の設置に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599200.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "402A0",
+      "company": "Ｇ－アクセルスペース",
+      "title": "資本準備金の額の減少及び剰余金の処分に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599159.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "402A0",
+      "company": "Ｇ－アクセルスペース",
+      "title": "事後交付型株式報酬制度の導入に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599197.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "402A0",
+      "company": "Ｇ－アクセルスペース",
+      "title": "業績連動型株式報酬制度の導入に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599198.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "4222",
+      "company": "児玉化",
+      "title": "親会社以外の支配株主の異動に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599532.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 18:00",
+      "code": "7090",
+      "company": "Ｇ－リグア",
+      "title": "支払解決金（特別損失）の計上に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598544.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 17:50",
+      "code": "4978",
+      "company": "Ｇ－リプロセル",
+      "title": "AMED公募事業「再生医療・遺伝子治療の産業化に向けた基盤技術開発事業」に係る提案の採択に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599552.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 17:40",
+      "code": "6837",
+      "company": "京写",
+      "title": "取締役に対する譲渡制限付株式としての自己株式処分の払込完了に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599542.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "07/24 17:30",
+      "code": "2130",
+      "company": "メンバーズ",
+      "title": "「コーポレート・ガバナンスに関する基本方針」一部改定に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260722597809.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 17:30",
+      "code": "9308",
+      "company": "乾汽船",
+      "title": "当社役職員に対する譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595435.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "07/24 17:15",
+      "code": "6380",
+      "company": "オリチエン工業",
+      "title": "募集新株予約権（税制適格ストック・オプション）の発行内容確定及び一部失権に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598625.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "07/24 17:00",
+      "code": "1721",
+      "company": "コムシスＨＤ",
+      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595400.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "07/24 17:00",
+      "code": "1934",
+      "company": "ユアテック",
+      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260623576530.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "07/24 17:00",
+      "code": "3282",
+      "company": "Ｒ－コンフォリア",
+      "title": "資金の借入れ及び既存借入金の返済に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598709.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "07/24 17:00",
+      "code": "3375",
+      "company": "ＺＯＡ",
+      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724597934.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "07/24 17:00",
+      "code": "4829",
+      "company": "日本エンタープライズ",
+      "title": "剰余金の配当に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598974.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "07/24 17:00",
+      "code": "6653",
+      "company": "正興電機製作所",
+      "title": "2026年12月期第２四半期（中間期）決算短信〔日本基準〕(連結)",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599132.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "07/24 15:30",
+      "code": "2722",
+      "company": "ＩＫホールディングス",
+      "title": "剰余金の配当に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599359.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "07/24 15:30",
+      "code": "3791",
+      "company": "ＩＧポート",
+      "title": "剰余金の配当に関するお知らせ",
+      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599103.pdf",
+      "tag": "配当"
+    }
+  ],
+  "movers_morning": [
+    {
+      "code": "5240",
+      "name": "monoAI technology",
+      "price": "213円",
+      "change_pct": 30.67,
+      "volume_note": "ストップ高",
+      "reason": "具体的な材料は確認できず、思惑的な物色とみられる"
+    },
+    {
+      "code": "3260",
+      "name": "エスポア",
+      "price": "642円",
+      "change_pct": 18.45,
+      "volume_note": "ストップ高（前日ストップ安からの反発）",
+      "reason": "系統用蓄電池関連の販売用不動産取得・権利売却の発表を材料視"
+    },
+    {
+      "code": "5242",
+      "name": "アイズ",
+      "price": "2,209円",
+      "change_pct": 11.01,
+      "volume_note": "ストップ高、9連騰",
+      "reason": "「メディアレーダー」会員数14万人突破、オンラインファクタリング提供対象拡大を材料に買い継続"
+    },
+    {
+      "code": "8918",
+      "name": "ランド",
+      "price": "11円",
+      "change_pct": 10.0,
+      "volume_note": "出来高急増(3億株超)",
+      "reason": "2027年2月期1Q増収増益(売上+203.9%)、再エネ関連投資事業が牽引"
+    }
+  ],
+  "tdnet_afterclose": [],
+  "afterclose_news": [],
+  "movers_afterclose": [],
+  "technical": [
+    {
+      "code": "7203",
+      "name": "トヨタ自動車",
+      "price": "2,897.0円",
+      "change_pct": -1.8,
+      "ma5_dev": "-0.99%",
+      "ma25_dev": "+2.46%",
+      "rsi": 57.11,
+      "signal": "中立(やや弱気)",
+      "summary": "シグナル判定は中立6/売り1/買い0とやや売り優勢。RSI(14)は57.11で中立圏(過熱感なし)。（7/24終値時点）"
+    },
+    {
+      "code": "6758",
+      "name": "ソニーグループ",
+      "price": "3,458.0円",
+      "change_pct": -0.35,
+      "ma5_dev": "+0.89%",
+      "ma25_dev": "+4.01%",
+      "rsi": 65.24,
+      "signal": "中立",
+      "summary": "シグナル判定は中立7/売り0/買い0で方向感に乏しい。RSI(14)は65.24でやや買われ気味の中立圏。（7/21終値時点、5営業日前とやや古いデータのため参考程度）"
+    },
+    {
+      "code": "9984",
+      "name": "ソフトバンクグループ",
+      "price": "5,424.0円",
+      "change_pct": -9.01,
+      "ma5_dev": "-11.61%",
+      "ma25_dev": "-15.07%",
+      "rsi": 41.35,
+      "signal": "中立(やや強気)",
+      "summary": "シグナル判定は中立5/売り0/買い2とやや買い優勢。RSI(14)は41.35で売られ過ぎ水準(30以下)には未達。（7/17終値時点、7営業日前とやや古いデータのため参考程度）"
+    },
+    {
+      "code": "8306",
+      "name": "三菱ＵＦＪフィナンシャル・グループ",
+      "price": "3,750.0円",
+      "change_pct": 2.24,
+      "ma5_dev": "+3.59%",
+      "ma25_dev": "+9.91%",
+      "rsi": 73.22,
+      "signal": "中立(やや弱気/過熱感)",
+      "summary": "シグナル判定は中立5/売り2/買い0。RSI(14)は73.22で買われすぎ水準(70以上)にあり過熱感に留意。（7/23終値時点）"
+    }
+  ],
+  "us_good_news": [
+    {
+      "ticker": "VZ",
+      "company": "Verizon",
+      "category": "earnings_beat",
+      "headline": "Verizonが2Q決算で市場予想を上回る増益、契約者数も増加",
+      "url": "https://www.marketscreener.com/news/american-express-falls-despite-strong-2q-profit-verizon-earnings-beat-stock-movers-ce7f51dfde88f723",
+      "time": "7/24"
+    },
+    {
+      "ticker": "T",
+      "company": "AT&T",
+      "category": "earnings_beat",
+      "headline": "AT&Tが2Q決算でEPS・契約者数とも市場予想超え、株価5%上昇。自社株買い目標も上方修正",
+      "url": "https://www.benzinga.com/markets/earnings/26/07/60604626/att-surprises-wall-street-with-strong-subscriber-growth",
+      "time": "7/23"
+    },
+    {
+      "ticker": "CRWV",
+      "company": "CoreWeave",
+      "category": "upgrade",
+      "headline": "Truist FinancialがCoreWeaveをHoldからBuyに格上げ",
+      "url": "https://247wallst.com/investing/2026/07/22/here-are-wednesdays-top-wall-street-analyst-research-calls-altria-circle-internet-coreweave-digital-ocean-ibm-keel-infrastructure-nebius-group-trimble-vornado-realty-and-more/",
+      "time": "7/22"
+    },
+    {
+      "ticker": "DOCN",
+      "company": "DigitalOcean",
+      "category": "upgrade",
+      "headline": "StifelがDigitalOceanをHoldからBuyに格上げ、目標株価を135ドルから160ドルへ引き上げ",
+      "url": "https://247wallst.com/investing/2026/07/22/here-are-wednesdays-top-wall-street-analyst-research-calls-altria-circle-internet-coreweave-digital-ocean-ibm-keel-infrastructure-nebius-group-trimble-vornado-realty-and-more/",
+      "time": "7/22"
+    },
+    {
+      "ticker": "BAC",
+      "company": "Bank of America",
+      "category": "dividend_hike",
+      "headline": "Bank of Americaが四半期配当を14%増配(1株0.32ドル)と発表",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/bank-america-just-raised-dividend-015133486.html",
+      "time": "7/24"
+    },
+    {
+      "ticker": "JPM",
+      "company": "JPMorgan Chase",
+      "category": "buyback",
+      "headline": "JPMorganが500億ドルの自社株買いプログラムを開始、配当も10%増配へ",
+      "url": "https://cryptobriefing.com/jpmorgan-dividend-share-repurchase-program/",
+      "time": "7/1"
+    }
+  ]
 }
