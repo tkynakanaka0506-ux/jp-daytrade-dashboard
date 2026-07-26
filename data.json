@@ -1,874 +1,748 @@
 {
-  "generated_at": "2026-07-26 21:00",
-  "run_type": "evening",
-  "us_market": {
-    "sp500": {
-      "value": "7,411.98",
-      "change_pct": 0.05,
-      "asof": "7/24(金) NY引け(+3.68pt)"
+  "generated_at" : "2026-07-26 22:26",
+  "run_type" : "evening",
+  "us_market" : {
+    "sp500" : {
+      "value" : "7,411.98",
+      "change_pct" : 0.05,
+      "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
-    "dow": {
-      "value": "51,947.25",
-      "change_pct": 0.46,
-      "asof": "7/24(金) NY引け(+235.60ドル、3日ぶり反発)"
+    "dow" : {
+      "value" : "51,947.25",
+      "change_pct" : 0.46,
+      "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
-    "nasdaq": {
-      "value": "24,975.82",
-      "change_pct": -0.64,
-      "asof": "7/24(金) NY引け(-161.87pt、3日続落)"
+    "nasdaq" : {
+      "value" : "24,975.82",
+      "change_pct" : -0.64,
+      "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
+    },
+    "sox" : {
+      "value" : "11,818.89",
+      "change_pct" : -4.25,
+      "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
-  "fx": {
-    "value": "163.64円",
-    "change_pct": -0.13,
-    "asof": "7/24(金) NY市場引け時点(前日163.86円)"
+  "fx" : {
+    "value" : "163.79Ã¥ÂÂ",
+    "change_pct" : -0.03,
+    "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
   },
-  "nikkei_futures": {
-    "value": "65,430円",
-    "change_pct": -1.39,
-    "asof": "7/24 夜間取引終値(大阪取引所、前日比920円安)"
+  "nikkei_futures" : {
+    "value" : "64,395.00",
+    "change_pct" : -1.55,
+    "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
   },
-  "nikkei225": {
-    "value": "64,611.15円",
-    "change_pct": -2.73,
-    "asof": "7/24 現物終値(前日比-1,811.45円)"
+  "nikkei225" : {
+    "value" : "64,611.15",
+    "change_pct" : -2.73,
+    "asof" : "7/24Ã§ÂµÂÃ¥ÂÂ¤"
   },
-  "overnight_news": [
-    {
-      "title": "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
-      "url": "https://newswitch.jp/p/42224",
-      "source": "ニュースイッチ(日刊工業新聞社)",
-      "time": "7/25",
-      "investment_sector": "海運",
-      "investment_companies": [
-        "日本郵船(9101)",
-        "商船三井(9104)",
-        "川崎汽船(9107)"
-      ],
-      "money_flow": "紅海・スエズ運河の航行混乱が続き、船社が7月の運賃一括値上げ(GRI)と繁忙期サーチャージ(PSS)を発表するなど海上運賃の上昇が続いており、海運株に資金が流入している",
-      "money_flow_type": "current"
-    },
-    {
-      "title": "ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に",
-      "url": "https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html",
-      "source": "マネーサテライト(松井証券)",
-      "time": "7/25",
-      "investment_sector": "エネルギー・資源",
-      "investment_companies": [
-        "INPEX(1605)",
-        "出光興産(5019)"
-      ],
-      "money_flow": "ホルムズ海峡周辺の地政学リスクが意識され、原油供給への不安が長期化すればエネルギー・資源株に資金が向かう可能性がある",
-      "money_flow_type": "expected"
-    },
-    {
-      "title": "日経平均、AI特需の持続懸念で1811円安の急落",
-      "url": "https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/",
-      "source": "日本経済新聞",
-      "time": "7/24",
-      "investment_sector": "半導体・AI関連",
-      "investment_companies": [
-        "イビデン"
-      ]
-    },
-    {
-      "title": "来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる",
-      "url": "https://s.kabutan.jp/news/n202607241176/",
-      "source": "株探",
-      "time": "7/24",
-      "investment_sector": "半導体",
-      "investment_companies": [
-        "キオクシアホールディングス"
-      ],
-      "money_flow": "FOMC・日銀会合を控え、政策金利の思惑から金融・銀行株に関心が向かう可能性がある",
-      "money_flow_type": "expected"
-    },
-    {
-      "title": "NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷",
-      "url": "https://www.zaikei.co.jp/article/20260724/862565.html",
-      "source": "財経新聞",
-      "time": "7/24",
-      "investment_sector": "AI・ハイテク株",
-      "money_flow": "原油高が投資家心理の重荷となっており、資源関連株への関心が高まりつつある",
-      "money_flow_type": "expected"
-    }
-  ],
-  "tdnet_morning": [
-    {
-      "time": "07/25 09:30",
-      "code": "3382",
-      "company": "７＆ｉＨＤ",
-      "title": "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599579.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "1721",
-      "company": "コムシスＨＤ",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595400.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "4116",
-      "company": "大日精化",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596405.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "4684",
-      "company": "オービック",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595421.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "6770",
-      "company": "アルプスアルパイン",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了及び一部失権に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598996.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "7220",
-      "company": "武蔵精密",
-      "title": "譲渡制限付株式報酬としての新株式の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599194.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "8700",
-      "company": "丸八証券",
-      "title": "2027年３月期 第１四半期決算速報値に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598268.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "2804",
-      "company": "ブルドックソース",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598662.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "8060",
-      "company": "キヤノンＭＪ",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596930.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "8707",
-      "company": "岩井コスモ",
-      "title": "2027年3月期 第1四半期決算短信［日本基準］（連結）",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598646.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "2593",
-      "company": "伊藤園",
-      "title": "譲渡制限付株式報酬のための自己株式の処分に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260722597741.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "3402",
-      "company": "東レ",
-      "title": "譲渡制限付株式報酬としての自己株式の処分について",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599339.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "4212",
-      "company": "積水樹脂",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598962.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "4519",
-      "company": "中外薬",
-      "title": "2026年12月期 第2四半期（中間期）決算短信〔ＩＦＲＳ〕（連結）",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598715.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "6804",
-      "company": "ホシデン",
-      "title": "取締役に対する譲渡制限付株式としての自己株式処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599225.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "6875",
-      "company": "メガチップス",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598380.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "7974",
-      "company": "任天堂",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599114.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "8154",
-      "company": "加賀電子",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599290.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "9012",
-      "company": "秩父鉄道",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599223.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "9409",
-      "company": "テレビ朝日ＨＤ",
-      "title": "譲渡制限付株式報酬としての新株式の払込完了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260708589996.pdf",
-      "tag": "自社株"
-    },
-    {
-      "time": "07/24 15:45",
-      "code": "3197",
-      "company": "すかいらーくＨＤ",
-      "title": "第6回無担保社債発行のお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599351.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 15:30",
-      "code": "3386",
-      "company": "コスモ・バイオ",
-      "title": "業績予想の修正に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599233.pdf",
-      "tag": "他"
-    }
-  ],
-  "movers_morning": [
-    {
-      "code": "5240",
-      "name": "monoAI technology",
-      "price": "213円",
-      "change_pct": 30.67,
-      "volume_note": "ストップ高",
-      "reason": "具体的な材料は確認できず、思惑的な物色とみられる"
-    },
-    {
-      "code": "3260",
-      "name": "エスポア",
-      "price": "642円",
-      "change_pct": 18.45,
-      "volume_note": "ストップ高（前日ストップ安からの反発）",
-      "reason": "系統用蓄電池関連の販売用不動産取得・権利売却の発表を材料視"
-    },
-    {
-      "code": "5242",
-      "name": "アイズ",
-      "price": "2,209円",
-      "change_pct": 11.01,
-      "volume_note": "ストップ高、9連騰",
-      "reason": "「メディアレーダー」会員数14万人突破、オンラインファクタリング提供対象拡大を材料に買い継続"
-    },
-    {
-      "code": "8918",
-      "name": "ランド",
-      "price": "11円",
-      "change_pct": 10.0,
-      "volume_note": "出来高急増(3億株超)",
-      "reason": "2027年2月期1Q増収増益(売上+203.9%)、再エネ関連投資事業が牽引"
-    }
-  ],
-  "tdnet_afterclose": [
-    {
-      "time": "07/24 17:00",
-      "code": "4829",
-      "company": "日本エンタープライズ",
-      "title": "会社分割による持株会社体制移行に伴う吸収分割契約の締結および定款の一部変更（商号および事業目的等の一部変更）に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599395.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "6653",
-      "company": "正興電機製作所",
-      "title": "第２四半期連結業績予想値と実績値との差異、通期連結業績予想の修正、剰余金の配当（中間配当）並びに期末配当予想の修正に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598687.pdf",
-      "tag": "業績修正"
-    },
-    {
-      "time": "07/24 17:00",
-      "code": "8700",
-      "company": "丸八証券",
-      "title": "2027年３月期 第１四半期決算速報値に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598268.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:40",
-      "code": "2656",
-      "company": "ベクターＨＤ",
-      "title": "Blue Goatsグループとの高性能サーバーレンタル事業における戦略的パートナーシップに関する基本合意書締結のお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599437.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 16:40",
-      "code": "6778",
-      "company": "アルチザ",
-      "title": "自己株式の取得状況及び取得終了に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599458.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "1964",
-      "company": "中外炉",
-      "title": "2027年3月期 第1四半期決算短信〔日本基準〕（連結）",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599456.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "2804",
-      "company": "ブルドックソース",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598662.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "2804",
-      "company": "ブルドックソース",
-      "title": "自己株式の取得枠拡大及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599483.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "3448",
-      "company": "Ｐ－清鋼材",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-３）による自己株式の買付に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598805.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "6993",
-      "company": "大黒屋",
-      "title": "支配株主等に関する事項について",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599289.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "7746",
-      "company": "岡本硝子",
-      "title": "行使価額修正条項付新株予約権の大量行使に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599383.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "8060",
-      "company": "キヤノンＭＪ",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596930.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "07/24 16:30",
-      "code": "8707",
-      "company": "岩井コスモ",
-      "title": "2027年3月期 第1四半期決算短信［日本基準］（連結）",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598646.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "3445",
-      "company": "ＲＳＴＥＣＨ",
-      "title": "江西盛泰精密光学有限公司との資本提携に関する協議終了のお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599323.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "4519",
-      "company": "中外薬",
-      "title": "2026年12月期 第2四半期（中間期）決算短信〔ＩＦＲＳ〕（連結）",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598715.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "07/24 16:00",
-      "code": "6629",
-      "company": "テクノホライゾン",
-      "title": "Vital Vision Technology Pte. Ltd.及びEI3D Pte. Ltd.の株式取得（完全子会社化）に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596680.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 15:45",
-      "code": "3197",
-      "company": "すかいらーくＨＤ",
-      "title": "第6回無担保社債発行のお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599351.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 15:30",
-      "code": "2693",
-      "company": "ＹＫＴ",
-      "title": "特別損失（貸倒引当金繰入額）の計上及び業績予想の修正に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260722597202.pdf",
-      "tag": "業績修正"
-    },
-    {
-      "time": "07/24 15:30",
-      "code": "2911",
-      "company": "旭松食品",
-      "title": "投資有価証券売却益（特別利益）の計上見込みに関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598376.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "07/24 15:30",
-      "code": "3111",
-      "company": "オーミケンシ",
-      "title": "2026年3月期通期連結業績予想の修正及び営業外収益の計上見込みに関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598922.pdf",
-      "tag": "業績修正"
-    },
-    {
-      "time": "07/24 15:30",
-      "code": "3386",
-      "company": "コスモ・バイオ",
-      "title": "業績予想の修正に関するお知らせ",
-      "url": "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599233.pdf",
-      "tag": "業績修正"
-    }
-  ],
-  "afterclose_news": [
-    {
-      "title": "トランプ政権、新関税を7月24日発動。60カ国・地域が対象、日本は追加関税で計12.5%に",
-      "url": "https://news.yahoo.co.jp/articles/d5b95dbb4032949ddc2da0768d79e4f9296409ad",
-      "source": "毎日新聞(Yahoo!ニュース)",
-      "time": "7/24",
-      "investment_sector": "自動車・輸出関連",
-      "investment_companies": [
-        "トヨタ自動車(7203)",
-        "日産自動車(7201)",
-        "SUBARU(7270)"
-      ],
-      "money_flow": "新関税の発動により輸出採算の悪化が懸念され、自動車株には既に警戒感が織り込まれつつある",
-      "money_flow_type": "current"
-    },
-    {
-      "title": "日銀、タカ派傾斜を強める。円安による物価上振れリスクを警戒し利上げペース加速に柔軟姿勢との報道",
-      "url": "https://www.bloomberg.com/jp/news/articles/2026-07-22/TIJSOWT96OSG00",
-      "source": "Bloomberg",
-      "time": "7/22",
-      "investment_sector": "金融・銀行",
-      "investment_companies": [
-        "三菱ＵＦＪフィナンシャル・グループ(8306)",
-        "三井住友フィナンシャルグループ(8316)",
-        "みずほフィナンシャルグループ(8411)"
-      ],
-      "money_flow": "7月30-31日の日銀会合を控え、タカ派傾斜報道を受けて金利上昇を見込んだ資金が銀行株に向かう可能性がある",
-      "money_flow_type": "expected"
-    },
-    {
-      "title": "台湾、AI向け先端半導体の対中輸出規制強化を検討との報道",
-      "url": "https://www.bloomberg.com/jp/news/articles/2026-06-09/TGD08XT96OSH00",
-      "source": "Bloomberg",
-      "time": "6/9",
-      "investment_sector": "半導体製造装置",
-      "investment_companies": [
-        "東京エレクトロン(8035)",
-        "アドバンテスト(6857)",
-        "ディスコ(6146)"
-      ],
-      "money_flow": "対中輸出規制の強化が続けば、代替供給網構築への思惑から国内半導体製造装置株に関心が向かう可能性がある",
-      "money_flow_type": "expected"
-    }
-  ],
-  "movers_afterclose": [
-    {
-      "code": "3907",
-      "name": "シリコンスタジオ",
-      "price": "1,310円",
-      "change_pct": 25.5,
-      "volume_note": "ストップ高",
-      "reason": "具体的な材料は確認できず、思惑的な物色とみられる"
-    },
-    {
-      "code": "4424",
-      "name": "Amazia",
-      "price": "384円",
-      "change_pct": 19.6,
-      "volume_note": "急騰",
-      "reason": "具体的な材料は確認できず、思惑的な物色とみられる"
-    },
-    {
-      "code": "6522",
-      "name": "アスタリスク",
-      "price": "1,804円",
-      "change_pct": 18.8,
-      "volume_note": "急騰",
-      "reason": "東証が信用規制を解除したことを材料視"
-    },
-    {
-      "code": "4564",
-      "name": "オンコセラピー・サイエンス",
-      "price": "21円",
-      "change_pct": null,
-      "volume_note": "出来高急増(32,136,100株、出来高ランキング上位)",
-      "reason": "出来高急増、具体的な材料は確認できず思惑的な物色とみられる"
-    },
-    {
-      "code": "9432",
-      "name": "ＮＴＴ",
-      "price": "151.3円",
-      "change_pct": null,
-      "volume_note": "出来高上位(3位)",
-      "reason": "個人投資家中心に売買が活発、具体的な単独材料は確認できず"
-    }
-  ],
-  "technical": [
-    {
-      "code": "7203",
-      "name": "トヨタ自動車",
-      "price": "2,897.0円",
-      "change_pct": -1.8,
-      "ma5_dev": "-0.99%",
-      "ma25_dev": "+2.46%",
-      "rsi": 57.11,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立6/売り1/買い0とやや売り優勢。RSI(14)は57.11で中立圏(過熱感なし)。（7/24終値時点）"
-    },
-    {
-      "code": "6758",
-      "name": "ソニーグループ",
-      "price": "3,458.0円",
-      "change_pct": -0.35,
-      "ma5_dev": "+0.89%",
-      "ma25_dev": "+4.01%",
-      "rsi": 65.24,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立7/売り0/買い0で方向感に乏しい。RSI(14)は65.24でやや買われ気味の中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "8306",
-      "name": "三菱ＵＦＪフィナンシャル・グループ",
-      "price": "3,750.0円",
-      "change_pct": 2.24,
-      "ma5_dev": "+3.59%",
-      "ma25_dev": "+9.91%",
-      "rsi": 73.22,
-      "signal": "中立(過熱感)",
-      "summary": "シグナル判定は中立5/売り2/買い0。RSI(14)は73.22で買われすぎ水準(70以上)にあり過熱感に留意。（7/23終値時点）"
-    },
-    {
-      "code": "9984",
-      "name": "ソフトバンクグループ",
-      "price": "5,424.0円",
-      "change_pct": -9.01,
-      "ma5_dev": "-11.61%",
-      "ma25_dev": "-15.07%",
-      "rsi": 41.35,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立5/売り0/買い2とやや買い優勢。RSI(14)は41.35で売られ過ぎ水準(30以下)には未達。（7/17終値時点、7営業日前とやや古いデータのため参考程度）"
-    },
-    {
-      "code": "6861",
-      "name": "キーエンス",
-      "price": "71,800.0円",
-      "change_pct": -0.64,
-      "ma5_dev": "-5.15%",
-      "ma25_dev": "-3.03%",
-      "rsi": 55.26,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は55.26で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "6954",
-      "name": "ファナック",
-      "price": "6,624.0円",
-      "change_pct": -4.53,
-      "ma5_dev": "-0.56%",
-      "ma25_dev": "-6.20%",
-      "rsi": 43.72,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立優勢でやや買い優勢。RSI(14)は43.72で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "7974",
-      "name": "任天堂",
-      "price": "6,969.0円",
-      "change_pct": -0.46,
-      "ma5_dev": "-1.40%",
-      "ma25_dev": "-6.13%",
-      "rsi": 35.24,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立優勢でやや買い優勢。RSI(14)は35.24で売られ過ぎ水準(30以下)に接近。（7/24終値時点）"
-    },
-    {
-      "code": "6098",
-      "name": "リクルートホールディングス",
-      "price": "12,250.0円",
-      "change_pct": -0.45,
-      "ma5_dev": "-0.83%",
-      "ma25_dev": "-1.31%",
-      "rsi": 45.47,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は45.47で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "8035",
-      "name": "東京エレクトロン",
-      "price": "78,800.0円",
-      "change_pct": 2.14,
-      "ma5_dev": "+3.98%",
-      "ma25_dev": "+17.90%",
-      "rsi": 68.65,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は68.65で買われ気味の中立圏。（7/24終値時点、一部データはWebSearch集計のため参考程度）"
-    },
-    {
-      "code": "9433",
-      "name": "ＫＤＤＩ",
-      "price": "2,852.5円",
-      "change_pct": 0.62,
-      "ma5_dev": "-0.81%",
-      "ma25_dev": "+2.97%",
-      "rsi": 69.40,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立優勢でやや買い優勢。RSI(14)は69.40で買われ気味の中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "9432",
-      "name": "日本電信電話",
-      "price": "151.3円",
-      "change_pct": 1.07,
-      "ma5_dev": "-0.47%",
-      "ma25_dev": "-1.28%",
-      "rsi": 52.97,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立優勢でやや買い優勢。RSI(14)は52.97で中立圏。（7/24終値時点、一部データはWebSearch集計のため参考程度）"
-    },
-    {
-      "code": "7267",
-      "name": "本田技研工業",
-      "price": "1,536.0円",
-      "change_pct": -1.95,
-      "ma5_dev": "+2.62%",
-      "ma25_dev": "+3.15%",
-      "rsi": 59.22,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立優勢でやや買い優勢。RSI(14)は59.22で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "6367",
-      "name": "ダイキン工業",
-      "price": "26,010.0円",
-      "change_pct": 1.23,
-      "ma5_dev": "+3.42%",
-      "ma25_dev": "+9.30%",
-      "rsi": 87.76,
-      "signal": "中立(過熱感)",
-      "summary": "シグナル判定は中立優勢。RSI(14)は87.76で買われすぎ水準(70以上)にあり過熱感に強く留意。（7/24終値時点）"
-    },
-    {
-      "code": "9983",
-      "name": "ファーストリテイリング",
-      "price": "86,540.0円",
-      "change_pct": 2.41,
-      "ma5_dev": "+1.28%",
-      "ma25_dev": "+5.70%",
-      "rsi": 66.00,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は66.00で買われ気味の中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "4063",
-      "name": "信越化学工業",
-      "price": "6,702.0円",
-      "change_pct": -3.85,
-      "ma5_dev": "-1.47%",
-      "ma25_dev": "+0.66%",
-      "rsi": 46.99,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は46.99で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "6857",
-      "name": "アドバンテスト",
-      "price": "32,170.0円",
-      "change_pct": 1.35,
-      "ma5_dev": "+4.04%",
-      "ma25_dev": "+17.26%",
-      "rsi": 70.05,
-      "signal": "中立(過熱感)",
-      "summary": "シグナル判定は中立優勢。RSI(14)は70.05で買われすぎ水準(70以上)に達し過熱感に留意。（7/24終値時点）"
-    },
-    {
-      "code": "4519",
-      "name": "中外製薬",
-      "price": "7,416.0円",
-      "change_pct": 2.83,
-      "ma5_dev": "-0.15%",
-      "ma25_dev": "-4.14%",
-      "rsi": 36.06,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は36.06で売られ過ぎ水準(30以下)に接近。（7/24終値時点）"
-    },
-    {
-      "code": "5401",
-      "name": "日本製鉄",
-      "price": "547.0円",
-      "change_pct": 1.20,
-      "ma5_dev": "+0.54%",
-      "ma25_dev": "-1.89%",
-      "rsi": 48.88,
-      "signal": "中立(やや強気)",
-      "summary": "シグナル判定は中立優勢でやや買い優勢。RSI(14)は48.88で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "2413",
-      "name": "エムスリー",
-      "price": "1,812.0円",
-      "change_pct": -1.47,
-      "ma5_dev": "-3.63%",
-      "ma25_dev": "-2.35%",
-      "rsi": 46.52,
-      "signal": "中立(やや弱気)",
-      "summary": "シグナル判定は中立優勢でやや売り優勢。RSI(14)は46.52で中立圏。（7/24終値時点）"
-    },
-    {
-      "code": "6645",
-      "name": "オムロン",
-      "price": "5,479.0円",
-      "change_pct": -0.85,
-      "ma5_dev": "+0.96%",
-      "ma25_dev": "-4.74%",
-      "rsi": 35.42,
-      "signal": "中立",
-      "summary": "シグナル判定は中立7/売り0/買い0で方向感は中立。RSI(14)は35.42で売られ過ぎ水準(30以下)手前の中立圏。（7/24終値時点）"
-    }
-  ],
-  "us_good_news": [
-    {
-      "ticker": "UNP",
-      "company": "Union Pacific",
-      "category": "earnings_beat",
-      "headline": "Union Pacificが2Q決算でEPS・売上高とも市場予想を上回り、通期見通しも上方修正。株価は一時52週高値近辺まで上昇",
-      "url": "https://www.chartmill.com/news/UNP/Chartmill-51508-Union-Pacific-NYSEUNP-Surges-on-Earnings-Beat-Showcasing-Quality-Stock-Performance",
-      "time": "7/23"
-    },
-    {
-      "ticker": "THC",
-      "company": "Tenet Healthcare",
-      "category": "guidance_raise",
-      "headline": "Tenet Healthcareが2Q決算で大幅増益、通期業績見通しを2億9500万ドル引き上げ。株価は時間外で17%超上昇",
-      "url": "https://finance.yahoo.com/healthcare/articles/tenet-healthcare-shares-jump-second-103508861.html",
-      "time": "7/24"
-    },
-    {
-      "ticker": "DLR",
-      "company": "Digital Realty Trust",
-      "category": "upgrade",
-      "headline": "Digital Realty TrustがAI・クラウド需要を背景に2Q決算で大幅増益、TD Cowenが「Hold」から「Buy」に格上げ",
-      "url": "https://www.tradingpedia.com/2026/07/24/digital-realty-rallies-as-analysts-upgrade-stock/",
-      "time": "7/24"
-    },
-    {
-      "ticker": "SSNC",
-      "company": "SS&C Technologies",
-      "category": "buyback",
-      "headline": "SS&C Technologiesが2Q決算で増収増益、四半期として過去最大となる4億3500万ドルの自社株買いを実施し通期見通しも上方修正",
-      "url": "https://stockstotrade.com/news/ss-c-technologies-holdings-inc-ssnc-news-2026_07_24/",
-      "time": "7/24"
-    },
-    {
-      "ticker": "BPOP",
-      "company": "Popular Inc",
-      "category": "dividend_hike",
-      "headline": "Popular Incが四半期配当を0.75ドルから0.90ドルへ20%増配、新たに10億ドルの自社株買いプログラムも発表",
-      "url": "https://www.tipranks.com/news/company-announcements/popular-boosts-dividend-and-launches-new-buyback-program",
-      "time": "7/23"
-    },
-    {
-      "ticker": "EW",
-      "company": "Edwards Lifesciences",
-      "category": "earnings_beat",
-      "headline": "Edwards Lifesciencesが2Q決算でEPS・売上高とも予想超え、TAVR事業の好調を受け2026年売上高見通しを上方修正。株価は時間外で6%超上昇",
-      "url": "https://www.chartmill.com/news/EW/Chartmill-51555-Edwards-Lifesciences-NYSEEW-Raises-Guidance-After-Solid-Q2-Earnings-Stock-Surges-6",
-      "time": "7/23"
-    }
-  ],
-  "economic_calendar": [
-    {
-      "date": "7/28-29",
-      "event": "FOMC（米連邦公開市場委員会）",
-      "importance": 5,
-      "note": "政策金利は5会合連続据え置きが予想される。7/29 2:00pm(ET)に声明公表、2:30pm(ET)にパウエル議長会見"
-    },
-    {
-      "date": "7/30",
-      "event": "米GDP速報値(4-6月期)",
-      "importance": 4,
-      "note": "米国東部時間8:30発表予定"
-    },
-    {
-      "date": "7/30-31",
-      "event": "日銀金融政策決定会合",
-      "importance": 5,
-      "note": "タカ派傾斜との報道もあり利上げペースへの言及に注目"
-    },
-    {
-      "date": "7/28",
-      "event": "国内決算集中日(キーエンス、シマノ、松井証券、JPX、カプコン等)",
-      "importance": 3,
-      "note": "主要企業の決算発表が集中"
-    },
-    {
-      "date": "7/29",
-      "event": "野村ホールディングス決算",
-      "importance": 3,
-      "note": "国内証券最大手の決算内容に注目"
-    },
-    {
-      "date": "7/30",
-      "event": "東京エレクトロン・アドバンテスト等 半導体大手決算",
-      "importance": 4,
-      "note": "AI投資・半導体需要動向を占う重要決算、みずほFG・JT決算も同日"
-    }
-  ]
+  "overnight_news" : [ {
+    "title" : "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
+    "url" : "https://newswitch.jp/p/42224",
+    "source" : "ニュースイッチ(日刊工業新聞社)",
+    "time" : "7/25",
+    "investment_sector" : "海運",
+    "investment_companies" : [ "日本郵船(9101)", "商船三井(9104)", "川崎汽船(9107)" ],
+    "money_flow" : "紅海・スエズ運河の航行混乱が続き、船社が7月の運賃一括値上げ(GRI)と繁忙期サーチャージ(PSS)を発表するなど海上運賃の上昇が続いており、海運株に資金が流入している",
+    "money_flow_type" : "current"
+  }, {
+    "title" : "ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に",
+    "url" : "https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html",
+    "source" : "マネーサテライト(松井証券)",
+    "time" : "7/25",
+    "investment_sector" : "エネルギー・資源",
+    "investment_companies" : [ "INPEX(1605)", "出光興産(5019)" ],
+    "money_flow" : "ホルムズ海峡周辺の地政学リスクが意識され、原油供給への不安が長期化すればエネルギー・資源株に資金が向かう可能性がある",
+    "money_flow_type" : "expected"
+  }, {
+    "title" : "日経平均、AI特需の持続懸念で1811円安の急落",
+    "url" : "https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/",
+    "source" : "日本経済新聞",
+    "time" : "7/24",
+    "investment_sector" : "半導体・AI関連",
+    "investment_companies" : [ "イビデン" ]
+  }, {
+    "title" : "来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる",
+    "url" : "https://s.kabutan.jp/news/n202607241176/",
+    "source" : "株探",
+    "time" : "7/24",
+    "investment_sector" : "半導体",
+    "investment_companies" : [ "キオクシアホールディングス" ],
+    "money_flow" : "FOMC・日銀会合を控え、政策金利の思惑から金融・銀行株に関心が向かう可能性がある",
+    "money_flow_type" : "expected"
+  }, {
+    "title" : "NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷",
+    "url" : "https://www.zaikei.co.jp/article/20260724/862565.html",
+    "source" : "財経新聞",
+    "time" : "7/24",
+    "investment_sector" : "AI・ハイテク株",
+    "money_flow" : "原油高が投資家心理の重荷となっており、資源関連株への関心が高まりつつある",
+    "money_flow_type" : "expected"
+  } ],
+  "tdnet_morning" : [ {
+    "time" : "07/25 09:30",
+    "code" : "3382",
+    "company" : "７＆ｉＨＤ",
+    "title" : "欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599579.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "07/24 17:00",
+    "code" : "1721",
+    "company" : "コムシスＨＤ",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595400.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 17:00",
+    "code" : "4116",
+    "company" : "大日精化",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596405.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 17:00",
+    "code" : "4684",
+    "company" : "オービック",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260716595421.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 17:00",
+    "code" : "6770",
+    "company" : "アルプスアルパイン",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了及び一部失権に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598996.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 17:00",
+    "code" : "7220",
+    "company" : "武蔵精密",
+    "title" : "譲渡制限付株式報酬としての新株式の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599194.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 17:00",
+    "code" : "8700",
+    "company" : "丸八証券",
+    "title" : "2027年３月期 第１四半期決算速報値に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598268.pdf",
+    "tag" : "決算"
+  }, {
+    "time" : "07/24 16:30",
+    "code" : "2804",
+    "company" : "ブルドックソース",
+    "title" : "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598662.pdf",
+    "tag" : "決算"
+  }, {
+    "time" : "07/24 16:30",
+    "code" : "8060",
+    "company" : "キヤノンＭＪ",
+    "title" : "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260721596930.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:30",
+    "code" : "8707",
+    "company" : "岩井コスモ",
+    "title" : "2027年3月期 第1四半期決算短信［日本基準］（連結）",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598646.pdf",
+    "tag" : "決算"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "2593",
+    "company" : "伊藤園",
+    "title" : "譲渡制限付株式報酬のための自己株式の処分に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260722597741.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "3402",
+    "company" : "東レ",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分について",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599339.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "4212",
+    "company" : "積水樹脂",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724598962.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "4519",
+    "company" : "中外薬",
+    "title" : "2026年12月期 第2四半期（中間期）決算短信〔ＩＦＲＳ〕（連結）",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598715.pdf",
+    "tag" : "決算"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "6804",
+    "company" : "ホシデン",
+    "title" : "取締役に対する譲渡制限付株式としての自己株式処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599225.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "6875",
+    "company" : "メガチップス",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260723598380.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "7974",
+    "company" : "任天堂",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599114.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "8154",
+    "company" : "加賀電子",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599290.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "9012",
+    "company" : "秩父鉄道",
+    "title" : "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599223.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 16:00",
+    "code" : "9409",
+    "company" : "テレビ朝日ＨＤ",
+    "title" : "譲渡制限付株式報酬としての新株式の払込完了に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260708589996.pdf",
+    "tag" : "自社株"
+  }, {
+    "time" : "07/24 15:45",
+    "code" : "3197",
+    "company" : "すかいらーくＨＤ",
+    "title" : "第6回無担保社債発行のお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599351.pdf",
+    "tag" : "他"
+  }, {
+    "time" : "07/24 15:30",
+    "code" : "3386",
+    "company" : "コスモ・バイオ",
+    "title" : "業績予想の修正に関するお知らせ",
+    "url" : "https://webapi.yanoshin.jp/rd.php?https://www.release.tdnet.info/inbs/140120260724599233.pdf",
+    "tag" : "他"
+  } ],
+  "movers_morning" : [ {
+    "code" : "5240",
+    "name" : "monoAI technology",
+    "price" : "213円",
+    "change_pct" : 30.67,
+    "volume_note" : "ストップ高",
+    "reason" : "具体的な材料は確認できず、思惑的な物色とみられる"
+  }, {
+    "code" : "3260",
+    "name" : "エスポア",
+    "price" : "642円",
+    "change_pct" : 18.45,
+    "volume_note" : "ストップ高（前日ストップ安からの反発）",
+    "reason" : "系統用蓄電池関連の販売用不動産取得・権利売却の発表を材料視"
+  }, {
+    "code" : "5242",
+    "name" : "アイズ",
+    "price" : "2,209円",
+    "change_pct" : 11.01,
+    "volume_note" : "ストップ高、9連騰",
+    "reason" : "「メディアレーダー」会員数14万人突破、オンラインファクタリング提供対象拡大を材料に買い継続"
+  }, {
+    "code" : "8918",
+    "name" : "ランド",
+    "price" : "11円",
+    "change_pct" : 10.0,
+    "volume_note" : "出来高急増(3億株超)",
+    "reason" : "2027年2月期1Q増収増益(売上+203.9%)、再エネ関連投資事業が牽引"
+  } ],
+  "tdnet_afterclose" : [ {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "信金中央、定款 2026/07/24 他 7月24日(金) 18:55",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf",
+    "tag" : "Ã¤Â»Â"
+  }, {
+    "time" : "Ã¢ÂÂ",
+    "code" : "Ã¢ÂÂ",
+    "company" : "Ã¢ÂÂ",
+    "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
+    "tag" : "Ã¤Â»Â"
+  } ],
+  "afterclose_news" : [ {
+    "title" : "トランプ政権、新関税を7月24日発動。60カ国・地域が対象、日本は追加関税で計12.5%に",
+    "url" : "https://news.yahoo.co.jp/articles/d5b95dbb4032949ddc2da0768d79e4f9296409ad",
+    "source" : "毎日新聞(Yahoo!ニュース)",
+    "time" : "7/24",
+    "investment_sector" : "自動車・輸出関連",
+    "investment_companies" : [ "トヨタ自動車(7203)", "日産自動車(7201)", "SUBARU(7270)" ],
+    "money_flow" : "新関税の発動により輸出採算の悪化が懸念され、自動車株には既に警戒感が織り込まれつつある",
+    "money_flow_type" : "current"
+  }, {
+    "title" : "日銀、タカ派傾斜を強める。円安による物価上振れリスクを警戒し利上げペース加速に柔軟姿勢との報道",
+    "url" : "https://www.bloomberg.com/jp/news/articles/2026-07-22/TIJSOWT96OSG00",
+    "source" : "Bloomberg",
+    "time" : "7/22",
+    "investment_sector" : "金融・銀行",
+    "investment_companies" : [ "三菱ＵＦＪフィナンシャル・グループ(8306)", "三井住友フィナンシャルグループ(8316)", "みずほフィナンシャルグループ(8411)" ],
+    "money_flow" : "7月30-31日の日銀会合を控え、タカ派傾斜報道を受けて金利上昇を見込んだ資金が銀行株に向かう可能性がある",
+    "money_flow_type" : "expected"
+  }, {
+    "title" : "台湾、AI向け先端半導体の対中輸出規制強化を検討との報道",
+    "url" : "https://www.bloomberg.com/jp/news/articles/2026-06-09/TGD08XT96OSH00",
+    "source" : "Bloomberg",
+    "time" : "6/9",
+    "investment_sector" : "半導体製造装置",
+    "investment_companies" : [ "東京エレクトロン(8035)", "アドバンテスト(6857)", "ディスコ(6146)" ],
+    "money_flow" : "対中輸出規制の強化が続けば、代替供給網構築への思惑から国内半導体製造装置株に関心が向かう可能性がある",
+    "money_flow_type" : "expected"
+  } ],
+  "movers_afterclose" : [ {
+    "code" : "3907",
+    "name" : "シリコンスタジオ",
+    "price" : "1,310円",
+    "change_pct" : 25.5,
+    "volume_note" : "ストップ高",
+    "reason" : "具体的な材料は確認できず、思惑的な物色とみられる"
+  }, {
+    "code" : "4424",
+    "name" : "Amazia",
+    "price" : "384円",
+    "change_pct" : 19.6,
+    "volume_note" : "急騰",
+    "reason" : "具体的な材料は確認できず、思惑的な物色とみられる"
+  }, {
+    "code" : "6522",
+    "name" : "アスタリスク",
+    "price" : "1,804円",
+    "change_pct" : 18.8,
+    "volume_note" : "急騰",
+    "reason" : "東証が信用規制を解除したことを材料視"
+  }, {
+    "code" : "4564",
+    "name" : "オンコセラピー・サイエンス",
+    "price" : "21円",
+    "change_pct" : null,
+    "volume_note" : "出来高急増(32,136,100株、出来高ランキング上位)",
+    "reason" : "出来高急増、具体的な材料は確認できず思惑的な物色とみられる"
+  }, {
+    "code" : "9432",
+    "name" : "ＮＴＴ",
+    "price" : "151.3円",
+    "change_pct" : null,
+    "volume_note" : "出来高上位(3位)",
+    "reason" : "個人投資家中心に売買が活発、具体的な単独材料は確認できず"
+  } ],
+  "technical" : [ {
+    "code" : "7203",
+    "name" : "トヨタ自動車",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 57.11,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6758",
+    "name" : "ソニーグループ",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 53.05,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "8306",
+    "name" : "三菱UFJフィナンシャル・グループ",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 72.77,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â(Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂ)",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ70Ã¨Â¶ÂÃ£ÂÂ§Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¨ÂÂ½Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "9984",
+    "name" : "ソフトバンクグループ",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 40.16,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6861",
+    "name" : "キーエンス",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 28.21,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â(Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂ)",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ30Ã¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ§Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥ÂÂ°Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6954",
+    "name" : "ファナック",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 35.27,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "7974",
+    "name" : "任天堂",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 43.18,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6098",
+    "name" : "リクルートホールディングス",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 52.29,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "8035",
+    "name" : "東京エレクトロン",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 32.93,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "9433",
+    "name" : "KDDI",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 87.41,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â(Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂ)",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ70Ã¨Â¶ÂÃ£ÂÂ§Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¨ÂÂ½Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "9432",
+    "name" : "日本電信電話",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 68.57,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "7267",
+    "name" : "本田技研工業",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 47.7,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6367",
+    "name" : "ダイキン工業",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 19.19,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â(Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂ)",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ30Ã¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ§Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥ÂÂ°Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "9983",
+    "name" : "ファーストリテイリング",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 28.32,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â(Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂ)",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ30Ã¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ§Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥ÂÂ°Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "4063",
+    "name" : "信越化学工業",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 45.44,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6857",
+    "name" : "アドバンテスト",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 48.86,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "4519",
+    "name" : "中外製薬",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 42.15,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "5401",
+    "name" : "日本製鉄",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 88.64,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â(Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂ)",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ70Ã¨Â¶ÂÃ£ÂÂ§Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¨ÂÂ½Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "2413",
+    "name" : "エムスリー",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 44.83,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  }, {
+    "code" : "6645",
+    "name" : "オムロン",
+    "price" : "Ã¢ÂÂ",
+    "change_pct" : null,
+    "ma5_dev" : "Ã¢ÂÂ",
+    "ma25_dev" : "Ã¢ÂÂ",
+    "rsi" : 35.42,
+    "signal" : "Ã¤Â¸Â­Ã§Â«Â",
+    "summary" : "Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ"
+  } ],
+  "us_good_news" : [ {
+    "ticker" : "UNP",
+    "company" : "Union Pacific",
+    "category" : "earnings_beat",
+    "headline" : "Union Pacificが2Q決算でEPS・売上高とも市場予想を上回り、通期見通しも上方修正。株価は一時52週高値近辺まで上昇",
+    "url" : "https://www.chartmill.com/news/UNP/Chartmill-51508-Union-Pacific-NYSEUNP-Surges-on-Earnings-Beat-Showcasing-Quality-Stock-Performance",
+    "time" : "7/23"
+  }, {
+    "ticker" : "THC",
+    "company" : "Tenet Healthcare",
+    "category" : "guidance_raise",
+    "headline" : "Tenet Healthcareが2Q決算で大幅増益、通期業績見通しを2億9500万ドル引き上げ。株価は時間外で17%超上昇",
+    "url" : "https://finance.yahoo.com/healthcare/articles/tenet-healthcare-shares-jump-second-103508861.html",
+    "time" : "7/24"
+  }, {
+    "ticker" : "DLR",
+    "company" : "Digital Realty Trust",
+    "category" : "upgrade",
+    "headline" : "Digital Realty TrustがAI・クラウド需要を背景に2Q決算で大幅増益、TD Cowenが「Hold」から「Buy」に格上げ",
+    "url" : "https://www.tradingpedia.com/2026/07/24/digital-realty-rallies-as-analysts-upgrade-stock/",
+    "time" : "7/24"
+  }, {
+    "ticker" : "SSNC",
+    "company" : "SS&C Technologies",
+    "category" : "buyback",
+    "headline" : "SS&C Technologiesが2Q決算で増収増益、四半期として過去最大となる4億3500万ドルの自社株買いを実施し通期見通しも上方修正",
+    "url" : "https://stockstotrade.com/news/ss-c-technologies-holdings-inc-ssnc-news-2026_07_24/",
+    "time" : "7/24"
+  }, {
+    "ticker" : "BPOP",
+    "company" : "Popular Inc",
+    "category" : "dividend_hike",
+    "headline" : "Popular Incが四半期配当を0.75ドルから0.90ドルへ20%増配、新たに10億ドルの自社株買いプログラムも発表",
+    "url" : "https://www.tipranks.com/news/company-announcements/popular-boosts-dividend-and-launches-new-buyback-program",
+    "time" : "7/23"
+  }, {
+    "ticker" : "EW",
+    "company" : "Edwards Lifesciences",
+    "category" : "earnings_beat",
+    "headline" : "Edwards Lifesciencesが2Q決算でEPS・売上高とも予想超え、TAVR事業の好調を受け2026年売上高見通しを上方修正。株価は時間外で6%超上昇",
+    "url" : "https://www.chartmill.com/news/EW/Chartmill-51555-Edwards-Lifesciences-NYSEEW-Raises-Guidance-After-Solid-Q2-Earnings-Stock-Surges-6",
+    "time" : "7/23"
+  } ],
+  "economic_calendar" : [ {
+    "date" : "7/28-29",
+    "event" : "FOMC（米連邦公開市場委員会）",
+    "importance" : 5,
+    "note" : "政策金利は5会合連続据え置きが予想される。7/29 2:00pm(ET)に声明公表、2:30pm(ET)にパウエル議長会見"
+  }, {
+    "date" : "7/30",
+    "event" : "米GDP速報値(4-6月期)",
+    "importance" : 4,
+    "note" : "米国東部時間8:30発表予定"
+  }, {
+    "date" : "7/30-31",
+    "event" : "日銀金融政策決定会合",
+    "importance" : 5,
+    "note" : "タカ派傾斜との報道もあり利上げペースへの言及に注目"
+  }, {
+    "date" : "7/28",
+    "event" : "国内決算集中日(キーエンス、シマノ、松井証券、JPX、カプコン等)",
+    "importance" : 3,
+    "note" : "主要企業の決算発表が集中"
+  }, {
+    "date" : "7/29",
+    "event" : "野村ホールディングス決算",
+    "importance" : 3,
+    "note" : "国内証券最大手の決算内容に注目"
+  }, {
+    "date" : "7/30",
+    "event" : "東京エレクトロン・アドバンテスト等 半導体大手決算",
+    "importance" : 4,
+    "note" : "AI投資・半導体需要動向を占う重要決算、みずほFG・JT決算も同日"
+  } ]
 }
