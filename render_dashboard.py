@@ -1577,27 +1577,7 @@ JS_SCRIPT = r"""
 """
 
 
-def build_html(data: dict) -> str:
-    generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    run_type = data.get("run_type", "")
-    run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
 
-    us = data.get("us_market", {})
-    fx = data.get("fx", {})
-    fut = data.get("nikkei_futures", {})
-
-    idx_cards = ""
-    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合"), ("sox", "SOX指数(半導体)")]:
-        d = us.get(key, {})
-        idx_cards += section_index_row(label, d.get("value", "―"), d.get("change_pct"), d.get("asof"))
-    idx_cards += section_index_row("USD/JPY", fx.get("value", "―"), fx.get("change_pct"), fx.get("asof"))
-    idx_cards += section_index_row("日経225先物(CME/大阪)", fut.get("value", "―"), fut.get("change_pct"), fut.get("asof"))
-    idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
-                                     data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
-
-    mood_html = market_mood_html(data)
-    theme_html = theme_summary_html(data)
-    calendar_html = economic_calendar_html(data.get("economic_calendar", []))
 
 def strategy_summary_html(data):
     """地合い・テクニカル状態・好材料開示・投資判断まとめを生成する"""
@@ -1725,6 +1705,28 @@ def strategy_summary_html(data):
     parts.append('</div>')
     return "".join(parts)
 
+
+def build_html(data: dict) -> str:
+    generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
+    run_type = data.get("run_type", "")
+    run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
+
+    us = data.get("us_market", {})
+    fx = data.get("fx", {})
+    fut = data.get("nikkei_futures", {})
+
+    idx_cards = ""
+    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合"), ("sox", "SOX指数(半導体)")]:
+        d = us.get(key, {})
+        idx_cards += section_index_row(label, d.get("value", "―"), d.get("change_pct"), d.get("asof"))
+    idx_cards += section_index_row("USD/JPY", fx.get("value", "―"), fx.get("change_pct"), fx.get("asof"))
+    idx_cards += section_index_row("日経225先物(CME/大阪)", fut.get("value", "―"), fut.get("change_pct"), fut.get("asof"))
+    idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
+                                     data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
+
+    mood_html = market_mood_html(data)
+    theme_html = theme_summary_html(data)
+    calendar_html = economic_calendar_html(data.get("economic_calendar", []))
 
     morning_html = f"""
     <section id="morning">
