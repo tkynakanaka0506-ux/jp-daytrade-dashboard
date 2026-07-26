@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>try{if(localStorage.getItem('jpdt_theme')==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}</script>
-<title>æ¥æ¬æ ªãã¤ãã¬ã¼ãæå ±ããã·ã¥ãã¼ã</title>
+<title>日本株デイトレード情報ダッシュボード</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -35,7 +35,7 @@ body {
   background-color: var(--bg-deep);
 }
 
-/* --- èæ¯åç: ç»è³ªãè½ã¨ããopacityã®ã¿ã§ãã£ããã¯ã­ã¹ãã§ã¼ãããã¹ã©ã¤ãã·ã§ã¼ --- */
+/* --- 背景写真: 画質を落とさずopacityのみでゆっくりクロスフェードするスライドショー --- */
 .bg-photo-stack { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg-deep); }
 .bg-photo {
   position: absolute; inset: 0;
@@ -67,7 +67,7 @@ body::-webkit-scrollbar-track { background: #000; }
 body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-deep)); border-radius: 6px; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 
-/* --- åºå®è¦åºããã¼: å¸¸ã«ç»é¢ä¸é¨ã«è¡¨ç¤ºããã --- */
+/* --- 固定見出しバー: 常に画面上部に表示される --- */
 .topbar {
   position: sticky; top: 0; z-index: 25;
   background: linear-gradient(180deg, #050403 0%, #030302 100%);
@@ -83,7 +83,7 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
   display: block; font-size: 9.5px; font-weight: 600; letter-spacing: 2.6px; text-transform: uppercase;
   color: var(--accent-deep); margin-bottom: 5px;
 }
-.eyebrow::before { content: "â "; color: var(--accent); }
+.eyebrow::before { content: "◆ "; color: var(--accent); }
 h1 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.6px;
@@ -200,7 +200,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .empty { color: var(--muted); font-size: 13px; }
 .sentiment-badge { margin-right: 6px; vertical-align: middle; cursor: help; }
 
-/* --- å¸å ´ã ã¼ãä¿¡å·æ© --- */
+/* --- 市場ムード信号機 --- */
 .mood-card {
   display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; margin-bottom: 16px;
   border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel);
@@ -216,7 +216,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .mood-card.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,184,77,0.14); }
 .mood-card.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,90,90,0.14); }
 
-/* --- çµæ¸ã«ã¬ã³ãã¼ --- */
+/* --- 経済カレンダー --- */
 .calendar-list { display: flex; flex-direction: column; gap: 2px; }
 .calendar-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
 .calendar-item:last-child { border-bottom: none; }
@@ -225,7 +225,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .calendar-event { font-size: 13.5px; color: var(--text); font-weight: 600; }
 .calendar-stars { font-size: 13px; color: var(--accent-bright); letter-spacing: 1px; margin-top: 2px; }
 
-/* --- æ¬æ¥ã®æ³¨ç®ãã¼ã --- */
+/* --- 本日の注目テーマ --- */
 .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
 .theme-card {
   background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
@@ -241,7 +241,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .theme-company.muted { color: var(--muted); }
 .theme-source { font-size: 11px; color: var(--muted); margin-top: 6px; }
 
-/* --- ã©ã³ã­ã³ã°(å¼·æ°ã·ã°ãã«æ° / TDnetå¥½ææ) --- */
+/* --- ランキング(強気シグナル数 / TDnet好材料) --- */
 .rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
 .rank-item:last-child { border-bottom: none; }
 .rank-num { width: 34px; flex-shrink: 0; font-size: 19px; text-align: center; line-height: 1.4; }
@@ -276,7 +276,7 @@ footer .disclaimer { margin: 0 0 12px; }
   letter-spacing: 0.3px;
 }
 
-/* --- PC(åºãç»é¢): ä½ç½ã¨æå¤§å¹ãå°ãåºãã¦èª­ã¿ããããã --- */
+/* --- PC(広い画面): 余白と最大幅を少し広げて読みやすくする --- */
 @media (min-width: 1200px) {
   .wrap { max-width: 1240px; }
   body { font-size: 15.5px; }
@@ -284,7 +284,7 @@ footer .disclaimer { margin: 0 0 12px; }
   .topbar-inner { max-width: 1240px; }
 }
 
-/* --- ã¹ãã(ç­ãç»é¢): ä½ç½ã»æå­ãµã¤ãºãè©°ãã¦ã¿ãããããããã --- */
+/* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
 @media (max-width: 640px) {
   .wrap { padding: 12px 12px 48px; }
   .topbar-inner { padding: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -307,7 +307,7 @@ footer .disclaimer { margin: 0 0 12px; }
   .rank-head { font-size: 12.5px; }
 }
 
-/* ==================== è¿½å æ©è½: ã©ã¤ããã¼ã / ãæ°ã«å¥ã / æ¤ç´¢ã»ã½ã¼ã / ããã°ã©ã / ã¢ãã¡ã¼ã·ã§ã³ ==================== */
+/* ==================== 追加機能: ライトテーマ / お気に入り / 検索・ソート / ミニグラフ / アニメーション ==================== */
 
 :root[data-theme="light"] {
   --bg-deep: #f6f0e3; --bg-mid: #f6f0e3; --bg-soft: #f6f0e3;
@@ -368,9 +368,9 @@ tr.fav-hidden, tr.search-hidden { display: none; }
 
 table[data-sortable] thead th { position: relative; user-select: none; cursor: pointer; }
 table[data-sortable] thead th:hover { color: var(--accent-bright); }
-table[data-sortable] thead th::after { content: "â"; margin-left: 5px; font-size: 9px; opacity: 0.35; }
-table[data-sortable] thead th[data-dir="asc"]::after { content: "â²"; opacity: 0.9; }
-table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opacity: 0.9; }
+table[data-sortable] thead th::after { content: "⇕"; margin-left: 5px; font-size: 9px; opacity: 0.35; }
+table[data-sortable] thead th[data-dir="asc"]::after { content: "▲"; opacity: 0.9; }
+table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity: 0.9; }
 
 .mini-bar {
   position: relative; display: inline-block; width: 44px; height: 6px; margin-left: 8px;
@@ -430,7 +430,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
   }
   a { color: #000 !important; text-decoration: underline; }
 }
-    /* ââ æè³æ¦ç¥ãµããªã¼ ââ */
+    /* ── 投資戦略サマリー ── */
     #strategy { margin-top: 1em; }
     .strategy-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1em 1.2em; margin-bottom: 1em; }
     .strategy-block h4 { margin: 0 0 0.5em; font-size: 1em; }
@@ -458,73 +458,73 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
 </style>
 </head>
 <body>
-<div class="bg-photo-stack" aria-hidden="true"><div class="bg-photo is-active" style="background-image:url('https://images.unsplash.com/photo-1781525981877-ce6d8d80bcf8?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="0" data-caption="æ¸è°·ã»ã³ã¿ã¼è¡"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1617870314635-fc819547ec11?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="1" data-caption="æ°å®¿ã»æãåºæ¨ªä¸"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="2" data-caption="æ±äº¬ã¿ã¯ã¼"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="3" data-caption="æ¸è°·ã¹ã¯ã©ã³ãã«äº¤å·®ç¹"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="4" data-caption="ã¬ã¤ã³ãã¼ããªãã¸ã»ãå°å ´"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="5" data-caption="æ±äº¬ã¹ã«ã¤ããªã¼"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=40&amp;con=10&amp;vib=25')" data-order="6" data-caption="æ°å®¿"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1624434512895-2d1887ebfccf?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="7" data-caption="å­æ¬æ¨"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="8" data-caption="ç§èå"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="9" data-caption="ä¸¸ã®åã»æ±äº¬é§"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="10" data-caption="éåº§"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1671247913568-050c0bb925f5?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="11" data-caption="è¡¨åéã¤ã«ããã¼ã·ã§ã³"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1771385706304-19ab1fb5fd61?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="12" data-caption="æµèã»é·é"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1703702238930-237f139e8115?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="13" data-caption="ç¥æ¥½åã®è·¯å°"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1764418366176-0f273a921fab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="14" data-caption="ä¼è¦ç¨²è·å¤§ç¤¾(äº¬é½)"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1711006876033-8baac5dfa718?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="15" data-caption="æ±çã¤ã«ããã¼ã·ã§ã³"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1739614537933-11eed8f5d449?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="16" data-caption="æ¨ªæµã¿ãªã¨ã¿ãã"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1660292318896-0c684c801e3f?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="17" data-caption="å­æ¬æ¨ãã«ãºå±æå°"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1764268845521-a115101cdde5?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="18" data-caption="æ± è¢"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1493515322954-4fa727e97985?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="19" data-caption="ä¸éã®è£è·¯å°"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="20" data-caption="ææ¥½çºã»éåº§"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="21" data-caption="æ­èä¼çº"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1626846136629-aa437fcb29a8?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="22" data-caption="è¥¿æ°å®¿ã®é«å±¤ãã«ç¾¤"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1734753050499-e766acbe80ce?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="23" data-caption="åå·ã»é«å±¤ãã«è¡"></div></div>
+<div class="bg-photo-stack" aria-hidden="true"><div class="bg-photo is-active" style="background-image:url('https://images.unsplash.com/photo-1781525981877-ce6d8d80bcf8?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="0" data-caption="渋谷センター街"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1617870314635-fc819547ec11?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="1" data-caption="新宿・思い出横丁"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="2" data-caption="東京タワー"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="3" data-caption="渋谷スクランブル交差点"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="4" data-caption="レインボーブリッジ・お台場"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="5" data-caption="東京スカイツリー"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=40&amp;con=10&amp;vib=25')" data-order="6" data-caption="新宿"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1624434512895-2d1887ebfccf?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="7" data-caption="六本木"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="8" data-caption="秋葉原"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="9" data-caption="丸の内・東京駅"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="10" data-caption="銀座"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1671247913568-050c0bb925f5?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="11" data-caption="表参道イルミネーション"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1771385706304-19ab1fb5fd61?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="12" data-caption="浅草・雷門"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1703702238930-237f139e8115?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="13" data-caption="神楽坂の路地"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1764418366176-0f273a921fab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="14" data-caption="伏見稲荷大社(京都)"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1711006876033-8baac5dfa718?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="15" data-caption="汐留イルミネーション"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1739614537933-11eed8f5d449?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="16" data-caption="横浜みなとみらい"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1660292318896-0c684c801e3f?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="17" data-caption="六本木ヒルズ展望台"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1764268845521-a115101cdde5?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="18" data-caption="池袋"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1493515322954-4fa727e97985?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="19" data-caption="上野の裏路地"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="20" data-caption="有楽町・銀座"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="21" data-caption="歌舞伎町"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1626846136629-aa437fcb29a8?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="22" data-caption="西新宿の高層ビル群"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1734753050499-e766acbe80ce?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="23" data-caption="品川・高層ビル街"></div></div>
 <div class="bg-overlay" aria-hidden="true"></div>
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-title">
-      <span class="eyebrow">TOKYO STOCK EXCHANGE ã» DAY TRADE INTELLIGENCE</span>
-      <h1>æ¥æ¬æ ª(æ±è¨¼)ãã¤ãã¬ã¼ãæå ±ããã·ã¥ãã¼ã<span class="run-badge">æ(å¯ãä»ãå)æ´æ°</span></h1>
-      <div class="subtitle">æçµæ´æ°: 2026-07-26 18:38 (JST)<span class="rel-time" data-generated="2026-07-26 18:38"></span> ã» æ¯æ¥ æ6:00 / å¤21:00 ã«èªåæ´æ°</div>
+      <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
+      <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
+      <div class="subtitle">最終更新: 2026-07-26 19:00 (JST)<span class="rel-time" data-generated="2026-07-26 19:00"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
-        <a href="#morning">ð å¯ãä»ãå</a>
-        <a href="#evening">ð å¼ãå¾</a>
-        <a href="#technical">ð æ ªä¾¡è¨ºæ­</a>
-        <a href="#growth">ð± æé·æ ª</a>
-        <a href="#strategy">ð¯ æè³æ¦ç¥ã¾ã¨ã</a>
+        <a href="#morning">🌅 寄り付き前</a>
+        <a href="#evening">🌙 引け後</a>
+        <a href="#technical">📊 株価診断</a>
+        <a href="#growth">🌱 成長株</a>
+        <a href="#strategy">🎯 投資戦略まとめ</a>
       </nav>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-label="è¡¨ç¤ºãã¼ããåãæ¿ã" title="ã©ã¤ã/ãã¼ã¯ãã¼ãåæ¿">ð</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
     </div>
   </div>
 </header>
 <div class="wrap">
   <div class="disclaimer">
-    â ï¸ <b>æ¬ãµã¤ãã¯æå ±æä¾ã®ã¿ãç®çã¨ããæè³å©è¨ã§ã¯ããã¾ããã</b> æ¬ãã¼ã¸ã®æå ±ã¯ãYahoo!ãã¡ã¤ãã³ã¹ã»TDnet(é©æéç¤ºæå ±é²è¦§ãµã¼ãã¹)ã»æè³ã®æ£®(ãã¯ãã«ã«åæ)ãªã©ç¡æã§å¬éããã¦ããæå ±æºããã¨ã«èªåçã«ã¾ã¨ãããã®ã§ããåå®¹ã®æ­£ç¢ºæ§ã»å®å¨æ§ã»ææ°æ§ã¯ä¿è¨¼ããã¾ããããå¼·æ°/å¼±æ°ã·ã°ãã«ãç­ã®è¡¨ç¤ºã¯ç§»åå¹³åç·ãRSIãªã©éå»ãã¼ã¿ã«åºã¥ãæ©æ¢°çãªè¨ºæ­ã§ããã<b>æè³å©è¨ã§ã¯ãªããå°æ¥ã®æ ªä¾¡å¤åãä¿è¨¼ãããã®ã§ãããã¾ããã</b>æè³ã«é¢ããæçµå¤æ­ã¯ãå¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã
+    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
   </div>
-  <div class="crash-banner">⚠️ <strong>急落注意</strong>：日経平均 <strong>-2.28%</strong> の大幅下落が発生しています。ポジション・損切りラインを再確認してください。</div>
+  <div class="crash-banner">⚠️ <strong>急落注意</strong>：日経平均 <strong>-2.73%</strong> の大幅下落が発生しています。ポジション・損切りラインを再確認してください。</div>
   
-    <div class="mood-card mood-red">
-      <div class="mood-icon" aria-hidden="true">ð´</div>
+    <div class="mood-card mood-yellow">
+      <div class="mood-icon" aria-hidden="true">🟡</div>
       <div class="mood-body">
-        <div class="mood-label">è¦éããç¡é£ãªå°åã</div>
-        <div class="mood-desc">ç±³å½æ ªå®ãã¾ãã¯å½åã«å¼±ææã®éç¤ºãããã¾ããæ°è¦ã®è²·ãã¯æéã«æ¤è¨ãã¾ãããã</div>
-        <div class="mood-reasons"><span class="tag">ç±³å½3ææ°å¹³å -1.49%</span><span class="tag">å¥½ææãã¥ã¼ã¹ã»éç¤ºãã</span></div>
-        <div class="mood-caveat">â ï¸ ç±³å½æ ªã®æ¹åã»å¥½ææã®æç¡ã»éç±æã ããçµã¿åãããæ©æ¢°çãªç°¡æå¤å®ã§ããæè³å©è¨ã§ã¯ãªããæçµå¤æ­ã¯å¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã</div>
+        <div class="mood-label">様子見が無難な地合い</div>
+        <div class="mood-desc">米国株や好材料の方向感が乏しく、無理に動く必要はありません。</div>
+        <div class="mood-reasons"><span class="tag">米国3指数平均 -0.04%</span><span class="tag">好材料ニュース・開示あり</span></div>
+        <div class="mood-caveat">⚠️ 米国株の方向・好材料の有無・過熱感だけを組み合わせた機械的な簡易判定です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</div>
       </div>
     </div>
-  <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> â ãæ°ã«å¥ãã®ã¿è¡¨ç¤º(ã³ã¼ãæ¬ã®âã§ç»é²)</label>
+  <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
 
   
     <section id="morning">
-      <h2>ð å¯ãä»ãåã»ã¯ã·ã§ã³</h2>
-      <p class="section-desc">åæ¥ã®ç±³å½å¸å ´ã»çºæ¿ã»æéå¤ãã¥ã¼ã¹ã»TDnetæ©æã¾ã§ã®éç¤ºã»è©±é¡æ ªãã¾ã¨ãã¦ãã¾ããå½æ¥ã®ä»è¾¼ã¿éææ¤è¨ã®åèæå ±ã§ãã</p>
+      <h2>🌅 寄り付き前セクション</h2>
+      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
-        <h3>ç±³å½å¸å ´ã»çºæ¿ã»æ¥çµåç©</h3>
+        <h3>米国市場・為替・日経先物</h3>
         <div class="idx-grid">
     <div class="idx-card">
       <div class="idx-label">S&amp;P500</div>
       <div class="idx-value">7,411.98</div>
-      <span class="chg down">-1.16%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:7.2%;"></span></span>
+      <span class="chg up">+0.05%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:0.3%;"></span></span>
       <div class="note">7/25Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
-      <div class="idx-label">NYãã¦</div>
+      <div class="idx-label">NYダウ</div>
       <div class="idx-value">51,947.25</div>
-      <span class="chg down">-0.52%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:3.2%;"></span></span>
+      <span class="chg up">+0.46%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:2.9%;"></span></span>
       <div class="note">7/25Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
-      <div class="idx-label">ãã¹ããã¯ç·å</div>
+      <div class="idx-label">ナスダック総合</div>
       <div class="idx-value">24,975.82</div>
-      <span class="chg down">-2.78%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:17.4%;"></span></span>
+      <span class="chg down">-0.64%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:4.0%;"></span></span>
       <div class="note">7/25Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
-      <div class="idx-label">SOXææ°(åå°ä½)</div>
+      <div class="idx-label">SOX指数(半導体)</div>
       <div class="idx-value">11,818.89</div>
-      <span class="chg down">-4.77%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:29.8%;"></span></span>
+      <span class="chg down">-4.25%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:26.6%;"></span></span>
       <div class="note">7/25Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
@@ -534,201 +534,201 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
       <div class="note">7/25Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
-      <div class="idx-label">æ¥çµ225åç©(CME/å¤§éª)</div>
+      <div class="idx-label">日経225先物(CME/大阪)</div>
       <div class="idx-value">64,395.00</div>
       <span class="chg down">-1.55%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:9.7%;"></span></span>
       <div class="note">7/25Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
-      <div class="idx-label">æ¥çµå¹³å(ç¾ç©ã»ååçµå¤)</div>
+      <div class="idx-label">日経平均(現物・前回終値)</div>
       <div class="idx-value">64,611.15</div>
-      <span class="chg down">-2.28%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:14.2%;"></span></span>
+      <span class="chg down">-2.73%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:17.1%;"></span></span>
       <div class="note">7/24Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div></div>
       </div>
       <div class="card">
-        <h3>ð çµæ¸ã«ã¬ã³ãã¼(éè¦åº¦)</h3>
-        <p class="section-desc">éç¨çµ±è¨ã»CPIã»æ¥éä¼åãªã©ãç¸å ´ãåããããã¤ãã³ããéè¦åº¦(â)ã§ç¤ºãã¦ãã¾ãã<b>å®éã®ç¸å ´å¤åãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b></p>
-        <p class="empty">çµæ¸ã«ã¬ã³ãã¼ã®ãã¼ã¿ã¯ä»ååå¾ã§ãã¾ããã§ããã</p>
+        <h3>📅 経済カレンダー(重要度)</h3>
+        <p class="section-desc">雇用統計・CPI・日銀会合など、相場が動きやすいイベントを重要度(★)で示しています。<b>実際の相場変動を保証するものではありません。</b></p>
+        <p class="empty">経済カレンダーのデータは今回取得できませんでした。</p>
       </div>
       <div class="card">
-        <h3>ð¯ æ¬æ¥ã®æ³¨ç®ãã¼ãã¨é¢é£éæ</h3>
-        <p class="section-desc">ãã¥ã¼ã¹ã®æè³é¢é£åéã»æ³¨ç®ä¼æ¥­ã¿ã°ãéç´ããåèæå ±ã§ãã<b>æè³å©è¨ã§ã¯ãªããå®éã«æ ªä¾¡ãåããã¨ãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b></p>
+        <h3>🎯 本日の注目テーマと関連銘柄</h3>
+        <p class="section-desc">ニュースの投資関連分野・注目企業タグを集約した参考情報です。<b>投資助言ではなく、実際に株価が動くことを保証するものではありません。</b></p>
         <div class="theme-grid">
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">海運</span><span class="tag">é¢é£ãã¥ã¼ã¹1ä»¶</span></div>
+          <div class="theme-head"><span class="theme-name">海運</span><span class="tag">関連ニュース1件</span></div>
           <div class="theme-companies"><span class="theme-company">日本郵船(9101)</span><span class="theme-company">商船三井(9104)</span><span class="theme-company">川崎汽船(9107)</span></div>
-          <div class="theme-source">ãã£ãã: 中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</div>
+          <div class="theme-source">きっかけ: 中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</div>
         </div>
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">エネルギー・資源</span><span class="tag">é¢é£ãã¥ã¼ã¹1ä»¶</span></div>
+          <div class="theme-head"><span class="theme-name">エネルギー・資源</span><span class="tag">関連ニュース1件</span></div>
           <div class="theme-companies"><span class="theme-company">INPEX(1605)</span><span class="theme-company">出光興産(5019)</span></div>
-          <div class="theme-source">ãã£ãã: ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</div>
+          <div class="theme-source">きっかけ: ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</div>
         </div>
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">半導体・AI関連</span><span class="tag">é¢é£ãã¥ã¼ã¹1ä»¶</span></div>
+          <div class="theme-head"><span class="theme-name">半導体・AI関連</span><span class="tag">関連ニュース1件</span></div>
           <div class="theme-companies"><span class="theme-company">イビデン</span></div>
-          <div class="theme-source">ãã£ãã: 日経平均、AI特需の持続懸念で1811円安の急落</div>
+          <div class="theme-source">きっかけ: 日経平均、AI特需の持続懸念で1811円安の急落</div>
         </div>
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">半導体</span><span class="tag">é¢é£ãã¥ã¼ã¹1ä»¶</span></div>
+          <div class="theme-head"><span class="theme-name">半導体</span><span class="tag">関連ニュース1件</span></div>
           <div class="theme-companies"><span class="theme-company">キオクシアホールディングス</span></div>
-          <div class="theme-source">ãã£ãã: 来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</div>
+          <div class="theme-source">きっかけ: 来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</div>
         </div>
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">AI・ハイテク株</span><span class="tag">é¢é£ãã¥ã¼ã¹1ä»¶</span></div>
-          <div class="theme-companies"><span class="theme-company muted">åå¥éæã¯ç¹å®ããã¦ãã¾ãã</span></div>
-          <div class="theme-source">ãã£ãã: NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</div>
+          <div class="theme-head"><span class="theme-name">AI・ハイテク株</span><span class="tag">関連ニュース1件</span></div>
+          <div class="theme-companies"><span class="theme-company muted">個別銘柄は特定されていません</span></div>
+          <div class="theme-source">きっかけ: NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</div>
         </div></div>
       </div>
       <div class="card">
-        <h3>æéå¤ã»æã®ä¸»è¦ãã¥ã¼ã¹</h3>
-        <ul class="news-list"><li><a href="https://newswitch.jp/p/42224" target="_blank" rel="noopener">中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</a><span class="meta">7/25 / ニュースイッチ(日刊工業新聞社)</span><div class="news-impact"><span class="impact-sector">é¢é£åé: 海運</span><span class="impact-companies">æ³¨ç®ä¼æ¥­: 日本郵船(9101)ã商船三井(9104)ã川崎汽船(9107)</span></div></li><li><a href="https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html" target="_blank" rel="noopener">ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</a><span class="meta">7/25 / マネーサテライト(松井証券)</span><div class="news-impact"><span class="impact-sector">é¢é£åé: エネルギー・資源</span><span class="impact-companies">æ³¨ç®ä¼æ¥­: INPEX(1605)ã出光興産(5019)</span></div></li><li><a href="https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/" target="_blank" rel="noopener">日経平均、AI特需の持続懸念で1811円安の急落</a><span class="meta">7/24 / 日本経済新聞</span><div class="news-impact"><span class="impact-sector">é¢é£åé: 半導体・AI関連</span><span class="impact-companies">æ³¨ç®ä¼æ¥­: イビデン</span></div></li><li><a href="https://s.kabutan.jp/news/n202607241176/" target="_blank" rel="noopener">来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</a><span class="meta">7/24 / 株探</span><div class="news-impact"><span class="impact-sector">é¢é£åé: 半導体</span><span class="impact-companies">æ³¨ç®ä¼æ¥­: キオクシアホールディングス</span></div></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</a><span class="meta">7/24 / 財経新聞</span><div class="news-impact"><span class="impact-sector">é¢é£åé: AI・ハイテク株</span></div></li></ul>
+        <h3>時間外・朝の主要ニュース</h3>
+        <ul class="news-list"><li><a href="https://newswitch.jp/p/42224" target="_blank" rel="noopener">中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</a><span class="meta">7/25 / ニュースイッチ(日刊工業新聞社)</span><div class="news-impact"><span class="impact-sector">関連分野: 海運</span><span class="impact-companies">注目企業: 日本郵船(9101)、商船三井(9104)、川崎汽船(9107)</span></div></li><li><a href="https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html" target="_blank" rel="noopener">ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</a><span class="meta">7/25 / マネーサテライト(松井証券)</span><div class="news-impact"><span class="impact-sector">関連分野: エネルギー・資源</span><span class="impact-companies">注目企業: INPEX(1605)、出光興産(5019)</span></div></li><li><a href="https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/" target="_blank" rel="noopener">日経平均、AI特需の持続懸念で1811円安の急落</a><span class="meta">7/24 / 日本経済新聞</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体・AI関連</span><span class="impact-companies">注目企業: イビデン</span></div></li><li><a href="https://s.kabutan.jp/news/n202607241176/" target="_blank" rel="noopener">来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</a><span class="meta">7/24 / 株探</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体</span><span class="impact-companies">注目企業: キオクシアホールディングス</span></div></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</a><span class="meta">7/24 / 財経新聞</span><div class="news-impact"><span class="impact-sector">関連分野: AI・ハイテク株</span></div></li></ul>
       </div>
       <div class="card">
-        <h3>TDnet é©æéç¤º(æã¾ã§ã®å)</h3>
+        <h3>TDnet 適時開示(朝までの分)</h3>
         
-    <div class="table-tools"><input type="search" class="table-search" placeholder="ð æå»ã»ã³ã¼ãã»ä¼ç¤¾åã»ã¿ã¤ãã«ã§æ¤ç´¢"></div>
-    <p class="rank-note">ð¡ <b>ãã¸ãã£ã/ãã¬ãã£ã/ä¸­ç«</b>ã¯éç¤ºã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãä¸è´ã«ããæ©æ¢°çãªåèå¤å®ã§ããAIã«ããè©³ç´°åæã§ã¯ãªããæè³å©è¨ã§ãããã¾ããã</p>
-    <div class="scroll-hint">â æ¨ªã«ã¹ã¯ã­ã¼ã«ã§ãã¾ã</div>
+    <div class="table-tools"><input type="search" class="table-search" placeholder="🔍 時刻・コード・会社名・タイトルで検索"></div>
+    <p class="rank-note">💡 <b>ポジティブ/ネガティブ/中立</b>は開示タイトルのキーワード一致による機械的な参考判定です。AIによる詳細分析ではなく、投資助言でもありません。</p>
+    <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="tdnet-table" data-sortable="true">
-      <thead><tr><th>æå»</th><th>ã³ã¼ã</th><th>ä¼ç¤¾å</th><th>éç¤ºã¿ã¤ãã«</th></tr></thead>
+      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf" target="_blank" rel="noopener">王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf" target="_blank" rel="noopener">王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf" target="_blank" rel="noopener">セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf" target="_blank" rel="noopener">セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf" target="_blank" rel="noopener">セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf" target="_blank" rel="noopener">セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf" target="_blank" rel="noopener">ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf" target="_blank" rel="noopener">ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf" target="_blank" rel="noopener">ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf" target="_blank" rel="noopener">ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf" target="_blank" rel="noopener">あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf" target="_blank" rel="noopener">あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf" target="_blank" rel="noopener">あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf" target="_blank" rel="noopener">あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf" target="_blank" rel="noopener">ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf" target="_blank" rel="noopener">ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf" target="_blank" rel="noopener">はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf" target="_blank" rel="noopener">はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf" target="_blank" rel="noopener">中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf" target="_blank" rel="noopener">中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf" target="_blank" rel="noopener">信金中央、定款 2026/07/24 他 7月24日(金) 18:55</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf" target="_blank" rel="noopener">信金中央、定款 2026/07/24 他 7月24日(金) 18:55</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf" target="_blank" rel="noopener">ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf" target="_blank" rel="noopener">ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf" target="_blank" rel="noopener">ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf" target="_blank" rel="noopener">ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf" target="_blank" rel="noopener">ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf" target="_blank" rel="noopener">ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf" target="_blank" rel="noopener">ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf" target="_blank" rel="noopener">ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf" target="_blank" rel="noopener">ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf" target="_blank" rel="noopener">ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf" target="_blank" rel="noopener">ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf" target="_blank" rel="noopener">ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf" target="_blank" rel="noopener">ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf" target="_blank" rel="noopener">ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf" target="_blank" rel="noopener">ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf" target="_blank" rel="noopener">ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
           <td>Ã¢ÂÂ</td>
-          <td><span class="badge neutral sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">ä¸­ç«</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf" target="_blank" rel="noopener">ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf" target="_blank" rel="noopener">ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr></tbody>
     </table>
     </div>
       </div>
       <div class="card">
-        <h3>åºæ¥é«ã»å¤åãã§è©±é¡ã®éæ</h3>
+        <h3>出来高・値動きで話題の銘柄</h3>
         
-    <div class="table-tools"><input type="search" class="table-search" placeholder="ð éæåã»ã³ã¼ãã§æ¤ç´¢"></div>
-    <div class="scroll-hint">â æ¨ªã«ã¹ã¯ã­ã¼ã«ã§ãã¾ã</div>
+    <div class="table-tools"><input type="search" class="table-search" placeholder="🔍 銘柄名・コードで検索"></div>
+    <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="movers-table" data-sortable="true">
-      <thead><tr><th>ã³ã¼ã</th><th>éæå</th><th>æ ªä¾¡</th><th>åæ¥æ¯</th><th>åºæ¥é«ã¡ã¢</th><th>è©±é¡ã®èæ¯</th></tr></thead>
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>出来高メモ</th><th>話題の背景</th></tr></thead>
       <tbody>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="5240" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/5240.T" target="_blank" rel="noopener">5240</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="5240" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/5240.T" target="_blank" rel="noopener">5240</a></td>
           <td>monoAI technology</td>
           <td class="mono">213円</td>
           <td class="mono up">+30.67%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
@@ -736,7 +736,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">具体的な材料は確認できず、思惑的な物色とみられる</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="3260" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/3260.T" target="_blank" rel="noopener">3260</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="3260" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/3260.T" target="_blank" rel="noopener">3260</a></td>
           <td>エスポア</td>
           <td class="mono">642円</td>
           <td class="mono up">+18.45%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
@@ -744,7 +744,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">系統用蓄電池関連の販売用不動産取得・権利売却の発表を材料視</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="5242" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/5242.T" target="_blank" rel="noopener">5242</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="5242" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/5242.T" target="_blank" rel="noopener">5242</a></td>
           <td>アイズ</td>
           <td class="mono">2,209円</td>
           <td class="mono up">+11.01%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
@@ -752,7 +752,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">「メディアレーダー」会員数14万人突破、オンラインファクタリング提供対象拡大を材料に買い継続</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="8918" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/8918.T" target="_blank" rel="noopener">8918</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="8918" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8918.T" target="_blank" rel="noopener">8918</a></td>
           <td>ランド</td>
           <td class="mono">11円</td>
           <td class="mono up">+10.00%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
@@ -765,60 +765,60 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     </section>
   
     <section id="evening">
-      <h2>ð å¼ãå¾ã»ã¯ã·ã§ã³</h2>
-      <p class="section-desc">æ¬æ¥ã®TDneté©æéç¤º(æ±ºç®ã»æ¥­ç¸¾ä¿®æ­£ã»èªå·±æ ªè²·ããªã©)ã¨å¼ãå¾ã®éè¦ãã¥ã¼ã¹ãã¾ã¨ãã¦ãã¾ããç¿æ¥ä»¥éã®ä»è¾¼ã¿éææ¤è¨ã®åèæå ±ã§ãã</p>
+      <h2>🌙 引け後セクション</h2>
+      <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
-        <h3>æ¬æ¥ã®TDneté©æéç¤º</h3>
-        <p class="empty">æ¬æ¥ã®é©æéç¤ºãã¼ã¿ã¯åå¾ã§ãã¾ããã§ããã</p>
+        <h3>本日のTDnet適時開示</h3>
+        <p class="empty">本日の適時開示データは取得できませんでした。</p>
       </div>
       <div class="card">
-        <h3>å¼ãå¾ã®ä¸»è¦ãã¥ã¼ã¹</h3>
-        <p class="empty">ç¾æç¹ã§è©²å½ãããã¥ã¼ã¹ã¯åå¾ã§ãã¾ããã§ããã</p>
+        <h3>引け後の主要ニュース</h3>
+        <p class="empty">現時点で該当するニュースは取得できませんでした。</p>
       </div>
       <div class="card">
-        <h3>æ¬æ¥ã®å¤åãã»åºæ¥é«ã§è©±é¡ã®éæ</h3>
-        <p class="empty">è©²å½ãã¼ã¿ãåå¾ã§ãã¾ããã§ããã</p>
+        <h3>本日の値動き・出来高で話題の銘柄</h3>
+        <p class="empty">該当データが取得できませんでした。</p>
       </div>
       <div class="card">
-        <h3>TDnetéç¤º å¥½ææã©ã³ã­ã³ã°(æ¥æ¬æ ª TOP5)</h3>
+        <h3>TDnet開示 好材料ランキング(日本株 TOP5)</h3>
         <p class="rank-note">
-          æ¬æ¥ã®TDnetéç¤ºã®ãã¡ãä¸æ¹ä¿®æ­£ã»æé«çã»å¢éãªã©<b>æç¢ºãªå¥½ææã®ã¿</b>ãå¯¾è±¡ã«ãåå®¹ã®å¼·ãã§æ©æ¢°çã«é ä½ä»ããã¦ãã¾ã
-          (ä¸æ¹ä¿®æ­£ã»æ¸éãªã©å¼±ææã®éç¤ºã¯å¯¾è±¡å¤)ãåéæã«ã¤ãã¦ãâ å·ä½çã«ä½ãéç¤ºãããããâ¡éå»ã®é¡ä¼¼éç¤ºã«åºã¥ãæ³å®ã¤ã³ãã¯ã(åèå¤)ã
-          â¢å¥½ææã¨å¤æ­ããçç±ãâ£ç´è¿ã®ãã¯ãã«ã«ææ¨ã«åºã¥ãåèã³ã¡ã³ãããæè¨ãã¦ãã¾ãã
-          <b>æ³å®ã¤ã³ãã¯ãã¯éå»ã®é¡ä¼¼ã±ã¼ã¹ã®ä¸è¬çãªå¾åãç¤ºãåèå¤ã§ãããæ ªä¾¡ãå®éã«ãã®éãä¸æãããã¨ãç¢ºç´ã»äºæ³ãããã®ã§ã¯ããã¾ããã</b>
+          本日のTDnet開示のうち、上方修正・最高益・増配など<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています
+          (下方修正・減配など弱材料の開示は対象外)。各銘柄について、①具体的に何が開示されたか、②過去の類似開示に基づく想定インパクト(参考値)、
+          ③好材料と判断する理由、④直近のテクニカル指標に基づく参考コメント、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
-        <p class="empty">æ¬æ¥ã¯TDnetéç¤ºã«åºã¥ãæç¢ºãªå¥½ææãã¼ã¿(æ¥æ¬æ ª)ãããã¾ããã</p>
+        <p class="empty">本日はTDnet開示に基づく明確な好材料データ(日本株)がありません。</p>
       </div>
       <div class="card">
-        <h3>å¥½ææã©ã³ã­ã³ã°(ç±³å½æ ª TOP5)</h3>
+        <h3>好材料ランキング(米国株 TOP5)</h3>
         <p class="rank-note">
-          æ±ºç®ä¸æ¯ãã»ã¬ã¤ãã³ã¹ä¸æ¹ä¿®æ­£ã»ã¢ããªã¹ãè©ä¾¡å¼ãä¸ããªã©<b>æç¢ºãªå¥½ææã®ã¿</b>ãå¯¾è±¡ã«ãåå®¹ã®å¼·ãã§æ©æ¢°çã«é ä½ä»ããã¦ãã¾ãã
-          åéæã«ã¤ãã¦ãâ å·ä½çã«ä½ãçºè¡¨ãããããâ¡éå»ã®é¡ä¼¼ãã¥ã¼ã¹ã«åºã¥ãæ³å®ã¤ã³ãã¯ã(åèå¤)ãâ¢å¥½ææã¨å¤æ­ããçç±ããæè¨ãã¦ãã¾ãã
-          <b>æ³å®ã¤ã³ãã¯ãã¯éå»ã®é¡ä¼¼ã±ã¼ã¹ã®ä¸è¬çãªå¾åãç¤ºãåèå¤ã§ãããæ ªä¾¡ãå®éã«ãã®éãä¸æãããã¨ãç¢ºç´ã»äºæ³ãããã®ã§ã¯ããã¾ããã</b>
+          決算上振れ・ガイダンス上方修正・アナリスト評価引き上げなど<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています。
+          各銘柄について、①具体的に何が発表されたか、②過去の類似ニュースに基づく想定インパクト(参考値)、③好材料と判断する理由、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
-        <p class="empty">æ¬æ¥ã¯ç±³å½æ ªã®æç¢ºãªå¥½ææãã¼ã¿ãããã¾ãã(ãã¼ã¿åå¾ã¯ä»å¾ã®æ´æ°ã«å¯¾å¿äºå®ã§ã)ã</p>
+        <p class="empty">本日は米国株の明確な好材料データがありません(データ取得は今後の更新に対応予定です)。</p>
       </div>
     </section>
   
     <section id="technical">
-      <h2>ð æ ªä¾¡è¨ºæ­(ãã¯ãã«ã«ææ¨)</h2>
+      <h2>📊 株価診断(テクニカル指標)</h2>
       <p class="section-desc">
-        ç§»åå¹³åç·ã»RSIãªã©ç¡æã§åå¾ã§ãããã¯ãã«ã«ææ¨ã«ãã¨ã¥ãå®¢è¦³çãªãå¼·æ°/å¼±æ°ã·ã°ãã«ãã®ä¸è¦§ã§ãã
-        <b>å°æ¥ã®æ ªä¾¡ãäºæ³ã»ä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b>
+        移動平均線・RSIなど無料で取得できるテクニカル指標にもとづく客観的な「強気/弱気シグナル」の一覧です。
+        <b>将来の株価を予想・保証するものではありません。</b>
       </p>
       <div class="card">
         
-    <div class="table-tools"><input type="search" class="table-search" placeholder="ð éæåã»ã³ã¼ãã§æ¤ç´¢"></div>
-    <div class="scroll-hint">â æ¨ªã«ã¹ã¯ã­ã¼ã«ã§ãã¾ã</div>
+    <div class="table-tools"><input type="search" class="table-search" placeholder="🔍 銘柄名・コードで検索"></div>
+    <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="technical-table" data-sortable="true">
-      <thead><tr><th>ã³ã¼ã</th><th>éæå</th><th>æ ªä¾¡</th><th>åæ¥æ¯</th><th>5æ¥ç·ä¹é¢</th><th>25æ¥ç·ä¹é¢</th><th>RSI(14)</th><th>ã·ã°ãã«</th><th>ã³ã¡ã³ã</th></tr></thead>
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
       <tbody>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="7203" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/7203.T" target="_blank" rel="noopener">7203</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7203" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7203.T" target="_blank" rel="noopener">7203</a></td>
           <td>トヨタ自動車</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:57.1%;"></span></span><span class="rsi-gauge-num">57.1</span></span></td>
@@ -826,10 +826,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6758" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6758.T" target="_blank" rel="noopener">6758</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6758" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6758.T" target="_blank" rel="noopener">6758</a></td>
           <td>ソニーグループ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:53.0%;"></span></span><span class="rsi-gauge-num">53.0</span></span></td>
@@ -837,21 +837,21 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="8306" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/8306.T" target="_blank" rel="noopener">8306</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="8306" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8306.T" target="_blank" rel="noopener">8306</a></td>
           <td>三菱UFJフィナンシャル・グループ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:72.8%;"></span></span><span class="rsi-gauge-num">72.8</span></span> <span class="tag tag-warn">éç±æ</span></td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:72.8%;"></span></span><span class="rsi-gauge-num">72.8</span></span> <span class="tag tag-warn">過熱感</span></td>
           <td><span class="badge neutral">Ã¤Â¸Â­Ã§Â«Â(Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂ)</span></td>
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ70Ã¨Â¶ÂÃ£ÂÂ§Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¨ÂÂ½Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="9984" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/9984.T" target="_blank" rel="noopener">9984</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9984" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9984.T" target="_blank" rel="noopener">9984</a></td>
           <td>ソフトバンクグループ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:40.2%;"></span></span><span class="rsi-gauge-num">40.2</span></span></td>
@@ -859,21 +859,21 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6861" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6861.T" target="_blank" rel="noopener">6861</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6861" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6861.T" target="_blank" rel="noopener">6861</a></td>
           <td>キーエンス</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:28.2%;"></span></span><span class="rsi-gauge-num">28.2</span></span> <span class="tag tag-warn">å£²ããéã</span></td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:28.2%;"></span></span><span class="rsi-gauge-num">28.2</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
           <td><span class="badge neutral">Ã¤Â¸Â­Ã§Â«Â(Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂ)</span></td>
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ30Ã¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ§Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥ÂÂ°Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6954" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6954.T" target="_blank" rel="noopener">6954</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6954" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6954.T" target="_blank" rel="noopener">6954</a></td>
           <td>ファナック</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:35.3%;"></span></span><span class="rsi-gauge-num">35.3</span></span></td>
@@ -881,10 +881,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="7974" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/7974.T" target="_blank" rel="noopener">7974</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7974" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7974.T" target="_blank" rel="noopener">7974</a></td>
           <td>任天堂</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:43.2%;"></span></span><span class="rsi-gauge-num">43.2</span></span></td>
@@ -892,10 +892,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6098" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6098.T" target="_blank" rel="noopener">6098</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6098" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6098.T" target="_blank" rel="noopener">6098</a></td>
           <td>リクルートホールディングス</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:52.3%;"></span></span><span class="rsi-gauge-num">52.3</span></span></td>
@@ -903,10 +903,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="8035" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/8035.T" target="_blank" rel="noopener">8035</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="8035" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8035.T" target="_blank" rel="noopener">8035</a></td>
           <td>東京エレクトロン</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:32.9%;"></span></span><span class="rsi-gauge-num">32.9</span></span></td>
@@ -914,21 +914,21 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="9433" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/9433.T" target="_blank" rel="noopener">9433</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9433" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9433.T" target="_blank" rel="noopener">9433</a></td>
           <td>KDDI</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:87.4%;"></span></span><span class="rsi-gauge-num">87.4</span></span> <span class="tag tag-warn">éç±æ</span></td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:87.4%;"></span></span><span class="rsi-gauge-num">87.4</span></span> <span class="tag tag-warn">過熱感</span></td>
           <td><span class="badge neutral">Ã¤Â¸Â­Ã§Â«Â(Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂ)</span></td>
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ70Ã¨Â¶ÂÃ£ÂÂ§Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¨ÂÂ½Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="9432" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/9432.T" target="_blank" rel="noopener">9432</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9432" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9432.T" target="_blank" rel="noopener">9432</a></td>
           <td>日本電信電話</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:68.6%;"></span></span><span class="rsi-gauge-num">68.6</span></span></td>
@@ -936,10 +936,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="7267" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/7267.T" target="_blank" rel="noopener">7267</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7267" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7267.T" target="_blank" rel="noopener">7267</a></td>
           <td>本田技研工業</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:47.7%;"></span></span><span class="rsi-gauge-num">47.7</span></span></td>
@@ -947,32 +947,32 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6367" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6367.T" target="_blank" rel="noopener">6367</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6367" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6367.T" target="_blank" rel="noopener">6367</a></td>
           <td>ダイキン工業</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:19.2%;"></span></span><span class="rsi-gauge-num">19.2</span></span> <span class="tag tag-warn">å£²ããéã</span></td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:19.2%;"></span></span><span class="rsi-gauge-num">19.2</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
           <td><span class="badge neutral">Ã¤Â¸Â­Ã§Â«Â(Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂ)</span></td>
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ30Ã¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ§Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥ÂÂ°Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="9983" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/9983.T" target="_blank" rel="noopener">9983</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9983" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9983.T" target="_blank" rel="noopener">9983</a></td>
           <td>ファーストリテイリング</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:28.3%;"></span></span><span class="rsi-gauge-num">28.3</span></span> <span class="tag tag-warn">å£²ããéã</span></td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:28.3%;"></span></span><span class="rsi-gauge-num">28.3</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
           <td><span class="badge neutral">Ã¤Â¸Â­Ã§Â«Â(Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂ)</span></td>
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ30Ã¤Â»Â¥Ã¤Â¸ÂÃ£ÂÂ§Ã¥Â£Â²Ã£ÂÂÃ£ÂÂÃ©ÂÂÃ£ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ§ÂÂºÃ¤Â½ÂÃ¥ÂÂ°Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="4063" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/4063.T" target="_blank" rel="noopener">4063</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4063" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4063.T" target="_blank" rel="noopener">4063</a></td>
           <td>信越化学工業</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:45.4%;"></span></span><span class="rsi-gauge-num">45.4</span></span></td>
@@ -980,10 +980,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6857" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6857.T" target="_blank" rel="noopener">6857</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6857" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6857.T" target="_blank" rel="noopener">6857</a></td>
           <td>アドバンテスト</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:48.9%;"></span></span><span class="rsi-gauge-num">48.9</span></span></td>
@@ -991,10 +991,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="4519" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/4519.T" target="_blank" rel="noopener">4519</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4519" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4519.T" target="_blank" rel="noopener">4519</a></td>
           <td>中外製薬</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:42.1%;"></span></span><span class="rsi-gauge-num">42.1</span></span></td>
@@ -1002,21 +1002,21 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="5401" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/5401.T" target="_blank" rel="noopener">5401</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="5401" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/5401.T" target="_blank" rel="noopener">5401</a></td>
           <td>日本製鉄</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:88.6%;"></span></span><span class="rsi-gauge-num">88.6</span></span> <span class="tag tag-warn">éç±æ</span></td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:88.6%;"></span></span><span class="rsi-gauge-num">88.6</span></span> <span class="tag tag-warn">過熱感</span></td>
           <td><span class="badge neutral">Ã¤Â¸Â­Ã§Â«Â(Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂ)</span></td>
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ70Ã¨Â¶ÂÃ£ÂÂ§Ã©ÂÂÃ§ÂÂ±Ã¦ÂÂÃ£ÂÂÃ§ÂÂ­Ã¦ÂÂÃ§ÂÂÃ£ÂÂªÃ¥ÂÂÃ¨ÂÂ½Ã£ÂÂªÃ£ÂÂ¹Ã£ÂÂ¯Ã£ÂÂ«Ã§ÂÂÃ¦ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="2413" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/2413.T" target="_blank" rel="noopener">2413</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="2413" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/2413.T" target="_blank" rel="noopener">2413</a></td>
           <td>エムスリー</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:44.8%;"></span></span><span class="rsi-gauge-num">44.8</span></span></td>
@@ -1024,10 +1024,10 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
           <td class="reason">Ã¥Â£Â²Ã£ÂÂ0/Ã¤Â¸Â­Ã§Â«Â0/Ã¨Â²Â·Ã£ÂÂ0Ã£ÂÂRSIÃ£ÂÂ¯Ã¤Â¸Â­Ã§Â«ÂÃ¥ÂÂÃ£ÂÂ</td>
         </tr>
         <tr>
-          <td class="mono"><button class="fav-btn" type="button" data-code="6645" aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> <a href="https://finance.yahoo.co.jp/quote/6645.T" target="_blank" rel="noopener">6645</a></td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6645" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6645.T" target="_blank" rel="noopener">6645</a></td>
           <td>オムロン</td>
           <td class="mono">Ã¢ÂÂ</td>
-          <td class="mono flat">â</td>
+          <td class="mono flat">―</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono">Ã¢ÂÂ</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:35.4%;"></span></span><span class="rsi-gauge-num">35.4</span></span></td>
@@ -1038,55 +1038,55 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     </div>
       </div>
       <div class="card">
-        <h3>å¼·æ°ã»å¼±æ°ã·ã°ãã«ã©ã³ã­ã³ã°</h3>
+        <h3>強気・弱気シグナルランキング</h3>
         <p class="rank-note">
-          ç§»åå¹³åç·ã»RSIãªã©éå»ãã¼ã¿ã«åºã¥ãæ©æ¢°çãªãè²·ãã·ã°ãã«æ°ãã®å¾åãã©ã³ã­ã³ã°åãããã®ã§ãã
-          <b>ããã¾ã§éå»ãã¼ã¿ã«åºã¥ãå¾åã§ãããå°æ¥ã®æ ªä¾¡å¤åãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b>
+          移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
+          <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
         </p>
-        <p class="empty">ã·ã°ãã«ãã¼ã¿ãåå¾ã§ãã¾ããã§ããã</p>
+        <p class="empty">シグナルデータが取得できませんでした。</p>
       </div>
     </section>
   
   
     <section id="growth">
-      <h2>ð± æé·æ ªã¦ã©ãã(æ±ºç®ã»å¥½ææãã¼ã¹)</h2>
+      <h2>🌱 成長株ウォッチ(決算・好材料ベース)</h2>
       <p class="section-desc">
-        ä¸»åã¦ã©ãããªã¹ãã¯å¤ä½ç½®ãé«ãã®éæãå«ããããå¥æ ã¨ãã¦ãTDnetãæ¥­ç¸¾äºæ³ã®ä¿®æ­£ãéç¤ºã®ãã¡
-        <b>ä¸æ¹ä¿®æ­£ã»å¢éãªã©æç¢ºãªå¥½ææã­ã¼ã¯ã¼ããå«ãéç¤ºã®ã¿</b>ãæ©æ¢°çã«æ½åºããåè£ä¸è¦§ã§ãã
-        ååè£ã«ã¯å®éã®éç¤ºPDFã¸ã®ç´ãªã³ã¯ãä»ãã¦ãããæ ¹æ ã¯éç¤ºåæã§ãç¢ºèªããã ãã¾ãã
-        <b>æè³å©è¨ã§ã¯ãªããå°æ¥ã®æ ªä¾¡ä¸æãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b>
+        主力ウォッチリストは値位置が高めの銘柄も含むため、別枠として、TDnet「業績予想の修正」開示のうち
+        <b>上方修正・増配など明確な好材料キーワードを含む開示のみ</b>を機械的に抽出した候補一覧です。
+        各候補には実際の開示PDFへの直リンクを付けており、根拠は開示原文でご確認いただけます。
+        <b>投資助言ではなく、将来の株価上昇を保証するものではありません。</b>
       </p>
       <div class="card">
-        <h3>å¥½ææéç¤ºã«åºã¥ãæé·æ ªåè£</h3>
-        <p class="empty">ç¾æç¹ã§å¥½ææéç¤ºã«åºã¥ãæé·æ ªåè£ã¯è¦ã¤ããã¾ããã§ããã</p>
+        <h3>好材料開示に基づく成長株候補</h3>
+        <p class="empty">現時点で好材料開示に基づく成長株候補は見つかりませんでした。</p>
       </div>
     </section>
 
   
     <section id="strategy">
-      <h2>ð¯ æè³æ¦ç¥ã¾ã¨ã</h2>
-      <p class="section-desc">ä»æ¥ã®å°åãã»ãã¯ãã«ã«ç¶æã»å¥½ææéç¤ºãçµ±åããæè³å¤æ­ã®åèæå ±ã§ããããã¾ã§åèã§ããã<b>æè³å©è¨ã§ã¯ããã¾ãããæçµå¤æ­ã¯ãèªèº«ã®è²¬ä»»ã§ã</b></p>
+      <h2>🎯 投資戦略まとめ</h2>
+      <p class="section-desc">今日の地合い・テクニカル状態・好材料開示を統合した投資判断の参考情報です。あくまで参考であり、<b>投資助言ではありません。最終判断はご自身の責任で。</b></p>
       <div class="card">
-        <div class="strategy-block"><h4>ð ä»æ¥ã®å°åã</h4><div class="strategy-market" style="color:var(--down)">ð´ å¼±æ°å°åã</div><ul class="strategy-list"><li>ç±³å½3ææ°å¹³å: -1.49%ï¼S&P500 -1.16% / NYãã¦ -0.52% / NASDAQ -2.78%ï¼</li><li>æ¥çµåç©: -1.55%</li><li>ãã«å: åé«ï¼è¼¸åºæ ªã«éé¢¨ï¼ï¼åæ¥æ¯ -0.03%ï¼</li></ul></div><div class="strategy-block"><h4>ð ãã¯ãã«ã«ç¶æè¨ºæ­ï¼éå»ãã¼ã¿ã«ããç¾å¨ã®å¼·æ°ã»å¼±æ°ï¼</h4><p class="strategy-note">ç§»åå¹³åç·ã»RSIãªã©<b>éå»ã®æ ªä¾¡ãã¼ã¿</b>ããç®åºãããç¾å¨ã®å¼·æ°ã»å¼±æ°ç¶æãã§ãã<b>å°æ¥ã®æ ªä¾¡ãäºæ¸¬ã»ä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b></p><p class="empty" style="margin:0.5em 0">ç¾æç¹ã§ãã¯ãã«ã«å¼·æ°ã®éæã¯ããã¾ããã</p></div><div class="strategy-block"><h4>ð å¥½ææéç¤ºéæï¼ä¸æ¹ä¿®æ­£ã»å¢éç­ï¼</h4><p class="strategy-note">TDnetã«ä¸æ¹ä¿®æ­£ã»å¢éãªã©å¥½ææãå«ãéç¤ºãè¡ã£ãéæã§ãã<b>ç¿å¶æ¥­æ¥ä»¥éã®æ ªä¾¡åå¿ã«æ³¨ç®ã</b>éç¤ºåæã®ãç¢ºèªãã</p><ul class="strategy-list"><li><b>アーバネット</b> â <a href="https://tdnet-pdf.kabutan.jp/20260723/140120260722597179.pdf" target="_blank">通期連結業績予想の修正（上方修正）に関するお知らせâ¦</a><br><span style="font-size:0.82em;color:var(--muted)">上方修正</span></li><li><b>未来工業</b> â <a href="https://tdnet-pdf.kabutan.jp/20260723/140120260723598028.pdf" target="_blank">連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせâ¦</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li><li><b>三井松島ＨＤ</b> â <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260722597578.pdf" target="_blank">2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせâ¦</a><br><span style="font-size:0.82em;color:var(--muted)">上方修正</span></li><li><b>ブロンコＢ</b> â <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260721597038.pdf" target="_blank">第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末â¦</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li><li><b>十六ＦＧ</b> â <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260717596038.pdf" target="_blank">業績予想の修正及び配当予想の修正（増配）に関するお知らせâ¦</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li></ul></div><div class="strategy-block strategy-conclusion"><h4>ð¯ æè³å¤æ­ã¾ã¨ãã»ä»å¾ã®è¦éã</h4><ul class="strategy-conclusion-list"><li>ç¾æç¹ã§ãã¯ãã«ã«å¼·æ°ã®éæããªããæ°è¦è²·ãã®æ ¹æ ãèãå±é¢ã§ããç¸å ´å¨ä½ã®ååãç¢ºèªããªããæ§å­è¦ãç¡é£ã§ãã</li><li>å¥½ææéç¤ºéæï¼<b>アーバネットã»未来工業ã»三井松島ＨＤ</b>ç­ï¼ã¯ç¿å¶æ¥­æ¥ã®å¯ãä»ãã§ã®ã®ã£ããã¢ãããæå¾ã§ãã¾ãããã ãææåºå°½ããå£²ãã®ãªã¹ã¯ãå¿µé ­ã«ã</li><li>â ï¸ <b>RSIéç±ï¼70è¶ï¼ã®éæ: 三菱UFJフィナンシャル・グループï¼RSIéç±ï¼ãKDDIï¼RSIéç±ï¼ã日本製鉄ï¼RSIéç±ï¼</b> â ç­æçãªå©çç¢ºå®å£²ããèª¿æ´ãå¥ãããããããæ°è¦è¿½ãããã¯é¿ããæ¹ãç¡é£ã§ãã</li><li>â ï¸ ç±³å½å¸å ´ã»æ¥çµåç©ãè»èª¿ã§ããå¨ä½ç¸å ´ã®ä¸è½ã«å¼ããããããªã¹ã¯ãé«ãã<b>å¨è¬çã«æ°è¦ã®è²·ãã¯æéã«ã</b>ææã¡ãã¸ã·ã§ã³ã¯å©çç¢ºå®ãæåãã©ã¤ã³ã®ç¢ºèªãã</li></ul><p class="strategy-note" style="margin-top:0.8em">â ï¸ ä¸è¨ã¯ãã¯ãã«ã«ææ¨ã»éç¤ºæå ±ç­ãçµã¿åãããæ©æ¢°çãªåèæå ±ã§ããæè³å©è¨ã§ã¯ãªããæçµå¤æ­ã¯å¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã</p></div>
+        <div class="strategy-block"><h4>📊 今日の地合い</h4><div class="strategy-market" style="color:var(--down)">🔴 弱気地合い</div><ul class="strategy-list"><li>米国3指数平均: -0.04%（S&P500 +0.05% / NYダウ +0.46% / NASDAQ -0.64%）</li><li>日経先物: -1.55%</li><li>ドル円: 円高（輸出株に逆風）（前日比 -0.03%）</li></ul></div><div class="strategy-block"><h4>📈 テクニカル状態診断（過去データによる現在の強気・弱気）</h4><p class="strategy-note">移動平均線・RSIなど<b>過去の株価データ</b>から算出した「現在の強気・弱気状態」です。<b>将来の株価を予測・保証するものではありません。</b></p><p class="empty" style="margin:0.5em 0">現時点でテクニカル強気の銘柄はありません。</p></div><div class="strategy-block"><h4>📋 好材料開示銘柄（上方修正・増配等）</h4><p class="strategy-note">TDnetに上方修正・増配など好材料を含む開示を行った銘柄です。<b>翌営業日以降の株価反応に注目。</b>開示原文のご確認を。</p><ul class="strategy-list"><li><b>アーバネット</b> — <a href="https://tdnet-pdf.kabutan.jp/20260723/140120260722597179.pdf" target="_blank">通期連結業績予想の修正（上方修正）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">上方修正</span></li><li><b>未来工業</b> — <a href="https://tdnet-pdf.kabutan.jp/20260723/140120260723598028.pdf" target="_blank">連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li><li><b>三井松島ＨＤ</b> — <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260722597578.pdf" target="_blank">2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">上方修正</span></li><li><b>ブロンコＢ</b> — <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260721597038.pdf" target="_blank">第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末…</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li><li><b>十六ＦＧ</b> — <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260717596038.pdf" target="_blank">業績予想の修正及び配当予想の修正（増配）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li></ul></div><div class="strategy-block strategy-conclusion"><h4>🎯 投資判断まとめ・今後の見通し</h4><ul class="strategy-conclusion-list"><li>現時点でテクニカル強気の銘柄がなく、新規買いの根拠が薄い局面です。相場全体の動向を確認しながら様子見が無難です。</li><li>好材料開示銘柄（<b>アーバネット・未来工業・三井松島ＨＤ</b>等）は翌営業日の寄り付きでのギャップアップが期待できます。ただし材料出尽くし売りのリスクも念頭に。</li><li>⚠️ <b>RSI過熱（70超）の銘柄: 三菱UFJフィナンシャル・グループ（RSI過熱）、KDDI（RSI過熱）、日本製鉄（RSI過熱）</b> — 短期的な利益確定売りや調整が入りやすいため、新規追いかけは避ける方が無難です。</li><li>⚠️ 米国市場・日経先物が軟調です。全体相場の下落に引きずられるリスクが高く、<b>全般的に新規の買いは慎重に。</b>手持ちポジションは利益確定や損切りラインの確認を。</li></ul><p class="strategy-note" style="margin-top:0.8em">⚠️ 上記はテクニカル指標・開示情報等を組み合わせた機械的な参考情報です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</p></div>
       </div>
     </section>
 
   <footer>
     <div class="disclaimer">
-      â ï¸ åæ²: æ¬ãã¼ã¸ã®æå ±ã¯ãYahoo!ãã¡ã¤ãã³ã¹ã»TDnet(é©æéç¤ºæå ±é²è¦§ãµã¼ãã¹)ã»æè³ã®æ£®(ãã¯ãã«ã«åæ)ãªã©ç¡æã§å¬éããã¦ããæå ±æºããã¨ã«èªåçã«ã¾ã¨ãããã®ã§ããåå®¹ã®æ­£ç¢ºæ§ã»å®å¨æ§ã»ææ°æ§ã¯ä¿è¨¼ããã¾ããããå¼·æ°/å¼±æ°ã·ã°ãã«ãç­ã®è¡¨ç¤ºã¯ç§»åå¹³åç·ãRSIãªã©éå»ãã¼ã¿ã«åºã¥ãæ©æ¢°çãªè¨ºæ­ã§ããã<b>æè³å©è¨ã§ã¯ãªããå°æ¥ã®æ ªä¾¡å¤åãä¿è¨¼ãããã®ã§ãããã¾ããã</b>æè³ã«é¢ããæçµå¤æ­ã¯ãå¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã
+      ⚠️ 再掲: 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
     </div>
     
     <div class="sources">
-      ä¸»ãªæå ±æº: Yahoo!ãã¡ã¤ãã³ã¹ (finance.yahoo.co.jp) / TDnet é©æéç¤ºæå ±é²è¦§ãµã¼ãã¹
-      (release.tdnet.info, éå¬å¼API: webapi.yanoshin.jp) / æè³ã®æ£® ãã¯ãã«ã«åæ (nikkeiyosoku.com)ã
-      åæå ±ã®èä½æ¨©ã»å©ç¨æ¡ä»¶ã¯æä¾åã«å¸°å±ãã¾ããè»¢è¼ã»åéå¸ã¯è¡ãããåäººã®æè³å¤æ­ã®åèæå ±ã¨ãã¦ã®ã¿å©ç¨ãã¦ãã ããã
+      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
+      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
+      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
     </div>
   </footer>
 </div>
 <div class="bg-spacer" aria-hidden="true">
-  <div class="bg-caption" id="bgCaption">ð æ±äº¬ã»æ¸è°·ã»ã³ã¿ã¼è¡</div>
+  <div class="bg-caption" id="bgCaption">📍 東京・渋谷センター街</div>
 </div>
-<button id="backToTop" type="button" aria-label="ãã¼ã¸ä¸é¨ã¸æ»ã" title="ãããã¸æ»ã">â</button>
+<button id="backToTop" type="button" aria-label="ページ上部へ戻る" title="トップへ戻る">↑</button>
 
 <script>
 (function () {
@@ -1094,14 +1094,14 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
 
   var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-  /* ---------- èæ¯ã¹ã©ã¤ãã·ã§ã¼(ç»è³ªãè½ã¨ããopacityã®ã¿ã§ãã£ããã¯ã­ã¹ãã§ã¼ã) ---------- */
+  /* ---------- 背景スライドショー(画質を落とさずopacityのみでゆっくりクロスフェード) ---------- */
   (function () {
     var photos = document.querySelectorAll(".bg-photo-stack .bg-photo");
     var captionEl = document.getElementById("bgCaption");
     function updateCaption(photo) {
       if (!captionEl || !photo) { return; }
       var cap = photo.getAttribute("data-caption") || "";
-      captionEl.textContent = "ð æ±äº¬ã»" + (cap || "æ±äº¬");
+      captionEl.textContent = "📍 東京・" + (cap || "東京");
     }
     if (photos.length < 2 || reduceMotion) { return; }
     var idx = 0;
@@ -1113,7 +1113,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     }, 17000);
   })();
 
-  /* ---------- ãã¼ãåæ¿(ã©ã¤ã/ãã¼ã¯) ---------- */
+  /* ---------- テーマ切替(ライト/ダーク) ---------- */
   var THEME_KEY = "jpdt_theme";
   var themeToggle = document.getElementById("themeToggle");
   function applyTheme(mode) {
@@ -1132,7 +1132,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     });
   }
 
-  /* ---------- ãæ°ã«å¥ã(â) ---------- */
+  /* ---------- お気に入り(★) ---------- */
   var FAV_KEY = "jpdt_favorites";
   function loadFavorites() {
     try {
@@ -1182,7 +1182,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
   }
   if (favFilter) { favFilter.addEventListener("change", applyFavFilter); }
 
-  /* ---------- ãã¼ãã«æ¤ç´¢ ---------- */
+  /* ---------- テーブル検索 ---------- */
   var searchInputs = document.querySelectorAll(".table-search");
   for (var s = 0; s < searchInputs.length; s++) {
     (function (input) {
@@ -1202,9 +1202,9 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     })(searchInputs[s]);
   }
 
-  /* ---------- ãã¼ãã«ã½ã¼ã(è¦åºãã¯ãªãã¯) ---------- */
+  /* ---------- テーブルソート(見出しクリック) ---------- */
   function parseCell(text) {
-    var t = text.replace(/[,å%â]/g, "").trim();
+    var t = text.replace(/[,円%★]/g, "").trim();
     var n = parseFloat(t);
     return isNaN(n) ? null : n;
   }
@@ -1233,7 +1233,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     })(sortHeads[h]);
   }
 
-  /* ---------- ã¹ã¯ã­ã¼ã«æãã§ã¼ãã¤ã³ ---------- */
+  /* ---------- スクロール時フェードイン ---------- */
   var revealTargets = document.querySelectorAll(".card, .idx-card, .rank-item");
   if (!reduceMotion && "IntersectionObserver" in window) {
     for (var rt = 0; rt < revealTargets.length; rt++) { revealTargets[rt].classList.add("reveal"); }
@@ -1249,7 +1249,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     for (var rt2 = 0; rt2 < revealTargets.length; rt2++) { io.observe(revealTargets[rt2]); }
   }
 
-  /* ---------- ææ¨ã«ã¼ãã®æ°å¤ã«ã¦ã³ãã¢ãã ---------- */
+  /* ---------- 指標カードの数値カウントアップ ---------- */
   if (!reduceMotion) {
     var idxValues = document.querySelectorAll(".idx-value");
     for (var v = 0; v < idxValues.length; v++) {
@@ -1276,7 +1276,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     }
   }
 
-  /* ---------- ç¸å¯¾æ´æ°æå» ---------- */
+  /* ---------- 相対更新時刻 ---------- */
   var relTimes = document.querySelectorAll(".rel-time");
   for (var rtm = 0; rtm < relTimes.length; rtm++) {
     (function (el) {
@@ -1287,15 +1287,15 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
       if (isNaN(d.getTime())) { return; }
       var diffMin = Math.round((Date.now() - d.getTime()) / 60000);
       var text;
-      if (diffMin < 1) { text = "ãã£ãä»"; }
-      else if (diffMin < 60) { text = "ç´" + diffMin + "åå"; }
-      else if (diffMin < 60 * 24) { text = "ç´" + Math.round(diffMin / 60) + "æéå"; }
-      else { text = "ç´" + Math.round(diffMin / 1440) + "æ¥å"; }
+      if (diffMin < 1) { text = "たった今"; }
+      else if (diffMin < 60) { text = "約" + diffMin + "分前"; }
+      else if (diffMin < 60 * 24) { text = "約" + Math.round(diffMin / 60) + "時間前"; }
+      else { text = "約" + Math.round(diffMin / 1440) + "日前"; }
       el.textContent = "(" + text + ")";
     })(relTimes[rtm]);
   }
 
-  /* ---------- ãããã¸æ»ã ---------- */
+  /* ---------- トップへ戻る ---------- */
   var backToTop = document.getElementById("backToTop");
   if (backToTop) {
     window.addEventListener("scroll", function () {
