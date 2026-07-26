@@ -1,20 +1,20 @@
 {
-  "generated_at" : "2026-07-26 11:21",
+  "generated_at" : "2026-07-26 13:56",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,411.98",
-      "change_pct" : -1.16,
+      "change_pct" : 0.05,
       "asof" : "7/25終値"
     },
     "dow" : {
       "value" : "51,947.25",
-      "change_pct" : -0.52,
+      "change_pct" : 0.46,
       "asof" : "7/25終値"
     },
     "nasdaq" : {
       "value" : "24,975.82",
-      "change_pct" : -2.78,
+      "change_pct" : -0.64,
       "asof" : "7/25終値"
     }
   },
@@ -30,7 +30,7 @@
   },
   "nikkei225" : {
     "value" : "64,611.15",
-    "change_pct" : -2.28,
+    "change_pct" : -2.73,
     "asof" : "7/24終値"
   },
   "overnight_news" : [ {
