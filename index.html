@@ -440,7 +440,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-26 13:56 (JST)<span class="rel-time" data-generated="2026-07-26 13:56"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-26 14:53 (JST)<span class="rel-time" data-generated="2026-07-26 14:53"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
@@ -936,7 +936,40 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
           <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
         </p>
-        <p class="empty">シグナルデータが取得できませんでした。</p>
+        <h4 style="margin:0.5em 0 0.4em;color:var(--up)">🟢 強気（買いシグナル優勢）</h4>
+        <div class="rank-item">
+          <div class="rank-num">🥇</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">9984</span> ソフトバンクグループ
+              <span class="mono down">-7.06%</span>
+              <span class="score-tag">強気スコア +2</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立6/売り0/買い1 ・ RSI(14) 40.16</div>
+          </div>
+        </div><h4 style="margin:1.2em 0 0.4em;color:var(--down)">🔴 弱気（売りシグナル優勢）</h4>
+        <div class="rank-item">
+          <div class="rank-num">🥇</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">8306</span> 三菱UFJフィナンシャル・グループ
+              <span class="mono flat">―</span>
+              <span class="score-tag">強気スコア -2</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立5/売り2/買い0 ・ RSI(14) 72.77 <span class="tag tag-warn">過熱感に注意</span></div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥈</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">7203</span> トヨタ自動車
+              <span class="mono down">-1.80%</span>
+              <span class="score-tag">強気スコア -1</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立6/売り1/買い0 ・ RSI(14) 57.11</div>
+          </div>
+        </div>
       </div>
     </section>
   
