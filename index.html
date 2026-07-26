@@ -430,6 +430,18 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   }
   a { color: #000 !important; text-decoration: underline; }
 }
+    /* ── 投資戦略サマリー ── */
+    #strategy { margin-top: 1em; }
+    .strategy-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1em 1.2em; margin-bottom: 1em; }
+    .strategy-block h4 { margin: 0 0 0.5em; font-size: 1em; }
+    .strategy-market { font-size: 1.4em; font-weight: 700; margin: 0.3em 0 0.6em; }
+    .strategy-note { font-size: 0.82em; color: var(--muted); margin: 0 0 0.6em; line-height: 1.5; }
+    .strategy-list { margin: 0; padding-left: 1.4em; line-height: 1.8; font-size: 0.9em; }
+    .strategy-list li { margin-bottom: 0.3em; }
+    .strategy-conclusion { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--card)); }
+    .strategy-conclusion h4 { color: var(--accent); }
+    .strategy-conclusion-list { margin: 0; padding-left: 1.4em; line-height: 1.9; font-size: 0.92em; }
+    .strategy-conclusion-list li { margin-bottom: 0.5em; }
 </style>
 </head>
 <body>
@@ -440,7 +452,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-26 14:53 (JST)<span class="rel-time" data-generated="2026-07-26 14:53"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-26 15:51 (JST)<span class="rel-time" data-generated="2026-07-26 15:51"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
@@ -448,6 +460,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
         <a href="#evening">🌙 引け後</a>
         <a href="#technical">📊 株価診断</a>
         <a href="#growth">🌱 成長株</a>
+        <a href="#strategy">🎯 投資戦略まとめ</a>
       </nav>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
     </div>
@@ -1088,6 +1101,15 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
             <div class="rank-desc">TDnet適時開示「2026年11月期通期連結業績予想の修正（上方修正）に関するお知らせ」より、上方修正を確認。 ・ 開示日時: 7月15日(水) 14:00</div>
           </div>
         </div>
+      </div>
+    </section>
+
+  
+    <section id="strategy">
+      <h2>🎯 投資戦略まとめ</h2>
+      <p class="section-desc">今日の地合い・テクニカル状態・好材料開示を統合した投資判断の参考情報です。あくまで参考であり、<b>投資助言ではありません。最終判断はご自身の責任で。</b></p>
+      <div class="card">
+        <div class="strategy-block"><h4>📊 今日の地合い</h4><div class="strategy-market" style="color:var(--down)">🔴 弱気地合い</div><ul class="strategy-list"><li>米国3指数平均: -0.04%（S&P500 +0.05% / NYダウ +0.46% / NASDAQ -0.64%）</li><li>日経先物: -1.55%</li><li>ドル円: 円高（輸出株に逆風）（前日比 -0.03%）</li></ul></div><div class="strategy-block"><h4>📈 テクニカル状態診断（過去データによる現在の強気・弱気）</h4><p class="strategy-note">移動平均線・RSIなど<b>過去の株価データ</b>から算出した「現在の強気・弱気状態」です。<b>将来の株価を予測・保証するものではありません。</b></p><p style="margin:0.3em 0 0.2em;font-size:0.88em;color:var(--up)">🟢 強気（買いシグナル優勢）</p><ul class="strategy-list"><li><b>ソフトバンクグループ</b>（9984）― 強気スコア +2 / 前日比-7.06%</li></ul><p style="margin:0.6em 0 0.2em;font-size:0.88em;color:var(--down)">🔴 弱気（売りシグナル優勢）</p><ul class="strategy-list"><li><b>三菱UFJフィナンシャル・グループ</b>（8306）― 弱気スコア -2 ⚠️ RSI過熱(72.77)</li><li><b>トヨタ自動車</b>（7203）― 弱気スコア -1</li></ul></div><div class="strategy-block"><h4>📋 好材料開示銘柄（上方修正・増配等）</h4><p class="strategy-note">TDnetに上方修正・増配など好材料を含む開示を行った銘柄です。<b>翌営業日以降の株価反応に注目。</b>開示原文のご確認を。</p><ul class="strategy-list"><li><b>アーバネット</b> — <a href="https://tdnet-pdf.kabutan.jp/20260723/140120260722597179.pdf" target="_blank">通期連結業績予想の修正（上方修正）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">上方修正</span></li><li><b>未来工業</b> — <a href="https://tdnet-pdf.kabutan.jp/20260723/140120260723598028.pdf" target="_blank">連結業績予想と実績の差異及び連結業績予想修正並びに配当予想の修正（増配）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li><li><b>三井松島ＨＤ</b> — <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260722597578.pdf" target="_blank">2027年３月期業績予想の上方修正及び配当予想の修正（増配）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">上方修正</span></li><li><b>ブロンコＢ</b> — <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260721597038.pdf" target="_blank">第２四半期（中間期）業績予想と実績の差異及び通期業績予想並びに中間配当及び株式分割後の期末…</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li><li><b>十六ＦＧ</b> — <a href="https://tdnet-pdf.kabutan.jp/20260722/140120260717596038.pdf" target="_blank">業績予想の修正及び配当予想の修正（増配）に関するお知らせ…</a><br><span style="font-size:0.82em;color:var(--muted)">増配</span></li></ul></div><div class="strategy-block strategy-conclusion"><h4>🎯 投資判断まとめ・今後の見通し</h4><ul class="strategy-conclusion-list"><li><b>ソフトバンクグループ</b>はテクニカル強気ですが、全体地合いが弱いため追いかけすぎに注意。押し目で拾う戦略が無難です。</li><li>好材料開示銘柄（<b>アーバネット・未来工業・三井松島ＨＤ</b>等）は翌営業日の寄り付きでのギャップアップが期待できます。ただし材料出尽くし売りのリスクも念頭に。</li><li>⚠️ <b>RSI過熱（70超）の銘柄: 三菱UFJフィナンシャル・グループ（RSI過熱）</b> — 短期的な利益確定売りや調整が入りやすいため、新規追いかけは避ける方が無難です。</li><li>⚠️ 米国市場・日経先物が軟調です。全体相場の下落に引きずられるリスクが高く、<b>全般的に新規の買いは慎重に。</b>手持ちポジションは利益確定や損切りラインの確認を。</li></ul><p class="strategy-note" style="margin-top:0.8em">⚠️ 上記はテクニカル指標・開示情報等を組み合わせた機械的な参考情報です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</p></div>
       </div>
     </section>
 
