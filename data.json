@@ -1,25 +1,25 @@
 {
-  "generated_at" : "2026-07-26 17:57",
+  "generated_at" : "2026-07-26 18:38",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,411.98",
-      "change_pct" : 0.05,
+      "change_pct" : -1.16,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "dow" : {
       "value" : "51,947.25",
-      "change_pct" : 0.46,
+      "change_pct" : -0.52,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "nasdaq" : {
       "value" : "24,975.82",
-      "change_pct" : -0.64,
+      "change_pct" : -2.78,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "sox" : {
       "value" : "11,818.89",
-      "change_pct" : -4.25,
+      "change_pct" : -4.77,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
@@ -35,7 +35,7 @@
   },
   "nikkei225" : {
     "value" : "64,611.15",
-    "change_pct" : -2.73,
+    "change_pct" : -2.28,
     "asof" : "7/24Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
