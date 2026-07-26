@@ -1351,6 +1351,19 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
     .strategy-conclusion h4 { color: var(--accent); }
     .strategy-conclusion-list { margin: 0; padding-left: 1.4em; line-height: 1.9; font-size: 0.92em; }
     .strategy-conclusion-list li { margin-bottom: 0.5em; }
+    .crash-banner {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        color: #fff; font-weight: 700; text-align: center;
+        padding: 14px 20px; font-size: 1.05rem; border-radius: 10px;
+        margin: 12px 0; box-shadow: 0 4px 16px rgba(220,38,38,0.4);
+        animation: crash-pulse 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes crash-pulse {
+        from { box-shadow: 0 4px 16px rgba(220,38,38,0.4); }
+        to   { box-shadow: 0 4px 28px rgba(220,38,38,0.9); }
+    }
+    .credit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+    .credit-card { background: var(--card-bg); border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
 """
 
 
@@ -1992,21 +2005,7 @@ def build_html(data: dict) -> str:
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>{page_css}
-    .crash-banner {
-        background: linear-gradient(135deg, #dc2626, #b91c1c);
-        color: #fff; font-weight: 700; text-align: center;
-        padding: 14px 20px; font-size: 1.05rem; border-radius: 10px;
-        margin: 12px 0; box-shadow: 0 4px 16px rgba(220,38,38,0.4);
-        animation: crash-pulse 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes crash-pulse {
-        from { box-shadow: 0 4px 16px rgba(220,38,38,0.4); }
-        to   { box-shadow: 0 4px 28px rgba(220,38,38,0.9); }
-    }
-    .credit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-    .credit-card { background: var(--card-bg); border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
-</style>
+<style>{page_css}</style>
 </head>
 <body>
 <div class="bg-photo-stack" aria-hidden="true">{bg_photo_divs}</div>
