@@ -2064,14 +2064,6 @@ def build_html(data: dict) -> str:
     return html_out
 
 
-def main():
-    data_path = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "data.json"
-    out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else BASE_DIR / "jp_daytrade_dashboard.html"
-
-    if not data_path.exists():
-        print(f"[ERROR] data.json が見つかりません: {data_path}", file=sys.stderr)
-        sys.exit(1)
-
 
 def _fix_mojibake(obj):
     """Recursively fix double/triple-encoded UTF-8 mojibake from Java scraper."""
@@ -2088,6 +2080,14 @@ def _fix_mojibake(obj):
             except (UnicodeEncodeError, UnicodeDecodeError):
                 return obj
     return obj
+
+def main():
+    data_path = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "data.json"
+    out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else BASE_DIR / "jp_daytrade_dashboard.html"
+
+    if not data_path.exists():
+        print(f"[ERROR] data.json が見つかりません: {data_path}", file=sys.stderr)
+        sys.exit(1)
 
     with open(data_path, "r", encoding="utf-8") as f:
         data = _fix_mojibake(json.load(f))
