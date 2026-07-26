@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-æ¥æ¬æ ª(æ±è¨¼)ãã¤ãã¬ã¼ãæå ±ããã·ã¥ãã¼ã ã¬ã³ãã©ã¼
+日本株(東証)デイトレード情報ダッシュボード レンダラー
 ====================================================
-data.json (ãã®ã¹ã¯ãªããã¨åããã©ã«ãã«ç½®ã) ãèª­ã¿è¾¼ã¿ã
-è¦ãããHTMLããã·ã¥ãã¼ããçæããã
+data.json (このスクリプトと同じフォルダに置く) を読み込み、
+見やすいHTMLダッシュボードを生成する。
 
-ãã®ã¹ã¯ãªããèªä½ã¯ãããã¯ã¼ã¯ã«ä¸åã¢ã¯ã»ã¹ããªãã
-ãã¼ã¿åé(Webæ¤ç´¢ã»åå¾)ã¯Claude(ã¹ã±ã¸ã¥ã¼ã«ã¿ã¹ã¯)å´ã
-æ¯å data.json ãä½ãç´ããã¨ã§è¡ãã
+このスクリプト自体はネットワークに一切アクセスしない。
+データ収集(Web検索・取得)はClaude(スケジュールタスク)側が
+毎回 data.json を作り直すことで行う。
 
-ä½¿ãæ¹:
-    python3 render_dashboard.py [data.jsonã®ãã¹] [åºåhtmlã®ãã¹]
-ããã©ã«ã:
+使い方:
+    python3 render_dashboard.py [data.jsonのパス] [出力htmlのパス]
+デフォルト:
     data.json ./data.json
-    åºåå    ./jp_daytrade_dashboard.html
+    出力先    ./jp_daytrade_dashboard.html
 """
 import json
 import re
@@ -25,41 +25,41 @@ from datetime import datetime
 
 BASE_DIR = Path(__file__).resolve().parent
 
-# æ±äº¬ã®å¤æ¯åç(Unsplashã»åç¨å©ç¨å¯ã»ã¯ã¬ã¸ããè¡¨è¨ä¸è¦)
-# ãµã¤ãå¨ä½ã®èæ¯ã«ä½¿ãåçãå®è¡æ¥ã¨æ/å¤ã®æ´æ°ã¿ã¤ãã³ã°ã«å¿ãã¦èªåçã«åãæ¿ããã
-# (å­æ¬æ¨ãã«ãºã®å®¤åçªè¶ãã«ããã¯å½©åº¦ãä½ãã¢ãã¯ã­ã«è¦ããããé¤å¤ãã¦ãã)
-# åèæ¯åçã¯ (URL, æ®å½±å°ã®ã©ãã«) ã®ã¿ãã«ãã©ãã«ã¯ãã¼ã¸æä¸é¨ã®ã­ã£ãã·ã§ã³è¡¨ç¤ºã«ä½¿ãã
+# 東京の夜景写真(Unsplash・商用利用可・クレジット表記不要)
+# サイト全体の背景に使う写真。実行日と朝/夜の更新タイミングに応じて自動的に切り替える。
+# (六本木ヒルズの室内窓越しカットは彩度が低くモノクロに見えるため除外している)
+# 各背景写真は (URL, 撮影地のラベル) のタプル。ラベルはページ最下部のキャプション表示に使う。
 BACKGROUND_IMAGES = [
-    ("https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ±äº¬ã¿ã¯ã¼"),
-    ("https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ¸è°·ã¹ã¯ã©ã³ãã«äº¤å·®ç¹"),
-    ("https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ã¬ã¤ã³ãã¼ããªãã¸ã»ãå°å ´"),
-    ("https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ±äº¬ã¹ã«ã¤ããªã¼"),
-    ("https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=2400&q=90&sat=40&con=10&vib=25", "æ°å®¿"),
-    ("https://images.unsplash.com/photo-1624434512895-2d1887ebfccf?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "å­æ¬æ¨"),
-    ("https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ç§èå"),
-    ("https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ä¸¸ã®åã»æ±äº¬é§"),
-    ("https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "éåº§"),
-    ("https://images.unsplash.com/photo-1671247913568-050c0bb925f5?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "è¡¨åéã¤ã«ããã¼ã·ã§ã³"),
-    ("https://images.unsplash.com/photo-1771385706304-19ab1fb5fd61?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æµèã»é·é"),
-    ("https://images.unsplash.com/photo-1703702238930-237f139e8115?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ç¥æ¥½åã®è·¯å°"),
-    ("https://images.unsplash.com/photo-1764418366176-0f273a921fab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ä¼è¦ç¨²è·å¤§ç¤¾(äº¬é½)"),
-    ("https://images.unsplash.com/photo-1711006876033-8baac5dfa718?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ±çã¤ã«ããã¼ã·ã§ã³"),
-    ("https://images.unsplash.com/photo-1739614537933-11eed8f5d449?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ¨ªæµã¿ãªã¨ã¿ãã"),
-    ("https://images.unsplash.com/photo-1660292318896-0c684c801e3f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "å­æ¬æ¨ãã«ãºå±æå°"),
-    ("https://images.unsplash.com/photo-1764268845521-a115101cdde5?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ± è¢"),
-    ("https://images.unsplash.com/photo-1493515322954-4fa727e97985?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ä¸éã®è£è·¯å°"),
-    ("https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "ææ¥½çºã»éåº§"),
-    ("https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ­èä¼çº"),
-    ("https://images.unsplash.com/photo-1626846136629-aa437fcb29a8?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "è¥¿æ°å®¿ã®é«å±¤ãã«ç¾¤"),
-    ("https://images.unsplash.com/photo-1734753050499-e766acbe80ce?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "åå·ã»é«å±¤ãã«è¡"),
-    ("https://images.unsplash.com/photo-1781525981877-ce6d8d80bcf8?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ¸è°·ã»ã³ã¿ã¼è¡"),
-    ("https://images.unsplash.com/photo-1617870314635-fc819547ec11?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "æ°å®¿ã»æãåºæ¨ªä¸"),
+    ("https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "東京タワー"),
+    ("https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "渋谷スクランブル交差点"),
+    ("https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "レインボーブリッジ・お台場"),
+    ("https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "東京スカイツリー"),
+    ("https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&fit=crop&w=2400&q=90&sat=40&con=10&vib=25", "新宿"),
+    ("https://images.unsplash.com/photo-1624434512895-2d1887ebfccf?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "六本木"),
+    ("https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "秋葉原"),
+    ("https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "丸の内・東京駅"),
+    ("https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "銀座"),
+    ("https://images.unsplash.com/photo-1671247913568-050c0bb925f5?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "表参道イルミネーション"),
+    ("https://images.unsplash.com/photo-1771385706304-19ab1fb5fd61?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "浅草・雷門"),
+    ("https://images.unsplash.com/photo-1703702238930-237f139e8115?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "神楽坂の路地"),
+    ("https://images.unsplash.com/photo-1764418366176-0f273a921fab?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "伏見稲荷大社(京都)"),
+    ("https://images.unsplash.com/photo-1711006876033-8baac5dfa718?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "汐留イルミネーション"),
+    ("https://images.unsplash.com/photo-1739614537933-11eed8f5d449?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "横浜みなとみらい"),
+    ("https://images.unsplash.com/photo-1660292318896-0c684c801e3f?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "六本木ヒルズ展望台"),
+    ("https://images.unsplash.com/photo-1764268845521-a115101cdde5?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "池袋"),
+    ("https://images.unsplash.com/photo-1493515322954-4fa727e97985?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "上野の裏路地"),
+    ("https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "有楽町・銀座"),
+    ("https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "歌舞伎町"),
+    ("https://images.unsplash.com/photo-1626846136629-aa437fcb29a8?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "西新宿の高層ビル群"),
+    ("https://images.unsplash.com/photo-1734753050499-e766acbe80ce?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "品川・高層ビル街"),
+    ("https://images.unsplash.com/photo-1781525981877-ce6d8d80bcf8?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "渋谷センター街"),
+    ("https://images.unsplash.com/photo-1617870314635-fc819547ec11?auto=format&fit=crop&w=2400&q=90&sat=35&con=12&vib=22", "新宿・思い出横丁"),
 ]
 
 
 def pick_background_image(generated_at: str, run_type: str) -> str:
-    """å®è¡æ¥(YYYY-MM-DD)ã¨æ/å¤ã®åºåããèæ¯åçãæ±ºå®ããã
-    åãæ¥ã§ãæã¨å¤ã§éãåçã«ãªããæ¥ãå¤ããã¨ã­ã¼ãã¼ã·ã§ã³ãé²ãã"""
+    """実行日(YYYY-MM-DD)と朝/夜の区分から背景写真を決定する。
+    同じ日でも朝と夜で違う写真になり、日が変わるとローテーションが進む。"""
     urls = [u for u, _ in BACKGROUND_IMAGES]
     try:
         day_ordinal = datetime.strptime(generated_at[:10], "%Y-%m-%d").toordinal()
@@ -79,7 +79,7 @@ def fmt_pct(v):
     try:
         v = float(v)
     except (TypeError, ValueError):
-        return "â"
+        return "―"
     sign = "+" if v > 0 else ""
     return f"{sign}{v:.2f}%"
 
@@ -97,9 +97,9 @@ def pct_class(v):
 
 
 def mini_bar_html(value, scale=8.0):
-    """åæ¥æ¯ãªã©ã®æ°å¤ããä¸­å¿ããå·¦å³ã«ä¼¸ã³ããã diverging bar ã¨ãã¦å¯è¦åããã
-    çã®ã­ã¼ã½ã¯è¶³ãã£ã¼ãã«ã¯æç³»åOHLCãã¼ã¿ãå¿è¦ã§data.jsonã«ã¯å«ã¾ããªãããã
-    æ¢å­ã®æ°å¤(åæ¥æ¯%ãªã©)ãè¦è¦çã«ææ¡ããããããç°¡æããã°ã©ãã¨ãã¦æä¾ããã"""
+    """前日比などの数値を、中心から左右に伸びるミニ diverging bar として可視化する。
+    真のローソク足チャートには時系列OHLCデータが必要でdata.jsonには含まれないため、
+    既存の数値(前日比%など)を視覚的に把握しやすくする簡易ミニグラフとして提供する。"""
     try:
         v = float(value)
     except (TypeError, ValueError):
@@ -117,7 +117,7 @@ def mini_bar_html(value, scale=8.0):
 
 
 def rsi_gauge_html(rsi):
-    """RSI(14)ã0-100ã®å¸¯ã°ã©ã+ãã¼ã«ã¼ã§å¯è¦åããç°¡æã²ã¼ã¸ã"""
+    """RSI(14)を0-100の帯グラフ+マーカーで可視化する簡易ゲージ。"""
     try:
         v = float(rsi)
     except (TypeError, ValueError):
@@ -135,7 +135,7 @@ def rsi_gauge_html(rsi):
 
 
 def code_link(code):
-    """éæã³ã¼ããYahoo!ãã¡ã¤ãã³ã¹ã®è©²å½ãã¼ã¸ã¸ã®ãªã³ã¯ã«ãã(4æ¡åå¾ã®è¨¼å¸ã³ã¼ãã®ã¿)ã"""
+    """銘柄コードをYahoo!ファイナンスの該当ページへのリンクにする(4桁前後の証券コードのみ)。"""
     c = (code or "").strip()
     if not c:
         return ""
@@ -150,21 +150,21 @@ def fav_btn_html(code):
         return ""
     return (
         f'<button class="fav-btn" type="button" data-code="{c}" '
-        f'aria-label="ãæ°ã«å¥ãç»é²" aria-pressed="false">â</button> '
+        f'aria-label="お気に入り登録" aria-pressed="false">★</button> '
     )
 
 
-def table_tools_html(placeholder="éæåã»ã³ã¼ãã§æ¤ç´¢"):
-    return f'<div class="table-tools"><input type="search" class="table-search" placeholder="ð {esc(placeholder)}"></div>'
+def table_tools_html(placeholder="銘柄名・コードで検索"):
+    return f'<div class="table-tools"><input type="search" class="table-search" placeholder="🔍 {esc(placeholder)}"></div>'
 
 
 def signal_badge(signal):
-    """signal: 'å¼·æ°' / 'å¼±æ°' / 'ä¸­ç«' ãªã©ã®æå­å -> è²ä»ãããã¸HTML"""
-    s = (signal or "ä¸­ç«").strip()
+    """signal: '強気' / '弱気' / '中立' などの文字列 -> 色付きバッジHTML"""
+    s = (signal or "中立").strip()
     cls = "neutral"
-    if "å¼·æ°" in s or "è²·ã" in s:
+    if "強気" in s or "買い" in s:
         cls = "bull"
-    elif "å¼±æ°" in s or "å£²ã" in s:
+    elif "弱気" in s or "売り" in s:
         cls = "bear"
     return f'<span class="badge {cls}">{esc(s)}</span>'
 
@@ -183,7 +183,7 @@ def section_index_row(label, value, change=None, note=None):
     </div>"""
 
 
-def news_list(items, empty_msg="ç¾æç¹ã§è©²å½ãããã¥ã¼ã¹ã¯åå¾ã§ãã¾ããã§ããã"):
+def news_list(items, empty_msg="現時点で該当するニュースは取得できませんでした。"):
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -194,20 +194,20 @@ def news_list(items, empty_msg="ç¾æç¹ã§è©²å½ãã
         time_ = esc(it.get("time", ""))
         meta = " / ".join(x for x in [time_, source] if x)
 
-        # æè³é¢é£åéã»æ³¨ç®ä¼æ¥­(ãã¼ã¿ã«ããã°è¡¨ç¤ºãç¡ãå ´åã¯ä½ãåºããªã=æ§ãã¼ã¿ã¨ã®å¾æ¹äºæ)
+        # 投資関連分野・注目企業(データにあれば表示。無い場合は何も出さない=旧データとの後方互換)
         sector = esc((it.get("investment_sector") or "").strip())
         companies_raw = it.get("investment_companies") or ""
         if isinstance(companies_raw, list):
-            companies = "ã".join(esc(str(c)) for c in companies_raw if str(c).strip())
+            companies = "、".join(esc(str(c)) for c in companies_raw if str(c).strip())
         else:
             companies = esc(str(companies_raw).strip())
         impact_html = ""
         if sector or companies:
             bits = []
             if sector:
-                bits.append(f'<span class="impact-sector">é¢é£åé: {sector}</span>')
+                bits.append(f'<span class="impact-sector">関連分野: {sector}</span>')
             if companies:
-                bits.append(f'<span class="impact-companies">æ³¨ç®ä¼æ¥­: {companies}</span>')
+                bits.append(f'<span class="impact-companies">注目企業: {companies}</span>')
             impact_html = f'<div class="news-impact">{"".join(bits)}</div>'
 
         rows.append(
@@ -218,7 +218,7 @@ def news_list(items, empty_msg="ç¾æç¹ã§è©²å½ãã
     return "<ul class=\"news-list\">" + "".join(rows) + "</ul>"
 
 
-def tdnet_table(items, empty_msg="å¯¾è±¡æéã®é©æéç¤ºã¯åå¾ã§ãã¾ããã§ããã"):
+def tdnet_table(items, empty_msg="対象期間の適時開示は取得できませんでした。"):
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -233,7 +233,7 @@ def tdnet_table(items, empty_msg="å¯¾è±¡æéã®é©æé
         tag = esc(tag_raw)
         tag_html = f'<span class="tag">{tag}</span>' if tag else ""
         sent_cls, sent_label = disclosure_sentiment(tag_raw, title_raw)
-        sent_html = f'<span class="badge {sent_cls} sentiment-badge" title="ã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãã®ã¿ã§æ©æ¢°çã«å¤å®ããåèã©ãã«ã§ã">{sent_label}</span>'
+        sent_html = f'<span class="badge {sent_cls} sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">{sent_label}</span>'
         rows.append(f"""
         <tr>
           <td class="mono">{time_}</td>
@@ -242,18 +242,18 @@ def tdnet_table(items, empty_msg="å¯¾è±¡æéã®é©æé
           <td>{sent_html}<a href="{url}" target="_blank" rel="noopener">{title}</a> {tag_html}</td>
         </tr>""")
     return f"""
-    {table_tools_html("æå»ã»ã³ã¼ãã»ä¼ç¤¾åã»ã¿ã¤ãã«ã§æ¤ç´¢")}
-    <p class="rank-note">ð¡ <b>ãã¸ãã£ã/ãã¬ãã£ã/ä¸­ç«</b>ã¯éç¤ºã¿ã¤ãã«ã®ã­ã¼ã¯ã¼ãä¸è´ã«ããæ©æ¢°çãªåèå¤å®ã§ããAIã«ããè©³ç´°åæã§ã¯ãªããæè³å©è¨ã§ãããã¾ããã</p>
-    <div class="scroll-hint">â æ¨ªã«ã¹ã¯ã­ã¼ã«ã§ãã¾ã</div>
+    {table_tools_html("時刻・コード・会社名・タイトルで検索")}
+    <p class="rank-note">💡 <b>ポジティブ/ネガティブ/中立</b>は開示タイトルのキーワード一致による機械的な参考判定です。AIによる詳細分析ではなく、投資助言でもありません。</p>
+    <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="tdnet-table" data-sortable="true">
-      <thead><tr><th>æå»</th><th>ã³ã¼ã</th><th>ä¼ç¤¾å</th><th>éç¤ºã¿ã¤ãã«</th></tr></thead>
+      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
     </div>"""
 
 
-def movers_table(items, empty_msg="è©²å½ãã¼ã¿ãåå¾ã§ãã¾ããã§ããã"):
+def movers_table(items, empty_msg="該当データが取得できませんでした。"):
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -275,16 +275,16 @@ def movers_table(items, empty_msg="è©²å½ãã¼ã¿ãåå�
         </tr>""")
     return f"""
     {table_tools_html()}
-    <div class="scroll-hint">â æ¨ªã«ã¹ã¯ã­ã¼ã«ã§ãã¾ã</div>
+    <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="movers-table" data-sortable="true">
-      <thead><tr><th>ã³ã¼ã</th><th>éæå</th><th>æ ªä¾¡</th><th>åæ¥æ¯</th><th>åºæ¥é«ã¡ã¢</th><th>è©±é¡ã®èæ¯</th></tr></thead>
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>出来高メモ</th><th>話題の背景</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
     </div>"""
 
 
-def technical_table(items, empty_msg="ãã¯ãã«ã«ãã¼ã¿ãåå¾ã§ãã¾ããã§ããã"):
+def technical_table(items, empty_msg="テクニカルデータが取得できませんでした。"):
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -301,12 +301,12 @@ def technical_table(items, empty_msg="ãã¯ãã«ã«ãã¼
         try:
             rsi_f = float(rsi)
             if rsi_f >= 70:
-                rsi_note = ' <span class="tag tag-warn">éç±æ</span>'
+                rsi_note = ' <span class="tag tag-warn">過熱感</span>'
             elif rsi_f <= 30:
-                rsi_note = ' <span class="tag tag-warn">å£²ããéã</span>'
+                rsi_note = ' <span class="tag tag-warn">売られ過ぎ</span>'
         except (TypeError, ValueError):
             pass
-        signal = it.get("signal", "ä¸­ç«")
+        signal = it.get("signal", "中立")
         summary = esc(it.get("summary", ""))
         rows.append(f"""
         <tr>
@@ -322,38 +322,38 @@ def technical_table(items, empty_msg="ãã¯ãã«ã«ãã¼
         </tr>""")
     return f"""
     {table_tools_html()}
-    <div class="scroll-hint">â æ¨ªã«ã¹ã¯ã­ã¼ã«ã§ãã¾ã</div>
+    <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="technical-table" data-sortable="true">
-      <thead><tr><th>ã³ã¼ã</th><th>éæå</th><th>æ ªä¾¡</th><th>åæ¥æ¯</th><th>5æ¥ç·ä¹é¢</th><th>25æ¥ç·ä¹é¢</th><th>RSI(14)</th><th>ã·ã°ãã«</th><th>ã³ã¡ã³ã</th></tr></thead>
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
     </div>"""
 
 
 def parse_signal_counts(summary):
-    """summaryæå­åãããä¸­ç«X/å£²ãY/è²·ãZãã¾ãã¯ãå£²ãY/ä¸­ç«X/è²·ãZãå½¢å¼ã®ã·ã°ãã«åè¨³ãæ½åºãè¦ã¤ãããªããã°Noneã"""
+    """summary文字列から「中立X/売りY/買いZ」または「売りY/中立X/買いZ」形式のシグナル内訳を抽出。見つからなければNone。"""
     if not summary:
         return None
-    # å½¢å¼1: å£²ãN/ä¸­ç«N/è²·ãN (æ°ãã©ã¼ããã)
-    m = re.search(r"å£²ã\s*(\d+)\s*/\s*ä¸­ç«\s*(\d+)\s*/\s*è²·ã\s*(\d+)", summary)
+    # 形式1: 売りN/中立N/買いN (新フォーマット)
+    m = re.search(r"売り\s*(\d+)\s*/\s*中立\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
     if m:
         sell, neutral, buy = (int(x) for x in m.groups())
         return {"neutral": neutral, "sell": sell, "buy": buy}
-    # å½¢å¼2: ä¸­ç«N/å£²ãN/è²·ãN (æ§ãã©ã¼ããã)
-    m = re.search(r"ä¸­ç«\s*(\d+)\s*/\s*å£²ã\s*(\d+)\s*/\s*è²·ã\s*(\d+)", summary)
+    # 形式2: 中立N/売りN/買いN (旧フォーマット)
+    m = re.search(r"中立\s*(\d+)\s*/\s*売り\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
     if m:
         neutral, sell, buy = (int(x) for x in m.groups())
         return {"neutral": neutral, "sell": sell, "buy": buy}
     return None
 def rank_label(i):
-    medals = ["ð¥", "ð¥", "ð¥"]
-    return medals[i] if i < len(medals) else f"{i + 1}ä½"
+    medals = ["🥇", "🥈", "🥉"]
+    return medals[i] if i < len(medals) else f"{i + 1}位"
 
 
-def bull_ranking_html(items, empty_msg="ã·ã°ãã«ãã¼ã¿ãåå¾ã§ãã¾ããã§ããã"):
-    """ãã¯ãã«ã«ææ¨ã®ãè²·ãã·ã°ãã«æ°ããè»¸ã«ãããéå»ãã¼ã¿ãã¼ã¹ã®æ©æ¢°çã©ã³ã­ã³ã°ã
-    å°æ¥ã®æ ªä¾¡ä¸æãäºæ³ã»ä¿è¨¼ãããã®ã§ã¯ãªãã"""
+def bull_ranking_html(items, empty_msg="シグナルデータが取得できませんでした。"):
+    """テクニカル指標の「買いシグナル数」を軸にした、過去データベースの機械的ランキング。
+    将来の株価上昇を予想・保証するものではない。"""
     ranked = []
     for it in items:
         counts = parse_signal_counts(it.get("summary", ""))
@@ -379,11 +379,11 @@ def bull_ranking_html(items, empty_msg="ã·ã°ãã«ãã¼ã
             name = esc(it.get("name", ""))
             chg = it.get("change_pct")
             rsi = it.get("rsi", "")
-            detail = f"ä¸­ç«{counts['neutral']}/å£²ã{counts['sell']}/è²·ã{counts['buy']}"
+            detail = f"中立{counts['neutral']}/売り{counts['sell']}/買い{counts['buy']}"
             overheat = ""
             try:
                 if float(rsi) >= 70:
-                    overheat = ' <span class="tag tag-warn">éç±æã«æ³¨æ</span>'
+                    overheat = ' <span class="tag tag-warn">過熱感に注意</span>'
             except (TypeError, ValueError):
                 pass
             rows.append(f"""
@@ -393,9 +393,9 @@ def bull_ranking_html(items, empty_msg="ã·ã°ãã«ãã¼ã
             <div class="rank-head">
               <span class="mono">{code}</span> {name}
               <span class="mono {pct_class(chg)}">{fmt_pct(chg)}</span>
-              <span class="score-tag">å¼·æ°ã¹ã³ã¢ {score:+d}</span>
+              <span class="score-tag">強気スコア {score:+d}</span>
             </div>
-            <div class="rank-desc">ã·ã°ãã«å¤å®: {esc(detail)} ã» RSI(14) {esc(rsi)}{overheat}</div>
+            <div class="rank-desc">シグナル判定: {esc(detail)} ・ RSI(14) {esc(rsi)}{overheat}</div>
           </div>
         </div>""")
         return rows
@@ -404,21 +404,21 @@ def bull_ranking_html(items, empty_msg="ã·ã°ãã«ãã¼ã
     bear_items = sorted([(s, c, it) for s, c, it in ranked if s < 0], key=lambda e: (e[0], rsi_key(e)))
 
     html_parts = []
-    html_parts.append('<h4 style="margin:0.5em 0 0.4em;color:var(--up)">ð¢ å¼·æ°ï¼è²·ãã·ã°ãã«åªå¢ï¼</h4>')
+    html_parts.append('<h4 style="margin:0.5em 0 0.4em;color:var(--up)">🟢 強気（買いシグナル優勢）</h4>')
     if bull_items:
         html_parts.extend(build_rows(bull_items))
     else:
-        html_parts.append('<p class="empty">ç¾å¨ãè²·ãã·ã°ãã«åªå¢ã®éæã¯ããã¾ããã</p>')
-    html_parts.append('<h4 style="margin:1.2em 0 0.4em;color:var(--down)">ð´ å¼±æ°ï¼å£²ãã·ã°ãã«åªå¢ï¼</h4>')
+        html_parts.append('<p class="empty">現在、買いシグナル優勢の銘柄はありません。</p>')
+    html_parts.append('<h4 style="margin:1.2em 0 0.4em;color:var(--down)">🔴 弱気（売りシグナル優勢）</h4>')
     if bear_items:
         html_parts.extend(build_rows(bear_items))
     else:
-        html_parts.append('<p class="empty">ç¾å¨ãå£²ãã·ã°ãã«åªå¢ã®éæã¯ããã¾ããã</p>')
+        html_parts.append('<p class="empty">現在、売りシグナル優勢の銘柄はありません。</p>')
     return "".join(html_parts)
 
 
 def _technical_lookup(technical):
-    """code -> technicalææ¨dict ã®ã«ãã¯ã¢ãããã¼ãã«ãä½ãã"""
+    """code -> technical指標dict のルックアップテーブルを作る。"""
     lookup = {}
     for t in technical or []:
         code = str(t.get("code", "")).strip()
@@ -428,159 +428,159 @@ def _technical_lookup(technical):
 
 
 def _outlook_comment(code, tech_lookup):
-    """ç´è¿ã®ãã¯ãã«ã«ææ¨(RSIã»ç§»åå¹³åä¹é¢ã»ã·ã°ãã«å¤å®)ããããã®éæã«ã¤ãã¦
-    ç«¯çãªåèã³ã¡ã³ããæ©æ¢°çã«çµã¿ç«ã¦ããéå»ã®å¤åãå¾åã«åºã¥ãåèæå ±ã§ããã
-    ä»å¾ã®æ ªä¾¡å¤åãä¿è¨¼ã»äºæ³ãããã®ã§ã¯ãªãã"""
+    """直近のテクニカル指標(RSI・移動平均乖離・シグナル判定)から、その銘柄について
+    端的な参考コメントを機械的に組み立てる。過去の値動き傾向に基づく参考情報であり、
+    今後の株価変動を保証・予想するものではない。"""
     t = tech_lookup.get(str(code).strip())
     if not t:
-        return "ç´è¿ã®ãã¯ãã«ã«ãã¼ã¿ã¯ä»ååå¾ã§ãã¾ããã§ãããå¤åãã¯åç¨®æ ªä¾¡æå ±ãµã¼ãã¹ã§ãç¢ºèªãã ããã"
+        return "直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。"
 
     parts = []
     rsi = t.get("rsi")
     if isinstance(rsi, (int, float)):
         if rsi >= 70:
-            parts.append(f"RSI(14)ã¯{rsi:.1f}ã§è²·ããããæ°´æºã«ãããç­æçãªéç±æã«çæ")
+            parts.append(f"RSI(14)は{rsi:.1f}で買われすぎ水準にあり、短期的な過熱感に留意")
         elif rsi <= 30:
-            parts.append(f"RSI(14)ã¯{rsi:.1f}ã§å£²ããããæ°´æº")
+            parts.append(f"RSI(14)は{rsi:.1f}で売られすぎ水準")
         else:
-            parts.append(f"RSI(14)ã¯{rsi:.1f}ã§ä¸­ç«å")
+            parts.append(f"RSI(14)は{rsi:.1f}で中立圏")
 
     ma25 = t.get("ma25_dev")
     if ma25:
-        parts.append(f"25æ¥ç·ãã{esc(ma25)}ä¹é¢")
+        parts.append(f"25日線から{esc(ma25)}乖離")
 
     signal = t.get("signal")
     if signal:
-        parts.append(f"ã·ã°ãã«å¤å®ã¯ã{esc(signal)}ã")
+        parts.append(f"シグナル判定は「{esc(signal)}」")
 
     if not parts:
-        return "ãã¯ãã«ã«ææ¨ã®åèå¤ãç¾æç¹ã§ä¸è¶³ãã¦ãã¾ãã"
-    return "ã".join(parts) + "ãç´è¿ã®å¤åãå¾åã«åºã¥ãæ©æ¢°çãªåèæå ±ã§ãããå°æ¥ã®æ ªä¾¡å¤åãä¿è¨¼ãããã®ã§ã¯ããã¾ããã"
+        return "テクニカル指標の参考値が現時点で不足しています。"
+    return "、".join(parts) + "。直近の値動き傾向に基づく機械的な参考情報であり、将来の株価変動を保証するものではありません。"
 
 
 
-# æ¥æ¬æ ª(TDnetéç¤º)ã®å¥½ææã«ãã´ãªå®ç¾©:éã¿ã»å¼·ãã©ãã«ã»å·ä½çãªå¥½ææåå®¹ã»
-# éå»ã®é¡ä¼¼éç¤ºã«åºã¥ãæ³å®ã¤ã³ãã¯ã(åèå¤)ã»å¥½ææã¨å¤æ­ããçç±ãã¾ã¨ãã¦ä¿æããã
-# æ³å®ã¤ã³ãã¯ãã¯ããã¾ã§éå»ã®é¡ä¼¼ã±ã¼ã¹ã®ä¸è¬çãªå¾åãç¤ºãåèå¤ã§ããã
-# æ ªä¾¡ãå®éã«ãã®éãä¸æãããã¨ãç¢ºç´ã»äºæ³ãããã®ã§ã¯ãªãã
+# 日本株(TDnet開示)の好材料カテゴリ定義:重み・強さラベル・具体的な好材料内容・
+# 過去の類似開示に基づく想定インパクト(参考値)・好材料と判断する理由をまとめて保持する。
+# 想定インパクトはあくまで過去の類似ケースの一般的な傾向を示す参考値であり、
+# 株価が実際にその通り上昇することを確約・予想するものではない。
 JP_CATALYST_INFO = {
-    "æé«ç": {
-        "weight": 5, "strength": "éå¸¸ã«å¼·ãå¥½ææ",
-        "content": "éå»æé«ã®æ¥­ç¸¾(ç´å©çã»å¶æ¥­å©çãªã©)ãè¨é²ã»æ´æ°ãããã¨ãéç¤º",
-        "impact": "+5%ã+12%ç¨åº¦",
-        "reason": "æ¥­ç¸¾ãå¸å ´ã®æ³å®ãä¸åããã¼ã¹ã§ä¼¸ã³ã¦ãããã¨ãç¤ºããä»å¾ã®å¢çæå¾ããæ ªä¾¡è©ä¾¡ãè¦ç´ããããããã",
+    "最高益": {
+        "weight": 5, "strength": "非常に強い好材料",
+        "content": "過去最高の業績(純利益・営業利益など)を記録・更新したことを開示",
+        "impact": "+5%〜+12%程度",
+        "reason": "業績が市場の想定を上回るペースで伸びていることを示し、今後の増益期待から株価評価が見直されやすいため",
     },
-    "å¢åå¢ç": {
-        "weight": 4, "strength": "å¼·ãå¥½ææ",
-        "content": "å£²ä¸ã»å©çãããããåææ¯ã§å¢å ãããã¨ãéç¤º",
-        "impact": "+3%ã+8%ç¨åº¦",
-        "reason": "åçæ§ã¨æé·æ§ã®ä¸¡æ¹ãæ¹åãã¦ãããã¨ãç¢ºèªãããæ¥­ç¸¾ã®è³ªã®é«ããè©ä¾¡ããããããã",
+    "増収増益": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "売上・利益がいずれも前期比で増加したことを開示",
+        "impact": "+3%〜+8%程度",
+        "reason": "収益性と成長性の両方が改善していることが確認され、業績の質の高さが評価されやすいため",
     },
-    "ç¹å¥éå½": {
-        "weight": 4, "strength": "å¼·ãå¥½ææ",
-        "content": "éå¸¸éå½ã«å ãã¦ç¹å¥éå½ãå®æ½ãããã¨ãéç¤º",
-        "impact": "+2%ã+6%ç¨åº¦",
-        "reason": "ä¼ç¤¾ã®è³éä½åãæ ªä¸»éåå§¿å¢ã®å¼·ããç¤ºãã·ã°ãã«ã¨ãã¦åãæ­¢ãããããããã",
+    "特別配当": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "通常配当に加えて特別配当を実施することを開示",
+        "impact": "+2%〜+6%程度",
+        "reason": "会社の資金余力や株主還元姿勢の強さを示すシグナルとして受け止められやすいため",
     },
-    "ä¸æ¹ä¿®æ­£": {
-        "weight": 4, "strength": "å¼·ãå¥½ææ",
-        "content": "æ¥­ç¸¾äºæ³(å£²ä¸ã»å©ç)ãä¸æ¹ä¿®æ­£ãããã¨ãéç¤º",
-        "impact": "+3%ã+8%ç¨åº¦",
-        "reason": "ä¼ç¤¾èªèº«ãæ¥­ç¸¾è¦éããå¼ãä¸ãããã¨ã§ãã¢ããªã¹ãäºæ³ãå¸å ´æå¾ã®ä¸æ¯ãã«ã¤ãªããããããã",
+    "上方修正": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "業績予想(売上・利益)を上方修正したことを開示",
+        "impact": "+3%〜+8%程度",
+        "reason": "会社自身が業績見通しを引き上げたことで、アナリスト予想や市場期待の上振れにつながりやすいため",
     },
-    "æ¥­ç¸¾ä¸æ¹ä¿®æ­£": {
-        "weight": 4, "strength": "å¼·ãå¥½ææ",
-        "content": "æ¥­ç¸¾äºæ³(å£²ä¸ã»å©ç)ãä¸æ¹ä¿®æ­£ãããã¨ãéç¤º",
-        "impact": "+3%ã+8%ç¨åº¦",
-        "reason": "ä¼ç¤¾èªèº«ãæ¥­ç¸¾è¦éããå¼ãä¸ãããã¨ã§ãã¢ããªã¹ãäºæ³ãå¸å ´æå¾ã®ä¸æ¯ãã«ã¤ãªããããããã",
+    "業績上方修正": {
+        "weight": 4, "strength": "強い好材料",
+        "content": "業績予想(売上・利益)を上方修正したことを開示",
+        "impact": "+3%〜+8%程度",
+        "reason": "会社自身が業績見通しを引き上げたことで、アナリスト予想や市場期待の上振れにつながりやすいため",
     },
-    "å¢é": {
-        "weight": 3, "strength": "ããå¼·ãå¥½ææ",
-        "content": "1æ ªå½ããéå½ãå¢é¡(å¢é)ãããã¨ãéç¤º",
-        "impact": "+2%ã+5%ç¨åº¦",
-        "reason": "éå½å¢é¡ã¯çµå¶é£ãæ¥­ç¸¾ã®åè¡ãã«èªä¿¡ãæã£ã¦ãããã¨ã®è¡¨ãã¨ãããæ ªä¸»éåå¼·åã¸ã®è©ä¾¡ãé«ã¾ãããããã",
+    "增配": {
+        "weight": 3, "strength": "やや強い好材料",
+        "content": "1株当たり配当を増額(増配)することを開示",
+        "impact": "+2%〜+5%程度",
+        "reason": "配当増額は経営陣が業績の先行きに自信を持っていることの表れとされ、株主還元強化への評価が高まりやすいため",
     },
-    "å¢é": {
-        "weight": 3, "strength": "ããå¼·ãå¥½ææ",
-        "content": "1æ ªå½ããéå½ãå¢é¡(å¢é)ãããã¨ãéç¤º",
-        "impact": "+2%ã+5%ç¨åº¦",
-        "reason": "éå½å¢é¡ã¯çµå¶é£ãæ¥­ç¸¾ã®åè¡ãã«èªä¿¡ãæã£ã¦ãããã¨ã®è¡¨ãã¨ãããæ ªä¸»éåå¼·åã¸ã®è©ä¾¡ãé«ã¾ãããããã",
+    "増配": {
+        "weight": 3, "strength": "やや強い好材料",
+        "content": "1株当たり配当を増額(増配)することを開示",
+        "impact": "+2%〜+5%程度",
+        "reason": "配当増額は経営陣が業績の先行きに自信を持っていることの表れとされ、株主還元強化への評価が高まりやすいため",
     },
-    "èªå·±æ ªè²·ã": {
-        "weight": 2, "strength": "ããå¼·ãå¥½ææ",
-        "content": "èªå·±æ ªå¼ã®åå¾(æ ªä¸»éåç­)ãå®æ½ãããã¨ãéç¤º",
-        "impact": "+1%ã+4%ç¨åº¦",
-        "reason": "æ ªå¼æ°ã®æ¸å°ã«ãã1æ ªå½ããææ¨(EPSãªã©)ãæ¹åãããããéçµ¦é¢ã§ãè²·ãæ¯ãè¦å ã«ãªãããããã",
+    "自己株買い": {
+        "weight": 2, "strength": "やや強い好材料",
+        "content": "自己株式の取得(株主還元策)を実施することを開示",
+        "impact": "+1%〜+4%程度",
+        "reason": "株式数の減少により1株当たり指標(EPSなど)が改善しやすく、需給面でも買い支え要因になりやすいため",
     },
-    "æ ªå¼åå²": {
-        "weight": 2, "strength": "è»½ãã®å¥½ææ",
-        "content": "æ ªå¼åå²ãå®æ½ãããã¨ãéç¤º",
-        "impact": "+1%ã+3%ç¨åº¦",
-        "reason": "1æ ªå½ããã®è³¼å¥åä¾¡ãä¸ããåäººæè³å®¶ãè²·ãããããªããã¨ã§ãéçµ¦ãæ¹åãããããã",
+    "株式分割": {
+        "weight": 2, "strength": "軽めの好材料",
+        "content": "株式分割を実施することを開示",
+        "impact": "+1%〜+3%程度",
+        "reason": "1株当たりの購入単価が下がり個人投資家が買いやすくなることで、需給が改善しやすいため",
     },
-    "éå½": {
-        "weight": 1, "strength": "è»½ãã®å¥½ææ",
-        "content": "éå½ã«é¢ããéç¤º",
-        "impact": "+1%ã+3%ç¨åº¦",
-        "reason": "æ ªä¸»éåã«é¢ãããã©ã¹ã®æå ±ã¨ãã¦åãæ­¢ãããããããã",
+    "配当": {
+        "weight": 1, "strength": "軽めの好材料",
+        "content": "配当に関する開示",
+        "impact": "+1%〜+3%程度",
+        "reason": "株主還元に関するプラスの情報として受け止められやすいため",
     },
 }
-# å¼±ææã­ã¼ã¯ã¼ããå«ã¾ããéç¤ºã¯ãå¥½ææã©ã³ã­ã³ã°ãã®å¯¾è±¡ããé¤å¤ããã
-JP_NEGATIVE_KEYWORDS = ["ä¸æ¹ä¿®æ­£", "æ¸é", "ç¹å¥æå¤±", "æ¥­ç¸¾æªå", "èµ¤å­"]
+# 弱材料キーワード。含まれる開示は「好材料ランキング」の対象から除外する。
+JP_NEGATIVE_KEYWORDS = ["下方修正", "減配", "特別損失", "業績悪化", "赤字"]
 
-# ç±³å½æ ªã®å¥½ææã«ãã´ãªå®ç¾©(ãã¼ã¿åéã¿ã¹ã¯å´ã headline/category ä»ãã§åéãã
-# å¥½ææãã¥ã¼ã¹ãå¯¾è±¡ã¨ãããã«ãã´ãªãã¨ã®æ³å®ã¤ã³ãã¯ãã¯ãéå»ã®é¡ä¼¼ãã¥ã¼ã¹ã«å¯¾ãã
-# ä¸è¬çãªæ ªä¾¡åå¿å¾åãç¤ºãåèå¤ã§ãããç¢ºç´ã»äºæ³ã§ã¯ãªã)ã
+# 米国株の好材料カテゴリ定義(データ収集タスク側が headline/category 付きで収集した
+# 好材料ニュースを対象とする。カテゴリごとの想定インパクトは、過去の類似ニュースに対する
+# 一般的な株価反応傾向を示す参考値であり、確約・予想ではない)。
 US_CATALYST_INFO = {
     "earnings_beat": {
-        "weight": 5, "strength": "å¼·ãå¥½ææ",
-        "content": "å¸å ´äºæ³(ã¢ããªã¹ãäºæ³)ãä¸åãæ±ºç®(å£²ä¸ã»EPSãªã©)ãçºè¡¨",
-        "impact": "+3%ã+10%ç¨åº¦",
-        "reason": "å®ç¸¾ãäºåã®ã¢ããªã¹ãäºæ³ãä¸åã£ããã¨ã§ãæ¥­ç¸¾ã¸ã®è©ä¾¡ãä¸åãã«è¦ç´ããããããã",
+        "weight": 5, "strength": "強い好材料",
+        "content": "市場予想(アナリスト予想)を上回る決算(売上・EPSなど)を発表",
+        "impact": "+3%〜+10%程度",
+        "reason": "実績が事前のアナリスト予想を上回ったことで、業績への評価が上向きに見直されやすいため",
     },
     "guidance_raise": {
-        "weight": 4, "strength": "å¼·ãå¥½ææ",
-        "content": "æ¬¡æä»¥éã®æ¥­ç¸¾è¦éã(ã¬ã¤ãã³ã¹)ãä¸æ¹ä¿®æ­£",
-        "impact": "+3%ã+8%ç¨åº¦",
-        "reason": "ä¼ç¤¾èªèº«ãåè¡ãã®æé·æå¾ãå¼ãä¸ãããã¨ã§ãå°æ¥ã®å¢çæå¾ãé«ã¾ãããããã",
+        "weight": 4, "strength": "強い好材料",
+        "content": "次期以降の業績見通し(ガイダンス)を上方修正",
+        "impact": "+3%〜+8%程度",
+        "reason": "会社自身が先行きの成長期待を引き上げたことで、将来の増益期待が高まりやすいため",
     },
     "upgrade": {
-        "weight": 3, "strength": "ããå¼·ãå¥½ææ",
-        "content": "å¤§æè¨¼å¸ã»ã¢ããªã¹ããç®æ¨æ ªä¾¡ãè©ä¾¡(ã¬ã¼ãã£ã³ã°)ãä¸æ¹ä¿®æ­£",
-        "impact": "+1%ã+5%ç¨åº¦",
-        "reason": "æåãªç¬¬ä¸èè©ä¾¡ã®æ¹åã¯ãä»ã®æè³å®¶ã®è¦æ¹ã«ãå½±é¿ãä¸ãããããã",
+        "weight": 3, "strength": "やや強い好材料",
+        "content": "大手証券・アナリストが目標株価や評価(レーティング)を上方修正",
+        "impact": "+1%〜+5%程度",
+        "reason": "有力な第三者評価の改善は、他の投資家の見方にも影響を与えやすいため",
     },
     "buyback": {
-        "weight": 2, "strength": "ããå¼·ãå¥½ææ",
-        "content": "å¤§è¦æ¨¡ãªèªç¤¾æ ªè²·ããã­ã°ã©ã ãçºè¡¨",
-        "impact": "+1%ã+4%ç¨åº¦",
-        "reason": "æ ªå¼æ°æ¸å°ã«ããEPSæ¹åæå¾ã¨ãçµå¶é£ã®èªä¿¡è¡¨æã¨ãã¦åãæ­¢ãããããããã",
+        "weight": 2, "strength": "やや強い好材料",
+        "content": "大規模な自社株買いプログラムを発表",
+        "impact": "+1%〜+4%程度",
+        "reason": "株式数減少によるEPS改善期待と、経営陣の自信表明として受け止められやすいため",
     },
     "dividend_hike": {
-        "weight": 2, "strength": "ããå¼·ãå¥½ææ",
-        "content": "å¢éãçºè¡¨",
-        "impact": "+1%ã+3%ç¨åº¦",
-        "reason": "æ ªä¸»éåå¼·åã®å§¿å¢ãè©ä¾¡ããããããã",
+        "weight": 2, "strength": "やや強い好材料",
+        "content": "増配を発表",
+        "impact": "+1%〜+3%程度",
+        "reason": "株主還元強化の姿勢が評価されやすいため",
     },
 }
 
 
 def disclosure_sentiment(tag, title):
-    """TDnetéç¤º1ä»¶ã®ã¿ã¤ãã«ã»ã¿ã°æå­åãããæ¢å­ã®JP_NEGATIVE_KEYWORDS(å¼±ææ)ã»
-    JP_CATALYST_INFO(å¥½ææ)ã®ã­ã¼ã¯ã¼ãä¸è´ã ãã§æ©æ¢°çã«ãã¸ãã£ã/ãã¬ãã£ã/ä¸­ç«ãå¤å®ããã
-    AIã«ããæèçè§£ã§ã¯ãªãåç´ãªã­ã¼ã¯ã¼ãä¸è´ã§ãããæè³å©è¨ã§ã¯ãªãã
-    æ»ãå¤: (ããã¸ç¨CSSã¯ã©ã¹, è¡¨ç¤ºã©ãã«)"""
+    """TDnet開示1件のタイトル・タグ文字列から、既存のJP_NEGATIVE_KEYWORDS(弱材料)・
+    JP_CATALYST_INFO(好材料)のキーワード一致だけで機械的にポジティブ/ネガティブ/中立を判定する。
+    AIによる文脈理解ではなく単純なキーワード一致であり、投資助言ではない。
+    戻り値: (バッジ用CSSクラス, 表示ラベル)"""
     combined = f"{tag or ''} {title or ''}"
     if any(k in combined for k in JP_NEGATIVE_KEYWORDS):
-        return ("bear", "ãã¬ãã£ã")
+        return ("bear", "ネガティブ")
     if any(k in combined for k in JP_CATALYST_INFO):
-        return ("bull", "ãã¸ãã£ã")
-    return ("neutral", "ä¸­ç«")
+        return ("bull", "ポジティブ")
+    return ("neutral", "中立")
 
 
 def _has_positive_jp_catalyst(tdnet_morning, tdnet_afterclose):
-    """å½æ¥ã®TDnetéç¤º(æã»å¼ãå¾ã®ä¸¡æ¹)ã«ãæç¢ºãªå¥½ææã­ã¼ã¯ã¼ããå«ãéç¤ºã
-    (å¼±ææãé¤ãã¦)1ä»¶ã§ããããã©ãããå¤å®ããã"""
+    """当日のTDnet開示(朝・引け後の両方)に、明確な好材料キーワードを含む開示が
+    (弱材料を除いて)1件でもあるかどうかを判定する。"""
     items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
     for it in items:
         combined = f"{it.get('tag', '') or ''} {it.get('title', '') or ''}"
@@ -592,8 +592,8 @@ def _has_positive_jp_catalyst(tdnet_morning, tdnet_afterclose):
 
 
 def _has_negative_jp_news(tdnet_morning, tdnet_afterclose):
-    """å½æ¥ã®TDnetéç¤ºã«ãä¸æ¹ä¿®æ­£ã»æ¸éãªã©æç¢ºãªå¼±ææã­ã¼ã¯ã¼ããå«ãéç¤ºã
-    1ä»¶ã§ããããã©ãããå¤å®ããã"""
+    """当日のTDnet開示に、下方修正・減配など明確な弱材料キーワードを含む開示が
+    1件でもあるかどうかを判定する。"""
     items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
     for it in items:
         combined = f"{it.get('tag', '') or ''} {it.get('title', '') or ''}"
@@ -603,7 +603,7 @@ def _has_negative_jp_news(tdnet_morning, tdnet_afterclose):
 
 
 def _has_positive_us_catalyst(us_good_news):
-    """åéæ¸ã¿ã®ç±³å½æ ªå¥½ææãã¥ã¼ã¹ã«ãæ¢ç¥ã®å¥½ææã«ãã´ãªã1ä»¶ã§ãããããå¤å®ããã"""
+    """収集済みの米国株好材料ニュースに、既知の好材料カテゴリが1件でもあるかを判定する。"""
     for it in us_good_news or []:
         if (it.get("category") or "") in US_CATALYST_INFO:
             return True
@@ -611,11 +611,11 @@ def _has_positive_us_catalyst(us_good_news):
 
 
 def market_mood_signal(data):
-    """ãã¤ãã¬ã¼ãåå¿èåãã®ç´æçãªãä¿¡å·æ©ãå¤å®ã
-    ç±³å½3ææ°ã®å¹³ååæ¥æ¯ã»å½åTDnetéç¤ºã®å¥½ææ/å¼±ææã®æç¡ã»ãã¯ãã«ã«ææ¨ã®éç±æ(RSI>=70)ã®
-    3ã¤ã ããçµã¿åããããããã¾ã§æ©æ¢°çãªç°¡æå¤å®ã§ãããAIã«ããé«åº¦ãªåæãæè³å©è¨ã§ã¯ãªãã
-    å®éã®ç¸å ´ã¯åå¥è¦å ãè¤éã«çµ¡ããããæçµå¤æ­ã¯å¿ãèªèº«ã®è²¬ä»»ã§è¡ããã¨ã
-    æ»ãå¤: {"level": "green"|"yellow"|"red", "icon": str, "label": str, "desc": str, "reasons": [str, ...]}"""
+    """デイトレード初心者向けの直感的な「信号機」判定。
+    米国3指数の平均前日比・国内TDnet開示の好材料/弱材料の有無・テクニカル指標の過熱感(RSI>=70)の
+    3つだけを組み合わせた、あくまで機械的な簡易判定であり、AIによる高度な分析や投資助言ではない。
+    実際の相場は個別要因が複雑に絡むため、最終判断は必ず自身の責任で行うこと。
+    戻り値: {"level": "green"|"yellow"|"red", "icon": str, "label": str, "desc": str, "reasons": [str, ...]}"""
     us = data.get("us_market", {}) or {}
     changes = []
     for key in ("sp500", "dow", "nasdaq"):
@@ -639,30 +639,30 @@ def market_mood_signal(data):
 
     reasons = []
     if us_avg is not None:
-        reasons.append(f"ç±³å½3ææ°å¹³å {fmt_pct(us_avg)}")
+        reasons.append(f"米国3指数平均 {fmt_pct(us_avg)}")
     if has_good:
-        reasons.append("å¥½ææãã¥ã¼ã¹ã»éç¤ºãã")
+        reasons.append("好材料ニュース・開示あり")
     if has_bad_jp:
-        reasons.append("å½åã«å¼±ææ(ä¸æ¹ä¿®æ­£ç­)ã®éç¤ºãã")
+        reasons.append("国内に弱材料(下方修正等)の開示あり")
     if overheat_flag:
-        reasons.append("RSIéç±(70ä»¥ä¸)ã®éæãå¤ã")
+        reasons.append("RSI過熱(70以上)の銘柄が多い")
 
     if (us_avg is not None and us_avg <= -0.5) or (has_bad_jp and (us_avg is None or us_avg < 0)):
         level = "red"
-        icon, label = "ð´", "è¦éããç¡é£ãªå°åã"
-        desc = "ç±³å½æ ªå®ãã¾ãã¯å½åã«å¼±ææã®éç¤ºãããã¾ããæ°è¦ã®è²·ãã¯æéã«æ¤è¨ãã¾ãããã"
+        icon, label = "🔴", "見送りが無難な地合い"
+        desc = "米国株安、または国内に弱材料の開示があります。新規の買いは慎重に検討しましょう。"
     elif has_good and overheat_flag:
         level = "yellow"
-        icon, label = "ð¡", "ææã¯ãããéç±æã«æ³¨æ"
-        desc = "å¥½ææã¯ããã¾ãããå¤ä¸ãããå¤§ããç­æçãªéç±æ(RSIé«ã)ãããã¾ããç¦ã£ã¦è¿½ããããæ§å­ãè¦ãã®ãä¸æ¡ã§ãã"
+        icon, label = "🟡", "材料はあるが過熱感に注意"
+        desc = "好材料はありますが、値上がりが大きく短期的な過熱感(RSI高め)があります。焦って追いかけず様子を見るのも一案です。"
     elif us_avg is not None and us_avg >= 0.3 and has_good and not overheat_flag:
         level = "green"
-        icon, label = "ð¢", "è²·ããæ¤è¨ããããå°åã"
-        desc = "ç±³å½æ ªé«ã»æç¢ºãªå¥½ææããããéç±æãç®ç«ã¡ã¾ãããæ¯è¼çä»è¾¼ã¿ãããå°åãã¨è¨ãã¾ãã"
+        icon, label = "🟢", "買いを検討しやすい地合い"
+        desc = "米国株高・明確な好材料があり、過熱感も目立ちません。比較的仕込みやすい地合いと言えます。"
     else:
         level = "yellow"
-        icon, label = "ð¡", "æ§å­è¦ãç¡é£ãªå°åã"
-        desc = "ç±³å½æ ªãå¥½ææã®æ¹åæãä¹ãããç¡çã«åãå¿è¦ã¯ããã¾ããã"
+        icon, label = "🟡", "様子見が無難な地合い"
+        desc = "米国株や好材料の方向感が乏しく、無理に動く必要はありません。"
 
     return {"level": level, "icon": icon, "label": label, "desc": desc, "reasons": reasons}
 
@@ -677,15 +677,15 @@ def market_mood_html(data):
         <div class="mood-label">{esc(mood['label'])}</div>
         <div class="mood-desc">{esc(mood['desc'])}</div>
         <div class="mood-reasons">{reasons_html}</div>
-        <div class="mood-caveat">â ï¸ ç±³å½æ ªã®æ¹åã»å¥½ææã®æç¡ã»éç±æã ããçµã¿åãããæ©æ¢°çãªç°¡æå¤å®ã§ããæè³å©è¨ã§ã¯ãªããæçµå¤æ­ã¯å¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã</div>
+        <div class="mood-caveat">⚠️ 米国株の方向・好材料の有無・過熱感だけを組み合わせた機械的な簡易判定です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</div>
       </div>
     </div>"""
 
 
-def theme_summary_html(data, empty_msg="ç¾æç¹ã§æè³é¢é£åéã»æ³¨ç®ä¼æ¥­ã®ãã¼ã¿ãããã¾ããã"):
-    """æéå¤ã»å¼ãå¾ã®åãã¥ã¼ã¹ã«ä»ä¸ãããæè³é¢é£åé(investment_sector)ã¨
-    æ³¨ç®ä¼æ¥­(investment_companies)ãéç´ãããæ¬æ¥ã®æ³¨ç®ãã¼ããã¨ãã¦ä¸è¦§åããã
-    ãã¥ã¼ã¹è¦åºãããæ©æ¢°çã«æ½åºããåèæå ±ã§ãããæè³å©è¨ã§ã¯ãªãã"""
+def theme_summary_html(data, empty_msg="現時点で投資関連分野・注目企業のデータがありません。"):
+    """時間外・引け後の各ニュースに付与された投資関連分野(investment_sector)と
+    注目企業(investment_companies)を集約し、「本日の注目テーマ」として一覧化する。
+    ニュース見出しから機械的に抽出した参考情報であり、投資助言ではない。"""
     all_news = list(data.get("overnight_news", []) or []) + list(data.get("afterclose_news", []) or [])
     themes = {}
     order = []
@@ -695,7 +695,7 @@ def theme_summary_html(data, empty_msg="ç¾æç¹ã§æè³é
             continue
         companies_raw = it.get("investment_companies") or []
         if isinstance(companies_raw, str):
-            companies_raw = [c.strip() for c in re.split(r"[ã,]", companies_raw) if c.strip()]
+            companies_raw = [c.strip() for c in re.split(r"[、,]", companies_raw) if c.strip()]
         entry = themes.setdefault(sector, {"count": 0, "companies": [], "news": []})
         if sector not in order:
             order.append(sector)
@@ -716,20 +716,20 @@ def theme_summary_html(data, empty_msg="ç¾æç¹ã§æè³é
         if entry["companies"]:
             companies_html = "".join(f'<span class="theme-company">{esc(c)}</span>' for c in entry["companies"][:6])
         else:
-            companies_html = '<span class="theme-company muted">åå¥éæã¯ç¹å®ããã¦ãã¾ãã</span>'
-        news_titles = "ã".join(esc(it.get("title", "")) for it in entry["news"][:2])
+            companies_html = '<span class="theme-company muted">個別銘柄は特定されていません</span>'
+        news_titles = "、".join(esc(it.get("title", "")) for it in entry["news"][:2])
         cards.append(f"""
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">{esc(sector)}</span><span class="tag">é¢é£ãã¥ã¼ã¹{entry['count']}ä»¶</span></div>
+          <div class="theme-head"><span class="theme-name">{esc(sector)}</span><span class="tag">関連ニュース{entry['count']}件</span></div>
           <div class="theme-companies">{companies_html}</div>
-          <div class="theme-source">ãã£ãã: {news_titles}</div>
+          <div class="theme-source">きっかけ: {news_titles}</div>
         </div>""")
     return f'<div class="theme-grid">{"".join(cards)}</div>'
 
 
-def economic_calendar_html(items, empty_msg="çµæ¸ã«ã¬ã³ãã¼ã®ãã¼ã¿ã¯ä»ååå¾ã§ãã¾ããã§ããã"):
-    """éç¨çµ±è¨ã»CPIã»æ¥éä¼åãªã©ãç¸å ´å¤åãèµ·ããããã¤ãã³ããéè¦åº¦(â1ã5)ä»ãã§ä¸è¦§åããã
-    éè¦åº¦ã¯ã¤ãã³ãã®ä¸è¬çãªå¸å ´ã¤ã³ãã¯ãã®å¤§ãããç¤ºãåèå¤ã§ãããå®éã®å¤åãä¿è¨¼ããªãã"""
+def economic_calendar_html(items, empty_msg="経済カレンダーのデータは今回取得できませんでした。"):
+    """雇用統計・CPI・日銀会合など、相場変動が起きやすいイベントを重要度(★1〜5)付きで一覧化する。
+    重要度はイベントの一般的な市場インパクトの大きさを示す参考値であり、実際の変動を保証しない。"""
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -740,7 +740,7 @@ def economic_calendar_html(items, empty_msg="çµæ¸ã«ã¬ã³ã�
             imp = max(1, min(5, int(it.get("importance", 1))))
         except (TypeError, ValueError):
             imp = 1
-        stars = "â" * imp + "â" * (5 - imp)
+        stars = "★" * imp + "☆" * (5 - imp)
         note = esc(it.get("note", ""))
         note_html = f'<div class="note">{note}</div>' if note else ""
         rows.append(f"""
@@ -748,7 +748,7 @@ def economic_calendar_html(items, empty_msg="çµæ¸ã«ã¬ã³ã�
           <div class="calendar-date mono">{date_}</div>
           <div class="calendar-body">
             <div class="calendar-event">{event}</div>
-            <div class="calendar-stars" aria-label="éè¦åº¦{imp}/5" title="éè¦åº¦{imp}/5">{stars}</div>
+            <div class="calendar-stars" aria-label="重要度{imp}/5" title="重要度{imp}/5">{stars}</div>
             {note_html}
           </div>
         </div>""")
@@ -757,8 +757,8 @@ def economic_calendar_html(items, empty_msg="çµæ¸ã«ã¬ã³ã�
 
 def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text, reason_text,
                         news_title, news_url, extra_note, outlook_html):
-    """å¥½ææã©ã³ã­ã³ã°1ä»¶åã®è¡HTMLãå·ä½çãªå¥½ææåå®¹ã»æ³å®ã¤ã³ãã¯ã(åèå¤)ã»
-    å¥½ææã¨å¤æ­ããçç±ãããããæè¨ããã"""
+    """好材料ランキング1件分の行HTML。具体的な好材料内容・想定インパクト(参考値)・
+    好材料と判断する理由をそれぞれ明記する。"""
     return f"""
         <div class="rank-item">
           <div class="rank-num">{rank_label(i)}</div>
@@ -767,24 +767,24 @@ def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text,
               <span class="mono">{esc(code)}</span> {esc(name)}
               <span class="score-tag">{esc(strength_label)}</span>
             </div>
-            <div class="rank-desc rank-content">ð å·ä½çãªå¥½ææ: {esc(content_text)}</div>
-            <div class="rank-desc rank-impact">ð æ³å®ã¤ã³ãã¯ã: {esc(impact_text)}<span class="tag">éå»ã®é¡ä¼¼ã±ã¼ã¹ã®ä¸è¬çå¾åã»åèå¤(ä¿è¨¼ãªã)</span></div>
-            <div class="rank-desc rank-reason">ð¡ ãªãå¥½ææã: {esc(reason_text)}</div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: {esc(content_text)}</div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: {esc(impact_text)}<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: {esc(reason_text)}</div>
             <div class="rank-desc rank-news">
               <a href="{esc(news_url) or '#'}" target="_blank" rel="noopener">{esc(news_title)}</a>{esc(extra_note)}
             </div>
-            <div class="rank-desc rank-outlook">ð {outlook_html}</div>
+            <div class="rank-desc rank-outlook">📊 {outlook_html}</div>
           </div>
         </div>"""
 
 
 def good_news_ranking_html_jp(tdnet_morning, tdnet_afterclose, technical,
-                               empty_msg="æ¬æ¥ã¯TDnetéç¤ºã«åºã¥ãæç¢ºãªå¥½ææãã¼ã¿(æ¥æ¬æ ª)ãããã¾ããã"):
-    """æ¬æ¥ã®TDnetéç¤ºã®ãã¡ãä¸æ¹ä¿®æ­£ã»å¢éã»æé«çãªã©ãæç¢ºãªå¥½ææãã¨ã¿ãªããéç¤ºã®ã¿ãå¯¾è±¡ã«ã
-    åå®¹ã®å¼·ã(å¥½ææã®è³ª)ã§ã©ã³ã­ã³ã°åãããã®ãä¸æ¹ä¿®æ­£ã»æ¸éãªã©å¼±ææã¯å¯¾è±¡å¤ã¨ãã
-    ä»¶æ°ãè©±é¡æ§(æ³¨ç®åº¦)ã§ã¯ãªãå¥½ææã¨ãã¦ã®è³ªãéè¦ããã
-    åé ä½ã«ã¯ãä½ãããã©ããããã®å¥½ææãããæ³å®ã¤ã³ãã¯ã(åèå¤)ãããªãå¥½ææãã
-    ãç´è¿ãã¯ãã«ã«ææ¨ã«åºã¥ãåèã³ã¡ã³ãããä½µè¨ãããæ ªä¾¡ä¸æãç¢ºç´ã»äºæ³ãããã®ã§ã¯ãªãã"""
+                               empty_msg="本日はTDnet開示に基づく明確な好材料データ(日本株)がありません。"):
+    """本日のTDnet開示のうち、上方修正・増配・最高益など「明確な好材料」とみなせる開示のみを対象に、
+    内容の強さ(好材料の質)でランキング化したもの。下方修正・減配など弱材料は対象外とし、
+    件数や話題性(注目度)ではなく好材料としての質を重視する。
+    各順位には「何が」「どれくらいの好材料か」「想定インパクト(参考値)」「なぜ好材料か」
+    「直近テクニカル指標に基づく参考コメント」を併記する。株価上昇を確約・予想するものではない。"""
     items = list(tdnet_morning or []) + list(tdnet_afterclose or [])
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
@@ -798,7 +798,7 @@ def good_news_ranking_html_jp(tdnet_morning, tdnet_afterclose, technical,
         combined = f"{tag} {title}"
 
         if any(k in combined for k in JP_NEGATIVE_KEYWORDS):
-            continue  # å¼±ææã¯å¥½ææã©ã³ã­ã³ã°ã®å¯¾è±¡å¤
+            continue  # 弱材料は好材料ランキングの対象外
 
         weight = 0
         keyword = None
@@ -807,7 +807,7 @@ def good_news_ranking_html_jp(tdnet_morning, tdnet_afterclose, technical,
                 weight = info["weight"]
                 keyword = k
         if weight == 0:
-            continue  # æç¢ºãªå¥½ææã­ã¼ã¯ã¼ããç¡ããã°å¯¾è±¡å¤(åãªãè©±é¡æ§ã§ã¯å ç¹ããªã)
+            continue  # 明確な好材料キーワードが無ければ対象外(単なる話題性では加点しない)
 
         key = (code, company)
         entry = scores.setdefault(key, {"score": 0, "count": 0, "items": [], "keyword": None})
@@ -827,23 +827,23 @@ def good_news_ranking_html_jp(tdnet_morning, tdnet_afterclose, technical,
         latest = entry["items"][-1]
         title = latest.get("title", "")
         url = latest.get("url", "") or "#"
-        extra = f" ã»ã{entry['count'] - 1}ä»¶" if entry["count"] > 1 else ""
+        extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
         outlook = _outlook_comment(code, tech_lookup)
         info = JP_CATALYST_INFO.get(entry["keyword"], {})
         rows.append(_catalyst_rank_row(
-            i, code, company, info.get("strength", "å¥½ææ"),
-            info.get("content", title), info.get("impact", "ç®å®ä¸å¯"),
+            i, code, company, info.get("strength", "好材料"),
+            info.get("content", title), info.get("impact", "算定不可"),
             info.get("reason", ""), title, url, extra, outlook,
         ))
     return "".join(rows)
 
 
 def good_news_ranking_html_us(us_good_news,
-                               empty_msg="æ¬æ¥ã¯ç±³å½æ ªã®æç¢ºãªå¥½ææãã¼ã¿ãããã¾ãã(ãã¼ã¿åå¾ã¯ä»å¾ã®æ´æ°ã«å¯¾å¿äºå®ã§ã)ã"):
-    """ãã¼ã¿åéã¿ã¹ã¯ãåéããç±³å½æ ªã®å¥½ææãã¥ã¼ã¹(ticker/company/headline/category/url)ã
-    å¯¾è±¡ã«ãã«ãã´ãªã®å¼·ãã§ã©ã³ã­ã³ã°åãããã®ãæ¥æ¬æ ªã¨åæ§ã«ãä½ãããã©ããããã®å¥½ææãã
-    ãæ³å®ã¤ã³ãã¯ã(åèå¤)ãããªãå¥½ææãããæè¨ãããæ ªä¾¡ä¸æãç¢ºç´ã»äºæ³ãããã®ã§ã¯ãªãã
-    ç±³å½æ ªã¯æ¥æ¬ã®TDnetã®ãããªçµ±ä¸çãªé©æéç¤ºã·ã¹ãã ãç¡ãããããã¯ãã«ã«ææ¨ã³ã¡ã³ãã¯å¯¾è±¡å¤ã"""
+                               empty_msg="本日は米国株の明確な好材料データがありません(データ取得は今後の更新に対応予定です)。"):
+    """データ収集タスクが収集した米国株の好材料ニュース(ticker/company/headline/category/url)を
+    対象に、カテゴリの強さでランキング化したもの。日本株と同様に「何が」「どれくらいの好材料か」
+    「想定インパクト(参考値)」「なぜ好材料か」を明記する。株価上昇を確約・予想するものではない。
+    米国株は日本のTDnetのような統一的な適時開示システムが無いため、テクニカル指標コメントは対象外。"""
     items = list(us_good_news or [])
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
@@ -855,7 +855,7 @@ def good_news_ranking_html_us(us_good_news,
         category = it.get("category", "")
         info = US_CATALYST_INFO.get(category)
         if not info:
-            continue  # æªç¥ã®ã«ãã´ãªã»å¥½ææã«è©²å½ããªããã®ã¯å¯¾è±¡å¤
+            continue  # 未知のカテゴリ・好材料に該当しないものは対象外
 
         key = (ticker, company)
         entry = scores.setdefault(key, {"score": 0, "count": 0, "items": [], "category": None})
@@ -874,22 +874,22 @@ def good_news_ranking_html_us(us_good_news,
         latest = entry["items"][-1]
         headline = latest.get("headline", "") or latest.get("title", "")
         url = latest.get("url", "") or "#"
-        extra = f" ã»ã{entry['count'] - 1}ä»¶" if entry["count"] > 1 else ""
+        extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
         info = US_CATALYST_INFO.get(entry["category"], {})
         content_text = headline or info.get("content", "")
         rows.append(_catalyst_rank_row(
-            i, ticker, company, info.get("strength", "å¥½ææ"),
-            content_text, info.get("impact", "ç®å®ä¸å¯"),
+            i, ticker, company, info.get("strength", "好材料"),
+            content_text, info.get("impact", "算定不可"),
             info.get("reason", ""), headline, url, extra,
-            "ç±³å½æ ªã®ãããã¯ãã«ã«ææ¨(ç§»åå¹³åã»RSIç­)ã¯å¯¾è±¡å¤ã§ããåå¥ã®æ ªä¾¡æå ±ã¯åç¨®æ ªä¾¡æå ±ãµã¼ãã¹ã§ãç¢ºèªãã ããã",
+            "米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。",
         ))
     return "".join(rows)
 
 
-def growth_candidates_html(items, empty_msg="ç¾æç¹ã§å¥½ææéç¤ºã«åºã¥ãæé·æ ªåè£ã¯è¦ã¤ããã¾ããã§ããã"):
-    """TDnetãæ¥­ç¸¾äºæ³ã®ä¿®æ­£ãéç¤ºã®ãã¡ãä¸æ¹ä¿®æ­£ã»å¢éãªã©æç¢ºãªå¥½ææã­ã¼ã¯ã¼ããå«ãéç¤ºã®ã¿ã
-    æ©æ¢°çã«æ½åºãããæé·æ ªåè£ãä¸è¦§ãååè£ã«ã¯å®éã®éç¤ºPDFã¸ã®ç´ãªã³ã¯ãä»ãã
-    æ ¹æ (æ±ºç®ã»å¥½ææ)ãéç¤ºåæã§ç¢ºèªã§ãããå°æ¥ã®æ ªä¾¡ä¸æãä¿è¨¼ãããã®ã§ã¯ãªãã"""
+def growth_candidates_html(items, empty_msg="現時点で好材料開示に基づく成長株候補は見つかりませんでした。"):
+    """TDnet「業績予想の修正」開示のうち、上方修正・増配など明確な好材料キーワードを含む開示のみを
+    機械的に抽出した「成長株候補」一覧。各候補には実際の開示PDFへの直リンクが付き、
+    根拠(決算・好材料)を開示原文で確認できる。将来の株価上昇を保証するものではない。"""
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -902,7 +902,7 @@ def growth_candidates_html(items, empty_msg="ç¾æç¹ã§å¥½æ�
         asof = esc(it.get("asof", ""))
         rows.append(f"""
         <div class="rank-item">
-          <div class="rank-num">ð±</div>
+          <div class="rank-num">🌱</div>
           <div class="rank-body">
             <div class="rank-head">
               {company}
@@ -911,7 +911,7 @@ def growth_candidates_html(items, empty_msg="ç¾æç¹ã§å¥½æ�
             <div class="rank-desc rank-news">
               <a href="{url}" target="_blank" rel="noopener">{title}</a>
             </div>
-            <div class="rank-desc">{reason} ã» éç¤ºæ¥æ: {asof}</div>
+            <div class="rank-desc">{reason} ・ 開示日時: {asof}</div>
           </div>
         </div>""")
     return "".join(rows)
@@ -944,7 +944,7 @@ body {
   background-color: var(--bg-deep);
 }
 
-/* --- èæ¯åç: ç»è³ªãè½ã¨ããopacityã®ã¿ã§ãã£ããã¯ã­ã¹ãã§ã¼ãããã¹ã©ã¤ãã·ã§ã¼ --- */
+/* --- 背景写真: 画質を落とさずopacityのみでゆっくりクロスフェードするスライドショー --- */
 .bg-photo-stack { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg-deep); }
 .bg-photo {
   position: absolute; inset: 0;
@@ -976,7 +976,7 @@ body::-webkit-scrollbar-track { background: #000; }
 body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-deep)); border-radius: 6px; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
 
-/* --- åºå®è¦åºããã¼: å¸¸ã«ç»é¢ä¸é¨ã«è¡¨ç¤ºããã --- */
+/* --- 固定見出しバー: 常に画面上部に表示される --- */
 .topbar {
   position: sticky; top: 0; z-index: 25;
   background: linear-gradient(180deg, #050403 0%, #030302 100%);
@@ -992,7 +992,7 @@ body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent
   display: block; font-size: 9.5px; font-weight: 600; letter-spacing: 2.6px; text-transform: uppercase;
   color: var(--accent-deep); margin-bottom: 5px;
 }
-.eyebrow::before { content: "â "; color: var(--accent); }
+.eyebrow::before { content: "◆ "; color: var(--accent); }
 h1 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.6px;
@@ -1109,7 +1109,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .empty { color: var(--muted); font-size: 13px; }
 .sentiment-badge { margin-right: 6px; vertical-align: middle; cursor: help; }
 
-/* --- å¸å ´ã ã¼ãä¿¡å·æ© --- */
+/* --- 市場ムード信号機 --- */
 .mood-card {
   display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; margin-bottom: 16px;
   border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel);
@@ -1125,7 +1125,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .mood-card.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,184,77,0.14); }
 .mood-card.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,90,90,0.14); }
 
-/* --- çµæ¸ã«ã¬ã³ãã¼ --- */
+/* --- 経済カレンダー --- */
 .calendar-list { display: flex; flex-direction: column; gap: 2px; }
 .calendar-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
 .calendar-item:last-child { border-bottom: none; }
@@ -1134,7 +1134,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .calendar-event { font-size: 13.5px; color: var(--text); font-weight: 600; }
 .calendar-stars { font-size: 13px; color: var(--accent-bright); letter-spacing: 1px; margin-top: 2px; }
 
-/* --- æ¬æ¥ã®æ³¨ç®ãã¼ã --- */
+/* --- 本日の注目テーマ --- */
 .theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
 .theme-card {
   background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
@@ -1150,7 +1150,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .theme-company.muted { color: var(--muted); }
 .theme-source { font-size: 11px; color: var(--muted); margin-top: 6px; }
 
-/* --- ã©ã³ã­ã³ã°(å¼·æ°ã·ã°ãã«æ° / TDnetå¥½ææ) --- */
+/* --- ランキング(強気シグナル数 / TDnet好材料) --- */
 .rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
 .rank-item:last-child { border-bottom: none; }
 .rank-num { width: 34px; flex-shrink: 0; font-size: 19px; text-align: center; line-height: 1.4; }
@@ -1185,7 +1185,7 @@ footer .disclaimer { margin: 0 0 12px; }
   letter-spacing: 0.3px;
 }
 
-/* --- PC(åºãç»é¢): ä½ç½ã¨æå¤§å¹ãå°ãåºãã¦èª­ã¿ããããã --- */
+/* --- PC(広い画面): 余白と最大幅を少し広げて読みやすくする --- */
 @media (min-width: 1200px) {
   .wrap { max-width: 1240px; }
   body { font-size: 15.5px; }
@@ -1193,7 +1193,7 @@ footer .disclaimer { margin: 0 0 12px; }
   .topbar-inner { max-width: 1240px; }
 }
 
-/* --- ã¹ãã(ç­ãç»é¢): ä½ç½ã»æå­ãµã¤ãºãè©°ãã¦ã¿ãããããããã --- */
+/* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
 @media (max-width: 640px) {
   .wrap { padding: 12px 12px 48px; }
   .topbar-inner { padding: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -1216,7 +1216,7 @@ footer .disclaimer { margin: 0 0 12px; }
   .rank-head { font-size: 12.5px; }
 }
 
-/* ==================== è¿½å æ©è½: ã©ã¤ããã¼ã / ãæ°ã«å¥ã / æ¤ç´¢ã»ã½ã¼ã / ããã°ã©ã / ã¢ãã¡ã¼ã·ã§ã³ ==================== */
+/* ==================== 追加機能: ライトテーマ / お気に入り / 検索・ソート / ミニグラフ / アニメーション ==================== */
 
 :root[data-theme="light"] {
   --bg-deep: #f6f0e3; --bg-mid: #f6f0e3; --bg-soft: #f6f0e3;
@@ -1277,9 +1277,9 @@ tr.fav-hidden, tr.search-hidden { display: none; }
 
 table[data-sortable] thead th { position: relative; user-select: none; cursor: pointer; }
 table[data-sortable] thead th:hover { color: var(--accent-bright); }
-table[data-sortable] thead th::after { content: "â"; margin-left: 5px; font-size: 9px; opacity: 0.35; }
-table[data-sortable] thead th[data-dir="asc"]::after { content: "â²"; opacity: 0.9; }
-table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opacity: 0.9; }
+table[data-sortable] thead th::after { content: "⇕"; margin-left: 5px; font-size: 9px; opacity: 0.35; }
+table[data-sortable] thead th[data-dir="asc"]::after { content: "▲"; opacity: 0.9; }
+table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity: 0.9; }
 
 .mini-bar {
   position: relative; display: inline-block; width: 44px; height: 6px; margin-left: 8px;
@@ -1339,7 +1339,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "â¼"; opaci
   }
   a { color: #000 !important; text-decoration: underline; }
 }
-    /* ââ æè³æ¦ç¥ãµããªã¼ ââ */
+    /* ── 投資戦略サマリー ── */
     #strategy { margin-top: 1em; }
     .strategy-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1em 1.2em; margin-bottom: 1em; }
     .strategy-block h4 { margin: 0 0 0.5em; font-size: 1em; }
@@ -1374,14 +1374,14 @@ JS_SCRIPT = r"""
 
   var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
-  /* ---------- èæ¯ã¹ã©ã¤ãã·ã§ã¼(ç»è³ªãè½ã¨ããopacityã®ã¿ã§ãã£ããã¯ã­ã¹ãã§ã¼ã) ---------- */
+  /* ---------- 背景スライドショー(画質を落とさずopacityのみでゆっくりクロスフェード) ---------- */
   (function () {
     var photos = document.querySelectorAll(".bg-photo-stack .bg-photo");
     var captionEl = document.getElementById("bgCaption");
     function updateCaption(photo) {
       if (!captionEl || !photo) { return; }
       var cap = photo.getAttribute("data-caption") || "";
-      captionEl.textContent = "ð æ±äº¬ã»" + (cap || "æ±äº¬");
+      captionEl.textContent = "📍 東京・" + (cap || "東京");
     }
     if (photos.length < 2 || reduceMotion) { return; }
     var idx = 0;
@@ -1393,7 +1393,7 @@ JS_SCRIPT = r"""
     }, 17000);
   })();
 
-  /* ---------- ãã¼ãåæ¿(ã©ã¤ã/ãã¼ã¯) ---------- */
+  /* ---------- テーマ切替(ライト/ダーク) ---------- */
   var THEME_KEY = "jpdt_theme";
   var themeToggle = document.getElementById("themeToggle");
   function applyTheme(mode) {
@@ -1412,7 +1412,7 @@ JS_SCRIPT = r"""
     });
   }
 
-  /* ---------- ãæ°ã«å¥ã(â) ---------- */
+  /* ---------- お気に入り(★) ---------- */
   var FAV_KEY = "jpdt_favorites";
   function loadFavorites() {
     try {
@@ -1462,7 +1462,7 @@ JS_SCRIPT = r"""
   }
   if (favFilter) { favFilter.addEventListener("change", applyFavFilter); }
 
-  /* ---------- ãã¼ãã«æ¤ç´¢ ---------- */
+  /* ---------- テーブル検索 ---------- */
   var searchInputs = document.querySelectorAll(".table-search");
   for (var s = 0; s < searchInputs.length; s++) {
     (function (input) {
@@ -1482,9 +1482,9 @@ JS_SCRIPT = r"""
     })(searchInputs[s]);
   }
 
-  /* ---------- ãã¼ãã«ã½ã¼ã(è¦åºãã¯ãªãã¯) ---------- */
+  /* ---------- テーブルソート(見出しクリック) ---------- */
   function parseCell(text) {
-    var t = text.replace(/[,å%â]/g, "").trim();
+    var t = text.replace(/[,円%★]/g, "").trim();
     var n = parseFloat(t);
     return isNaN(n) ? null : n;
   }
@@ -1513,7 +1513,7 @@ JS_SCRIPT = r"""
     })(sortHeads[h]);
   }
 
-  /* ---------- ã¹ã¯ã­ã¼ã«æãã§ã¼ãã¤ã³ ---------- */
+  /* ---------- スクロール時フェードイン ---------- */
   var revealTargets = document.querySelectorAll(".card, .idx-card, .rank-item");
   if (!reduceMotion && "IntersectionObserver" in window) {
     for (var rt = 0; rt < revealTargets.length; rt++) { revealTargets[rt].classList.add("reveal"); }
@@ -1529,7 +1529,7 @@ JS_SCRIPT = r"""
     for (var rt2 = 0; rt2 < revealTargets.length; rt2++) { io.observe(revealTargets[rt2]); }
   }
 
-  /* ---------- ææ¨ã«ã¼ãã®æ°å¤ã«ã¦ã³ãã¢ãã ---------- */
+  /* ---------- 指標カードの数値カウントアップ ---------- */
   if (!reduceMotion) {
     var idxValues = document.querySelectorAll(".idx-value");
     for (var v = 0; v < idxValues.length; v++) {
@@ -1556,7 +1556,7 @@ JS_SCRIPT = r"""
     }
   }
 
-  /* ---------- ç¸å¯¾æ´æ°æå» ---------- */
+  /* ---------- 相対更新時刻 ---------- */
   var relTimes = document.querySelectorAll(".rel-time");
   for (var rtm = 0; rtm < relTimes.length; rtm++) {
     (function (el) {
@@ -1567,15 +1567,15 @@ JS_SCRIPT = r"""
       if (isNaN(d.getTime())) { return; }
       var diffMin = Math.round((Date.now() - d.getTime()) / 60000);
       var text;
-      if (diffMin < 1) { text = "ãã£ãä»"; }
-      else if (diffMin < 60) { text = "ç´" + diffMin + "åå"; }
-      else if (diffMin < 60 * 24) { text = "ç´" + Math.round(diffMin / 60) + "æéå"; }
-      else { text = "ç´" + Math.round(diffMin / 1440) + "æ¥å"; }
+      if (diffMin < 1) { text = "たった今"; }
+      else if (diffMin < 60) { text = "約" + diffMin + "分前"; }
+      else if (diffMin < 60 * 24) { text = "約" + Math.round(diffMin / 60) + "時間前"; }
+      else { text = "約" + Math.round(diffMin / 1440) + "日前"; }
       el.textContent = "(" + text + ")";
     })(relTimes[rtm]);
   }
 
-  /* ---------- ãããã¸æ»ã ---------- */
+  /* ---------- トップへ戻る ---------- */
   var backToTop = document.getElementById("backToTop");
   if (backToTop) {
     window.addEventListener("scroll", function () {
@@ -1593,7 +1593,7 @@ JS_SCRIPT = r"""
 
 
 def strategy_summary_html(data):
-    """å°åãã»ãã¯ãã«ã«ç¶æã»å¥½ææéç¤ºã»æè³å¤æ­ã¾ã¨ããçæãã"""
+    """地合い・テクニカル状態・好材料開示・投資判断まとめを生成する"""
     us = data.get("us_market", {})
     sp500_chg = float((us.get("sp500") or {}).get("change_pct") or 0)
     dow_chg   = float((us.get("dow")   or {}).get("change_pct") or 0)
@@ -1604,11 +1604,11 @@ def strategy_summary_html(data):
     fx_chg      = float((data.get("fx") or {}).get("change_pct") or 0)
 
     if us_avg > 0.5 and futures_chg > -0.3:
-        mkt_label, mkt_color, mkt_emoji = "å¼·æ°å°åã", "var(--up)", "ð¢"
+        mkt_label, mkt_color, mkt_emoji = "強気地合い", "var(--up)", "🟢"
     elif us_avg < -0.5 or futures_chg < -0.5 or nikkei_chg < -1.0:
-        mkt_label, mkt_color, mkt_emoji = "å¼±æ°å°åã", "var(--down)", "ð´"
+        mkt_label, mkt_color, mkt_emoji = "弱気地合い", "var(--down)", "🔴"
     else:
-        mkt_label, mkt_color, mkt_emoji = "ä¸­ç«å°åã", "var(--muted)", "ð¡"
+        mkt_label, mkt_color, mkt_emoji = "中立地合い", "var(--muted)", "🟡"
 
     tech_raw = data.get("technical", [])
     technical = list(tech_raw) if isinstance(tech_raw, list) else list(tech_raw.values())
@@ -1623,7 +1623,7 @@ def strategy_summary_html(data):
                 bear_stocks.append((score, item))
         try:
             if float(item.get("rsi", 0) or 0) >= 70:
-                caution_list.append(f'{item.get("name","")}ï¼RSIéç±ï¼')
+                caution_list.append(f'{item.get("name","")}（RSI過熱）')
         except (TypeError, ValueError):
             pass
     bull_stocks.sort(key=lambda x: -x[0])
@@ -1634,47 +1634,47 @@ def strategy_summary_html(data):
 
     parts = []
 
-    # å°åã
+    # 地合い
     parts.append('<div class="strategy-block">')
-    parts.append('<h4>ð ä»æ¥ã®å°åã</h4>')
+    parts.append('<h4>📊 今日の地合い</h4>')
     parts.append(f'<div class="strategy-market" style="color:{mkt_color}">{mkt_emoji} {esc(mkt_label)}</div>')
     parts.append('<ul class="strategy-list">')
-    parts.append(f'<li>ç±³å½3ææ°å¹³å: {us_avg:+.2f}%ï¼S&P500 {sp500_chg:+.2f}% / NYãã¦ {dow_chg:+.2f}% / NASDAQ {nas_chg:+.2f}%ï¼</li>')
+    parts.append(f'<li>米国3指数平均: {us_avg:+.2f}%（S&P500 {sp500_chg:+.2f}% / NYダウ {dow_chg:+.2f}% / NASDAQ {nas_chg:+.2f}%）</li>')
     if futures_chg:
-        parts.append(f'<li>æ¥çµåç©: {futures_chg:+.2f}%</li>')
+        parts.append(f'<li>日経先物: {futures_chg:+.2f}%</li>')
     if fx_chg:
-        yen = "åå®ï¼è¼¸åºæ ªã«è¿½ãé¢¨ï¼" if fx_chg > 0 else "åé«ï¼è¼¸åºæ ªã«éé¢¨ï¼"
-        parts.append(f'<li>ãã«å: {yen}ï¼åæ¥æ¯ {fx_chg:+.2f}%ï¼</li>')
+        yen = "円安（輸出株に追い風）" if fx_chg > 0 else "円高（輸出株に逆風）"
+        parts.append(f'<li>ドル円: {yen}（前日比 {fx_chg:+.2f}%）</li>')
     parts.append('</ul></div>')
 
-    # ãã¯ãã«ã«ç¶æè¨ºæ­
+    # テクニカル状態診断
     parts.append('<div class="strategy-block">')
-    parts.append('<h4>ð ãã¯ãã«ã«ç¶æè¨ºæ­ï¼éå»ãã¼ã¿ã«ããç¾å¨ã®å¼·æ°ã»å¼±æ°ï¼</h4>')
-    parts.append('<p class="strategy-note">ç§»åå¹³åç·ã»RSIãªã©<b>éå»ã®æ ªä¾¡ãã¼ã¿</b>ããç®åºãããç¾å¨ã®å¼·æ°ã»å¼±æ°ç¶æãã§ãã<b>å°æ¥ã®æ ªä¾¡ãäºæ¸¬ã»ä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b></p>')
+    parts.append('<h4>📈 テクニカル状態診断（過去データによる現在の強気・弱気）</h4>')
+    parts.append('<p class="strategy-note">移動平均線・RSIなど<b>過去の株価データ</b>から算出した「現在の強気・弱気状態」です。<b>将来の株価を予測・保証するものではありません。</b></p>')
     if bull_stocks:
-        parts.append('<p style="margin:0.3em 0 0.2em;font-size:0.88em;color:var(--up)">ð¢ å¼·æ°ï¼è²·ãã·ã°ãã«åªå¢ï¼</p><ul class="strategy-list">')
+        parts.append('<p style="margin:0.3em 0 0.2em;font-size:0.88em;color:var(--up)">🟢 強気（買いシグナル優勢）</p><ul class="strategy-list">')
         for sc, st in bull_stocks:
             rsi = st.get("rsi", "")
-            ov = f' â ï¸ RSIéç±({rsi})' if rsi and float(rsi) >= 70 else ""
+            ov = f' ⚠️ RSI過熱({rsi})' if rsi and float(rsi) >= 70 else ""
             chg = st.get("change_pct")
-            chg_s = f' / åæ¥æ¯{chg:+.2f}%' if isinstance(chg, (int,float)) else ""
-            parts.append(f'<li><b>{esc(st.get("name",""))}</b>ï¼{esc(st.get("code",""))}ï¼â å¼·æ°ã¹ã³ã¢ +{sc}{chg_s}{ov}</li>')
+            chg_s = f' / 前日比{chg:+.2f}%' if isinstance(chg, (int,float)) else ""
+            parts.append(f'<li><b>{esc(st.get("name",""))}</b>（{esc(st.get("code",""))}）― 強気スコア +{sc}{chg_s}{ov}</li>')
         parts.append('</ul>')
     else:
-        parts.append('<p class="empty" style="margin:0.5em 0">ç¾æç¹ã§ãã¯ãã«ã«å¼·æ°ã®éæã¯ããã¾ããã</p>')
+        parts.append('<p class="empty" style="margin:0.5em 0">現時点でテクニカル強気の銘柄はありません。</p>')
     if bear_stocks:
-        parts.append('<p style="margin:0.6em 0 0.2em;font-size:0.88em;color:var(--down)">ð´ å¼±æ°ï¼å£²ãã·ã°ãã«åªå¢ï¼</p><ul class="strategy-list">')
+        parts.append('<p style="margin:0.6em 0 0.2em;font-size:0.88em;color:var(--down)">🔴 弱気（売りシグナル優勢）</p><ul class="strategy-list">')
         for sc, st in bear_stocks:
             rsi = st.get("rsi","")
-            ov = f' â ï¸ RSIéç±({rsi})' if rsi and float(rsi) >= 70 else ""
-            parts.append(f'<li><b>{esc(st.get("name",""))}</b>ï¼{esc(st.get("code",""))}ï¼â å¼±æ°ã¹ã³ã¢ {sc}{ov}</li>')
+            ov = f' ⚠️ RSI過熱({rsi})' if rsi and float(rsi) >= 70 else ""
+            parts.append(f'<li><b>{esc(st.get("name",""))}</b>（{esc(st.get("code",""))}）― 弱気スコア {sc}{ov}</li>')
         parts.append('</ul>')
     parts.append('</div>')
 
-    # å¥½ææéç¤º
+    # 好材料開示
     parts.append('<div class="strategy-block">')
-    parts.append('<h4>ð å¥½ææéç¤ºéæï¼ä¸æ¹ä¿®æ­£ã»å¢éç­ï¼</h4>')
-    parts.append('<p class="strategy-note">TDnetã«ä¸æ¹ä¿®æ­£ã»å¢éãªã©å¥½ææãå«ãéç¤ºãè¡ã£ãéæã§ãã<b>ç¿å¶æ¥­æ¥ä»¥éã®æ ªä¾¡åå¿ã«æ³¨ç®ã</b>éç¤ºåæã®ãç¢ºèªãã</p>')
+    parts.append('<h4>📋 好材料開示銘柄（上方修正・増配等）</h4>')
+    parts.append('<p class="strategy-note">TDnetに上方修正・増配など好材料を含む開示を行った銘柄です。<b>翌営業日以降の株価反応に注目。</b>開示原文のご確認を。</p>')
     if growth:
         parts.append('<ul class="strategy-list">')
         for g in growth[:5]:
@@ -1682,66 +1682,66 @@ def strategy_summary_html(data):
             ttl = esc((g.get("title") or "")[:45])
             url = g.get("url","")
             cat = esc((g.get("catalyst") or "")[:60])
-            lnk = f'<a href="{esc(url)}" target="_blank">{ttl}â¦</a>' if url else ttl
+            lnk = f'<a href="{esc(url)}" target="_blank">{ttl}…</a>' if url else ttl
             cat_line = f'<br><span style="font-size:0.82em;color:var(--muted)">{cat}</span>' if cat else ''
-            parts.append(f'<li><b>{co}</b> â {lnk}{cat_line}</li>')
+            parts.append(f'<li><b>{co}</b> — {lnk}{cat_line}</li>')
         parts.append('</ul>')
     else:
-        parts.append('<p class="empty" style="margin:0.5em 0">æ¬æ¥ã¯å¥½ææéç¤ºï¼ä¸æ¹ä¿®æ­£ã»å¢éç­ï¼ãè¦å½ããã¾ããã</p>')
+        parts.append('<p class="empty" style="margin:0.5em 0">本日は好材料開示（上方修正・増配等）が見当たりません。</p>')
     parts.append('</div>')
 
-    # æè³å¤æ­ã¾ã¨ã
+    # 投資判断まとめ
     parts.append('<div class="strategy-block strategy-conclusion">')
-    parts.append('<h4>ð¯ æè³å¤æ­ã¾ã¨ãã»ä»å¾ã®è¦éã</h4>')
+    parts.append('<h4>🎯 投資判断まとめ・今後の見通し</h4>')
     conclusions = []
-    if bull_stocks and mkt_label != "å¼±æ°å°åã":
-        names = "ã»".join(st.get("name","") for _,st in bull_stocks[:3])
-        conclusions.append(f'ãã¯ãã«ã«ãå¼·æ°ãã¤{esc(mkt_label)}ã®ããã<b>{esc(names)}</b>ã¯ç©æ¥µçã«æ³¨ç®ã§ããå±é¢ã§ãããã ãåå¥ãªã¹ã¯ï¼æ±ºç®ã»å°æ¿å­¦ï¼ã¯å¥éç¢ºèªãã')
+    if bull_stocks and mkt_label != "弱気地合い":
+        names = "・".join(st.get("name","") for _,st in bull_stocks[:3])
+        conclusions.append(f'テクニカルが強気かつ{esc(mkt_label)}のため、<b>{esc(names)}</b>は積極的に注目できる局面です。ただし個別リスク（決算・地政学）は別途確認を。')
     elif bull_stocks:
-        names = "ã»".join(st.get("name","") for _,st in bull_stocks[:3])
-        conclusions.append(f'<b>{esc(names)}</b>ã¯ãã¯ãã«ã«å¼·æ°ã§ãããå¨ä½å°åããå¼±ãããè¿½ãããããã«æ³¨æãæ¼ãç®ã§æ¾ãæ¦ç¥ãç¡é£ã§ãã')
+        names = "・".join(st.get("name","") for _,st in bull_stocks[:3])
+        conclusions.append(f'<b>{esc(names)}</b>はテクニカル強気ですが、全体地合いが弱いため追いかけすぎに注意。押し目で拾う戦略が無難です。')
     else:
-        conclusions.append('ç¾æç¹ã§ãã¯ãã«ã«å¼·æ°ã®éæããªããæ°è¦è²·ãã®æ ¹æ ãèãå±é¢ã§ããç¸å ´å¨ä½ã®ååãç¢ºèªããªããæ§å­è¦ãç¡é£ã§ãã')
+        conclusions.append('現時点でテクニカル強気の銘柄がなく、新規買いの根拠が薄い局面です。相場全体の動向を確認しながら様子見が無難です。')
     if growth:
-        co_names = "ã»".join((g.get("company") or "")[:10] for g in growth[:3])
-        conclusions.append(f'å¥½ææéç¤ºéæï¼<b>{esc(co_names)}</b>ç­ï¼ã¯ç¿å¶æ¥­æ¥ã®å¯ãä»ãã§ã®ã®ã£ããã¢ãããæå¾ã§ãã¾ãããã ãææåºå°½ããå£²ãã®ãªã¹ã¯ãå¿µé ­ã«ã')
+        co_names = "・".join((g.get("company") or "")[:10] for g in growth[:3])
+        conclusions.append(f'好材料開示銘柄（<b>{esc(co_names)}</b>等）は翌営業日の寄り付きでのギャップアップが期待できます。ただし材料出尽くし売りのリスクも念頭に。')
     if caution_list:
-        c_str = "ã".join(caution_list)
-        conclusions.append(f'â ï¸ <b>RSIéç±ï¼70è¶ï¼ã®éæ: {esc(c_str)}</b> â ç­æçãªå©çç¢ºå®å£²ããèª¿æ´ãå¥ãããããããæ°è¦è¿½ãããã¯é¿ããæ¹ãç¡é£ã§ãã')
-    if mkt_label == "å¼±æ°å°åã":
-        conclusions.append('â ï¸ ç±³å½å¸å ´ã»æ¥çµåç©ãè»èª¿ã§ããå¨ä½ç¸å ´ã®ä¸è½ã«å¼ããããããªã¹ã¯ãé«ãã<b>å¨è¬çã«æ°è¦ã®è²·ãã¯æéã«ã</b>ææã¡ãã¸ã·ã§ã³ã¯å©çç¢ºå®ãæåãã©ã¤ã³ã®ç¢ºèªãã')
+        c_str = "、".join(caution_list)
+        conclusions.append(f'⚠️ <b>RSI過熱（70超）の銘柄: {esc(c_str)}</b> — 短期的な利益確定売りや調整が入りやすいため、新規追いかけは避ける方が無難です。')
+    if mkt_label == "弱気地合い":
+        conclusions.append('⚠️ 米国市場・日経先物が軟調です。全体相場の下落に引きずられるリスクが高く、<b>全般的に新規の買いは慎重に。</b>手持ちポジションは利益確定や損切りラインの確認を。')
     parts.append('<ul class="strategy-conclusion-list">')
     for con in conclusions:
         parts.append(f'<li>{con}</li>')
     parts.append('</ul>')
-    parts.append('<p class="strategy-note" style="margin-top:0.8em">â ï¸ ä¸è¨ã¯ãã¯ãã«ã«ææ¨ã»éç¤ºæå ±ç­ãçµã¿åãããæ©æ¢°çãªåèæå ±ã§ããæè³å©è¨ã§ã¯ãªããæçµå¤æ­ã¯å¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã</p>')
+    parts.append('<p class="strategy-note" style="margin-top:0.8em">⚠️ 上記はテクニカル指標・開示情報等を組み合わせた機械的な参考情報です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</p>')
     parts.append('</div>')
     return "".join(parts)
 
 
 
 # ---------------------------------------------------------------------------
-# 鮮度フィルター: 当日（平日）または直前の週末分のみ表示
+# ��գ��: S�s�	~_o�Mn1+nh:
 # ---------------------------------------------------------------------------
 def _freshness_cutoff(generated_at_str):
-    """生成日時文字列(YYYY-MM-DD HH:MM)から表示すべき最古の日付を返す。
-    月曜: 土+日+月分を含める（直前の土曜から）
-    土・日: 金+土 / 土+日 を含める
-    火〜金: 当日のみ"""
+    """�B�W(YYYY-MM-DD HH:MM)K�h:YyM �n�ؒ�Y
+    �: +�+�+���Mn�K�	
+    ��: �+ / +� �+��
+    k�: S�n"""
     from datetime import date as _d, datetime as _dt, timedelta as _td
     try:
         dt = _dt.strptime(generated_at_str[:10], "%Y-%m-%d").date()
     except Exception:
         return None
-    wd = dt.weekday()  # 0=月, 5=土, 6=日
-    if wd == 0:    return dt - _td(days=2)   # 月曜: 土まで遡る
-    elif wd == 5:  return dt - _td(days=1)   # 土曜: 金まで遡る
-    elif wd == 6:  return dt - _td(days=1)   # 日曜: 土まで遡る
-    else:          return dt                  # 火〜金: 当日のみ
+    wd = dt.weekday()  # 0=, 5=, 6=�
+    if wd == 0:    return dt - _td(days=2)   # �: ~ga�
+    elif wd == 5:  return dt - _td(days=1)   # �: �~ga�
+    elif wd == 6:  return dt - _td(days=1)   # ��: ~ga�
+    else:          return dt                  # k�: S�n
 
 
 def _parse_item_date(s, year):
-    """'7/24' や '7月23日(木) 15:00' などから date を取り出す。失敗時は None。"""
+    """'7/24' � '723�(() 15:00' jiK� date �֊�Y1WBo None"""
     if not s:
         return None
     s = str(s)
@@ -1752,7 +1752,7 @@ def _parse_item_date(s, year):
             return _d(year, int(m.group(1)), int(m.group(2)))
         except ValueError:
             pass
-    m = re.search(r"(\d{1,2})\u6708(\d{1,2})\u65e5", s)  # M月D日
+    m = re.search(r"(\d{1,2})\u6708(\d{1,2})\u65e5", s)  # MD�
     if m:
         try:
             from datetime import date as _d
@@ -1763,8 +1763,8 @@ def _parse_item_date(s, year):
 
 
 def _filter_by_freshness(items, date_key, generated_at_str):
-    """date_key フィールドの日付が cutoff 以降のアイテムのみ返す。
-    日付解析に失敗したアイテムはそのまま含める。"""
+    """date_key գ���n��L cutoff �Mn����n�Y
+    ���k1WW_����o]n~~+��"""
     cutoff = _freshness_cutoff(generated_at_str)
     if cutoff is None:
         return list(items)
@@ -1775,7 +1775,7 @@ def _filter_by_freshness(items, date_key, generated_at_str):
 
 
 def _filter_tdnet_freshness(items, generated_at_str):
-    """TDnet アイテムの title 末尾に埋め込まれた日付 ('M月D日') で鮮度フィルター。"""
+    """TDnet ����n title +>kˁ�~�_�� ('MD�') g��գ��"""
     cutoff = _freshness_cutoff(generated_at_str)
     if cutoff is None:
         return list(items)
@@ -1787,30 +1787,31 @@ def _filter_tdnet_freshness(items, generated_at_str):
 
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    # 鮮度フィルター: 当日以前の古い好材料・成長株データを非表示
+    # ��գ��: S��Mn�D}P��w*����^h:
     fresh_us_good_news = _filter_by_freshness(data.get("us_good_news", []), "time", generated_at)
     fresh_growth = _filter_by_freshness(data.get("growth_candidates", []), "asof", generated_at)
     fresh_tdnet_morning = _filter_tdnet_freshness(data.get("tdnet_morning", []), generated_at)
     fresh_tdnet_afterclose = _filter_tdnet_freshness(data.get("tdnet_afterclose", []), generated_at)
     run_type = data.get("run_type", "")
-    run_label = {"morning": "æ(å¯ãä»ãå)æ´æ°", "evening": "å¤(å¼ãå¾)æ´æ°"}.get(run_type, run_type)
+    run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
 
     us = data.get("us_market", {})
     fx = data.get("fx", {})
     fut = data.get("nikkei_futures", {})
 
     idx_cards = ""
-    for key, label in [("sp500", "S&P500"), ("dow", "NYãã¦"), ("nasdaq", "ãã¹ããã¯ç·å"), ("sox", "SOXææ°(åå°ä½)")]:
+    for key, label in [("sp500", "S&P500"), ("dow", "NYダウ"), ("nasdaq", "ナスダック総合"), ("sox", "SOX指数(半導体)")]:
         d = us.get(key, {})
-        idx_cards += section_index_row(label, d.get("value", "â"), d.get("change_pct"), d.get("asof"))
-    idx_cards += section_index_row("USD/JPY", fx.get("value", "â"), fx.get("change_pct"), fx.get("asof"))
-    idx_cards += section_index_row("æ¥çµ225åç©(CME/å¤§éª)", fut.get("value", "â"), fut.get("change_pct"), fut.get("asof"))
-    idx_cards += section_index_row("æ¥çµå¹³å(ç¾ç©ã»ååçµå¤)", data.get("nikkei225", {}).get("value", "â"),
+        idx_cards += section_index_row(label, d.get("value", "―"), d.get("change_pct"), d.get("asof"))
+    idx_cards += section_index_row("USD/JPY", fx.get("value", "―"), fx.get("change_pct"), fx.get("asof"))
+    idx_cards += section_index_row("日経225先物(CME/大阪)", fut.get("value", "―"), fut.get("change_pct"), fut.get("asof"))
+    idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
                                      data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
 
     mood_html = market_mood_html(data)
     theme_html = theme_summary_html(data)
     calendar_html = economic_calendar_html(data.get("economic_calendar", []))
+
     # --- 急落注意バナー ---
     _nk_chg = float((data.get("nikkei225") or {}).get("change_pct") or 0)
     _fut_chg = float((data.get("nikkei_futures") or {}).get("change_pct") or 0)
@@ -1841,32 +1842,32 @@ def build_html(data: dict) -> str:
 
     morning_html = f"""
     <section id="morning">
-      <h2>ð å¯ãä»ãåã»ã¯ã·ã§ã³</h2>
-      <p class="section-desc">åæ¥ã®ç±³å½å¸å ´ã»çºæ¿ã»æéå¤ãã¥ã¼ã¹ã»TDnetæ©æã¾ã§ã®éç¤ºã»è©±é¡æ ªãã¾ã¨ãã¦ãã¾ããå½æ¥ã®ä»è¾¼ã¿éææ¤è¨ã®åèæå ±ã§ãã</p>
+      <h2>🌅 寄り付き前セクション</h2>
+      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
-        <h3>ç±³å½å¸å ´ã»çºæ¿ã»æ¥çµåç©</h3>
+        <h3>米国市場・為替・日経先物</h3>
         <div class="idx-grid">{idx_cards}</div>
       </div>
       <div class="card">
-        <h3>ð çµæ¸ã«ã¬ã³ãã¼(éè¦åº¦)</h3>
-        <p class="section-desc">éç¨çµ±è¨ã»CPIã»æ¥éä¼åãªã©ãç¸å ´ãåããããã¤ãã³ããéè¦åº¦(â)ã§ç¤ºãã¦ãã¾ãã<b>å®éã®ç¸å ´å¤åãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b></p>
+        <h3>📅 経済カレンダー(重要度)</h3>
+        <p class="section-desc">雇用統計・CPI・日銀会合など、相場が動きやすいイベントを重要度(★)で示しています。<b>実際の相場変動を保証するものではありません。</b></p>
         {calendar_html}
       </div>
       <div class="card">
-        <h3>ð¯ æ¬æ¥ã®æ³¨ç®ãã¼ãã¨é¢é£éæ</h3>
-        <p class="section-desc">ãã¥ã¼ã¹ã®æè³é¢é£åéã»æ³¨ç®ä¼æ¥­ã¿ã°ãéç´ããåèæå ±ã§ãã<b>æè³å©è¨ã§ã¯ãªããå®éã«æ ªä¾¡ãåããã¨ãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b></p>
+        <h3>🎯 本日の注目テーマと関連銘柄</h3>
+        <p class="section-desc">ニュースの投資関連分野・注目企業タグを集約した参考情報です。<b>投資助言ではなく、実際に株価が動くことを保証するものではありません。</b></p>
         {theme_html}
       </div>
       <div class="card">
-        <h3>æéå¤ã»æã®ä¸»è¦ãã¥ã¼ã¹</h3>
+        <h3>時間外・朝の主要ニュース</h3>
         {news_list(data.get("overnight_news", []))}
       </div>
       <div class="card">
-        <h3>TDnet é©æéç¤º(æã¾ã§ã®å)</h3>
+        <h3>TDnet 適時開示(朝までの分)</h3>
         {tdnet_table(data.get("tdnet_morning", []))}
       </div>
       <div class="card">
-        <h3>åºæ¥é«ã»å¤åãã§è©±é¡ã®éæ</h3>
+        <h3>出来高・値動きで話題の銘柄</h3>
         {movers_table(data.get("movers_morning", []))}
       </div>
     </section>"""
@@ -1880,36 +1881,36 @@ def build_html(data: dict) -> str:
 
     evening_html = f"""
     <section id="evening">
-      <h2>ð å¼ãå¾ã»ã¯ã·ã§ã³</h2>
-      <p class="section-desc">æ¬æ¥ã®TDneté©æéç¤º(æ±ºç®ã»æ¥­ç¸¾ä¿®æ­£ã»èªå·±æ ªè²·ããªã©)ã¨å¼ãå¾ã®éè¦ãã¥ã¼ã¹ãã¾ã¨ãã¦ãã¾ããç¿æ¥ä»¥éã®ä»è¾¼ã¿éææ¤è¨ã®åèæå ±ã§ãã</p>
+      <h2>🌙 引け後セクション</h2>
+      <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
-        <h3>æ¬æ¥ã®TDneté©æéç¤º</h3>
-        {tdnet_table(data.get("tdnet_afterclose", []), empty_msg="æ¬æ¥ã®é©æéç¤ºãã¼ã¿ã¯åå¾ã§ãã¾ããã§ããã")}
+        <h3>本日のTDnet適時開示</h3>
+        {tdnet_table(data.get("tdnet_afterclose", []), empty_msg="本日の適時開示データは取得できませんでした。")}
       </div>
       <div class="card">
-        <h3>å¼ãå¾ã®ä¸»è¦ãã¥ã¼ã¹</h3>
+        <h3>引け後の主要ニュース</h3>
         {news_list(data.get("afterclose_news", []))}
       </div>
       <div class="card">
-        <h3>æ¬æ¥ã®å¤åãã»åºæ¥é«ã§è©±é¡ã®éæ</h3>
+        <h3>本日の値動き・出来高で話題の銘柄</h3>
         {movers_table(data.get("movers_afterclose", []))}
       </div>
       <div class="card">
-        <h3>TDnetéç¤º å¥½ææã©ã³ã­ã³ã°(æ¥æ¬æ ª TOP5)</h3>
+        <h3>TDnet開示 好材料ランキング(日本株 TOP5)</h3>
         <p class="rank-note">
-          æ¬æ¥ã®TDnetéç¤ºã®ãã¡ãä¸æ¹ä¿®æ­£ã»æé«çã»å¢éãªã©<b>æç¢ºãªå¥½ææã®ã¿</b>ãå¯¾è±¡ã«ãåå®¹ã®å¼·ãã§æ©æ¢°çã«é ä½ä»ããã¦ãã¾ã
-          (ä¸æ¹ä¿®æ­£ã»æ¸éãªã©å¼±ææã®éç¤ºã¯å¯¾è±¡å¤)ãåéæã«ã¤ãã¦ãâ å·ä½çã«ä½ãéç¤ºãããããâ¡éå»ã®é¡ä¼¼éç¤ºã«åºã¥ãæ³å®ã¤ã³ãã¯ã(åèå¤)ã
-          â¢å¥½ææã¨å¤æ­ããçç±ãâ£ç´è¿ã®ãã¯ãã«ã«ææ¨ã«åºã¥ãåèã³ã¡ã³ãããæè¨ãã¦ãã¾ãã
-          <b>æ³å®ã¤ã³ãã¯ãã¯éå»ã®é¡ä¼¼ã±ã¼ã¹ã®ä¸è¬çãªå¾åãç¤ºãåèå¤ã§ãããæ ªä¾¡ãå®éã«ãã®éãä¸æãããã¨ãç¢ºç´ã»äºæ³ãããã®ã§ã¯ããã¾ããã</b>
+          本日のTDnet開示のうち、上方修正・最高益・増配など<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています
+          (下方修正・減配など弱材料の開示は対象外)。各銘柄について、①具体的に何が開示されたか、②過去の類似開示に基づく想定インパクト(参考値)、
+          ③好材料と判断する理由、④直近のテクニカル指標に基づく参考コメント、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
         {good_news_rank_html_jp}
       </div>
       <div class="card">
-        <h3>å¥½ææã©ã³ã­ã³ã°(ç±³å½æ ª TOP5)</h3>
+        <h3>好材料ランキング(米国株 TOP5)</h3>
         <p class="rank-note">
-          æ±ºç®ä¸æ¯ãã»ã¬ã¤ãã³ã¹ä¸æ¹ä¿®æ­£ã»ã¢ããªã¹ãè©ä¾¡å¼ãä¸ããªã©<b>æç¢ºãªå¥½ææã®ã¿</b>ãå¯¾è±¡ã«ãåå®¹ã®å¼·ãã§æ©æ¢°çã«é ä½ä»ããã¦ãã¾ãã
-          åéæã«ã¤ãã¦ãâ å·ä½çã«ä½ãçºè¡¨ãããããâ¡éå»ã®é¡ä¼¼ãã¥ã¼ã¹ã«åºã¥ãæ³å®ã¤ã³ãã¯ã(åèå¤)ãâ¢å¥½ææã¨å¤æ­ããçç±ããæè¨ãã¦ãã¾ãã
-          <b>æ³å®ã¤ã³ãã¯ãã¯éå»ã®é¡ä¼¼ã±ã¼ã¹ã®ä¸è¬çãªå¾åãç¤ºãåèå¤ã§ãããæ ªä¾¡ãå®éã«ãã®éãä¸æãããã¨ãç¢ºç´ã»äºæ³ãããã®ã§ã¯ããã¾ããã</b>
+          決算上振れ・ガイダンス上方修正・アナリスト評価引き上げなど<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています。
+          各銘柄について、①具体的に何が発表されたか、②過去の類似ニュースに基づく想定インパクト(参考値)、③好材料と判断する理由、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
         {good_news_rank_html_us}
       </div>
@@ -1919,19 +1920,19 @@ def build_html(data: dict) -> str:
 
     technical_html = f"""
     <section id="technical">
-      <h2>ð æ ªä¾¡è¨ºæ­(ãã¯ãã«ã«ææ¨)</h2>
+      <h2>📊 株価診断(テクニカル指標)</h2>
       <p class="section-desc">
-        ç§»åå¹³åç·ã»RSIãªã©ç¡æã§åå¾ã§ãããã¯ãã«ã«ææ¨ã«ãã¨ã¥ãå®¢è¦³çãªãå¼·æ°/å¼±æ°ã·ã°ãã«ãã®ä¸è¦§ã§ãã
-        <b>å°æ¥ã®æ ªä¾¡ãäºæ³ã»ä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b>
+        移動平均線・RSIなど無料で取得できるテクニカル指標にもとづく客観的な「強気/弱気シグナル」の一覧です。
+        <b>将来の株価を予想・保証するものではありません。</b>
       </p>
       <div class="card">
         {technical_table(data.get("technical", []))}
       </div>
       <div class="card">
-        <h3>å¼·æ°ã»å¼±æ°ã·ã°ãã«ã©ã³ã­ã³ã°</h3>
+        <h3>強気・弱気シグナルランキング</h3>
         <p class="rank-note">
-          ç§»åå¹³åç·ã»RSIãªã©éå»ãã¼ã¿ã«åºã¥ãæ©æ¢°çãªãè²·ãã·ã°ãã«æ°ãã®å¾åãã©ã³ã­ã³ã°åãããã®ã§ãã
-          <b>ããã¾ã§éå»ãã¼ã¿ã«åºã¥ãå¾åã§ãããå°æ¥ã®æ ªä¾¡å¤åãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b>
+          移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
+          <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
         </p>
         {bull_rank_html}
       </div>
@@ -1939,15 +1940,15 @@ def build_html(data: dict) -> str:
 
     growth_html = f"""
     <section id="growth">
-      <h2>ð± æé·æ ªã¦ã©ãã(æ±ºç®ã»å¥½ææãã¼ã¹)</h2>
+      <h2>🌱 成長株ウォッチ(決算・好材料ベース)</h2>
       <p class="section-desc">
-        ä¸»åã¦ã©ãããªã¹ãã¯å¤ä½ç½®ãé«ãã®éæãå«ããããå¥æ ã¨ãã¦ãTDnetãæ¥­ç¸¾äºæ³ã®ä¿®æ­£ãéç¤ºã®ãã¡
-        <b>ä¸æ¹ä¿®æ­£ã»å¢éãªã©æç¢ºãªå¥½ææã­ã¼ã¯ã¼ããå«ãéç¤ºã®ã¿</b>ãæ©æ¢°çã«æ½åºããåè£ä¸è¦§ã§ãã
-        ååè£ã«ã¯å®éã®éç¤ºPDFã¸ã®ç´ãªã³ã¯ãä»ãã¦ãããæ ¹æ ã¯éç¤ºåæã§ãç¢ºèªããã ãã¾ãã
-        <b>æè³å©è¨ã§ã¯ãªããå°æ¥ã®æ ªä¾¡ä¸æãä¿è¨¼ãããã®ã§ã¯ããã¾ããã</b>
+        主力ウォッチリストは値位置が高めの銘柄も含むため、別枠として、TDnet「業績予想の修正」開示のうち
+        <b>上方修正・増配など明確な好材料キーワードを含む開示のみ</b>を機械的に抽出した候補一覧です。
+        各候補には実際の開示PDFへの直リンクを付けており、根拠は開示原文でご確認いただけます。
+        <b>投資助言ではなく、将来の株価上昇を保証するものではありません。</b>
       </p>
       <div class="card">
-        <h3>å¥½ææéç¤ºã«åºã¥ãæé·æ ªåè£</h3>
+        <h3>好材料開示に基づく成長株候補</h3>
         {growth_candidates_html(fresh_growth)}
       </div>
     </section>"""
@@ -1955,34 +1956,34 @@ def build_html(data: dict) -> str:
     strategy_summary = strategy_summary_html(data)
     strategy_section_html = f"""
     <section id="strategy">
-      <h2>ð¯ æè³æ¦ç¥ã¾ã¨ã</h2>
-      <p class="section-desc">ä»æ¥ã®å°åãã»ãã¯ãã«ã«ç¶æã»å¥½ææéç¤ºãçµ±åããæè³å¤æ­ã®åèæå ±ã§ããããã¾ã§åèã§ããã<b>æè³å©è¨ã§ã¯ããã¾ãããæçµå¤æ­ã¯ãèªèº«ã®è²¬ä»»ã§ã</b></p>
+      <h2>🎯 投資戦略まとめ</h2>
+      <p class="section-desc">今日の地合い・テクニカル状態・好材料開示を統合した投資判断の参考情報です。あくまで参考であり、<b>投資助言ではありません。最終判断はご自身の責任で。</b></p>
       <div class="card">
         {strategy_summary}
       </div>
     </section>"""
 
     disclaimer_text = (
-        "æ¬ãã¼ã¸ã®æå ±ã¯ãYahoo!ãã¡ã¤ãã³ã¹ã»TDnet(é©æéç¤ºæå ±é²è¦§ãµã¼ãã¹)ã»æè³ã®æ£®(ãã¯ãã«ã«åæ)ãªã©"
-        "ç¡æã§å¬éããã¦ããæå ±æºããã¨ã«èªåçã«ã¾ã¨ãããã®ã§ãã"
-        "åå®¹ã®æ­£ç¢ºæ§ã»å®å¨æ§ã»ææ°æ§ã¯ä¿è¨¼ããã¾ããã"
-        "ãå¼·æ°/å¼±æ°ã·ã°ãã«ãç­ã®è¡¨ç¤ºã¯ç§»åå¹³åç·ãRSIãªã©éå»ãã¼ã¿ã«åºã¥ãæ©æ¢°çãªè¨ºæ­ã§ããã"
-        "<b>æè³å©è¨ã§ã¯ãªããå°æ¥ã®æ ªä¾¡å¤åãä¿è¨¼ãããã®ã§ãããã¾ããã</b>"
-        "æè³ã«é¢ããæçµå¤æ­ã¯ãå¿ããèªèº«ã®è²¬ä»»ã§è¡ã£ã¦ãã ããã"
+        "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など"
+        "無料で公開されている情報源をもとに自動的にまとめたものです。"
+        "内容の正確性・完全性・最新性は保証されません。"
+        "「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、"
+        "<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>"
+        "投資に関する最終判断は、必ずご自身の責任で行ってください。"
     )
 
     sources_html = """
     <div class="sources">
-      ä¸»ãªæå ±æº: Yahoo!ãã¡ã¤ãã³ã¹ (finance.yahoo.co.jp) / TDnet é©æéç¤ºæå ±é²è¦§ãµã¼ãã¹
-      (release.tdnet.info, éå¬å¼API: webapi.yanoshin.jp) / æè³ã®æ£® ãã¯ãã«ã«åæ (nikkeiyosoku.com)ã
-      åæå ±ã®èä½æ¨©ã»å©ç¨æ¡ä»¶ã¯æä¾åã«å¸°å±ãã¾ããè»¢è¼ã»åéå¸ã¯è¡ãããåäººã®æè³å¤æ­ã®åèæå ±ã¨ãã¦ã®ã¿å©ç¨ãã¦ãã ããã
+      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
+      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
+      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
     </div>"""
 
     bg_url = pick_background_image(generated_at, run_type)
     page_css = CSS.replace("__BG_URL__", bg_url)
 
-    # èæ¯ã¹ã©ã¤ãã·ã§ã¼: ç¾å¨æå»/æå¤ã«å¿ãããæ¬æ¥ã®åçããåé ­(=æåã«è¡¨ç¤º)ã«ãã¦ã
-    # æ®ãã®åçããã£ããã¯ã­ã¹ãã§ã¼ãã§å·¡åããããç»è³ªã¯åç»åã®ã¾ã¾(opacityã®ã¿ã§é·ç§»)ã
+    # 背景スライドショー: 現在時刻/朝夜に応じた「本来の写真」を先頭(=最初に表示)にして、
+    # 残りの写真をゆっくりクロスフェードで巡回させる。画質は元画像のまま(opacityのみで遷移)。
     bg_urls = [u for u, _ in BACKGROUND_IMAGES]
     if bg_url in bg_urls:
         start = bg_urls.index(bg_url)
@@ -2001,7 +2002,7 @@ def build_html(data: dict) -> str:
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>try{{if(localStorage.getItem('jpdt_theme')==='light'){{document.documentElement.setAttribute('data-theme','light');}}}}catch(e){{}}</script>
-<title>æ¥æ¬æ ªãã¤ãã¬ã¼ãæå ±ããã·ã¥ãã¼ã</title>
+<title>日本株デイトレード情報ダッシュボード</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -2013,29 +2014,29 @@ def build_html(data: dict) -> str:
 <header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-title">
-      <span class="eyebrow">TOKYO STOCK EXCHANGE ã» DAY TRADE INTELLIGENCE</span>
-      <h1>æ¥æ¬æ ª(æ±è¨¼)ãã¤ãã¬ã¼ãæå ±ããã·ã¥ãã¼ã<span class="run-badge">{esc(run_label)}</span></h1>
-      <div class="subtitle">æçµæ´æ°: {esc(generated_at)} (JST)<span class="rel-time" data-generated="{esc(generated_at)}"></span> ã» æ¯æ¥ æ6:00 / å¤21:00 ã«èªåæ´æ°</div>
+      <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
+      <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">{esc(run_label)}</span></h1>
+      <div class="subtitle">最終更新: {esc(generated_at)} (JST)<span class="rel-time" data-generated="{esc(generated_at)}"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
-        <a href="#morning">ð å¯ãä»ãå</a>
-        <a href="#evening">ð å¼ãå¾</a>
-        <a href="#technical">ð æ ªä¾¡è¨ºæ­</a>
-        <a href="#growth">ð± æé·æ ª</a>
-        <a href="#strategy">ð¯ æè³æ¦ç¥ã¾ã¨ã</a>
+        <a href="#morning">🌅 寄り付き前</a>
+        <a href="#evening">🌙 引け後</a>
+        <a href="#technical">📊 株価診断</a>
+        <a href="#growth">🌱 成長株</a>
+        <a href="#strategy">🎯 投資戦略まとめ</a>
       </nav>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-label="è¡¨ç¤ºãã¼ããåãæ¿ã" title="ã©ã¤ã/ãã¼ã¯ãã¼ãåæ¿">ð</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
     </div>
   </div>
 </header>
 <div class="wrap">
   <div class="disclaimer">
-    â ï¸ <b>æ¬ãµã¤ãã¯æå ±æä¾ã®ã¿ãç®çã¨ããæè³å©è¨ã§ã¯ããã¾ããã</b> {disclaimer_text}
+    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
   </div>
   {crash_banner_html}
   {mood_html}
-  <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> â ãæ°ã«å¥ãã®ã¿è¡¨ç¤º(ã³ã¼ãæ¬ã®âã§ç»é²)</label>
+  <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
 
   {morning_html}
   {evening_html}
@@ -2047,15 +2048,15 @@ def build_html(data: dict) -> str:
 
   <footer>
     <div class="disclaimer">
-      â ï¸ åæ²: {disclaimer_text}
+      ⚠️ 再掲: {disclaimer_text}
     </div>
     {sources_html}
   </footer>
 </div>
 <div class="bg-spacer" aria-hidden="true">
-  <div class="bg-caption" id="bgCaption">ð æ±äº¬ã»{esc(rotation[0][1]) if rotation and rotation[0][1] else "æ±äº¬"}</div>
+  <div class="bg-caption" id="bgCaption">📍 東京・{esc(rotation[0][1]) if rotation and rotation[0][1] else "東京"}</div>
 </div>
-<button id="backToTop" type="button" aria-label="ãã¼ã¸ä¸é¨ã¸æ»ã" title="ãããã¸æ»ã">â</button>
+<button id="backToTop" type="button" aria-label="ページ上部へ戻る" title="トップへ戻る">↑</button>
 {JS_SCRIPT}
 </body>
 </html>
@@ -2068,7 +2069,7 @@ def main():
     out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else BASE_DIR / "jp_daytrade_dashboard.html"
 
     if not data_path.exists():
-        print(f"[ERROR] data.json ãè¦ã¤ããã¾ãã: {data_path}", file=sys.stderr)
+        print(f"[ERROR] data.json が見つかりません: {data_path}", file=sys.stderr)
         sys.exit(1)
 
     with open(data_path, "r", encoding="utf-8") as f:
@@ -2078,7 +2079,7 @@ def main():
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html_out)
 
-    print(f"[OK] ããã·ã¥ãã¼ããçæãã¾ãã: {out_path}")
+    print(f"[OK] ダッシュボードを生成しました: {out_path}")
 
 
 if __name__ == "__main__":
