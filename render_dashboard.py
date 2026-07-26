@@ -2072,8 +2072,25 @@ def main():
         print(f"[ERROR] data.json が見つかりません: {data_path}", file=sys.stderr)
         sys.exit(1)
 
+
+def _fix_mojibake(obj):
+    """Recursively fix double/triple-encoded UTF-8 mojibake from Java scraper."""
+    if isinstance(obj, dict):
+        return {k: _fix_mojibake(v) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_fix_mojibake(v) for v in obj]
+    if isinstance(obj, str):
+        try:
+            return obj.encode('latin-1').decode('utf-8').encode('latin-1').decode('utf-8')
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            try:
+                return obj.encode('latin-1').decode('utf-8')
+            except (UnicodeEncodeError, UnicodeDecodeError):
+                return obj
+    return obj
+
     with open(data_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+    data = _fix_mojibake(json.load(f))
 
     html_out = build_html(data)
     with open(out_path, "w", encoding="utf-8") as f:
