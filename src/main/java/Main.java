@@ -23,13 +23,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * 日本株(東証)デイトレードダッシュボード用データ更新ツール。
+ * æ¥æ¬æ ª(æ±è¨¼)ãã¤ãã¬ã¼ãããã·ã¥ãã¼ãç¨ãã¼ã¿æ´æ°ãã¼ã«ã
  *
- * このプログラムだけで data.json を「決定論的に」更新する(WebSearch等でLLMが
- * 手動で情報収集する代わりに、無料・キー不要の公開ソースを直接HTTPで取得する)。
- * HTML生成は既存の render_dashboard.py にそのまま任せる(ネットワーク不要のPure Python)。
+ * ãã®ãã­ã°ã©ã ã ãã§ data.json ããæ±ºå®è«çã«ãæ´æ°ãã(WebSearchç­ã§LLMã
+ * æåã§æå ±åéããä»£ããã«ãç¡æã»ã­ã¼ä¸è¦ã®å¬éã½ã¼ã¹ãç´æ¥HTTPã§åå¾ãã)ã
+ * HTMLçæã¯æ¢å­ã® render_dashboard.py ã«ãã®ã¾ã¾ä»»ãã(ãããã¯ã¼ã¯ä¸è¦ã®Pure Python)ã
  *
- * 使い方: java -jar dashboard-updater.jar <morning|evening> <data.jsonのパス>
+ * ä½¿ãæ¹: java -jar dashboard-updater.jar <morning|evening> <data.jsonã®ãã¹>
  */
 public class Main {
 
@@ -43,12 +43,12 @@ public class Main {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    // 定点観測する個別銘柄。増減したい場合はここを編集するだけでよい。
+    // å®ç¹è¦³æ¸¬ããåå¥éæãå¢æ¸ãããå ´åã¯ãããç·¨éããã ãã§ããã
     private static final String[][] WATCHLIST = {
-        {"7203", "トヨタ自動車"},
-        {"6758", "ソニーグループ"},
-        {"8306", "三菱UFJフィナンシャル・グループ"},
-        {"9984", "ソフトバンクグループ"},
+        {"7203", "ãã¨ã¿èªåè»"},
+        {"6758", "ã½ãã¼ã°ã«ã¼ã"},
+        {"8306", "ä¸è±UFJãã£ãã³ã·ã£ã«ã»ã°ã«ã¼ã"},
+        {"9984", "ã½ãããã³ã¯ã°ã«ã¼ã"},
     };
 
     public static void main(String[] args) throws Exception {
@@ -61,15 +61,16 @@ public class Main {
         root.put("generated_at", nowJst.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         root.put("run_type", mode);
 
-        // ---- 市場指標(無料・キー不要のYahoo Finance chart APIから取得) ----
+        // ---- å¸å ´ææ¨(ç¡æã»ã­ã¼ä¸è¦ã®Yahoo Finance chart APIããåå¾) ----
         updateNested(root, "us_market", "sp500", "^GSPC", false);
         updateNested(root, "us_market", "dow", "^DJI", false);
         updateNested(root, "us_market", "nasdaq", "^IXIC", false);
+        updateNested(root, "us_market", "sox", "^SOX", false);
         updateTopLevel(root, "fx", "JPY=X", true);
         updateTopLevel(root, "nikkei225", "^N225", false);
-        updateTopLevel(root, "nikkei_futures", "NIY=F", false); // ベストエフォート。取れなければ既存値を保持
+        updateTopLevel(root, "nikkei_futures", "NIY=F", false); // ãã¹ãã¨ãã©ã¼ããåããªããã°æ¢å­å¤ãä¿æ
 
-        // ---- TDnet適時開示(株探モバイル版ミラーをスクレイピング) ----
+        // ---- TDneté©æéç¤º(æ ªæ¢ã¢ãã¤ã«çãã©ã¼ãã¹ã¯ã¬ã¤ãã³ã°) ----
         try {
             ArrayNode disclosures = scrapeKabutanDisclosures(3);
             if (disclosures.size() > 0) {
@@ -79,7 +80,7 @@ public class Main {
             System.err.println("[WARN] kabutan disclosures fetch failed: " + e);
         }
 
-        // ---- 個別銘柄テクニカル分析(投資の森をスクレイピング) ----
+        // ---- åå¥éæãã¯ãã«ã«åæ(æè³ã®æ£®ãã¹ã¯ã¬ã¤ãã³ã°) ----
         ArrayNode technical = MAPPER.createArrayNode();
         for (String[] w : WATCHLIST) {
             try {
@@ -92,7 +93,7 @@ public class Main {
             root.set("technical", technical);
         }
 
-        // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
+        // ---- æé·æ ªåè£(TDnetãæ¥­ç¸¾äºæ³ã®ä¿®æ­£ãéç¤ºã®ãã¡å¥½ææã®ã¿ãæ©æ¢°çã«æ½åº) ----
         try {
             ArrayNode growth = scrapeGrowthCandidates(8, 8);
             if (growth.size() > 0) {
@@ -102,21 +103,21 @@ public class Main {
             System.err.println("[WARN] growth candidates fetch failed: " + e);
         }
 
-        // 注: overnight_news / afterclose_news / movers_morning / movers_afterclose は
-        // 「話題性のあるニュース・銘柄」を選ぶ性質上、無料の決定論的APIだけでは再現できないため
-        // このJava版では更新対象外(既存の値をそのまま保持する)。
-        // ニュースAPI等を導入する場合は、キーをGitHub Secretsに登録しここで読み込む形に拡張する。
+        // æ³¨: overnight_news / afterclose_news / movers_morning / movers_afterclose ã¯
+        // ãè©±é¡æ§ã®ãããã¥ã¼ã¹ã»éæããé¸ã¶æ§è³ªä¸ãç¡æã®æ±ºå®è«çAPIã ãã§ã¯åç¾ã§ããªããã
+        // ãã®Javaçã§ã¯æ´æ°å¯¾è±¡å¤(æ¢å­ã®å¤ããã®ã¾ã¾ä¿æãã)ã
+        // ãã¥ã¼ã¹APIç­ãå°å¥ããå ´åã¯ãã­ã¼ãGitHub Secretsã«ç»é²ãããã§èª­ã¿è¾¼ãå½¢ã«æ¡å¼µããã
 
         MAPPER.writerWithDefaultPrettyPrinter().writeValue(dataFile, root);
         System.out.println("[OK] data.json updated (mode=" + mode + ")");
     }
 
-    // ---------------- 市場指標 ----------------
+    // ---------------- å¸å ´ææ¨ ----------------
 
-    /** us_market.sp500 のような1階層ネストしたオブジェクトを更新する */
+    /** us_market.sp500 ã®ãããª1éå±¤ãã¹ããããªãã¸ã§ã¯ããæ´æ°ãã */
     private static void updateNested(ObjectNode root, String parentField, String field, String symbol, boolean isFx) {
         ObjectNode target = MAPPER.createObjectNode();
-        if (!fillQuote(target, symbol, isFx)) return; // 失敗時は既存値を保持
+        if (!fillQuote(target, symbol, isFx)) return; // å¤±ææã¯æ¢å­å¤ãä¿æ
         ObjectNode parent = root.has(parentField) && root.get(parentField).isObject()
             ? (ObjectNode) root.get(parentField)
             : MAPPER.createObjectNode();
@@ -124,17 +125,17 @@ public class Main {
         root.set(parentField, parent);
     }
 
-    /** fx / nikkei225 / nikkei_futures のようなトップレベル直下のフィールドを更新する */
+    /** fx / nikkei225 / nikkei_futures ã®ãããªãããã¬ãã«ç´ä¸ã®ãã£ã¼ã«ããæ´æ°ãã */
     private static void updateTopLevel(ObjectNode root, String field, String symbol, boolean isFx) {
         ObjectNode target = MAPPER.createObjectNode();
-        if (!fillQuote(target, symbol, isFx)) return; // 失敗時は既存値を保持
+        if (!fillQuote(target, symbol, isFx)) return; // å¤±ææã¯æ¢å­å¤ãä¿æ
         root.set(field, target);
     }
 
     private static boolean fillQuote(ObjectNode target, String symbol, boolean isFx) {
         try {
-            // "^"はRFC3986上パス中の合法文字ではなくURI.create()が例外を投げるため、
-            // ^GSPC/^DJI/^IXIC/^N225等のインデックスシンボルは事前にパーセントエンコードする。
+            // "^"ã¯RFC3986ä¸ãã¹ä¸­ã®åæ³æå­ã§ã¯ãªãURI.create()ãä¾å¤ãæããããã
+            // ^GSPC/^DJI/^IXIC/^N225ç­ã®ã¤ã³ããã¯ã¹ã·ã³ãã«ã¯äºåã«ãã¼ã»ã³ãã¨ã³ã³ã¼ãããã
             String encodedSymbol = symbol.replace("^", "%5E");
             String url = "https://query1.finance.yahoo.com/v8/finance/chart/" + encodedSymbol + "?interval=1d&range=5d";
             HttpRequest req = HttpRequest.newBuilder(URI.create(url))
@@ -151,13 +152,13 @@ public class Main {
 
             double price = meta.path("regularMarketPrice").asDouble(Double.NaN);
 
-            // 注: meta.chartPreviousCloseは「range引数(ここでは5d)のチャート開始日より前の終値」であり、
-            // 直近の営業日の終値とは異なる(例: 週末を挟むと1週間近く前の値になり得る)。
-            // また実際にはmeta.previousCloseフィールド自体がこのAPIのレスポンスに含まれないことが多く、
-            // これを優先条件にしても実質的にchartPreviousCloseへフォールバックし続けてしまう。
-            // そこで「前営業日比」には、日次ローソク足配列(indicators.quote[0].close)の
-            // 「直近から2番目の終値」を使う。配列の最後の要素は直近の取引日(=regularMarketPriceの日)の
-            // 終値(取引時間中は未確定でnullの場合もある)、その1つ前が正しい「前営業日の終値」になる。
+            // æ³¨: meta.chartPreviousCloseã¯ãrangeå¼æ°(ããã§ã¯5d)ã®ãã£ã¼ãéå§æ¥ããåã®çµå¤ãã§ããã
+            // ç´è¿ã®å¶æ¥­æ¥ã®çµå¤ã¨ã¯ç°ãªã(ä¾: é±æ«ãæãã¨1é±éè¿ãåã®å¤ã«ãªãå¾ã)ã
+            // ã¾ãå®éã«ã¯meta.previousCloseãã£ã¼ã«ãèªä½ããã®APIã®ã¬ã¹ãã³ã¹ã«å«ã¾ããªããã¨ãå¤ãã
+            // ãããåªåæ¡ä»¶ã«ãã¦ãå®è³ªçã«chartPreviousCloseã¸ãã©ã¼ã«ããã¯ãç¶ãã¦ãã¾ãã
+            // ããã§ãåå¶æ¥­æ¥æ¯ãã«ã¯ãæ¥æ¬¡ã­ã¼ã½ã¯è¶³éå(indicators.quote[0].close)ã®
+            // ãç´è¿ãã2çªç®ã®çµå¤ããä½¿ããéåã®æå¾ã®è¦ç´ ã¯ç´è¿ã®åå¼æ¥(=regularMarketPriceã®æ¥)ã®
+            // çµå¤(åå¼æéä¸­ã¯æªç¢ºå®ã§nullã®å ´åããã)ããã®1ã¤åãæ­£ãããåå¶æ¥­æ¥ã®çµå¤ãã«ãªãã
             double prevClose = Double.NaN;
             JsonNode closesNode = result.path("indicators").path("quote").get(0).path("close");
             if (closesNode.isArray()) {
@@ -169,26 +170,26 @@ public class Main {
                     prevClose = closes.get(closes.size() - 2);
                 }
             }
-            // 万一日次終値配列が取得できない場合のみ、従来のchartPreviousCloseにフォールバックする
-            // (精度は落ちるが、値を丸ごと諦めるよりは良い)。
+            // ä¸ä¸æ¥æ¬¡çµå¤éåãåå¾ã§ããªãå ´åã®ã¿ãå¾æ¥ã®chartPreviousCloseã«ãã©ã¼ã«ããã¯ãã
+            // (ç²¾åº¦ã¯è½ã¡ãããå¤ãä¸¸ãã¨è«¦ããããã¯è¯ã)ã
             if (Double.isNaN(prevClose)) prevClose = meta.path("chartPreviousClose").asDouble(Double.NaN);
             if (Double.isNaN(price) || Double.isNaN(prevClose) || prevClose == 0) return false;
 
             double changePct = (price - prevClose) / prevClose * 100.0;
 
             DecimalFormat df = new DecimalFormat("#,##0.00", new DecimalFormatSymbols(Locale.US));
-            String valueStr = df.format(price) + (isFx ? "円" : "");
+            String valueStr = df.format(price) + (isFx ? "å" : "");
 
             String marketState = meta.path("marketState").asText("CLOSED");
             String stateLabel = switch (marketState) {
-                case "REGULAR" -> "現在値";
-                case "PRE" -> "プレマーケット";
-                case "POST" -> "アフターマーケット";
-                default -> "終値";
+                case "REGULAR" -> "ç¾å¨å¤";
+                case "PRE" -> "ãã¬ãã¼ã±ãã";
+                case "POST" -> "ã¢ãã¿ã¼ãã¼ã±ãã";
+                default -> "çµå¤";
             };
-            // 注: 日付ラベルには「取得した今この瞬間」ではなく、実際にこの値が観測された時刻
-            // (meta.regularMarketTime、取引中の指標はその時点、取引終了後の指標は直近終値の時刻)を使う。
-            // 土日や祝日にジョブを走らせても、実際の最終取引日の日付が正しく表示されるようにするため。
+            // æ³¨: æ¥ä»ã©ãã«ã«ã¯ãåå¾ããä»ãã®ç¬éãã§ã¯ãªããå®éã«ãã®å¤ãè¦³æ¸¬ãããæå»
+            // (meta.regularMarketTimeãåå¼ä¸­ã®ææ¨ã¯ãã®æç¹ãåå¼çµäºå¾ã®ææ¨ã¯ç´è¿çµå¤ã®æå»)ãä½¿ãã
+            // åæ¥ãç¥æ¥ã«ã¸ã§ããèµ°ããã¦ããå®éã®æçµåå¼æ¥ã®æ¥ä»ãæ­£ããè¡¨ç¤ºãããããã«ããããã
             long regularMarketTime = meta.path("regularMarketTime").asLong(0);
             ZonedDateTime dataTimeJst = regularMarketTime > 0
                 ? ZonedDateTime.ofInstant(java.time.Instant.ofEpochSecond(regularMarketTime), ZoneId.of("Asia/Tokyo"))
@@ -205,12 +206,12 @@ public class Main {
         }
     }
 
-    // ---------------- TDnet適時開示 ----------------
+    // ---------------- TDneté©æéç¤º ----------------
 
     private static ArrayNode scrapeKabutanDisclosures(int maxPages) {
         ArrayNode out = MAPPER.createArrayNode();
         Pattern rowPattern = Pattern.compile(
-            "^(.*?)、(.*?)\\s*(決算|配当|業修|自社|エク|追訂|他)?\\s*(今日|明日|\\d{1,2}/\\d{1,2})\\s+(\\d{1,2}:\\d{2})\\s*(New!)?$"
+            "^(.*?)ã(.*?)\\s*(æ±ºç®|éå½|æ¥­ä¿®|èªç¤¾|ã¨ã¯|è¿½è¨|ä»)?\\s*(ä»æ¥|ææ¥|\\d{1,2}/\\d{1,2})\\s+(\\d{1,2}:\\d{2})\\s*(New!)?$"
         );
         int collected = 0;
         for (int page = 1; page <= maxPages && collected < 20; page++) {
@@ -222,7 +223,7 @@ public class Main {
                 System.err.println("[WARN] kabutan page " + page + " fetch failed: " + e);
                 break;
             }
-            // 開示PDFへの直リンクだけを対象にする(ナビゲーション等のノイズを自然に除外できる)
+            // éç¤ºPDFã¸ã®ç´ãªã³ã¯ã ããå¯¾è±¡ã«ãã(ããã²ã¼ã·ã§ã³ç­ã®ãã¤ãºãèªç¶ã«é¤å¤ã§ãã)
             List<Element> links = doc.select("a[href^=https://tdnet-pdf.kabutan.jp/]");
             if (links.isEmpty()) break;
             for (Element a : links) {
@@ -232,19 +233,19 @@ public class Main {
                 ObjectNode row = MAPPER.createObjectNode();
                 if (m.matches()) {
                     row.put("time", m.group(5));
-                    row.put("code", "―");
+                    row.put("code", "â");
                     row.put("company", m.group(1).trim());
                     row.put("title", m.group(2).trim());
                     row.put("url", a.absUrl("href"));
-                    row.put("tag", m.group(3) != null ? m.group(3) : "他");
+                    row.put("tag", m.group(3) != null ? m.group(3) : "ä»");
                 } else {
-                    // 想定外のフォーマットの行はタイトル欄にそのまま入れて取得漏れを防ぐ
-                    row.put("time", "―");
-                    row.put("code", "―");
-                    row.put("company", "―");
+                    // æ³å®å¤ã®ãã©ã¼ãããã®è¡ã¯ã¿ã¤ãã«æ¬ã«ãã®ã¾ã¾å¥ãã¦åå¾æ¼ããé²ã
+                    row.put("time", "â");
+                    row.put("code", "â");
+                    row.put("company", "â");
                     row.put("title", text);
                     row.put("url", a.absUrl("href"));
-                    row.put("tag", "他");
+                    row.put("tag", "ä»");
                 }
                 out.add(row);
                 collected++;
@@ -253,27 +254,27 @@ public class Main {
         return out;
     }
 
-    // ---------------- 成長株候補(決算・好材料ベース) ----------------
+    // ---------------- æé·æ ªåè£(æ±ºç®ã»å¥½ææãã¼ã¹) ----------------
 
     /**
-     * 既存の主力ウォッチリストは値位置が高めのため、別枠で「決算・好材料に基づく成長株候補」を
-     * 機械的に抽出する。
+     * æ¢å­ã®ä¸»åã¦ã©ãããªã¹ãã¯å¤ä½ç½®ãé«ãã®ãããå¥æ ã§ãæ±ºç®ã»å¥½ææã«åºã¥ãæé·æ ªåè£ãã
+     * æ©æ¢°çã«æ½åºããã
      *
-     * 判定方法: TDnetの「業績予想の修正」開示(株探の category_group=mod_forecast 一覧)の
-     * タイトル文言に、上方修正・増配など明確な好材料キーワードが含まれ、かつ下方修正・特別損失
-     * などの悪材料キーワードを含まない開示だけを採用する。
-     * 「決算が良い」「好材料がある」という判断そのものをLLMや主観に頼らず、
-     * 会社が実際にTDnetへ開示した文言のキーワードマッチのみで機械的・決定論的に判定するため、
-     * 每回の自動実行でも再現性がある。各候補には実際の開示PDFへの直リンクを必ず添付し、
-     * 根拠を開示原文で確認できるようにする。
+     * å¤å®æ¹æ³: TDnetã®ãæ¥­ç¸¾äºæ³ã®ä¿®æ­£ãéç¤º(æ ªæ¢ã® category_group=mod_forecast ä¸è¦§)ã®
+     * ã¿ã¤ãã«æè¨ã«ãä¸æ¹ä¿®æ­£ã»å¢éãªã©æç¢ºãªå¥½ææã­ã¼ã¯ã¼ããå«ã¾ãããã¤ä¸æ¹ä¿®æ­£ã»ç¹å¥æå¤±
+     * ãªã©ã®æªææã­ã¼ã¯ã¼ããå«ã¾ãªãéç¤ºã ããæ¡ç¨ããã
+     * ãæ±ºç®ãè¯ãããå¥½ææããããã¨ããå¤æ­ãã®ãã®ãLLMãä¸»è¦³ã«é ¼ããã
+     * ä¼ç¤¾ãå®éã«TDnetã¸éç¤ºããæè¨ã®ã­ã¼ã¯ã¼ããããã®ã¿ã§æ©æ¢°çã»æ±ºå®è«çã«å¤å®ããããã
+     * æ¯åã®èªåå®è¡ã§ãåç¾æ§ããããååè£ã«ã¯å®éã®éç¤ºPDFã¸ã®ç´ãªã³ã¯ãå¿ãæ·»ä»ãã
+     * æ ¹æ ãéç¤ºåæã§ç¢ºèªã§ããããã«ããã
      */
     private static ArrayNode scrapeGrowthCandidates(int maxPages, int maxResults) {
         ArrayNode out = MAPPER.createArrayNode();
         Pattern rowPattern = Pattern.compile(
-            "^(.*?)、(.*?)\\s*(業修)?\\s*(今日|明日|\\d{1,2}/\\d{1,2}|\\d{1,2}月\\d{1,2}日\\([月火水木金土日]\\))\\s+(\\d{1,2}:\\d{2})\\s*(New!)?$"
+            "^(.*?)ã(.*?)\\s*(æ¥­ä¿®)?\\s*(ä»æ¥|ææ¥|\\d{1,2}/\\d{1,2}|\\d{1,2}æ\\d{1,2}æ¥\\([æç«æ°´æ¨éåæ¥]\\))\\s+(\\d{1,2}:\\d{2})\\s*(New!)?$"
         );
-        String[] positiveKeywords = {"上方修正", "増配", "特別配当", "復配", "増額"};
-        String[] negativeKeywords = {"下方修正", "減配", "減額", "無配", "特別損失"};
+        String[] positiveKeywords = {"ä¸æ¹ä¿®æ­£", "å¢é", "ç¹å¥éå½", "å¾©é", "å¢é¡"};
+        String[] negativeKeywords = {"ä¸æ¹ä¿®æ­£", "æ¸é", "æ¸é¡", "ç¡é", "ç¹å¥æå¤±"};
 
         java.util.Set<String> seenCompanies = new java.util.LinkedHashSet<>();
         for (int page = 1; page <= maxPages && out.size() < maxResults; page++) {
@@ -304,20 +305,20 @@ public class Main {
                 if (matchedKeyword == null) continue;
 
                 Matcher m = rowPattern.matcher(text);
-                if (!m.matches()) continue; // 会社名が特定できない行は根拠不明として除外
+                if (!m.matches()) continue; // ä¼ç¤¾åãç¹å®ã§ããªãè¡ã¯æ ¹æ ä¸æã¨ãã¦é¤å¤
 
                 String company = m.group(1).trim();
                 String title = m.group(2).trim();
                 String date = m.group(4);
                 String time = m.group(5);
-                if (company.isEmpty() || company.equals("―") || seenCompanies.contains(company)) continue;
+                if (company.isEmpty() || company.equals("â") || seenCompanies.contains(company)) continue;
                 seenCompanies.add(company);
 
                 ObjectNode row = MAPPER.createObjectNode();
                 row.put("company", company);
                 row.put("title", title);
                 row.put("catalyst", matchedKeyword);
-                row.put("reason", "TDnet適時開示「" + title + "」より、" + matchedKeyword + "を確認。");
+                row.put("reason", "TDneté©æéç¤ºã" + title + "ãããã" + matchedKeyword + "ãç¢ºèªã");
                 row.put("asof", date + " " + time);
                 row.put("url", a.absUrl("href"));
                 out.add(row);
@@ -326,29 +327,29 @@ public class Main {
         return out;
     }
 
-    // ---------------- 個別銘柄テクニカル分析 ----------------
+    // ---------------- åå¥éæãã¯ãã«ã«åæ ----------------
 
     private static ObjectNode scrapeTechnical(String code, String name) throws Exception {
         String url = "https://nikkeiyosoku.com/stock/technical/" + code + "/";
         Document doc = Jsoup.connect(url).userAgent(UA).timeout(15000).get();
         String text = doc.body().text();
 
-        String price = "―";
+        String price = "â";
         Double changePct = null;
         Matcher pm = Pattern.compile(
-            "終値[）\\)]\\s*([\\d,]+\\.?\\d*)\\s*([+-][\\d,]+\\.?\\d*)\\(([+-][\\d.]+)%\\)"
+            "çµå¤[ï¼\\)]\\s*([\\d,]+\\.?\\d*)\\s*([+-][\\d,]+\\.?\\d*)\\(([+-][\\d.]+)%\\)"
         ).matcher(text);
         if (pm.find()) {
             price = pm.group(1);
             changePct = Double.valueOf(pm.group(3));
         }
 
-        String ma5 = extractPct(text, "5日線");
-        String ma25 = extractPct(text, "25日線");
+        String ma5 = extractPct(text, "5æ¥ç·");
+        String ma25 = extractPct(text, "25æ¥ç·");
         Double rsi = extractNumber(text, "RSI");
 
         int sell = 0, neutral = 0, buy = 0;
-        Matcher sm = Pattern.compile("売り\\s*(\\d+)\\s*中立\\s*(\\d+)\\s*買い\\s*(\\d+)").matcher(text);
+        Matcher sm = Pattern.compile("å£²ã\\s*(\\d+)\\s*ä¸­ç«\\s*(\\d+)\\s*è²·ã\\s*(\\d+)").matcher(text);
         if (sm.find()) {
             sell = Integer.parseInt(sm.group(1));
             neutral = Integer.parseInt(sm.group(2));
@@ -357,24 +358,24 @@ public class Main {
 
         int diff = buy - sell;
         String base;
-        if (diff >= 2) base = "強気";
-        else if (diff <= -2) base = "弱気";
-        else if (diff == 0) base = "中立";
-        else base = diff > 0 ? "中立(やや強気)" : "中立(やや弱気)";
+        if (diff >= 2) base = "å¼·æ°";
+        else if (diff <= -2) base = "å¼±æ°";
+        else if (diff == 0) base = "ä¸­ç«";
+        else base = diff > 0 ? "ä¸­ç«(ããå¼·æ°)" : "ä¸­ç«(ããå¼±æ°)";
 
         String signal = base;
         if (!base.contains("(")) {
-            if (rsi != null && rsi >= 70) signal = base + "(過熱感)";
-            else if (rsi != null && rsi <= 30) signal = base + "(売られ過ぎ)";
-            else if (Math.abs(parsePctOrZero(ma25)) >= 10.0) signal = base + "(乖離大)";
+            if (rsi != null && rsi >= 70) signal = base + "(éç±æ)";
+            else if (rsi != null && rsi <= 30) signal = base + "(å£²ããéã)";
+            else if (Math.abs(parsePctOrZero(ma25)) >= 10.0) signal = base + "(ä¹é¢å¤§)";
         }
 
         StringBuilder summary = new StringBuilder();
-        summary.append("売り").append(sell).append("/中立").append(neutral).append("/買い").append(buy).append("。");
+        summary.append("å£²ã").append(sell).append("/ä¸­ç«").append(neutral).append("/è²·ã").append(buy).append("ã");
         if (rsi != null) {
-            if (rsi >= 70) summary.append("RSIが70超で過熱感、短期的な反落リスクに留意。");
-            else if (rsi <= 30) summary.append("RSIが30以下で売られ過ぎ、短期的な反発余地に留意。");
-            else summary.append("RSIは中立域。");
+            if (rsi >= 70) summary.append("RSIã70è¶ã§éç±æãç­æçãªåè½ãªã¹ã¯ã«çæã");
+            else if (rsi <= 30) summary.append("RSIã30ä»¥ä¸ã§å£²ããéããç­æçãªåçºä½å°ã«çæã");
+            else summary.append("RSIã¯ä¸­ç«åã");
         }
 
         ObjectNode node = MAPPER.createObjectNode();
@@ -397,7 +398,7 @@ public class Main {
             if (!v.startsWith("+") && !v.startsWith("-")) v = "+" + v;
             return v + "%";
         }
-        return "―";
+        return "â";
     }
 
     private static Double extractNumber(String text, String label) {
