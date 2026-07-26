@@ -176,6 +176,19 @@ section > h2 {
   line-height: 1.5;
 }
 .news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.04); }
+.news-flow {
+  display: flex; align-items: flex-start; gap: 7px; margin-top: 5px; padding: 5px 9px;
+  border-radius: 8px; font-size: 12px; line-height: 1.55;
+}
+.news-flow .flow-badge {
+  flex-shrink: 0; font-weight: 700; padding: 1px 7px; border-radius: 8px;
+  font-size: 10.5px; letter-spacing: 0.2px; white-space: nowrap;
+}
+.news-flow .flow-text { color: var(--text); }
+.news-flow.flow-current { background: rgba(255,107,122,0.08); border: 1px solid rgba(255,107,122,0.25); }
+.news-flow.flow-current .flow-badge { background: rgba(255,107,122,0.22); color: var(--bull); }
+.news-flow.flow-expected { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); }
+.news-flow.flow-expected .flow-badge { background: rgba(212,175,55,0.22); color: var(--accent-bright); }
 .scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -440,7 +453,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-07-26 09:06 (JST)<span class="rel-time" data-generated="2026-07-26 09:06"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-07-26 01:04 (JST)<span class="rel-time" data-generated="2026-07-26 01:04"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
@@ -529,9 +542,14 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
         <p class="section-desc">ニュースの投資関連分野・注目企業タグを集約した参考情報です。<b>投資助言ではなく、実際に株価が動くことを保証するものではありません。</b></p>
         <div class="theme-grid">
         <div class="theme-card">
-          <div class="theme-head"><span class="theme-name">半導体</span><span class="tag">関連ニュース2件</span></div>
-          <div class="theme-companies"><span class="theme-company">キオクシアホールディングス</span></div>
-          <div class="theme-source">きっかけ: 来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる、今週の株式市況：半導体株は一時下げ止まりも中東情勢の再緊迫化で上値重い</div>
+          <div class="theme-head"><span class="theme-name">海運</span><span class="tag">関連ニュース1件</span></div>
+          <div class="theme-companies"><span class="theme-company">日本郵船(9101)</span><span class="theme-company">商船三井(9104)</span><span class="theme-company">川崎汽船(9107)</span></div>
+          <div class="theme-source">きっかけ: 中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</div>
+        </div>
+        <div class="theme-card">
+          <div class="theme-head"><span class="theme-name">エネルギー・資源</span><span class="tag">関連ニュース1件</span></div>
+          <div class="theme-companies"><span class="theme-company">INPEX(1605)</span><span class="theme-company">出光興産(5019)</span></div>
+          <div class="theme-source">きっかけ: ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</div>
         </div>
         <div class="theme-card">
           <div class="theme-head"><span class="theme-name">半導体・AI関連</span><span class="tag">関連ニュース1件</span></div>
@@ -539,14 +557,19 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <div class="theme-source">きっかけ: 日経平均、AI特需の持続懸念で1811円安の急落</div>
         </div>
         <div class="theme-card">
+          <div class="theme-head"><span class="theme-name">半導体</span><span class="tag">関連ニュース1件</span></div>
+          <div class="theme-companies"><span class="theme-company">キオクシアホールディングス</span></div>
+          <div class="theme-source">きっかけ: 来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</div>
+        </div>
+        <div class="theme-card">
           <div class="theme-head"><span class="theme-name">AI・ハイテク株</span><span class="tag">関連ニュース1件</span></div>
           <div class="theme-companies"><span class="theme-company muted">個別銘柄は特定されていません</span></div>
-          <div class="theme-source">きっかけ: NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷に</div>
+          <div class="theme-source">きっかけ: NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</div>
         </div></div>
       </div>
       <div class="card">
         <h3>時間外・朝の主要ニュース</h3>
-        <ul class="news-list"><li><a href="https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/" target="_blank" rel="noopener">日経平均、AI特需の持続懸念で1811円安の急落</a><span class="meta">7/24 / 日本経済新聞</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体・AI関連</span><span class="impact-companies">注目企業: イビデン</span></div></li><li><a href="https://s.kabutan.jp/news/n202607241176/" target="_blank" rel="noopener">来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</a><span class="meta">7/24 / 株探</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体</span><span class="impact-companies">注目企業: キオクシアホールディングス</span></div></li><li><a href="https://www.gaitame.com/media/entry/2026/07/25/060400" target="_blank" rel="noopener">ドル円、一時163円台後半まで上昇し約40年ぶり高値圏に接近。来週はFOMCと日銀会合に注目</a><span class="meta">7/25 / 外為どっとコム</span></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷に</a><span class="meta">7/24 / 財経新聞</span><div class="news-impact"><span class="impact-sector">関連分野: AI・ハイテク株</span></div></li><li><a href="https://s.kabutan.jp/news/n202607250090/" target="_blank" rel="noopener">今週の株式市況：半導体株は一時下げ止まりも中東情勢の再緊迫化で上値重い</a><span class="meta">7/25 / 株探</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体</span></div></li></ul>
+        <ul class="news-list"><li><a href="https://newswitch.jp/p/42224" target="_blank" rel="noopener">中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</a><span class="meta">7/25 / ニュースイッチ(日刊工業新聞社)</span><div class="news-impact"><span class="impact-sector">関連分野: 海運</span><span class="impact-companies">注目企業: 日本郵船(9101)、商船三井(9104)、川崎汽船(9107)</span></div><div class="news-flow flow-current"><span class="flow-badge">💰 実況</span><span class="flow-text">紅海・スエズ運河の航行混乱が続き、船社が7月の運賃一括値上げ(GRI)と繁忙期サーチャージ(PSS)を発表するなど海上運賃の上昇が続いており、海運株に資金が流入している</span></div></li><li><a href="https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html" target="_blank" rel="noopener">ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</a><span class="meta">7/25 / マネーサテライト(松井証券)</span><div class="news-impact"><span class="impact-sector">関連分野: エネルギー・資源</span><span class="impact-companies">注目企業: INPEX(1605)、出光興産(5019)</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">ホルムズ海峡周辺の地政学リスクが意識され、原油供給への不安が長期化すればエネルギー・資源株に資金が向かう可能性がある</span></div></li><li><a href="https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/" target="_blank" rel="noopener">日経平均、AI特需の持続懸念で1811円安の急落</a><span class="meta">7/24 / 日本経済新聞</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体・AI関連</span><span class="impact-companies">注目企業: イビデン</span></div></li><li><a href="https://s.kabutan.jp/news/n202607241176/" target="_blank" rel="noopener">来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</a><span class="meta">7/24 / 株探</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体</span><span class="impact-companies">注目企業: キオクシアホールディングス</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">FOMC・日銀会合を控え、政策金利の思惑から金融・銀行株に関心が向かう可能性がある</span></div></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</a><span class="meta">7/24 / 財経新聞</span><div class="news-impact"><span class="impact-sector">関連分野: AI・ハイテク株</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">原油高が投資家心理の重荷となっており、資源関連株への関心が高まりつつある</span></div></li></ul>
       </div>
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>

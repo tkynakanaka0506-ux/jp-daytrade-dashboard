@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-26 09:06",
+  "generated_at": "2026-07-26 01:04",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -35,6 +35,33 @@
   },
   "overnight_news": [
     {
+      "title": "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
+      "url": "https://newswitch.jp/p/42224",
+      "source": "ニュースイッチ(日刊工業新聞社)",
+      "time": "7/25",
+      "investment_sector": "海運",
+      "investment_companies": [
+        "日本郵船(9101)",
+        "商船三井(9104)",
+        "川崎汽船(9107)"
+      ],
+      "money_flow": "紅海・スエズ運河の航行混乱が続き、船社が7月の運賃一括値上げ(GRI)と繁忙期サーチャージ(PSS)を発表するなど海上運賃の上昇が続いており、海運株に資金が流入している",
+      "money_flow_type": "current"
+    },
+    {
+      "title": "ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に",
+      "url": "https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html",
+      "source": "マネーサテライト(松井証券)",
+      "time": "7/25",
+      "investment_sector": "エネルギー・資源",
+      "investment_companies": [
+        "INPEX(1605)",
+        "出光興産(5019)"
+      ],
+      "money_flow": "ホルムズ海峡周辺の地政学リスクが意識され、原油供給への不安が長期化すればエネルギー・資源株に資金が向かう可能性がある",
+      "money_flow_type": "expected"
+    },
+    {
       "title": "日経平均、AI特需の持続懸念で1811円安の急落",
       "url": "https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/",
       "source": "日本経済新聞",
@@ -52,27 +79,18 @@
       "investment_sector": "半導体",
       "investment_companies": [
         "キオクシアホールディングス"
-      ]
+      ],
+      "money_flow": "FOMC・日銀会合を控え、政策金利の思惑から金融・銀行株に関心が向かう可能性がある",
+      "money_flow_type": "expected"
     },
     {
-      "title": "ドル円、一時163円台後半まで上昇し約40年ぶり高値圏に接近。来週はFOMCと日銀会合に注目",
-      "url": "https://www.gaitame.com/media/entry/2026/07/25/060400",
-      "source": "外為どっとコム",
-      "time": "7/25"
-    },
-    {
-      "title": "NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷に",
+      "title": "NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷",
       "url": "https://www.zaikei.co.jp/article/20260724/862565.html",
       "source": "財経新聞",
       "time": "7/24",
-      "investment_sector": "AI・ハイテク株"
-    },
-    {
-      "title": "今週の株式市況：半導体株は一時下げ止まりも中東情勢の再緊迫化で上値重い",
-      "url": "https://s.kabutan.jp/news/n202607250090/",
-      "source": "株探",
-      "time": "7/25",
-      "investment_sector": "半導体"
+      "investment_sector": "AI・ハイテク株",
+      "money_flow": "原油高が投資家心理の重荷となっており、資源関連株への関心が高まりつつある",
+      "money_flow_type": "expected"
     }
   ],
   "tdnet_morning": [
