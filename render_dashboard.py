@@ -2090,7 +2090,7 @@ def _fix_mojibake(obj):
     return obj
 
     with open(data_path, "r", encoding="utf-8") as f:
-    data = _fix_mojibake(json.load(f))
+        data = _fix_mojibake(json.load(f))
 
     html_out = build_html(data)
     with open(out_path, "w", encoding="utf-8") as f:
