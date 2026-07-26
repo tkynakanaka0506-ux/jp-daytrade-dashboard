@@ -1339,6 +1339,18 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   }
   a { color: #000 !important; text-decoration: underline; }
 }
+    /* ── 投資戦略サマリー ── */
+    #strategy { margin-top: 1em; }
+    .strategy-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1em 1.2em; margin-bottom: 1em; }
+    .strategy-block h4 { margin: 0 0 0.5em; font-size: 1em; }
+    .strategy-market { font-size: 1.4em; font-weight: 700; margin: 0.3em 0 0.6em; }
+    .strategy-note { font-size: 0.82em; color: var(--muted); margin: 0 0 0.6em; line-height: 1.5; }
+    .strategy-list { margin: 0; padding-left: 1.4em; line-height: 1.8; font-size: 0.9em; }
+    .strategy-list li { margin-bottom: 0.3em; }
+    .strategy-conclusion { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--card)); }
+    .strategy-conclusion h4 { color: var(--accent); }
+    .strategy-conclusion-list { margin: 0; padding-left: 1.4em; line-height: 1.9; font-size: 0.92em; }
+    .strategy-conclusion-list li { margin-bottom: 0.5em; }
 """
 
 
@@ -1587,6 +1599,133 @@ def build_html(data: dict) -> str:
     theme_html = theme_summary_html(data)
     calendar_html = economic_calendar_html(data.get("economic_calendar", []))
 
+def strategy_summary_html(data):
+    """地合い・テクニカル状態・好材料開示・投資判断まとめを生成する"""
+    us = data.get("us_market", {})
+    sp500_chg = float((us.get("sp500") or {}).get("change_pct") or 0)
+    dow_chg   = float((us.get("dow")   or {}).get("change_pct") or 0)
+    nas_chg   = float((us.get("nasdaq") or {}).get("change_pct") or 0)
+    us_avg = (sp500_chg + dow_chg + nas_chg) / 3
+    futures_chg = float((data.get("nikkei_futures") or {}).get("change_pct") or 0)
+    nikkei_chg  = float((data.get("nikkei225") or {}).get("change_pct") or 0)
+    fx_chg      = float((data.get("fx") or {}).get("change_pct") or 0)
+
+    if us_avg > 0.5 and futures_chg > -0.3:
+        mkt_label, mkt_color, mkt_emoji = "強気地合い", "var(--up)", "🟢"
+    elif us_avg < -0.5 or futures_chg < -0.5 or nikkei_chg < -1.0:
+        mkt_label, mkt_color, mkt_emoji = "弱気地合い", "var(--down)", "🔴"
+    else:
+        mkt_label, mkt_color, mkt_emoji = "中立地合い", "var(--muted)", "🟡"
+
+    tech_raw = data.get("technical", [])
+    technical = list(tech_raw) if isinstance(tech_raw, list) else list(tech_raw.values())
+    bull_stocks, bear_stocks, caution_list = [], [], []
+    for item in technical:
+        counts = parse_signal_counts(item.get("summary", ""))
+        if counts:
+            score = counts["buy"] * 2 - counts["sell"]
+            if score > 0:
+                bull_stocks.append((score, item))
+            elif score < 0:
+                bear_stocks.append((score, item))
+        try:
+            if float(item.get("rsi", 0) or 0) >= 70:
+                caution_list.append(f'{item.get("name","")}（RSI過熱）')
+        except (TypeError, ValueError):
+            pass
+    bull_stocks.sort(key=lambda x: -x[0])
+    bear_stocks.sort(key=lambda x: x[0])
+
+    g_raw = data.get("growth_candidates", [])
+    growth = list(g_raw) if isinstance(g_raw, list) else list(g_raw.values())
+
+    parts = []
+
+    # 地合い
+    parts.append('<div class="strategy-block">')
+    parts.append('<h4>📊 今日の地合い</h4>')
+    parts.append(f'<div class="strategy-market" style="color:{mkt_color}">{mkt_emoji} {esc(mkt_label)}</div>')
+    parts.append('<ul class="strategy-list">')
+    parts.append(f'<li>米国3指数平均: {us_avg:+.2f}%（S&P500 {sp500_chg:+.2f}% / NYダウ {dow_chg:+.2f}% / NASDAQ {nas_chg:+.2f}%）</li>')
+    if futures_chg:
+        parts.append(f'<li>日経先物: {futures_chg:+.2f}%</li>')
+    if fx_chg:
+        yen = "円安（輸出株に追い風）" if fx_chg > 0 else "円高（輸出株に逆風）"
+        parts.append(f'<li>ドル円: {yen}（前日比 {fx_chg:+.2f}%）</li>')
+    parts.append('</ul></div>')
+
+    # テクニカル状態診断
+    parts.append('<div class="strategy-block">')
+    parts.append('<h4>📈 テクニカル状態診断（過去データによる現在の強気・弱気）</h4>')
+    parts.append('<p class="strategy-note">移動平均線・RSIなど<b>過去の株価データ</b>から算出した「現在の強気・弱気状態」です。<b>将来の株価を予測・保証するものではありません。</b></p>')
+    if bull_stocks:
+        parts.append('<p style="margin:0.3em 0 0.2em;font-size:0.88em;color:var(--up)">🟢 強気（買いシグナル優勢）</p><ul class="strategy-list">')
+        for sc, st in bull_stocks:
+            rsi = st.get("rsi", "")
+            ov = f' ⚠️ RSI過熱({rsi})' if rsi and float(rsi) >= 70 else ""
+            chg = st.get("change_pct")
+            chg_s = f' / 前日比{chg:+.2f}%' if isinstance(chg, (int,float)) else ""
+            parts.append(f'<li><b>{esc(st.get("name",""))}</b>（{esc(st.get("code",""))}）― 強気スコア +{sc}{chg_s}{ov}</li>')
+        parts.append('</ul>')
+    else:
+        parts.append('<p class="empty" style="margin:0.5em 0">現時点でテクニカル強気の銘柄はありません。</p>')
+    if bear_stocks:
+        parts.append('<p style="margin:0.6em 0 0.2em;font-size:0.88em;color:var(--down)">🔴 弱気（売りシグナル優勢）</p><ul class="strategy-list">')
+        for sc, st in bear_stocks:
+            rsi = st.get("rsi","")
+            ov = f' ⚠️ RSI過熱({rsi})' if rsi and float(rsi) >= 70 else ""
+            parts.append(f'<li><b>{esc(st.get("name",""))}</b>（{esc(st.get("code",""))}）― 弱気スコア {sc}{ov}</li>')
+        parts.append('</ul>')
+    parts.append('</div>')
+
+    # 好材料開示
+    parts.append('<div class="strategy-block">')
+    parts.append('<h4>📋 好材料開示銘柄（上方修正・増配等）</h4>')
+    parts.append('<p class="strategy-note">TDnetに上方修正・増配など好材料を含む開示を行った銘柄です。<b>翌営業日以降の株価反応に注目。</b>開示原文のご確認を。</p>')
+    if growth:
+        parts.append('<ul class="strategy-list">')
+        for g in growth[:5]:
+            co = esc(g.get("company",""))
+            ttl = esc((g.get("title") or "")[:45])
+            url = g.get("url","")
+            cat = esc((g.get("catalyst") or "")[:60])
+            lnk = f'<a href="{esc(url)}" target="_blank">{ttl}…</a>' if url else ttl
+            cat_line = f'<br><span style="font-size:0.82em;color:var(--muted)">{cat}</span>' if cat else ''
+            parts.append(f'<li><b>{co}</b> — {lnk}{cat_line}</li>')
+        parts.append('</ul>')
+    else:
+        parts.append('<p class="empty" style="margin:0.5em 0">本日は好材料開示（上方修正・増配等）が見当たりません。</p>')
+    parts.append('</div>')
+
+    # 投資判断まとめ
+    parts.append('<div class="strategy-block strategy-conclusion">')
+    parts.append('<h4>🎯 投資判断まとめ・今後の見通し</h4>')
+    conclusions = []
+    if bull_stocks and mkt_label != "弱気地合い":
+        names = "・".join(st.get("name","") for _,st in bull_stocks[:3])
+        conclusions.append(f'テクニカルが強気かつ{esc(mkt_label)}のため、<b>{esc(names)}</b>は積極的に注目できる局面です。ただし個別リスク（決算・地政学）は別途確認を。')
+    elif bull_stocks:
+        names = "・".join(st.get("name","") for _,st in bull_stocks[:3])
+        conclusions.append(f'<b>{esc(names)}</b>はテクニカル強気ですが、全体地合いが弱いため追いかけすぎに注意。押し目で拾う戦略が無難です。')
+    else:
+        conclusions.append('現時点でテクニカル強気の銘柄がなく、新規買いの根拠が薄い局面です。相場全体の動向を確認しながら様子見が無難です。')
+    if growth:
+        co_names = "・".join((g.get("company") or "")[:10] for g in growth[:3])
+        conclusions.append(f'好材料開示銘柄（<b>{esc(co_names)}</b>等）は翌営業日の寄り付きでのギャップアップが期待できます。ただし材料出尽くし売りのリスクも念頭に。')
+    if caution_list:
+        c_str = "、".join(caution_list)
+        conclusions.append(f'⚠️ <b>RSI過熱（70超）の銘柄: {esc(c_str)}</b> — 短期的な利益確定売りや調整が入りやすいため、新規追いかけは避ける方が無難です。')
+    if mkt_label == "弱気地合い":
+        conclusions.append('⚠️ 米国市場・日経先物が軟調です。全体相場の下落に引きずられるリスクが高く、<b>全般的に新規の買いは慎重に。</b>手持ちポジションは利益確定や損切りラインの確認を。')
+    parts.append('<ul class="strategy-conclusion-list">')
+    for con in conclusions:
+        parts.append(f'<li>{con}</li>')
+    parts.append('</ul>')
+    parts.append('<p class="strategy-note" style="margin-top:0.8em">⚠️ 上記はテクニカル指標・開示情報等を組み合わせた機械的な参考情報です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</p>')
+    parts.append('</div>')
+    return "".join(parts)
+
+
     morning_html = f"""
     <section id="morning">
       <h2>🌅 寄り付き前セクション</h2>
@@ -1700,6 +1839,16 @@ def build_html(data: dict) -> str:
       </div>
     </section>"""
 
+    strategy_summary = strategy_summary_html(data)
+    strategy_section_html = f"""
+    <section id="strategy">
+      <h2>🎯 投資戦略まとめ</h2>
+      <p class="section-desc">今日の地合い・テクニカル状態・好材料開示を統合した投資判断の参考情報です。あくまで参考であり、<b>投資助言ではありません。最終判断はご自身の責任で。</b></p>
+      <div class="card">
+        {strategy_summary}
+      </div>
+    </section>"""
+
     disclaimer_text = (
         "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など"
         "無料で公開されている情報源をもとに自動的にまとめたものです。"
@@ -1761,6 +1910,7 @@ def build_html(data: dict) -> str:
         <a href="#evening">🌙 引け後</a>
         <a href="#technical">📊 株価診断</a>
         <a href="#growth">🌱 成長株</a>
+        <a href="#strategy">🎯 投資戦略まとめ</a>
       </nav>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
     </div>
@@ -1777,6 +1927,8 @@ def build_html(data: dict) -> str:
   {evening_html}
   {technical_html}
   {growth_html}
+
+  {strategy_section_html}
 
   <footer>
     <div class="disclaimer">
