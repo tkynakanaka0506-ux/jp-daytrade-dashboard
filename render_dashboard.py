@@ -332,16 +332,20 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
 
 
 def parse_signal_counts(summary):
-    """summary文字列から「中立X/売りY/買いZ」のシグナル内訳を抽出する。見つからなければNone。"""
+    """summary文字列から「中立X/売りY/買いZ」または「売りY/中立X/買いZ」形式のシグナル内訳を抽出。見つからなければNone。"""
     if not summary:
         return None
+    # 形式1: 売りN/中立N/買いN (新フォーマット)
+    m = re.search(r"売り\s*(\d+)\s*/\s*中立\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
+    if m:
+        sell, neutral, buy = (int(x) for x in m.groups())
+        return {"neutral": neutral, "sell": sell, "buy": buy}
+    # 形式2: 中立N/売りN/買いN (旧フォーマット)
     m = re.search(r"中立\s*(\d+)\s*/\s*売り\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
-    if not m:
-        return None
-    neutral, sell, buy = (int(x) for x in m.groups())
-    return {"neutral": neutral, "sell": sell, "buy": buy}
-
-
+    if m:
+        neutral, sell, buy = (int(x) for x in m.groups())
+        return {"neutral": neutral, "sell": sell, "buy": buy}
+    return None
 def rank_label(i):
     medals = ["🥇", "🥈", "🥉"]
     return medals[i] if i < len(medals) else f"{i + 1}位"
