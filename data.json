@@ -1,25 +1,25 @@
 {
-  "generated_at" : "2026-07-27 06:53",
+  "generated_at" : "2026-07-27 10:26",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,411.98",
-      "change_pct" : -1.16,
+      "change_pct" : 0.05,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "dow" : {
       "value" : "51,947.25",
-      "change_pct" : -0.52,
+      "change_pct" : 0.46,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "nasdaq" : {
       "value" : "24,975.82",
-      "change_pct" : -2.78,
+      "change_pct" : -0.64,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "sox" : {
       "value" : "11,818.89",
-      "change_pct" : -4.77,
+      "change_pct" : -4.25,
       "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
@@ -29,14 +29,14 @@
     "asof" : "7/27Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
-    "value" : "64,395.00",
-    "change_pct" : -1.55,
-    "asof" : "7/25Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "64,410.00",
+    "change_pct" : 0.04,
+    "asof" : "7/27Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei225" : {
-    "value" : "64,611.15",
-    "change_pct" : -2.28,
-    "asof" : "7/24Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "64,367.51",
+    "change_pct" : -0.38,
+    "asof" : "7/27Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
     "title" : "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
@@ -85,141 +85,141 @@
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "王将フード、〔Delayed〕[Summary]Monthly Sales Flash Report for June 2026 他 7月25日(土) 10:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599622.pdf",
+    "title" : "ｉＳ日経、上場ETF（管理会社：ブラックロック・ジャパン）に関する日々の開示事項 他 今日 10:15 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599775.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "セブン＆アイ、Notice Regarding Conclusion of Discussions on Potential Investment in European CVS 他 7月25日(土) 09:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599588.pdf",
+    "title" : "ラクーンＨＤ、コーポレート・ガバナンスに関する報告書 2026/07/27 他 今日 10:15 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260701586220.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "セブン＆アイ、欧州コンビニエンスストア企業への出資に関する検討協議終了に関するお知らせ 他 7月25日(土) 09:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599579.pdf",
+    "title" : "ＷＴＩ原油、上場ＥＴＦ(管理会社：シンプレクス・アセット・マネジメント)に関する日々の開示事項 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599739.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会招集ご通知 他 7月25日(土) 08:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596745.pdf",
+    "title" : "ブルドック、自己株式立会外買付取引（ToSTNeT-3）による自己株式の取得結果に関するお知らせ 自社 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599800.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＷＨＤＣ、（訂正）第22回定時株主総会資料（電子提供措置事項のうち法令及び定款に基づく書面交付請求による交付書面に記載しない事項） 他 7月25日(土) 08:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260721596743.pdf",
+    "title" : "クリレスＨＤ、Notice of Financial Results of Unlisted Parent Company, etc. 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260724599183.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 資料編 2026 他 7月25日(土) 00:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599484.pdf",
+    "title" : "クリレスＨＤ、非上場の親会社等の決算に関する お知らせ 追訂 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260724599182.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "あおぞら銀、統合報告書 ディスクロージャー誌 本編 2026 他 7月25日(土) 00:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599469.pdf",
+    "title" : "ネオジャパン、横浜F・マリノスとのオフィシャルスポンサー契約締結のお知らせ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260724599078.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＦＣＣ、［Delayed］Corporate Governance Report 他 7月25日(土) 00:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260725/140120260724599086.pdf",
+    "title" : "中国塗、法定事前開示書類（合併）（文正商事株式会社） 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260724598956.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "はてな、特別調査委員会による調査報告書の公表及び役員報酬の一部自主返上に関するお知らせ 他 7月24日(金) 19:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599177.pdf",
+    "title" : "中国塗、法定事後開示書類（合併）（文正商事株式会社） 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599744.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "中外炉、(Correction of Numerical Data)Notice Concerning Partial Correction of Summary of Consolidated Financial Results for the Three Month Ended June 30,2026 他 7月24日(金) 18:55",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599582.pdf",
+    "title" : "日本バリュー、上場ETF（管理会社：JAMPファンド・マネジメント）に関する日々の開示事項 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599713.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "信金中央、定款 2026/07/24 他 7月24日(金) 18:55",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599581.pdf",
+    "title" : "ＦＣＥ、AIオーケストレーションツール「Hellas」を提供する株式会社Crestioと業務提携契約を締結 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599752.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＮＥ、コーポレート・ガバナンスに関する報告書 2026/07/24 他 7月24日(金) 18:33",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599562.pdf",
+    "title" : "大黒屋、コーポレート・ガバナンスに関する報告書 2026/07/23 他 今日 09:46 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599760.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸ超短米債、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599488.pdf",
+    "title" : "ｉＳＩＧ債Ｈ、iシェアーズ 米ドル建て投資適格社債 ETF（為替ヘッジあり）、iシェアーズ 米ドル建てハイイールド社債 ETF（為替ヘッジあり）のお知らせ 他 今日 09:45 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599772.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸ優証隔月、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599489.pdf",
+    "title" : "ｉＳＨＹ債Ｈ、iシェアーズ 米ドル建て投資適格社債 ETF（為替ヘッジあり）、iシェアーズ 米ドル建てハイイールド社債 ETF（為替ヘッジあり）のお知らせ 他 今日 09:45 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599773.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸＵＳ配ヘ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599490.pdf",
+    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　 他 今日 09:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599735.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸＵＳ配当、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599491.pdf",
+    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　 他 今日 09:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599734.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸＡＩビグ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599492.pdf",
+    "title" : "ＷＴＯＫＹＯ、全国各地の神社を舞台とした「TGC神結びプロジェクト」を始動、アンバサダーに平祐奈が就任 他 今日 09:15",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260724599300.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸウラン、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599493.pdf",
+    "title" : "ジェイフロ、株式会社エアロネクストとの業務提携に関するお知らせ 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260726599679.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸＵＳＤＶ、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599494.pdf",
+    "title" : "ジェイフロ、ジェイフロンティアとエアロネクスト、改正医療法を受け「空から支える地域医療インフラ」の実現に向け業務提携 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260726599680.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＧＸ高配日株、ETFの収益分配のお知らせ 配当 7月24日(金) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260724/140120260724599498.pdf",
+    "title" : "ラクーンＨＤ、Notice Concerning Action to Implement Management Conscious of Cost of Capital and Stock Price (Update) 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599707.pdf",
     "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
