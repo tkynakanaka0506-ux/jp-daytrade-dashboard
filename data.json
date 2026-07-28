@@ -1,41 +1,41 @@
 {
-  "generated_at" : "2026-07-28 23:11",
-  "run_type" : "evening",
+  "generated_at" : "2026-07-29 06:57",
+  "run_type" : "morning",
   "us_market" : {
     "sp500" : {
-      "value" : "7,399.28",
-      "change_pct" : -0.19,
-      "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "7,428.78",
+      "change_pct" : 0.21,
+      "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "dow" : {
-      "value" : "52,635.05",
-      "change_pct" : 0.81,
-      "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "52,747.32",
+      "change_pct" : 1.03,
+      "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "nasdaq" : {
-      "value" : "24,644.96",
-      "change_pct" : -1.15,
-      "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "24,876.91",
+      "change_pct" : -0.22,
+      "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "sox" : {
-      "value" : "10,949.66",
-      "change_pct" : -5.24,
-      "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "11,035.68",
+      "change_pct" : -4.49,
+      "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
   "fx" : {
-    "value" : "163.84Ã¥ÂÂ",
-    "change_pct" : 0.14,
-    "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "163.82Ã¥ÂÂ",
+    "change_pct" : 0.03,
+    "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
-    "value" : "62,215.00",
-    "change_pct" : -2.64,
-    "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "62,545.00",
+    "change_pct" : -2.13,
+    "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei225" : {
     "value" : "62,364.92",
-    "change_pct" : -3.95,
+    "change_pct" : -6.11,
     "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
@@ -85,141 +85,141 @@
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "住友精化、Notice Regarding Completion of Payment for New Share Issuance as Restricted Stock Compensation 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500660.pdf",
+    "title" : "ＤＩＣ、Notice Regarding the Publication of Sustainability Report 2026 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260728500785.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "住友精化、譲渡制限付株式報酬としての新株式の発行の払込完了に関するお知らせ エク 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500339.pdf",
+    "title" : "ＤＩＣ、「サステナビリティレポート2026」公開に関するお知らせ 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260728500775.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "クリングル、Publication of a Scientific Paper Reporting Results from the Japanese Phase 3 Study of HGF (Hepatocyte Growth Factor) for Acute Spinal Cord Injury 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500898.pdf",
+    "title" : "ｇｕｍｉ、Notice Concerning Intra-group Organizational Restructuring 他 7月28日(火) 18:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500876.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "クリングル、脊髄損傷急性期に対するHGF（肝細胞増殖因子）の第III相臨床試験結果に関する論文発表のお知らせ 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500894.pdf",
+    "title" : "ｇｕｍｉ、Notice Regarding the Commencement of Operation of the Crypto Asset Management Fund, SBI Crypto Fund I 他 7月28日(火) 18:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500872.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ファイバーＧ、はとバス60台に「Wi-Fi BUS」導入決定 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500601.pdf",
+    "title" : "ｇｕｍｉ、暗号資産運用ファンド「SBI Crypto Fund I」の運営開始に関するお知らせ 他 7月28日(火) 18:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500857.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "東亜道、譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ エク 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260720596314.pdf",
+    "title" : "ｇｕｍｉ、グループ内組織再編（子会社に対する債権放棄、現物分配による子会社株式の取得、および完全子会社の吸収合併）に関するお知らせ 他 7月28日(火) 18:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500851.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "東亜道、Notice Concerning Completion of Payment for Disposal of Treasury Shares as Restricted Stock Compensation 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260720596322.pdf",
+    "title" : "マルマエ、熊本・鹿児島地区における地震の影響に関するお知らせ 他 7月28日(火) 18:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501242.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "マスカットＧ、個人投資家・機関投資家向け2027年３月期 第１四半期決算説明会開催のお知らせ 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500828.pdf",
+    "title" : "関電化、（訂正）「株主代表訴訟に関するお知らせ」の一部訂正について 追訂 7月28日(火) 18:20",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501220.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＣＶＳベイ、2027年２月期月次業績（速報）に関するお知らせ 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500818.pdf",
+    "title" : "大垣共立、株式報酬型ストック・オプションの発行内容確定に関するお知らせ エク 7月28日(火) 18:10",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260724599393.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ランドネット、不動産クラウドファンディング『LSEED＃33』７月29日（水）より一般募集開始！～前回ご出資いただけなかったみなさまへ【優先応募権】を付与～ 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500820.pdf",
+    "title" : "大垣共立、Notice Concerning Determination of Details of the Issuance of Stock Compensation Type Stock Options 他 7月28日(火) 18:10",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260724599397.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "三菱総研、特許庁「デザイン経営ハンドブック2」の制作に協力 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500832.pdf",
+    "title" : "ウチヤマＨＤ、特定子会社の異動に関するお知らせ 他 7月28日(火) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501204.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "滝上工、譲渡制限付株式報酬としての自己株式の処分に関するお知らせ エク 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500347.pdf",
+    "title" : "日本通信、日本通信、ネオキャリアのブランド名称とロゴを発表 他 7月28日(火) 18:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500744.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "丸文、丸文、高品質・長期供給の東海精密工業社製液晶ディスプレイの取り扱いを開始 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500646.pdf",
+    "title" : "三洋化、コーポレート・ガバナンスに関する報告書 2026/07/28 他 7月28日(火) 17:44",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501170.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "阿波銀、[Summary]Notice Concerning Revisions to Results Forecasts 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500451.pdf",
+    "title" : "ミズノ、(訂正)「譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ」の一部訂正について エク 7月28日(火) 17:40",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501014.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "阿波銀、業績予想の修正に関するお知らせ 業修 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260722597679.pdf",
+    "title" : "グロービング、(Corrections) Partial Correction of “Consolidated Financial Results_FY2026” 他 7月28日(火) 17:35",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500533.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "光世、2027年３月期　第１四半期決算短信〔日本基準〕（非連結） 決算 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500079.pdf",
+    "title" : "オルトＰ、ゲームアプリ『ヒプノシスマイク -Alternative Rap Battle-』イベント「ササラ・ヌルデの震えるハナシ 前編～身の毛もよだつ体験談～」 他 7月28日(火) 17:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500970.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＮＩＳＳＯ、Notice of Establishment of Local Subsidiary for \"Expansion of Recruitment of Global Human Resources\" by Consolidated Subsidiary 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260721596493.pdf",
+    "title" : "フジクラ、(Delayed)Corporate Governance Report 他 7月28日(火) 17:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501145.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＮＩＳＳＯ、連結子会社における「グローバル人材の採用拡大」に向けた現地法人設立に関するお知らせ 他 今日 14:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260721596491.pdf",
+    "title" : "ＩＣ、特別利益（投資有価証券売却益）の計上見込みに関するお知らせ 他 7月28日(火) 17:10",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501056.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＰＣＮＥＴ、「機関投資家・アナリスト向け2026年５月期決算説明会」書き起こし記事公開のお知らせ 他 今日 13:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500319.pdf",
+    "title" : "ｉＦ米債３有、内国アクティブ運用型ＥＴＦの商品特性及び管理会社の運用体制等に関する報告書 他 7月28日(火) 17:05",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501128.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＳＭＫ、2027年３月期第１四半期決算短信〔日本基準〕(連結) 決算 今日 13:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260724599534.pdf",
+    "title" : "ｉＦ日本配当、内国アクティブ運用型ＥＴＦの商品特性及び管理会社の運用体制等に関する報告書 他 7月28日(火) 17:05",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728501135.pdf",
     "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
