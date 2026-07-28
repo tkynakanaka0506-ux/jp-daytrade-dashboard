@@ -1,42 +1,42 @@
 {
-  "generated_at" : "2026-07-28 06:59",
+  "generated_at" : "2026-07-28 10:14",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
       "value" : "7,413.18",
-      "change_pct" : 0.02,
+      "change_pct" : 0.07,
       "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "dow" : {
       "value" : "52,210.08",
-      "change_pct" : 0.51,
+      "change_pct" : 0.96,
       "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "nasdaq" : {
       "value" : "24,932.08",
-      "change_pct" : -0.18,
+      "change_pct" : -0.82,
       "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "sox" : {
       "value" : "11,554.88",
-      "change_pct" : -2.23,
+      "change_pct" : -6.39,
       "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
   "fx" : {
-    "value" : "163.70Ã¥ÂÂ",
-    "change_pct" : 0.06,
+    "value" : "163.75Ã¥ÂÂ",
+    "change_pct" : 0.08,
     "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
-    "value" : "63,890.00",
-    "change_pct" : -0.77,
+    "value" : "62,445.00",
+    "change_pct" : -3.01,
     "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei225" : {
-    "value" : "64,931.19",
-    "change_pct" : -2.25,
-    "asof" : "7/27Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "62,227.42",
+    "change_pct" : -6.32,
+    "asof" : "7/28Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
     "title" : "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
@@ -85,141 +85,141 @@
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "三井不ロジ、ESG Report 2026 他 今日 00:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500312.pdf",
+    "title" : "アイサンテク、コーポレート・ガバナンスに関する報告書 2026/07/28 他 今日 10:05 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260724598932.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "三井不ロジ、ESG Report 2026 他 今日 00:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500296.pdf",
+    "title" : "ＷＴＩ原油、上場ＥＴＦ(管理会社：シンプレクス・アセット・マネジメント)に関する日々の開示事項 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500479.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "オーテック、定款 2026/06/26 他 7月27日(月) 18:41",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260724599598.pdf",
+    "title" : "タレントＸ、TalentX、AIネイティブ採用を実現する「MyTalent Platform」をTISIに導入し、リファラル採用を本格始動 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500465.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "テラドローン、ベルギー国防省への防衛向けUTM案件の受注に関するお知らせ 他 7月27日(月) 18:02",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500223.pdf",
+    "title" : "テックファム、テックファーム、仕様駆動開発を核とした「AI駆動開発」で生産性約2倍を実現 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500508.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "テラドローン、テラドローン、ドローン向け国産バッテリー事業に本格参入 ～国内生産体制を構築し、防衛・産業用途の供給基盤を強化～ 他 7月27日(月) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500207.pdf",
+    "title" : "リケンテクノ、新居浜工業高等専門学校との共同研究により、高反応性を実現する光触媒設計を確立 ～難分解性有機物の分解に向けた基盤技術～ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500513.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ヤマイチ、株式会社ホームズ及び株式会社安住コーポレーションの株式取得(連結子会社化)に関するお知らせ 他 7月27日(月) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599791.pdf",
+    "title" : "クイック、日経CNBC「～攻めのIR～Market Breakthrough」出演のお知らせ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500496.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ゼンショＨＤ、Recognition of Non-operating Income in the Company’s Non-Consolidated Financial Results 他 7月27日(月) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500317.pdf",
+    "title" : "システムサポ、連結子会社システムサポートが「Oracle Japan Award 2026」にて「Best Multi-cloud Partner of the Year」を受賞のお知らせ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500462.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ゼンショＨＤ、当社個別決算における営業外収益の計上に関するお知らせ 他 7月27日(月) 18:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500295.pdf",
+    "title" : "ＳＢＩＧＡＭ、ＳＢＩ岡三アセットマネジメント「米ドル建MMF」運用資産残高1,500億円※突破のお知らせ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500562.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＳＭＥＪ、（開示事項の経過）当社子会社における投資有価証券売却益（特別利益）の計上に関するお知らせ（支配株主等との取引） 他 7月27日(月) 17:45",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500017.pdf",
+    "title" : "コニシ、Notice Concerning Results of Acquisition of Treasury Shares through ToSTNeT-3 and Completion of Such Acquisition 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500520.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ログリー、コーポレート・ガバナンスに関する報告書 2026/07/27 他 7月27日(月) 17:45",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260609565856.pdf",
+    "title" : "コニシ、自己株式立会外買付取引（ToSTNeT-3）による自己株式の取得結果 及び取得終了に関するお知らせ 自社 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500491.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＩＴメディア、「ITmedia Enterprise IT Summit 2026 夏」開催 自律するAIとそれを支えるデータ基盤・インフラを構築するために 他 7月27日(月) 17:40",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500297.pdf",
+    "title" : "日本バリュー、上場ETF（管理会社：JAMPファンド・マネジメント）に関する日々の開示事項 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500468.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "大林組、Notice Concerning the Passing and Resignation of an Audit & Supervisory Board Member 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500178.pdf",
+    "title" : "ユトリ、決算説明に関するお知らせ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260719596261.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "大林組、監査役の逝去及び退任に関するお知らせ 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500147.pdf",
+    "title" : "リンテック、新規事業の創出に向け神戸・ポートアイランドに新たな研究開発拠点を開設 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500459.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "アクセルＨＤ、Notice of Termination of Commercial Operations for Microsatellite “GRUS-1E” under the AxelGlobe Business 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500237.pdf",
+    "title" : "都築電、都築電気がアート引越センターに導入した「“ART RFID Evolution”システム」、日本DX大賞2026 価値創造部門にて「優秀賞」を受賞 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500454.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "アクセルＨＤ、AxelGlobe事業の小型衛星「GRUS-1E」の商用運用終了のお知らせ 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500236.pdf",
+    "title" : "セラク、自己株式立会外買付取引（ToSTNeT-3）による自己株式の取得結果に関するお知らせ 自社 今日 09:40 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500487.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ステラケミ、Notice Concerning the Change of the Largest Shareholder as a Major Shareholder 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500144.pdf",
+    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260722597175.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ステラケミ、主要株主である筆頭株主の異動に関するお知らせ 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500139.pdf",
+    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260722597174.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ニＳＰＥＷ無、ETFの収益分配のお知らせ 配当 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500239.pdf",
+    "title" : "オイシックス、法定事前開示書類（合併）（ORDフードサービスホールディングス株式会社） 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260727500256.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＣＩＮＣ、AIの誤情報・ハルシネーション対策を支援するKeywordmap、新機能「AI回答誤情報診断(β版)」をリリース 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727500195.pdf",
+    "title" : "ココペリ、日本・タイのビジネスコミュニティ「Sabai Kanpai」ローンチイベントをバンコクで開催 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500440.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "グロービー、定款一部変更に関するお知らせ 他 7月27日(月) 17:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260727/140120260727599904.pdf",
+    "title" : "ＳＢＩＧＡＭ、SBIアセットマネジメントが運用する年4回決算型ファンドの純資産総額合計6,000億円突破のお知らせ 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260728/140120260728500456.pdf",
     "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
