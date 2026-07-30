@@ -1,5 +1,5 @@
 {
-  "generated_at" : "2026-07-30 10:09",
+  "generated_at" : "2026-07-30 14:33",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
@@ -24,18 +24,18 @@
     }
   },
   "fx" : {
-    "value" : "163.44Ã¥ÂÂ",
-    "change_pct" : -0.26,
+    "value" : "163.51Ã¥ÂÂ",
+    "change_pct" : -0.22,
     "asof" : "7/30Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
-    "value" : "62,315.00",
-    "change_pct" : -0.24,
+    "value" : "61,895.00",
+    "change_pct" : 1.2,
     "asof" : "7/30Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei225" : {
-    "value" : "62,162.00",
-    "change_pct" : -0.33,
+    "value" : "61,717.85",
+    "change_pct" : 0.46,
     "asof" : "7/30Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
@@ -85,141 +85,141 @@
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "自己株式立会外買付取引（ToSTNeT-3）による自己株式の取得結果及び自己株式取得終了に関するお知らせ 自社 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502784.pdf",
+    "title" : "ＴＭＨ、令和８年熊本地震の影響に関するお知らせ 他 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730503427.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＷＴＩ原油、上場ＥＴＦ(管理会社：シンプレクス・アセット・マネジメント)に関する日々の開示事項 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502711.pdf",
+    "title" : "住友大阪、投資有価証券の売却についてのお知らせ 他 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502162.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＪＦＬＡＨＤ、BAGEL & BAGEL から新商品が登場！スパイシーなカレーや沖縄県産の黒糖、トマト×チーズを使用した 夏限定ベーグル３種とサンドイッチを期間限定で販売します 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728500552.pdf",
+    "title" : "住友大阪、Notice Regarding Sale of Investment Securities 他 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502180.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "タレントＸ、TalentXのAIネイティブ採用を実現する「MyTalent Platform」、三菱ケミカルで導入開始し採用オウンドメディアを公開 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502656.pdf",
+    "title" : "東光高岳、[Summary]Consolidated Financial Results for the Three Months Ended June 30, 2026 [Japanese GAAP] 他 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502942.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ニューラルＧ、大阪国際空港（伊丹空港）北側平面駐車場にて AIカメラを用いた駐車場満空把握サービス『デジパーク』を運用中 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729501669.pdf",
+    "title" : "東光高岳、2027年3月期第1四半期 決算補足資料 追訂 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502117.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "リケンテクノ、新居浜工業高等専門学校との共同研究により、実環境水中における有機フッ素化合物（PFAS）の分解を確認 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502651.pdf",
+    "title" : "東光高岳、2027年3月期第1四半期決算短信〔日本基準〕（連結） 決算 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260724599558.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "日本バリュー、上場ETF（管理会社：JAMPファンド・マネジメント）に関する日々の開示事項 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502684.pdf",
+    "title" : "東光高岳、FY2026(Three Months Ended June 30,2026)Supplementary Materials for Financial Results 他 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502149.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ハーモニック、[Delayed]Annual Securities Report 38th Fiscal Year (From April 1, 2025 to March 31, 2026) 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502657.pdf",
+    "title" : "抵抗器、上場維持基準の適合に関するお知らせ 他 今日 14:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730503187.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＢＣＣ、「ビズクリ」の伴走支援事例公開のお知らせ 他 今日 10:00 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502161.pdf",
+    "title" : "中発条、2027年３月期 第１四半期決算短信〔日本基準〕(連結) 決算 今日 14:20 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729501524.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "クスリアオキ、独立役員届出書 他 今日 09:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502377.pdf",
+    "title" : "リベラウェア、（Delayed）Regarding Disaster Relief Activities Using Drones for the 2026 Kumamoto Earthquake 他 今日 14:15 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730503380.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＤＭＳ、2027年3月期第1四半期決算説明書き起こし記事公開のお知らせ 他 今日 09:10 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502433.pdf",
+    "title" : "東ガス、Consolidated Financial Results for the Three Months Ended June 30, 2026 他 今日 14:15 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502243.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "定款 2026/07/29 他 今日 09:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502678.pdf",
+    "title" : "東ガス、2027年３月期 第１四半期決算短信〔日本基準〕(連結) 決算 今日 14:15 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502195.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　 他 今日 09:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728500461.pdf",
+    "title" : "学びエイド、独立役員届出書 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729501608.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　 他 今日 09:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728500457.pdf",
+    "title" : "学びエイド、支配株主等に関する事項について 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730503356.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "アルフレッサ、医薬品コールドチェーンの品質向上を目指してアルフレッサ株式会社がEmber LifeSciences, Inc.と資本業務提携 他 今日 09:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729501960.pdf",
+    "title" : "三菱総研、生成AIによるキャリア形成支援ツールを全社員に導入 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502658.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ココペリ、全信組連、新たなビジネスマッチング施策として、Big Advanceの「えんむすBA」に参画 他 今日 09:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502642.pdf",
+    "title" : "ニーズウェル、RPA Partner AWARD2026-2027にてNTT DATA Special Awardを受賞 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730503420.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ニフティＬＳ、2027年３月期 第１四半期決算説明動画公開に関するお知らせ 他 今日 09:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502631.pdf",
+    "title" : "東応化、業績予想の修正に関するお知らせ 業修 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728501006.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "2026年4月期　発行者情報 他 今日 08:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502199.pdf",
+    "title" : "東応化、Notice on Revisions of Forecasts 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728501008.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "コーポレート・ガバナンス報告書 他 今日 08:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502227.pdf",
+    "title" : "ミガロＨＤ、ミガログループのアヴァント株式会社、佐賀県立致遠館高等学校の「キャリア研修」に伴う企業見学を受け入れ～高校生のキャリア選択と未来への挑戦を応援～ 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730503161.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "支配株主等に関する事項について 他 今日 08:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502232.pdf",
+    "title" : "ちゅうぎんＦ、[Summary] Consolidated Financial Results for the Three Months Ended June 30, 2026 他 今日 14:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502387.pdf",
     "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
