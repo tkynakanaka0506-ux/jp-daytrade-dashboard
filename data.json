@@ -1,5 +1,5 @@
 {
-  "generated_at" : "2026-07-30 06:53",
+  "generated_at" : "2026-07-30 10:09",
   "run_type" : "morning",
   "us_market" : {
     "sp500" : {
@@ -24,19 +24,19 @@
     }
   },
   "fx" : {
-    "value" : "163.37Ã¥ÂÂ",
-    "change_pct" : -0.3,
+    "value" : "163.44Ã¥ÂÂ",
+    "change_pct" : -0.26,
     "asof" : "7/30Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
-    "value" : "61,015.00",
-    "change_pct" : -2.32,
+    "value" : "62,315.00",
+    "change_pct" : -0.24,
     "asof" : "7/30Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei225" : {
-    "value" : "61,434.19",
-    "change_pct" : -5.39,
-    "asof" : "7/29Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "62,162.00",
+    "change_pct" : -0.33,
+    "asof" : "7/30Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
     "title" : "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
@@ -85,141 +85,141 @@
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "エーザイ、抗アミロイドβ抗体「レケンビ」の売上収益（速報）について 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502346.pdf",
+    "title" : "自己株式立会外買付取引（ToSTNeT-3）による自己株式の取得結果及び自己株式取得終了に関するお知らせ 自社 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502784.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "エーザイ、Revenue of LEQEMBI (Preliminary Basis) 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502349.pdf",
+    "title" : "ＷＴＩ原油、上場ＥＴＦ(管理会社：シンプレクス・アセット・マネジメント)に関する日々の開示事項 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502711.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ラインヤフー、(Update) Notice of Scheduled Tender Offer for Kakaku.com, Inc. by BCPE Blitz Cayman, L.P. and the Company’s Planned Indirect Joint Investment 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502513.pdf",
+    "title" : "ＪＦＬＡＨＤ、BAGEL & BAGEL から新商品が登場！スパイシーなカレーや沖縄県産の黒糖、トマト×チーズを使用した 夏限定ベーグル３種とサンドイッチを期間限定で販売します 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728500552.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ラインヤフー、(経過開示)BCPE Blitz Caymanによる株式会社カカクコムに対する公開買付けの開始予定及び当社によるBCPE Blitz Caymanへの間接的な共同出資予定に関するお知らせ 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260716594887.pdf",
+    "title" : "タレントＸ、TalentXのAIネイティブ採用を実現する「MyTalent Platform」、三菱ケミカルで導入開始し採用オウンドメディアを公開 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502656.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フューチャー、Consolidated Financial Results for the Six Months Ended June 30, 2026 [Japanese GAAP] 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260728501238.pdf",
+    "title" : "ニューラルＧ、大阪国際空港（伊丹空港）北側平面駐車場にて AIカメラを用いた駐車場満空把握サービス『デジパーク』を運用中 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729501669.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フューチャー、Consolidated Financial Results for the Second Quarter of the Fiscal Year Ending December 31, 2026 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260728501241.pdf",
+    "title" : "リケンテクノ、新居浜工業高等専門学校との共同研究により、実環境水中における有機フッ素化合物（PFAS）の分解を確認 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502651.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フューチャー、Notice Regarding Revision of Year-End Dividend Forecast for the Fiscal Year Ending December 31, 2026 (No Dividend Payments) 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502133.pdf",
+    "title" : "日本バリュー、上場ETF（管理会社：JAMPファンド・マネジメント）に関する日々の開示事項 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502684.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フューチャー、Notice Regarding Implementation of MBO and Recommendation for Tender 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502317.pdf",
+    "title" : "ハーモニック、[Delayed]Annual Securities Report 38th Fiscal Year (From April 1, 2025 to March 31, 2026) 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502657.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フューチャー、Notice Regarding Commencement of Tender Offer for Shares of Future Corporation (Securities Code 4722) by Key West Network LLC 他 7月29日(水) 19:00",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502474.pdf",
+    "title" : "ＢＣＣ、「ビズクリ」の伴走支援事例公開のお知らせ 他 今日 10:00 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502161.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "地域新聞社、株主（オプションハウス株式会社）による新株予約権無償割当て差止めの仮処分の追加の申立てに関するお知らせ 他 7月29日(水) 18:45",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502454.pdf",
+    "title" : "クスリアオキ、独立役員届出書 他 今日 09:30 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502377.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ハンセンブル、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502478.pdf",
+    "title" : "ＤＭＳ、2027年3月期第1四半期決算説明書き起こし記事公開のお知らせ 他 今日 09:10 New!",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502433.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ハンセンベア、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502479.pdf",
+    "title" : "定款 2026/07/29 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502678.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "コスピブル、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502480.pdf",
+    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728500461.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "コスピベア、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502481.pdf",
+    "title" : "ＷＴ金、上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260728500457.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "金先物Ｗブル、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502482.pdf",
+    "title" : "アルフレッサ、医薬品コールドチェーンの品質向上を目指してアルフレッサ株式会社がEmber LifeSciences, Inc.と資本業務提携 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729501960.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "金先物ベア、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502483.pdf",
+    "title" : "ココペリ、全信組連、新たなビジネスマッチング施策として、Big Advanceの「えんむすBA」に参画 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260730502642.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "原油先Ｗブル、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502484.pdf",
+    "title" : "ニフティＬＳ、2027年３月期 第１四半期決算説明動画公開に関するお知らせ 他 今日 09:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502631.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "原油先物ベア、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502485.pdf",
+    "title" : "2026年4月期　発行者情報 他 今日 08:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502199.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＮＹダウブル、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502486.pdf",
+    "title" : "コーポレート・ガバナンス報告書 他 今日 08:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502227.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＮＹダウベア、2027年３月期　第１四半期決算短信 決算 7月29日(水) 18:30",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260729/140120260729502487.pdf",
+    "title" : "支配株主等に関する事項について 他 今日 08:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260730/140120260729502232.pdf",
     "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
