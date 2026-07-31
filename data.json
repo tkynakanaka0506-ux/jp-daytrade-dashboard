@@ -1,41 +1,41 @@
 {
-  "generated_at" : "2026-07-31 23:11",
-  "run_type" : "evening",
+  "generated_at" : "2026-08-01 06:59",
+  "run_type" : "morning",
   "us_market" : {
     "sp500" : {
-      "value" : "7,409.59",
-      "change_pct" : -0.38,
-      "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "7,489.72",
+      "change_pct" : 0.7,
+      "asof" : "8/1Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "dow" : {
-      "value" : "52,030.16",
-      "change_pct" : -0.34,
-      "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "52,485.03",
+      "change_pct" : 0.53,
+      "asof" : "8/1Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "nasdaq" : {
-      "value" : "25,047.66",
-      "change_pct" : -0.3,
-      "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "25,373.85",
+      "change_pct" : 1.0,
+      "asof" : "8/1Ã§ÂµÂÃ¥ÂÂ¤"
     },
     "sox" : {
-      "value" : "11,274.18",
-      "change_pct" : -0.25,
-      "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
+      "value" : "11,311.08",
+      "change_pct" : 0.07,
+      "asof" : "8/1Ã§ÂµÂÃ¥ÂÂ¤"
     }
   },
   "fx" : {
-    "value" : "159.29Ã¥ÂÂ",
-    "change_pct" : -2.45,
-    "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "157.40Ã¥ÂÂ",
+    "change_pct" : -1.74,
+    "asof" : "8/1Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei_futures" : {
-    "value" : "63,130.00",
-    "change_pct" : -0.75,
-    "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
+    "value" : "62,925.00",
+    "change_pct" : -1.07,
+    "asof" : "8/1Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "nikkei225" : {
     "value" : "64,362.02",
-    "change_pct" : 4.03,
+    "change_pct" : 4.77,
     "asof" : "7/31Ã§ÂµÂÃ¥ÂÂ¤"
   },
   "overnight_news" : [ {
@@ -85,141 +85,141 @@
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "ＩＣＤＡ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 14:48 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260724599547.pdf",
+    "title" : "ワールドＨＤ、統合報告書2026「人が活きるカタチレポート」 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731505814.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "北興化、（訂正）「当社岡山工場からのベンゼン等を含む排水の流出について（第２報）」の 一部訂正に関するお知らせ 追訂 今日 14:40 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731504488.pdf",
+    "title" : "フジッコ、Annual Report 2026 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260729502082.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "愛知鋼、2027年３月期　第１四半期決算補足資料 追訂 今日 14:40 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260727599769.pdf",
+    "title" : "ＦＰパートナ、Integrated Report 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731505233.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "愛知鋼、[Summary]Consolidated Financial Results for the Three Months Ended June 30, 2026 [IFRS] 他 今日 14:40 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260727599767.pdf",
+    "title" : "セブン銀、セブン銀行ディスクロージャー誌2026（資料編） 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "愛知鋼、2027年３月期　第１四半期決算短信〔IFRS〕(連結) 決算 今日 14:40 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260727599743.pdf",
+    "title" : "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "グリーンエナ、事業計画及び成長可能性に関する事項 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505166.pdf",
+    "title" : "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "弘電社、2027年３月期　第１四半期決算短信〔日本基準〕（連結） 決算 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260730503789.pdf",
+    "title" : "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2） 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フジッコ、2027年３月期第１四半期決算短信〔日本基準〕（連結） 決算 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260729501973.pdf",
+    "title" : "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2） 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フジッコ、Consolidated Financial Results for the Three Months Ended June 30, 2026 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260729502024.pdf",
+    "title" : "東建物、東京建物グループ統合報告書2026 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731505198.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フジッコ、業績予想の修正に関するお知らせ 業修 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260729502032.pdf",
+    "title" : "大和オフィス、Sustainability Report 2026 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731504335.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "フジッコ、Notice of Revisions to Earnings Forecasts 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260729502048.pdf",
+    "title" : "大和証券リビ、Sustainability Report 2026 他 今日 00:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260801/140120260731504362.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "アツギ、2027年３月期 第１四半期決算短信〔日本基準〕（連結） 決算 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260730502849.pdf",
+    "title" : "シュッピン、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 21:02",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260727500194.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "石原ケミ、Notice Concerning Determination of Matters Related to Acquisition of Treasury Shares(Acquisition of Treasury Shares Under the Provisions of the Arti 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260730503168.pdf",
+    "title" : "エアウォータ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 20:27",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260614570177.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "石原ケミ、自己株式取得に係る事項の決定に関するお知らせ（会社法第165条第2項の規定による定款の定めに基づく自己株式の取得） 自社 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260730503139.pdf",
+    "title" : "ニレコ、定款 2026/08/01 他 7月31日(金) 19:34",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505911.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "石原ケミ、Consolidated Financial Results for the Three Months Ended June 30, 2026 (Under Japanese GAAP) 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260730503130.pdf",
+    "title" : "ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 7月31日(金) 19:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "石原ケミ、2027年３月期 第１四半期決算短信〔日本基準〕(連結) 決算 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260730503114.pdf",
+    "title" : "郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 7月31日(金) 19:30",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "アルビス、2027年3月期　第1四半期決算短信〔日本基準〕（連結） 決算 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731504886.pdf",
+    "title" : "トランスコス、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 19:28",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260707588646.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "アルビス、[Summary] Financial Results for the Three Months Ended June 30, 2026 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731504957.pdf",
+    "title" : "カカクコム、Notice Regarding Amendment to the Terms and Conditions of the Tender Offer by Kamgras 1 K.K. 他 7月31日(金) 19:01",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505890.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "カノークス、（開示事項の経過）本社・名古屋本店の移転日決定に関するお知らせ 他 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731504537.pdf",
+    "title" : "ＭＸ前向き、「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ 他 7月31日(金) 19:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505893.pdf",
     "tag" : "Ã¤Â»Â"
   }, {
     "time" : "Ã¢ÂÂ",
     "code" : "Ã¢ÂÂ",
     "company" : "Ã¢ÂÂ",
-    "title" : "カノークス、2027年3月期第1四半期決算短信〔日本基準〕（連結） 決算 今日 14:30 New!",
-    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260716594923.pdf",
+    "title" : "北浜ＣＰ、アゼルバイジャン共和国の現地法人に対する資金の貸付に関するお知らせ 他 7月31日(金) 19:00",
+    "url" : "https://tdnet-pdf.kabutan.jp/20260731/140120260731505905.pdf",
     "tag" : "Ã¤Â»Â"
   } ],
   "movers_morning" : [ {
