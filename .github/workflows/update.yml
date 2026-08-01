@@ -2,8 +2,13 @@ name: Update JP Daytrade Dashboard
 
 on:
   schedule:
-    - cron: '0 21 * * *'   # 06:00 JST = 21:00 UTC(前日) → 朝の更新
-    - cron: '0 12 * * *'   # 21:00 JST = 12:00 UTC → 夜(引け後)の更新
+    # 日本市場時間帯(8:30〜15:30 JST)は15分おき(morning扱い)
+    # 8:30 JST = 23:30 UTC(前日)、15:30 JST = 06:30 UTC
+    - cron: '30,45 23 * * *'   # 23:30, 23:45 UTC = 8:30, 8:45 JST
+    - cron: '*/15 0-5 * * *'   # 0:00〜5:45 UTC = 9:00〜14:45 JST(15分おき)
+    - cron: '0,15,30 6 * * *'  # 6:00, 6:15, 6:30 UTC = 15:00, 15:15, 15:30 JST
+    # それ以外の時間帯は2時間おき(evening扱い)
+    - cron: '0 7,9,11,13,15,17,19,21,23 * * *'  # 16,18,20,22,0,2,4,6,8時 JST
   workflow_dispatch:
     inputs:
       mode:
@@ -23,11 +28,14 @@ jobs:
       - name: 実行モードを判定
         id: mode
         run: |
+          SCHED="${{ github.event.schedule }}"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "0 21 * * *" ]; then
+          elif [ "$SCHED" = "30,45 23 * * *" ] || [ "$SCHED" = "*/15 0-5 * * *" ] || [ "$SCHED" = "0,15,30 6 * * *" ]; then
+            # 日本市場時間帯(8:30〜15:30 JST)の15分おき実行 → morning扱い
             echo "mode=morning" >> "$GITHUB_OUTPUT"
           else
+            # それ以外の2時間おき実行 → evening扱い
             echo "mode=evening" >> "$GITHUB_OUTPUT"
           fi
 
