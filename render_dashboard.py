@@ -96,6 +96,70 @@ def pct_class(v):
     return "flat"
 
 
+# ------------------------------------------------------------------
+# 文章(テクニカルコメント・話題の背景・資金フロー・好材料の理由など)中の
+# 「客観的に見て明確に良い/悪い/注意すべき」数値・キーワードを、
+# 色+背景色+文字サイズで視覚的に強調する。数字だけでは重要度が伝わりにくい
+# という要望への対応であり、既存のsignal/RSI等の判定結果をなぞって
+# 見た目を強調するだけで、新たな投資判断を追加するものではない。
+# ------------------------------------------------------------------
+HL_GOOD_STRONG_WORDS = [
+    "最高益", "増収増益", "特別配当", "業績上方修正", "上方修正", "増配", "ストップ高", "急騰", "格上げ",
+]
+HL_GOOD_WORDS = [
+    "自己株買い", "株式分割", "上昇", "反発", "好調", "上回る", "上振れ", "買われ", "増加", "買い優勢", "強気",
+]
+HL_BAD_STRONG_WORDS = [
+    "下方修正", "減配", "特別損失", "業績悪化", "赤字", "ストップ安", "急落", "格下げ",
+]
+HL_BAD_WORDS = [
+    "続落", "下落", "悪化", "下回る", "下振れ", "売り優勢", "弱気",
+]
+HL_WARN_WORDS = ["過熱感", "売られ過ぎ", "買われ過ぎ", "懸念", "リスク", "損切り", "矛盾"]
+
+
+def _wrap_keywords(s, words, cls):
+    if not words:
+        return s
+    pattern = "|".join(re.escape(w) for w in sorted(set(words), key=len, reverse=True))
+    return re.sub(f"({pattern})", lambda m: f'<span class="{cls}">{m.group(1)}</span>', s)
+
+
+def emphasize(text):
+    """コメント・理由等の文章を、重要な数値/キーワードに強調マーカーを付けたHTMLへ変換する。
+    引数は未エスケープの生テキストを渡すこと(この関数内でHTMLエスケープする)。"""
+    if not text:
+        return ""
+    s = html_lib.escape(str(text))
+
+    def pct_repl(m):
+        sign, num_s = m.group(1), m.group(2)
+        try:
+            num = float(num_s)
+        except ValueError:
+            return m.group(0)
+        signed = -num if sign == "-" else num
+        if signed >= 8:
+            cls = "hl-good-strong"
+        elif signed >= 3:
+            cls = "hl-good"
+        elif signed <= -8:
+            cls = "hl-bad-strong"
+        elif signed <= -3:
+            cls = "hl-bad"
+        else:
+            return m.group(0)
+        return f'<span class="{cls}">{m.group(0)}</span>'
+
+    s = re.sub(r"([+\-])(\d+(?:\.\d+)?)\s*%", pct_repl, s)
+    s = _wrap_keywords(s, HL_GOOD_STRONG_WORDS, "hl-good-strong")
+    s = _wrap_keywords(s, HL_GOOD_WORDS, "hl-good")
+    s = _wrap_keywords(s, HL_BAD_STRONG_WORDS, "hl-bad-strong")
+    s = _wrap_keywords(s, HL_BAD_WORDS, "hl-bad")
+    s = _wrap_keywords(s, HL_WARN_WORDS, "hl-warn")
+    return s
+
+
 def mini_bar_html(value, scale=8.0):
     """前日比などの数値を、中心から左右に伸びるミニ diverging bar として可視化する。
     真のローソク足チャートには時系列OHLCデータが必要でdata.jsonには含まれないため、
@@ -210,10 +274,25 @@ def news_list(items, empty_msg="現時点で該当するニュースは取得で
                 bits.append(f'<span class="impact-companies">注目企業: {companies}</span>')
             impact_html = f'<div class="news-impact">{"".join(bits)}</div>'
 
+        # 資金フロー(地政学・世界情勢ニュース→今/これからどの分野にお金が向かっているか。データにあれば表示)
+        flow_text = emphasize((it.get("money_flow") or "").strip())
+        flow_type = (it.get("money_flow_type") or "").strip().lower()
+        flow_html = ""
+        if flow_text:
+            if flow_type == "expected":
+                flow_cls, flow_label = "flow-expected", "見込み"
+            else:
+                flow_cls, flow_label = "flow-current", "実況"
+            flow_html = (
+                f'<div class="news-flow {flow_cls}">'
+                f'<span class="flow-badge">💰 {flow_label}</span>'
+                f'<span class="flow-text">{flow_text}</span></div>'
+            )
+
         rows.append(
             f'<li><a href="{url}" target="_blank" rel="noopener">{title}</a>'
             f'<span class="meta">{meta}</span>'
-            f'{impact_html}</li>'
+            f'{impact_html}{flow_html}</li>'
         )
     return "<ul class=\"news-list\">" + "".join(rows) + "</ul>"
 
@@ -262,8 +341,8 @@ def movers_table(items, empty_msg="該当データが取得できませんでし
         name = esc(it.get("name", ""))
         price = esc(it.get("price", ""))
         chg = it.get("change_pct")
-        vol_note = esc(it.get("volume_note", ""))
-        reason = esc(it.get("reason", ""))
+        vol_note = emphasize(it.get("volume_note", ""))
+        reason = emphasize(it.get("reason", ""))
         rows.append(f"""
         <tr>
           <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
@@ -307,7 +386,7 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
         except (TypeError, ValueError):
             pass
         signal = it.get("signal", "中立")
-        summary = esc(it.get("summary", ""))
+        summary = emphasize(it.get("summary", ""))
         rows.append(f"""
         <tr>
           <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
@@ -332,20 +411,16 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
 
 
 def parse_signal_counts(summary):
-    """summary文字列から「中立X/売りY/買いZ」または「売りY/中立X/買いZ」形式のシグナル内訳を抽出。見つからなければNone。"""
+    """summary文字列から「中立X/売りY/買いZ」のシグナル内訳を抽出する。見つからなければNone。"""
     if not summary:
         return None
-    # 形式1: 売りN/中立N/買いN (新フォーマット)
-    m = re.search(r"売り\s*(\d+)\s*/\s*中立\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
-    if m:
-        sell, neutral, buy = (int(x) for x in m.groups())
-        return {"neutral": neutral, "sell": sell, "buy": buy}
-    # 形式2: 中立N/売りN/買いN (旧フォーマット)
     m = re.search(r"中立\s*(\d+)\s*/\s*売り\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
-    if m:
-        neutral, sell, buy = (int(x) for x in m.groups())
-        return {"neutral": neutral, "sell": sell, "buy": buy}
-    return None
+    if not m:
+        return None
+    neutral, sell, buy = (int(x) for x in m.groups())
+    return {"neutral": neutral, "sell": sell, "buy": buy}
+
+
 def rank_label(i):
     medals = ["🥇", "🥈", "🥉"]
     return medals[i] if i < len(medals) else f"{i + 1}位"
@@ -371,22 +446,20 @@ def bull_ranking_html(items, empty_msg="シグナルデータが取得できま�
             return 50.0
 
     ranked.sort(key=lambda e: (-e[0], rsi_key(e)))
-
-    def build_rows(group):
-        rows = []
-        for i, (score, counts, it) in enumerate(group[:5]):
-            code = esc(it.get("code", ""))
-            name = esc(it.get("name", ""))
-            chg = it.get("change_pct")
-            rsi = it.get("rsi", "")
-            detail = f"中立{counts['neutral']}/売り{counts['sell']}/買い{counts['buy']}"
-            overheat = ""
-            try:
-                if float(rsi) >= 70:
-                    overheat = ' <span class="tag tag-warn">過熱感に注意</span>'
-            except (TypeError, ValueError):
-                pass
-            rows.append(f"""
+    rows = []
+    for i, (score, counts, it) in enumerate(ranked[:5]):
+        code = esc(it.get("code", ""))
+        name = esc(it.get("name", ""))
+        chg = it.get("change_pct")
+        rsi = it.get("rsi", "")
+        detail = f"中立{counts['neutral']}/売り{counts['sell']}/買い{counts['buy']}"
+        overheat = ""
+        try:
+            if float(rsi) >= 70:
+                overheat = ' <span class="tag tag-warn">過熱感に注意</span>'
+        except (TypeError, ValueError):
+            pass
+        rows.append(f"""
         <div class="rank-item">
           <div class="rank-num">{rank_label(i)}</div>
           <div class="rank-body">
@@ -398,23 +471,7 @@ def bull_ranking_html(items, empty_msg="シグナルデータが取得できま�
             <div class="rank-desc">シグナル判定: {esc(detail)} ・ RSI(14) {esc(rsi)}{overheat}</div>
           </div>
         </div>""")
-        return rows
-
-    bull_items = sorted([(s, c, it) for s, c, it in ranked if s > 0], key=lambda e: (-e[0], rsi_key(e)))
-    bear_items = sorted([(s, c, it) for s, c, it in ranked if s < 0], key=lambda e: (e[0], rsi_key(e)))
-
-    html_parts = []
-    html_parts.append('<h4 style="margin:0.5em 0 0.4em;color:var(--up)">🟢 強気（買いシグナル優勢）</h4>')
-    if bull_items:
-        html_parts.extend(build_rows(bull_items))
-    else:
-        html_parts.append('<p class="empty">現在、買いシグナル優勢の銘柄はありません。</p>')
-    html_parts.append('<h4 style="margin:1.2em 0 0.4em;color:var(--down)">🔴 弱気（売りシグナル優勢）</h4>')
-    if bear_items:
-        html_parts.extend(build_rows(bear_items))
-    else:
-        html_parts.append('<p class="empty">現在、売りシグナル優勢の銘柄はありません。</p>')
-    return "".join(html_parts)
+    return "".join(rows)
 
 
 def _technical_lookup(technical):
@@ -433,7 +490,7 @@ def _outlook_comment(code, tech_lookup):
     今後の株価変動を保証・予想するものではない。"""
     t = tech_lookup.get(str(code).strip())
     if not t:
-        return "直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。"
+        return emphasize("直近のテクニカルデータは今回取得できませんでした。値動きは各種株価情報サービスでご確認ください。")
 
     parts = []
     rsi = t.get("rsi")
@@ -447,15 +504,15 @@ def _outlook_comment(code, tech_lookup):
 
     ma25 = t.get("ma25_dev")
     if ma25:
-        parts.append(f"25日線から{esc(ma25)}乖離")
+        parts.append(f"25日線から{ma25}乖離")
 
     signal = t.get("signal")
     if signal:
-        parts.append(f"シグナル判定は「{esc(signal)}」")
+        parts.append(f"シグナル判定は「{signal}」")
 
     if not parts:
-        return "テクニカル指標の参考値が現時点で不足しています。"
-    return "、".join(parts) + "。直近の値動き傾向に基づく機械的な参考情報であり、将来の株価変動を保証するものではありません。"
+        return emphasize("テクニカル指標の参考値が現時点で不足しています。")
+    return emphasize("、".join(parts) + "。直近の値動き傾向に基づく機械的な参考情報であり、将来の株価変動を保証するものではありません。")
 
 
 
@@ -741,7 +798,7 @@ def economic_calendar_html(items, empty_msg="経済カレンダーのデータ�
         except (TypeError, ValueError):
             imp = 1
         stars = "★" * imp + "☆" * (5 - imp)
-        note = esc(it.get("note", ""))
+        note = emphasize(it.get("note", ""))
         note_html = f'<div class="note">{note}</div>' if note else ""
         rows.append(f"""
         <div class="calendar-item">
@@ -767,9 +824,9 @@ def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text,
               <span class="mono">{esc(code)}</span> {esc(name)}
               <span class="score-tag">{esc(strength_label)}</span>
             </div>
-            <div class="rank-desc rank-content">📌 具体的な好材料: {esc(content_text)}</div>
-            <div class="rank-desc rank-impact">📈 想定インパクト: {esc(impact_text)}<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
-            <div class="rank-desc rank-reason">💡 なぜ好材料か: {esc(reason_text)}</div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: {emphasize(content_text)}</div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: {emphasize(impact_text)}<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: {emphasize(reason_text)}</div>
             <div class="rank-desc rank-news">
               <a href="{esc(news_url) or '#'}" target="_blank" rel="noopener">{esc(news_title)}</a>{esc(extra_note)}
             </div>
@@ -898,7 +955,7 @@ def growth_candidates_html(items, empty_msg="現時点で好材料開示に基�
         title = esc(it.get("title", ""))
         url = esc(it.get("url", "")) or "#"
         catalyst = esc(it.get("catalyst", ""))
-        reason = esc(it.get("reason", ""))
+        reason = emphasize(it.get("reason", ""))
         asof = esc(it.get("asof", ""))
         rows.append(f"""
         <div class="rank-item">
@@ -915,6 +972,298 @@ def growth_candidates_html(items, empty_msg="現時点で好材料開示に基�
           </div>
         </div>""")
     return "".join(rows)
+
+
+# ------------------------------------------------------------------
+# 「本日の注目テーマと関連銘柄」(ニュース)と「株価診断」(テクニカル指標)を
+# 機械的にクロス参照し、材料とテクニカルの方向感が銘柄ごとに「一致」しているか
+# 「矛盾」しているか、あるいはテクニカル指標一覧(主力20銘柄)の対象外で
+# 確認できないかを判定する。money_flowの有無・タイトルのキーワード・シグナル
+# 文字列・RSIの組み合わせだけによる単純なルールベースの参考情報であり、
+# AIによる高度な文脈分析や投資助言ではない。
+# ------------------------------------------------------------------
+THEME_NEGATIVE_HINT_WORDS = ["関税", "規制", "悪化", "下方修正", "懸念", "急落", "続落", "警戒", "混乱", "不安"]
+
+
+def _extract_code_from_company(company_str):
+    """'日本郵船(9101)' のような文字列から証券コードを取り出す。見つからなければNoneを返す。"""
+    m = re.search(r"\((\d{3,5})\)", company_str or "")
+    return m.group(1) if m else None
+
+
+def _news_theme_direction(item):
+    """個別ニュース1件が、関連テーマにとって追い風(positive)か逆風(negative)かを、
+    money_flow(資金フロー)欄の有無とタイトル中のキーワードだけで機械的に推定する。"""
+    if (item.get("money_flow") or "").strip():
+        return "positive"
+    title = item.get("title", "") or ""
+    if any(w in title for w in THEME_NEGATIVE_HINT_WORDS):
+        return "negative"
+    return "neutral"
+
+
+def _signal_direction(signal_text):
+    s = signal_text or ""
+    if "弱気" in s:
+        return "bear"
+    if "強気" in s:
+        return "bull"
+    return "neutral"
+
+
+def _calendar_importance(it):
+    try:
+        return max(1, min(5, int(it.get("importance", 1))))
+    except (TypeError, ValueError):
+        return 1
+
+
+def signal_alignment_rows(data):
+    """テーマ別ニュースの関連銘柄ごとに、材料の方向感とテクニカルシグナルを重ね合わせた判定行のリストを返す。"""
+    technical = data.get("technical", []) or []
+    tech_lookup = _technical_lookup(technical)
+
+    all_news = list(data.get("overnight_news", []) or []) + list(data.get("afterclose_news", []) or [])
+    themes = {}
+    order = []
+    for it in all_news:
+        sector = (it.get("investment_sector") or "").strip()
+        if not sector:
+            continue
+        companies_raw = it.get("investment_companies") or []
+        if isinstance(companies_raw, str):
+            companies_raw = [c.strip() for c in re.split(r"[、,]", companies_raw) if c.strip()]
+        entry = themes.setdefault(sector, {"companies": [], "directions": []})
+        if sector not in order:
+            order.append(sector)
+        entry["directions"].append(_news_theme_direction(it))
+        for c in companies_raw:
+            c = str(c).strip()
+            if c and c not in entry["companies"]:
+                entry["companies"].append(c)
+
+    rows = []
+    for sector in order:
+        entry = themes[sector]
+        pos = entry["directions"].count("positive")
+        neg = entry["directions"].count("negative")
+        theme_dir = "positive" if pos > neg else ("negative" if neg > pos else "neutral")
+
+        for company in entry["companies"]:
+            code = _extract_code_from_company(company)
+            fallback_name = re.sub(r"\(\d{3,5}\)", "", company).strip() or company
+
+            if not code or code not in tech_lookup:
+                rows.append({
+                    "sector": sector, "theme_dir": theme_dir, "code": code, "name": fallback_name,
+                    "signal": None, "rsi": None, "match": "unknown",
+                })
+                continue
+
+            t = tech_lookup[code]
+            sig_dir = _signal_direction(t.get("signal"))
+            try:
+                rsi = float(t.get("rsi"))
+            except (TypeError, ValueError):
+                rsi = None
+            overheat = rsi is not None and rsi >= 70
+
+            if theme_dir == "positive":
+                if overheat:
+                    match = "conflict_overheat"
+                elif sig_dir == "bull":
+                    match = "align_bull"
+                elif sig_dir == "bear":
+                    match = "conflict"
+                else:
+                    match = "theme_only"
+            elif theme_dir == "negative":
+                if sig_dir == "bear":
+                    match = "align_bear"
+                elif sig_dir == "bull":
+                    match = "conflict"
+                else:
+                    match = "theme_only_negative"
+            else:
+                match = "neutral"
+
+            rows.append({
+                "sector": sector, "theme_dir": theme_dir, "code": code,
+                "name": t.get("name") or fallback_name,
+                "signal": t.get("signal"), "rsi": rsi, "overheat": overheat,
+                "change_pct": t.get("change_pct"), "match": match,
+            })
+    return rows
+
+
+def _alignment_badge(match):
+    if match == "align_bull":
+        return '<span class="badge bull">一致(強気材料×強気シグナル)</span>'
+    if match == "align_bear":
+        return '<span class="badge bear">一致(弱材料×弱気シグナル)</span>'
+    if match == "conflict":
+        return '<span class="tag tag-warn">矛盾(材料とテクニカルが逆方向)</span>'
+    if match == "conflict_overheat":
+        return '<span class="tag tag-warn">好材料はあるが過熱感に注意</span>'
+    labels = {
+        "theme_only": "材料優勢・テクニカルは中立",
+        "theme_only_negative": "弱材料・テクニカルは中立",
+        "neutral": "材料の方向感が乏しい",
+        "unknown": "テクニカル指標一覧の対象外(未確認)",
+    }
+    return f'<span class="badge neutral">{esc(labels.get(match, "―"))}</span>'
+
+
+def _alignment_row_text(row):
+    sector = row["sector"]
+    name = row["name"]
+    signal = row.get("signal")
+    rsi = row.get("rsi")
+    match = row["match"]
+
+    if match == "align_bull":
+        return (f"{sector}に関する報道は資金流入が期待される追い風材料で、{name}のテクニカルシグナルも"
+                f"「{signal}」と同じ強気方向を示しています。材料とテクニカルの両方が同じ方向を向いている参考ケースです。")
+    if match == "align_bear":
+        return (f"{sector}に関する報道は逆風材料ですが、{name}のテクニカルシグナルも「{signal}」で"
+                f"同じ弱気方向を示しており、材料とテクニカルが一致しています。")
+    if match == "conflict":
+        if row["theme_dir"] == "positive":
+            return (f"{sector}の報道は追い風材料ですが、{name}のテクニカルシグナルは「{signal}」で"
+                    f"むしろ弱気方向です。材料とテクニカルの方向が矛盾しており、判断が難しい組み合わせです。")
+        return (f"{sector}の報道は逆風材料ですが、{name}のテクニカルシグナルは「{signal}」で強気方向を"
+                f"示しています。材料とテクニカルの方向が矛盾しています。")
+    if match == "conflict_overheat":
+        rsi_txt = f"{rsi:.1f}" if isinstance(rsi, (int, float)) else "70以上"
+        return (f"{sector}には追い風材料が出ていますが、{name}のRSI(14)は{rsi_txt}で既に過熱感(70以上)の"
+                f"水準にあります。好材料が出た後に短期的な過熱で反落するケースもあるため、飛びつきには注意が必要です。")
+    if match == "theme_only":
+        return f"{sector}には追い風材料がありますが、{name}のテクニカルシグナルは「{signal}」で中立です。まだ明確な方向感は出ていません。"
+    if match == "theme_only_negative":
+        return f"{sector}には逆風材料がありますが、{name}のテクニカルシグナルは「{signal}」で中立です。"
+    if match == "neutral":
+        return f"{sector}の報道は方向感が乏しく、{name}のテクニカルシグナルは「{signal}」です。材料面での裏付けは弱い状況です。"
+    sector_label = sector if (sector.endswith("関連") or sector.endswith("株")) else f"{sector}関連"
+    return f"{name}({sector_label})は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。"
+
+
+def signal_alignment_html(data):
+    """
+    「本日の注目テーマと関連銘柄」×「株価診断(テクニカル指標)」を機械的にクロス参照した分析セクションを
+    ①端的な結論、②銘柄ごとの一致点・矛盾点の詳細、③投資初心者向けの一般的な対応の考え方、
+    の3部構成でHTML化する。AIによる高度な分析や投資助言ではなく、money_flowの有無・
+    タイトルのキーワード・シグナル文字列・RSIだけを組み合わせた単純なルールベースの参考情報。
+    """
+    rows = signal_alignment_rows(data)
+    mood = market_mood_signal(data)
+    calendar = data.get("economic_calendar", []) or []
+    has_big_event = any(_calendar_importance(it) >= 4 for it in calendar)
+
+    align_rows = [r for r in rows if r["match"] in ("align_bull", "align_bear")]
+    conflict_rows = [r for r in rows if r["match"] in ("conflict", "conflict_overheat")]
+    unclear_rows = [r for r in rows if r["match"] in ("theme_only", "theme_only_negative", "neutral", "unknown")]
+
+    # --- ① 結論(端的なまとめ) ---
+    if conflict_rows and not align_rows:
+        headline = ("現時点では、ニュースの材料とテクニカル指標がきれいに一致する銘柄は見当たりません。"
+                    "むしろ矛盾や過熱感が出ている銘柄が目立ち、新規で追いかけるより様子見が無難な状況です。")
+    elif align_rows and not conflict_rows:
+        headline = "一部の銘柄でニュースの材料とテクニカル指標の方向感が一致していますが、対象件数は限られており、過信は禁物です。"
+    elif align_rows and conflict_rows:
+        headline = "銘柄によって材料とテクニカルが一致するものと矛盾するものが混在しており、市場全体を一括りに強気・弱気と言える状況ではありません。"
+    else:
+        headline = "材料とテクニカル指標を重ね合わせても明確な方向感は出ておらず、今日時点では判断材料そのものが不足しています。"
+
+    if has_big_event:
+        headline += ("また今週は重要度の高い経済イベント(FOMC・日銀会合など)を控えており、"
+                     "結果発表前後は相場が大きく振れやすい点にも注意してください。")
+
+    tags = []
+    if align_rows:
+        tags.append(f'<span class="tag">一致 {len(align_rows)}件</span>')
+    if conflict_rows:
+        tags.append(f'<span class="tag tag-warn">矛盾・過熱感 {len(conflict_rows)}件</span>')
+    if unclear_rows:
+        tags.append(f'<span class="tag">判断材料不足 {len(unclear_rows)}件</span>')
+
+    conclusion_html = f"""
+    <div class="card alignment-conclusion mood-{mood['level']}">
+      <h3>📝 結論(まとめ)</h3>
+      <p class="conclusion-text">{emphasize(headline)}</p>
+      <div class="mood-reasons">{''.join(tags)}</div>
+    </div>"""
+
+    # --- ② 詳細 ---
+    def _rows_html(rs):
+        items = []
+        for i, r in enumerate(rs):
+            code_html = f'{fav_btn_html(r["code"])}{code_link(r["code"])} ' if r.get("code") else ""
+            chg = r.get("change_pct")
+            chg_html = f'<span class="mono {pct_class(chg)}">{fmt_pct(chg)}</span>' if chg is not None else ""
+            items.append(f"""
+            <div class="rank-item">
+              <div class="rank-num">{i + 1}</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">{esc(r['sector'])}</span>
+                  {code_html}{esc(r['name'])} {chg_html}
+                  {_alignment_badge(r['match'])}
+                </div>
+                <div class="rank-desc">{emphasize(_alignment_row_text(r))}</div>
+              </div>
+            </div>""")
+        return "".join(items)
+
+    detail_sections = []
+    if align_rows:
+        detail_sections.append(f'<h4 class="align-subhead">✅ 材料とテクニカルが一致している銘柄</h4>{_rows_html(align_rows)}')
+    if conflict_rows:
+        detail_sections.append(f'<h4 class="align-subhead">⚠️ 矛盾・過熱感が出ている銘柄</h4>{_rows_html(conflict_rows)}')
+    if unclear_rows:
+        detail_sections.append(f'<h4 class="align-subhead">❔ 材料はあるがテクニカル未確認・方向感が乏しい銘柄</h4>{_rows_html(unclear_rows)}')
+    if not detail_sections:
+        detail_sections.append('<p class="empty">本日は「注目テーマと関連銘柄」に該当するデータがなく、分析対象がありませんでした。</p>')
+
+    detail_html = f"""
+    <div class="card">
+      <h3>🔎 詳細: 銘柄ごとの一致点・矛盾点</h3>
+      <p class="rank-note">
+        上の「本日の注目テーマと関連銘柄」に登場する各銘柄について、ニュースの資金フロー有無・キーワードから
+        推定した材料の方向感と、テクニカル指標(株価診断)のシグナル・RSIを機械的に重ね合わせています。
+        <b>AIによる高度な文脈分析ではなく単純なルールベースの参考情報であり、投資助言ではありません。</b>
+      </p>
+      {''.join(detail_sections)}
+    </div>"""
+
+    # --- ③ 初心者向け対応 ---
+    tips = [
+        "材料とテクニカルが一致している銘柄は、少なくとも情報同士が矛盾していない点で参考にしやすい一方、"
+        "対象件数が少ない・データがやや古いケースもあるため、鵜呑みにせず自分でも最新のチャートを確認しましょう。",
+        "材料とテクニカルが矛盾している、またはRSIが既に70以上で過熱感が出ている銘柄は、初心者ほど今から"
+        "追いかけるのは避け、いったん様子を見るのが無難です。",
+        "既にストップ高・急騰している銘柄を当日中に追加で買うのは初心者にはリスクが高い行為です。"
+        "値動きが落ち着くのを待つか、見送るのも十分な選択肢です。",
+    ]
+    if has_big_event:
+        tips.append(
+            "今週はFOMCや日銀会合など相場が大きく動きやすいイベントを控えています。結果が出るまでは新規の"
+            "大きなポジションを避け、いつもより小さい金額で試すか、いったん見送るのも有効な考え方です。"
+        )
+    tips.append(
+        "どの銘柄を選ぶ場合でも、買う前に損切りラインを決めておく、1つの銘柄に資金を集中させず失っても"
+        "生活に影響しない金額で試す、このページの情報だけで判断せず取引直前に最新の株価・ニュースを自分でも"
+        "確認する、という3点は徹底しましょう。"
+    )
+    tips_html = "".join(f"<li>{emphasize(t)}</li>" for t in tips)
+
+    beginner_html = f"""
+    <div class="card beginner-card">
+      <h3>🔰 初心者向け: 今後どう対応すればいいか</h3>
+      <ul class="beginner-tips">{tips_html}</ul>
+      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身で負ってください。</p>
+    </div>"""
+
+    return conclusion_html + detail_html + beginner_html
 
 
 CSS = """
@@ -1085,6 +1434,19 @@ section > h2 {
   line-height: 1.5;
 }
 .news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.04); }
+.news-flow {
+  display: flex; align-items: flex-start; gap: 7px; margin-top: 5px; padding: 5px 9px;
+  border-radius: 8px; font-size: 12px; line-height: 1.55;
+}
+.news-flow .flow-badge {
+  flex-shrink: 0; font-weight: 700; padding: 1px 7px; border-radius: 8px;
+  font-size: 10.5px; letter-spacing: 0.2px; white-space: nowrap;
+}
+.news-flow .flow-text { color: var(--text); }
+.news-flow.flow-current { background: rgba(255,107,122,0.08); border: 1px solid rgba(255,107,122,0.25); }
+.news-flow.flow-current .flow-badge { background: rgba(255,107,122,0.22); color: var(--bull); }
+.news-flow.flow-expected { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); }
+.news-flow.flow-expected .flow-badge { background: rgba(212,175,55,0.22); color: var(--accent-bright); }
 .scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -1107,6 +1469,13 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
+
+/* --- 文章中の重要な数値・キーワードの強調マーカー --- */
+.hl-good { color: var(--bull); background: rgba(255,107,122,0.16); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.hl-good-strong { color: #1a0507; background: linear-gradient(120deg, var(--bull), var(--accent-bright)); padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 1.14em; box-shadow: 0 0 0 1px rgba(255,107,122,0.5) inset; }
+.hl-bad { color: var(--bear); background: rgba(53,217,180,0.14); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.hl-bad-strong { color: #04211b; background: linear-gradient(120deg, var(--bear), #8de9d2); padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 1.14em; box-shadow: 0 0 0 1px rgba(53,217,180,0.5) inset; }
+.hl-warn { color: var(--warn); background: rgba(255,184,77,0.22); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
 .sentiment-badge { margin-right: 6px; vertical-align: middle; cursor: help; }
 
 /* --- 市場ムード信号機 --- */
@@ -1124,6 +1493,20 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .mood-card.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 24px rgba(63,196,116,0.14); }
 .mood-card.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,184,77,0.14); }
 .mood-card.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,90,90,0.14); }
+
+/* --- 材料×テクニカル一致/矛盾分析 --- */
+.alignment-conclusion.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 20px rgba(63,196,116,0.12); }
+.alignment-conclusion.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,184,77,0.12); }
+.alignment-conclusion.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,90,90,0.12); }
+.conclusion-text { font-size: 14.5px; line-height: 1.75; color: var(--text); margin: 0; }
+.align-subhead {
+  font-size: 12px; color: var(--accent-bright); font-weight: 700; letter-spacing: 0.4px;
+  margin: 16px 0 6px; padding-top: 10px; border-top: 1px dashed var(--border-soft);
+}
+.card h4.align-subhead:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.beginner-card { background: linear-gradient(160deg, rgba(212,175,55,0.08), var(--panel)); }
+.beginner-tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.beginner-tips li { font-size: 13px; line-height: 1.7; color: var(--text); }
 
 /* --- 経済カレンダー --- */
 .calendar-list { display: flex; flex-direction: column; gap: 2px; }
@@ -1339,31 +1722,6 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   }
   a { color: #000 !important; text-decoration: underline; }
 }
-    /* ── 投資戦略サマリー ── */
-    #strategy { margin-top: 1em; }
-    .strategy-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1em 1.2em; margin-bottom: 1em; }
-    .strategy-block h4 { margin: 0 0 0.5em; font-size: 1em; }
-    .strategy-market { font-size: 1.4em; font-weight: 700; margin: 0.3em 0 0.6em; }
-    .strategy-note { font-size: 0.82em; color: var(--muted); margin: 0 0 0.6em; line-height: 1.5; }
-    .strategy-list { margin: 0; padding-left: 1.4em; line-height: 1.8; font-size: 0.9em; }
-    .strategy-list li { margin-bottom: 0.3em; }
-    .strategy-conclusion { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--card)); }
-    .strategy-conclusion h4 { color: var(--accent); }
-    .strategy-conclusion-list { margin: 0; padding-left: 1.4em; line-height: 1.9; font-size: 0.92em; }
-    .strategy-conclusion-list li { margin-bottom: 0.5em; }
-    .crash-banner {
-        background: linear-gradient(135deg, #dc2626, #b91c1c);
-        color: #fff; font-weight: 700; text-align: center;
-        padding: 14px 20px; font-size: 1.05rem; border-radius: 10px;
-        margin: 12px 0; box-shadow: 0 4px 16px rgba(220,38,38,0.4);
-        animation: crash-pulse 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes crash-pulse {
-        from { box-shadow: 0 4px 16px rgba(220,38,38,0.4); }
-        to   { box-shadow: 0 4px 28px rgba(220,38,38,0.9); }
-    }
-    .credit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-    .credit-card { background: var(--card-bg); border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
 """
 
 
@@ -1590,208 +1948,8 @@ JS_SCRIPT = r"""
 """
 
 
-
-
-def strategy_summary_html(data):
-    """地合い・テクニカル状態・好材料開示・投資判断まとめを生成する"""
-    us = data.get("us_market", {})
-    sp500_chg = float((us.get("sp500") or {}).get("change_pct") or 0)
-    dow_chg   = float((us.get("dow")   or {}).get("change_pct") or 0)
-    nas_chg   = float((us.get("nasdaq") or {}).get("change_pct") or 0)
-    us_avg = (sp500_chg + dow_chg + nas_chg) / 3
-    futures_chg = float((data.get("nikkei_futures") or {}).get("change_pct") or 0)
-    nikkei_chg  = float((data.get("nikkei225") or {}).get("change_pct") or 0)
-    fx_chg      = float((data.get("fx") or {}).get("change_pct") or 0)
-
-    if us_avg > 0.5 and futures_chg > -0.3:
-        mkt_label, mkt_color, mkt_emoji = "強気地合い", "var(--up)", "🟢"
-    elif us_avg < -0.5 or futures_chg < -0.5 or nikkei_chg < -1.0:
-        mkt_label, mkt_color, mkt_emoji = "弱気地合い", "var(--down)", "🔴"
-    else:
-        mkt_label, mkt_color, mkt_emoji = "中立地合い", "var(--muted)", "🟡"
-
-    tech_raw = data.get("technical", [])
-    technical = list(tech_raw) if isinstance(tech_raw, list) else list(tech_raw.values())
-    bull_stocks, bear_stocks, caution_list = [], [], []
-    for item in technical:
-        counts = parse_signal_counts(item.get("summary", ""))
-        if counts:
-            score = counts["buy"] * 2 - counts["sell"]
-            if score > 0:
-                bull_stocks.append((score, item))
-            elif score < 0:
-                bear_stocks.append((score, item))
-        try:
-            if float(item.get("rsi", 0) or 0) >= 70:
-                caution_list.append(f'{item.get("name","")}（RSI過熱）')
-        except (TypeError, ValueError):
-            pass
-    bull_stocks.sort(key=lambda x: -x[0])
-    bear_stocks.sort(key=lambda x: x[0])
-
-    g_raw = data.get("growth_candidates", [])
-    growth = list(g_raw) if isinstance(g_raw, list) else list(g_raw.values())
-
-    parts = []
-
-    # 地合い
-    parts.append('<div class="strategy-block">')
-    parts.append('<h4>📊 今日の地合い</h4>')
-    parts.append(f'<div class="strategy-market" style="color:{mkt_color}">{mkt_emoji} {esc(mkt_label)}</div>')
-    parts.append('<ul class="strategy-list">')
-    parts.append(f'<li>米国3指数平均: {us_avg:+.2f}%（S&P500 {sp500_chg:+.2f}% / NYダウ {dow_chg:+.2f}% / NASDAQ {nas_chg:+.2f}%）</li>')
-    if futures_chg:
-        parts.append(f'<li>日経先物: {futures_chg:+.2f}%</li>')
-    if fx_chg:
-        yen = "円安（輸出株に追い風）" if fx_chg > 0 else "円高（輸出株に逆風）"
-        parts.append(f'<li>ドル円: {yen}（前日比 {fx_chg:+.2f}%）</li>')
-    parts.append('</ul></div>')
-
-    # テクニカル状態診断
-    parts.append('<div class="strategy-block">')
-    parts.append('<h4>📈 テクニカル状態診断（過去データによる現在の強気・弱気）</h4>')
-    parts.append('<p class="strategy-note">移動平均線・RSIなど<b>過去の株価データ</b>から算出した「現在の強気・弱気状態」です。<b>将来の株価を予測・保証するものではありません。</b></p>')
-    if bull_stocks:
-        parts.append('<p style="margin:0.3em 0 0.2em;font-size:0.88em;color:var(--up)">🟢 強気（買いシグナル優勢）</p><ul class="strategy-list">')
-        for sc, st in bull_stocks:
-            rsi = st.get("rsi", "")
-            ov = f' ⚠️ RSI過熱({rsi})' if rsi and float(rsi) >= 70 else ""
-            chg = st.get("change_pct")
-            chg_s = f' / 前日比{chg:+.2f}%' if isinstance(chg, (int,float)) else ""
-            parts.append(f'<li><b>{esc(st.get("name",""))}</b>（{esc(st.get("code",""))}）― 強気スコア +{sc}{chg_s}{ov}</li>')
-        parts.append('</ul>')
-    else:
-        parts.append('<p class="empty" style="margin:0.5em 0">現時点でテクニカル強気の銘柄はありません。</p>')
-    if bear_stocks:
-        parts.append('<p style="margin:0.6em 0 0.2em;font-size:0.88em;color:var(--down)">🔴 弱気（売りシグナル優勢）</p><ul class="strategy-list">')
-        for sc, st in bear_stocks:
-            rsi = st.get("rsi","")
-            ov = f' ⚠️ RSI過熱({rsi})' if rsi and float(rsi) >= 70 else ""
-            parts.append(f'<li><b>{esc(st.get("name",""))}</b>（{esc(st.get("code",""))}）― 弱気スコア {sc}{ov}</li>')
-        parts.append('</ul>')
-    parts.append('</div>')
-
-    # 好材料開示
-    parts.append('<div class="strategy-block">')
-    parts.append('<h4>📋 好材料開示銘柄（上方修正・増配等）</h4>')
-    parts.append('<p class="strategy-note">TDnetに上方修正・増配など好材料を含む開示を行った銘柄です。<b>翌営業日以降の株価反応に注目。</b>開示原文のご確認を。</p>')
-    if growth:
-        parts.append('<ul class="strategy-list">')
-        for g in growth[:5]:
-            co = esc(g.get("company",""))
-            ttl = esc((g.get("title") or "")[:45])
-            url = g.get("url","")
-            cat = esc((g.get("catalyst") or "")[:60])
-            lnk = f'<a href="{esc(url)}" target="_blank">{ttl}…</a>' if url else ttl
-            cat_line = f'<br><span style="font-size:0.82em;color:var(--muted)">{cat}</span>' if cat else ''
-            parts.append(f'<li><b>{co}</b> — {lnk}{cat_line}</li>')
-        parts.append('</ul>')
-    else:
-        parts.append('<p class="empty" style="margin:0.5em 0">本日は好材料開示（上方修正・増配等）が見当たりません。</p>')
-    parts.append('</div>')
-
-    # 投資判断まとめ
-    parts.append('<div class="strategy-block strategy-conclusion">')
-    parts.append('<h4>🎯 投資判断まとめ・今後の見通し</h4>')
-    conclusions = []
-    if bull_stocks and mkt_label != "弱気地合い":
-        names = "・".join(st.get("name","") for _,st in bull_stocks[:3])
-        conclusions.append(f'テクニカルが強気かつ{esc(mkt_label)}のため、<b>{esc(names)}</b>は積極的に注目できる局面です。ただし個別リスク（決算・地政学）は別途確認を。')
-    elif bull_stocks:
-        names = "・".join(st.get("name","") for _,st in bull_stocks[:3])
-        conclusions.append(f'<b>{esc(names)}</b>はテクニカル強気ですが、全体地合いが弱いため追いかけすぎに注意。押し目で拾う戦略が無難です。')
-    else:
-        conclusions.append('現時点でテクニカル強気の銘柄がなく、新規買いの根拠が薄い局面です。相場全体の動向を確認しながら様子見が無難です。')
-    if growth:
-        co_names = "・".join((g.get("company") or "")[:10] for g in growth[:3])
-        conclusions.append(f'好材料開示銘柄（<b>{esc(co_names)}</b>等）は翌営業日の寄り付きでのギャップアップが期待できます。ただし材料出尽くし売りのリスクも念頭に。')
-    if caution_list:
-        c_str = "、".join(caution_list)
-        conclusions.append(f'⚠️ <b>RSI過熱（70超）の銘柄: {esc(c_str)}</b> — 短期的な利益確定売りや調整が入りやすいため、新規追いかけは避ける方が無難です。')
-    if mkt_label == "弱気地合い":
-        conclusions.append('⚠️ 米国市場・日経先物が軟調です。全体相場の下落に引きずられるリスクが高く、<b>全般的に新規の買いは慎重に。</b>手持ちポジションは利益確定や損切りラインの確認を。')
-    parts.append('<ul class="strategy-conclusion-list">')
-    for con in conclusions:
-        parts.append(f'<li>{con}</li>')
-    parts.append('</ul>')
-    parts.append('<p class="strategy-note" style="margin-top:0.8em">⚠️ 上記はテクニカル指標・開示情報等を組み合わせた機械的な参考情報です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</p>')
-    parts.append('</div>')
-    return "".join(parts)
-
-
-
-# ---------------------------------------------------------------------------
-# 鮮度フィルター: 当日（平日）または直前の週末分のみ表示
-# ---------------------------------------------------------------------------
-def _freshness_cutoff(generated_at_str):
-    """生成日時文字列(YYYY-MM-DD HH:MM)から表示すべき最古の日付を返す。
-    月曜: 土+日+月分を含める（直前の土曜から）
-    土・日: 金+土 / 土+日 を含める
-    火〜金: 当日のみ"""
-    from datetime import date as _d, datetime as _dt, timedelta as _td
-    try:
-        dt = _dt.strptime(generated_at_str[:10], "%Y-%m-%d").date()
-    except Exception:
-        return None
-    wd = dt.weekday()  # 0=月, 5=土, 6=日
-    if wd == 0:    return dt - _td(days=2)   # 月曜: 土まで遡る
-    elif wd == 5:  return dt - _td(days=1)   # 土曜: 金まで遡る
-    elif wd == 6:  return dt - _td(days=1)   # 日曜: 土まで遡る
-    else:          return dt                  # 火〜金: 当日のみ
-
-
-def _parse_item_date(s, year):
-    """'7/24' や '7月23日(木) 15:00' などから date を取り出す。失敗時は None。"""
-    if not s:
-        return None
-    s = str(s)
-    m = re.search(r"(\d{1,2})/(\d{1,2})", s)
-    if m:
-        try:
-            from datetime import date as _d
-            return _d(year, int(m.group(1)), int(m.group(2)))
-        except ValueError:
-            pass
-    m = re.search(r"(\d{1,2})\u6708(\d{1,2})\u65e5", s)  # M月D日
-    if m:
-        try:
-            from datetime import date as _d
-            return _d(year, int(m.group(1)), int(m.group(2)))
-        except ValueError:
-            pass
-    return None
-
-
-def _filter_by_freshness(items, date_key, generated_at_str):
-    """date_key フィールドの日付が cutoff 以降のアイテムのみ返す。
-    日付解析に失敗したアイテムはそのまま含める。"""
-    cutoff = _freshness_cutoff(generated_at_str)
-    if cutoff is None:
-        return list(items)
-    year = int(generated_at_str[:4])
-    return [it for it in items
-            if _parse_item_date(it.get(date_key, ""), year) is None
-            or _parse_item_date(it.get(date_key, ""), year) >= cutoff]
-
-
-def _filter_tdnet_freshness(items, generated_at_str):
-    """TDnet アイテムの title 末尾に埋め込まれた日付 ('M月D日') で鮮度フィルター。"""
-    cutoff = _freshness_cutoff(generated_at_str)
-    if cutoff is None:
-        return list(items)
-    year = int(generated_at_str[:4])
-    return [it for it in items
-            if _parse_item_date(it.get("title", ""), year) is None
-            or _parse_item_date(it.get("title", ""), year) >= cutoff]
-
-
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
-    # 鮮度フィルター: 当日以前の古い好材料・成長株データを非表示
-    fresh_us_good_news = _filter_by_freshness(data.get("us_good_news", []), "time", generated_at)
-    fresh_growth = _filter_by_freshness(data.get("growth_candidates", []), "asof", generated_at)
-    fresh_tdnet_morning = _filter_tdnet_freshness(data.get("tdnet_morning", []), generated_at)
-    fresh_tdnet_afterclose = _filter_tdnet_freshness(data.get("tdnet_afterclose", []), generated_at)
     run_type = data.get("run_type", "")
     run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
 
@@ -1811,34 +1969,6 @@ def build_html(data: dict) -> str:
     mood_html = market_mood_html(data)
     theme_html = theme_summary_html(data)
     calendar_html = economic_calendar_html(data.get("economic_calendar", []))
-
-    # --- 急落注意バナー ---
-    _nk_chg = float((data.get("nikkei225") or {}).get("change_pct") or 0)
-    _fut_chg = float((data.get("nikkei_futures") or {}).get("change_pct") or 0)
-    if _nk_chg <= -2.0:
-        crash_banner_html = (
-            f'<div class="crash-banner">'
-            f'⚠️ <strong>急落注意</strong>：日経平均 <strong>{_nk_chg:+.2f}%</strong> の大幅下落が発生しています。'
-            'ポジション・損切りラインを再確認してください。</div>'
-        )
-    elif _fut_chg <= -2.0:
-        crash_banner_html = (
-            f'<div class="crash-banner">'
-            f'⚠️ <strong>先物急落注意</strong>：日経先物 <strong>{_fut_chg:+.2f}%</strong> の下落。'
-            '寄り付きのリスク管理を徹底してください。</div>'
-        )
-    else:
-        crash_banner_html = ""
-
-    # --- 信用情報セクション ---
-    credit_info = data.get("credit_info", {})
-    credit_items = []
-    if credit_info:
-        for label, key in [("空売り比率", "short_ratio"), ("信用倍率", "credit_ratio")]:
-            val = credit_info.get(key)
-            if val is not None:
-                credit_items.append(f'<div class="credit-card"><div class="card-label">{label}</div><div class="card-value">{val}</div></div>')
-    credit_html = (f'<div class="section"><h2>信用情報</h2><div class="credit-grid">{"".join(credit_items) if credit_items else "<p>データなし</p>"}</div></div>') if credit_info else ""
 
     morning_html = f"""
     <section id="morning">
@@ -1873,10 +2003,10 @@ def build_html(data: dict) -> str:
     </section>"""
 
     good_news_rank_html_jp = good_news_ranking_html_jp(
-        fresh_tdnet_morning, fresh_tdnet_afterclose, data.get("technical", [])
+        data.get("tdnet_morning", []), data.get("tdnet_afterclose", []), data.get("technical", [])
     )
     good_news_rank_html_us = good_news_ranking_html_us(
-        fresh_us_good_news
+        data.get("us_good_news", [])
     )
 
     evening_html = f"""
@@ -1929,13 +2059,25 @@ def build_html(data: dict) -> str:
         {technical_table(data.get("technical", []))}
       </div>
       <div class="card">
-        <h3>強気・弱気シグナルランキング</h3>
+        <h3>強気シグナル数ランキング</h3>
         <p class="rank-note">
           移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
           <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
         </p>
         {bull_rank_html}
       </div>
+    </section>"""
+
+    alignment_body_html = signal_alignment_html(data)
+    alignment_html = f"""
+    <section id="alignment">
+      <h2>🧭 材料×テクニカル 一致点・矛盾点分析</h2>
+      <p class="section-desc">
+        「本日の注目テーマと関連銘柄」のニュースと「株価診断(テクニカル指標)」を機械的にクロス参照し、
+        材料とテクニカルが同じ方向を示しているか、逆方向で矛盾しているかを銘柄ごとに整理した参考情報です。
+        <b>AIによる高度な分析ではなく単純なルールベースの判定であり、投資助言ではありません。</b>
+      </p>
+      {alignment_body_html}
     </section>"""
 
     growth_html = f"""
@@ -1949,17 +2091,7 @@ def build_html(data: dict) -> str:
       </p>
       <div class="card">
         <h3>好材料開示に基づく成長株候補</h3>
-        {growth_candidates_html(fresh_growth)}
-      </div>
-    </section>"""
-
-    strategy_summary = strategy_summary_html(data)
-    strategy_section_html = f"""
-    <section id="strategy">
-      <h2>🎯 投資戦略まとめ</h2>
-      <p class="section-desc">今日の地合い・テクニカル状態・好材料開示を統合した投資判断の参考情報です。あくまで参考であり、<b>投資助言ではありません。最終判断はご自身の責任で。</b></p>
-      <div class="card">
-        {strategy_summary}
+        {growth_candidates_html(data.get("growth_candidates", []))}
       </div>
     </section>"""
 
@@ -2023,8 +2155,8 @@ def build_html(data: dict) -> str:
         <a href="#morning">🌅 寄り付き前</a>
         <a href="#evening">🌙 引け後</a>
         <a href="#technical">📊 株価診断</a>
+        <a href="#alignment">🧭 分析</a>
         <a href="#growth">🌱 成長株</a>
-        <a href="#strategy">🎯 投資戦略まとめ</a>
       </nav>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
     </div>
@@ -2034,17 +2166,14 @@ def build_html(data: dict) -> str:
   <div class="disclaimer">
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
   </div>
-  {crash_banner_html}
   {mood_html}
   <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
 
   {morning_html}
   {evening_html}
   {technical_html}
-  {credit_html}
+  {alignment_html}
   {growth_html}
-
-  {strategy_section_html}
 
   <footer>
     <div class="disclaimer">
@@ -2064,23 +2193,6 @@ def build_html(data: dict) -> str:
     return html_out
 
 
-
-def _fix_mojibake(obj):
-    """Recursively fix double/triple-encoded UTF-8 mojibake from Java scraper."""
-    if isinstance(obj, dict):
-        return {k: _fix_mojibake(v) for k, v in obj.items()}
-    if isinstance(obj, list):
-        return [_fix_mojibake(v) for v in obj]
-    if isinstance(obj, str):
-        try:
-            return obj.encode('latin-1').decode('utf-8').encode('latin-1').decode('utf-8')
-        except (UnicodeEncodeError, UnicodeDecodeError):
-            try:
-                return obj.encode('latin-1').decode('utf-8')
-            except (UnicodeEncodeError, UnicodeDecodeError):
-                return obj
-    return obj
-
 def main():
     data_path = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "data.json"
     out_path = Path(sys.argv[2]) if len(sys.argv) > 2 else BASE_DIR / "jp_daytrade_dashboard.html"
@@ -2090,7 +2202,7 @@ def main():
         sys.exit(1)
 
     with open(data_path, "r", encoding="utf-8") as f:
-        data = _fix_mojibake(json.load(f))
+        data = json.load(f)
 
     html_out = build_html(data)
     with open(out_path, "w", encoding="utf-8") as f:
