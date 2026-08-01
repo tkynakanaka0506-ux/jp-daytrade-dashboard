@@ -1007,7 +1007,11 @@ def _us_bakedin_warning(item):
 def growth_candidates_html(items, empty_msg="現時点で好材料開示に基づく成長株候補は見つかりませんでした。"):
     """TDnet「業績予想の修正」開示のうち、上方修正・増配など明確な好材料キーワードを含む開示のみを
     機械的に抽出した「成長株候補」一覧。各候補には実際の開示PDFへの直リンクが付き、
-    根拠(決算・好材料)を開示原文で確認できる。将来の株価上昇を保証するものではない。"""
+    根拠(決算・好材料)を開示原文で確認できる。将来の株価上昇を保証するものではない。
+
+    double_signal=trueの場合、同日の決算開示も検知されている「ダブルシグナル」(四半期好決算+通期
+    ガイダンス上方修正の同時発表)として、専用バッジを表示する。パナソニックHDのストップ高
+    (2026年7月)の事後分析で見られたパターンに基づく、無料データのみでの機械的な近似判定。"""
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
     rows = []
@@ -1018,6 +1022,10 @@ def growth_candidates_html(items, empty_msg="現時点で好材料開示に基�
         catalyst = esc(it.get("catalyst", ""))
         reason = emphasize(it.get("reason", ""))
         asof = esc(it.get("asof", ""))
+        double_badge = (
+            '<span class="badge double">🔥 ダブルシグナル(決算+ガイダンス修正)</span>'
+            if it.get("double_signal") else ""
+        )
         rows.append(f"""
         <div class="rank-item">
           <div class="rank-num">🌱</div>
@@ -1025,11 +1033,44 @@ def growth_candidates_html(items, empty_msg="現時点で好材料開示に基�
             <div class="rank-head">
               {company}
               <span class="badge bull">{catalyst}</span>
+              {double_badge}
             </div>
             <div class="rank-desc rank-news">
               <a href="{url}" target="_blank" rel="noopener">{title}</a>
             </div>
             <div class="rank-desc">{reason} ・ 開示日時: {asof}</div>
+          </div>
+        </div>""")
+    return "".join(rows)
+
+
+def pre_earnings_watch_html(items, empty_msg="現時点で該当する先行材料ニュースは見つかりませんでした。"):
+    """決算発表を待たず、四半期の途中で出る「増産」「受注」「工場」「生産能力」「データセンター」等の
+    断片ニュースをGoogle News RSSの見出しキーワード一致だけで機械的に抽出した一覧。
+    LLMによる要約・意味解釈は行っていない単純なキーワードマッチであり、見出しが一致しただけでは
+    好材料の大きさ・信頼性は判断できない。必ずリンク先の原文を確認すること。投資助言ではない。"""
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+    rows = []
+    for it in items:
+        company = esc(it.get("company", ""))
+        code = esc(it.get("code", ""))
+        title = esc(it.get("title", ""))
+        url = esc(it.get("url", "")) or "#"
+        keyword = esc(it.get("keyword", ""))
+        asof = esc(it.get("asof", ""))
+        rows.append(f"""
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              {company}({code})
+              <span class="badge neutral">{keyword}</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="{url}" target="_blank" rel="noopener">{title}</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: {asof}</div>
           </div>
         </div>""")
     return "".join(rows)
@@ -1155,7 +1196,6 @@ def signal_alignment_rows(data):
                 "change_pct": t.get("change_pct"), "match": match,
             })
     return rows
-
 
 def _alignment_badge(match):
     if match == "align_bull":
@@ -1321,7 +1361,7 @@ def signal_alignment_html(data):
     <div class="card beginner-card">
       <h3>🔰 初心者向け: 今後どう対応すればいいか</h3>
       <ul class="beginner-tips">{tips_html}</ul>
-      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身で負ってください。</p>
+      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身の責任で行ってください。</p>
     </div>"""
 
     return conclusion_html + detail_html + beginner_html
@@ -1527,6 +1567,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .badge.bull { background: linear-gradient(120deg, rgba(255,107,122,0.2), rgba(255,107,122,0.08)); color: var(--bull); border: 1px solid rgba(255,107,122,0.3); }
 .badge.bear { background: linear-gradient(120deg, rgba(53,217,180,0.2), rgba(53,217,180,0.08)); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
 .badge.neutral { background: rgba(212,175,55,0.1); color: var(--muted); border: 1px solid var(--border-soft); }
+.badge.double { background: linear-gradient(120deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); color: var(--accent-bright); border: 1px solid rgba(212,175,55,0.5); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
@@ -2163,11 +2204,31 @@ def build_html(data: dict) -> str:
       </div>
     </section>"""
 
+    pre_earnings_html = f"""
+    <section id="pre-earnings-watch">
+      <h2>🔭 決算前 先行材料ウォッチ</h2>
+      <p class="section-desc">
+        好決算・ストップ高は決算発表の当日に突然出るのではなく、四半期の途中で
+        「増産」「受注拡大」「工場増強」「データセンター」等の断片ニュースが先行することがあります
+        (例: パナソニックHDのAIインフラ関連増産報道は、2026年7月の決算発表の1〜2か月前から出ていました)。
+        ここではGoogle Newsの見出しに固定キーワードが含まれるかどうかだけを機械的に抽出しており、
+        <b>LLMによる要約・意味解釈は行っていません</b>。見出しが一致しただけでは好材料の大きさ・
+        信頼性は判断できないため、<b>必ずリンク先の原文をご確認ください。投資助言ではありません。</b>
+      </p>
+      <div class="card">
+        <h3>ウォッチリスト銘柄の先行材料ニュース(直近14日・見出しキーワード一致)</h3>
+        {pre_earnings_watch_html(data.get("pre_earnings_watch", []))}
+      </div>
+    </section>"""
+
     disclaimer_text = (
-        "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など"
-        "無料で公開されている情報源をもとに自動的にまとめたものです。"
+        "本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)・"
+        "Google Newsなど無料で公開されている情報源をもとに自動的にまとめたものです。"
         "内容の正確性・完全性・最新性は保証されません。"
         "「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、"
+        "「先行材料ウォッチ」「ダブルシグナル」等の表示もニュース見出し・開示タグの単純なキーワード一致による"
+        "機械的な抽出であり、AIによる分析ではありません。"
+        "アナリストのコンセンサス予想(市場平均予想)は無料でリアルタイム取得できるソースがないため、本ページには含まれていません。"
         "<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>"
         "投資に関する最終判断は、必ずご自身の責任で行ってください。"
     )
@@ -2175,7 +2236,8 @@ def build_html(data: dict) -> str:
     sources_html = """
     <div class="sources">
       主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
-      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com)。
+      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com) /
+      Google News RSS (news.google.com、先行材料ウォッチの見出し抽出のみに使用)。
       各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
     </div>"""
 
@@ -2242,6 +2304,7 @@ def build_html(data: dict) -> str:
   {technical_html}
   {alignment_html}
   {growth_html}
+  {pre_earnings_html}
 
   <footer>
     <div class="disclaimer">
