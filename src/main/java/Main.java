@@ -5,12 +5,16 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.Duration;
@@ -87,8 +91,9 @@ public class Main {
         updateTopLevel(root, "nikkei_futures", "NIY=F", false); // ベストエフォート。取れなければ既存値を保持
 
         // ---- TDnet適時開示(株探モバイル版ミラーをスクレイピング) ----
+        ArrayNode disclosures = null;
         try {
-            ArrayNode disclosures = scrapeKabutanDisclosures(3);
+            disclosures = scrapeKabutanDisclosures(3);
             if (disclosures.size() > 0) {
                 root.set("evening".equals(mode) ? "tdnet_afterclose" : "tdnet_morning", disclosures);
             }
@@ -112,11 +117,27 @@ public class Main {
         // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
         try {
             ArrayNode growth = scrapeGrowthCandidates(8, 8);
+            markDoubleSignals(growth, disclosures);
             if (growth.size() > 0) {
                 root.set("growth_candidates", growth);
             }
         } catch (Exception e) {
             System.err.println("[WARN] growth candidates fetch failed: " + e);
+        }
+
+        // ---- 決算前 先行材料ウォッチ(Google News RSS・無料/キー不要・LLM不使用) ----
+        // 好決算・ストップ高になる銘柄は、決算発表の当日いきなり材料が出るのではなく、
+        // 四半期の途中で「増産」「受注拡大」「工場増強」等の断片ニュースが先行することが多い
+        // (例: パナソニックHDのAIインフラ関連増産・増設報道が2026年7月の決算発表の1〜2か月前から出ていた)。
+        // ここではLLMによる要約・判定は一切行わず、Google News RSS(無料・APIキー不要)の見出しに
+        // 固定キーワードが含まれるかどうかだけで機械的に抽出する。
+        try {
+            ArrayNode watch = scrapePreEarningsWatch(2, 15, 14);
+            if (watch.size() > 0) {
+                root.set("pre_earnings_watch", watch);
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] pre-earnings watch fetch failed: " + e);
         }
 
         // 注: overnight_news / afterclose_news / movers_morning / movers_afterclose は
@@ -338,6 +359,119 @@ public class Main {
                 row.put("asof", date + " " + time);
                 row.put("url", a.absUrl("href"));
                 out.add(row);
+            }
+        }
+        return out;
+    }
+
+    /**
+     * scrapeGrowthCandidates()が抽出した「業績予想の修正(上方修正等)」候補について、
+     * 同じ会社名が直近のTDnet一般開示一覧(disclosures、tag=="決算")にも含まれる場合、
+     * double_signal=trueを付与する。
+     *
+     * 四半期の好決算(決算短信)と通期ガイダンスの上方修正が同時に発表されるパターンは、
+     * 単独の好決算開示よりもストップ高との相関が強いという分析結果(2026年7月のパナソニックHD
+     * 決算・ストップ高の事後分析)に基づく、無料データのみでの機械的な近似実装。
+     *
+     * 注意: disclosuresは直近の「サイト全体での最新開示」上位20件程度しか保持していないため、
+     * 実際には両方の開示を行っている会社でも、取得タイミングによってはこの一覧に決算開示が
+     * 含まれておらず検知できないことがある(false negativeが起こり得るベストエフォートの近似)。
+     */
+    private static void markDoubleSignals(ArrayNode growth, ArrayNode disclosures) {
+        if (growth == null || disclosures == null) return;
+        java.util.Set<String> kessanCompanies = new java.util.HashSet<>();
+        for (JsonNode d : disclosures) {
+            String tag = d.path("tag").asText("");
+            String company = d.path("company").asText("");
+            if ("決算".equals(tag) && !company.isEmpty() && !"―".equals(company)) {
+                kessanCompanies.add(company);
+            }
+        }
+        for (JsonNode g : growth) {
+            if (!(g instanceof ObjectNode)) continue;
+            String company = g.path("company").asText("");
+            ((ObjectNode) g).put("double_signal", kessanCompanies.contains(company));
+        }
+    }
+
+    // ---------------- 決算前 先行材料ウォッチ(Google Newsの見出しキーワード抽出) ----------------
+
+    private static final String[] PRE_EARNINGS_KEYWORDS = {
+        "増産", "受注拡大", "受注", "新工場", "工場増強", "生産能力", "設備投資",
+        "データセンター", "AI投資", "稼働開始", "増強", "量産開始"
+    };
+
+    /**
+     * ウォッチリスト銘柄ごとにGoogle News RSS(無料・APIキー不要・登録不要)を検索し、
+     * 「増産」「受注」「工場」「生産能力」「データセンター」等、決算に先行して出やすい
+     * 好材料キーワードをタイトルに含む直近ニュースだけを機械的に抽出する。
+     *
+     * LLMによる要約・意味解釈は一切行わない(キーワード完全一致のみ)。あくまで
+     * 「決算発表を待たずに関連ニュースの多寡を継続的に拾う」ための一次スクリーニング材料であり、
+     * 見出しに一致しただけでは好材料の実際の大きさ・信頼性は判断できない。必ずリンク先の原文を
+     * 確認すること。
+     *
+     * @param maxPerCompany 1銘柄あたりの採用件数上限
+     * @param maxTotal      全体の採用件数上限
+     * @param lookbackDays  何日前までの記事を対象にするか
+     */
+    private static ArrayNode scrapePreEarningsWatch(int maxPerCompany, int maxTotal, int lookbackDays) {
+        ArrayNode out = MAPPER.createArrayNode();
+        ZonedDateTime cutoff = ZonedDateTime.now(ZoneId.of("Asia/Tokyo")).minusDays(lookbackDays);
+
+        for (String[] w : WATCHLIST) {
+            if (out.size() >= maxTotal) break;
+            String code = w[0];
+            String name = w[1];
+            try {
+                String keywordClause = String.join(" OR ", PRE_EARNINGS_KEYWORDS);
+                String rawQuery = "\"" + name + "\" (" + keywordClause + ")";
+                String q = URLEncoder.encode(rawQuery, StandardCharsets.UTF_8);
+                String url = "https://news.google.com/rss/search?q=" + q + "&hl=ja&gl=JP&ceid=JP:ja";
+                Document doc = Jsoup.connect(url)
+                    .userAgent(UA)
+                    .timeout(15000)
+                    .parser(Parser.xmlParser())
+                    .get();
+                Elements items = doc.select("item");
+                int perCompany = 0;
+                for (Element item : items) {
+                    if (perCompany >= maxPerCompany || out.size() >= maxTotal) break;
+                    Element titleEl = item.selectFirst("title");
+                    Element linkEl = item.selectFirst("link");
+                    Element pubDateEl = item.selectFirst("pubDate");
+                    String title = titleEl != null ? titleEl.text() : "";
+                    String link = linkEl != null ? linkEl.text() : "";
+                    String pubDateStr = pubDateEl != null ? pubDateEl.text() : "";
+                    if (title.isEmpty() || link.isEmpty() || pubDateStr.isEmpty()) continue;
+
+                    ZonedDateTime pubDate;
+                    try {
+                        pubDate = ZonedDateTime.parse(pubDateStr, DateTimeFormatter.RFC_1123_DATE_TIME);
+                    } catch (Exception e) {
+                        continue; // 日付が解釈できない記事は対象外
+                    }
+                    if (pubDate.isBefore(cutoff)) continue;
+
+                    String matched = null;
+                    for (String kw : PRE_EARNINGS_KEYWORDS) {
+                        if (title.contains(kw)) { matched = kw; break; }
+                    }
+                    if (matched == null) continue;
+
+                    ObjectNode row = MAPPER.createObjectNode();
+                    row.put("code", code);
+                    row.put("company", name);
+                    row.put("title", title);
+                    row.put("url", link);
+                    row.put("keyword", matched);
+                    row.put("asof", pubDate.withZoneSameInstant(ZoneId.of("Asia/Tokyo"))
+                        .format(DateTimeFormatter.ofPattern("M/d HH:mm")));
+                    out.add(row);
+                    perCompany++;
+                }
+            } catch (Exception e) {
+                System.err.println("[WARN] pre-earnings watch fetch failed for " + code + ": " + e);
             }
         }
         return out;
