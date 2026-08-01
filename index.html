@@ -176,6 +176,19 @@ section > h2 {
   line-height: 1.5;
 }
 .news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.04); }
+.news-flow {
+  display: flex; align-items: flex-start; gap: 7px; margin-top: 5px; padding: 5px 9px;
+  border-radius: 8px; font-size: 12px; line-height: 1.55;
+}
+.news-flow .flow-badge {
+  flex-shrink: 0; font-weight: 700; padding: 1px 7px; border-radius: 8px;
+  font-size: 10.5px; letter-spacing: 0.2px; white-space: nowrap;
+}
+.news-flow .flow-text { color: var(--text); }
+.news-flow.flow-current { background: rgba(255,107,122,0.08); border: 1px solid rgba(255,107,122,0.25); }
+.news-flow.flow-current .flow-badge { background: rgba(255,107,122,0.22); color: var(--bull); }
+.news-flow.flow-expected { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); }
+.news-flow.flow-expected .flow-badge { background: rgba(212,175,55,0.22); color: var(--accent-bright); }
 .scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -198,6 +211,13 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .empty { color: var(--muted); font-size: 13px; }
+
+/* --- 文章中の重要な数値・キーワードの強調マーカー --- */
+.hl-good { color: var(--bull); background: rgba(255,107,122,0.16); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.hl-good-strong { color: #1a0507; background: linear-gradient(120deg, var(--bull), var(--accent-bright)); padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 1.14em; box-shadow: 0 0 0 1px rgba(255,107,122,0.5) inset; }
+.hl-bad { color: var(--bear); background: rgba(53,217,180,0.14); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.hl-bad-strong { color: #04211b; background: linear-gradient(120deg, var(--bear), #8de9d2); padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 1.14em; box-shadow: 0 0 0 1px rgba(53,217,180,0.5) inset; }
+.hl-warn { color: var(--warn); background: rgba(255,184,77,0.22); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
 .sentiment-badge { margin-right: 6px; vertical-align: middle; cursor: help; }
 
 /* --- 市場ムード信号機 --- */
@@ -215,6 +235,20 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .mood-card.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 24px rgba(63,196,116,0.14); }
 .mood-card.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,184,77,0.14); }
 .mood-card.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,90,90,0.14); }
+
+/* --- 材料×テクニカル一致/矛盾分析 --- */
+.alignment-conclusion.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 20px rgba(63,196,116,0.12); }
+.alignment-conclusion.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,184,77,0.12); }
+.alignment-conclusion.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,90,90,0.12); }
+.conclusion-text { font-size: 14.5px; line-height: 1.75; color: var(--text); margin: 0; }
+.align-subhead {
+  font-size: 12px; color: var(--accent-bright); font-weight: 700; letter-spacing: 0.4px;
+  margin: 16px 0 6px; padding-top: 10px; border-top: 1px dashed var(--border-soft);
+}
+.card h4.align-subhead:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.beginner-card { background: linear-gradient(160deg, rgba(212,175,55,0.08), var(--panel)); }
+.beginner-tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.beginner-tips li { font-size: 13px; line-height: 1.7; color: var(--text); }
 
 /* --- 経済カレンダー --- */
 .calendar-list { display: flex; flex-direction: column; gap: 2px; }
@@ -430,31 +464,6 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   }
   a { color: #000 !important; text-decoration: underline; }
 }
-    /* ── 投資戦略サマリー ── */
-    #strategy { margin-top: 1em; }
-    .strategy-block { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1em 1.2em; margin-bottom: 1em; }
-    .strategy-block h4 { margin: 0 0 0.5em; font-size: 1em; }
-    .strategy-market { font-size: 1.4em; font-weight: 700; margin: 0.3em 0 0.6em; }
-    .strategy-note { font-size: 0.82em; color: var(--muted); margin: 0 0 0.6em; line-height: 1.5; }
-    .strategy-list { margin: 0; padding-left: 1.4em; line-height: 1.8; font-size: 0.9em; }
-    .strategy-list li { margin-bottom: 0.3em; }
-    .strategy-conclusion { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--card)); }
-    .strategy-conclusion h4 { color: var(--accent); }
-    .strategy-conclusion-list { margin: 0; padding-left: 1.4em; line-height: 1.9; font-size: 0.92em; }
-    .strategy-conclusion-list li { margin-bottom: 0.5em; }
-    .crash-banner {
-        background: linear-gradient(135deg, #dc2626, #b91c1c);
-        color: #fff; font-weight: 700; text-align: center;
-        padding: 14px 20px; font-size: 1.05rem; border-radius: 10px;
-        margin: 12px 0; box-shadow: 0 4px 16px rgba(220,38,38,0.4);
-        animation: crash-pulse 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes crash-pulse {
-        from { box-shadow: 0 4px 16px rgba(220,38,38,0.4); }
-        to   { box-shadow: 0 4px 28px rgba(220,38,38,0.9); }
-    }
-    .credit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-    .credit-card { background: var(--card-bg); border-radius: 8px; padding: 12px; border: 1px solid var(--border); }
 </style>
 </head>
 <body>
@@ -465,15 +474,15 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     <div class="topbar-title">
       <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
       <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
-      <div class="subtitle">最終更新: 2026-08-01 06:59 (JST)<span class="rel-time" data-generated="2026-08-01 06:59"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+      <div class="subtitle">最終更新: 2026-08-01 11:10 (JST)<span class="rel-time" data-generated="2026-08-01 11:10"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
     </div>
     <div class="top-controls">
       <nav class="tabs">
         <a href="#morning">🌅 寄り付き前</a>
         <a href="#evening">🌙 引け後</a>
         <a href="#technical">📊 株価診断</a>
+        <a href="#alignment">🧭 分析</a>
         <a href="#growth">🌱 成長株</a>
-        <a href="#strategy">🎯 投資戦略まとめ</a>
       </nav>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
     </div>
@@ -483,7 +492,6 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   <div class="disclaimer">
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)など無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
   </div>
-  
   
     <div class="mood-card mood-green">
       <div class="mood-icon" aria-hidden="true">🟢</div>
@@ -525,7 +533,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
       <div class="idx-label">SOX指数(半導体)</div>
       <div class="idx-value">11,311.08</div>
       <span class="chg up">+0.07%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:0.4%;"></span></span>
-      <div class="note">8/1終値</div>
+      <div class="note">8/1Ã§ÂµÂÃ¥ÂÂ¤</div>
     </div>
     <div class="idx-card">
       <div class="idx-label">USD/JPY</div>
@@ -542,7 +550,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
     <div class="idx-card">
       <div class="idx-label">日経平均(現物・前回終値)</div>
       <div class="idx-value">64,362.02</div>
-      <span class="chg up">+4.77%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:29.8%;"></span></span>
+      <span class="chg up">+4.03%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:25.2%;"></span></span>
       <div class="note">7/31終値</div>
     </div></div>
       </div>
@@ -636,7 +644,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
       </div>
       <div class="card">
         <h3>時間外・朝の主要ニュース</h3>
-        <ul class="news-list"><li><a href="https://newswitch.jp/p/42224" target="_blank" rel="noopener">中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</a><span class="meta">7/25 / ニュースイッチ(日刊工業新聞社)</span><div class="news-impact"><span class="impact-sector">関連分野: 海運</span><span class="impact-companies">注目企業: 日本郵船(9101)、商船三井(9104)、川崎汽船(9107)</span></div></li><li><a href="https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html" target="_blank" rel="noopener">ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</a><span class="meta">7/25 / マネーサテライト(松井証券)</span><div class="news-impact"><span class="impact-sector">関連分野: エネルギー・資源</span><span class="impact-companies">注目企業: INPEX(1605)、出光興産(5019)</span></div></li><li><a href="https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/" target="_blank" rel="noopener">日経平均、AI特需の持続懸念で1811円安の急落</a><span class="meta">7/24 / 日本経済新聞</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体・AI関連</span><span class="impact-companies">注目企業: イビデン</span></div></li><li><a href="https://s.kabutan.jp/news/n202607241176/" target="_blank" rel="noopener">来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</a><span class="meta">7/24 / 株探</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体</span><span class="impact-companies">注目企業: キオクシアホールディングス</span></div></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</a><span class="meta">7/24 / 財経新聞</span><div class="news-impact"><span class="impact-sector">関連分野: AI・ハイテク株</span></div></li></ul>
+        <ul class="news-list"><li><a href="https://newswitch.jp/p/42224" target="_blank" rel="noopener">中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表</a><span class="meta">7/25 / ニュースイッチ(日刊工業新聞社)</span><div class="news-impact"><span class="impact-sector">関連分野: 海運</span><span class="impact-companies">注目企業: 日本郵船(9101)、商船三井(9104)、川崎汽船(9107)</span></div><div class="news-flow flow-current"><span class="flow-badge">💰 実況</span><span class="flow-text">紅海・スエズ運河の航行混乱が続き、船社が7月の運賃一括値上げ(GRI)と繁忙期サーチャージ(PSS)を発表するなど海上運賃の<span class="hl-good">上昇</span>が続いており、海運株に資金が流入している</span></div></li><li><a href="https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html" target="_blank" rel="noopener">ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に</a><span class="meta">7/25 / マネーサテライト(松井証券)</span><div class="news-impact"><span class="impact-sector">関連分野: エネルギー・資源</span><span class="impact-companies">注目企業: INPEX(1605)、出光興産(5019)</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">ホルムズ海峡周辺の地政学<span class="hl-warn">リスク</span>が意識され、原油供給への不安が長期化すればエネルギー・資源株に資金が向かう可能性がある</span></div></li><li><a href="https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/" target="_blank" rel="noopener">日経平均、AI特需の持続懸念で1811円安の急落</a><span class="meta">7/24 / 日本経済新聞</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体・AI関連</span><span class="impact-companies">注目企業: イビデン</span></div></li><li><a href="https://s.kabutan.jp/news/n202607241176/" target="_blank" rel="noopener">来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる</a><span class="meta">7/24 / 株探</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体</span><span class="impact-companies">注目企業: キオクシアホールディングス</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">FOMC・日銀会合を控え、政策金利の思惑から金融・銀行株に関心が向かう可能性がある</span></div></li><li><a href="https://www.zaikei.co.jp/article/20260724/862565.html" target="_blank" rel="noopener">NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷</a><span class="meta">7/24 / 財経新聞</span><div class="news-impact"><span class="impact-sector">関連分野: AI・ハイテク株</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">原油高が投資家心理の重荷となっており、資源関連株への関心が高まりつつある</span></div></li></ul>
       </div>
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>
@@ -649,70 +657,94 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
       <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">08:00</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505814.pdf" target="_blank" rel="noopener">ワールドＨＤ、統合報告書2026「人が活きるカタチレポート」 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>弘電社</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504910.pdf" target="_blank" rel="noopener">臨時株主総会招集ご通知</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">08:00</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260729502082.pdf" target="_blank" rel="noopener">フジッコ、Annual Report 2026 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>Ｅ・ＪＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504563.pdf" target="_blank" rel="noopener">Notice of the 19th Annual General Meeting of Shareholders</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">08:00</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505233.pdf" target="_blank" rel="noopener">ＦＰパートナ、Integrated Report 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>Ｅ・ＪＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504562.pdf" target="_blank" rel="noopener">第19回定時株主総会の招集に際しての電子提供措置事項（交付書面に記載しない事項）</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">08:00</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf" target="_blank" rel="noopener">セブン銀、セブン銀行ディスクロージャー誌2026（資料編） 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>Ｅ・ＪＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504561.pdf" target="_blank" rel="noopener">第19回定時株主総会招集ご通知及び株主総会資料</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf" target="_blank" rel="noopener">セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>ワールドＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505814.pdf" target="_blank" rel="noopener">統合報告書2026「人が活きるカタチレポート」</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf" target="_blank" rel="noopener">セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>フジッコ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260729502082.pdf" target="_blank" rel="noopener">Annual Report 2026</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf" target="_blank" rel="noopener">大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2） 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>ＦＰパートナ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505233.pdf" target="_blank" rel="noopener">Integrated Report</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf" target="_blank" rel="noopener">大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2） 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>セブン銀</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf" target="_blank" rel="noopener">セブン銀行ディスクロージャー誌2026（資料編）</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505198.pdf" target="_blank" rel="noopener">東建物、東京建物グループ統合報告書2026 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>セブン銀</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf" target="_blank" rel="noopener">セブン銀行統合報告書ディスクロージャー誌2026（本編_後編）</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504335.pdf" target="_blank" rel="noopener">大和オフィス、Sustainability Report 2026 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>セブン銀</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf" target="_blank" rel="noopener">セブン銀行統合報告書ディスクロージャー誌2026（本編_前編）</a> <span class="tag">他</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
+          <td class="mono">00:30</td>
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504362.pdf" target="_blank" rel="noopener">大和証券リビ、Sustainability Report 2026 他 今日 00:30</a> <span class="tag">他</span></td>
+          <td>大光銀</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf" target="_blank" rel="noopener">大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2）</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>大光銀</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf" target="_blank" rel="noopener">大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2）</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>東建物</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731505198.pdf" target="_blank" rel="noopener">東京建物グループ統合報告書2026</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>大和オフィス</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504335.pdf" target="_blank" rel="noopener">Sustainability Report 2026</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>大和証券リビ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260801/140120260731504362.pdf" target="_blank" rel="noopener">Sustainability Report 2026</a> <span class="tag">他</span></td>
         </tr>
         <tr>
           <td class="mono">―</td>
@@ -743,30 +775,6 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
           <td>―</td>
           <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf" target="_blank" rel="noopener">郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 7月31日(金) 19:30</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260707588646.pdf" target="_blank" rel="noopener">トランスコス、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 19:28</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505890.pdf" target="_blank" rel="noopener">カカクコム、Notice Regarding Amendment to the Terms and Conditions of the Tender Offer by Kamgras 1 K.K. 他 7月31日(金) 19:01</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505893.pdf" target="_blank" rel="noopener">ＭＸ前向き、「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ 他 7月31日(金) 19:00</a> <span class="tag">他</span></td>
-        </tr>
-        <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505905.pdf" target="_blank" rel="noopener">北浜ＣＰ、アゼルバイジャン共和国の現地法人に対する資金の貸付に関するお知らせ 他 7月31日(金) 19:00</a> <span class="tag">他</span></td>
         </tr></tbody>
     </table>
     </div>
@@ -785,7 +793,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td>monoAI technology</td>
           <td class="mono">213円</td>
           <td class="mono up">+30.67%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
-          <td>ストップ高</td>
+          <td><span class="hl-good-strong">ストップ高</span></td>
           <td class="reason">具体的な材料は確認できず、思惑的な物色とみられる</td>
         </tr>
         <tr>
@@ -793,7 +801,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td>エスポア</td>
           <td class="mono">642円</td>
           <td class="mono up">+18.45%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
-          <td>ストップ高（前日ストップ安からの反発）</td>
+          <td><span class="hl-good-strong">ストップ高</span>（前日<span class="hl-bad-strong">ストップ安</span>からの<span class="hl-good">反発</span>）</td>
           <td class="reason">系統用蓄電池関連の販売用不動産取得・権利売却の発表を材料視</td>
         </tr>
         <tr>
@@ -801,7 +809,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td>アイズ</td>
           <td class="mono">2,209円</td>
           <td class="mono up">+11.01%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
-          <td>ストップ高、9連騰</td>
+          <td><span class="hl-good-strong">ストップ高</span>、9連騰</td>
           <td class="reason">「メディアレーダー」会員数14万人突破、オンラインファクタリング提供対象拡大を材料に買い継続</td>
         </tr>
         <tr>
@@ -810,7 +818,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td class="mono">11円</td>
           <td class="mono up">+10.00%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
           <td>出来高急増(3億株超)</td>
-          <td class="reason">2027年2月期1Q増収増益(売上+203.9%)、再エネ関連投資事業が牽引</td>
+          <td class="reason">2027年2月期1Q<span class="hl-good-strong">増収増益</span>(売上<span class="hl-good-strong">+203.9%</span>)、再エネ関連投資事業が牽引</td>
         </tr></tbody>
     </table>
     </div>
@@ -831,131 +839,131 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
       <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
       <tbody>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260727500194.pdf" target="_blank" rel="noopener">シュッピン、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 21:02</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260727500194.pdf" target="_blank" rel="noopener">シュッピン、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 21:02</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260614570177.pdf" target="_blank" rel="noopener">エアウォータ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 20:27</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260614570177.pdf" target="_blank" rel="noopener">エアウォータ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 20:27</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505911.pdf" target="_blank" rel="noopener">ニレコ、定款 2026/08/01 他 今日 19:34</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505911.pdf" target="_blank" rel="noopener">ニレコ、定款 2026/08/01 他 今日 19:34</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf" target="_blank" rel="noopener">ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 今日 19:30</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf" target="_blank" rel="noopener">ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 今日 19:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf" target="_blank" rel="noopener">郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 今日 19:30</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf" target="_blank" rel="noopener">郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 今日 19:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260707588646.pdf" target="_blank" rel="noopener">トランスコス、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 19:28</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260707588646.pdf" target="_blank" rel="noopener">トランスコス、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 19:28</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505890.pdf" target="_blank" rel="noopener">カカクコム、Notice Regarding Amendment to the Terms and Conditions of the Tender Offer by Kamgras 1 K.K. 他 今日 19:01</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505890.pdf" target="_blank" rel="noopener">カカクコム、Notice Regarding Amendment to the Terms and Conditions of the Tender Offer by Kamgras 1 K.K. 他 今日 19:01</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505893.pdf" target="_blank" rel="noopener">ＭＸ前向き、「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505893.pdf" target="_blank" rel="noopener">ＭＸ前向き、「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505366.pdf" target="_blank" rel="noopener">北浜ＣＰ、連結子会社の異動（株式譲渡）に関するお知らせ 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505366.pdf" target="_blank" rel="noopener">北浜ＣＰ、連結子会社の異動（株式譲渡）に関するお知らせ 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505902.pdf" target="_blank" rel="noopener">北浜ＣＰ、固定資産の取得に関するお知らせ 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505902.pdf" target="_blank" rel="noopener">北浜ＣＰ、固定資産の取得に関するお知らせ 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505905.pdf" target="_blank" rel="noopener">北浜ＣＰ、アゼルバイジャン共和国の現地法人に対する資金の貸付に関するお知らせ 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505905.pdf" target="_blank" rel="noopener">北浜ＣＰ、アゼルバイジャン共和国の現地法人に対する資金の貸付に関するお知らせ 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505886.pdf" target="_blank" rel="noopener">パークシャ、自己株式取得に係る事項の決定に関するお知らせ 自社 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505886.pdf" target="_blank" rel="noopener">パークシャ、自己株式取得に係る事項の決定に関するお知らせ 自社 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505887.pdf" target="_blank" rel="noopener">パークシャ、Notice Concerning Determination of Matters Related to Acquisition of Treasury Stock 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505887.pdf" target="_blank" rel="noopener">パークシャ、Notice Concerning Determination of Matters Related to Acquisition of Treasury Stock 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505884.pdf" target="_blank" rel="noopener">パークシャ、Notice Concerning Revision to Forecast for Year-End Dividend 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505884.pdf" target="_blank" rel="noopener">パークシャ、Notice Concerning Revision to Forecast for Year-End Dividend 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505872.pdf" target="_blank" rel="noopener">パークシャ、期末配当予想の修正（配当開始）に関するお知らせ 配当 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge bull sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">ポジティブ</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505872.pdf" target="_blank" rel="noopener">パークシャ、期末配当予想の修正（配当開始）に関するお知らせ 配当 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505901.pdf" target="_blank" rel="noopener">カーブスＨＤ、Notice Regarding the Impact of the 2026 Kumamoto Earthquake 他 今日 19:00</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505901.pdf" target="_blank" rel="noopener">カーブスＨＤ、Notice Regarding the Impact of the 2026 Kumamoto Earthquake 他 今日 19:00</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505683.pdf" target="_blank" rel="noopener">システナ、システナ、富士スピードウェイとネーミングライツ契約を締結- 富士スピードウェイに「システナゴールブリッジ」と「2317コーナー」が誕生 - 他 今日 18:30</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505683.pdf" target="_blank" rel="noopener">システナ、システナ、富士スピードウェイとネーミングライツ契約を締結- 富士スピードウェイに「システナゴールブリッジ」と「2317コーナー」が誕生 - 他 今日 18:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505361.pdf" target="_blank" rel="noopener">エターナルＧ、関係会社株式評価損の発生（個別）に関するお知らせ 他 今日 18:30</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505361.pdf" target="_blank" rel="noopener">エターナルＧ、関係会社株式評価損の発生（個別）に関するお知らせ 他 今日 18:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505367.pdf" target="_blank" rel="noopener">エターナルＧ、Notice Regarding Occurrence of Loss on Valuation of Stocks of Subsidiaries and Affiliates (Non-Consolidated) 他 今日 18:30</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505367.pdf" target="_blank" rel="noopener">エターナルＧ、Notice Regarding Occurrence of Loss on Valuation of Stocks of Subsidiaries and Affiliates (Non-Consolidated) 他 今日 18:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr>
         <tr>
-          <td class="mono">―</td>
-          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
-          <td>―</td>
-          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505847.pdf" target="_blank" rel="noopener">日本紙、Notice Regarding the Impact of 2026 Kumamoto earthquake 他 今日 18:30</a> <span class="tag">他</span></td>
+          <td class="mono">Ã¢ÂÂ</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="Ã¢ÂÂ" aria-label="お気に入り登録" aria-pressed="false">★</button> Ã¢ÂÂ</td>
+          <td>Ã¢ÂÂ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505847.pdf" target="_blank" rel="noopener">日本紙、Notice Regarding the Impact of 2026 Kumamoto earthquake 他 今日 18:30</a> <span class="tag">Ã¤Â»Â</span></td>
         </tr></tbody>
     </table>
     </div>
       </div>
       <div class="card">
         <h3>引け後の主要ニュース</h3>
-        <ul class="news-list"><li><a href="https://news.yahoo.co.jp/articles/d5b95dbb4032949ddc2da0768d79e4f9296409ad" target="_blank" rel="noopener">トランプ政権、新関税を7月24日発動。60カ国・地域が対象、日本は追加関税で計12.5%に</a><span class="meta">7/24 / 毎日新聞(Yahoo!ニュース)</span><div class="news-impact"><span class="impact-sector">関連分野: 自動車・輸出関連</span><span class="impact-companies">注目企業: トヨタ自動車(7203)、日産自動車(7201)、SUBARU(7270)</span></div></li><li><a href="https://www.bloomberg.com/jp/news/articles/2026-07-22/TIJSOWT96OSG00" target="_blank" rel="noopener">日銀、タカ派傾斜を強める。円安による物価上振れリスクを警戒し利上げペース加速に柔軟姿勢との報道</a><span class="meta">7/22 / Bloomberg</span><div class="news-impact"><span class="impact-sector">関連分野: 金融・銀行</span><span class="impact-companies">注目企業: 三菱ＵＦＪフィナンシャル・グループ(8306)、三井住友フィナンシャルグループ(8316)、みずほフィナンシャルグループ(8411)</span></div></li><li><a href="https://www.bloomberg.com/jp/news/articles/2026-06-09/TGD08XT96OSH00" target="_blank" rel="noopener">台湾、AI向け先端半導体の対中輸出規制強化を検討との報道</a><span class="meta">6/9 / Bloomberg</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体製造装置</span><span class="impact-companies">注目企業: 東京エレクトロン(8035)、アドバンテスト(6857)、ディスコ(6146)</span></div></li></ul>
+        <ul class="news-list"><li><a href="https://news.yahoo.co.jp/articles/d5b95dbb4032949ddc2da0768d79e4f9296409ad" target="_blank" rel="noopener">トランプ政権、新関税を7月24日発動。60カ国・地域が対象、日本は追加関税で計12.5%に</a><span class="meta">7/24 / 毎日新聞(Yahoo!ニュース)</span><div class="news-impact"><span class="impact-sector">関連分野: 自動車・輸出関連</span><span class="impact-companies">注目企業: トヨタ自動車(7203)、日産自動車(7201)、SUBARU(7270)</span></div><div class="news-flow flow-current"><span class="flow-badge">💰 実況</span><span class="flow-text">新関税の発動により輸出採算の<span class="hl-bad">悪化</span>が<span class="hl-warn">懸念</span>され、自動車株には既に警戒感が織り込まれつつある</span></div></li><li><a href="https://www.bloomberg.com/jp/news/articles/2026-07-22/TIJSOWT96OSG00" target="_blank" rel="noopener">日銀、タカ派傾斜を強める。円安による物価上振れリスクを警戒し利上げペース加速に柔軟姿勢との報道</a><span class="meta">7/22 / Bloomberg</span><div class="news-impact"><span class="impact-sector">関連分野: 金融・銀行</span><span class="impact-companies">注目企業: 三菱ＵＦＪフィナンシャル・グループ(8306)、三井住友フィナンシャルグループ(8316)、みずほフィナンシャルグループ(8411)</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">7月30-31日の日銀会合を控え、タカ派傾斜報道を受けて金利<span class="hl-good">上昇</span>を見込んだ資金が銀行株に向かう可能性がある</span></div></li><li><a href="https://www.bloomberg.com/jp/news/articles/2026-06-09/TGD08XT96OSH00" target="_blank" rel="noopener">台湾、AI向け先端半導体の対中輸出規制強化を検討との報道</a><span class="meta">6/9 / Bloomberg</span><div class="news-impact"><span class="impact-sector">関連分野: 半導体製造装置</span><span class="impact-companies">注目企業: 東京エレクトロン(8035)、アドバンテスト(6857)、ディスコ(6146)</span></div><div class="news-flow flow-expected"><span class="flow-badge">💰 見込み</span><span class="flow-text">対中輸出規制の強化が続けば、代替供給網構築への思惑から国内半導体製造装置株に関心が向かう可能性がある</span></div></li></ul>
       </div>
       <div class="card">
         <h3>本日の値動き・出来高で話題の銘柄</h3>
@@ -971,7 +979,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td>シリコンスタジオ</td>
           <td class="mono">1,310円</td>
           <td class="mono up">+25.50%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
-          <td>ストップ高</td>
+          <td><span class="hl-good-strong">ストップ高</span></td>
           <td class="reason">具体的な材料は確認できず、思惑的な物色とみられる</td>
         </tr>
         <tr>
@@ -979,7 +987,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td>Amazia</td>
           <td class="mono">384円</td>
           <td class="mono up">+19.60%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
-          <td>急騰</td>
+          <td><span class="hl-good-strong">急騰</span></td>
           <td class="reason">具体的な材料は確認できず、思惑的な物色とみられる</td>
         </tr>
         <tr>
@@ -987,7 +995,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <td>アスタリスク</td>
           <td class="mono">1,804円</td>
           <td class="mono up">+18.80%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:50.0%;"></span></span></td>
-          <td>急騰</td>
+          <td><span class="hl-good-strong">急騰</span></td>
           <td class="reason">東証が信用規制を解除したことを材料視</td>
         </tr>
         <tr>
@@ -1022,11 +1030,11 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           <div class="rank-num">🥇</div>
           <div class="rank-body">
             <div class="rank-head">
-              <span class="mono">―</span> ―
+              <span class="mono">Ã¢ÂÂ</span> Ã¢ÂÂ
               <span class="score-tag">軽めの好材料</span>
             </div>
             <div class="rank-desc rank-content">📌 具体的な好材料: 配当に関する開示</div>
-            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜+3%程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜<span class="hl-good">+3%</span>程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
             <div class="rank-desc rank-reason">💡 なぜ好材料か: 株主還元に関するプラスの情報として受け止められやすいため</div>
             <div class="rank-desc rank-news">
               <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731505872.pdf" target="_blank" rel="noopener">パークシャ、期末配当予想の修正（配当開始）に関するお知らせ 配当 今日 19:00</a>
@@ -1042,7 +1050,87 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
           各銘柄について、①具体的に何が発表されたか、②過去の類似ニュースに基づく想定インパクト(参考値)、③好材料と判断する理由、を明記しています。
           <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
         </p>
-        <p class="empty">本日は米国株の明確な好材料データがありません(データ取得は今後の更新に対応予定です)。</p>
+        
+        <div class="rank-item">
+          <div class="rank-num">🥇</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">UNP</span> Union Pacific
+              <span class="score-tag">強い好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: Union Pacificが2Q決算でEPS・売上高とも市場予想を上回り、通期見通しも<span class="hl-good-strong">上方修正</span>。株価は一時52週高値近辺まで<span class="hl-good">上昇</span></div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: <span class="hl-good">+3%</span>〜<span class="hl-good-strong">+10%</span>程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 実績が事前のアナリスト予想を上回ったことで、業績への評価が上向きに見直されやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://www.chartmill.com/news/UNP/Chartmill-51508-Union-Pacific-NYSEUNP-Surges-on-Earnings-Beat-Showcasing-Quality-Stock-Performance" target="_blank" rel="noopener">Union Pacificが2Q決算でEPS・売上高とも市場予想を上回り、通期見通しも上方修正。株価は一時52週高値近辺まで上昇</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥈</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">EW</span> Edwards Lifesciences
+              <span class="score-tag">強い好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: Edwards Lifesciencesが2Q決算でEPS・売上高とも予想超え、TAVR事業の<span class="hl-good">好調</span>を受け2026年売上高見通しを<span class="hl-good-strong">上方修正</span>。株価は時間外で6%超<span class="hl-good">上昇</span></div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: <span class="hl-good">+3%</span>〜<span class="hl-good-strong">+10%</span>程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 実績が事前のアナリスト予想を上回ったことで、業績への評価が上向きに見直されやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://www.chartmill.com/news/EW/Chartmill-51555-Edwards-Lifesciences-NYSEEW-Raises-Guidance-After-Solid-Q2-Earnings-Stock-Surges-6" target="_blank" rel="noopener">Edwards Lifesciencesが2Q決算でEPS・売上高とも予想超え、TAVR事業の好調を受け2026年売上高見通しを上方修正。株価は時間外で6%超上昇</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥉</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">THC</span> Tenet Healthcare
+              <span class="score-tag">強い好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: Tenet Healthcareが2Q決算で大幅増益、通期業績見通しを2億9500万ドル引き上げ。株価は時間外で17%超<span class="hl-good">上昇</span></div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: <span class="hl-good">+3%</span>〜<span class="hl-good-strong">+8%</span>程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 会社自身が先行きの成長期待を引き上げたことで、将来の増益期待が高まりやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://finance.yahoo.com/healthcare/articles/tenet-healthcare-shares-jump-second-103508861.html" target="_blank" rel="noopener">Tenet Healthcareが2Q決算で大幅増益、通期業績見通しを2億9500万ドル引き上げ。株価は時間外で17%超上昇</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">4位</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">DLR</span> Digital Realty Trust
+              <span class="score-tag">やや強い好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: Digital Realty TrustがAI・クラウド需要を背景に2Q決算で大幅増益、TD Cowenが「Hold」から「Buy」に<span class="hl-good-strong">格上げ</span></div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜<span class="hl-good">+5%</span>程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 有力な第三者評価の改善は、他の投資家の見方にも影響を与えやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://www.tradingpedia.com/2026/07/24/digital-realty-rallies-as-analysts-upgrade-stock/" target="_blank" rel="noopener">Digital Realty TrustがAI・クラウド需要を背景に2Q決算で大幅増益、TD Cowenが「Hold」から「Buy」に格上げ</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">5位</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">SSNC</span> SS&amp;C Technologies
+              <span class="score-tag">やや強い好材料</span>
+            </div>
+            <div class="rank-desc rank-content">📌 具体的な好材料: SS&amp;C Technologiesが2Q決算で<span class="hl-good-strong">増収増益</span>、四半期として過去最大となる4億3500万ドルの自社株買いを実施し通期見通しも<span class="hl-good-strong">上方修正</span></div>
+            <div class="rank-desc rank-impact">📈 想定インパクト: +1%〜<span class="hl-good">+4%</span>程度<span class="tag">過去の類似ケースの一般的傾向・参考値(保証なし)</span></div>
+            <div class="rank-desc rank-reason">💡 なぜ好材料か: 株式数減少によるEPS改善期待と、経営陣の自信表明として受け止められやすいため</div>
+            <div class="rank-desc rank-news">
+              <a href="https://stockstotrade.com/news/ss-c-technologies-holdings-inc-ssnc-news-2026_07_24/" target="_blank" rel="noopener">SS&amp;C Technologiesが2Q決算で増収増益、四半期として過去最大となる4億3500万ドルの自社株買いを実施し通期見通しも上方修正</a>
+            </div>
+            <div class="rank-desc rank-outlook">📊 米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。</div>
+          </div>
+        </div>
       </div>
     </section>
   
@@ -1063,236 +1151,440 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="7203" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7203.T" target="_blank" rel="noopener">7203</a></td>
           <td>トヨタ自動車</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">3,067.0</td>
+          <td class="mono down">-1.89%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:11.8%;"></span></span></td>
+          <td class="mono">-0.36%</td>
+          <td class="mono">+5.81%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:66.8%;"></span></span><span class="rsi-gauge-num">66.8</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6758" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6758.T" target="_blank" rel="noopener">6758</a></td>
           <td>ソニーグループ</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">3,787.0</td>
+          <td class="mono down">-0.58%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:3.6%;"></span></span></td>
+          <td class="mono">+1.58%</td>
+          <td class="mono">+9.68%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:83.9%;"></span></span><span class="rsi-gauge-num">83.9</span></span> <span class="tag tag-warn">過熱感</span></td>
-          <td><span class="badge neutral">中立(過熱感)</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。</td>
+          <td><span class="badge bear">弱気(過熱感)</span></td>
+          <td class="reason">売り3/中立4/買い0。RSIが70超で<span class="hl-warn">過熱感</span>、短期的な反落<span class="hl-warn">リスク</span>に留意。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="8306" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8306.T" target="_blank" rel="noopener">8306</a></td>
           <td>三菱UFJフィナンシャル・グループ</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">-1.91%</td>
+          <td class="mono">+1.96%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:55.0%;"></span></span><span class="rsi-gauge-num">55.0</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="9984" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9984.T" target="_blank" rel="noopener">9984</a></td>
           <td>ソフトバンクグループ</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">+4.99%</td>
+          <td class="mono">-9.12%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:35.7%;"></span></span><span class="rsi-gauge-num">35.7</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bull">強気</span></td>
+          <td class="reason">売り0/中立4/買い3。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6861" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6861.T" target="_blank" rel="noopener">6861</a></td>
           <td>キーエンス</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">+5.99%</td>
+          <td class="mono">+6.24%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:58.0%;"></span></span><span class="rsi-gauge-num">58.0</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6954" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6954.T" target="_blank" rel="noopener">6954</a></td>
           <td>ファナック</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">+6.88%</td>
+          <td class="mono">+2.63%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:49.6%;"></span></span><span class="rsi-gauge-num">49.6</span></span></td>
           <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td class="reason">売り1/中立5/買い1。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="7974" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7974.T" target="_blank" rel="noopener">7974</a></td>
           <td>任天堂</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">7,679.0</td>
+          <td class="mono down">-5.72%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:35.8%;"></span></span></td>
+          <td class="mono">-1.30%</td>
+          <td class="mono">+7.00%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:63.3%;"></span></span><span class="rsi-gauge-num">63.3</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">弱気</span></td>
+          <td class="reason">売り2/中立5/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6098" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6098.T" target="_blank" rel="noopener">6098</a></td>
           <td>リクルートホールディングス</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">12,550.0</td>
+          <td class="mono down">-2.83%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:17.7%;"></span></span></td>
+          <td class="mono">-1.44%</td>
+          <td class="mono">+2.47%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:54.6%;"></span></span><span class="rsi-gauge-num">54.6</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">弱気</span></td>
+          <td class="reason">売り2/中立5/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="8035" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8035.T" target="_blank" rel="noopener">8035</a></td>
           <td>東京エレクトロン</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">+1.20%</td>
+          <td class="mono">-17.94%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:27.0%;"></span></span><span class="rsi-gauge-num">27.0</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
-          <td><span class="badge neutral">中立(売られ過ぎ)</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。</td>
+          <td><span class="badge bull">強気(売られ過ぎ)</span></td>
+          <td class="reason">売り0/中立5/買い2。RSIが30以下で<span class="hl-warn">売られ過ぎ</span>、短期的な<span class="hl-good">反発</span>余地に留意。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="9433" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9433.T" target="_blank" rel="noopener">9433</a></td>
           <td>KDDI</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">2,921.0</td>
+          <td class="mono down">-4.26%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:26.6%;"></span></span></td>
+          <td class="mono">-2.80%</td>
+          <td class="mono">+2.96%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:62.0%;"></span></span><span class="rsi-gauge-num">62.0</span></span></td>
           <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="9432" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9432.T" target="_blank" rel="noopener">9432</a></td>
           <td>日本電信電話</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">152.4</td>
+          <td class="mono down">-4.15%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:25.9%;"></span></span></td>
+          <td class="mono">-2.61%</td>
+          <td class="mono">+1.61%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:59.4%;"></span></span><span class="rsi-gauge-num">59.4</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="7267" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7267.T" target="_blank" rel="noopener">7267</a></td>
           <td>本田技研工業</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">1,625.5</td>
+          <td class="mono down">-2.66%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:16.6%;"></span></span></td>
+          <td class="mono">-0.63%</td>
+          <td class="mono">+5.12%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:67.7%;"></span></span><span class="rsi-gauge-num">67.7</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">弱気</span></td>
+          <td class="reason">売り2/中立5/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6367" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6367.T" target="_blank" rel="noopener">6367</a></td>
           <td>ダイキン工業</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">23,295.0</td>
+          <td class="mono down">-1.46%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:9.1%;"></span></span></td>
+          <td class="mono">-1.85%</td>
+          <td class="mono">-5.51%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:17.1%;"></span></span><span class="rsi-gauge-num">17.1</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
-          <td><span class="badge neutral">中立(売られ過ぎ)</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。</td>
+          <td><span class="badge bull">強気(売られ過ぎ)</span></td>
+          <td class="reason">売り0/中立5/買い2。RSIが30以下で<span class="hl-warn">売られ過ぎ</span>、短期的な<span class="hl-good">反発</span>余地に留意。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="9983" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9983.T" target="_blank" rel="noopener">9983</a></td>
           <td>ファーストリテイリング</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">78,190.0</td>
+          <td class="mono down">-0.39%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:2.4%;"></span></span></td>
+          <td class="mono">-0.88%</td>
+          <td class="mono">-3.93%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:38.0%;"></span></span><span class="rsi-gauge-num">38.0</span></span></td>
           <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="4063" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4063.T" target="_blank" rel="noopener">4063</a></td>
           <td>信越化学工業</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">-0.90%</td>
+          <td class="mono">-15.74%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:20.5%;"></span></span><span class="rsi-gauge-num">20.5</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
-          <td><span class="badge neutral">中立(売られ過ぎ)</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。</td>
+          <td><span class="badge bull">強気(売られ過ぎ)</span></td>
+          <td class="reason">売り0/中立5/買い2。RSIが30以下で<span class="hl-warn">売られ過ぎ</span>、短期的な<span class="hl-good">反発</span>余地に留意。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6857" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6857.T" target="_blank" rel="noopener">6857</a></td>
           <td>アドバンテスト</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">+16.47%</td>
+          <td class="mono">+10.15%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:55.6%;"></span></span><span class="rsi-gauge-num">55.6</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り2/中立4/買い1。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="4519" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4519.T" target="_blank" rel="noopener">4519</a></td>
           <td>中外製薬</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">6,932.0</td>
+          <td class="mono down">-1.97%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:12.3%;"></span></span></td>
+          <td class="mono">-0.74%</td>
+          <td class="mono">-5.07%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:37.8%;"></span></span><span class="rsi-gauge-num">37.8</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="5401" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/5401.T" target="_blank" rel="noopener">5401</a></td>
           <td>日本製鉄</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">649.6</td>
+          <td class="mono down">-1.58%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:9.9%;"></span></span></td>
+          <td class="mono">-0.77%</td>
+          <td class="mono">+11.30%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-hot" style="left:84.1%;"></span></span><span class="rsi-gauge-num">84.1</span></span> <span class="tag tag-warn">過熱感</span></td>
-          <td><span class="badge neutral">中立(過熱感)</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。</td>
+          <td><span class="badge bear">弱気(過熱感)</span></td>
+          <td class="reason">売り3/中立4/買い0。RSIが70超で<span class="hl-warn">過熱感</span>、短期的な反落<span class="hl-warn">リスク</span>に留意。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="2413" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/2413.T" target="_blank" rel="noopener">2413</a></td>
           <td>エムスリー</td>
-          <td class="mono">―</td>
-          <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">1,781.5</td>
+          <td class="mono down">-7.74%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:48.4%;"></span></span></td>
+          <td class="mono">-6.45%</td>
+          <td class="mono">-4.95%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:43.1%;"></span></span><span class="rsi-gauge-num">43.1</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td class="reason">売り2/中立4/買い1。RSIは中立域。</td>
         </tr>
         <tr>
           <td class="mono"><button class="fav-btn" type="button" data-code="6645" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6645.T" target="_blank" rel="noopener">6645</a></td>
           <td>オムロン</td>
           <td class="mono">―</td>
           <td class="mono flat">―</td>
-          <td class="mono">―</td>
-          <td class="mono">―</td>
+          <td class="mono">+2.12%</td>
+          <td class="mono">-3.62%</td>
           <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:35.8%;"></span></span><span class="rsi-gauge-num">35.8</span></span></td>
-          <td><span class="badge neutral">中立</span></td>
-          <td class="reason">売り0/中立0/買い0。RSIは中立域。</td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
         </tr></tbody>
     </table>
     </div>
       </div>
       <div class="card">
-        <h3>強気・弱気シグナルランキング</h3>
+        <h3>強気シグナル数ランキング</h3>
         <p class="rank-note">
           移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
           <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
         </p>
-        <h4 style="margin:0.5em 0 0.4em;color:var(--up)">🟢 強気（買いシグナル優勢）</h4><p class="empty">現在、買いシグナル優勢の銘柄はありません。</p><h4 style="margin:1.2em 0 0.4em;color:var(--down)">🔴 弱気（売りシグナル優勢）</h4><p class="empty">現在、売りシグナル優勢の銘柄はありません。</p>
+        <p class="empty">シグナルデータが取得できませんでした。</p>
       </div>
     </section>
   
+    <section id="alignment">
+      <h2>🧭 材料×テクニカル 一致点・矛盾点分析</h2>
+      <p class="section-desc">
+        「本日の注目テーマと関連銘柄」のニュースと「株価診断(テクニカル指標)」を機械的にクロス参照し、
+        材料とテクニカルが同じ方向を示しているか、逆方向で矛盾しているかを銘柄ごとに整理した参考情報です。
+        <b>AIによる高度な分析ではなく単純なルールベースの判定であり、投資助言ではありません。</b>
+      </p>
+      
+    <div class="card alignment-conclusion mood-green">
+      <h3>📝 結論(まとめ)</h3>
+      <p class="conclusion-text">銘柄によって材料とテクニカルが一致するものと<span class="hl-warn">矛盾</span>するものが混在しており、市場全体を一括りに<span class="hl-good">強気</span>・<span class="hl-bad">弱気</span>と言える状況ではありません。また今週は重要度の高い経済イベント(FOMC・日銀会合など)を控えており、結果発表前後は相場が大きく振れやすい点にも注意してください。</p>
+      <div class="mood-reasons"><span class="tag">一致 1件</span><span class="tag tag-warn">矛盾・過熱感 3件</span><span class="tag">判断材料不足 12件</span></div>
+    </div>
+    <div class="card">
+      <h3>🔎 詳細: 銘柄ごとの一致点・矛盾点</h3>
+      <p class="rank-note">
+        上の「本日の注目テーマと関連銘柄」に登場する各銘柄について、ニュースの資金フロー有無・キーワードから
+        推定した材料の方向感と、テクニカル指標(株価診断)のシグナル・RSIを機械的に重ね合わせています。
+        <b>AIによる高度な文脈分析ではなく単純なルールベースの参考情報であり、投資助言ではありません。</b>
+      </p>
+      <h4 class="align-subhead">✅ 材料とテクニカルが一致している銘柄</h4>
+            <div class="rank-item">
+              <div class="rank-num">1</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">半導体製造装置</span>
+                  <button class="fav-btn" type="button" data-code="8035" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8035.T" target="_blank" rel="noopener">8035</a> 東京エレクトロン 
+                  <span class="badge bull">一致(強気材料×強気シグナル)</span>
+                </div>
+                <div class="rank-desc">半導体製造装置に関する報道は資金流入が期待される追い風材料で、東京エレクトロンのテクニカルシグナルも「<span class="hl-good">強気</span>(<span class="hl-warn">売られ過ぎ</span>)」と同じ<span class="hl-good">強気</span>方向を示しています。材料とテクニカルの両方が同じ方向を向いている参考ケースです。</div>
+              </div>
+            </div><h4 class="align-subhead">⚠️ 矛盾・過熱感が出ている銘柄</h4>
+            <div class="rank-item">
+              <div class="rank-num">1</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">自動車・輸出関連</span>
+                  <button class="fav-btn" type="button" data-code="7203" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7203.T" target="_blank" rel="noopener">7203</a> トヨタ自動車 <span class="mono down">-1.89%</span>
+                  <span class="tag tag-warn">矛盾(材料とテクニカルが逆方向)</span>
+                </div>
+                <div class="rank-desc">自動車・輸出関連の報道は追い風材料ですが、トヨタ自動車のテクニカルシグナルは「中立(やや<span class="hl-bad">弱気</span>)」でむしろ<span class="hl-bad">弱気</span>方向です。材料とテクニカルの方向が<span class="hl-warn">矛盾</span>しており、判断が難しい組み合わせです。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">2</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">金融・銀行</span>
+                  <button class="fav-btn" type="button" data-code="8306" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8306.T" target="_blank" rel="noopener">8306</a> 三菱UFJフィナンシャル・グループ 
+                  <span class="tag tag-warn">矛盾(材料とテクニカルが逆方向)</span>
+                </div>
+                <div class="rank-desc">金融・銀行の報道は追い風材料ですが、三菱UFJフィナンシャル・グループのテクニカルシグナルは「中立(やや<span class="hl-bad">弱気</span>)」でむしろ<span class="hl-bad">弱気</span>方向です。材料とテクニカルの方向が<span class="hl-warn">矛盾</span>しており、判断が難しい組み合わせです。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">3</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">半導体製造装置</span>
+                  <button class="fav-btn" type="button" data-code="6857" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6857.T" target="_blank" rel="noopener">6857</a> アドバンテスト 
+                  <span class="tag tag-warn">矛盾(材料とテクニカルが逆方向)</span>
+                </div>
+                <div class="rank-desc">半導体製造装置の報道は追い風材料ですが、アドバンテストのテクニカルシグナルは「中立(やや<span class="hl-bad">弱気</span>)」でむしろ<span class="hl-bad">弱気</span>方向です。材料とテクニカルの方向が<span class="hl-warn">矛盾</span>しており、判断が難しい組み合わせです。</div>
+              </div>
+            </div><h4 class="align-subhead">❔ 材料はあるがテクニカル未確認・方向感が乏しい銘柄</h4>
+            <div class="rank-item">
+              <div class="rank-num">1</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">海運</span>
+                  <button class="fav-btn" type="button" data-code="9101" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9101.T" target="_blank" rel="noopener">9101</a> 日本郵船 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">日本郵船(海運関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">2</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">海運</span>
+                  <button class="fav-btn" type="button" data-code="9104" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9104.T" target="_blank" rel="noopener">9104</a> 商船三井 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">商船三井(海運関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">3</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">海運</span>
+                  <button class="fav-btn" type="button" data-code="9107" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9107.T" target="_blank" rel="noopener">9107</a> 川崎汽船 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">川崎汽船(海運関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">4</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">エネルギー・資源</span>
+                  <button class="fav-btn" type="button" data-code="1605" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/1605.T" target="_blank" rel="noopener">1605</a> INPEX 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">INPEX(エネルギー・資源関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">5</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">エネルギー・資源</span>
+                  <button class="fav-btn" type="button" data-code="5019" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/5019.T" target="_blank" rel="noopener">5019</a> 出光興産 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">出光興産(エネルギー・資源関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">6</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">半導体・AI関連</span>
+                  イビデン 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">イビデン(半導体・AI関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">7</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">半導体</span>
+                  キオクシアホールディングス 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">キオクシアホールディングス(半導体関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">8</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">自動車・輸出関連</span>
+                  <button class="fav-btn" type="button" data-code="7201" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7201.T" target="_blank" rel="noopener">7201</a> 日産自動車 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">日産自動車(自動車・輸出関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">9</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">自動車・輸出関連</span>
+                  <button class="fav-btn" type="button" data-code="7270" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7270.T" target="_blank" rel="noopener">7270</a> SUBARU 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">SUBARU(自動車・輸出関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">10</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">金融・銀行</span>
+                  <button class="fav-btn" type="button" data-code="8316" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8316.T" target="_blank" rel="noopener">8316</a> 三井住友フィナンシャルグループ 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">三井住友フィナンシャルグループ(金融・銀行関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">11</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">金融・銀行</span>
+                  <button class="fav-btn" type="button" data-code="8411" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8411.T" target="_blank" rel="noopener">8411</a> みずほフィナンシャルグループ 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">みずほフィナンシャルグループ(金融・銀行関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+            <div class="rank-item">
+              <div class="rank-num">12</div>
+              <div class="rank-body">
+                <div class="rank-head">
+                  <span class="tag">半導体製造装置</span>
+                  <button class="fav-btn" type="button" data-code="6146" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6146.T" target="_blank" rel="noopener">6146</a> ディスコ 
+                  <span class="badge neutral">テクニカル指標一覧の対象外(未確認)</span>
+                </div>
+                <div class="rank-desc">ディスコ(半導体製造装置関連)は、テクニカル指標一覧(主力20銘柄)の対象外のためテクニカル面での確認ができていません。個別に株価情報サービスでご確認ください。</div>
+              </div>
+            </div>
+    </div>
+    <div class="card beginner-card">
+      <h3>🔰 初心者向け: 今後どう対応すればいいか</h3>
+      <ul class="beginner-tips"><li>材料とテクニカルが一致している銘柄は、少なくとも情報同士が<span class="hl-warn">矛盾</span>していない点で参考にしやすい一方、対象件数が少ない・データがやや古いケースもあるため、鵜呑みにせず自分でも最新のチャートを確認しましょう。</li><li>材料とテクニカルが<span class="hl-warn">矛盾</span>している、またはRSIが既に70以上で<span class="hl-warn">過熱感</span>が出ている銘柄は、初心者ほど今から追いかけるのは避け、いったん様子を見るのが無難です。</li><li>既に<span class="hl-good-strong">ストップ高</span>・<span class="hl-good-strong">急騰</span>している銘柄を当日中に追加で買うのは初心者には<span class="hl-warn">リスク</span>が高い行為です。値動きが落ち着くのを待つか、見送るのも十分な選択肢です。</li><li>今週はFOMCや日銀会合など相場が大きく動きやすいイベントを控えています。結果が出るまでは新規の大きなポジションを避け、いつもより小さい金額で試すか、いったん見送るのも有効な考え方です。</li><li>どの銘柄を選ぶ場合でも、買う前に<span class="hl-warn">損切り</span>ラインを決めておく、1つの銘柄に資金を集中させず失っても生活に影響しない金額で試す、このページの情報だけで判断せず取引直前に最新の株価・ニュースを自分でも確認する、という3点は徹底しましょう。</li></ul>
+      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身で負ってください。</p>
+    </div>
+    </section>
   
     <section id="growth">
       <h2>🌱 成長株ウォッチ(決算・好材料ベース)</h2>
@@ -1304,16 +1596,111 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
       </p>
       <div class="card">
         <h3>好材料開示に基づく成長株候補</h3>
-        <p class="empty">現時点で好材料開示に基づく成長株候補は見つかりませんでした。</p>
-      </div>
-    </section>
-
-  
-    <section id="strategy">
-      <h2>🎯 投資戦略まとめ</h2>
-      <p class="section-desc">今日の地合い・テクニカル状態・好材料開示を統合した投資判断の参考情報です。あくまで参考であり、<b>投資助言ではありません。最終判断はご自身の責任で。</b></p>
-      <div class="card">
-        <div class="strategy-block"><h4>📊 今日の地合い</h4><div class="strategy-market" style="color:var(--down)">🔴 弱気地合い</div><ul class="strategy-list"><li>米国3指数平均: +0.74%（S&P500 +0.70% / NYダウ +0.53% / NASDAQ +1.00%）</li><li>日経先物: -1.07%</li><li>ドル円: 円高（輸出株に逆風）（前日比 -1.74%）</li></ul></div><div class="strategy-block"><h4>📈 テクニカル状態診断（過去データによる現在の強気・弱気）</h4><p class="strategy-note">移動平均線・RSIなど<b>過去の株価データ</b>から算出した「現在の強気・弱気状態」です。<b>将来の株価を予測・保証するものではありません。</b></p><p class="empty" style="margin:0.5em 0">現時点でテクニカル強気の銘柄はありません。</p></div><div class="strategy-block"><h4>📋 好材料開示銘柄（上方修正・増配等）</h4><p class="strategy-note">TDnetに上方修正・増配など好材料を含む開示を行った銘柄です。<b>翌営業日以降の株価反応に注目。</b>開示原文のご確認を。</p><p class="empty" style="margin:0.5em 0">本日は好材料開示（上方修正・増配等）が見当たりません。</p></div><div class="strategy-block strategy-conclusion"><h4>🎯 投資判断まとめ・今後の見通し</h4><ul class="strategy-conclusion-list"><li>現時点でテクニカル強気の銘柄がなく、新規買いの根拠が薄い局面です。相場全体の動向を確認しながら様子見が無難です。</li><li>⚠️ <b>RSI過熱（70超）の銘柄: ソニーグループ（RSI過熱）、日本製鉄（RSI過熱）</b> — 短期的な利益確定売りや調整が入りやすいため、新規追いかけは避ける方が無難です。</li><li>⚠️ 米国市場・日経先物が軟調です。全体相場の下落に引きずられるリスクが高く、<b>全般的に新規の買いは慎重に。</b>手持ちポジションは利益確定や損切りラインの確認を。</li></ul><p class="strategy-note" style="margin-top:0.8em">⚠️ 上記はテクニカル指標・開示情報等を組み合わせた機械的な参考情報です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</p></div>
+        
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              新日本建
+              <span class="badge bull">増配</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260730502834.pdf" target="_blank" rel="noopener">2027年３月期第２四半期（中間期）連結業績予想の公表および中間配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2027年３月期第２四半期（中間期）連結業績予想の公表および中間配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 7月31日(金) 18:00</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              高橋ウォール
+              <span class="badge bull">増配</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731504670.pdf" target="_blank" rel="noopener">第２四半期（中間期）業績予想及び通期業績予想の修正並びに期末配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「第２四半期（中間期）業績予想及び通期業績予想の修正並びに期末配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 7月31日(金) 17:00</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              ダイハツイン
+              <span class="badge bull">増配</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260724599537.pdf" target="_blank" rel="noopener">業績予想の修正および配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「業績予想の修正および配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 7月31日(金) 16:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              第四北越ＦＧ
+              <span class="badge bull">上方修正</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260730503867.pdf" target="_blank" rel="noopener">「2027年3月期第2四半期（累計）及び通期業績予想の上方修正」並びに「2027年3月期 配当予想の修正（増配）」に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「「2027年3月期第2四半期（累計）及び通期業績予想の<span class="hl-good-strong">上方修正</span>」並びに「2027年3月期 配当予想の修正（<span class="hl-good-strong">増配</span>）」に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 7月31日(金) 16:00</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              ワンキャリア
+              <span class="badge bull">上方修正</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260729502384.pdf" target="_blank" rel="noopener">通期連結業績予想の修正（上方修正）及び配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「通期連結業績予想の修正（<span class="hl-good-strong">上方修正</span>）及び配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 7月31日(金) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              川岸工
+              <span class="badge bull">増配</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260730503562.pdf" target="_blank" rel="noopener">2026年9月期通期業績予想及び配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2026年9月期通期業績予想及び配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 7月31日(金) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              オプテクスＧ
+              <span class="badge bull">上方修正</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731504411.pdf" target="_blank" rel="noopener">2026年12月期第2四半期（中間期）および通期連結業績予想の修正（上方修正）ならびに配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2026年12月期第2四半期（中間期）および通期連結業績予想の修正（<span class="hl-good-strong">上方修正</span>）ならびに配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 7月31日(金) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              たけびし
+              <span class="badge bull">増配</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260731/140120260731504570.pdf" target="_blank" rel="noopener">2027年３月期第２四半期連結累計期間の業績予想及び通期連結業績予想の修正並びに配当予想の修正（増配及び創立100周年記念配当）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2027年３月期第２四半期連結累計期間の業績予想及び通期連結業績予想の修正並びに配当予想の修正（<span class="hl-good-strong">増配</span>及び創立100周年記念配当）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 7月31日(金) 15:30</div>
+          </div>
+        </div>
       </div>
     </section>
 
