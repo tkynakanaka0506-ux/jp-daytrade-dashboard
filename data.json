@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-02 08:49",
-  "run_type": "morning",
+  "generated_at": "2026-08-02 08:50",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -299,6 +299,14 @@
       "time": "―",
       "code": "―",
       "company": "―",
+      "title": "臨時株主総会招集ご通知 他 今日 08:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260802/140120260716595410.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
       "title": "弘電社、臨時株主総会招集ご通知 他 8月1日(土) 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504910.pdf",
       "tag": "他"
@@ -363,16 +371,16 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
+      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
+      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
       "tag": "他"
     },
     {
@@ -445,14 +453,6 @@
       "company": "―",
       "title": "ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 7月31日(金) 19:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 7月31日(金) 19:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf",
       "tag": "他"
     }
   ],
