@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-01 17:15",
-  "run_type": "morning",
+  "generated_at": "2026-08-01 18:01",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -296,164 +296,164 @@
   ],
   "tdnet_afterclose": [
     {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "シュッピン、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 21:02",
+      "time": "08:00",
+      "code": "―",
+      "company": "弘電社",
+      "title": "臨時株主総会招集ご通知",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504910.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "Ｅ・ＪＨＤ",
+      "title": "Notice of the 19th Annual General Meeting of Shareholders",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504563.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "Ｅ・ＪＨＤ",
+      "title": "第19回定時株主総会の招集に際しての電子提供措置事項（交付書面に記載しない事項）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504562.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "Ｅ・ＪＨＤ",
+      "title": "第19回定時株主総会招集ご通知及び株主総会資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504561.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "ワールドＨＤ",
+      "title": "統合報告書2026「人が活きるカタチレポート」",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505814.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "フジッコ",
+      "title": "Annual Report 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729502082.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "ＦＰパートナ",
+      "title": "Integrated Report",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505233.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "セブン銀",
+      "title": "セブン銀行ディスクロージャー誌2026（資料編）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "セブン銀",
+      "title": "セブン銀行統合報告書ディスクロージャー誌2026（本編_後編）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "セブン銀",
+      "title": "セブン銀行統合報告書ディスクロージャー誌2026（本編_前編）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "大光銀",
+      "title": "大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "大光銀",
+      "title": "大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "東建物",
+      "title": "東京建物グループ統合報告書2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505198.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "大和オフィス",
+      "title": "Sustainability Report 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504335.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "大和証券リビ",
+      "title": "Sustainability Report 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504362.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "シュッピン、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 21:02",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260727500194.pdf",
-      "tag": "Ã¤Â»Â"
+      "tag": "他"
     },
     {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "エアウォータ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 20:27",
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "エアウォータ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 20:27",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260614570177.pdf",
-      "tag": "Ã¤Â»Â"
+      "tag": "他"
     },
     {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "ニレコ、定款 2026/08/01 他 今日 19:34",
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ニレコ、定款 2026/08/01 他 7月31日(金) 19:34",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505911.pdf",
-      "tag": "Ã¤Â»Â"
+      "tag": "他"
     },
     {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 今日 19:30",
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 7月31日(金) 19:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf",
-      "tag": "Ã¤Â»Â"
+      "tag": "他"
     },
     {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 今日 19:30",
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 7月31日(金) 19:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "トランスコス、コーポレート・ガバナンスに関する報告書 2026/07/31 他 今日 19:28",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260707588646.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "カカクコム、Notice Regarding Amendment to the Terms and Conditions of the Tender Offer by Kamgras 1 K.K. 他 今日 19:01",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505890.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "ＭＸ前向き、「ＭＡＸＩＳ ＪＡＰＡＮ 設備・人材積極投資企業２００上場投信」の基準価額と市場価格の重要な乖離に関するお知らせ 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505893.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "北浜ＣＰ、連結子会社の異動（株式譲渡）に関するお知らせ 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505366.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "北浜ＣＰ、固定資産の取得に関するお知らせ 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505902.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "北浜ＣＰ、アゼルバイジャン共和国の現地法人に対する資金の貸付に関するお知らせ 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505905.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "パークシャ、自己株式取得に係る事項の決定に関するお知らせ 自社 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505886.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "パークシャ、Notice Concerning Determination of Matters Related to Acquisition of Treasury Stock 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505887.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "パークシャ、Notice Concerning Revision to Forecast for Year-End Dividend 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505884.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "パークシャ、期末配当予想の修正（配当開始）に関するお知らせ 配当 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505872.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "カーブスＨＤ、Notice Regarding the Impact of the 2026 Kumamoto Earthquake 他 今日 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505901.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "システナ、システナ、富士スピードウェイとネーミングライツ契約を締結- 富士スピードウェイに「システナゴールブリッジ」と「2317コーナー」が誕生 - 他 今日 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505683.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "エターナルＧ、関係会社株式評価損の発生（個別）に関するお知らせ 他 今日 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505361.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "エターナルＧ、Notice Regarding Occurrence of Loss on Valuation of Stocks of Subsidiaries and Affiliates (Non-Consolidated) 他 今日 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505367.pdf",
-      "tag": "Ã¤Â»Â"
-    },
-    {
-      "time": "Ã¢ÂÂ",
-      "code": "Ã¢ÂÂ",
-      "company": "Ã¢ÂÂ",
-      "title": "日本紙、Notice Regarding the Impact of 2026 Kumamoto earthquake 他 今日 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505847.pdf",
-      "tag": "Ã¤Â»Â"
+      "tag": "他"
     }
   ],
   "afterclose_news": [
