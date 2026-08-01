@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-02 06:29",
-  "run_type": "morning",
+  "generated_at": "2026-08-02 06:45",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -1014,6 +1014,14 @@
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9yZDdPMUhoeF9QU3QwdDFjTThDanVGb194TUJDOUFDSkFDeG1SMnREdU5ZT0tXYzJ1ZTFMbzZWZEQxMUZvSkE?oc=5",
       "keyword": "AI投資",
       "asof": "7/29 12:19"
+    },
+    {
+      "code": "6098",
+      "company": "リクルートホールディングス",
+      "title": "後場に注目すべき3つのポイント～AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:33[フィスコ] - みんかぶ",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBKSC1nV09DWXozenZnX2stcFBlVjA0SEZfN2VvVTZBUGlvdGhNZUdtQ0RIS1dUQkNDbWF5dEpGYmVvc1hoWG9tMw?oc=5",
+      "keyword": "AI投資",
+      "asof": "7/29 12:33"
     },
     {
       "code": "9983",
