@@ -117,7 +117,11 @@ public class Main {
         // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
         try {
             ArrayNode growth = scrapeGrowthCandidates(8, 8);
-            markDoubleSignals(growth, disclosures);
+            // ダブルシグナル判定は表示用disclosures(直近20件程度)ではなく、
+            // 別途もっと深くページを遡って「決算」タグの会社名だけを集めた専用セットを使う
+            // (取りこぼしを減らすための無料の改善。詳細はscrapeKessanCompanies()のJavadoc参照)。
+            java.util.Set<String> kessanCompanies = scrapeKessanCompanies(10, 150);
+            markDoubleSignals(growth, kessanCompanies);
             if (growth.size() > 0) {
                 root.set("growth_candidates", growth);
             }
@@ -366,32 +370,71 @@ public class Main {
 
     /**
      * scrapeGrowthCandidates()が抽出した「業績予想の修正(上方修正等)」候補について、
-     * 同じ会社名が直近のTDnet一般開示一覧(disclosures、tag=="決算")にも含まれる場合、
+     * 同じ会社名がkessanCompanies(直近の「決算」タグ開示会社名セット)にも含まれる場合、
      * double_signal=trueを付与する。
      *
      * 四半期の好決算(決算短信)と通期ガイダンスの上方修正が同時に発表されるパターンは、
      * 単独の好決算開示よりもストップ高との相関が強いという分析結果(2026年7月のパナソニックHD
      * 決算・ストップ高の事後分析)に基づく、無料データのみでの機械的な近似実装。
      *
-     * 注意: disclosuresは直近の「サイト全体での最新開示」上位20件程度しか保持していないため、
-     * 実際には両方の開示を行っている会社でも、取得タイミングによってはこの一覧に決算開示が
-     * 含まれておらず検知できないことがある(false negativeが起こり得るベストエフォートの近似)。
+     * kessanCompaniesはscrapeKessanCompanies()でより深くページを遡って集めたセットを渡す想定
+     * (表示用disclosuresの直近20件程度だけだと取りこぼしが多いため)。
      */
-    private static void markDoubleSignals(ArrayNode growth, ArrayNode disclosures) {
-        if (growth == null || disclosures == null) return;
-        java.util.Set<String> kessanCompanies = new java.util.HashSet<>();
-        for (JsonNode d : disclosures) {
-            String tag = d.path("tag").asText("");
-            String company = d.path("company").asText("");
-            if ("決算".equals(tag) && !company.isEmpty() && !"―".equals(company)) {
-                kessanCompanies.add(company);
-            }
-        }
+    private static void markDoubleSignals(ArrayNode growth, java.util.Set<String> kessanCompanies) {
+        if (growth == null || kessanCompanies == null) return;
         for (JsonNode g : growth) {
             if (!(g instanceof ObjectNode)) continue;
             String company = g.path("company").asText("");
             ((ObjectNode) g).put("double_signal", kessanCompanies.contains(company));
         }
+    }
+
+    /**
+     * ダブルシグナル判定専用に、株探の適時開示一覧(表示用disclosuresと同じ無料ソース)を
+     * もっと深く(最大maxPagesページ・最大maxItems件)遡って、「決算」タグが付いた会社名だけを
+     * 集めたセットを返す。
+     *
+     * 背景: 表示用のscrapeKabutanDisclosures()は「サイト全体での最新開示」上位20件程度しか
+     * 保持しないため、他社の開示に押し流されて対象会社の「決算」開示が一覧から漏れ、
+     * 実際には決算と上方修正を同時開示している会社でもdouble_signalを検知できない
+     * (false negative)ケースがあった。本メソッドは表示件数を増やさずに、判定用の会社名セットだけを
+     * より深いページ数まで遡って集めることで、追加の有料APIなしにこの取りこぼしを減らす。
+     *
+     * それでも1日の開示件数が非常に多い日はmaxPagesを超えて漏れる可能性があり、
+     * 完全な取りこぼしゼロを保証するものではない(JPX公式の有料TDnet APIを使えば
+     * 銘柄コード指定で確実に検索できるが、本ツールは無料ソースのみで運用する方針のため未導入)。
+     */
+    private static java.util.Set<String> scrapeKessanCompanies(int maxPages, int maxItems) {
+        java.util.Set<String> companies = new java.util.HashSet<>();
+        Pattern rowPattern = Pattern.compile(
+            "^(.*?)、(.*?)\\s*(決算|配当|業修|自社|エク|追訂|他)?\\s*(今日|明日|\\d{1,2}/\\d{1,2})\\s+(\\d{1,2}:\\d{2})\\s*(New!)?$"
+        );
+        int seen = 0;
+        for (int page = 1; page <= maxPages && seen < maxItems; page++) {
+            String url = "https://s.kabutan.jp/disclosures/" + (page == 1 ? "" : "?page=" + page);
+            Document doc;
+            try {
+                doc = Jsoup.connect(url).userAgent(UA).timeout(15000).get();
+            } catch (Exception e) {
+                System.err.println("[WARN] kabutan kessan-scan page " + page + " fetch failed: " + e);
+                break;
+            }
+            List<Element> links = doc.select("a[href^=https://tdnet-pdf.kabutan.jp/]");
+            if (links.isEmpty()) break;
+            for (Element a : links) {
+                if (seen >= maxItems) break;
+                seen++;
+                String text = a.text().trim();
+                Matcher m = rowPattern.matcher(text);
+                if (m.matches() && "決算".equals(m.group(3))) {
+                    String company = m.group(1).trim();
+                    if (!company.isEmpty() && !"―".equals(company)) {
+                        companies.add(company);
+                    }
+                }
+            }
+        }
+        return companies;
     }
 
     // ---------------- 決算前 先行材料ウォッチ(Google Newsの見出しキーワード抽出) ----------------
