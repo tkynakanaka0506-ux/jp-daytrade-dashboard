@@ -2,14 +2,12 @@ name: Update JP Daytrade Dashboard
 
 on:
   schedule:
-    - cron: '0 21 * * *'   # 06:00 JST -> morning
-    - cron: '0 12 * * *'   # 21:00 JST -> evening
-    - cron: '0 0 * * 1-5'  # 09:00 JST -> intraday (weekdays only)
-    - cron: '0 3 * * 1-5'  # 12:00 JST -> midday (weekdays only)
+    - cron: '0 21 * * *'   # 06:00 JST = 21:00 UTC(前日) → 朝の更新
+    - cron: '0 12 * * *'   # 21:00 JST = 12:00 UTC → 夜(引け後)の更新
   workflow_dispatch:
     inputs:
       mode:
-        description: 'morning or evening'
+        description: '実行モード(morning または evening)'
         required: false
         default: 'morning'
 
@@ -22,39 +20,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Determine run mode
+      - name: 実行モードを判定
         id: mode
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.event.schedule }}" = "0 12 * * *" ]; then
-            echo "mode=evening" >> "$GITHUB_OUTPUT"
-          else
+          elif [ "${{ github.event.schedule }}" = "0 21 * * *" ]; then
             echo "mode=morning" >> "$GITHUB_OUTPUT"
+          else
+            echo "mode=evening" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Setup Java 21
+      - name: Java 21 セットアップ
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
           cache: maven
 
-      - name: Setup Python
+      - name: Python セットアップ(HTML生成用・ネットワーク不要)
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
-      - name: Build Java
+      - name: Javaプログラムをビルド
         run: mvn -q -B package
 
-      - name: Update data.json (Java)
+      - name: データ取得・data.json更新(Java・決定論的な部分)
         run: java -jar target/dashboard-updater.jar "${{ steps.mode.outputs.mode }}" data.json
 
-      - name: Render HTML (Python)
+      - name: ニュース分析・話題株選定(Python + Gemini無料枠・任意)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 news_analyzer.py "${{ steps.mode.outputs.mode }}" data.json
+
+      - name: HTML再生成(既存のPure Pythonレンダラー)
         run: python3 render_dashboard.py data.json index.html
 
-      - name: Commit and push if changed
+      - name: 差分があればcommit & push
         run: |
           git config user.name "dashboard-bot"
           git config user.email "actions@users.noreply.github.com"
