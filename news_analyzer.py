@@ -6,7 +6,8 @@ Gemini API(無料枠)を使って、data.json のうち「話題性・重要度�
 TDnet開示・テクニカル指標)は Main.java が担当し、このスクリプトはそのあとに実行する。
 
   - overnight_news / afterclose_news (地政学・市場材料ニュース)
-  - us_good_news (米国株の好材料ニュース)
+  - us_good_news (米国株の好材料ニュース。見出しテキストから読み取れる範囲で、
+    「好決算なのに売られる(材料出尽くし)」を示す記述が無いかの簡易矛盾分析も行う)
   - movers_morning / movers_afterclose (値動き・出来高で話題の銘柄)
 
 設計方針:
@@ -138,6 +139,14 @@ US_NEWS_ITEM_SCHEMA = {
         "headline": {"type": "STRING"},
         "url": {"type": "STRING"},
         "time": {"type": "STRING"},
+        # ---- 「好材料の織り込み済み(材料出尽くし)」矛盾分析(任意項目) ----
+        # 見出しテキストのみから読み取れる範囲での推定であり、実際のチャートを
+        # 参照した判定ではない。根拠が乏しい場合は両方省略してよい(無理にこじつけない)。
+        "baked_in_verdict": {
+            "type": "STRING",
+            "enum": ["本物の初動", "過熱・警戒", "材料出尽くし", "判定不能"],
+        },
+        "baked_in_reason": {"type": "STRING"},
     },
     "required": ["ticker", "company", "category", "headline", "url"],
 }
@@ -201,6 +210,27 @@ US_NEWS_RULES = """あなたは日本株デイトレード情報ダッシュボ�
 headlineには「何が具体的に発表されたか」を一文で(数値が見出しに含まれる場合は含める)。
 tickerが見出しから特定できない場合は空文字でよい(推測で作らない)。
 該当するニュースが見つからない場合は空配列でよい。
+
+さらに、あなたはプロの機関投資家として「好決算なのに売られる(材料出尽くし)」を
+見抜く矛盾分析も行ってください。各項目について:
+
+① 期待値の検証: この見出し(および候補一覧内の関連する他の見出し)の記述だけから、
+   市場予想に対する「驚き(サプライズ)」の有無を読み取れるか。
+② チャートとの矛盾: 見出し中に「株価は下落」「利益確定売り」「既に上昇していた」
+   「発表にもかかわらず売られた」といった、好材料と逆行する株価反応を示す記述が
+   あるかを確認する。
+③ 結論のラベル化(baked_in_verdict): 見出しの記述だけから判断できる範囲で、以下の
+   4段階のいずれかを選ぶこと。チャートを実際に見ているわけではないため、
+   見出しに根拠となる記述が無い場合は必ず「判定不能」を選び、無理に断定しないこと。
+   - 「本物の初動」: 好材料が強力で、株価反応もそれに素直に連動している記述がある。
+   - 「過熱・警戒」: 好材料は良いが、見出し中に「既に上昇していた」「割高感」等、
+     織り込み済みを示唆する記述がある。
+   - 「材料出尽くし」: 好材料にもかかわらず「株価は下落」「材料出尽くし」等、
+     好材料と逆行する株価反応が見出しに明記されている。
+   - 「判定不能」: 見出しだけでは判断材料が不足している(このケースが最も多いはずです)。
+   baked_in_verdictを「判定不能」以外にする場合は、baked_in_reasonに見出し中の
+   具体的な根拠(引用に近い形)を一文で書くこと。「判定不能」の場合はbaked_in_reasonごと
+   省略してよい。
 
 候補見出し一覧:
 """
@@ -297,6 +327,12 @@ def main():
             result = call_gemini(api_key, build_prompt(US_NEWS_RULES, us_candidates), US_NEWS_RESPONSE_SCHEMA)
             items = [it for it in result.get("items", []) if it.get("headline") and it.get("category")]
             if items:
+                for it in items:
+                    # 「判定不能」または理由が無いものは、不確かな警告を出さないよう
+                    # フィールドごと落とす(空文字のbaked_in_verdictも同様に扱う)。
+                    if it.get("baked_in_verdict") in (None, "", "判定不能") or not it.get("baked_in_reason"):
+                        it.pop("baked_in_verdict", None)
+                        it.pop("baked_in_reason", None)
                 root["us_good_news"] = items
                 log(f"us_good_news を{len(items)}件更新しました。")
     except Exception as e:
