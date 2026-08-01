@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-02 08:50",
-  "run_type": "evening",
+  "generated_at": "2026-08-02 08:58",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -557,8 +557,8 @@
       "high_52w": 4000.0,
       "high_52w_dist_pct": 23.33,
       "minkabu_url": "https://minkabu.jp/stock/7203/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 22.03,
+      "squeeze_potential": false
     },
     {
       "code": "6758",
@@ -574,8 +574,8 @@
       "high_52w": 4776.0,
       "high_52w_dist_pct": 20.71,
       "minkabu_url": "https://minkabu.jp/stock/6758/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 33.61,
+      "squeeze_potential": false
     },
     {
       "code": "8306",
@@ -591,8 +591,8 @@
       "high_52w": 3813.0,
       "high_52w_dist_pct": 6.35,
       "minkabu_url": "https://minkabu.jp/stock/8306/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 7.52,
+      "squeeze_potential": false
     },
     {
       "code": "9984",
@@ -608,8 +608,8 @@
       "high_52w": 9074.0,
       "high_52w_dist_pct": 42.03,
       "minkabu_url": "https://minkabu.jp/stock/9984/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 10.65,
+      "squeeze_potential": false
     },
     {
       "code": "6861",
@@ -625,8 +625,8 @@
       "high_52w": 84170.0,
       "high_52w_dist_pct": 3.59,
       "minkabu_url": "https://minkabu.jp/stock/6861/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 2.42,
+      "squeeze_potential": false
     },
     {
       "code": "6954",
@@ -642,8 +642,8 @@
       "high_52w": 8880.0,
       "high_52w_dist_pct": 19.65,
       "minkabu_url": "https://minkabu.jp/stock/6954/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 18.87,
+      "squeeze_potential": false
     },
     {
       "code": "7974",
@@ -659,8 +659,8 @@
       "high_52w": 14795.0,
       "high_52w_dist_pct": 48.1,
       "minkabu_url": "https://minkabu.jp/stock/7974/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 20.04,
+      "squeeze_potential": false
     },
     {
       "code": "6098",
@@ -676,8 +676,8 @@
       "high_52w": 13320.0,
       "high_52w_dist_pct": 5.78,
       "minkabu_url": "https://minkabu.jp/stock/6098/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 1.09,
+      "squeeze_potential": false
     },
     {
       "code": "8035",
@@ -693,8 +693,8 @@
       "high_52w": 81260.0,
       "high_52w_dist_pct": 31.7,
       "minkabu_url": "https://minkabu.jp/stock/8035/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 9.27,
+      "squeeze_potential": false
     },
     {
       "code": "9433",
@@ -710,8 +710,8 @@
       "high_52w": 3121.0,
       "high_52w_dist_pct": 6.41,
       "minkabu_url": "https://minkabu.jp/stock/9433/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 0.45,
+      "squeeze_potential": true
     },
     {
       "code": "9432",
@@ -727,8 +727,8 @@
       "high_52w": 167.2,
       "high_52w_dist_pct": 8.85,
       "minkabu_url": "https://minkabu.jp/stock/9432/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 18.91,
+      "squeeze_potential": false
     },
     {
       "code": "7267",
@@ -744,8 +744,8 @@
       "high_52w": 1730.0,
       "high_52w_dist_pct": 6.04,
       "minkabu_url": "https://minkabu.jp/stock/7267/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 7.47,
+      "squeeze_potential": false
     },
     {
       "code": "6367",
@@ -761,8 +761,8 @@
       "high_52w": 26440.0,
       "high_52w_dist_pct": 11.89,
       "minkabu_url": "https://minkabu.jp/stock/6367/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 6.21,
+      "squeeze_potential": false
     },
     {
       "code": "9983",
@@ -778,8 +778,8 @@
       "high_52w": 88690.0,
       "high_52w_dist_pct": 11.84,
       "minkabu_url": "https://minkabu.jp/stock/9983/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 1.6,
+      "squeeze_potential": false
     },
     {
       "code": "4063",
@@ -795,8 +795,8 @@
       "high_52w": 7930.0,
       "high_52w_dist_pct": 26.86,
       "minkabu_url": "https://minkabu.jp/stock/4063/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 7.11,
+      "squeeze_potential": false
     },
     {
       "code": "6857",
@@ -812,8 +812,8 @@
       "high_52w": 35940.0,
       "high_52w_dist_pct": 9.57,
       "minkabu_url": "https://minkabu.jp/stock/6857/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 3.4,
+      "squeeze_potential": false
     },
     {
       "code": "4519",
@@ -829,8 +829,8 @@
       "high_52w": 10700.0,
       "high_52w_dist_pct": 35.21,
       "minkabu_url": "https://minkabu.jp/stock/4519/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 28.76,
+      "squeeze_potential": false
     },
     {
       "code": "5401",
@@ -846,8 +846,8 @@
       "high_52w": 699.8,
       "high_52w_dist_pct": 7.17,
       "minkabu_url": "https://minkabu.jp/stock/5401/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 15.36,
+      "squeeze_potential": false
     },
     {
       "code": "2413",
@@ -863,8 +863,8 @@
       "high_52w": 2746.0,
       "high_52w_dist_pct": 35.12,
       "minkabu_url": "https://minkabu.jp/stock/2413/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 10.63,
+      "squeeze_potential": false
     },
     {
       "code": "6645",
@@ -880,8 +880,8 @@
       "high_52w": 6383.0,
       "high_52w_dist_pct": 14.93,
       "minkabu_url": "https://minkabu.jp/stock/6645/analyst_consensus",
-      "credit_ratio": null,
-      "squeeze_potential": null
+      "credit_ratio": 9.45,
+      "squeeze_potential": false
     }
   ],
   "us_good_news": [
