@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-02 06:45",
-  "run_type": "evening",
+  "generated_at": "2026-08-02 08:49",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -103,6 +103,14 @@
       "time": "―",
       "code": "―",
       "company": "―",
+      "title": "臨時株主総会招集ご通知 他 今日 08:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260802/140120260716595410.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
       "title": "弘電社、臨時株主総会招集ご通知 他 8月1日(土) 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504910.pdf",
       "tag": "他"
@@ -167,16 +175,16 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
+      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
+      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
       "tag": "他"
     },
     {
@@ -249,14 +257,6 @@
       "company": "―",
       "title": "ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 7月31日(金) 19:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "郵船、Notice Regarding Scheduled Commencement of Tender Offer for Shares of NS United Kaiun Kaisha, Ltd. (Securities Code: 9110) 他 7月31日(金) 19:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505398.pdf",
       "tag": "他"
     }
   ],
@@ -552,7 +552,13 @@
       "ma25_dev": "+5.81%",
       "rsi": 66.76,
       "signal": "中立(やや弱気)",
-      "summary": "売り1/中立6/買い0。RSIは中立域。"
+      "summary": "売り1/中立6/買い0。RSIは中立域。",
+      "ret_5d_pct": 5.87,
+      "high_52w": 4000.0,
+      "high_52w_dist_pct": 23.33,
+      "minkabu_url": "https://minkabu.jp/stock/7203/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6758",
@@ -563,7 +569,13 @@
       "ma25_dev": "+9.68%",
       "rsi": 83.86,
       "signal": "弱気(過熱感)",
-      "summary": "売り3/中立4/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。"
+      "summary": "売り3/中立4/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
+      "ret_5d_pct": 11.09,
+      "high_52w": 4776.0,
+      "high_52w_dist_pct": 20.71,
+      "minkabu_url": "https://minkabu.jp/stock/6758/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "8306",
@@ -574,7 +586,13 @@
       "ma25_dev": "+1.96%",
       "rsi": 54.97,
       "signal": "中立(やや弱気)",
-      "summary": "売り1/中立6/買い0。RSIは中立域。"
+      "summary": "売り1/中立6/買い0。RSIは中立域。",
+      "ret_5d_pct": -4.87,
+      "high_52w": 3813.0,
+      "high_52w_dist_pct": 6.35,
+      "minkabu_url": "https://minkabu.jp/stock/8306/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "9984",
@@ -585,7 +603,13 @@
       "ma25_dev": "-9.12%",
       "rsi": 35.73,
       "signal": "強気",
-      "summary": "売り0/中立4/買い3。RSIは中立域。"
+      "summary": "売り0/中立4/買い3。RSIは中立域。",
+      "ret_5d_pct": -4.36,
+      "high_52w": 9074.0,
+      "high_52w_dist_pct": 42.03,
+      "minkabu_url": "https://minkabu.jp/stock/9984/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6861",
@@ -596,7 +620,13 @@
       "ma25_dev": "+6.24%",
       "rsi": 58.0,
       "signal": "中立(やや弱気)",
-      "summary": "売り1/中立6/買い0。RSIは中立域。"
+      "summary": "売り1/中立6/買い0。RSIは中立域。",
+      "ret_5d_pct": 12.99,
+      "high_52w": 84170.0,
+      "high_52w_dist_pct": 3.59,
+      "minkabu_url": "https://minkabu.jp/stock/6861/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6954",
@@ -607,7 +637,13 @@
       "ma25_dev": "+2.63%",
       "rsi": 49.63,
       "signal": "中立",
-      "summary": "売り1/中立5/買い1。RSIは中立域。"
+      "summary": "売り1/中立5/買い1。RSIは中立域。",
+      "ret_5d_pct": 7.71,
+      "high_52w": 8880.0,
+      "high_52w_dist_pct": 19.65,
+      "minkabu_url": "https://minkabu.jp/stock/6954/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "7974",
@@ -618,7 +654,13 @@
       "ma25_dev": "+7.00%",
       "rsi": 63.33,
       "signal": "弱気",
-      "summary": "売り2/中立5/買い0。RSIは中立域。"
+      "summary": "売り2/中立5/買い0。RSIは中立域。",
+      "ret_5d_pct": 10.19,
+      "high_52w": 14795.0,
+      "high_52w_dist_pct": 48.1,
+      "minkabu_url": "https://minkabu.jp/stock/7974/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6098",
@@ -629,7 +671,13 @@
       "ma25_dev": "+2.47%",
       "rsi": 54.56,
       "signal": "弱気",
-      "summary": "売り2/中立5/買い0。RSIは中立域。"
+      "summary": "売り2/中立5/買い0。RSIは中立域。",
+      "ret_5d_pct": 4.11,
+      "high_52w": 13320.0,
+      "high_52w_dist_pct": 5.78,
+      "minkabu_url": "https://minkabu.jp/stock/6098/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "8035",
@@ -640,7 +688,13 @@
       "ma25_dev": "-17.94%",
       "rsi": 26.98,
       "signal": "強気(売られ過ぎ)",
-      "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。"
+      "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
+      "ret_5d_pct": -11.43,
+      "high_52w": 81260.0,
+      "high_52w_dist_pct": 31.7,
+      "minkabu_url": "https://minkabu.jp/stock/8035/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "9433",
@@ -651,7 +705,13 @@
       "ma25_dev": "+2.96%",
       "rsi": 62.01,
       "signal": "中立",
-      "summary": "売り0/中立7/買い0。RSIは中立域。"
+      "summary": "売り0/中立7/買い0。RSIは中立域。",
+      "ret_5d_pct": -0.05,
+      "high_52w": 3121.0,
+      "high_52w_dist_pct": 6.41,
+      "minkabu_url": "https://minkabu.jp/stock/9433/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "9432",
@@ -662,7 +722,13 @@
       "ma25_dev": "+1.61%",
       "rsi": 59.38,
       "signal": "中立(やや弱気)",
-      "summary": "売り1/中立6/買い0。RSIは中立域。"
+      "summary": "売り1/中立6/買い0。RSIは中立域。",
+      "ret_5d_pct": 0.73,
+      "high_52w": 167.2,
+      "high_52w_dist_pct": 8.85,
+      "minkabu_url": "https://minkabu.jp/stock/9432/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "7267",
@@ -673,7 +739,13 @@
       "ma25_dev": "+5.12%",
       "rsi": 67.66,
       "signal": "弱気",
-      "summary": "売り2/中立5/買い0。RSIは中立域。"
+      "summary": "売り2/中立5/買い0。RSIは中立域。",
+      "ret_5d_pct": 5.83,
+      "high_52w": 1730.0,
+      "high_52w_dist_pct": 6.04,
+      "minkabu_url": "https://minkabu.jp/stock/7267/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6367",
@@ -684,7 +756,13 @@
       "ma25_dev": "-5.51%",
       "rsi": 17.06,
       "signal": "強気(売られ過ぎ)",
-      "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。"
+      "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
+      "ret_5d_pct": -2.45,
+      "high_52w": 26440.0,
+      "high_52w_dist_pct": 11.89,
+      "minkabu_url": "https://minkabu.jp/stock/6367/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "9983",
@@ -695,7 +773,13 @@
       "ma25_dev": "-3.93%",
       "rsi": 37.98,
       "signal": "中立",
-      "summary": "売り0/中立7/買い0。RSIは中立域。"
+      "summary": "売り0/中立7/買い0。RSIは中立域。",
+      "ret_5d_pct": 2.58,
+      "high_52w": 88690.0,
+      "high_52w_dist_pct": 11.84,
+      "minkabu_url": "https://minkabu.jp/stock/9983/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "4063",
@@ -706,7 +790,13 @@
       "ma25_dev": "-15.74%",
       "rsi": 20.5,
       "signal": "強気(売られ過ぎ)",
-      "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。"
+      "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
+      "ret_5d_pct": -13.46,
+      "high_52w": 7930.0,
+      "high_52w_dist_pct": 26.86,
+      "minkabu_url": "https://minkabu.jp/stock/4063/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6857",
@@ -717,7 +807,13 @@
       "ma25_dev": "+10.15%",
       "rsi": 55.56,
       "signal": "中立(やや弱気)",
-      "summary": "売り2/中立4/買い1。RSIは中立域。"
+      "summary": "売り2/中立4/買い1。RSIは中立域。",
+      "ret_5d_pct": 12.28,
+      "high_52w": 35940.0,
+      "high_52w_dist_pct": 9.57,
+      "minkabu_url": "https://minkabu.jp/stock/6857/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "4519",
@@ -728,7 +824,13 @@
       "ma25_dev": "-5.07%",
       "rsi": 37.79,
       "signal": "中立(やや強気)",
-      "summary": "売り0/中立6/買い1。RSIは中立域。"
+      "summary": "売り0/中立6/買い1。RSIは中立域。",
+      "ret_5d_pct": -6.53,
+      "high_52w": 10700.0,
+      "high_52w_dist_pct": 35.21,
+      "minkabu_url": "https://minkabu.jp/stock/4519/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "5401",
@@ -739,7 +841,13 @@
       "ma25_dev": "+11.30%",
       "rsi": 84.09,
       "signal": "弱気(過熱感)",
-      "summary": "売り3/中立4/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。"
+      "summary": "売り3/中立4/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
+      "ret_5d_pct": 5.3,
+      "high_52w": 699.8,
+      "high_52w_dist_pct": 7.17,
+      "minkabu_url": "https://minkabu.jp/stock/5401/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "2413",
@@ -750,7 +858,13 @@
       "ma25_dev": "-4.95%",
       "rsi": 43.08,
       "signal": "中立(やや弱気)",
-      "summary": "売り2/中立4/買い1。RSIは中立域。"
+      "summary": "売り2/中立4/買い1。RSIは中立域。",
+      "ret_5d_pct": -2.12,
+      "high_52w": 2746.0,
+      "high_52w_dist_pct": 35.12,
+      "minkabu_url": "https://minkabu.jp/stock/2413/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     },
     {
       "code": "6645",
@@ -761,7 +875,13 @@
       "ma25_dev": "-3.62%",
       "rsi": 35.8,
       "signal": "中立(やや強気)",
-      "summary": "売り0/中立6/買い1。RSIは中立域。"
+      "summary": "売り0/中立6/買い1。RSIは中立域。",
+      "ret_5d_pct": -0.89,
+      "high_52w": 6383.0,
+      "high_52w_dist_pct": 14.93,
+      "minkabu_url": "https://minkabu.jp/stock/6645/analyst_consensus",
+      "credit_ratio": null,
+      "squeeze_potential": null
     }
   ],
   "us_good_news": [
@@ -962,10 +1082,10 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクG、AI投資支える資金調達に旺盛な需要－900億円起債（Bloomberg） - Yahoo!ニュース",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE55V2hXcVljejgybGhCSHBXekVVODU5cjFEckkyUlVRdktPWG12Z2dSeTBvU2tjM082OVpIVlNSbzQ1RzdpRFZfNUdoZmNUdG4wejlvdnJSRmlKY290X29hcWR3ZTV1Nk5GblJhQ3A2R2Vic2FwWGVrWm9KQWRCN2s?oc=5",
-      "keyword": "AI投資",
-      "asof": "7/29 12:06"
+      "title": "NVIDIAがOpenAIの計算資源へ41兆円の保証協議、ソフトバンクGとのAIデータセンターで（ビジネス＋IT） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBsYjZibVllMmNNNlE5c0p6ZUZ6SE96WHFhbzhQU1VvVEV5YXRIMTdWRlA3YWxya21pd29tMVpSRndwbGQ4b1U3YUJZOEU2SmxQeVdoZzRBQmtfeVl1em90czZ3d1N6eW4xcHJXMXNleFBNLTJrN1lzMzQwVHpGWG8?oc=5",
+      "keyword": "データセンター",
+      "asof": "7/27 20:10"
     },
     {
       "code": "6861",
@@ -1014,14 +1134,6 @@
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9yZDdPMUhoeF9QU3QwdDFjTThDanVGb194TUJDOUFDSkFDeG1SMnREdU5ZT0tXYzJ1ZTFMbzZWZEQxMUZvSkE?oc=5",
       "keyword": "AI投資",
       "asof": "7/29 12:19"
-    },
-    {
-      "code": "6098",
-      "company": "リクルートホールディングス",
-      "title": "後場に注目すべき3つのポイント～AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:33[フィスコ] - みんかぶ",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBKSC1nV09DWXozenZnX2stcFBlVjA0SEZfN2VvVTZBUGlvdGhNZUdtQ0RIS1dUQkNDbWF5dEpGYmVvc1hoWG9tMw?oc=5",
-      "keyword": "AI投資",
-      "asof": "7/29 12:33"
     },
     {
       "code": "9983",
