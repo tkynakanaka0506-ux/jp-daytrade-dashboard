@@ -515,6 +515,44 @@ def _outlook_comment(code, tech_lookup):
     return emphasize("、".join(parts) + "。直近の値動き傾向に基づく機械的な参考情報であり、将来の株価変動を保証するものではありません。")
 
 
+def _parse_pct_str(s):
+    """'+18.5%' のような文字列表現の乖離率を float に変換する。変換できなければ None。"""
+    if s is None:
+        return None
+    m = re.search(r"[+-]?\d+(\.\d+)?", str(s))
+    if not m:
+        return None
+    try:
+        return float(m.group(0))
+    except ValueError:
+        return None
+
+
+def _jp_bakedin_warning(code, tech_lookup, rsi_threshold=75.0, dev_threshold=15.0):
+    """好材料が出た銘柄について、RSI(14)の過熱・25日線からの上方乖離という
+    無料で取得できるテクニカル指標だけから、既に株価に織り込まれ材料出尽くしで
+    反落するリスクを機械的に注意喚起する簡易シグナル。決算前後の詳細な騰落率・
+    ボリンジャーバンド・市場コンセンサスとの比較までは無料データでは再現できないため、
+    あくまで参考情報であり投資助言ではない。"""
+    t = tech_lookup.get(str(code).strip())
+    if not t:
+        return None
+    reasons = []
+    try:
+        rsi = float(t.get("rsi"))
+    except (TypeError, ValueError):
+        rsi = None
+    if rsi is not None and rsi >= rsi_threshold:
+        reasons.append(f"RSI(14)が{rsi:.1f}で過熱水準({rsi_threshold:.0f}以上)")
+    dev = _parse_pct_str(t.get("ma25_dev"))
+    if dev is not None and dev >= dev_threshold:
+        reasons.append(f"25日線から{t.get('ma25_dev')}の大幅な上方乖離")
+    if not reasons:
+        return None
+    return ("、".join(reasons) + "。好材料が既に株価に織り込まれ済みで、"
+            "利確売り・材料出尽くしによる反落リスクに注意してください。")
+
+
 
 # 日本株(TDnet開示)の好材料カテゴリ定義:重み・強さラベル・具体的な好材料内容・
 # 過去の類似開示に基づく想定インパクト(参考値)・好材料と判断する理由をまとめて保持する。
@@ -813,9 +851,14 @@ def economic_calendar_html(items, empty_msg="経済カレンダーのデータ�
 
 
 def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text, reason_text,
-                        news_title, news_url, extra_note, outlook_html):
+                        news_title, news_url, extra_note, outlook_html, warning_text=None):
     """好材料ランキング1件分の行HTML。具体的な好材料内容・想定インパクト(参考値)・
-    好材料と判断する理由をそれぞれ明記する。"""
+    好材料と判断する理由をそれぞれ明記する。warning_textを渡した場合、
+    「織り込み済み・材料出尽くし」の可能性がある旨の警告行を追加表示する。"""
+    warning_html = (
+        f'<div class="rank-desc rank-warn">⚠️ 織り込み済みの可能性あり: {emphasize(warning_text)}</div>'
+        if warning_text else ""
+    )
     return f"""
         <div class="rank-item">
           <div class="rank-num">{rank_label(i)}</div>
@@ -831,6 +874,7 @@ def _catalyst_rank_row(i, code, name, strength_label, content_text, impact_text,
               <a href="{esc(news_url) or '#'}" target="_blank" rel="noopener">{esc(news_title)}</a>{esc(extra_note)}
             </div>
             <div class="rank-desc rank-outlook">📊 {outlook_html}</div>
+            {warning_html}
           </div>
         </div>"""
 
@@ -886,11 +930,13 @@ def good_news_ranking_html_jp(tdnet_morning, tdnet_afterclose, technical,
         url = latest.get("url", "") or "#"
         extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
         outlook = _outlook_comment(code, tech_lookup)
+        warning = _jp_bakedin_warning(code, tech_lookup)
         info = JP_CATALYST_INFO.get(entry["keyword"], {})
         rows.append(_catalyst_rank_row(
             i, code, company, info.get("strength", "好材料"),
             info.get("content", title), info.get("impact", "算定不可"),
             info.get("reason", ""), title, url, extra, outlook,
+            warning_text=warning,
         ))
     return "".join(rows)
 
@@ -934,13 +980,28 @@ def good_news_ranking_html_us(us_good_news,
         extra = f" ほか{entry['count'] - 1}件" if entry["count"] > 1 else ""
         info = US_CATALYST_INFO.get(entry["category"], {})
         content_text = headline or info.get("content", "")
+        warning = _us_bakedin_warning(latest)
         rows.append(_catalyst_rank_row(
             i, ticker, company, info.get("strength", "好材料"),
             content_text, info.get("impact", "算定不可"),
             info.get("reason", ""), headline, url, extra,
             "米国株のためテクニカル指標(移動平均・RSI等)は対象外です。個別の株価情報は各種株価情報サービスでご確認ください。",
+            warning_text=warning,
         ))
     return "".join(rows)
+
+
+def _us_bakedin_warning(item):
+    """news_analyzer.py(Gemini)が付与した baked_in_verdict / baked_in_reason を
+    もとに、米国株の好材料ランキングに織り込み済み警告文を組み立てる。
+    Geminiによる見出しテキストだけからの推定であり、株価チャートを実際に
+    参照した判定ではないため、あくまで参考情報。フィールドが無い場合はNone。"""
+    verdict = (item.get("baked_in_verdict") or "").strip()
+    reason = (item.get("baked_in_reason") or "").strip()
+    if verdict in ("過熱・警戒", "材料出尽くし") and reason:
+        prefix = "材料出尽くしの可能性が高い" if verdict == "材料出尽くし" else "過熱・警戒"
+        return f"[AIによる推定: {prefix}] {reason}"
+    return None
 
 
 def growth_candidates_html(items, empty_msg="現時点で好材料開示に基づく成長株候補は見つかりませんでした。"):
@@ -1547,6 +1608,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .rank-impact .tag { margin-left: 6px; }
 .rank-reason { opacity: 0.9; }
 .rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
+.rank-warn { color: var(--warn); font-weight: 600; opacity: 1; background: rgba(255,184,77,0.1); border-left: 2px solid var(--warn); padding: 4px 8px; border-radius: 4px; }
 .score-tag {
   font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
   background: rgba(212,175,55,0.12); color: var(--accent-bright); border: 1px solid var(--border);
@@ -2032,6 +2094,9 @@ def build_html(data: dict) -> str:
           (下方修正・減配など弱材料の開示は対象外)。各銘柄について、①具体的に何が開示されたか、②過去の類似開示に基づく想定インパクト(参考値)、
           ③好材料と判断する理由、④直近のテクニカル指標に基づく参考コメント、を明記しています。
           <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
+          RSI(14)が75以上、または25日線から15%以上上方乖離している銘柄には
+          「⚠️ 織り込み済みの可能性あり」の警告を表示します(好材料が既に株価に反映され、材料出尽くしで
+          反落するリスクへの機械的な注意喚起であり、決算内容そのものの良し悪しを判定するものではありません)。
         </p>
         {good_news_rank_html_jp}
       </div>
@@ -2041,6 +2106,9 @@ def build_html(data: dict) -> str:
           決算上振れ・ガイダンス上方修正・アナリスト評価引き上げなど<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています。
           各銘柄について、①具体的に何が発表されたか、②過去の類似ニュースに基づく想定インパクト(参考値)、③好材料と判断する理由、を明記しています。
           <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
+          見出しの内容からAI(Gemini)が「既に株価に織り込まれている可能性」を推定できた場合のみ、
+          「⚠️ 織り込み済みの可能性あり」の警告を表示します(見出しテキストのみからの推定であり、
+          実際のチャートを参照した判定ではないため、必ず自身でも株価を確認してください)。
         </p>
         {good_news_rank_html_us}
       </div>
