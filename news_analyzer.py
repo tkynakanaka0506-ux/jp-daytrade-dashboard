@@ -157,6 +157,27 @@ US_NEWS_RESPONSE_SCHEMA = {
     "required": ["items"],
 }
 
+# ---- 織り込み済みリスク判定(監視銘柄の「材料出尽くし」警戒) ----
+# Main.java側で無料・決定論的に算出済みの ret_5d_pct(直近5日騰落率)・
+# high_52w_dist_pct(52週高値からの位置)を使い、既に株価が先行して上昇している銘柄について
+# 「好材料が絶好の売り場になっていないか」をGeminiに判定させる。数値の算出自体はLLMを使わない
+# (Main.javaで決定論的に算出済みの値をそのまま渡すだけ)。
+TECH_RISK_ITEM_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "code": {"type": "STRING"},
+        "warning": {"type": "BOOLEAN"},
+        "reason": {"type": "STRING"},
+    },
+    "required": ["code", "warning"],
+}
+
+TECH_RISK_RESPONSE_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {"items": {"type": "ARRAY", "items": TECH_RISK_ITEM_SCHEMA}},
+    "required": ["items"],
+}
+
 
 # ---------------- プロンプト構築 ----------------
 
@@ -233,6 +254,26 @@ tickerが見出しから特定できない場合は空文字でよい(推測で�
    省略してよい。
 
 候補見出し一覧:
+"""
+
+TECH_RISK_RULES = """あなたは日本株デイトレード情報ダッシュボードの「織り込み済みリスク」判定担当です。
+以下は監視銘柄ごとのテクニカル指標(直近5日騰落率・52週高値からの位置など)と、
+直近に確認できた好材料(あれば recent_catalyst に記載)をまとめたJSONです。
+
+提供された『直近5日騰落率』と『高値圏までの距離』を確認してください。もし材料が良いにもかかわらず、
+既に株価が直近で大幅上昇していたり、52週高値のすぐそばにある場合は、好材料発表が
+『絶好の売り場(材料出尽くし)』になるリスクを評価し、警告を出してください。
+
+出力ルール:
+- warningは、材料出尽くしのリスクが具体的な数値根拠(直近5日騰落率が大きくプラス、または
+  高値圏までの距離が数%以内)から明確に読み取れる場合のみtrueにする。判断材料が乏しい/
+  通常の値動きの範囲なら必ずfalseにする(無理にこじつけない)。
+- reasonには根拠にした具体的な数値(例:「直近5日で+8.2%上昇、52週高値まで1.1%」)を含めて
+  一文で書く。warningがfalseの場合は省略してよい。
+- 断定的な将来予想("必ず下がる"等)は書かない。あくまでリスク評価であることが分かる表現にする。
+- 該当銘柄が無ければ空配列でよい。
+
+対象銘柄一覧:
 """
 
 
@@ -337,6 +378,51 @@ def main():
                 log(f"us_good_news を{len(items)}件更新しました。")
     except Exception as e:
         log(f"米国株好材料ステップが失敗しました(既存値を保持): {e}")
+
+    # ---- 4) 織り込み済みリスク判定(直近5日騰落率・52週高値までの距離をGeminiでチェック) ----
+    # ret_5d_pct / high_52w_dist_pct の算出自体はMain.java側で決定論的に行っている。
+    # ここではその数値(と、あれば直近好材料)をGeminiに渡し、「材料出尽くし」リスクの
+    # 定性的な評価・警告文の生成だけを依頼する(数値算出にLLMは使わない)。
+    try:
+        technical = root.get("technical", [])
+        growth = root.get("growth_candidates", [])
+        growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
+
+        tech_candidates = []
+        for t in technical:
+            ret5d = t.get("ret_5d_pct")
+            dist = t.get("high_52w_dist_pct")
+            if ret5d is None or dist is None:
+                continue
+            entry = {
+                "code": t.get("code", ""),
+                "name": t.get("name", ""),
+                "signal": t.get("signal", ""),
+                "ret_5d_pct": ret5d,
+                "high_52w_dist_pct": dist,
+            }
+            g = growth_by_name.get(t.get("name"))
+            if g:
+                entry["recent_catalyst"] = g.get("title", "")
+            tech_candidates.append(entry)
+
+        if tech_candidates:
+            result = call_gemini(api_key, build_prompt(TECH_RISK_RULES, tech_candidates), TECH_RISK_RESPONSE_SCHEMA)
+            warn_map = {
+                it["code"]: it.get("reason", "")
+                for it in result.get("items", [])
+                if it.get("code") and it.get("warning")
+            }
+            if warn_map:
+                for t in technical:
+                    code = t.get("code")
+                    if code in warn_map:
+                        t["baked_in_warning"] = True
+                        t["baked_in_reason"] = warn_map[code]
+                root["technical"] = technical
+                log(f"baked-in warning(材料出尽くし警戒)を{len(warn_map)}件付与しました。")
+    except Exception as e:
+        log(f"織り込み済みリスク判定ステップが失敗しました(既存値を保持): {e}")
 
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)

@@ -2,6 +2,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -102,10 +104,34 @@ public class Main {
         }
 
         // ---- 個別銘柄テクニカル分析(投資の森をスクレイピング) ----
+        // 2026-08-02: 「織り込み済みリスク判定」強化のため、以下を追加(すべて無料・規約遵守の範囲):
+        //   ・ret_5d_pct       … 直近5日騰落率(Yahoo Finance chart APIのrange=1y日足から算出。先回り買いの検知用)
+        //   ・high_52w_dist_pct… 52週高値からの位置(同API。高値圏で好材料が出た場合の「材料出尽くし」検知用)
+        //   ・credit_ratio     … 信用倍率(JPX公式「銘柄別信用取引週末残高」PDFより算出。需給の過熱感の目安)
+        //   ・minkabu_url      … みんかぶのアナリストコンセンサスページへの参考リンク(規約上スクレイピングはせず、
+        //                         手動確認用のリンクのみを掲載する)
+        String[] watchlistCodes = new String[WATCHLIST.length];
+        for (int i = 0; i < WATCHLIST.length; i++) watchlistCodes[i] = WATCHLIST[i][0];
+        java.util.Map<String, Double> creditRatios = fetchJpxCreditRatios(watchlistCodes);
+
         ArrayNode technical = MAPPER.createArrayNode();
         for (String[] w : WATCHLIST) {
             try {
-                technical.add(scrapeTechnical(w[0], w[1]));
+                ObjectNode node = scrapeTechnical(w[0], w[1]);
+                enrichWithPriceStats(node, w[0]);
+                node.put("minkabu_url", "https://minkabu.jp/stock/" + w[0] + "/analyst_consensus");
+                Double ratio = creditRatios.get(w[0]);
+                if (ratio != null) {
+                    node.put("credit_ratio", ratio);
+                    // 信用倍率(買残/売残)が低い(=空売りが相対的に多い)ほど、将来の踏み上げ(ショートカバー)
+                    // による上昇余地が大きいと一般に言われる。1倍未満を目安の閾値として単純な
+                    // しきい値判定のみで機械的に付与する(LLM判断は使わない)。
+                    node.put("squeeze_potential", ratio < 1.0);
+                } else {
+                    node.putNull("credit_ratio");
+                    node.putNull("squeeze_potential");
+                }
+                technical.add(node);
             } catch (Exception e) {
                 System.err.println("[WARN] technical fetch failed for " + w[0] + ": " + e);
             }
@@ -516,6 +542,154 @@ public class Main {
             } catch (Exception e) {
                 System.err.println("[WARN] pre-earnings watch fetch failed for " + code + ": " + e);
             }
+        }
+        return out;
+    }
+
+    // ---------------- 織り込み済みリスク判定用の補助データ ----------------
+
+    /**
+     * Yahoo Finance chart API(無料・キー不要、range=1yの日足)から、
+     * 「直近5日騰落率」と「52週高値からの位置」を算出しnodeに追加する。
+     *
+     * 好決算・好材料であっても、発表前から株価が既に大きく上昇していたり、
+     * 52週高値のすぐ近くにある場合は「材料出尽くし売り」のリスクが高いという
+     * 経験則を、LLMではなく決定論的な数値として補助材料化するためのもの。
+     * 実際の「材料出尽くしリスクの判定」自体はnews_analyzer.py側のGeminiプロンプトで行う
+     * (ここでは無料の生データを提供するだけで、判断・スコアリングは行わない)。
+     *
+     * 失敗時は該当フィールドを付与しない(既存のscrapeTechnical()の結果はそのまま活かす)。
+     */
+    private static void enrichWithPriceStats(ObjectNode node, String code) {
+        try {
+            String symbol = code + ".T";
+            String url = "https://query1.finance.yahoo.com/v8/finance/chart/" + symbol + "?interval=1d&range=1y";
+            HttpRequest req = HttpRequest.newBuilder(URI.create(url))
+                .header("User-Agent", UA)
+                .timeout(Duration.ofSeconds(15))
+                .GET().build();
+            HttpResponse<String> res = HTTP.send(req, HttpResponse.BodyHandlers.ofString());
+            if (res.statusCode() != 200) return;
+
+            JsonNode json = MAPPER.readTree(res.body());
+            JsonNode result = json.path("chart").path("result").get(0);
+            if (result == null || result.isMissingNode()) return;
+            JsonNode meta = result.path("meta");
+            double currentPrice = meta.path("regularMarketPrice").asDouble(Double.NaN);
+
+            JsonNode quote0 = result.path("indicators").path("quote").get(0);
+            List<Double> closes = new java.util.ArrayList<>();
+            for (JsonNode c : quote0.path("close")) {
+                if (c.isNumber()) closes.add(c.asDouble());
+            }
+            List<Double> highs = new java.util.ArrayList<>();
+            for (JsonNode h : quote0.path("high")) {
+                if (h.isNumber()) highs.add(h.asDouble());
+            }
+
+            // 直近5日騰落率: 日足終値配列の「直近から6番目」の終値を5営業日前の基準値とみなす
+            // (配列の最後の要素は当日の未確定値であることが多いため、現在値には
+            //  regularMarketPriceを使い、比較対象だけを終値配列から取る近似計算)。
+            if (!Double.isNaN(currentPrice) && closes.size() >= 6) {
+                double base = closes.get(closes.size() - 6);
+                if (base != 0) {
+                    double ret5d = (currentPrice - base) / base * 100.0;
+                    node.put("ret_5d_pct", Math.round(ret5d * 100) / 100.0);
+                }
+            }
+
+            // 52週高値からの位置: range=1yの日足高値の最大値を「52週高値」の近似値として使う。
+            if (!Double.isNaN(currentPrice) && !highs.isEmpty()) {
+                double high52w = java.util.Collections.max(highs);
+                if (high52w > 0) {
+                    double dist = (high52w - currentPrice) / high52w * 100.0;
+                    node.put("high_52w", Math.round(high52w * 100) / 100.0);
+                    node.put("high_52w_dist_pct", Math.round(dist * 100) / 100.0);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] price stats fetch failed for " + code + ": " + e);
+        }
+    }
+
+    /**
+     * JPX公式「銘柄別信用取引週末残高」(無料・登録不要・公式統計、毎週火曜16:30頃更新)のPDFから
+     * 指定銘柄群の信用倍率(買残高÷売残高)を算出する。
+     *
+     * 民間サイト(みんかぶ・株探等)のスクレイピングには規約上の制約があるため、
+     * 取引所自身が一般公開しているPDF統計資料を直接パースする方式を採用している。
+     * データはCSV等ではなくPDFのみで提供されるため、PDFBoxでテキスト抽出したうえで、
+     * 「(5桁化された証券コード) (ISIN) (売残高) (前週比) (買残高) (前週比)」という
+     * 表の行パターンを正規表現で拾う。
+     *
+     * 注1: 2026年からの新証券コード5桁化に伴い、PDF内のコード表記は
+     *      「4桁の証券コード + 末尾に0を付与した5桁」になっている
+     *      (例: トヨタ自動車 7203 → 72030)。
+     * 注2: 週次更新のため、最新でも数営業日のタイムラグがある(即時性は低いが無料で取れる公式データ)。
+     * 注3: 何らかの理由で取得・解析に失敗した銘柄は結果マップに含めない(呼び出し側でnull扱いにする)。
+     */
+    private static java.util.Map<String, Double> fetchJpxCreditRatios(String[] codes) {
+        java.util.Map<String, Double> out = new java.util.HashMap<>();
+        try {
+            String indexUrl = "https://www.jpx.co.jp/markets/statistics-equities/margin/05.html";
+            HttpRequest req = HttpRequest.newBuilder(URI.create(indexUrl))
+                .header("User-Agent", UA)
+                .timeout(Duration.ofSeconds(20))
+                .GET().build();
+            HttpResponse<String> res = HTTP.send(req, HttpResponse.BodyHandlers.ofString());
+            if (res.statusCode() != 200) return out;
+
+            // ページ内に掲載されている(直近5週分程度の)PDFリンクのうち、
+            // ファイル名の日付(YYYYMMDD)が最大のもの=最新分を採用する。
+            Matcher pdfM = Pattern.compile(
+                "href=\"(https://www\\.jpx\\.co\\.jp/markets/statistics-equities/margin/[^\"]+/syumatsu(\\d{8})00\\.pdf)\""
+            ).matcher(res.body());
+            String latestUrl = null;
+            String latestDate = "";
+            while (pdfM.find()) {
+                String u = pdfM.group(1);
+                String d = pdfM.group(2);
+                if (d.compareTo(latestDate) > 0) {
+                    latestDate = d;
+                    latestUrl = u;
+                }
+            }
+            if (latestUrl == null) {
+                System.err.println("[WARN] jpx margin: latest PDF link not found");
+                return out;
+            }
+
+            HttpRequest pdfReq = HttpRequest.newBuilder(URI.create(latestUrl))
+                .header("User-Agent", UA)
+                .timeout(Duration.ofSeconds(30))
+                .GET().build();
+            HttpResponse<byte[]> pdfRes = HTTP.send(pdfReq, HttpResponse.BodyHandlers.ofByteArray());
+            if (pdfRes.statusCode() != 200) return out;
+
+            String text;
+            try (PDDocument doc = PDDocument.load(pdfRes.body())) {
+                text = new PDFTextStripper().getText(doc);
+            }
+
+            for (String code : codes) {
+                try {
+                    Pattern rowP = Pattern.compile(
+                        Pattern.quote(code + "0") + "\\s+JP[0-9A-Z]{10}\\s+([\\d,]+)\\s+(?:[▲△]\\s*)?[\\d,]+\\s+([\\d,]+)\\s+(?:[▲△]\\s*)?[\\d,]+"
+                    );
+                    Matcher rm = rowP.matcher(text);
+                    if (rm.find()) {
+                        double sell = Double.parseDouble(rm.group(1).replace(",", ""));
+                        double buy = Double.parseDouble(rm.group(2).replace(",", ""));
+                        if (sell > 0) {
+                            out.put(code, Math.round((buy / sell) * 100) / 100.0);
+                        }
+                    }
+                } catch (Exception e) {
+                    System.err.println("[WARN] jpx margin parse failed for " + code + ": " + e);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] jpx margin ratio fetch failed: " + e);
         }
         return out;
     }

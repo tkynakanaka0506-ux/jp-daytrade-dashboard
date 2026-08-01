@@ -363,6 +363,40 @@ def movers_table(items, empty_msg="該当データが取得できませんでし
     </div>"""
 
 
+def supply_demand_cell_html(it):
+    """需給・コンセンサス列: 信用倍率・材料出尽くし警戒・踏み上げ期待・みんかぶ参考リンクをまとめる。
+
+    信用倍率(credit_ratio)・踏み上げ期待(squeeze_potential)はMain.java側でJPX公式の
+    無料週次データから決定論的に算出。baked_in_warning/baked_in_reasonはnews_analyzer.py側で
+    Geminiが「直近5日騰落率」「52週高値からの位置」を確認した結果の定性的な警告
+    (数値算出自体はLLMを使わない)。minkabu_urlはスクレイピングではなく手動確認用の外部参考リンク。
+    """
+    parts = []
+
+    ratio = it.get("credit_ratio")
+    if isinstance(ratio, (int, float)):
+        parts.append(f'<div class="mono sd-ratio">信用倍率 {ratio:.2f}倍</div>')
+
+    if it.get("baked_in_warning"):
+        reason = esc(it.get("baked_in_reason", ""))
+        title_attr = f' title="{reason}"' if reason else ""
+        parts.append(f'<span class="tag tag-warn"{title_attr}>⚠️材料出尽くし警戒</span>')
+
+    if it.get("squeeze_potential"):
+        parts.append('<span class="tag tag-good">🚀需給良好(踏み上げ期待)</span>')
+
+    code = it.get("code", "")
+    minkabu_url = it.get("minkabu_url") or (f"https://minkabu.jp/stock/{code}/analyst_consensus" if code else "")
+    if minkabu_url:
+        parts.append(
+            f'<a class="ext-link-btn" href="{esc(minkabu_url)}" target="_blank" rel="noopener">コンセンサス確認 ↗</a>'
+        )
+
+    if not parts:
+        return '<span class="empty">―</span>'
+    return "".join(parts)
+
+
 def technical_table(items, empty_msg="テクニカルデータが取得できませんでした。"):
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
@@ -387,6 +421,7 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
             pass
         signal = it.get("signal", "中立")
         summary = emphasize(it.get("summary", ""))
+        sd_html = supply_demand_cell_html(it)
         rows.append(f"""
         <tr>
           <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
@@ -397,6 +432,7 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
           <td class="mono">{ma25}</td>
           <td class="mono">{rsi_html}{rsi_note}</td>
           <td>{signal_badge(signal)}</td>
+          <td>{sd_html}</td>
           <td class="reason">{summary}</td>
         </tr>""")
     return f"""
@@ -404,7 +440,7 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="technical-table" data-sortable="true">
-      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>コメント</th></tr></thead>
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>需給・コンセンサス</th><th>コメント</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
     </div>"""
@@ -760,7 +796,6 @@ def market_mood_signal(data):
         desc = "米国株や好材料の方向感が乏しく、無理に動く必要はありません。"
 
     return {"level": level, "icon": icon, "label": label, "desc": desc, "reasons": reasons}
-
 
 def market_mood_html(data):
     mood = market_mood_signal(data)
@@ -1197,6 +1232,7 @@ def signal_alignment_rows(data):
             })
     return rows
 
+
 def _alignment_badge(match):
     if match == "align_bull":
         return '<span class="badge bull">一致(強気材料×強気シグナル)</span>'
@@ -1361,7 +1397,7 @@ def signal_alignment_html(data):
     <div class="card beginner-card">
       <h3>🔰 初心者向け: 今後どう対応すればいいか</h3>
       <ul class="beginner-tips">{tips_html}</ul>
-      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身の責任で行ってください。</p>
+      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身で負ってください。</p>
     </div>"""
 
     return conclusion_html + detail_html + beginner_html
@@ -1570,7 +1606,17 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .badge.double { background: linear-gradient(120deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); color: var(--accent-bright); border: 1px solid rgba(212,175,55,0.5); }
 .tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
+.tag-good { background: rgba(255,107,122,0.16); color: var(--bull); }
 .empty { color: var(--muted); font-size: 13px; }
+
+/* --- 需給・コンセンサス列(信用倍率・材料出尽くし警戒・みんかぶ参考リンク) --- */
+.sd-ratio { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+.ext-link-btn {
+  display: inline-block; font-size: 10px; padding: 2px 8px; margin-top: 2px;
+  border-radius: 10px; border: 1px solid var(--accent-line); color: var(--accent-bright);
+  text-decoration: none; white-space: nowrap;
+}
+.ext-link-btn:hover { background: rgba(212,175,55,0.12); }
 
 /* --- 文章中の重要な数値・キーワードの強調マーカー --- */
 .hl-good { color: var(--bull); background: rgba(255,107,122,0.16); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
@@ -2230,7 +2276,7 @@ def build_html(data: dict) -> str:
         "機械的な抽出であり、AIによる分析ではありません。"
         "アナリストのコンセンサス予想(市場平均予想)は無料でリアルタイム取得できるソースがないため、本ページには含まれていません。"
         "<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>"
-        "投資に関する最終判断は、必ずご自身の責任で行ってください。"
+        "投資に関する最終判断・結果の責任は、必ずご自身で負ってください。"
     )
 
     sources_html = """
