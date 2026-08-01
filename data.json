@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-01 11:10",
+  "generated_at": "2026-08-01 14:42",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -29,8 +29,8 @@
     "asof": "8/1終値"
   },
   "nikkei_futures": {
-    "value": "62,925.00",
-    "change_pct": -1.07,
+    "value": "63,270.00",
+    "change_pct": -0.53,
     "asof": "8/1終値"
   },
   "nikkei225": {
