@@ -641,8 +641,10 @@ public class Main {
 
             // ページ内に掲載されている(直近5週分程度の)PDFリンクのうち、
             // ファイル名の日付(YYYYMMDD)が最大のもの=最新分を採用する。
+            // 注: JPXサイトのリンクは相対パス("/markets/.../syumatsuYYYYMMDD00.pdf")で
+            //     出力されているため、絶対URL・相対URLの両方を許容する。
             Matcher pdfM = Pattern.compile(
-                "href=\"(https://www\\.jpx\\.co\\.jp/markets/statistics-equities/margin/[^\"]+/syumatsu(\\d{8})00\\.pdf)\""
+                "href=\"(?:https://www\\.jpx\\.co\\.jp)?(/markets/statistics-equities/margin/[^\"]+/syumatsu(\\d{8})00\\.pdf)\""
             ).matcher(res.body());
             String latestUrl = null;
             String latestDate = "";
@@ -653,6 +655,9 @@ public class Main {
                     latestDate = d;
                     latestUrl = u;
                 }
+            }
+            if (latestUrl != null && latestUrl.startsWith("/")) {
+                latestUrl = "https://www.jpx.co.jp" + latestUrl;
             }
             if (latestUrl == null) {
                 System.err.println("[WARN] jpx margin: latest PDF link not found");
