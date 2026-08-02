@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03 06:46",
+  "generated_at": "2026-08-03 08:51",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,14 +24,14 @@
     }
   },
   "fx": {
-    "value": "157.45円",
-    "change_pct": -1.7,
+    "value": "157.72円",
+    "change_pct": -1.54,
     "asof": "8/3終値"
   },
   "nikkei_futures": {
-    "value": "63,270.00",
-    "change_pct": -0.53,
-    "asof": "8/1終値"
+    "value": "63,500.00",
+    "change_pct": 0.49,
+    "asof": "8/3終値"
   },
   "nikkei225": {
     "value": "64,362.02",
@@ -296,163 +296,163 @@
   ],
   "tdnet_afterclose": [
     {
-      "time": "00:30",
+      "time": "08:50",
       "code": "―",
-      "company": "シーイーシー",
-      "title": "統合報告書 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260730503099.pdf",
+      "company": "ＤＷセラピ研",
+      "title": "財務上の特約が付された借入契約の変更に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506079.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:50",
       "code": "―",
-      "company": "―",
-      "title": "臨時株主総会招集ご通知 他 8月2日(日) 08:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260802/140120260716595410.pdf",
+      "company": "ＤＷセラピ研",
+      "title": "第13回新株予約権（行使価額修正条項付）の月間行使状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260730503568.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:50",
       "code": "―",
-      "company": "―",
-      "title": "弘電社、臨時株主総会招集ご通知 他 8月1日(土) 08:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504910.pdf",
+      "company": "住友商",
+      "title": "Notice Regarding the Progress of Share Repurchases260803",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506104.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:50",
       "code": "―",
-      "company": "―",
-      "title": "Ｅ・ＪＨＤ、Notice of the 19th Annual General Meeting of Shareholders 他 8月1日(土) 08:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504563.pdf",
+      "company": "住友商",
+      "title": "自己株式の取得状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506103.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "08:46",
+      "code": "―",
+      "company": "山忠",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/03",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260511521713.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:45",
       "code": "―",
-      "company": "―",
-      "title": "Ｅ・ＪＨＤ、第19回定時株主総会の招集に際しての電子提供措置事項（交付書面に記載しない事項） 他 8月1日(土) 08:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504562.pdf",
+      "company": "ブライトパス",
+      "title": "米国食品医薬品局(FDA)によるBP2202の治験申請(IND)受理のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260802506066.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:45",
       "code": "―",
-      "company": "―",
-      "title": "Ｅ・ＪＨＤ、第19回定時株主総会招集ご通知及び株主総会資料 他 8月1日(土) 08:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504561.pdf",
+      "company": "ジェイテクト",
+      "title": "[Delayed] Notice Concerning Completion of the Transfer of the European Automotive Business",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260731505765.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:45",
       "code": "―",
-      "company": "―",
-      "title": "ワールドＨＤ、統合報告書2026「人が活きるカタチレポート」 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505814.pdf",
+      "company": "イーレックス",
+      "title": "「経済投資バラエティ！テスタの気分上々」でイーレックスのバイオマス発電所が8月2日に紹介されました",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506092.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "フジッコ、Annual Report 2026 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729502082.pdf",
+      "company": "ＷＴ金",
+      "title": "上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506068.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "ＦＰパートナ、Integrated Report 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505233.pdf",
+      "company": "ＷＴ金",
+      "title": "上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506069.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
+      "company": "ＤＧ",
+      "title": "系統用蓄電池の取扱量が150MWを突破 サービス開始から約1年7カ月で達成",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260802506001.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "セブン銀、セブン銀行ディスクロージャー誌2026（資料編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf",
+      "company": "オービック",
+      "title": "Notice Regarding Status of Share Repurchase",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260728501232.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_後編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505803.pdf",
+      "company": "オービック",
+      "title": "自己株式の取得状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260728501230.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＡＣＣＥＳＳ",
+      "title": "[Delayed] Notice Regarding Change in Major and Largest Shareholder",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506077.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf",
+      "company": "ハイレックス",
+      "title": "(Update on Disclosed Matter) Notice Regarding the Reorganization of Domestic Production Operations",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260802505991.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf",
+      "company": "ハイレックス",
+      "title": "（開示事項の経過）国内自動車事業における生産体制再編に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260802505976.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "東建物、東京建物グループ統合報告書2026 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505198.pdf",
+      "company": "ハイレックス",
+      "title": "Notice Regarding the Status of Repurchase of Treasury Shares",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260802505973.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "大和オフィス、Sustainability Report 2026 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504335.pdf",
+      "company": "ハイレックス",
+      "title": "自己株式の取得状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260729502140.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "伊藤忠",
+      "title": "一部報道について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506096.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "08:30",
       "code": "―",
-      "company": "―",
-      "title": "大和証券リビ、Sustainability Report 2026 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731504362.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "シュッピン、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 21:02",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260727500194.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "エアウォータ、コーポレート・ガバナンスに関する報告書 2026/07/31 他 7月31日(金) 20:27",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260614570177.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ニレコ、定款 2026/08/01 他 7月31日(金) 19:34",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505911.pdf",
+      "company": "伊藤忠",
+      "title": "Statement Regarding Media Reports",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506122.pdf",
       "tag": "他"
     }
   ],
