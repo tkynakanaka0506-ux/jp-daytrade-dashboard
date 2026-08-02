@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02 10:03",
+  "generated_at": "2026-08-02 10:29",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -1136,6 +1136,14 @@
       "asof": "7/29 12:19"
     },
     {
+      "code": "6098",
+      "company": "リクルートホールディングス",
+      "title": "後場に注目すべき3つのポイント～AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:33[フィスコ] - みんかぶ",
+      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBKSC1nV09DWXozenZnX2stcFBlVjA0SEZfN2VvVTZBUGlvdGhNZUdtQ0RIS1dUQkNDbWF5dEpGYmVvc1hoWG9tMw?oc=5",
+      "keyword": "AI投資",
+      "asof": "7/29 12:33"
+    },
+    {
       "code": "9983",
       "company": "ファーストリテイリング",
       "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - みんかぶ",
@@ -1154,7 +1162,7 @@
     {
       "code": "6857",
       "company": "アドバンテスト",
-      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - Moomoo",
+      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - moomoo.com",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9DcTNCb280cjJfYVoxbW4ybkVHTy1vWms5Ti1MdEM2dUtXaGVmelEtRFB6NWZlV29RQzhXenpwcmRwUWtCVzQwdjd0U29TZ19EZ2JVQ240WQ?oc=5",
       "keyword": "設備投資",
       "asof": "7/23 09:49"
