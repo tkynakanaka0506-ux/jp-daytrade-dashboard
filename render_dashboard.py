@@ -1407,9 +1407,9 @@ CSS = """
 :root {
   --bg-deep: #000000; --bg-mid: #07060a; --bg-soft: #0a0908;
   --panel: linear-gradient(155deg, rgba(20,17,10,0.96), rgba(8,7,5,0.97));
-  --panel2: rgba(255,255,255,0.03);
+  --panel2: rgba(255,255,255,0.08);
   --border: rgba(212,175,55,0.22); --border-soft: rgba(255,255,255,0.06);
-  --text: #f3ede0; --muted: #9c9484;
+  --text: #f7f4ec; --muted: #d3cfc2;
   --accent: #d4af37; --accent-bright: #f5d78e; --accent-deep: #a9812f;
   --accent-soft: rgba(212,175,55,0.14); --accent-line: rgba(212,175,55,0.5);
   --up: #ff6b7a; --down: #35d9b4;
@@ -1442,7 +1442,7 @@ body {
 .bg-spacer { position: relative; height: 90vh; min-height: 650px; }
 .bg-caption {
   position: absolute; left: 20px; bottom: 16px;
-  font-size: 11px; color: var(--text); background: rgba(0,0,0,0.4);
+  font-size: 11px; color: var(--text); background: rgba(0,0,0,0.62);
   padding: 5px 12px; border-radius: 10px; border: 1px solid var(--border-soft);
   backdrop-filter: blur(2px); letter-spacing: 0.02em;
 }
@@ -1490,7 +1490,7 @@ h1 {
 .subtitle { color: var(--muted); font-size: 11.5px; letter-spacing: 0.3px; }
 .disclaimer {
   background: linear-gradient(155deg, rgba(24,19,8,0.94), rgba(10,8,4,0.96));
-  border: 1px solid var(--accent-line); color: #e9d29c;
+  border: 1px solid var(--accent-line); color: var(--text);
   border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; line-height: 1.7; margin: 16px 20px;
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
@@ -1499,7 +1499,7 @@ nav.tabs {
   display: flex; gap: 10px; flex-wrap: wrap;
 }
 nav.tabs a {
-  color: var(--accent-bright); text-decoration: none; font-size: 12px; letter-spacing: 0.8px;
+  color: var(--text); text-decoration: none; font-size: 12px; letter-spacing: 0.8px;
   text-transform: uppercase; font-weight: 500;
   border: 1px solid var(--border);
   padding: 7px 16px; border-radius: 20px; background: rgba(212,175,55,0.05); white-space: nowrap;
@@ -1515,13 +1515,13 @@ section { margin: 32px 20px; }
 section > h2 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
-  font-weight: 600; letter-spacing: 0.5px; color: var(--accent-bright);
-  background: rgba(10,8,5,0.55); border-radius: 0 8px 8px 0; width: fit-content;
+  font-weight: 600; letter-spacing: 0.5px; color: var(--text);
+  background: rgba(10,8,5,0.75); border-radius: 0 8px 8px 0; width: fit-content;
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .section-desc {
   color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 6px 0 14px; padding: 5px 10px;
-  background: rgba(10,8,5,0.48); border-radius: 8px; width: fit-content;
+  background: rgba(10,8,5,0.68); border-radius: 8px; width: fit-content;
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
 .card {
@@ -1532,7 +1532,7 @@ section > h2 {
 }
 .card:hover { border-color: var(--accent-line); box-shadow: var(--shadow), 0 0 24px rgba(212,175,55,0.08); }
 .card h3 {
-  font-size: 12px; margin: 0 0 12px; color: var(--accent); font-weight: 600;
+  font-size: 12px; margin: 0 0 12px; color: var(--text); font-weight: 600;
   letter-spacing: 1.4px; text-transform: uppercase;
   padding-bottom: 8px; border-bottom: 1px solid var(--border-soft);
   position: relative;
@@ -1552,7 +1552,7 @@ section > h2 {
   transform: translateY(-1px);
 }
 .idx-label { font-size: 11.5px; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; }
-.idx-value { font-size: 18px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px; color: var(--accent-bright); }
+.idx-value { font-size: 18px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px; color: var(--text); }
 .chg { font-size: 13px; font-weight: 600; }
 .chg.up, .up { color: var(--up); }
 .chg.down, .down { color: var(--down); }
@@ -1567,10 +1567,10 @@ section > h2 {
 .news-impact { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
 .news-impact .impact-sector, .news-impact .impact-companies {
   display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px;
-  border: 1px solid var(--border-soft); color: var(--accent-bright); background: rgba(212,175,55,0.08);
+  border: 1px solid var(--border-soft); color: var(--text); background: rgba(212,175,55,0.14);
   line-height: 1.5;
 }
-.news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.04); }
+.news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.09); }
 .news-flow {
   display: flex; align-items: flex-start; gap: 7px; margin-top: 5px; padding: 5px 9px;
   border-radius: 8px; font-size: 12px; line-height: 1.55;
@@ -1592,7 +1592,7 @@ table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .technical-table { min-width: 820px; }
 th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border-soft); }
 th {
-  color: var(--accent); font-weight: 600; font-size: 11px; white-space: nowrap;
+  color: var(--text); font-weight: 600; font-size: 11px; white-space: nowrap;
   letter-spacing: 0.8px; text-transform: uppercase; border-bottom: 1px solid var(--accent-line);
 }
 td.mono { font-family: "SF Mono", Menlo, monospace; white-space: nowrap; }
@@ -1602,9 +1602,9 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .badge { padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
 .badge.bull { background: linear-gradient(120deg, rgba(255,107,122,0.2), rgba(255,107,122,0.08)); color: var(--bull); border: 1px solid rgba(255,107,122,0.3); }
 .badge.bear { background: linear-gradient(120deg, rgba(53,217,180,0.2), rgba(53,217,180,0.08)); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
-.badge.neutral { background: rgba(212,175,55,0.1); color: var(--muted); border: 1px solid var(--border-soft); }
+.badge.neutral { background: rgba(212,175,55,0.16); color: var(--muted); border: 1px solid var(--border-soft); }
 .badge.double { background: linear-gradient(120deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); color: var(--accent-bright); border: 1px solid rgba(212,175,55,0.5); }
-.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: var(--border-soft); color: var(--muted); margin-left: 4px; }
+.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: rgba(255,255,255,0.1); color: var(--muted); margin-left: 4px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .tag-good { background: rgba(255,107,122,0.16); color: var(--bull); }
 .empty { color: var(--muted); font-size: 13px; }
@@ -1648,7 +1648,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .alignment-conclusion.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,90,90,0.12); }
 .conclusion-text { font-size: 14.5px; line-height: 1.75; color: var(--text); margin: 0; }
 .align-subhead {
-  font-size: 12px; color: var(--accent-bright); font-weight: 700; letter-spacing: 0.4px;
+  font-size: 12px; color: var(--text); font-weight: 700; letter-spacing: 0.4px;
   margin: 16px 0 6px; padding-top: 10px; border-top: 1px dashed var(--border-soft);
 }
 .card h4.align-subhead:first-child { margin-top: 0; padding-top: 0; border-top: none; }
@@ -1672,11 +1672,11 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
   padding: 10px 12px;
 }
 .theme-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--text); flex-wrap: wrap; }
-.theme-name { color: var(--accent-bright); }
+.theme-name { color: var(--text); font-weight: 700; }
 .theme-companies { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .theme-company {
   font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border-soft);
-  background: rgba(255,255,255,0.04); color: var(--text);
+  background: rgba(255,255,255,0.1); color: var(--text);
 }
 .theme-company.muted { color: var(--muted); }
 .theme-source { font-size: 11px; color: var(--muted); margin-top: 6px; }
@@ -1691,21 +1691,21 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .rank-news a { color: var(--accent-bright); }
 .rank-outlook { font-style: italic; opacity: 0.9; }
 .rank-content { color: var(--text); opacity: 0.92; }
-.rank-impact { color: var(--accent-bright); }
+.rank-impact { color: var(--text); font-weight: 600; }
 .rank-impact .tag { margin-left: 6px; }
 .rank-reason { opacity: 0.9; }
 .rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
 .rank-warn { color: var(--warn); font-weight: 600; opacity: 1; background: rgba(255,184,77,0.1); border-left: 2px solid var(--warn); padding: 4px 8px; border-radius: 4px; }
 .score-tag {
   font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
-  background: rgba(212,175,55,0.12); color: var(--accent-bright); border: 1px solid var(--border);
+  background: rgba(212,175,55,0.2); color: var(--accent-bright); border: 1px solid var(--border);
   white-space: nowrap;
 }
 
 footer {
   margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; line-height: 1.7;
   border-top: 1px solid var(--accent-line);
-  background: rgba(10,8,5,0.5); border-radius: var(--radius-sm);
+  background: rgba(10,8,5,0.72); border-radius: var(--radius-sm);
   padding: 16px 18px; border: 1px solid var(--border);
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
 }
@@ -1713,7 +1713,7 @@ footer .disclaimer { margin: 0 0 12px; }
 .sources { font-size: 11px; color: var(--muted); }
 .run-badge {
   display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px;
-  background: rgba(0,0,0,0.4); border:1px solid var(--accent-line); color: var(--accent-bright); margin-left:8px;
+  background: rgba(0,0,0,0.62); border:1px solid var(--accent-line); color: var(--accent-bright); margin-left:8px;
   letter-spacing: 0.3px;
 }
 
@@ -1800,7 +1800,7 @@ tr.fav-hidden, tr.search-hidden { display: none; }
 
 .table-tools { margin: 0 0 8px; }
 .table-search {
-  width: 100%; max-width: 280px; background: rgba(255,255,255,0.04); color: var(--text);
+  width: 100%; max-width: 280px; background: rgba(255,255,255,0.1); color: var(--text);
   border: 1px solid var(--border-soft); border-radius: 16px; padding: 6px 12px; font-size: 12.5px;
   font-family: inherit; outline: none; transition: border-color .15s ease, background .15s ease;
 }
@@ -2276,7 +2276,7 @@ def build_html(data: dict) -> str:
         "機械的な抽出であり、AIによる分析ではありません。"
         "アナリストのコンセンサス予想(市場平均予想)は無料でリアルタイム取得できるソースがないため、本ページには含まれていません。"
         "<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>"
-        "投資に関する最終判断・結果の責任は、必ずご自身で負ってください。"
+        "投資に関する最終判断は、必ずご自身の責任で行ってください。"
     )
 
     sources_html = """
