@@ -86,7 +86,7 @@ jobs:
 
           # リモートの最新状態を強制的に取得してリセット
           git fetch origin main
-          git reset --hard origin main
+          git reset --hard origin/main
 
           # 退避していたファイルを戻す
           mv data.json.tmp data.json
