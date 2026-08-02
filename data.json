@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02 10:29",
+  "generated_at": "2026-08-02 13:53",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -26,7 +26,7 @@
   "fx": {
     "value": "157.40円",
     "change_pct": -1.74,
-    "asof": "8/1終値"
+    "asof": "8/2終値"
   },
   "nikkei_futures": {
     "value": "63,270.00",
@@ -103,7 +103,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "臨時株主総会招集ご通知 他 今日 08:00 New!",
+      "title": "臨時株主総会招集ご通知 他 今日 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260802/140120260716595410.pdf",
       "tag": "他"
     },
@@ -556,9 +556,19 @@
       "ret_5d_pct": 5.87,
       "high_52w": 4000.0,
       "high_52w_dist_pct": 23.33,
+      "volume": 37342500,
+      "avg_volume_5d": 48802720,
+      "volume_ratio": 0.77,
+      "volume_surge": false,
+      "gap_pct": -3.01,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/7203/analyst_consensus",
       "credit_ratio": 22.03,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "輸送用機器",
+      "sector_avg_change_pct": -2.66,
+      "sector_contrarian": false
     },
     {
       "code": "6758",
@@ -573,9 +583,19 @@
       "ret_5d_pct": 11.09,
       "high_52w": 4776.0,
       "high_52w_dist_pct": 20.71,
+      "volume": 39278600,
+      "avg_volume_5d": 21208880,
+      "volume_ratio": 1.85,
+      "volume_surge": false,
+      "gap_pct": -3.05,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/6758/analyst_consensus",
       "credit_ratio": 33.61,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "電気機器",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "8306",
@@ -590,9 +610,19 @@
       "ret_5d_pct": -4.87,
       "high_52w": 3813.0,
       "high_52w_dist_pct": 6.35,
+      "volume": 50098300,
+      "avg_volume_5d": 48308040,
+      "volume_ratio": 1.04,
+      "volume_surge": false,
+      "gap_pct": 1.99,
+      "gap_up": false,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/8306/analyst_consensus",
       "credit_ratio": 7.52,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "銀行業",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "9984",
@@ -607,9 +637,19 @@
       "ret_5d_pct": -4.36,
       "high_52w": 9074.0,
       "high_52w_dist_pct": 42.03,
+      "volume": 55655400,
+      "avg_volume_5d": 55602620,
+      "volume_ratio": 1.0,
+      "volume_surge": false,
+      "gap_pct": 14.73,
+      "gap_up": true,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9984/analyst_consensus",
       "credit_ratio": 10.65,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "情報・通信業",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "6861",
@@ -624,9 +664,19 @@
       "ret_5d_pct": 12.99,
       "high_52w": 84170.0,
       "high_52w_dist_pct": 3.59,
+      "volume": 1256200,
+      "avg_volume_5d": 1023340,
+      "volume_ratio": 1.23,
+      "volume_surge": false,
+      "gap_pct": 1.37,
+      "gap_up": false,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6861/analyst_consensus",
       "credit_ratio": 2.42,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "電気機器",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -641,9 +691,19 @@
       "ret_5d_pct": 7.71,
       "high_52w": 8880.0,
       "high_52w_dist_pct": 19.65,
+      "volume": 9476000,
+      "avg_volume_5d": 6895160,
+      "volume_ratio": 1.37,
+      "volume_surge": false,
+      "gap_pct": 6.88,
+      "gap_up": true,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6954/analyst_consensus",
       "credit_ratio": 18.87,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "機械",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -658,9 +718,19 @@
       "ret_5d_pct": 10.19,
       "high_52w": 14795.0,
       "high_52w_dist_pct": 48.1,
+      "volume": 18014300,
+      "avg_volume_5d": 12612380,
+      "volume_ratio": 1.43,
+      "volume_surge": false,
+      "gap_pct": -6.69,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/7974/analyst_consensus",
       "credit_ratio": 20.04,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "その他製品",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "6098",
@@ -675,9 +745,19 @@
       "ret_5d_pct": 4.11,
       "high_52w": 13320.0,
       "high_52w_dist_pct": 5.78,
+      "volume": 5277600,
+      "avg_volume_5d": 4602640,
+      "volume_ratio": 1.15,
+      "volume_surge": false,
+      "gap_pct": -2.63,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/6098/analyst_consensus",
       "credit_ratio": 1.09,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "サービス業",
+      "sector_avg_change_pct": -7.74,
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -692,9 +772,19 @@
       "ret_5d_pct": -11.43,
       "high_52w": 81260.0,
       "high_52w_dist_pct": 31.7,
+      "volume": 14096600,
+      "avg_volume_5d": 4935060,
+      "volume_ratio": 2.86,
+      "volume_surge": true,
+      "gap_pct": 13.4,
+      "gap_up": true,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/8035/analyst_consensus",
       "credit_ratio": 9.27,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "電気機器",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -709,9 +799,19 @@
       "ret_5d_pct": -0.05,
       "high_52w": 3121.0,
       "high_52w_dist_pct": 6.41,
+      "volume": 13640200,
+      "avg_volume_5d": 9803000,
+      "volume_ratio": 1.39,
+      "volume_surge": false,
+      "gap_pct": -3.61,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/9433/analyst_consensus",
       "credit_ratio": 0.45,
-      "squeeze_potential": true
+      "squeeze_potential": true,
+      "sector": "情報・通信業",
+      "sector_avg_change_pct": -4.15,
+      "sector_contrarian": false
     },
     {
       "code": "9432",
@@ -726,9 +826,19 @@
       "ret_5d_pct": 0.73,
       "high_52w": 167.2,
       "high_52w_dist_pct": 8.85,
+      "volume": 366355600,
+      "avg_volume_5d": 283165640,
+      "volume_ratio": 1.29,
+      "volume_surge": false,
+      "gap_pct": -2.2,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/9432/analyst_consensus",
       "credit_ratio": 18.91,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "情報・通信業",
+      "sector_avg_change_pct": -4.26,
+      "sector_contrarian": false
     },
     {
       "code": "7267",
@@ -743,9 +853,19 @@
       "ret_5d_pct": 5.83,
       "high_52w": 1730.0,
       "high_52w_dist_pct": 6.04,
+      "volume": 23442500,
+      "avg_volume_5d": 19594700,
+      "volume_ratio": 1.2,
+      "volume_surge": false,
+      "gap_pct": -3.89,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/7267/analyst_consensus",
       "credit_ratio": 7.47,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "輸送用機器",
+      "sector_avg_change_pct": -1.89,
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -760,9 +880,19 @@
       "ret_5d_pct": -2.45,
       "high_52w": 26440.0,
       "high_52w_dist_pct": 11.89,
+      "volume": 1509800,
+      "avg_volume_5d": 1297480,
+      "volume_ratio": 1.16,
+      "volume_surge": false,
+      "gap_pct": 0.44,
+      "gap_up": false,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6367/analyst_consensus",
       "credit_ratio": 6.21,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "機械",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "9983",
@@ -777,9 +907,19 @@
       "ret_5d_pct": 2.58,
       "high_52w": 88690.0,
       "high_52w_dist_pct": 11.84,
+      "volume": 1447200,
+      "avg_volume_5d": 1322520,
+      "volume_ratio": 1.09,
+      "volume_surge": false,
+      "gap_pct": -1.91,
+      "gap_up": false,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9983/analyst_consensus",
       "credit_ratio": 1.6,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "小売業",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "4063",
@@ -794,9 +934,19 @@
       "ret_5d_pct": -13.46,
       "high_52w": 7930.0,
       "high_52w_dist_pct": 26.86,
+      "volume": 18785700,
+      "avg_volume_5d": 12029400,
+      "volume_ratio": 1.56,
+      "volume_surge": false,
+      "gap_pct": 2.8,
+      "gap_up": true,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/4063/analyst_consensus",
       "credit_ratio": 7.11,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "化学",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "6857",
@@ -811,9 +961,19 @@
       "ret_5d_pct": 12.28,
       "high_52w": 35940.0,
       "high_52w_dist_pct": 9.57,
+      "volume": 18131300,
+      "avg_volume_5d": 11621240,
+      "volume_ratio": 1.56,
+      "volume_surge": false,
+      "gap_pct": 16.48,
+      "gap_up": true,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6857/analyst_consensus",
       "credit_ratio": 3.4,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "電気機器",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -828,9 +988,19 @@
       "ret_5d_pct": -6.53,
       "high_52w": 10700.0,
       "high_52w_dist_pct": 35.21,
+      "volume": 2876800,
+      "avg_volume_5d": 3767120,
+      "volume_ratio": 0.76,
+      "volume_surge": false,
+      "gap_pct": -1.71,
+      "gap_up": false,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/4519/analyst_consensus",
       "credit_ratio": 28.76,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "医薬品",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "5401",
@@ -845,9 +1015,19 @@
       "ret_5d_pct": 5.3,
       "high_52w": 699.8,
       "high_52w_dist_pct": 7.17,
+      "volume": 46837400,
+      "avg_volume_5d": 68645540,
+      "volume_ratio": 0.68,
+      "volume_surge": false,
+      "gap_pct": -2.27,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/5401/analyst_consensus",
       "credit_ratio": 15.36,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "鉄鋼",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     },
     {
       "code": "2413",
@@ -862,9 +1042,19 @@
       "ret_5d_pct": -2.12,
       "high_52w": 2746.0,
       "high_52w_dist_pct": 35.12,
+      "volume": 7249100,
+      "avg_volume_5d": 3583160,
+      "volume_ratio": 2.02,
+      "volume_surge": true,
+      "gap_pct": -5.39,
+      "gap_up": false,
+      "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/2413/analyst_consensus",
       "credit_ratio": 10.63,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "サービス業",
+      "sector_avg_change_pct": -2.83,
+      "sector_contrarian": false
     },
     {
       "code": "6645",
@@ -879,9 +1069,19 @@
       "ret_5d_pct": -0.89,
       "high_52w": 6383.0,
       "high_52w_dist_pct": 14.93,
+      "volume": 1635100,
+      "avg_volume_5d": 1191380,
+      "volume_ratio": 1.37,
+      "volume_surge": false,
+      "gap_pct": 4.47,
+      "gap_up": true,
+      "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6645/analyst_consensus",
       "credit_ratio": 9.45,
-      "squeeze_potential": false
+      "squeeze_potential": false,
+      "sector": "電気機器",
+      "sector_avg_change_pct": null,
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [
@@ -1136,14 +1336,6 @@
       "asof": "7/29 12:19"
     },
     {
-      "code": "6098",
-      "company": "リクルートホールディングス",
-      "title": "後場に注目すべき3つのポイント～AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:33[フィスコ] - みんかぶ",
-      "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTFBKSC1nV09DWXozenZnX2stcFBlVjA0SEZfN2VvVTZBUGlvdGhNZUdtQ0RIS1dUQkNDbWF5dEpGYmVvc1hoWG9tMw?oc=5",
-      "keyword": "AI投資",
-      "asof": "7/29 12:33"
-    },
-    {
       "code": "9983",
       "company": "ファーストリテイリング",
       "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - みんかぶ",
@@ -1162,7 +1354,7 @@
     {
       "code": "6857",
       "company": "アドバンテスト",
-      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - moomoo.com",
+      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - Moomoo",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9DcTNCb280cjJfYVoxbW4ybkVHTy1vWms5Ti1MdEM2dUtXaGVmelEtRFB6NWZlV29RQzhXenpwcmRwUWtCVzQwdjd0U29TZ19EZ2JVQ240WQ?oc=5",
       "keyword": "設備投資",
       "asof": "7/23 09:49"
