@@ -1865,7 +1865,7 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
   margin: 16px 0 6px; padding-top: 10px; border-top: 1px dashed var(--border-soft);
 }
 .card h4.align-subhead:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-.beginner-card { background: linear-gradient(160deg, rgba(212,175,55,0.16), rgba(10,8,5,0.82)); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.beginner-card { background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .beginner-tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
 .beginner-tips li { font-size: 13px; line-height: 1.7; color: var(--text); }
 
