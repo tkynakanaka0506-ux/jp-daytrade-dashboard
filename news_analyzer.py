@@ -25,12 +25,21 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
 UA = "Mozilla/5.0 (compatible; jp-daytrade-dashboard-bot/1.0)"
 GEMINI_MODEL = "gemini-2.5-flash-lite"
+
+# 無料枠のレート制限(429 Too Many Requests)対策:
+# 呼び出し間隔を最低GEMINI_MIN_INTERVAL_SEC秒空け、429時はバックオフしてリトライする。
+GEMINI_MIN_INTERVAL_SEC = 5
+GEMINI_MAX_RETRIES = 3
+GEMINI_RETRY_BASE_SEC = 8
+_last_gemini_call_ts = [0.0]
 
 
 def log(msg):
@@ -79,10 +88,27 @@ def call_gemini(api_key, prompt, schema):
         headers={"Content-Type": "application/json"},
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=60) as res:
-        payload = json.loads(res.read().decode("utf-8"))
-    text = payload["candidates"][0]["content"]["parts"][0]["text"]
-    return json.loads(text)
+    last_err = None
+    for attempt in range(1, GEMINI_MAX_RETRIES + 1):
+        elapsed = time.time() - _last_gemini_call_ts[0]
+        if elapsed < GEMINI_MIN_INTERVAL_SEC:
+            time.sleep(GEMINI_MIN_INTERVAL_SEC - elapsed)
+        try:
+            with urllib.request.urlopen(req, timeout=60) as res:
+                payload = json.loads(res.read().decode("utf-8"))
+            _last_gemini_call_ts[0] = time.time()
+            text = payload["candidates"][0]["content"]["parts"][0]["text"]
+            return json.loads(text)
+        except urllib.error.HTTPError as e:
+            _last_gemini_call_ts[0] = time.time()
+            last_err = e
+            if e.code == 429 and attempt < GEMINI_MAX_RETRIES:
+                wait = GEMINI_RETRY_BASE_SEC * attempt
+                log(f"HTTP 429(レート制限)のため{wait}秒待機してリトライします({attempt}/{GEMINI_MAX_RETRIES})")
+                time.sleep(wait)
+                continue
+            raise
+    raise last_err
 
 
 # ---------------- スキーマ定義(Gemini responseSchema) ----------------
@@ -97,7 +123,7 @@ NEWS_ITEM_SCHEMA = {
         "investment_sector": {"type": "STRING"},
         "investment_companies": {"type": "ARRAY", "items": {"type": "STRING"}},
         "money_flow": {"type": "STRING"},
-        "money_flow_type": {"type": "STRING", "enum": ["current", "expected", ""]},
+        "money_flow_type": {"type": "STRING", "enum": ["current", "expected"]},
     },
     "required": ["title", "url", "source", "time"],
 }
