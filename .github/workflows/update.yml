@@ -80,16 +80,14 @@ jobs:
           git config user.name "dashboard-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # 最新の状態をfetchして、ローカルをリモートの最新に一度合わせる
-          git fetch origin main
-          git reset --soft origin main
-
+          # 一時的なブランチを作って最新の成果物をコミットし、mainに強制上書きする
+          git checkout -b temp-branch
           git add data.json index.html
 
-          # 差分がある場合のみコミットして強制プッシュ
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git push origin main --force
+            git commit -m "Auto update"
+            # リモートのmainブランチを、今の内容で強制的に置き換える
+            git push origin temp-branch:main --force
           else
             echo "No changes to commit."
           fi
