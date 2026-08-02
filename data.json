@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02 23:24",
+  "generated_at": "2026-08-03 00:55",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -296,10 +296,18 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "00:30",
+      "code": "―",
+      "company": "シーイーシー",
+      "title": "統合報告書 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260730503099.pdf",
+      "tag": "他"
+    },
+    {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "臨時株主総会招集ご通知 他 今日 08:00",
+      "title": "臨時株主総会招集ご通知 他 8月2日(日) 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260802/140120260716595410.pdf",
       "tag": "他"
     },
@@ -363,16 +371,16 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "セブン銀、セブン銀行ディスクロージャー誌2026（資料編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf",
+      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "セブン銀、セブン銀行統合報告書ディスクロージャー誌2026（本編_前編） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505718.pdf",
+      "title": "セブン銀、セブン銀行ディスクロージャー誌2026（資料編） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260731505806.pdf",
       "tag": "他"
     },
     {
@@ -387,16 +395,16 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf",
+      "title": "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（2/2） 他 8月1日(土) 00:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501802.pdf",
+      "title": "大光銀、大光銀行 統合報告書（ディスクロージャー誌 情報編）2026（1/2） 他 8月1日(土) 00:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260801/140120260729501774.pdf",
       "tag": "他"
     },
     {
@@ -445,14 +453,6 @@
       "company": "―",
       "title": "ニレコ、定款 2026/08/01 他 7月31日(金) 19:34",
       "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505911.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＡＣＣＥＳＳ、主要株主である筆頭株主の異動に関するお知らせ 他 7月31日(金) 19:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260731/140120260731505921.pdf",
       "tag": "他"
     }
   ],
@@ -1250,7 +1250,7 @@
     {
       "code": "7203",
       "company": "トヨタ自動車",
-      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - TBS NEWS DIG",
+      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - newsdig.tbs.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB1MS1pak5pMnVoOVFfai1laXVqb2k3eGdMVHFTSk5QSnBuT1lLeVMtZHdTUjVZS0cyUWJHZ0JZeVlCd3ljalNmNnZBc3lnVENDY3dvbWZMUQ?oc=5",
       "keyword": "新工場",
       "asof": "7/21 16:00"
@@ -1322,7 +1322,7 @@
     {
       "code": "6098",
       "company": "リクルートホールディングス",
-      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - minkabu.jp",
+      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - みんかぶ",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9yZDdPMUhoeF9QU3QwdDFjTThDanVGb194TUJDOUFDSkFDeG1SMnREdU5ZT0tXYzJ1ZTFMbzZWZEQxMUZvSkE?oc=5",
       "keyword": "AI投資",
       "asof": "7/29 12:19"
@@ -1330,7 +1330,7 @@
     {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - minkabu.jp",
+      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - みんかぶ",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9yZDdPMUhoeF9QU3QwdDFjTThDanVGb194TUJDOUFDSkFDeG1SMnREdU5ZT0tXYzJ1ZTFMbzZWZEQxMUZvSkE?oc=5",
       "keyword": "AI投資",
       "asof": "7/29 12:19"
