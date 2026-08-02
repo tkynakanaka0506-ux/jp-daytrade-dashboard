@@ -361,8 +361,6 @@ def movers_table(items, empty_msg="該当データが取得できませんでし
       <tbody>{''.join(rows)}</tbody>
     </table>
     </div>"""
-
-
 def supply_demand_cell_html(it):
     """需給・コンセンサス列: 信用倍率・材料出尽くし警戒・踏み上げ期待・みんかぶ参考リンクをまとめる。
 
@@ -376,6 +374,41 @@ def supply_demand_cell_html(it):
     ratio = it.get("credit_ratio")
     if isinstance(ratio, (int, float)):
         parts.append(f'<div class="mono sd-ratio">信用倍率 {ratio:.2f}倍</div>')
+
+    # 出来高変化率(当日出来高 ÷ 直近5日平均出来高)。2倍以上を「出来高急増」として強調する。
+    # Main.java の enrichWithPriceStats() が算出済み(無料・キー不要のYahoo Finance chart APIから)。
+    vol_ratio = it.get("volume_ratio")
+    if it.get("volume_surge"):
+        ratio_str = f"({vol_ratio:.1f}倍)" if isinstance(vol_ratio, (int, float)) else ""
+        parts.append(f'<span class="tag tag-good">🚀出来高急増{ratio_str}</span>')
+    elif isinstance(vol_ratio, (int, float)):
+        parts.append(f'<div class="mono sd-ratio">出来高 5日平均比 {vol_ratio:.2f}倍</div>')
+
+    # 窓開け(ギャップ): (当日寄り付き価格 − 前日終値) ÷ 前日終値。±2%以上を強調する。
+    gap_pct = it.get("gap_pct")
+    if it.get("gap_up"):
+        parts.append(f'<span class="tag tag-good">🔺窓開け上放れ {fmt_pct(gap_pct)}</span>')
+    elif it.get("gap_down"):
+        parts.append(f'<span class="tag tag-warn">🔻窓開け下放れ {fmt_pct(gap_pct)}</span>')
+
+    # セクター(業種)平均比較・逆行高検知。SECTOR_MAPに基づくウォッチリスト内の簡易近似(Main.java側で算出)。
+    sector = esc(it.get("sector", ""))
+    if it.get("sector_contrarian"):
+        sector_avg = it.get("sector_avg_change_pct")
+        avg_str = fmt_pct(sector_avg) if isinstance(sector_avg, (int, float)) else "―"
+        parts.append(
+            f'<span class="tag tag-good" title="業種平均{avg_str}に対して単独で強い上昇(逆行高)">'
+            f'💪逆行高({sector})</span>'
+        )
+    elif sector:
+        parts.append(f'<span class="tag tag-info">業種: {sector}</span>')
+
+    # 投資テーマ自動タグ(news_analyzer.py側でGeminiが定性判定。付与されない場合もある)
+    theme = esc(it.get("theme", ""))
+    if theme:
+        note = esc(it.get("theme_trend_note", ""))
+        title_attr = f' title="{note}"' if note else ""
+        parts.append(f'<span class="tag tag-theme"{title_attr}>🏷 {theme}</span>')
 
     if it.get("baked_in_warning"):
         reason = esc(it.get("baked_in_reason", ""))
@@ -397,9 +430,129 @@ def supply_demand_cell_html(it):
     return "".join(parts)
 
 
-def technical_table(items, empty_msg="テクニカルデータが取得できませんでした。"):
+SCORE_AXES = (
+    ("catalyst", "材料"),
+    ("technical", "テクニカル"),
+    ("volume", "需給"),
+    ("expectation", "期待値"),
+)
+
+
+def compute_stock_scores(it, growth_by_name):
+    """4項目5段階スコアリング(材料・テクニカル・需給・期待値)をLLMを使わずルールベースで算出する。
+
+    既にMain.java(決定論的スクレイピング)とnews_analyzer.py(Gemini定性判定)が算出済みの
+    フィールドだけを使い、再現性のある単純なしきい値判定で1〜5点を付ける簡易スコアであり、
+    厳密なファンダメンタルズ分析やテクニカル分析の代替ではない。
+    """
+    g = growth_by_name.get(it.get("name")) if growth_by_name else None
+
+    # ① 材料(catalyst): 好材料の強さ。ダブルシグナル > 単独の好材料開示 > テーマ性のみ > 材料なし。
+    if g and g.get("double_signal"):
+        catalyst = 5
+    elif g:
+        catalyst = 4
+    elif it.get("theme"):
+        catalyst = 3
+    elif it.get("baked_in_warning"):
+        catalyst = 2
+    else:
+        catalyst = 1
+
+    # ② テクニカル: 既存の「強気スコア」(買いシグナル数×2−売りシグナル数)をベースに5段階化する。
+    counts = parse_signal_counts(it.get("summary", ""))
+    if counts:
+        bull_score = counts["buy"] * 2 - counts["sell"]
+        if bull_score >= 4:
+            technical = 5
+        elif bull_score >= 2:
+            technical = 4
+        elif bull_score >= 0:
+            technical = 3
+        elif bull_score >= -2:
+            technical = 2
+        else:
+            technical = 1
+    else:
+        technical = 3
+
+    # ③ 需給: 出来高変化率(直近5日平均比)と信用倍率による踏み上げ期待を反映する。
+    vol_ratio = it.get("volume_ratio")
+    if isinstance(vol_ratio, (int, float)):
+        if vol_ratio >= 3.0:
+            volume = 5
+        elif vol_ratio >= 2.0:
+            volume = 4
+        elif vol_ratio >= 1.5:
+            volume = 3
+        elif vol_ratio >= 1.0:
+            volume = 2
+        else:
+            volume = 1
+    else:
+        volume = 3
+    if it.get("squeeze_potential") and volume < 5:
+        volume += 1
+
+    # ④ 期待値: 好材料が「まだ織り込まれていないか」の目安。既に高値圏・急騰済みなら減点、
+    # 売られ過ぎ(RSI低位)で反発余地があれば加点する(将来の値上がりを保証するものではない)。
+    expectation = 3
+    if it.get("baked_in_warning"):
+        expectation -= 2
+    high_dist = it.get("high_52w_dist_pct")
+    if isinstance(high_dist, (int, float)) and high_dist <= 3.0:
+        expectation -= 1
+    ret5d = it.get("ret_5d_pct")
+    if isinstance(ret5d, (int, float)) and ret5d >= 15.0:
+        expectation -= 1
+    rsi = it.get("rsi")
+    try:
+        rsi_f = float(rsi)
+        if rsi_f >= 70:
+            expectation -= 1
+        elif rsi_f <= 30:
+            expectation += 1
+    except (TypeError, ValueError):
+        pass
+    expectation = max(1, min(5, expectation))
+
+    catalyst = max(1, min(5, catalyst))
+    technical = max(1, min(5, technical))
+    volume = max(1, min(5, volume))
+
+    overall = round((catalyst + technical + volume + expectation) / 4.0, 1)
+    return {"catalyst": catalyst, "technical": technical, "volume": volume, "expectation": expectation, "overall": overall}
+
+
+def score_badge_html(scores):
+    """4軸スコアを、軸名の頭文字+ドット(●○)のミニ表示と総合スコアのバッジにまとめる。"""
+    pips = []
+    for key, label in SCORE_AXES:
+        v = scores.get(key, 3)
+        dots = "".join("●" if i < v else "○" for i in range(5))
+        pips.append(
+            f'<div class="score-row"><span class="score-axis">{label}</span>'
+            f'<span class="score-dots" title="{label} {v}/5">{dots}</span></div>'
+        )
+    overall = scores.get("overall", 3.0)
+    if overall >= 4.0:
+        cls = "score-high"
+    elif overall >= 2.5:
+        cls = "score-mid"
+    else:
+        cls = "score-low"
+    return (
+        f'<div class="score-cell">'
+        f'<div class="score-overall {cls}">総合 {overall:.1f}</div>'
+        f'{"".join(pips)}'
+        f'</div>'
+    )
+
+
+def technical_table(items, empty_msg="テクニカルデータが取得できませんでした。", growth=None):
     if not items:
         return f'<p class="empty">{esc(empty_msg)}</p>'
+    growth_by_name = {g.get("company"): g for g in (growth or []) if g.get("company")}
     rows = []
     for it in items:
         code = it.get("code", "")
@@ -422,6 +575,8 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
         signal = it.get("signal", "中立")
         summary = emphasize(it.get("summary", ""))
         sd_html = supply_demand_cell_html(it)
+        scores = compute_stock_scores(it, growth_by_name)
+        score_html = score_badge_html(scores)
         rows.append(f"""
         <tr>
           <td class="mono">{fav_btn_html(code)}{code_link(code)}</td>
@@ -433,27 +588,34 @@ def technical_table(items, empty_msg="テクニカルデータが取得できま
           <td class="mono">{rsi_html}{rsi_note}</td>
           <td>{signal_badge(signal)}</td>
           <td>{sd_html}</td>
+          <td>{score_html}</td>
           <td class="reason">{summary}</td>
         </tr>""")
     return f"""
     {table_tools_html()}
+    <p class="rank-note">💡 <b>スコア(材料/テクニカル/需給/期待値)</b>は既存データからのルールベース簡易採点(1〜5)です。AIによる判定ではなく、投資助言でもありません。</p>
     <div class="scroll-hint">← 横にスクロールできます</div>
     <div class="table-scroll">
     <table class="technical-table" data-sortable="true">
-      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>需給・コンセンサス</th><th>コメント</th></tr></thead>
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>需給・コンセンサス</th><th>スコア</th><th>コメント</th></tr></thead>
       <tbody>{''.join(rows)}</tbody>
     </table>
     </div>"""
 
 
 def parse_signal_counts(summary):
-    """summary文字列から「中立X/売りY/買いZ」のシグナル内訳を抽出する。見つからなければNone。"""
+    """summary文字列から「売りX/中立Y/買いZ」のシグナル内訳を抽出する。見つからなければNone。
+
+    2026-08-02: Main.java側の実際の出力順序(売り→中立→買い、scrapeTechnical()参照)と
+    このパターンの順序が一致していなかったため、常にマッチせずbull_ranking_html()や
+    4項目スコアリングのテクニカル軸が機能していなかったバグを修正。
+    """
     if not summary:
         return None
-    m = re.search(r"中立\s*(\d+)\s*/\s*売り\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
+    m = re.search(r"売り\s*(\d+)\s*/\s*中立\s*(\d+)\s*/\s*買い\s*(\d+)", summary)
     if not m:
         return None
-    neutral, sell, buy = (int(x) for x in m.groups())
+    sell, neutral, buy = (int(x) for x in m.groups())
     return {"neutral": neutral, "sell": sell, "buy": buy}
 
 
@@ -587,7 +749,6 @@ def _jp_bakedin_warning(code, tech_lookup, rsi_threshold=75.0, dev_threshold=15.
         return None
     return ("、".join(reasons) + "。好材料が既に株価に織り込まれ済みで、"
             "利確売り・材料出尽くしによる反落リスクに注意してください。")
-
 
 
 # 日本株(TDnet開示)の好材料カテゴリ定義:重み・強さラベル・具体的な好材料内容・
@@ -796,6 +957,7 @@ def market_mood_signal(data):
         desc = "米国株や好材料の方向感が乏しく、無理に動く必要はありません。"
 
     return {"level": level, "icon": icon, "label": label, "desc": desc, "reasons": reasons}
+
 
 def market_mood_html(data):
     mood = market_mood_signal(data)
@@ -1111,6 +1273,41 @@ def pre_earnings_watch_html(items, empty_msg="現時点で該当する先行材�
     return "".join(rows)
 
 
+def edinet_holdings_html(items, empty_msg="現時点で該当する大量保有報告書・変更報告書は見つかりませんでした(EDINET_API_KEY未設定の場合は常にこの表示になります)。"):
+    """EDINET 大量保有報告書(5%ルール)の簡易チェック(プロトタイプ)。
+
+    Main.java側でEDINET API(要利用登録・APIキー)から直近数日分の大量保有報告書
+    (docTypeCode=350)・変更報告書(同351)を取得し、書類概要にウォッチリストの会社名が
+    含まれるものだけを単純な文字列一致で抽出している。対象銘柄の証券コードが構造化
+    フィールドとして安定して取れないための簡易実装であり、取りこぼし・表記ゆれによる
+    ミスマッチが起こり得るプロトタイプ機能。必ずEDINET原文で内容を確認すること。"""
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+    rows = []
+    for it in items:
+        name = esc(it.get("name", ""))
+        code = esc(it.get("code", ""))
+        filer = esc(it.get("filer_name", ""))
+        doc_type = esc(it.get("doc_type", ""))
+        desc = esc(it.get("doc_description", ""))
+        submitted = esc(it.get("submit_datetime", ""))
+        rows.append(f"""
+        <div class="rank-item">
+          <div class="rank-num">📑</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              {fav_btn_html(code)}{code_link(code)} {name}
+              <span class="badge neutral">{doc_type}</span>
+            </div>
+            <div class="rank-desc">提出者: {filer}</div>
+            <div class="rank-desc">{desc}</div>
+            <div class="rank-desc">提出日時: {submitted}</div>
+          </div>
+        </div>""")
+    return "".join(rows)
+
+
+
 # ------------------------------------------------------------------
 # 「本日の注目テーマと関連銘柄」(ニュース)と「株価診断」(テクニカル指標)を
 # 機械的にクロス参照し、材料とテクニカルの方向感が銘柄ごとに「一致」しているか
@@ -1403,6 +1600,7 @@ def signal_alignment_html(data):
     return conclusion_html + detail_html + beginner_html
 
 
+
 CSS = """
 :root {
   --bg-deep: #000000; --bg-mid: #07060a; --bg-soft: #0a0908;
@@ -1604,10 +1802,25 @@ tbody tr:hover { background: rgba(212,175,55,0.08); }
 .badge.bear { background: linear-gradient(120deg, rgba(53,217,180,0.2), rgba(53,217,180,0.08)); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
 .badge.neutral { background: rgba(212,175,55,0.16); color: var(--muted); border: 1px solid var(--border-soft); }
 .badge.double { background: linear-gradient(120deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); color: var(--accent-bright); border: 1px solid rgba(212,175,55,0.5); }
-.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: rgba(255,255,255,0.1); color: var(--muted); margin-left: 4px; }
+.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: rgba(255,255,255,0.1); color: var(--muted); margin-left: 4px; display: inline-block; margin-top: 2px; }
 .tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
 .tag-good { background: rgba(255,107,122,0.16); color: var(--bull); }
+.tag-info { background: rgba(255,255,255,0.12); color: var(--text); }
+.tag-theme { background: rgba(212,175,55,0.22); color: var(--accent-bright); }
 .empty { color: var(--muted); font-size: 13px; }
+
+/* --- 4項目5段階スコアリング(材料・テクニカル・需給・期待値) --- */
+.score-cell { display: flex; flex-direction: column; gap: 2px; min-width: 120px; }
+.score-overall {
+  font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 10px;
+  display: inline-block; margin-bottom: 2px; width: fit-content;
+}
+.score-overall.score-high { background: rgba(255,107,122,0.2); color: var(--bull); }
+.score-overall.score-mid { background: rgba(212,175,55,0.2); color: var(--accent-bright); }
+.score-overall.score-low { background: rgba(53,217,180,0.16); color: var(--bear); }
+.score-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); white-space: nowrap; }
+.score-axis { width: 52px; flex-shrink: 0; }
+.score-dots { letter-spacing: 1px; color: var(--accent-bright); }
 
 /* --- 需給・コンセンサス列(信用倍率・材料出尽くし警戒・みんかぶ参考リンク) --- */
 .sd-ratio { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
@@ -1872,6 +2085,7 @@ table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity:
   a { color: #000 !important; text-decoration: underline; }
 }
 """
+
 
 
 JS_SCRIPT = r"""
@@ -2211,7 +2425,7 @@ def build_html(data: dict) -> str:
         <b>将来の株価を予想・保証するものではありません。</b>
       </p>
       <div class="card">
-        {technical_table(data.get("technical", []))}
+        {technical_table(data.get("technical", []), growth=data.get("growth_candidates", []))}
       </div>
       <div class="card">
         <h3>強気シグナル数ランキング</h3>
@@ -2264,6 +2478,22 @@ def build_html(data: dict) -> str:
       <div class="card">
         <h3>ウォッチリスト銘柄の先行材料ニュース(直近14日・見出しキーワード一致)</h3>
         {pre_earnings_watch_html(data.get("pre_earnings_watch", []))}
+      </div>
+    </section>"""
+
+    edinet_html = f"""
+    <section id="edinet">
+      <h2>📑 EDINET 大量保有報告書チェック(5%ルール・プロトタイプ)</h2>
+      <p class="section-desc">
+        金融庁EDINETに提出された大量保有報告書・変更報告書のうち、ウォッチリスト銘柄の会社名が
+        書類概要に含まれるものを抽出しています。<b>EDINET APIの利用登録・APIキー設定
+        (GitHub Secrets)が無い場合は常に「該当なし」表示になります。</b>
+        対象銘柄の特定は構造化データではなく簡易文字列一致によるプロトタイプ実装のため、
+        取りこぼしや誤検知が起こり得ます。<b>必ずEDINET原文でご確認ください。投資助言ではありません。</b>
+      </p>
+      <div class="card">
+        <h3>直近の大量保有報告書・変更報告書</h3>
+        {edinet_holdings_html(data.get("edinet_large_holdings", []))}
       </div>
     </section>"""
 
@@ -2351,6 +2581,7 @@ def build_html(data: dict) -> str:
   {alignment_html}
   {growth_html}
   {pre_earnings_html}
+  {edinet_html}
 
   <footer>
     <div class="disclaimer">

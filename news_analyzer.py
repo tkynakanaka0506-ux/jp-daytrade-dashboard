@@ -178,6 +178,26 @@ TECH_RISK_RESPONSE_SCHEMA = {
     "required": ["items"],
 }
 
+# ---- 「テーマ性」の自動タグ付け ----
+# 監視銘柄一覧(業種・直近の好材料見出しなど)をまとめて渡し、各銘柄がどの投資テーマに
+# 該当するか(該当する場合のみ)と、そのテーマが今まさに市場で注目されているかの
+# コメントをGeminiに判定させる。値そのものの算出にLLMは使わない(定性判定のみ)。
+THEME_TAG_ITEM_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "code": {"type": "STRING"},
+        "theme": {"type": "STRING"},
+        "theme_trend_note": {"type": "STRING"},
+    },
+    "required": ["code", "theme"],
+}
+
+THEME_TAG_RESPONSE_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {"items": {"type": "ARRAY", "items": THEME_TAG_ITEM_SCHEMA}},
+    "required": ["items"],
+}
+
 
 # ---------------- プロンプト構築 ----------------
 
@@ -272,6 +292,27 @@ TECH_RISK_RULES = """あなたは日本株デイトレード情報ダッシュ�
   一文で書く。warningがfalseの場合は省略してよい。
 - 断定的な将来予想("必ず下がる"等)は書かない。あくまでリスク評価であることが分かる表現にする。
 - 該当銘柄が無ければ空配列でよい。
+
+対象銘柄一覧:
+"""
+
+THEME_RULES = """あなたは日本株デイトレード情報ダッシュボードの「テーマ性」タグ付け担当です。
+以下は監視銘柄ごとの証券コード・銘柄名・業種・直近の好材料見出し(あれば recent_catalyst)を
+まとめたJSON配列です。各銘柄について、該当する投資テーマが明確に読み取れる場合のみ、
+指定のJSON形式でタグ付けしてください。
+
+出力ルール:
+- themeには「半導体」「AI」「データセンター」「防衛」「円安メリット」「インバウンド」
+  「電力・再エネ」「資源・エネルギー」のように、テーマ名を一言(10字前後)で書く。
+  複数該当する場合は最も強く関連する1つだけを選ぶ。
+- 業種名やrecent_catalystの内容から明確にテーマが読み取れない銘柄は、無理にこじつけず
+  出力配列に含めないこと(該当銘柄が1つも無ければ空配列でよい)。
+- theme_trend_noteには、そのテーマが「今まさに市場で注目されているか」を一文で書く。
+  判断材料は、候補一覧内で同じテーマに該当する銘柄が複数あるか(複数あれば市場全体の
+  物色テーマとして注目度が高いと考えられる)、recent_catalystの内容が最近の具体的な
+  出来事を示しているかなど。根拠が乏しい場合はtheme_trend_noteを省略してよい。
+- 断定的な将来予想("上がります"等)は書かない。あくまで現状の傾向描写にする。
+- codeは候補一覧に実際に存在する値をそのまま使うこと(創作しない)。
 
 対象銘柄一覧:
 """
@@ -423,6 +464,46 @@ def main():
                 log(f"baked-in warning(材料出尽くし警戒)を{len(warn_map)}件付与しました。")
     except Exception as e:
         log(f"織り込み済みリスク判定ステップが失敗しました(既存値を保持): {e}")
+
+    # ---- 5) 「テーマ性」の自動タグ付け ----
+    # 業種(sector、Main.java側で算出済み)と直近好材料(growth_candidates)をもとに、
+    # 各銘柄の投資テーマ判定・トレンド性コメントの生成だけをGeminiに依頼する。
+    try:
+        technical = root.get("technical", [])
+        growth = root.get("growth_candidates", [])
+        growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
+
+        theme_candidates = []
+        for t in technical:
+            entry = {
+                "code": t.get("code", ""),
+                "name": t.get("name", ""),
+                "sector": t.get("sector", ""),
+            }
+            g = growth_by_name.get(t.get("name"))
+            if g:
+                entry["recent_catalyst"] = g.get("title", "")
+            theme_candidates.append(entry)
+
+        if theme_candidates:
+            result = call_gemini(api_key, build_prompt(THEME_RULES, theme_candidates), THEME_TAG_RESPONSE_SCHEMA)
+            theme_map = {
+                it["code"]: it
+                for it in result.get("items", [])
+                if it.get("code") and it.get("theme")
+            }
+            if theme_map:
+                for t in technical:
+                    code = t.get("code")
+                    if code in theme_map:
+                        t["theme"] = theme_map[code]["theme"]
+                        note = theme_map[code].get("theme_trend_note")
+                        if note:
+                            t["theme_trend_note"] = note
+                root["technical"] = technical
+                log(f"投資テーマタグを{len(theme_map)}件付与しました。")
+    except Exception as e:
+        log(f"テーマ自動タグ付けステップが失敗しました(既存値を保持): {e}")
 
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)

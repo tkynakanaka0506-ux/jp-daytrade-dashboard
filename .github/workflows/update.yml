@@ -55,6 +55,10 @@ jobs:
         run: mvn -q -B package
 
       - name: データ取得・data.json更新(Java・決定論的な部分)
+        env:
+          # EDINET APIはVersion 2から利用登録(無料)+APIキーが必須。未設定でも他の処理は継続する
+          # (大量保有報告書チェックのみスキップされる)。
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
         run: java -jar target/dashboard-updater.jar "${{ steps.mode.outputs.mode }}" data.json
 
       - name: ニュース分析・話題株選定(Python + Gemini無料枠・任意)
@@ -64,6 +68,12 @@ jobs:
 
       - name: HTML再生成(既存のPure Pythonレンダラー)
         run: python3 render_dashboard.py data.json index.html
+
+      - name: 最注力銘柄をLINEへ通知(任意・条件を満たす銘柄がある場合のみ)
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: python3 notify_line.py data.json
 
       - name: 差分があればcommit & push
         run: |

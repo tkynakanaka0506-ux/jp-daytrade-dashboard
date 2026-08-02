@@ -74,6 +74,34 @@ public class Main {
         {"6645", "オムロン"},
     };
 
+    // 2026-08-02: 「相場環境の俯瞰(セクター分析)」機能追加のため、東証33業種ベースの
+    // 簡易セクター区分を銘柄コードにひも付けたルックアップテーブルを追加。
+    // ウォッチリストが20銘柄と少数のため、外部APIから業種を都度取得するのではなく、
+    // 無料・キー不要かつ即時に使える固定マップとして保持する(コード変更時は手動更新が必要)。
+    private static final java.util.Map<String, String> SECTOR_MAP = new java.util.HashMap<>();
+    static {
+        SECTOR_MAP.put("7203", "輸送用機器");
+        SECTOR_MAP.put("6758", "電気機器");
+        SECTOR_MAP.put("8306", "銀行業");
+        SECTOR_MAP.put("9984", "情報・通信業");
+        SECTOR_MAP.put("6861", "電気機器");
+        SECTOR_MAP.put("6954", "機械");
+        SECTOR_MAP.put("7974", "その他製品");
+        SECTOR_MAP.put("6098", "サービス業");
+        SECTOR_MAP.put("8035", "電気機器");
+        SECTOR_MAP.put("9433", "情報・通信業");
+        SECTOR_MAP.put("9432", "情報・通信業");
+        SECTOR_MAP.put("7267", "輸送用機器");
+        SECTOR_MAP.put("6367", "機械");
+        SECTOR_MAP.put("9983", "小売業");
+        SECTOR_MAP.put("4063", "化学");
+        SECTOR_MAP.put("6857", "電気機器");
+        SECTOR_MAP.put("4519", "医薬品");
+        SECTOR_MAP.put("5401", "鉄鋼");
+        SECTOR_MAP.put("2413", "サービス業");
+        SECTOR_MAP.put("6645", "電気機器");
+    }
+
     public static void main(String[] args) throws Exception {
         String mode = args.length > 0 ? args[0] : "morning"; // "morning" or "evening"
         File dataFile = new File(args.length > 1 ? args[1] : "data.json");
@@ -136,13 +164,23 @@ public class Main {
                 System.err.println("[WARN] technical fetch failed for " + w[0] + ": " + e);
             }
         }
+        // ---- セクター(業種)平均との比較・逆行高検知 ----
+        // 2026-08-02: 「相場環境の俯瞰」機能追加。SECTOR_MAPで同一業種とみなされる銘柄群の
+        // change_pct平均と比較し、セクター全体が軟調な中で単独で強い(逆行高)銘柄を検知する。
+        try {
+            annotateSectorComparison(technical);
+        } catch (Exception e) {
+            System.err.println("[WARN] sector comparison failed: " + e);
+        }
+
         if (technical.size() > 0) {
             root.set("technical", technical);
         }
 
         // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
+        ArrayNode growth = null;
         try {
-            ArrayNode growth = scrapeGrowthCandidates(8, 8);
+            growth = scrapeGrowthCandidates(8, 8);
             // ダブルシグナル判定は表示用disclosures(直近20件程度)ではなく、
             // 別途もっと深くページを遡って「決算」タグの会社名だけを集めた専用セットを使う
             // (取りこぼしを減らすための無料の改善。詳細はscrapeKessanCompanies()のJavadoc参照)。
@@ -154,6 +192,10 @@ public class Main {
         } catch (Exception e) {
             System.err.println("[WARN] growth candidates fetch failed: " + e);
         }
+        // 注: 4項目5段階スコアリング(材料・テクニカル・需給・期待値)は、Gemini補完後
+        // (news_analyzer.pyが付与するtheme/baked_in_warning等)のフィールドも使いたいため、
+        // このJavaの時点ではなく、パイプライン最後段のrender_dashboard.py側で
+        // 表示直前にルールベース(LLM不使用)で計算する。
 
         // ---- 決算前 先行材料ウォッチ(Google News RSS・無料/キー不要・LLM不使用) ----
         // 好決算・ストップ高になる銘柄は、決算発表の当日いきなり材料が出るのではなく、
@@ -168,6 +210,30 @@ public class Main {
             }
         } catch (Exception e) {
             System.err.println("[WARN] pre-earnings watch fetch failed: " + e);
+        }
+
+        // ---- EDINET 大量保有報告書(5%ルール)の簡易チェック(プロトタイプ) ----
+        // 2026-08-02: 「EDINET 5%ルールの簡易チェック」機能追加。EDINET APIはVersion 2から
+        // 利用登録(電話番号必須・無料)とAPIキー(Subscription-Key)が必須になっており、
+        // 完全に登録不要のAPIではなくなっている。そのため他の無料スクレイピングと同様の
+        // 「キー不要」までは実現できず、EDINET_API_KEY環境変数(GitHub Secrets)が
+        // 未設定の場合は既存値を保持してスキップする(GEMINI_API_KEYと同じ扱い)。
+        // また大量保有報告書(docTypeCode=350/351)のAPIレスポンスには対象銘柄の証券コードが
+        // 構造化フィールドとして安定して入っていないため、書類概要(docDescription)に
+        // ウォッチリストの会社名が含まれるかという簡易文字列一致で検知するプロトタイプ実装とする
+        // (取りこぼし・誤検知はあり得る前提のベストエフォート機能)。
+        try {
+            String edinetApiKey = System.getenv("EDINET_API_KEY");
+            if (edinetApiKey == null || edinetApiKey.isBlank()) {
+                System.err.println("[INFO] EDINET_API_KEY未設定のため、大量保有報告書チェックをスキップします。");
+            } else {
+                ArrayNode holdings = fetchEdinetLargeHoldings(WATCHLIST, edinetApiKey, 3);
+                if (holdings.size() > 0) {
+                    root.set("edinet_large_holdings", holdings);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] EDINET large holdings check failed: " + e);
         }
 
         // 注: overnight_news / afterclose_news / movers_morning / movers_afterclose は
@@ -586,6 +652,14 @@ public class Main {
             for (JsonNode h : quote0.path("high")) {
                 if (h.isNumber()) highs.add(h.asDouble());
             }
+            List<Double> opens = new java.util.ArrayList<>();
+            for (JsonNode o : quote0.path("open")) {
+                opens.add(o.isNumber() ? o.asDouble() : Double.NaN);
+            }
+            List<Double> volumes = new java.util.ArrayList<>();
+            for (JsonNode v : quote0.path("volume")) {
+                volumes.add(v.isNumber() ? v.asDouble() : Double.NaN);
+            }
 
             // 直近5日騰落率: 日足終値配列の「直近から6番目」の終値を5営業日前の基準値とみなす
             // (配列の最後の要素は当日の未確定値であることが多いため、現在値には
@@ -607,9 +681,186 @@ public class Main {
                     node.put("high_52w_dist_pct", Math.round(dist * 100) / 100.0);
                 }
             }
+
+            // 2026-08-02: 「需給と勢いの可視化」機能追加。
+            //   ・volume_ratio … 当日出来高 ÷ 直近5営業日平均出来高。2倍以上で「出来高急増」フラグ。
+            //   ・gap_pct      … (当日始値 − 前日終値) ÷ 前日終値。寄り付き時点の需給の偏りの目安。
+            // どちらもYahoo Finance chart API(range=1y日足)の同一レスポンス内のopen/volume配列から
+            // 追加コストなしで算出できる(新規HTTPリクエスト不要)。
+            try {
+                if (volumes.size() >= 6) {
+                    double todayVolume = volumes.get(volumes.size() - 1);
+                    // 直近5営業日平均は「当日を除く」直前5日分(size-6 〜 size-2)を使う。
+                    double sum = 0; int n = 0;
+                    for (int i = volumes.size() - 6; i < volumes.size() - 1; i++) {
+                        double v = volumes.get(i);
+                        if (!Double.isNaN(v)) { sum += v; n++; }
+                    }
+                    if (!Double.isNaN(todayVolume) && n > 0) {
+                        double avg5d = sum / n;                        if (avg5d > 0) {
+                            double ratio = todayVolume / avg5d;
+                            node.put("volume", (long) todayVolume);
+                            node.put("avg_volume_5d", Math.round(avg5d));
+                            node.put("volume_ratio", Math.round(ratio * 100) / 100.0);
+                            node.put("volume_surge", ratio >= 2.0);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("[WARN] volume ratio calc failed for " + code + ": " + e);
+            }
+
+            try {
+                if (!opens.isEmpty() && closes.size() >= 2) {
+                    double todayOpen = opens.get(opens.size() - 1);
+                    double prevClose = closes.get(closes.size() - 2);
+                    if (!Double.isNaN(todayOpen) && !Double.isNaN(prevClose) && prevClose != 0) {
+                        double gapPct = (todayOpen - prevClose) / prevClose * 100.0;
+                        node.put("gap_pct", Math.round(gapPct * 100) / 100.0);
+                        // ±2%以上の寄り付きギャップを「窓開け」の目安として機械的にフラグ付けする。
+                        node.put("gap_up", gapPct >= 2.0);
+                        node.put("gap_down", gapPct <= -2.0);
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("[WARN] gap calc failed for " + code + ": " + e);
+            }
         } catch (Exception e) {
             System.err.println("[WARN] price stats fetch failed for " + code + ": " + e);
         }
+    }
+
+    /**
+     * ウォッチリスト銘柄をSECTOR_MAPの業種でグルーピングし、各銘柄に
+     *   ・sector                … 業種名
+     *   ・sector_avg_change_pct … 同業種内・自分を除く他銘柄のchange_pct平均(同業種が1銘柄のみの場合はnull)
+     *   ・sector_contrarian     … 業種平均が下落しているにもかかわらず自分だけ強い上昇をしている「逆行高」フラグ
+     * を付与する。あくまでウォッチリスト20銘柄内での相対比較であり、業種全体の統計ではない
+     * (無料・キー不要で完結させるための簡易近似)。
+     */
+    private static void annotateSectorComparison(ArrayNode technical) {
+        // 業種名 → その業種に属する change_pct のリスト(nullは除外)
+        java.util.Map<String, List<Double>> sectorChanges = new java.util.HashMap<>();
+        for (JsonNode n : technical) {
+            String code = n.path("code").asText(null);
+            if (code == null) continue;
+            String sector = SECTOR_MAP.get(code);
+            if (sector == null) continue;
+            JsonNode cp = n.path("change_pct");
+            if (cp.isNumber()) {
+                sectorChanges.computeIfAbsent(sector, k -> new java.util.ArrayList<>()).add(cp.asDouble());
+            }
+        }
+
+        for (JsonNode n : technical) {
+            if (!(n instanceof ObjectNode)) continue;
+            ObjectNode node = (ObjectNode) n;
+            String code = node.path("code").asText(null);
+            if (code == null) continue;
+            String sector = SECTOR_MAP.get(code);
+            if (sector == null) continue;
+            node.put("sector", sector);
+
+            List<Double> all = sectorChanges.get(sector);
+            JsonNode cpNode = node.path("change_pct");
+            if (all == null || !cpNode.isNumber()) {
+                node.putNull("sector_avg_change_pct");
+                node.put("sector_contrarian", false);
+                continue;
+            }
+            double own = cpNode.asDouble();
+            // 自分を除いた同業種平均(同業種が自分1銘柄のみの場合は比較不能としてnullを返す)。
+            // 同値の重複による誤除外を避けるため、値ではなく「1件だけ除外する」方式にする。
+            if (all.size() <= 1) {
+                node.putNull("sector_avg_change_pct");
+                node.put("sector_contrarian", false);
+                continue;
+            }
+            double othersSum = 0; int othersCount = 0;
+            boolean skippedOwn = false;
+            for (double v : all) {
+                if (!skippedOwn && v == own) { skippedOwn = true; continue; }
+                othersSum += v; othersCount++;
+            }
+            if (othersCount == 0) {
+                node.putNull("sector_avg_change_pct");
+                node.put("sector_contrarian", false);
+                continue;
+            }
+            double sectorAvg = othersSum / othersCount;
+            node.put("sector_avg_change_pct", Math.round(sectorAvg * 100) / 100.0);
+
+            // 逆行高: 業種平均が-0.3%以下(軟調)にもかかわらず、自分は+1.0%以上上昇しており、
+            // かつその差が+1.5pt以上あるケースを機械的にフラグ付けする。
+            boolean contrarian = sectorAvg <= -0.3 && own >= 1.0 && (own - sectorAvg) >= 1.5;
+            node.put("sector_contrarian", contrarian);
+        }
+    }
+
+    /**
+     * EDINET API v2(https://api.edinet-fsa.go.jp/api/v2/documents.json)から、
+     * 直近lookbackDays日分の提出書類一覧を取得し、大量保有報告書(docTypeCode=350)・
+     * 変更報告書(docTypeCode=351)のうち、書類概要(docDescription)にウォッチリストの
+     * 会社名が含まれるものをウォッチリスト銘柄と紐づけて返す。
+     *
+     * 注: EDINET APIはVersion 2から利用登録(無料・電話番号必須)とAPIキーが必須になっており、
+     * 呼び出し元でEDINET_API_KEYが未設定の場合はそもそもこのメソッドを呼ばない前提。
+     * また対象銘柄の特定は構造化フィールドではなく書類概要の文字列一致による簡易判定のため、
+     * 会社名の表記ゆれ(「株式会社」の有無等)によって取りこぼす可能性があるプロトタイプ実装である。
+     */
+    private static ArrayNode fetchEdinetLargeHoldings(String[][] watchlist, String apiKey, int lookbackDays) {
+        ArrayNode out = MAPPER.createArrayNode();
+        ZonedDateTime today = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        for (int d = 0; d < lookbackDays; d++) {
+            String dateStr = today.minusDays(d).format(dateFmt);
+            try {
+                String url = "https://api.edinet-fsa.go.jp/api/v2/documents.json?date=" + dateStr
+                    + "&type=2&Subscription-Key=" + URLEncoder.encode(apiKey, StandardCharsets.UTF_8);
+                HttpRequest req = HttpRequest.newBuilder(URI.create(url))
+                    .header("User-Agent", UA)
+                    .timeout(Duration.ofSeconds(20))
+                    .GET().build();
+                HttpResponse<String> res = HTTP.send(req, HttpResponse.BodyHandlers.ofString());
+                if (res.statusCode() != 200) {
+                    System.err.println("[WARN] EDINET documents.json fetch failed (date=" + dateStr + "): HTTP " + res.statusCode());
+                    continue;
+                }
+                JsonNode json = MAPPER.readTree(res.body());
+                JsonNode results = json.path("results");
+                if (!results.isArray()) continue;
+
+                for (JsonNode doc : results) {
+                    String docTypeCode = doc.path("docTypeCode").asText("");
+                    if (!"350".equals(docTypeCode) && !"351".equals(docTypeCode)) continue;
+                    String docDescription = doc.path("docDescription").asText("");
+                    String filerName = doc.path("filerName").asText("");
+                    String submitDateTime = doc.path("submitDateTime").asText("");
+
+                    for (String[] w : watchlist) {
+                        String code = w[0];
+                        String name = w[1];
+                        // 「株式会社」等の法人格表記ゆれの影響を減らすため、比較前に簡易的に除去する
+                        String simplifiedName = name.replace("株式会社", "").replace("(株)", "");
+                        if (docDescription.contains(name) || (!simplifiedName.isBlank() && docDescription.contains(simplifiedName))) {
+                            ObjectNode row = MAPPER.createObjectNode();
+                            row.put("code", code);
+                            row.put("name", name);
+                            row.put("filer_name", filerName);
+                            row.put("doc_description", docDescription);
+                            row.put("doc_type", "351".equals(docTypeCode) ? "変更報告書" : "大量保有報告書");
+                            row.put("submit_datetime", submitDateTime);
+                            out.add(row);
+                            break; // 1書類につき1銘柄のみ紐づけ(複数銘柄名が偶然含まれるケースの重複防止)
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("[WARN] EDINET fetch/parse failed (date=" + dateStr + "): " + e);
+            }
+        }
+        return out;
     }
 
     /**
