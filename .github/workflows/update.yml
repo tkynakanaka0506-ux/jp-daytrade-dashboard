@@ -84,6 +84,6 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Auto update (${{ steps.mode.outputs.mode }}) $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git pull --rebase origin main
-            git push
+            git pull --rebase origin main || git rebase --abort || true
+            git push || git push -f origin main
           fi
