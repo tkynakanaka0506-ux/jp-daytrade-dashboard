@@ -75,19 +75,28 @@ jobs:
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
         run: python3 notify_line.py data.json
 
-      - name: 差分があればcommit & push
+      - name: 差分があれば強制Push
         run: |
           git config user.name "dashboard-bot"
           git config user.email "actions@users.noreply.github.com"
 
-          # 一時的なブランチを作って最新の成果物をコミットし、mainに強制上書きする
-          git checkout -b temp-branch
+          # 一時的に別の場所に退避
+          cp data.json data.json.tmp
+          cp index.html index.html.tmp
+
+          # リモートの最新状態を強制的に取得してリセット
+          git fetch origin main
+          git reset --hard origin main
+
+          # 退避していたファイルを戻す
+          mv data.json.tmp data.json
+          mv index.html.tmp index.html
+
           git add data.json index.html
 
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update"
-            # リモートのmainブランチを、今の内容で強制的に置き換える
-            git push origin temp-branch:main --force
+            git commit -m "Auto update (Force)"
+            git push origin main --force
           else
             echo "No changes to commit."
           fi
