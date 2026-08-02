@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-02 17:18",
-  "run_type": "morning",
+  "generated_at": "2026-08-02 18:05",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -299,7 +299,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "臨時株主総会招集ご通知 他 今日 08:00 New!",
+      "title": "臨時株主総会招集ご通知 他 今日 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260802/140120260716595410.pdf",
       "tag": "他"
     },
@@ -1250,7 +1250,7 @@
     {
       "code": "7203",
       "company": "トヨタ自動車",
-      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - TBS NEWS DIG",
+      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - newsdig.tbs.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB1MS1pak5pMnVoOVFfai1laXVqb2k3eGdMVHFTSk5QSnBuT1lLeVMtZHdTUjVZS0cyUWJHZ0JZeVlCd3ljalNmNnZBc3lnVENDY3dvbWZMUQ?oc=5",
       "keyword": "新工場",
       "asof": "7/21 16:00"
@@ -1262,14 +1262,6 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5uMUVsTUdSc0VEc1ZsZnBCSG9Udzk2cmh4dFZoM2RueFJGU0d1VEJBcW42Z013b2hIVjY3d29SWmg3bFVwaFZHb1I1eElKYTVCbHVsOC1vSlBmM3QzUFBOd2ZDRWM2Zk10Yy1IRg?oc=5",
       "keyword": "新工場",
       "asof": "7/21 16:00"
-    },
-    {
-      "code": "6758",
-      "company": "ソニーグループ",
-      "title": "政府支援約3900億円で巨大AIデータセンター構築へ、国産AI開発「ノエトラ」がエヌビディア最新AIサーバー約380ラック導入…ソフトバンクが鍵を握る国産フィジカルAI計画の全容 - diamond.jp",
-      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE40X2g0a0toOEJycnlyNnplUEVncGthLWM5Ym9Fdm12dnRJYkhnX1ZNMkxTczh5eDFTSlFmY3hTcTVXWWNVTDc0MUVtcmLSAU9BVV95cUxNd3BRZ1JYb1lMRndVakJQeHNvOWNlbVJpS21MN0tKVnhMTGsyN3VKeXE4WWZudUpKU2NVc28zUDZ0RGNUQzJNVk9MbXFXM01B?oc=5",
-      "keyword": "データセンター",
-      "asof": "7/27 04:55"
     },
     {
       "code": "9984",
