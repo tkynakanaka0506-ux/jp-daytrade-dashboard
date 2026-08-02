@@ -1751,6 +1751,22 @@ section > h2 {
 }
 .idx-label { font-size: 11.5px; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; }
 .idx-value { font-size: 18px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px; color: var(--text); }
+.conclusion-section { margin-bottom: 22px; }
+.conclusion-disclaimer {
+  font-size: 12.5px; line-height: 1.7; color: var(--text); margin: 4px 0 14px; padding: 10px 12px;
+  background: rgba(212,175,55,0.10); border: 1px solid var(--accent-line); border-radius: var(--radius-sm);
+}
+.pick-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.pick-card {
+  background: var(--panel2); border: 1px solid var(--border-soft); border-top: 2px solid var(--accent);
+  border-radius: var(--radius-sm); padding: 14px 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.pick-rank { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--accent-bright); text-transform: uppercase; }
+.pick-name { font-size: 16px; font-weight: 700; margin: 4px 0 2px; color: var(--text); }
+.pick-code { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.pick-score { font-size: 13px; font-weight: 600; color: var(--accent-bright); margin-bottom: 8px; }
+.pick-summary { font-size: 12.5px; line-height: 1.6; color: var(--text); }
+.pick-empty { font-size: 13px; color: var(--muted); }
 .chg { font-size: 13px; font-weight: 600; }
 .chg.up, .up { color: var(--up); }
 .chg.down, .down { color: var(--down); }
@@ -2311,6 +2327,59 @@ JS_SCRIPT = r"""
 """
 
 
+def conclusion_first_html(data):
+    """結論ファースト: compute_stock_scores()の総合スコア上位2〜3銘柄を、根拠つきで先頭に表示する。
+
+    既存の4項目スコアリング(compute_stock_scores)をそのまま再利用し、新たな判定ロジックは追加しない。
+    あくまでルールベースの機械的な順位付けであり、投資助言ではない。
+    """
+    items = data.get("technical", []) or []
+    growth = data.get("growth_candidates", []) or []
+    growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
+
+    ranked = []
+    for it in items:
+        try:
+            scores = compute_stock_scores(it, growth_by_name)
+        except Exception:
+            continue
+        ranked.append((it, scores))
+    ranked.sort(key=lambda pair: pair[1].get("overall", 0), reverse=True)
+    top = [pair for pair in ranked if pair[1].get("overall", 0) >= 3.0][:3]
+    if not top:
+        top = ranked[:3]
+
+    if not top:
+        picks_html = '<p class="pick-empty">現時点でスコア算出可能な銘柄がありません。</p>'
+    else:
+        cards = []
+        for i, (it, scores) in enumerate(top):
+            summary = (it.get("summary") or "").strip()
+            cards.append(f"""
+                <div class="pick-card">
+                  <div class="pick-rank">{esc(i + 1)}位</div>
+                  <div class="pick-name">{esc(it.get("name", "―"))} <span class="pick-code">({esc(it.get("code", "―"))})</span></div>
+                  <div class="pick-score">総合スコア {esc(scores.get("overall", "―"))} / 5.0
+                    (材料{esc(scores.get("catalyst", "―"))}・テクニカル{esc(scores.get("technical", "―"))}・需給{esc(scores.get("volume", "―"))}・期待値{esc(scores.get("expectation", "―"))})</div>
+                  <div class="pick-summary">{esc(summary) if summary else "―"}</div>
+                </div>""")
+        picks_html = "".join(cards)
+
+    return f"""
+            <section id="conclusion" class="conclusion-section">
+              <h2>🎯 結論ファースト:現時点のスコア上位銘柄</h2>
+              <p class="conclusion-disclaimer">
+                <b>本セクションは「株価診断(テクニカル指標)」で算出済みの4項目スコア(材料・テクニカル・需給・期待値)を
+                機械的に集計し、総合スコアが高い順に最大3銘柄を表示しているだけの参考情報です。
+                AIによる推奨や将来の値上がりを保証するものではありません。投資に関する最終判断は、
+                必ずご自身の責任で行ってください。</b>
+              </p>
+              <div class="card">
+                <div class="pick-cards">{picks_html}</div>
+              </div>
+            </section>"""
+
+
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
     run_type = data.get("run_type", "")
@@ -2329,6 +2398,7 @@ def build_html(data: dict) -> str:
     idx_cards += section_index_row("日経平均(現物・前回終値)", data.get("nikkei225", {}).get("value", "―"),
                                      data.get("nikkei225", {}).get("change_pct"), data.get("nikkei225", {}).get("asof"))
 
+    conclusion_html = conclusion_first_html(data)
     mood_html = market_mood_html(data)
     theme_html = theme_summary_html(data)
     calendar_html = economic_calendar_html(data.get("economic_calendar", []))
@@ -2572,6 +2642,7 @@ def build_html(data: dict) -> str:
   <div class="disclaimer">
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
   </div>
+  {conclusion_html}
   {mood_html}
   <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
 
