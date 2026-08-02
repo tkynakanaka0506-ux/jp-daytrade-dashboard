@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03 02:55",
+  "generated_at": "2026-08-03 05:07",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,9 +24,9 @@
     }
   },
   "fx": {
-    "value": "157.40円",
-    "change_pct": -1.74,
-    "asof": "8/2終値"
+    "value": "157.10円",
+    "change_pct": -1.92,
+    "asof": "8/3終値"
   },
   "nikkei_futures": {
     "value": "63,270.00",
@@ -1298,6 +1298,14 @@
     {
       "code": "6954",
       "company": "ファナック",
+      "title": "ファナック、通期見通し上方修正 FA受注が伸長 - 日刊工業新聞",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5xaEE5N19LNHVQdkNhd1BQcGxjQTF5RTJTUTZHcWFPWlpBNVBrT001aWtFR0hCZ3ZLVVlEN0liX3dlUUpzRHQ1aXJObm9SNVpHbUQ2UVZpMjUyd1E?oc=5",
+      "keyword": "受注",
+      "asof": "8/3 05:01"
+    },
+    {
+      "code": "6954",
+      "company": "ファナック",
       "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCUUFOV0cxT1EtU0poRVQ2bVhCZV9RcmhnSUpLaEN0bWlXLVpoaUNmeUtKVXlzZThib2ttOUN0MjE5czFRN1J6Uk1vbUNsMXRVdDN4eEV1WFdvMURMb0RFaklQQ2swUDlnbDdGOQ?oc=5",
       "keyword": "AI投資",
@@ -1346,7 +1354,7 @@
     {
       "code": "6857",
       "company": "アドバンテスト",
-      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - Moomoo",
+      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - moomoo.com",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9DcTNCb280cjJfYVoxbW4ybkVHTy1vWms5Ti1MdEM2dUtXaGVmelEtRFB6NWZlV29RQzhXenpwcmRwUWtCVzQwdjd0U29TZ19EZ2JVQ240WQ?oc=5",
       "keyword": "設備投資",
       "asof": "7/23 09:49"
