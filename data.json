@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03 05:07",
+  "generated_at": "2026-08-03 06:46",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,8 +24,8 @@
     }
   },
   "fx": {
-    "value": "157.10円",
-    "change_pct": -1.92,
+    "value": "157.45円",
+    "change_pct": -1.7,
     "asof": "8/3終値"
   },
   "nikkei_futures": {
@@ -1354,7 +1354,7 @@
     {
       "code": "6857",
       "company": "アドバンテスト",
-      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - moomoo.com",
+      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - Moomoo",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9DcTNCb280cjJfYVoxbW4ybkVHTy1vWms5Ti1MdEM2dUtXaGVmelEtRFB6NWZlV29RQzhXenpwcmRwUWtCVzQwdjd0U29TZ19EZ2JVQ240WQ?oc=5",
       "keyword": "設備投資",
       "asof": "7/23 09:49"
