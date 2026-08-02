@@ -154,7 +154,12 @@ def main():
 
     pick = pick_most_important_stock(root)
     if not pick:
-        log("最注力銘柄の条件を満たす銘柄が無いため、通知はスキップします。")
+        log("最注力銘柄の条件を満たす銘柄が無いため、テスト通知を送信します。")
+        try:
+            status = send_line_push(token, user_id, "🔔 LINE通知テスト送信\n(本日は条件を満たす銘柄がないため、動作確認用のテストメッセージです)")
+            log(f"テストLINE通知を送信しました(HTTP {status})")
+        except Exception as e:
+            log(f"テストLINE通知の送信に失敗しました: {e}")
         return
 
     code = pick["technical"].get("code", "")
