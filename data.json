@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03 00:55",
+  "generated_at": "2026-08-03 02:55",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -573,13 +573,13 @@
     {
       "code": "6758",
       "name": "ソニーグループ",
-      "price": "3,787.0",
-      "change_pct": -0.58,
-      "ma5_dev": "+1.58%",
-      "ma25_dev": "+9.68%",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "+2.05%",
+      "ma25_dev": "+10.29%",
       "rsi": 83.86,
       "signal": "弱気(過熱感)",
-      "summary": "売り3/中立4/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
+      "summary": "売り4/中立3/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
       "ret_5d_pct": 11.09,
       "high_52w": 4776.0,
       "high_52w_dist_pct": 20.71,
@@ -683,8 +683,8 @@
       "name": "ファナック",
       "price": "―",
       "change_pct": null,
-      "ma5_dev": "+6.88%",
-      "ma25_dev": "+2.63%",
+      "ma5_dev": "+0.76%",
+      "ma25_dev": "-4.44%",
       "rsi": 49.63,
       "signal": "中立",
       "summary": "売り1/中立5/買い1。RSIは中立域。",
@@ -1250,7 +1250,7 @@
     {
       "code": "7203",
       "company": "トヨタ自動車",
-      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - newsdig.tbs.co.jp",
+      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - TBS NEWS DIG",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB1MS1pak5pMnVoOVFfai1laXVqb2k3eGdMVHFTSk5QSnBuT1lLeVMtZHdTUjVZS0cyUWJHZ0JZeVlCd3ljalNmNnZBc3lnVENDY3dvbWZMUQ?oc=5",
       "keyword": "新工場",
       "asof": "7/21 16:00"
