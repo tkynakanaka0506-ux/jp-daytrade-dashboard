@@ -154,7 +154,7 @@ def main():
 
     pick = pick_most_important_stock(root)
     if not pick:
-                log("最注力銘柄の条件を満たす銘柄が無いため、通知はスキップします。")
+        log("最注力銘柄の条件を満たす銘柄が無いため、通知はスキップします。")
         return
 
     code = pick["technical"].get("code", "")
