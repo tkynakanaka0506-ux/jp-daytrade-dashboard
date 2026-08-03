@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-04 02:05",
+  "generated_at": "2026-08-04 05:21",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,587.13",
-      "change_pct": 1.3,
+      "value": "7,600.50",
+      "change_pct": 1.48,
       "asof": "8/4終値"
     },
     "dow": {
-      "value": "52,961.05",
-      "change_pct": 0.91,
+      "value": "53,178.41",
+      "change_pct": 1.32,
       "asof": "8/4終値"
     },
     "nasdaq": {
-      "value": "25,880.84",
-      "change_pct": 2.0,
+      "value": "25,913.90",
+      "change_pct": 2.13,
       "asof": "8/4終値"
     },
     "sox": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "156.94円",
-    "change_pct": -2.02,
+    "value": "157.08円",
+    "change_pct": -1.94,
     "asof": "8/4終値"
   },
   "nikkei_futures": {
-    "value": "63,075.00",
-    "change_pct": -0.18,
+    "value": "63,500.00",
+    "change_pct": 0.49,
     "asof": "8/4終値"
   },
   "nikkei225": {
@@ -1378,6 +1378,14 @@
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9pbHhicTV4TkNxTFQ1ejFMTmJFaGlrM0w3blcwZXI4UXliR3lJNlFWaTI0Y2NmVjNuOFpfUC1rb256QUh3WTFtM3NCd1VRVWFSS0hWNi1MaWluUGktNTRz?oc=5",
       "keyword": "AI投資",
       "asof": "8/3 12:07"
+    },
+    {
+      "code": "8035",
+      "company": "東京エレクトロン",
+      "title": "東京エレク､上期営業利益予想を4580億円に上方修正－AI投資が追い風 - TBS NEWS DIG",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBzUUVNNEc3NWtwVVNHN0pjNEpjbEdQWGhVQy1TRU12QVpPOXBQbFlQMkFIMTk5SzV5a3EzTXZMVS1sOG1kMkpuaHdQM1BzWTVqYVlJNUxsb1VVOGhya2dZakwzQm4yalk?oc=5",
+      "keyword": "AI投資",
+      "asof": "7/30 16:58"
     },
     {
       "code": "9983",
