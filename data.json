@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-03 19:34",
-  "run_type": "evening",
+  "generated_at": "2026-08-03 21:49",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,489.72",
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "156.92円",
-    "change_pct": -2.03,
+    "value": "156.87円",
+    "change_pct": -2.07,
     "asof": "8/3終値"
   },
   "nikkei_futures": {
-    "value": "62,940.00",
-    "change_pct": -0.4,
+    "value": "62,655.00",
+    "change_pct": -0.85,
     "asof": "8/3終値"
   },
   "nikkei225": {
@@ -100,11 +100,51 @@
   ],
   "tdnet_morning": [
     {
-      "time": "18:15",
+      "time": "21:00",
       "code": "―",
-      "company": "グローリー",
-      "title": "Status regarding Acquisition of Own Shares",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507530.pdf",
+      "company": "ノーリツ鋼機",
+      "title": "Notice of Completion of AlphaTheta's Acquisition of Shares of MAVEN SAS",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506767.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "21:00",
+      "code": "―",
+      "company": "ノーリツ鋼機",
+      "title": "AlphaTheta株式会社によるMAVEN SAS株式取得完了のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506737.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "ＳＡＡＦＨＤ",
+      "title": "買収への対応方針に基づく共同協調行為の追加認定並びに新株予約権の無償割当て及び臨時株主総会における意思確認に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507567.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:40",
+      "code": "―",
+      "company": "オムニプラス",
+      "title": "（訂正・数値データ訂正）「2026年３月期 決算短信〔SFRS〕（連結）」 の一部訂正について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260731505587.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "Ｇモンスター",
+      "title": "第三者委員会調査報告書の受領及び当社の対応について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507509.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "アクシス",
+      "title": "KITAROサービスの契約台数が1万台を突破",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507480.pdf",
       "tag": "他"
     },
     {
@@ -114,6 +154,14 @@
       "title": "自己株式の取得状況に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507529.pdf",
       "tag": "自社"
+    },
+    {
+      "time": "18:15",
+      "code": "―",
+      "company": "グローリー",
+      "title": "Status regarding Acquisition of Own Shares",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507530.pdf",
+      "tag": "他"
     },
     {
       "time": "18:05",
@@ -127,6 +175,22 @@
       "time": "18:00",
       "code": "―",
       "company": "ＪＰＭＣ",
+      "title": "（変更）「譲渡制限付株式としての自己株式の処分に関するお知らせ」の一部変更に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507172.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "2026年12月期の中間配当及び期末配当予想の修正（無配）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507218.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
       "title": "2026年12月期 第２四半期（中間期）決算速報値（連結）に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507244.pdf",
       "tag": "業修"
@@ -135,24 +199,8 @@
       "time": "18:00",
       "code": "―",
       "company": "ＪＰＭＣ",
-      "title": "Notice Regarding Revision of Interim Dividend and Year-End Dividend Forecasts for Fiscal Year Ending December 31, 2026 (No Dividend)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507490.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＪＰＭＣ",
-      "title": "[Summary] Notice Regarding Implementation of MBO and Recommendation for Tender (Summary)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507475.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＪＰＭＣ",
-      "title": "Announcement Concerning Commencement of Tender Offer for Common Shares of Japan Property Management Center Co., Ltd. (Securities Code: 3276) by",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507474.pdf",
+      "title": "Preliminary Consolidated Financial Results for Six Months (Interim) Ended June 30, 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507465.pdf",
       "tag": "他"
     },
     {
@@ -167,25 +215,17 @@
       "time": "18:00",
       "code": "―",
       "company": "ＪＰＭＣ",
-      "title": "Preliminary Consolidated Financial Results for Six Months (Interim) Ended June 30, 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507465.pdf",
+      "title": "Announcement Concerning Commencement of Tender Offer for Common Shares of Japan Property Management Center Co., Ltd. (Securities Code: 3276) by",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507474.pdf",
       "tag": "他"
     },
     {
       "time": "18:00",
       "code": "―",
       "company": "ＪＰＭＣ",
-      "title": "2026年12月期の中間配当及び期末配当予想の修正（無配）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507218.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＪＰＭＣ",
-      "title": "（変更）「譲渡制限付株式としての自己株式の処分に関するお知らせ」の一部変更に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507172.pdf",
-      "tag": "エク"
+      "title": "[Summary] Notice Regarding Implementation of MBO and Recommendation for Tender (Summary)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507475.pdf",
+      "tag": "他"
     },
     {
       "time": "18:00",
@@ -193,6 +233,14 @@
       "company": "ＪＰＭＣ",
       "title": "株式会社Amsterdam1及び株式会社Amsterdam2による株式会社ＪＰＭＣ（証券コード：3276）の普通株式に対する公開買付けの開始に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507167.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "Notice Regarding Revision of Interim Dividend and Year-End Dividend Forecasts for Fiscal Year Ending December 31, 2026 (No Dividend)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507490.pdf",
       "tag": "他"
     },
     {
@@ -210,54 +258,6 @@
       "title": "自己株式取得状況に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507477.pdf",
       "tag": "自社"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "マクアケ",
-      "title": "2026年９月期 第３四半期 決算説明動画公開のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260716595349.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "リベルタ",
-      "title": "第７回新株予約権（行使価額修正条項付）の月間行使状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507546.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "イーレックス",
-      "title": "〔Delayed〕erex and Samsung C&T Japan Agree to Promote Integrated Decarbonization Project Centered in Niigata",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507518.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:50",
-      "code": "―",
-      "company": "ＡＮＡＰＨＤ",
-      "title": "第三者割当により発行された第９回新株予約権（行使価額修正条項付）の 月間行使状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507110.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:45",
-      "code": "―",
-      "company": "カカクコム",
-      "title": "(Amendment) Notice of Amendment to \"Opinion in favor of Tender Offer by Kamgras 1 K.K. and Recommendation to Tender\"",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507506.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:45",
-      "code": "―",
-      "company": "光通信",
-      "title": "法定事後開示書類（株式交換）（株式会社エフティグループ）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507504.pdf",
-      "tag": "他"
     }
   ],
   "movers_morning": [
@@ -1136,40 +1136,76 @@
   ],
   "economic_calendar": [
     {
-      "date": "7/28-29",
-      "event": "FOMC（米連邦公開市場委員会）",
-      "importance": 5,
-      "note": "政策金利は5会合連続据え置きが予想される。7/29 2:00pm(ET)に声明公表、2:30pm(ET)にパウエル議長会見"
-    },
-    {
-      "date": "7/30",
-      "event": "米GDP速報値(4-6月期)",
+      "date": "2026-08-07",
+      "event": "米雇用統計(非農業部門雇用者数・失業率)",
       "importance": 4,
-      "note": "米国東部時間8:30発表予定"
+      "note": "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。"
     },
     {
-      "date": "7/30-31",
+      "date": "2026-09-04",
+      "event": "米雇用統計(非農業部門雇用者数・失業率)",
+      "importance": 4,
+      "note": "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。"
+    },
+    {
+      "date": "2026-09-16",
+      "event": "FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表",
+      "importance": 5,
+      "note": "日本時間深夜に結果発表。市場変動が大きくなりやすい。"
+    },
+    {
+      "date": "2026-09-18",
       "event": "日銀金融政策決定会合",
       "importance": 5,
-      "note": "タカ派傾斜との報道もあり利上げペースへの言及に注目"
+      "note": "金融政策の変更有無・総裁会見の内容次第で為替・日本株が大きく動く可能性。"
     },
     {
-      "date": "7/28",
-      "event": "国内決算集中日(キーエンス、シマノ、松井証券、JPX、カプコン等)",
-      "importance": 3,
-      "note": "主要企業の決算発表が集中"
-    },
-    {
-      "date": "7/29",
-      "event": "野村ホールディングス決算",
-      "importance": 3,
-      "note": "国内証券最大手の決算内容に注目"
-    },
-    {
-      "date": "7/30",
-      "event": "東京エレクトロン・アドバンテスト等 半導体大手決算",
+      "date": "2026-10-02",
+      "event": "米雇用統計(非農業部門雇用者数・失業率)",
       "importance": 4,
-      "note": "AI投資・半導体需要動向を占う重要決算、みずほFG・JT決算も同日"
+      "note": "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。"
+    },
+    {
+      "date": "2026-10-28",
+      "event": "FOMC(米連邦公開市場委員会)政策発表",
+      "importance": 5,
+      "note": "日本時間深夜に結果発表。市場変動が大きくなりやすい。"
+    },
+    {
+      "date": "2026-10-30",
+      "event": "日銀金融政策決定会合・「経済・物価情勢の展望」公表",
+      "importance": 5,
+      "note": "金融政策の変更有無・総裁会見の内容次第で為替・日本株が大きく動く可能性。"
+    },
+    {
+      "date": "2026-11-06",
+      "event": "米雇用統計(非農業部門雇用者数・失業率)",
+      "importance": 4,
+      "note": "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。"
+    },
+    {
+      "date": "2026-12-04",
+      "event": "米雇用統計(非農業部門雇用者数・失業率)",
+      "importance": 4,
+      "note": "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。"
+    },
+    {
+      "date": "2026-12-09",
+      "event": "FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表",
+      "importance": 5,
+      "note": "日本時間深夜に結果発表。市場変動が大きくなりやすい。"
+    },
+    {
+      "date": "2026-12-18",
+      "event": "日銀金融政策決定会合",
+      "importance": 5,
+      "note": "金融政策の変更有無・総裁会見の内容次第で為替・日本株が大きく動く可能性。"
+    },
+    {
+      "date": "2027-01-01",
+      "event": "米雇用統計(非農業部門雇用者数・失業率)",
+      "importance": 4,
+      "note": "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。"
     }
   ],
   "growth_candidates": [
@@ -1250,7 +1286,7 @@
     {
       "code": "7203",
       "company": "トヨタ自動車",
-      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - TBS NEWS DIG",
+      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - newsdig.tbs.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB1MS1pak5pMnVoOVFfai1laXVqb2k3eGdMVHFTSk5QSnBuT1lLeVMtZHdTUjVZS0cyUWJHZ0JZeVlCd3ljalNmNnZBc3lnVENDY3dvbWZMUQ?oc=5",
       "keyword": "新工場",
       "asof": "7/21 16:00"
@@ -1306,10 +1342,10 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック、通期見通し上方修正 FA受注が伸長 - 日刊工業新聞",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5xaEE5N19LNHVQdkNhd1BQcGxjQTF5RTJTUTZHcWFPWlpBNVBrT001aWtFR0hCZ3ZLVVlEN0liX3dlUUpzRHQ1aXJObm9SNVpHbUQ2UVZpMjUyd1E?oc=5",
-      "keyword": "受注",
-      "asof": "8/3 05:01"
+      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - 日本経済新聞",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCUUFOV0cxT1EtU0poRVQ2bVhCZV9RcmhnSUpLaEN0bWlXLVpoaUNmeUtKVXlzZThib2ttOUN0MjE5czFRN1J6Uk1vbUNsMXRVdDN4eEV1WFdvMURMb0RFaklQQ2swUDlnbDdGOQ?oc=5",
+      "keyword": "AI投資",
+      "asof": "7/31 15:43"
     },
     {
       "code": "7974",
