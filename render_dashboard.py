@@ -1766,7 +1766,10 @@ section > h2 {
 .pick-code { font-weight: 400; color: var(--muted); font-size: 12.5px; }
 .pick-score { font-size: 13px; font-weight: 600; color: var(--accent-bright); margin-bottom: 8px; }
 .pick-summary { font-size: 12.5px; line-height: 1.6; color: var(--text); }
+.pick-date { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
 .pick-empty { font-size: 13px; color: var(--muted); }
+.conclusion-date { font-size: 12.5px; color: var(--muted); margin: -6px 0 10px; }
+.conclusion-subhead { font-size: 15px; font-weight: 700; color: var(--text); margin: 22px 0 6px; }
 .chg { font-size: 13px; font-weight: 600; }
 .chg.up, .up { color: var(--up); }
 .chg.down, .down { color: var(--down); }
@@ -2336,6 +2339,7 @@ def conclusion_first_html(data):
     items = data.get("technical", []) or []
     growth = data.get("growth_candidates", []) or []
     growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
+    date_label = _format_date_jp(data.get("generated_at", ""))
 
     ranked = []
     for it in items:
@@ -2365,9 +2369,32 @@ def conclusion_first_html(data):
                 </div>""")
         picks_html = "".join(cards)
 
+    # ---- 成長株(TDnet好材料開示ベース)ピックアップ ----
+    # ダブルシグナル(決算+ガイダンス上方修正の同時発表)を優先し、次に開示が新しいものから最大3件。
+    growth_sorted = sorted(growth, key=lambda g: (0 if g.get("double_signal") else 1))[:3]
+    if not growth_sorted:
+        growth_html = '<p class="pick-empty">現時点で好材料開示に基づく成長株候補はありません。</p>'
+    else:
+        gcards = []
+        for g in growth_sorted:
+            double_badge = (
+                '<span class="badge double">🔥 ダブルシグナル</span>' if g.get("double_signal") else ""
+            )
+            url = esc(g.get("url", "")) or "#"
+            gcards.append(f"""
+                <div class="pick-card">
+                  <div class="pick-rank">🌱 成長株候補</div>
+                  <div class="pick-name">{esc(g.get("company", "―"))} {double_badge}</div>
+                  <div class="pick-score">好材料: {esc(g.get("catalyst", "―"))}</div>
+                  <div class="pick-summary"><a href="{url}" target="_blank" rel="noopener">{esc(g.get("title", ""))}</a></div>
+                  <div class="pick-date">開示日時: {esc(g.get("asof", "―"))}</div>
+                </div>""")
+        growth_html = "".join(gcards)
+
     return f"""
             <section id="conclusion" class="conclusion-section">
               <h2>🎯 結論ファースト:現時点のスコア上位銘柄</h2>
+              <p class="conclusion-date">📅 {esc(date_label)}の情報です。時間が経つと株価・スコアは変わるため、必ず最新の更新をご確認ください。</p>
               <p class="conclusion-disclaimer">
                 <b>本セクションは「株価診断(テクニカル指標)」で算出済みの4項目スコア(材料・テクニカル・需給・期待値)を
                 機械的に集計し、総合スコアが高い順に最大3銘柄を表示しているだけの参考情報です。
@@ -2376,6 +2403,15 @@ def conclusion_first_html(data):
               </p>
               <div class="card">
                 <div class="pick-cards">{picks_html}</div>
+              </div>
+              <h3 class="conclusion-subhead">🌱 成長株ピックアップ(TDnet好材料開示ベース・別ロジック)</h3>
+              <p class="conclusion-disclaimer">
+                <b>上記のスコア上位銘柄とは異なる基準で選定しています。TDnet適時開示(増配・業績上方修正など)の
+                キーワードから機械的に抽出した候補で、株価テクニカルは考慮していません。各候補の開示日時は
+                個別に記載しているとおりで、「結論ファースト」全体の更新日時({esc(date_label)})とは別です。</b>
+              </p>
+              <div class="card">
+                <div class="pick-cards">{growth_html}</div>
               </div>
             </section>"""
 
