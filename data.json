@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04 05:21",
+  "generated_at": "2026-08-04 07:00",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.08円",
-    "change_pct": -1.94,
+    "value": "157.18円",
+    "change_pct": -0.26,
     "asof": "8/4終値"
   },
   "nikkei_futures": {
-    "value": "63,500.00",
-    "change_pct": 0.49,
+    "value": "63,450.00",
+    "change_pct": 0.41,
     "asof": "8/4終値"
   },
   "nikkei225": {
@@ -296,6 +296,22 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "06:00",
+      "code": "―",
+      "company": "大塚ＨＤ",
+      "title": "Otsuka Unveils Phase3 VISIONARY Two-Year eGFR Results Demonstrating VOYXACT(sibeprenlimab-szsi) Stabilizes Kidney Function Decline in IgAN",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507307.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "06:00",
+      "code": "―",
+      "company": "大塚ＨＤ",
+      "title": "IgA腎症治療薬「VOYXACT（シベプレンリマブ）」フェーズ3試験における2年間のeGFR（推算糸球体濾過量）データを発表",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507303.pdf",
+      "tag": "他"
+    },
+    {
       "time": "―",
       "code": "―",
       "company": "―",
@@ -347,16 +363,16 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "グローリー、自己株式の取得状況に関するお知らせ 自社 8月3日(月) 18:15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507529.pdf",
+      "title": "グローリー、Status regarding Acquisition of Own Shares 他 8月3日(月) 18:15",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507530.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "グローリー、Status regarding Acquisition of Own Shares 他 8月3日(月) 18:15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507530.pdf",
+      "title": "グローリー、自己株式の取得状況に関するお知らせ 自社 8月3日(月) 18:15",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507529.pdf",
       "tag": "他"
     },
     {
@@ -371,48 +387,8 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "ＪＰＭＣ、（変更）「譲渡制限付株式としての自己株式の処分に関するお知らせ」の一部変更に関するお知らせ エク 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507172.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、2026年12月期の中間配当及び期末配当予想の修正（無配）に関するお知らせ 配当 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507218.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、2026年12月期 第２四半期（中間期）決算速報値（連結）に関するお知らせ 業修 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507244.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、Preliminary Consolidated Financial Results for Six Months (Interim) Ended June 30, 2026 他 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507465.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、(Amendment) Notice Regarding Partial Amendment to “Notice Regarding Disposal of Treasury Shares as Restricted Shares” 他 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507470.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、Announcement Concerning Commencement of Tender Offer for Common Shares of Japan Property Management Center Co., Ltd. (Securities Code: 3276) by 他 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507474.pdf",
+      "title": "ＪＰＭＣ、Notice Regarding Revision of Interim Dividend and Year-End Dividend Forecasts for Fiscal Year Ending December 31, 2026 (No Dividend) 他 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507490.pdf",
       "tag": "他"
     },
     {
@@ -427,32 +403,56 @@
       "time": "―",
       "code": "―",
       "company": "―",
+      "title": "ＪＰＭＣ、Announcement Concerning Commencement of Tender Offer for Common Shares of Japan Property Management Center Co., Ltd. (Securities Code: 3276) by 他 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507474.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ＪＰＭＣ、(Amendment) Notice Regarding Partial Amendment to “Notice Regarding Disposal of Treasury Shares as Restricted Shares” 他 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507470.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ＪＰＭＣ、Preliminary Consolidated Financial Results for Six Months (Interim) Ended June 30, 2026 他 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507465.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ＪＰＭＣ、2026年12月期 第２四半期（中間期）決算速報値（連結）に関するお知らせ 業修 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507244.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ＪＰＭＣ、2026年12月期の中間配当及び期末配当予想の修正（無配）に関するお知らせ 配当 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507218.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ＪＰＭＣ、（変更）「譲渡制限付株式としての自己株式の処分に関するお知らせ」の一部変更に関するお知らせ エク 8月3日(月) 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507172.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
       "title": "ＪＰＭＣ、株式会社Amsterdam1及び株式会社Amsterdam2による株式会社ＪＰＭＣ（証券コード：3276）の普通株式に対する公開買付けの開始に関するお知らせ 他 8月3日(月) 18:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507167.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、Notice Regarding Revision of Interim Dividend and Year-End Dividend Forecasts for Fiscal Year Ending December 31, 2026 (No Dividend) 他 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507490.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＪＰＭＣ、ＭＢＯの実施及び応募の推奨に関するお知らせ 他 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506930.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "セーレン、自己株式取得状況に関するお知らせ 自社 8月3日(月) 18:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507477.pdf",
       "tag": "他"
     }
   ],
