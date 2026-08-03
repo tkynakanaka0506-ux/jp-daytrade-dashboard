@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-03 17:40",
+  "generated_at": "2026-08-03 18:38",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "156.83円",
-    "change_pct": -2.09,
+    "value": "157.05円",
+    "change_pct": -1.96,
     "asof": "8/3終値"
   },
   "nikkei_futures": {
-    "value": "63,330.00",
-    "change_pct": 0.22,
+    "value": "63,245.00",
+    "change_pct": 0.09,
     "asof": "8/3終値"
   },
   "nikkei225": {
@@ -100,163 +100,163 @@
   ],
   "tdnet_morning": [
     {
-      "time": "17:30",
+      "time": "18:15",
       "code": "―",
-      "company": "アスクル",
-      "title": "Announcement of Financial Results by Other Affiliated Company",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507456.pdf",
+      "company": "グローリー",
+      "title": "Status regarding Acquisition of Own Shares",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507530.pdf",
       "tag": "他"
     },
     {
-      "time": "17:30",
+      "time": "18:15",
       "code": "―",
-      "company": "アスクル",
-      "title": "その他の関係会社の決算に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507455.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "ＪＨＤ",
-      "title": "第三者割当により発行された第10回新株予約権（行使価額修正条項付）の月間行使状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260701586155.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "リビンＴ",
+      "company": "グローリー",
       "title": "自己株式の取得状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507502.pdf",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507529.pdf",
       "tag": "自社"
     },
     {
-      "time": "17:30",
+      "time": "18:05",
       "code": "―",
-      "company": "アンジェス",
-      "title": "行使価額修正条項付新株予約権の月間行使状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507471.pdf",
+      "company": "セーレン",
+      "title": "Notice Regarding the Status of Acquisition of Treasury Shares",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507527.pdf",
       "tag": "他"
     },
     {
-      "time": "17:30",
+      "time": "18:00",
       "code": "―",
-      "company": "メニコン",
-      "title": "Announcement on the Determination of Details for Issuing Share Remuneration-Type Stock Options (Share Acquisition Rights)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260728501079.pdf",
+      "company": "ＪＰＭＣ",
+      "title": "2026年12月期 第２四半期（中間期）決算速報値（連結）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507244.pdf",
+      "tag": "業修"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "Notice Regarding Revision of Interim Dividend and Year-End Dividend Forecasts for Fiscal Year Ending December 31, 2026 (No Dividend)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507490.pdf",
       "tag": "他"
     },
     {
-      "time": "17:30",
+      "time": "18:00",
       "code": "―",
-      "company": "メニコン",
-      "title": "当社執行役、取締役及び従業員並びに当社子会社取締役及び当社子会社従業員に対する株式報酬型ストック・オプション(新株予約権)の発行内容確定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260728501053.pdf",
+      "company": "ＪＰＭＣ",
+      "title": "[Summary] Notice Regarding Implementation of MBO and Recommendation for Tender (Summary)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507475.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "Announcement Concerning Commencement of Tender Offer for Common Shares of Japan Property Management Center Co., Ltd. (Securities Code: 3276) by",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507474.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "(Amendment) Notice Regarding Partial Amendment to “Notice Regarding Disposal of Treasury Shares as Restricted Shares”",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507470.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "Preliminary Consolidated Financial Results for Six Months (Interim) Ended June 30, 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507465.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "2026年12月期の中間配当及び期末配当予想の修正（無配）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507218.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＪＰＭＣ",
+      "title": "（変更）「譲渡制限付株式としての自己株式の処分に関するお知らせ」の一部変更に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507172.pdf",
       "tag": "エク"
     },
     {
-      "time": "17:25",
+      "time": "18:00",
       "code": "―",
-      "company": "日産自",
-      "title": "Nissan reports April-June results for fiscal year 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507334.pdf",
+      "company": "ＪＰＭＣ",
+      "title": "株式会社Amsterdam1及び株式会社Amsterdam2による株式会社ＪＰＭＣ（証券コード：3276）の普通株式に対する公開買付けの開始に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507167.pdf",
       "tag": "他"
     },
     {
-      "time": "17:25",
+      "time": "18:00",
       "code": "―",
-      "company": "日産自",
-      "title": "日産自動車、2026年度第1四半期決算を発表",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507330.pdf",
-      "tag": "追訂"
-    },
-    {
-      "time": "17:25",
-      "code": "―",
-      "company": "日産自",
-      "title": "Financial Results for the Three Months Ended June 30, 2026 (Japanese Accounting Standards) (Consolidated)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506520.pdf",
+      "company": "ＪＰＭＣ",
+      "title": "ＭＢＯの実施及び応募の推奨に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506930.pdf",
       "tag": "他"
     },
     {
-      "time": "17:25",
+      "time": "18:00",
       "code": "―",
-      "company": "日産自",
-      "title": "2027年3月期 第1四半期 決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260724599464.pdf",
-      "tag": "決算"
+      "company": "セーレン",
+      "title": "自己株式取得状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507477.pdf",
+      "tag": "自社"
     },
     {
-      "time": "17:22",
+      "time": "18:00",
       "code": "―",
-      "company": "Ｖゴルフ",
-      "title": "定款 2026/08/03",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803506484.pdf",
+      "company": "マクアケ",
+      "title": "2026年９月期 第３四半期 決算説明動画公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260716595349.pdf",
       "tag": "他"
     },
     {
-      "time": "17:20",
+      "time": "18:00",
       "code": "―",
-      "company": "和心",
-      "title": "和心及び連結子会社の7月の事業進捗レポートを公開",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507345.pdf",
+      "company": "リベルタ",
+      "title": "第７回新株予約権（行使価額修正条項付）の月間行使状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507546.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "18:00",
       "code": "―",
-      "company": "―",
-      "title": "コーポレート・ガバナンス報告書 他 今日 17:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260731505487.pdf",
+      "company": "イーレックス",
+      "title": "〔Delayed〕erex and Samsung C&T Japan Agree to Promote Integrated Decarbonization Project Centered in Niigata",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507518.pdf",
       "tag": "他"
     },
     {
-      "time": "17:00",
+      "time": "17:50",
       "code": "―",
-      "company": "リベラウェア",
-      "title": "災害対応・重要インフラ・安全保障領域に対応する国産無人機プラットフォーム構築に向けた国内子会社設立に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507445.pdf",
+      "company": "ＡＮＡＰＨＤ",
+      "title": "第三者割当により発行された第９回新株予約権（行使価額修正条項付）の 月間行使状況に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507110.pdf",
       "tag": "他"
     },
     {
-      "time": "17:00",
+      "time": "17:45",
       "code": "―",
-      "company": "リベラウェア",
-      "title": "Notice Regarding the Establishment of a Domestic Subsidiary for the Development of the Japan Sovereign UAS Platform",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507448.pdf",
+      "company": "カカクコム",
+      "title": "(Amendment) Notice of Amendment to \"Opinion in favor of Tender Offer by Kamgras 1 K.K. and Recommendation to Tender\"",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507506.pdf",
       "tag": "他"
     },
     {
-      "time": "17:00",
+      "time": "17:45",
       "code": "―",
-      "company": "リベラウェア",
-      "title": "従業員に対するストック・オプション（第６回新株予約権）の発行に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507442.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "リベラウェア",
-      "title": "業績目標及び株価条件付ストック・オプション（第5回新株予約権）の発行並びに第4回新株予約権の放棄に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507418.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "Ａｉロボ",
-      "title": "2027年３月期第１四半期 決算説明会開催のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507463.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "モダリス",
-      "title": "第三者割当により発行された第19回新株予約権（行使価額修正条項付）の月間行使状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260727599856.pdf",
+      "company": "光通信",
+      "title": "法定事後開示書類（株式交換）（株式会社エフティグループ）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507504.pdf",
       "tag": "他"
     }
   ],
@@ -1180,7 +1180,7 @@
       "reason": "TDnet適時開示「通期業績予想（連結）の修正並びに配当予想の修正(増配)に関するお知らせ」より、増配を確認。",
       "asof": "今日 16:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260803/140120260803507249.pdf",
-      "double_signal": true
+      "double_signal": false
     },
     {
       "company": "東計電算",
@@ -1250,7 +1250,7 @@
     {
       "code": "7203",
       "company": "トヨタ自動車",
-      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - TBS NEWS DIG",
+      "title": "トヨタ自動車 近社長｢人にしかできないことを｣ 愛知･豊田市に建設する新工場で実現へ 海外での現地生産強化･国内生産も供給網を維持する考え - newsdig.tbs.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB1MS1pak5pMnVoOVFfai1laXVqb2k3eGdMVHFTSk5QSnBuT1lLeVMtZHdTUjVZS0cyUWJHZ0JZeVlCd3ljalNmNnZBc3lnVENDY3dvbWZMUQ?oc=5",
       "keyword": "新工場",
       "asof": "7/21 16:00"
@@ -1298,18 +1298,18 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック---大幅反落、受注高は拡大も営業利益はコンセンサス未達(フィスコ) - Yahoo!ファイナンス",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNX3VpYm1uVDJHY2lMVk00UzN6UUpVNGVJemkwMjQ0OUtuS3JGeldKTjZTa1N2SUpfMVNSRllnZ1VmM3NfVVE3akRpeGg1dklYN1hvUklLUy1kNlVxSXFIR01DeFNacnllWHBwWjgzUE1tQU1OT3oxR1BjWWtNMEJVOUxPdEk5YkE?oc=5",
+      "title": "ファナック---大幅反落、受注高は拡大も営業利益はコンセンサス未達 - 株探",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4xMXl5LWY2NHBKM2VtRjMySW1sX0FVTUtfclE4eUNjSkZvMFpvb1BaYUk0RFFmVzZ4bmN4ZjJMUDI0cE1WUDJEWU5KSlpYUHd3Q1JXaGRVcnp1YTFvOVlEc2pR?oc=5",
       "keyword": "受注",
       "asof": "8/3 10:42"
     },
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック---大幅反落、受注高は拡大も営業利益はコンセンサス未達 - 株探",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4xMXl5LWY2NHBKM2VtRjMySW1sX0FVTUtfclE4eUNjSkZvMFpvb1BaYUk0RFFmVzZ4bmN4ZjJMUDI0cE1WUDJEWU5KSlpYUHd3Q1JXaGRVcnp1YTFvOVlEc2pR?oc=5",
+      "title": "ファナック、通期見通し上方修正 FA受注が伸長 - 日刊工業新聞",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5xaEE5N19LNHVQdkNhd1BQcGxjQTF5RTJTUTZHcWFPWlpBNVBrT001aWtFR0hCZ3ZLVVlEN0liX3dlUUpzRHQ1aXJObm9SNVpHbUQ2UVZpMjUyd1E?oc=5",
       "keyword": "受注",
-      "asof": "8/3 10:42"
+      "asof": "8/3 05:01"
     },
     {
       "code": "7974",
@@ -1330,15 +1330,23 @@
     {
       "code": "6098",
       "company": "リクルートホールディングス",
-      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - みんかぶ",
+      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - minkabu.jp",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9yZDdPMUhoeF9QU3QwdDFjTThDanVGb194TUJDOUFDSkFDeG1SMnREdU5ZT0tXYzJ1ZTFMbzZWZEQxMUZvSkE?oc=5",
       "keyword": "AI投資",
       "asof": "7/29 12:19"
     },
     {
+      "code": "8035",
+      "company": "東京エレクトロン",
+      "title": "東京エレクトロンが9月中間予想を上方修正 AI投資追い風に営業利益4580億円へ - PlusWeb3",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9pbHhicTV4TkNxTFQ1ejFMTmJFaGlrM0w3blcwZXI4UXliR3lJNlFWaTI0Y2NmVjNuOFpfUC1rb256QUh3WTFtM3NCd1VRVWFSS0hWNi1MaWluUGktNTRz?oc=5",
+      "keyword": "AI投資",
+      "asof": "8/3 12:07"
+    },
+    {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - みんかぶ",
+      "title": "日経平均は大幅続落、AI投資リスク警告で半導体関連株売り継続 投稿日時： 2026/07/29 12:19[フィスコ] - minkabu.jp",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9yZDdPMUhoeF9QU3QwdDFjTThDanVGb194TUJDOUFDSkFDeG1SMnREdU5ZT0tXYzJ1ZTFMbzZWZEQxMUZvSkE?oc=5",
       "keyword": "AI投資",
       "asof": "7/29 12:19"
@@ -1350,14 +1358,6 @@
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5pTWJ5eGFJUWFxb1ZkbVpFWnZhTlNjWmx2ZmdjMEdCZVhkSDBrYU1PWHlmT2RNQnc4MEFscUN6NmdnRkJudWM2MF80eXdMa2x5bm1rbGVrMXc3OEJPeFJNMG9WSVJVUzhIRlB3ZGxoMEQ1VUxv?oc=5",
       "keyword": "設備投資",
       "asof": "7/22 16:00"
-    },
-    {
-      "code": "6857",
-      "company": "アドバンテスト",
-      "title": "アドバンテスト－大幅反発 アルファベットの設備投資額引き上げを好感 半導体関連に買い - Moomoo",
-      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9DcTNCb280cjJfYVoxbW4ybkVHTy1vWms5Ti1MdEM2dUtXaGVmelEtRFB6NWZlV29RQzhXenpwcmRwUWtCVzQwdjd0U29TZ19EZ2JVQ240WQ?oc=5",
-      "keyword": "設備投資",
-      "asof": "7/23 09:49"
     }
   ]
 }
