@@ -2330,6 +2330,16 @@ JS_SCRIPT = r"""
 """
 
 
+def _format_date_jp(generated_at):
+    """generated_at('YYYY-MM-DD HH:MM')を'YYYY年M月D日 HH:MM時点'の日本語表記に変換する。
+    パース失敗時は元の文字列(空なら'―')をそのまま返す(表示が消えるより不完全でも出す方を優先)。"""
+    try:
+        dt = datetime.strptime(generated_at, "%Y-%m-%d %H:%M")
+        return f"{dt.year}年{dt.month}月{dt.day}日 {dt.strftime('%H:%M')}時点"
+    except Exception:
+        return generated_at or "―"
+
+
 def conclusion_first_html(data):
     """結論ファースト: compute_stock_scores()の総合スコア上位2〜3銘柄を、根拠つきで先頭に表示する。
 
