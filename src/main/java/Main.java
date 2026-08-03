@@ -236,6 +236,20 @@ public class Main {
             System.err.println("[WARN] EDINET large holdings check failed: " + e);
         }
 
+        // ---- 経済カレンダー(重要度) ----
+        // FOMC・日銀金融政策決定会合は年間スケジュールが公式サイトで事前公表されているため、
+        // 決め打ちの日程テーブル(FOMC_2026 / BOJ_2026)を保持する。米雇用統計は「原則毎月第1金曜日」
+        // というBLSの運用ルールに基づき当日時点から向こう6か月分を計算する(祝日・政府機関閉鎖等に
+        // より実際の発表日が前後する可能性があるため note で注記する、ベストエフォート機能)。
+        try {
+            ArrayNode calendar = buildEconomicCalendar();
+            if (calendar.size() > 0) {
+                root.set("economic_calendar", calendar);
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] economic calendar build failed: " + e);
+        }
+
         // 注: overnight_news / afterclose_news / movers_morning / movers_afterclose は
         // 「話題性のあるニュース・銘柄」を選ぶ性質上、無料の決定論的APIだけでは再現できないため
         // このJava版では更新対象外(既存の値をそのまま保持する)。
@@ -859,6 +873,104 @@ public class Main {
             } catch (Exception e) {
                 System.err.println("[WARN] EDINET fetch/parse failed (date=" + dateStr + "): " + e);
             }
+        }
+        return out;
+    }
+
+    // 2026年のFOMC(米連邦公開市場委員会)開催日程(公式: federalreserve.gov/monetarypolicy/fomccalendars.htm、
+    // 2026-08-03時点で確認)。会合最終日(政策発表日)を記載。
+    private static final String[][] FOMC_2026 = {
+        {"2026-01-28", "FOMC(米連邦公開市場委員会)政策発表"},
+        {"2026-03-18", "FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表"},
+        {"2026-04-29", "FOMC(米連邦公開市場委員会)政策発表"},
+        {"2026-06-17", "FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表"},
+        {"2026-07-29", "FOMC(米連邦公開市場委員会)政策発表"},
+        {"2026-09-16", "FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表"},
+        {"2026-10-28", "FOMC(米連邦公開市場委員会)政策発表"},
+        {"2026-12-09", "FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表"},
+    };
+
+    // 2026年の日銀金融政策決定会合日程(公式: boj.or.jp/mopo/mpmsche_minu/index.htm、
+    // 2026-08-03時点で確認)。会合最終日(政策公表日)を記載。
+    private static final String[][] BOJ_2026 = {
+        {"2026-01-23", "日銀金融政策決定会合・「経済・物価情勢の展望」公表"},
+        {"2026-03-19", "日銀金融政策決定会合"},
+        {"2026-04-28", "日銀金融政策決定会合・「経済・物価情勢の展望」公表"},
+        {"2026-06-16", "日銀金融政策決定会合"},
+        {"2026-07-31", "日銀金融政策決定会合・「経済・物価情勢の展望」公表"},
+        {"2026-09-18", "日銀金融政策決定会合"},
+        {"2026-10-30", "日銀金融政策決定会合・「経済・物価情勢の展望」公表"},
+        {"2026-12-18", "日銀金融政策決定会合"},
+    };
+
+    /**
+     * 経済カレンダー(重要度)を組み立てる。
+     * FOMC・日銀会合は年間スケジュールが公式サイトで事前公表されているため決め打ちテーブルを使用し、
+     * 米雇用統計は「原則毎月第1金曜日」というBLSの運用ルールから当日時点で向こう6か月分を計算する
+     * (祝日・政府機関閉鎖等により実際の発表日が前後する可能性があるため note で注記する)。
+     * 過去日は表示しても意味がないため、当日以降の直近イベントのみを対象とし、日付昇順に並べる。
+     */
+    private static ArrayNode buildEconomicCalendar() {
+        java.time.LocalDate todayDate = ZonedDateTime.now(ZoneId.of("Asia/Tokyo")).toLocalDate();
+        DateTimeFormatter dateFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        List<ObjectNode> items = new java.util.ArrayList<>();
+
+        for (String[] row : FOMC_2026) {
+            try {
+                java.time.LocalDate d = java.time.LocalDate.parse(row[0]);
+                if (d.isBefore(todayDate)) continue;
+                ObjectNode item = MAPPER.createObjectNode();
+                item.put("date", row[0]);
+                item.put("event", row[1]);
+                item.put("importance", 5);
+                item.put("note", "日本時間深夜に結果発表。市場変動が大きくなりやすい。");
+                items.add(item);
+            } catch (Exception e) {
+                System.err.println("[WARN] FOMC calendar row parse failed: " + row[0] + " " + e);
+            }
+        }
+
+        for (String[] row : BOJ_2026) {
+            try {
+                java.time.LocalDate d = java.time.LocalDate.parse(row[0]);
+                if (d.isBefore(todayDate)) continue;
+                ObjectNode item = MAPPER.createObjectNode();
+                item.put("date", row[0]);
+                item.put("event", row[1]);
+                item.put("importance", 5);
+                item.put("note", "金融政策の変更有無・総裁会見の内容次第で為替・日本株が大きく動く可能性。");
+                items.add(item);
+            } catch (Exception e) {
+                System.err.println("[WARN] BOJ calendar row parse failed: " + row[0] + " " + e);
+            }
+        }
+
+        try {
+            java.time.LocalDate cursor = todayDate.withDayOfMonth(1);
+            for (int m = 0; m < 6; m++) {
+                java.time.LocalDate firstFriday = cursor;
+                while (firstFriday.getDayOfWeek() != java.time.DayOfWeek.FRIDAY) {
+                    firstFriday = firstFriday.plusDays(1);
+                }
+                if (!firstFriday.isBefore(todayDate)) {
+                    ObjectNode item = MAPPER.createObjectNode();
+                    item.put("date", firstFriday.format(dateFmt));
+                    item.put("event", "米雇用統計(非農業部門雇用者数・失業率)");
+                    item.put("importance", 4);
+                    item.put("note", "原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。");
+                    items.add(item);
+                }
+                cursor = cursor.plusMonths(1);
+            }
+        } catch (Exception e) {
+            System.err.println("[WARN] US employment calendar computation failed: " + e);
+        }
+
+        items.sort((a, b) -> a.path("date").asText("").compareTo(b.path("date").asText("")));
+
+        ArrayNode out = MAPPER.createArrayNode();
+        for (ObjectNode item : items) {
+            out.add(item);
         }
         return out;
     }
