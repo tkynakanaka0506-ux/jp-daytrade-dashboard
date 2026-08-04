@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04 16:21",
+  "generated_at": "2026-08-04 17:32",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.65円",
-    "change_pct": 0.04,
+    "value": "157.78円",
+    "change_pct": 0.12,
     "asof": "8/4終値"
   },
   "nikkei_futures": {
-    "value": "63,970.00",
-    "change_pct": 1.23,
+    "value": "64,135.00",
+    "change_pct": 1.5,
     "asof": "8/4終値"
   },
   "nikkei225": {
@@ -100,163 +100,163 @@
   ],
   "tdnet_morning": [
     {
-      "time": "16:11",
+      "time": "17:30",
       "code": "―",
-      "company": "ひろぎんＨＤ",
+      "company": "Ｇモンスター",
+      "title": "（開示事項の経過）子会社設立に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508839.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ＪＦＬＡＨＤ",
+      "title": "令和８年熊本地震の影響に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508832.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "室町ケミカル",
+      "title": "（訂正）2026年5月期 決算説明会　動画及び書き起こし公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508771.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "Ｇｕｎｏｓｙ",
+      "title": "独立役員届出書",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508859.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "アゼアス",
       "title": "コーポレート・ガバナンスに関する報告書 2026/08/04",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260728501151.pdf",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260729502276.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "17:15",
       "code": "―",
-      "company": "―",
-      "title": "連結子会社における固定資産の取得に関するお知らせ 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804507905.pdf",
+      "company": "ロゴスＨＤ",
+      "title": "売出価格等の決定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508094.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:15",
+      "code": "―",
+      "company": "トランシティ",
+      "title": "Notice Regarding Status of Acquisition of Own Shares",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508792.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:15",
       "code": "―",
-      "company": "世紀東急",
-      "title": "[Summary] Consolidated Financial Results for the Three Months Ended June 30, 2026 [Japanese GAAP]",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507186.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "世紀東急",
-      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507600.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "朝日工",
-      "title": "[Summary] Financial Results for the First Quarter of the Fiscal Year Ending March 31, 2027",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507626.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "朝日工",
-      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507621.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ＵＴ",
+      "company": "トランシティ",
       "title": "自己株式の取得状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508022.pdf",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508787.pdf",
       "tag": "自社"
     },
     {
-      "time": "16:00",
+      "time": "17:10",
       "code": "―",
-      "company": "ＵＴ",
-      "title": "Notice regarding the Status of Stock Acquisition",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508026.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "フロンテオ",
-      "title": "FRONTEOとシミック、製薬企業の適応症戦略支援で協業",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508580.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "雪印メグ",
-      "title": "Notice regarding Results of Repurchase of Own Shares",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804507739.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "雪印メグ",
-      "title": "自己株式の取得状況に関するお知らせ （会社法第 165 条第２項の規定による定款の定めに基づく自己株式の取得）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804507734.pdf",
+      "company": "ナカボテック",
+      "title": "（訂正）資本業務提携契約の締結、資本技術提携の解消、自己株式の取得並びに主要株主である筆頭株主及びその他の関係会社の異動に関するお知らせの一部訂正",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508757.pdf",
       "tag": "自社"
     },
     {
-      "time": "16:00",
+      "time": "17:09",
       "code": "―",
-      "company": "エプコ",
-      "title": "第27回経営計画説明会(2026年12月期第２四半期決算)のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508647.pdf",
+      "company": "トーエル",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/04",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260528552994.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "いちご",
-      "title": "Support for Kumamoto Earthquake Relief Efforts",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508666.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "いちご",
-      "title": "令和8年熊本地震における被害に対する支援のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260722597864.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "Ｌドリンク",
-      "title": "［Delayed］Corporate Governance Report",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260729501555.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "サンクゼール",
-      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803506373.pdf",
+      "company": "ドリームＩ",
+      "title": "2027年３月期 第１四半期決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260731504511.pdf",
       "tag": "決算"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "サンクゼール",
-      "title": "Q1 FY Ending March 2027 Financial Results Briefing Materials",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508525.pdf",
+      "company": "ドリームＩ",
+      "title": "[Summary]Supplementary Materials for Consolidated Financial Results",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260731504773.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "サンクゼール",
-      "title": "Consolidated Financial Results for the Three Months Ended June 30, 2026 (Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508500.pdf",
+      "company": "ドリームＩ",
+      "title": "[Summary]Consolidated Financial Results for the Three Months Ended June 30, 2026 (Under Japanese GAAP)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260731504754.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "サンクゼール",
-      "title": "2027年３月期第１四半期　決算説明資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803506428.pdf",
+      "company": "ドリームＩ",
+      "title": "2027年３月期 第１四半期決算補足説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260731504703.pdf",
       "tag": "追訂"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "ＡＴＡＯ",
-      "title": "新ブランド「CROWNAT」デビューのお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507559.pdf",
+      "company": "ウィルズ",
+      "title": "個人投資家との対話強化に向けた「日経・東証IRフェア2026」出展のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508559.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "東海カーボン",
+      "title": "Notice of the Completion of Ex Post Facto Adjustment for Fully Committed Share Repurchase (FCSR)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508710.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "東海カーボン",
+      "title": "コミットメント型自己株式取得（FCSR）における事後調整完了のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508705.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "小森",
+      "title": "2027年３月期　第１四半期決算説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508693.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "小森",
+      "title": "First Quarter of Fiscal Year 2027 Summary Result Presentation",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508694.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "トピー",
+      "title": "Notice Regarding the Acquisition of Treasury Stock and Purchase of Treasury Stock through Off-Auction Own Share Repurchase Trading System (ToSTNeT-3)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804507766.pdf",
       "tag": "他"
     }
   ],
@@ -564,7 +564,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/7203/analyst_consensus",
-      "credit_ratio": 22.03,
+      "credit_ratio": 14.3,
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
@@ -591,7 +591,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6758/analyst_consensus",
-      "credit_ratio": 33.61,
+      "credit_ratio": 11.98,
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.37,
@@ -618,7 +618,7 @@
       "gap_up": false,
       "gap_down": true,
       "minkabu_url": "https://minkabu.jp/stock/8306/analyst_consensus",
-      "credit_ratio": 7.52,
+      "credit_ratio": 13.12,
       "squeeze_potential": false,
       "sector": "銀行業",
       "sector_avg_change_pct": null,
@@ -645,7 +645,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9984/analyst_consensus",
-      "credit_ratio": 10.65,
+      "credit_ratio": 9.77,
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": -1.2,
@@ -672,7 +672,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6861/analyst_consensus",
-      "credit_ratio": 2.42,
+      "credit_ratio": 1.23,
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
@@ -699,7 +699,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6954/analyst_consensus",
-      "credit_ratio": 18.87,
+      "credit_ratio": 12.87,
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
@@ -726,7 +726,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/7974/analyst_consensus",
-      "credit_ratio": 20.04,
+      "credit_ratio": 11.93,
       "squeeze_potential": false,
       "sector": "その他製品",
       "sector_avg_change_pct": null,
@@ -753,8 +753,8 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6098/analyst_consensus",
-      "credit_ratio": 1.09,
-      "squeeze_potential": false,
+      "credit_ratio": 0.92,
+      "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
       "sector_contrarian": false
@@ -780,7 +780,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/8035/analyst_consensus",
-      "credit_ratio": 9.27,
+      "credit_ratio": 15.46,
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
@@ -807,7 +807,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9433/analyst_consensus",
-      "credit_ratio": 0.45,
+      "credit_ratio": 0.6,
       "squeeze_potential": true,
       "sector": "情報・通信業",
       "sector_avg_change_pct": -2.22,
@@ -834,7 +834,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9432/analyst_consensus",
-      "credit_ratio": 18.91,
+      "credit_ratio": 12.29,
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": -2.04,
@@ -861,7 +861,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/7267/analyst_consensus",
-      "credit_ratio": 7.47,
+      "credit_ratio": 4.61,
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
@@ -888,7 +888,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6367/analyst_consensus",
-      "credit_ratio": 6.21,
+      "credit_ratio": 7.71,
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
@@ -915,7 +915,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9983/analyst_consensus",
-      "credit_ratio": 1.6,
+      "credit_ratio": 1.22,
       "squeeze_potential": false,
       "sector": "小売業",
       "sector_avg_change_pct": null,
@@ -942,7 +942,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/4063/analyst_consensus",
-      "credit_ratio": 7.11,
+      "credit_ratio": 16.95,
       "squeeze_potential": false,
       "sector": "化学",
       "sector_avg_change_pct": null,
@@ -969,7 +969,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6857/analyst_consensus",
-      "credit_ratio": 3.4,
+      "credit_ratio": 1.41,
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.39,
@@ -996,7 +996,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/4519/analyst_consensus",
-      "credit_ratio": 28.76,
+      "credit_ratio": 47.31,
       "squeeze_potential": false,
       "sector": "医薬品",
       "sector_avg_change_pct": null,
@@ -1023,7 +1023,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/5401/analyst_consensus",
-      "credit_ratio": 15.36,
+      "credit_ratio": 10.41,
       "squeeze_potential": false,
       "sector": "鉄鋼",
       "sector_avg_change_pct": null,
@@ -1050,7 +1050,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/2413/analyst_consensus",
-      "credit_ratio": 10.63,
+      "credit_ratio": 11.44,
       "squeeze_potential": false,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
@@ -1077,7 +1077,7 @@
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6645/analyst_consensus",
-      "credit_ratio": 9.45,
+      "credit_ratio": 9.73,
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
@@ -1302,7 +1302,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - 日本経済新聞",
+      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
       "keyword": "設備投資",
       "asof": "7/29 07:28"
@@ -1310,7 +1310,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
+      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 17:26"
@@ -1318,7 +1318,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - 日本経済新聞",
+      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCUUFOV0cxT1EtU0poRVQ2bVhCZV9RcmhnSUpLaEN0bWlXLVpoaUNmeUtKVXlzZThib2ttOUN0MjE5czFRN1J6Uk1vbUNsMXRVdDN4eEV1WFdvMURMb0RFaklQQ2swUDlnbDdGOQ?oc=5",
       "keyword": "AI投資",
       "asof": "7/31 15:43"
@@ -1366,7 +1366,7 @@
     {
       "code": "8035",
       "company": "東京エレクトロン",
-      "title": "東京エレクトロンが9月中間予想を上方修正 AI投資追い風に営業利益4580億円へ - PlusWeb3",
+      "title": "東京エレクトロンが9月中間予想を上方修正 AI投資追い風に営業利益4580億円へ - plus-web3.com",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9pbHhicTV4TkNxTFQ1ejFMTmJFaGlrM0w3blcwZXI4UXliR3lJNlFWaTI0Y2NmVjNuOFpfUC1rb256QUh3WTFtM3NCd1VRVWFSS0hWNi1MaWluUGktNTRz?oc=5",
       "keyword": "AI投資",
       "asof": "8/3 12:07"
@@ -1382,7 +1382,7 @@
     {
       "code": "6857",
       "company": "アドバンテスト",
-      "title": "アルファベットが設備投資を33兆円超に引き上げ、アドバンテストなど半導体株が急伸 - finance.biggo.jp",
+      "title": "アルファベットが設備投資を33兆円超に引き上げ、アドバンテストなど半導体株が急伸 - BigGo ファイナンス",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5pTWJ5eGFJUWFxb1ZkbVpFWnZhTlNjWmx2ZmdjMEdCZVhkSDBrYU1PWHlmT2RNQnc4MEFscUN6NmdnRkJudWM2MF80eXdMa2x5bm1rbGVrMXc3OEJPeFJNMG9WSVJVUzhIRlB3ZGxoMEQ1VUxv?oc=5",
       "keyword": "設備投資",
       "asof": "7/22 16:00"
