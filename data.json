@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-05 00:18",
+  "generated_at": "2026-08-05 03:23",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,696.81",
-      "change_pct": 1.27,
+      "value": "7,747.79",
+      "change_pct": 1.94,
       "asof": "8/5終値"
     },
     "dow": {
-      "value": "53,990.38",
-      "change_pct": 1.53,
+      "value": "54,195.40",
+      "change_pct": 1.91,
       "asof": "8/5終値"
     },
     "nasdaq": {
-      "value": "26,384.97",
-      "change_pct": 1.82,
+      "value": "26,619.20",
+      "change_pct": 2.72,
       "asof": "8/5終値"
     },
     "sox": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.56円",
-    "change_pct": -0.01,
+    "value": "157.64円",
+    "change_pct": 0.04,
     "asof": "8/5終値"
   },
   "nikkei_futures": {
-    "value": "64,865.00",
-    "change_pct": 2.28,
+    "value": "65,440.00",
+    "change_pct": 3.19,
     "asof": "8/5終値"
   },
   "nikkei225": {
@@ -296,6 +296,14 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "00:30",
+      "code": "―",
+      "company": "ａｒｔｉｅｎ",
+      "title": "artience Group Integrated Report 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804507851.pdf",
+      "tag": "他"
+    },
+    {
       "time": "―",
       "code": "―",
       "company": "―",
@@ -446,14 +454,6 @@
       "title": "大倉工、2026年12月期 第２四半期（中間期）決算説明資料 追訂 8月4日(火) 17:45",
       "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508729.pdf",
       "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "Ｇモンスター、（開示事項の経過）子会社設立に関するお知らせ 他 8月4日(火) 17:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260804508839.pdf",
-      "tag": "他"
     }
   ],
   "afterclose_news": [
@@ -546,10 +546,10 @@
     {
       "code": "7203",
       "name": "トヨタ自動車",
-      "price": "2,918.5",
-      "change_pct": -1.52,
-      "ma5_dev": "-4.62%",
-      "ma25_dev": "+0.21%",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "-3.43%",
+      "ma25_dev": "+1.70%",
       "rsi": 54.81,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
@@ -872,8 +872,8 @@
       "name": "ダイキン工業",
       "price": "―",
       "change_pct": null,
-      "ma5_dev": "+0.83%",
-      "ma25_dev": "-3.38%",
+      "ma5_dev": "-0.77%",
+      "ma25_dev": "-5.21%",
       "rsi": 31.18,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
@@ -1005,10 +1005,10 @@
     {
       "code": "5401",
       "name": "日本製鉄",
-      "price": "646.0",
-      "change_pct": -0.15,
-      "ma5_dev": "-1.39%",
-      "ma25_dev": "+9.16%",
+      "price": "―",
+      "change_pct": null,
+      "ma5_dev": "-1.26%",
+      "ma25_dev": "+9.32%",
       "rsi": 79.7,
       "signal": "弱気(過熱感)",
       "summary": "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
@@ -1286,26 +1286,18 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクＧ－急落 ハイパースケーラー株が軒並み安 AI投資回収の懸念強まる(トレーダーズ・ウェブ) - Yahoo!ファイナンス",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOMHFhZFZzM3dIVk1PVHBiNjY4NkpiOFQweC03cktCNzBWZGxTVTU5ektGeUo5X0xObC1WUl9nU1JsSDNLSVpQUXE5a1k4MkRfakJuLWtfaTRMM1JLN3hieHF0YVVWMzIwV0ZnaEFNN2lmMzc2allxZmhvYXpFWHFpRHpnamNQNlk?oc=5",
-      "keyword": "AI投資",
-      "asof": "7/24 16:00"
-    },
-    {
-      "code": "9984",
-      "company": "ソフトバンクグループ",
-      "title": "PayPayが資本増強、ソフトバンクグループから460億円調達 資金力生かして「競争勝ち抜く」（画像）（1/2枚目） - ITmedia",
+      "title": "PayPayが資本増強、ソフトバンクグループから460億円調達 資金力生かして「競争勝ち抜く」（画像）（1/2枚目） - itmedia.co.jp",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRNFd6ekxqTVVhWlFTVjUxV2ZHTVlTYkFDaWNFcjBtN2VwYkpDbFVHblRFTzRvQUd3OVAxX0JpMWc2QXlQdktjVUJ0TktxZlcwUVU2cWQyWWVFQndEQXdSNXFFclZveGQ5bExWYzlSTGphRmdKUVZuVlF0MA?oc=5",
       "keyword": "増強",
       "asof": "7/29 11:59"
     },
     {
-      "code": "6861",
-      "company": "キーエンス",
-      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - 日本経済新聞",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
-      "keyword": "設備投資",
-      "asof": "7/29 07:28"
+      "code": "9984",
+      "company": "ソフトバンクグループ",
+      "title": "ソフトバンクＧ－急落 ハイパースケーラー株が軒並み安 AI投資回収の懸念強まる(トレーダーズ・ウェブ) - Yahoo!ファイナンス",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOMHFhZFZzM3dIVk1PVHBiNjY4NkpiOFQweC03cktCNzBWZGxTVTU5ektGeUo5X0xObC1WUl9nU1JsSDNLSVpQUXE5a1k4MkRfakJuLWtfaTRMM1JLN3hieHF0YVVWMzIwV0ZnaEFNN2lmMzc2allxZmhvYXpFWHFpRHpnamNQNlk?oc=5",
+      "keyword": "AI投資",
+      "asof": "7/24 16:00"
     },
     {
       "code": "6861",
@@ -1314,6 +1306,14 @@
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 17:26"
+    },
+    {
+      "code": "6861",
+      "company": "キーエンス",
+      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - 日本経済新聞",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
+      "keyword": "設備投資",
+      "asof": "7/29 07:28"
     },
     {
       "code": "6954",
@@ -1326,15 +1326,15 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック（6954）の株価が好決算でも14％下落｜今後は受注2,819億円に注目 - 日本投資機構株式会社",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9hV3JvVHdYY0J3OEZ3UHlJNnBYcE80UHhzUFpTWGtRQWQ2cEZvTEtWdDQwTzc3Ynd2OWhPMFBoZFVHcWhDUkF0NHVGWGFlMGtadUxPblFuX2w0UQ?oc=5",
+      "title": "ファナック---大幅反落、受注高は拡大も営業利益はコンセンサス未達 - 株探",
+      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4xMXl5LWY2NHBKM2VtRjMySW1sX0FVTUtfclE4eUNjSkZvMFpvb1BaYUk0RFFmVzZ4bmN4ZjJMUDI0cE1WUDJEWU5KSlpYUHd3Q1JXaGRVcnp1YTFvOVlEc2pR?oc=5",
       "keyword": "受注",
-      "asof": "8/4 18:00"
+      "asof": "8/3 10:42"
     },
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - ITmedia",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - itmedia.co.jp",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 19:43"
@@ -1342,7 +1342,7 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - ITmedia",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - itmedia.co.jp",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5ZT1ZJTEo1em11Vnk4R1pCT0tOTkFyRVc5dVZTcE9yZlBOaFI0SERiZ0RPeTBQNkNHNTZCYmZYUE5sczdBT0ladldYbXl5ck5lU0Jrb21zN2x4ZHR5VzFfdkVtVjliQXdPcExESnJrRjlzbFVMTDI5LUZmVQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 22:17"
