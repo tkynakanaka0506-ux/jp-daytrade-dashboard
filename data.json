@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05 05:19",
+  "generated_at": "2026-08-05 07:05",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.68円",
-    "change_pct": 0.06,
+    "value": "157.72円",
+    "change_pct": 0.12,
     "asof": "8/5終値"
   },
   "nikkei_futures": {
-    "value": "65,615.00",
-    "change_pct": 3.46,
+    "value": "65,485.00",
+    "change_pct": 3.26,
     "asof": "8/5終値"
   },
   "nikkei225": {
@@ -1310,10 +1310,10 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンスは急反発、製造業中心に設備投資続き第１四半期営業益は４５％増 - みんかぶ",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9PWGtKNHV3NzdDY05lXzhGcGYwcEdCQWFuWnN5VnloaklQcTNnRDRySXFVR19DTElTNG00aVpqcU15ZVVkN1E?oc=5",
+      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - nikkei.com",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
       "keyword": "設備投資",
-      "asof": "7/29 09:24"
+      "asof": "7/29 07:28"
     },
     {
       "code": "6954",
