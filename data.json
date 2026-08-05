@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05 16:21",
+  "generated_at": "2026-08-05 17:30",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.60円",
-    "change_pct": 0.04,
+    "value": "157.77円",
+    "change_pct": 0.15,
     "asof": "8/5終値"
   },
   "nikkei_futures": {
-    "value": "66,200.00",
-    "change_pct": 1.22,
+    "value": "66,020.00",
+    "change_pct": 0.94,
     "asof": "8/5終値"
   },
   "nikkei225": {
@@ -100,163 +100,163 @@
   ],
   "tdnet_morning": [
     {
-      "time": "16:20",
+      "time": "17:30",
       "code": "―",
-      "company": "ＢＡＳＥ",
-      "title": "2026年12月期第2四半期決算説明会資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510102.pdf",
-      "tag": "追訂"
+      "company": "ニチコン",
+      "title": "[Summary]Consolidated Financial Results for the Three Months Ended June 30, 2026(Under Japanese GAAP)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509313.pdf",
+      "tag": "他"
     },
     {
-      "time": "16:20",
+      "time": "17:30",
       "code": "―",
-      "company": "ＢＡＳＥ",
-      "title": "2026年12月期第2四半期(中間期)決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510378.pdf",
+      "company": "ニチコン",
+      "title": "2027年3月期第1四半期決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260730503747.pdf",
       "tag": "決算"
     },
     {
-      "time": "16:20",
+      "time": "17:30",
       "code": "―",
-      "company": "綜研化学",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804508542.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:20",
-      "code": "―",
-      "company": "フジミインコ",
-      "title": "Notice Concerning Receipt of Dividend from Consolidated Subsidiary",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509956.pdf",
+      "company": "フクビ",
+      "title": "「日経・東証ＩＲフェア 2026」出展に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510672.pdf",
       "tag": "他"
     },
     {
-      "time": "16:20",
+      "time": "17:05",
       "code": "―",
-      "company": "フジミインコ",
-      "title": "連結子会社からの配当金受領に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509949.pdf",
+      "company": "Ａｒｅｎｔ",
+      "title": "CIARと戦略的パートナーシップ契約を締結 アルゼンチンにおけるPlantStream事業を拡大",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510631.pdf",
       "tag": "他"
     },
     {
-      "time": "16:20",
+      "time": "17:00",
       "code": "―",
-      "company": "フジミインコ",
-      "title": "[Summary] Consolidated Financial Results for the Three Months Ended June 30, 2026 (Based on Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509944.pdf",
+      "company": "キューブシス",
+      "title": "連結子会社の異動（持分譲渡）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510313.pdf",
       "tag": "他"
     },
     {
-      "time": "16:20",
+      "time": "17:00",
       "code": "―",
-      "company": "フジミインコ",
-      "title": "2027年３月期 第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260730504017.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:15",
-      "code": "―",
-      "company": "ステムリム",
-      "title": "パーパス及びバリューの制定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510482.pdf",
+      "company": "キューブシス",
+      "title": "Notice Regarding the Change in a Consolidated Subsidiary (Transfer of Equity Interest)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510340.pdf",
       "tag": "他"
     },
     {
-      "time": "16:15",
+      "time": "17:00",
       "code": "―",
-      "company": "リーガル",
-      "title": "自己株式立会外買付取引（ToSTNeT－3）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260803506766.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "アイビー",
-      "title": "[Summary] Financial Results for the Three Months Ended June 30, 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509697.pdf",
+      "company": "ＪＨＤ",
+      "title": "株主による臨時株主総会招集請求における株主提案に対する当社取締役会の意見に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260803507329.pdf",
       "tag": "他"
     },
     {
-      "time": "16:10",
+      "time": "17:00",
       "code": "―",
-      "company": "アイビー",
-      "title": "Ａ種優先株式の取得及び消却に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804509163.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "アイビー",
-      "title": "第三者割当による第６回新株予約権（行使価額修正型新株予約権への転換権付）の発行に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509783.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "アイビー",
-      "title": "令和９年３月期　第１四半期決算短信［日本基準］（非連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804509162.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:05",
-      "code": "―",
-      "company": "みずほリース",
-      "title": "[Delayed] Corporate Governance Report",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510398.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "東急建設",
-      "title": "[Summary]Consolidated Financial Results for the Three Months Ended June 30,2026[Under Japanese GAAP]",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804508758.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "東急建設",
-      "title": "2027年３月期 第１四半期決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804508768.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "コムシスＨＤ",
-      "title": "Notice Concerning Acquisition Status of Treasury Shares",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509402.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "コムシスＨＤ",
+      "company": "ＲＩＺＡＰ",
       "title": "自己株式の取得状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509399.pdf",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510022.pdf",
       "tag": "自社"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "高松グループ",
-      "title": "2027年３月期 第１四半期 決算説明資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509767.pdf",
-      "tag": "追訂"
+      "company": "オルトＰ",
+      "title": "【開示事項の経過】新たな事業（スイーツセレクトショップ運営事業）の開始に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510208.pdf",
+      "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "高松グループ",
-      "title": "Analysis Material for 1Q, FY ending March 2027",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509776.pdf",
+      "company": "トクヤマ",
+      "title": "法定事前開示書類（会社分割）（トクヤマセメント株式会社）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260803507544.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "コリー",
+      "title": "『ディズニー スパークリンク・スターズ』メインビジュアル公開＆ストア事前登録＆事前登録キャンペーン開始！",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510371.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ノート",
+      "title": "東野圭吾の新刊『永遠の記憶』が、noteのAIコンテクストネットワークで作品ページを開設",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510202.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ノート",
+      "title": "Keigo Higashino's New Novel \"Eien no Kioku\" Launches Work Page on note's AI Context Network",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510227.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "Ｓクリプトエ",
+      "title": "独立役員届出書",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510563.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ＳＢＩリーシ",
+      "title": "オペレーティング・リース事業ファンドへの立替出資のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804508369.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "アイモバイル",
+      "title": "社外取締役の逝去及び退任に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510539.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "アイモバイル",
+      "title": "Notice Regarding the Passing and Retirement of an Outside Director",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510544.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ＯＢＡＲＡＧ",
+      "title": "[Summary] Financial Results for the Nine Months Ended June 30, 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510206.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ＯＢＡＲＡＧ",
+      "title": "2026年９月期第３四半期決算短信〔日本基準〕(連結)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510001.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ＳＨＩＮＫＯ",
+      "title": "「日経・東証IRフェア2026」初出展のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510409.pdf",
       "tag": "他"
     }
   ],
@@ -1210,13 +1210,22 @@
   ],
   "growth_candidates": [
     {
+      "company": "三洋化",
+      "title": "業績予想の修正及び配当予想の修正（増配）に関するお知らせ",
+      "catalyst": "増配",
+      "reason": "TDnet適時開示「業績予想の修正及び配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
+      "asof": "今日 16:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804508106.pdf",
+      "double_signal": true
+    },
+    {
       "company": "立花エレ",
       "title": "2027年３月期通期連結業績予想の上方修正に関するお知らせ",
       "catalyst": "上方修正",
       "reason": "TDnet適時開示「2027年３月期通期連結業績予想の上方修正に関するお知らせ」より、上方修正を確認。",
       "asof": "今日 16:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260804508697.pdf",
-      "double_signal": true
+      "double_signal": false
     },
     {
       "company": "めぶきＦＧ",
@@ -1271,15 +1280,6 @@
       "asof": "今日 11:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260731505168.pdf",
       "double_signal": false
-    },
-    {
-      "company": "オークネット",
-      "title": "2026年12月期連結業績予想の修正及び配当予想（増配・特別配当）に関するお知らせ",
-      "catalyst": "増配",
-      "reason": "TDnet適時開示「2026年12月期連結業績予想の修正及び配当予想（増配・特別配当）に関するお知らせ」より、増配を確認。",
-      "asof": "8月4日(火) 15:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260804/140120260803507563.pdf",
-      "double_signal": false
     }
   ],
   "pre_earnings_watch": [
@@ -1326,7 +1326,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック---大幅反落、受注高は拡大も営業利益はコンセンサス未達 - 株探",
+      "title": "ファナック---大幅反落、受注高は拡大も営業利益はコンセンサス未達 - kabutan.jp",
       "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE4xMXl5LWY2NHBKM2VtRjMySW1sX0FVTUtfclE4eUNjSkZvMFpvb1BaYUk0RFFmVzZ4bmN4ZjJMUDI0cE1WUDJEWU5KSlpYUHd3Q1JXaGRVcnp1YTFvOVlEc2pR?oc=5",
       "keyword": "受注",
       "asof": "8/3 10:42"
@@ -1366,7 +1366,7 @@
     {
       "code": "8035",
       "company": "東京エレクトロン",
-      "title": "東京エレク､上期営業利益予想を4580億円に上方修正－AI投資が追い風 - TBS NEWS DIG",
+      "title": "東京エレク､上期営業利益予想を4580億円に上方修正－AI投資が追い風 - newsdig.tbs.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBzUUVNNEc3NWtwVVNHN0pjNEpjbEdQWGhVQy1TRU12QVpPOXBQbFlQMkFIMTk5SzV5a3EzTXZMVS1sOG1kMkpuaHdQM1BzWTVqYVlJNUxsb1VVOGhya2dZakwzQm4yalk?oc=5",
       "keyword": "AI投資",
       "asof": "7/30 16:58"
