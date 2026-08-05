@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-05 22:26",
+  "generated_at": "2026-08-05 23:01",
   "run_type": "morning",
   "us_market": {
     "sp500": {
-      "value": "7,736.52",
-      "change_pct": 1.79,
+      "value": "7,783.93",
+      "change_pct": 0.61,
       "asof": "8/5終値"
     },
     "dow": {
-      "value": "54,085.88",
-      "change_pct": 1.71,
+      "value": "54,706.84",
+      "change_pct": 1.15,
       "asof": "8/5終値"
     },
     "nasdaq": {
-      "value": "26,584.99",
-      "change_pct": 2.59,
+      "value": "26,674.57",
+      "change_pct": 0.34,
       "asof": "8/5終値"
     },
     "sox": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.60円",
-    "change_pct": 0.05,
+    "value": "157.47円",
+    "change_pct": -0.04,
     "asof": "8/5終値"
   },
   "nikkei_futures": {
-    "value": "66,455.00",
-    "change_pct": 1.61,
+    "value": "66,720.00",
+    "change_pct": 2.01,
     "asof": "8/5終値"
   },
   "nikkei225": {
@@ -1302,7 +1302,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - nikkei.com",
+      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 17:26"
@@ -1310,7 +1310,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - nikkei.com",
+      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
       "keyword": "設備投資",
       "asof": "7/29 07:28"
@@ -1318,7 +1318,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - nikkei.com",
+      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCUUFOV0cxT1EtU0poRVQ2bVhCZV9RcmhnSUpLaEN0bWlXLVpoaUNmeUtKVXlzZThib2ttOUN0MjE5czFRN1J6Uk1vbUNsMXRVdDN4eEV1WFdvMURMb0RFaklQQ2swUDlnbDdGOQ?oc=5",
       "keyword": "AI投資",
       "asof": "7/31 15:43"
@@ -1374,8 +1374,8 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 沖縄タイムス社",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9LYTZycjlSd195dUJiVVVFdTc2SXRreDQyaUJfSmdxbkxoTDB1dlBHVWpqTXVDM0NicTJ5V0hsRWhrY1FmU21NeHg5dWRLVnFPY1gwWjNiV01lZTllQ1E?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
     },
@@ -1395,5 +1395,9 @@
       "keyword": "設備投資",
       "asof": "7/23 16:00"
     }
-  ]
+  ],
+  "line_notify_last": {
+    "date": "2026-08-05",
+    "code": "三洋化"
+  }
 }
