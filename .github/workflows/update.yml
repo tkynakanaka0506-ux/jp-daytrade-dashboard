@@ -64,6 +64,7 @@ jobs:
       - name: ニュース分析・話題株選定(Python + Gemini無料枠・任意)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python3 news_analyzer.py "${{ steps.mode.outputs.mode }}" data.json
 
       - name: HTML再生成(既存のPure Pythonレンダラー)
