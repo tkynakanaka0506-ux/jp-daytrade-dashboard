@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05 18:31",
+  "generated_at": "2026-08-05 21:48",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.78円",
-    "change_pct": 0.16,
+    "value": "157.60円",
+    "change_pct": 0.04,
     "asof": "8/5終値"
   },
   "nikkei_futures": {
-    "value": "66,160.00",
-    "change_pct": 1.15,
+    "value": "66,370.00",
+    "change_pct": 1.48,
     "asof": "8/5終値"
   },
   "nikkei225": {
@@ -296,10 +296,98 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "20:00",
+      "code": "―",
+      "company": "ＣＥＨＤ",
+      "title": "2026年９月期の期末配当予想の修正（無配）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510969.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "20:00",
+      "code": "―",
+      "company": "ＣＥＨＤ",
+      "title": "SK-03株式会社による株式会社ＣＥホールディングスの株式（証券コード4320） に対する公開買付けの開始に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510843.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "20:00",
+      "code": "―",
+      "company": "ＣＥＨＤ",
+      "title": "2026年９月期 第３四半期決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510461.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "20:00",
+      "code": "―",
+      "company": "ＣＥＨＤ",
+      "title": "SK-03株式会社による当社株式に対する公開買付けに関する賛同及び応募中立の意見表明に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510436.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "20:00",
+      "code": "―",
+      "company": "ＣＥＨＤ",
+      "title": "自己株式の公開買付けの開始予定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510437.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "うるる",
+      "title": "2027年３月期第1四半期決算説明会オンライン開催のお知らせ ～8月28日(金)18:30よりIRTVにてライブ配信～",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509511.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "シンバイオ",
+      "title": "独立役員届出書",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510781.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "ニデック",
+      "title": "Corporate Governance Report",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509411.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "ＡＢ＆Ｃ",
+      "title": "国内店舗月次営業速報（2026年７月）のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509698.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:52",
+      "code": "―",
+      "company": "シンバイオ",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/05",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510569.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:45",
+      "code": "―",
+      "company": "ニデック",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/05",
+      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509337.pdf",
+      "tag": "他"
+    },
+    {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "定款の一部変更に関するお知らせ 他 今日 18:30 New!",
+      "title": "定款の一部変更に関するお知らせ 他 今日 18:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510775.pdf",
       "tag": "他"
     },
@@ -365,94 +453,6 @@
       "company": "ＢＡＳＥ",
       "title": "Summary of Consolidated Financial Results for the Six Months Ended June 30, 2026",
       "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510748.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:50",
-      "code": "―",
-      "company": "メドレックス",
-      "title": "Bondlidoに関する特許査定（米国）のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510622.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "ニチコン",
-      "title": "[Summary]Consolidated Financial Results for the Three Months Ended June 30, 2026(Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805509313.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "ニチコン",
-      "title": "2027年3月期第1四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260730503747.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "フクビ",
-      "title": "「日経・東証ＩＲフェア 2026」出展に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510672.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:05",
-      "code": "―",
-      "company": "Ａｒｅｎｔ",
-      "title": "CIARと戦略的パートナーシップ契約を締結 アルゼンチンにおけるPlantStream事業を拡大",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510631.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "キューブシス",
-      "title": "Notice Regarding the Change in a Consolidated Subsidiary (Transfer of Equity Interest)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510340.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "キューブシス",
-      "title": "連結子会社の異動（持分譲渡）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510313.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "ＪＨＤ",
-      "title": "株主による臨時株主総会招集請求における株主提案に対する当社取締役会の意見に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260803507329.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "ＲＩＺＡＰ",
-      "title": "自己株式の取得状況に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510022.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "オルトＰ",
-      "title": "【開示事項の経過】新たな事業（スイーツセレクトショップ運営事業）の開始に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260805510208.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "トクヤマ",
-      "title": "法定事前開示書類（会社分割）（トクヤマセメント株式会社）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260805/140120260803507544.pdf",
       "tag": "他"
     }
   ],
@@ -1302,7 +1302,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
+      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 17:26"
@@ -1310,15 +1310,15 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンスは急反発、製造業中心に設備投資続き第１四半期営業益は４５％増 - みんかぶ",
-      "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9PWGtKNHV3NzdDY05lXzhGcGYwcEdCQWFuWnN5VnloaklQcTNnRDRySXFVR19DTElTNG00aVpqcU15ZVVkN1E?oc=5",
+      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - nikkei.com",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
       "keyword": "設備投資",
-      "asof": "7/29 09:24"
+      "asof": "7/29 07:28"
     },
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - 日本経済新聞",
+      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCUUFOV0cxT1EtU0poRVQ2bVhCZV9RcmhnSUpLaEN0bWlXLVpoaUNmeUtKVXlzZThib2ttOUN0MjE5czFRN1J6Uk1vbUNsMXRVdDN4eEV1WFdvMURMb0RFaklQQ2swUDlnbDdGOQ?oc=5",
       "keyword": "AI投資",
       "asof": "7/31 15:43"
@@ -1374,8 +1374,8 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 沖縄タイムス社",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9LYTZycjlSd195dUJiVVVFdTc2SXRreDQyaUJfSmdxbkxoTDB1dlBHVWpqTXVDM0NicTJ5V0hsRWhrY1FmU21NeHg5dWRLVnFPY1gwWjNiV01lZTllQ1E?oc=5",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
     },
