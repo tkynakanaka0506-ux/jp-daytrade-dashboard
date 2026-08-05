@@ -5,19 +5,23 @@ Gemini API(無料枠)を使って、data.json のうち「話題性・重要度�
 以下のフィールドだけを補完するスクリプト。他の決定論的なフィールド(市場指数・
 TDnet開示・テクニカル指標)は Main.java が担当し、このスクリプトはそのあとに実行する。
 
-  - overnight_news / afterclose_news (地政学・市場材料ニュース)
-  - us_good_news (米国株の好材料ニュース。見出しテキストから読み取れる範囲で、
-    「好決算なのに売られる(材料出尽くし)」を示す記述が無いかの簡易矛盾分析も行う)
-  - movers_morning / movers_afterclose (値動き・出来高で話題の銘柄)
+- overnight_news / afterclose_news (地政学・市場材料ニュース)
+- us_good_news (米国株の好材料ニュース。見出しテキストから読み取れる範囲で、
+  「好決算なのに売られる(材料出尽くし)」を示す記述が無いかの簡易矛盾分析も行う)
+- movers_morning / movers_afterclose (値動き・出来高で話題の銘柄)
+- technical[].baked_in_warning / baked_in_reason (織り込み済みリスク判定)
+- technical[].theme / theme_trend_note (投資テーマ自動タグ付け)
 
 設計方針:
-  - ニュースの"取得"自体は Google News RSS(無料・APIキー不要)で行う。
-  - "どれが重要か・どの分野/銘柄に関連するか"という主観的判断だけを
-    Gemini API(無料枠、1日1000リクエストまで無料)に1回〜数回のリクエストで依頼する。
-  - GEMINI_API_KEY が未設定、またはネットワーク/API呼び出しが失敗した場合は、
-    既存の data.json の値をそのまま保持し、正常終了する(exit code 0)。
-    このスクリプトの失敗でパイプライン全体(Java取得・HTML生成・push)を
-    止めないことを最優先する。
+- ニュースの"取得"自体は Google News RSS(無料・APIキー不要)で行う。
+- "どれが重要か・どの分野/銘柄に関連するか"という主観的判断は、上記5種類を
+  まとめて1回のGemini APIリクエストに集約して依頼する(無料枠のレート制限
+  429 Too Many Requestsを避けるため。以前は5回に分けて呼んでいたが、
+  Googleの無料枠縮小以降、5回連続で429になるケースが常態化したため統合した)。
+- GEMINI_API_KEY が未設定、またはネットワーク/API呼び出しが失敗した場合は、
+  既存の data.json の値をそのまま保持し、正常終了する(exit code 0)。
+  このスクリプトの失敗でパイプライン全体(Java取得・HTML生成・push)を
+  止めないことを最優先する。
 
 使い方: python3 news_analyzer.py <morning|evening> <data.jsonのパス>
 """
@@ -41,10 +45,8 @@ GEMINI_MAX_RETRIES = 3
 GEMINI_RETRY_BASE_SEC = 8
 _last_gemini_call_ts = [0.0]
 
-
 def log(msg):
     print(f"[news_analyzer] {msg}", file=sys.stderr)
-
 
 def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
     """Google News RSS(無料・キー不要)からニュース候補を取得する。"""
@@ -67,7 +69,6 @@ def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
         if title:
             items.append({"title": title, "url": link, "source": source, "time": pub})
     return items
-
 
 def call_gemini(api_key, prompt, schema):
     url = (
@@ -94,7 +95,7 @@ def call_gemini(api_key, prompt, schema):
         if elapsed < GEMINI_MIN_INTERVAL_SEC:
             time.sleep(GEMINI_MIN_INTERVAL_SEC - elapsed)
         try:
-            with urllib.request.urlopen(req, timeout=60) as res:
+            with urllib.request.urlopen(req, timeout=90) as res:
                 payload = json.loads(res.read().decode("utf-8"))
             _last_gemini_call_ts[0] = time.time()
             text = payload["candidates"][0]["content"]["parts"][0]["text"]
@@ -110,8 +111,11 @@ def call_gemini(api_key, prompt, schema):
             raise
     raise last_err
 
-
 # ---------------- スキーマ定義(Gemini responseSchema) ----------------
+# 以前は以下5つのタスクをそれぞれ独立したGemini呼び出しで行っていたが、
+# 無料枠のレート制限(429)が常態化したため、1回のリクエストにまとめた
+# (COMBINED_RESPONSE_SCHEMA を参照)。個々のスキーマ定義自体はプロンプトの
+# 構造を分かりやすく保つために残している。
 
 NEWS_ITEM_SCHEMA = {
     "type": "OBJECT",
@@ -128,12 +132,6 @@ NEWS_ITEM_SCHEMA = {
     "required": ["title", "url", "source", "time"],
 }
 
-NEWS_RESPONSE_SCHEMA = {
-    "type": "OBJECT",
-    "properties": {"items": {"type": "ARRAY", "items": NEWS_ITEM_SCHEMA}},
-    "required": ["items"],
-}
-
 MOVERS_ITEM_SCHEMA = {
     "type": "OBJECT",
     "properties": {
@@ -145,12 +143,6 @@ MOVERS_ITEM_SCHEMA = {
         "reason": {"type": "STRING"},
     },
     "required": ["name", "reason"],
-}
-
-MOVERS_RESPONSE_SCHEMA = {
-    "type": "OBJECT",
-    "properties": {"items": {"type": "ARRAY", "items": MOVERS_ITEM_SCHEMA}},
-    "required": ["items"],
 }
 
 US_NEWS_ITEM_SCHEMA = {
@@ -166,8 +158,6 @@ US_NEWS_ITEM_SCHEMA = {
         "url": {"type": "STRING"},
         "time": {"type": "STRING"},
         # ---- 「好材料の織り込み済み(材料出尽くし)」矛盾分析(任意項目) ----
-        # 見出しテキストのみから読み取れる範囲での推定であり、実際のチャートを
-        # 参照した判定ではない。根拠が乏しい場合は両方省略してよい(無理にこじつけない)。
         "baked_in_verdict": {
             "type": "STRING",
             "enum": ["本物の初動", "過熱・警戒", "材料出尽くし", "判定不能"],
@@ -177,17 +167,6 @@ US_NEWS_ITEM_SCHEMA = {
     "required": ["ticker", "company", "category", "headline", "url"],
 }
 
-US_NEWS_RESPONSE_SCHEMA = {
-    "type": "OBJECT",
-    "properties": {"items": {"type": "ARRAY", "items": US_NEWS_ITEM_SCHEMA}},
-    "required": ["items"],
-}
-
-# ---- 織り込み済みリスク判定(監視銘柄の「材料出尽くし」警戒) ----
-# Main.java側で無料・決定論的に算出済みの ret_5d_pct(直近5日騰落率)・
-# high_52w_dist_pct(52週高値からの位置)を使い、既に株価が先行して上昇している銘柄について
-# 「好材料が絶好の売り場になっていないか」をGeminiに判定させる。数値の算出自体はLLMを使わない
-# (Main.javaで決定論的に算出済みの値をそのまま渡すだけ)。
 TECH_RISK_ITEM_SCHEMA = {
     "type": "OBJECT",
     "properties": {
@@ -198,16 +177,6 @@ TECH_RISK_ITEM_SCHEMA = {
     "required": ["code", "warning"],
 }
 
-TECH_RISK_RESPONSE_SCHEMA = {
-    "type": "OBJECT",
-    "properties": {"items": {"type": "ARRAY", "items": TECH_RISK_ITEM_SCHEMA}},
-    "required": ["items"],
-}
-
-# ---- 「テーマ性」の自動タグ付け ----
-# 監視銘柄一覧(業種・直近の好材料見出しなど)をまとめて渡し、各銘柄がどの投資テーマに
-# 該当するか(該当する場合のみ)と、そのテーマが今まさに市場で注目されているかの
-# コメントをGeminiに判定させる。値そのものの算出にLLMは使わない(定性判定のみ)。
 THEME_TAG_ITEM_SCHEMA = {
     "type": "OBJECT",
     "properties": {
@@ -218,18 +187,37 @@ THEME_TAG_ITEM_SCHEMA = {
     "required": ["code", "theme"],
 }
 
-THEME_TAG_RESPONSE_SCHEMA = {
+# 5タスクぶんの出力を1回のレスポンスにまとめて受け取るための統合スキーマ。
+COMBINED_RESPONSE_SCHEMA = {
     "type": "OBJECT",
-    "properties": {"items": {"type": "ARRAY", "items": THEME_TAG_ITEM_SCHEMA}},
-    "required": ["items"],
+    "properties": {
+        "news_items": {"type": "ARRAY", "items": NEWS_ITEM_SCHEMA},
+        "movers_items": {"type": "ARRAY", "items": MOVERS_ITEM_SCHEMA},
+        "us_news_items": {"type": "ARRAY", "items": US_NEWS_ITEM_SCHEMA},
+        "tech_risk_items": {"type": "ARRAY", "items": TECH_RISK_ITEM_SCHEMA},
+        "theme_items": {"type": "ARRAY", "items": THEME_TAG_ITEM_SCHEMA},
+    },
+    "required": ["news_items", "movers_items", "us_news_items", "tech_risk_items", "theme_items"],
 }
-
 
 # ---------------- プロンプト構築 ----------------
 
-NEWS_RULES = """あなたは日本株デイトレード情報ダッシュボードのニュース選定担当です。
+COMBINED_INSTRUCTIONS = """あなたは日本株デイトレード情報ダッシュボードの分析担当です。
+以下に独立した5つのタスク(タスク1〜5)を示します。すべてのタスクを行い、
+1つのJSONオブジェクトとして出力してください。出力オブジェクトは必ず次の
+5つのキーをすべて持つこと: news_items, movers_items, us_news_items,
+tech_risk_items, theme_items
+
+- 各キーには、それぞれ対応するタスクの結果(配列)を入れること。
+- あるタスクの候補データが「(候補なし)」と書かれている場合、または該当する
+  結果が無い場合は、そのキーを空配列 [] にすること(無理に何かを埋めない)。
+- 各タスクはそれぞれ独立しており、他のタスクの結果と混同しないこと。
+
+"""
+
+NEWS_RULES = """===== タスク1: news_items =====
 以下のGoogle Newsの候補見出し一覧(JSON)から、投資判断の参考情報として価値の高いものを
-2〜4件選び、指定のJSON形式で出力してください。
+2〜4件選び、news_items に格納してください。
 
 選定基準:
 - 単なる株価コメントや市況の雑感ではなく、地政学リスク・戦争/紛争・制裁・貿易政策・
@@ -250,9 +238,9 @@ NEWS_RULES = """あなたは日本株デイトレード情報ダッシュボー�
 候補見出し一覧:
 """
 
-MOVERS_RULES = """あなたは日本株デイトレード情報ダッシュボードの「値動き・出来高で話題の銘柄」選定担当です。
+MOVERS_RULES = """===== タスク2: movers_items =====
 以下のGoogle Newsの候補見出し一覧(JSON)から、本日(または直近)値動き・出来高で
-話題になった日本株の個別銘柄を最大5件選び、指定のJSON形式で出力してください。
+話題になった日本株の個別銘柄を最大5件選び、movers_items に格納してください。
 
 - codeは見出し中に4桁の証券コードが明記されている場合のみ埋める(不明なら空文字)。
 - priceやchange_pctは見出しに明記されている場合のみ埋める(不明なら空文字/nullでよい。数値を創作しない)。
@@ -263,9 +251,9 @@ MOVERS_RULES = """あなたは日本株デイトレード情報ダッシュボ�
 候補見出し一覧:
 """
 
-US_NEWS_RULES = """あなたは日本株デイトレード情報ダッシュボードの「米国株の好材料ニュース」選定担当です。
+US_NEWS_RULES = """===== タスク3: us_news_items =====
 以下のGoogle News(英語)の候補見出し一覧(JSON)から、直近に報じられた米国株の
-明確な好材料ニュースを3〜6件選び、指定のJSON形式で出力してください。
+明確な好材料ニュースを3〜6件選び、us_news_items に格納してください。
 
 対象とするのは以下の5カテゴリのいずれかに該当するものだけ(それ以外は対象外):
 - earnings_beat(市場予想を上回る決算)
@@ -302,13 +290,13 @@ tickerが見出しから特定できない場合は空文字でよい(推測で�
 候補見出し一覧:
 """
 
-TECH_RISK_RULES = """あなたは日本株デイトレード情報ダッシュボードの「織り込み済みリスク」判定担当です。
+TECH_RISK_RULES = """===== タスク4: tech_risk_items =====
 以下は監視銘柄ごとのテクニカル指標(直近5日騰落率・52週高値からの位置など)と、
 直近に確認できた好材料(あれば recent_catalyst に記載)をまとめたJSONです。
 
 提供された『直近5日騰落率』と『高値圏までの距離』を確認してください。もし材料が良いにもかかわらず、
 既に株価が直近で大幅上昇していたり、52週高値のすぐそばにある場合は、好材料発表が
-『絶好の売り場(材料出尽くし)』になるリスクを評価し、警告を出してください。
+『絶好の売り場(材料出尽くし)』になるリスクを評価し、tech_risk_items に警告を出してください。
 
 出力ルール:
 - warningは、材料出尽くしのリスクが具体的な数値根拠(直近5日騰落率が大きくプラス、または
@@ -322,10 +310,10 @@ TECH_RISK_RULES = """あなたは日本株デイトレード情報ダッシュ�
 対象銘柄一覧:
 """
 
-THEME_RULES = """あなたは日本株デイトレード情報ダッシュボードの「テーマ性」タグ付け担当です。
+THEME_RULES = """===== タスク5: theme_items =====
 以下は監視銘柄ごとの証券コード・銘柄名・業種・直近の好材料見出し(あれば recent_catalyst)を
 まとめたJSON配列です。各銘柄について、該当する投資テーマが明確に読み取れる場合のみ、
-指定のJSON形式でタグ付けしてください。
+theme_items にタグ付けしてください。
 
 出力ルール:
 - themeには「半導体」「AI」「データセンター」「防衛」「円安メリット」「インバウンド」
@@ -343,10 +331,10 @@ THEME_RULES = """あなたは日本株デイトレード情報ダッシュボー
 対象銘柄一覧:
 """
 
-
-def build_prompt(rules, candidates):
-    return rules + json.dumps(candidates, ensure_ascii=False, indent=2)
-
+def build_task_block(rules, candidates):
+    if not candidates:
+        return rules + "(候補なし。このタスクは空配列を返すこと)\n\n"
+    return rules + json.dumps(candidates, ensure_ascii=False, indent=2) + "\n\n"
 
 # ---------------- メイン処理 ----------------
 
@@ -365,7 +353,9 @@ def main():
     news_field = "afterclose_news" if mode == "evening" else "overnight_news"
     movers_field = "movers_afterclose" if mode == "evening" else "movers_morning"
 
-    # ---- 1) 地政学・市場材料ニュース ----
+    # ---- 候補データの収集(RSS取得・ローカルデータ整形のみ。Gemini呼び出しはまだ行わない) ----
+
+    news_candidates = []
     try:
         queries = [
             "地政学リスク 市場 影響",
@@ -374,15 +364,95 @@ def main():
             "日銀 政策 為替",
             "関税 政策 市場",
         ]
-        candidates = []
         for q in queries:
             try:
-                candidates.extend(fetch_rss(q, limit=6))
+                news_candidates.extend(fetch_rss(q, limit=6))
             except Exception as e:
                 log(f"RSS取得失敗(query={q!r}): {e}")
-        if candidates:
-            result = call_gemini(api_key, build_prompt(NEWS_RULES, candidates), NEWS_RESPONSE_SCHEMA)
-            items = [it for it in result.get("items", []) if it.get("title") and it.get("url")]
+    except Exception as e:
+        log(f"ニュース候補の収集に失敗しました: {e}")
+
+    mover_candidates = []
+    try:
+        mover_queries = ["本日 急騰 銘柄", "本日 急落 銘柄", "本日 出来高 ランキング 株"]
+        for q in mover_queries:
+            try:
+                mover_candidates.extend(fetch_rss(q, limit=6))
+            except Exception as e:
+                log(f"RSS取得失敗(query={q!r}): {e}")
+    except Exception as e:
+        log(f"値動き話題株候補の収集に失敗しました: {e}")
+
+    us_candidates = []
+    try:
+        us_queries = [
+            "US stocks earnings beat today",
+            "stock analyst upgrade price target today",
+            "US stock guidance raise",
+        ]
+        for q in us_queries:
+            try:
+                us_candidates.extend(fetch_rss(q, hl="en-US", gl="US", ceid="US:en", limit=6))
+            except Exception as e:
+                log(f"RSS取得失敗(query={q!r}): {e}")
+    except Exception as e:
+        log(f"米国株好材料候補の収集に失敗しました: {e}")
+
+    technical = root.get("technical", [])
+    growth = root.get("growth_candidates", [])
+    growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
+
+    tech_candidates = []
+    for t in technical:
+        ret5d = t.get("ret_5d_pct")
+        dist = t.get("high_52w_dist_pct")
+        if ret5d is None or dist is None:
+            continue
+        entry = {
+            "code": t.get("code", ""),
+            "name": t.get("name", ""),
+            "signal": t.get("signal", ""),
+            "ret_5d_pct": ret5d,
+            "high_52w_dist_pct": dist,
+        }
+        g = growth_by_name.get(t.get("name"))
+        if g:
+            entry["recent_catalyst"] = g.get("title", "")
+        tech_candidates.append(entry)
+
+    theme_candidates = []
+    for t in technical:
+        entry = {
+            "code": t.get("code", ""),
+            "name": t.get("name", ""),
+            "sector": t.get("sector", ""),
+        }
+        g = growth_by_name.get(t.get("name"))
+        if g:
+            entry["recent_catalyst"] = g.get("title", "")
+        theme_candidates.append(entry)
+
+    # ---- 5タスクぶんをまとめて1回のGemini呼び出しで依頼する ----
+    # (以前は5回に分けて呼んでいたが、無料枠のレート制限429が常態化したため統合。
+    #  1回にまとめることでリクエスト数を5分の1に減らし、429を回避しやすくする。)
+    try:
+        combined_prompt = (
+            COMBINED_INSTRUCTIONS
+            + build_task_block(NEWS_RULES, news_candidates)
+            + build_task_block(MOVERS_RULES, mover_candidates)
+            + build_task_block(US_NEWS_RULES, us_candidates)
+            + build_task_block(TECH_RISK_RULES, tech_candidates)
+            + build_task_block(THEME_RULES, theme_candidates)
+        )
+        result = call_gemini(api_key, combined_prompt, COMBINED_RESPONSE_SCHEMA)
+    except Exception as e:
+        log(f"統合ニュース分析ステップが失敗しました(既存値を保持): {e}")
+        result = None
+
+    if result is not None:
+        # ---- 1) 地政学・市場材料ニュース ----
+        try:
+            items = [it for it in result.get("news_items", []) if it.get("title") and it.get("url")]
             if items:
                 for it in items:
                     if not it.get("money_flow_type"):
@@ -395,89 +465,38 @@ def main():
                         it.pop("money_flow", None)
                 root[news_field] = items
                 log(f"{news_field} を{len(items)}件更新しました。")
-        else:
-            log("ニュース候補が0件のため、newsフィールドはスキップします。")
-    except Exception as e:
-        log(f"ニュース分析ステップが失敗しました(既存値を保持): {e}")
+            else:
+                log("ニュース候補が0件のため、newsフィールドはスキップします。")
+        except Exception as e:
+            log(f"ニュース分析結果の反映に失敗しました(既存値を保持): {e}")
 
-    # ---- 2) 値動き・出来高で話題の銘柄 ----
-    try:
-        mover_queries = ["本日 急騰 銘柄", "本日 急落 銘柄", "本日 出来高 ランキング 株"]
-        mover_candidates = []
-        for q in mover_queries:
-            try:
-                mover_candidates.extend(fetch_rss(q, limit=6))
-            except Exception as e:
-                log(f"RSS取得失敗(query={q!r}): {e}")
-        if mover_candidates:
-            result = call_gemini(api_key, build_prompt(MOVERS_RULES, mover_candidates), MOVERS_RESPONSE_SCHEMA)
-            items = [it for it in result.get("items", []) if it.get("name") and it.get("reason")]
+        # ---- 2) 値動き・出来高で話題の銘柄 ----
+        try:
+            items = [it for it in result.get("movers_items", []) if it.get("name") and it.get("reason")]
             if items:
                 root[movers_field] = items
                 log(f"{movers_field} を{len(items)}件更新しました。")
-    except Exception as e:
-        log(f"値動き話題株ステップが失敗しました(既存値を保持): {e}")
+        except Exception as e:
+            log(f"値動き話題株結果の反映に失敗しました(既存値を保持): {e}")
 
-    # ---- 3) 米国株の好材料ニュース ----
-    try:
-        us_queries = [
-            "US stocks earnings beat today",
-            "stock analyst upgrade price target today",
-            "US stock guidance raise",
-        ]
-        us_candidates = []
-        for q in us_queries:
-            try:
-                us_candidates.extend(fetch_rss(q, hl="en-US", gl="US", ceid="US:en", limit=6))
-            except Exception as e:
-                log(f"RSS取得失敗(query={q!r}): {e}")
-        if us_candidates:
-            result = call_gemini(api_key, build_prompt(US_NEWS_RULES, us_candidates), US_NEWS_RESPONSE_SCHEMA)
-            items = [it for it in result.get("items", []) if it.get("headline") and it.get("category")]
+        # ---- 3) 米国株の好材料ニュース ----
+        try:
+            items = [it for it in result.get("us_news_items", []) if it.get("headline") and it.get("category")]
             if items:
                 for it in items:
-                    # 「判定不能」または理由が無いものは、不確かな警告を出さないよう
-                    # フィールドごと落とす(空文字のbaked_in_verdictも同様に扱う)。
                     if it.get("baked_in_verdict") in (None, "", "判定不能") or not it.get("baked_in_reason"):
                         it.pop("baked_in_verdict", None)
                         it.pop("baked_in_reason", None)
                 root["us_good_news"] = items
                 log(f"us_good_news を{len(items)}件更新しました。")
-    except Exception as e:
-        log(f"米国株好材料ステップが失敗しました(既存値を保持): {e}")
+        except Exception as e:
+            log(f"米国株好材料結果の反映に失敗しました(既存値を保持): {e}")
 
-    # ---- 4) 織り込み済みリスク判定(直近5日騰落率・52週高値までの距離をGeminiでチェック) ----
-    # ret_5d_pct / high_52w_dist_pct の算出自体はMain.java側で決定論的に行っている。
-    # ここではその数値(と、あれば直近好材料)をGeminiに渡し、「材料出尽くし」リスクの
-    # 定性的な評価・警告文の生成だけを依頼する(数値算出にLLMは使わない)。
-    try:
-        technical = root.get("technical", [])
-        growth = root.get("growth_candidates", [])
-        growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
-
-        tech_candidates = []
-        for t in technical:
-            ret5d = t.get("ret_5d_pct")
-            dist = t.get("high_52w_dist_pct")
-            if ret5d is None or dist is None:
-                continue
-            entry = {
-                "code": t.get("code", ""),
-                "name": t.get("name", ""),
-                "signal": t.get("signal", ""),
-                "ret_5d_pct": ret5d,
-                "high_52w_dist_pct": dist,
-            }
-            g = growth_by_name.get(t.get("name"))
-            if g:
-                entry["recent_catalyst"] = g.get("title", "")
-            tech_candidates.append(entry)
-
-        if tech_candidates:
-            result = call_gemini(api_key, build_prompt(TECH_RISK_RULES, tech_candidates), TECH_RISK_RESPONSE_SCHEMA)
+        # ---- 4) 織り込み済みリスク判定 ----
+        try:
             warn_map = {
                 it["code"]: it.get("reason", "")
-                for it in result.get("items", [])
+                for it in result.get("tech_risk_items", [])
                 if it.get("code") and it.get("warning")
             }
             if warn_map:
@@ -488,34 +507,14 @@ def main():
                         t["baked_in_reason"] = warn_map[code]
                 root["technical"] = technical
                 log(f"baked-in warning(材料出尽くし警戒)を{len(warn_map)}件付与しました。")
-    except Exception as e:
-        log(f"織り込み済みリスク判定ステップが失敗しました(既存値を保持): {e}")
+        except Exception as e:
+            log(f"織り込み済みリスク判定結果の反映に失敗しました(既存値を保持): {e}")
 
-    # ---- 5) 「テーマ性」の自動タグ付け ----
-    # 業種(sector、Main.java側で算出済み)と直近好材料(growth_candidates)をもとに、
-    # 各銘柄の投資テーマ判定・トレンド性コメントの生成だけをGeminiに依頼する。
-    try:
-        technical = root.get("technical", [])
-        growth = root.get("growth_candidates", [])
-        growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
-
-        theme_candidates = []
-        for t in technical:
-            entry = {
-                "code": t.get("code", ""),
-                "name": t.get("name", ""),
-                "sector": t.get("sector", ""),
-            }
-            g = growth_by_name.get(t.get("name"))
-            if g:
-                entry["recent_catalyst"] = g.get("title", "")
-            theme_candidates.append(entry)
-
-        if theme_candidates:
-            result = call_gemini(api_key, build_prompt(THEME_RULES, theme_candidates), THEME_TAG_RESPONSE_SCHEMA)
+        # ---- 5) 「テーマ性」の自動タグ付け ----
+        try:
             theme_map = {
                 it["code"]: it
-                for it in result.get("items", [])
+                for it in result.get("theme_items", [])
                 if it.get("code") and it.get("theme")
             }
             if theme_map:
@@ -528,13 +527,12 @@ def main():
                             t["theme_trend_note"] = note
                 root["technical"] = technical
                 log(f"投資テーマタグを{len(theme_map)}件付与しました。")
-    except Exception as e:
-        log(f"テーマ自動タグ付けステップが失敗しました(既存値を保持): {e}")
+        except Exception as e:
+            log(f"投資テーマタグ付け結果の反映に失敗しました(既存値を保持): {e}")
 
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)
     log("data.json を書き戻しました。")
-
 
 if __name__ == "__main__":
     try:
