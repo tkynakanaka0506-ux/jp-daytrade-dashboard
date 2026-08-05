@@ -1,27 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Gemini API(無料枠)を使って、data.json のうち「話題性・重要度の判断」が必要な
-以下のフィールドだけを補完するスクリプト。他の決定論的なフィールド(市場指数・
+Gemini API / Groq API(いずれも無料枠)を使って、data.json のうち「話題性・重要度の判断」が
+必要な以下のフィールドだけを補完するスクリプト。他の決定論的なフィールド(市場指数・
 TDnet開示・テクニカル指標)は Main.java が担当し、このスクリプトはそのあとに実行する。
 
-- overnight_news / afterclose_news (地政学・市場材料ニュース)
-- us_good_news (米国株の好材料ニュース。見出しテキストから読み取れる範囲で、
-  「好決算なのに売られる(材料出尽くし)」を示す記述が無いかの簡易矛盾分析も行う)
-- movers_morning / movers_afterclose (値動き・出来高で話題の銘柄)
-- technical[].baked_in_warning / baked_in_reason (織り込み済みリスク判定)
-- technical[].theme / theme_trend_note (投資テーマ自動タグ付け)
+  - overnight_news / afterclose_news (地政学・市場材料ニュース)
+  - us_good_news (米国株の好材料ニュース。見出しテキストから読み取れる範囲で、
+    「好決算なのに売られる(材料出尽くし)」を示す記述が無いかの簡易矛盾分析も行う)
+  - movers_morning / movers_afterclose (値動き・出来高で話題の銘柄)
+  - technical[].baked_in_warning / baked_in_reason (織り込み済みリスク判定)
+  - technical[].theme / theme_trend_note (投資テーマ自動タグ付け)
 
-設計方針:
-- ニュースの"取得"自体は Google News RSS(無料・APIキー不要)で行う。
-- "どれが重要か・どの分野/銘柄に関連するか"という主観的判断は、上記5種類を
-  まとめて1回のGemini APIリクエストに集約して依頼する(無料枠のレート制限
-  429 Too Many Requestsを避けるため。以前は5回に分けて呼んでいたが、
-  Googleの無料枠縮小以降、5回連続で429になるケースが常態化したため統合した)。
-- GEMINI_API_KEY が未設定、またはネットワーク/API呼び出しが失敗した場合は、
-  既存の data.json の値をそのまま保持し、正常終了する(exit code 0)。
-  このスクリプトの失敗でパイプライン全体(Java取得・HTML生成・push)を
-  止めないことを最優先する。
+設計方針(役割分担・並行実行):
+  - ニュースの"取得"自体は Google News RSS(無料・APIキー不要)で行う。
+  - 5つのタスクを2グループに分け、Gemini(グループA)とGroq(グループB)それぞれに
+    1回ずつのリクエストで依頼する(以前は5タスクを1回のGeminiリクエストに統合していたが、
+    Gemini無料枠のレート制限(429)が2026年8月以降ほぼ常時発生するようになり、統合しても
+    改善しなかったため、プロバイダごと分散させて片方が落ちても残りは更新されるようにした)。
+      グループA(Gemini): news_items, us_news_items
+      グループB(Groq):   movers_items, tech_risk_items, theme_items
+  - さらに、割り当てられたプロバイダの呼び出しが失敗した場合、もう片方のAPIキーが
+    設定されていればそちらでフォールバック再試行する(クロスプロバイダ・フォールバック)。
+    両方失敗した場合のみ、そのグループの既存値をそのまま保持する。
+  - GEMINI_API_KEY・GROQ_API_KEYのどちらも未設定の場合は、ニュース系フィールドの
+    更新を丸ごとスキップし、既存の data.json の値をそのまま保持して正常終了する(exit code 0)。
+    このスクリプトの失敗でパイプライン全体(Java取得・HTML生成・push)を
+    止めないことを最優先する。
 
 使い方: python3 news_analyzer.py <morning|evening> <data.jsonのパス>
 """
@@ -37,16 +42,24 @@ import xml.etree.ElementTree as ET
 
 UA = "Mozilla/5.0 (compatible; jp-daytrade-dashboard-bot/1.0)"
 GEMINI_MODEL = "gemini-2.5-flash-lite"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
 # 無料枠のレート制限(429 Too Many Requests)対策:
-# 呼び出し間隔を最低GEMINI_MIN_INTERVAL_SEC秒空け、429時はバックオフしてリトライする。
+# 呼び出し間隔を最低○秒空け、429時はバックオフしてリトライする。
 GEMINI_MIN_INTERVAL_SEC = 5
 GEMINI_MAX_RETRIES = 3
 GEMINI_RETRY_BASE_SEC = 8
-_last_gemini_call_ts = [0.0]
+
+GROQ_MIN_INTERVAL_SEC = 2
+GROQ_MAX_RETRIES = 3
+GROQ_RETRY_BASE_SEC = 5
+
+_last_call_ts = {"gemini": 0.0, "groq": 0.0}
+
 
 def log(msg):
     print(f"[news_analyzer] {msg}", file=sys.stderr)
+
 
 def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
     """Google News RSS(無料・キー不要)からニュース候補を取得する。"""
@@ -70,6 +83,13 @@ def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
             items.append({"title": title, "url": link, "source": source, "time": pub})
     return items
 
+
+def _wait_for_interval(provider, min_interval):
+    elapsed = time.time() - _last_call_ts[provider]
+    if elapsed < min_interval:
+        time.sleep(min_interval - elapsed)
+
+
 def call_gemini(api_key, prompt, schema):
     url = (
         f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
@@ -91,31 +111,105 @@ def call_gemini(api_key, prompt, schema):
     )
     last_err = None
     for attempt in range(1, GEMINI_MAX_RETRIES + 1):
-        elapsed = time.time() - _last_gemini_call_ts[0]
-        if elapsed < GEMINI_MIN_INTERVAL_SEC:
-            time.sleep(GEMINI_MIN_INTERVAL_SEC - elapsed)
+        _wait_for_interval("gemini", GEMINI_MIN_INTERVAL_SEC)
         try:
             with urllib.request.urlopen(req, timeout=90) as res:
                 payload = json.loads(res.read().decode("utf-8"))
-            _last_gemini_call_ts[0] = time.time()
+            _last_call_ts["gemini"] = time.time()
             text = payload["candidates"][0]["content"]["parts"][0]["text"]
             return json.loads(text)
         except urllib.error.HTTPError as e:
-            _last_gemini_call_ts[0] = time.time()
+            _last_call_ts["gemini"] = time.time()
             last_err = e
             if e.code == 429 and attempt < GEMINI_MAX_RETRIES:
                 wait = GEMINI_RETRY_BASE_SEC * attempt
-                log(f"HTTP 429(レート制限)のため{wait}秒待機してリトライします({attempt}/{GEMINI_MAX_RETRIES})")
+                log(f"[Gemini] HTTP 429(レート制限)のため{wait}秒待機してリトライします({attempt}/{GEMINI_MAX_RETRIES})")
                 time.sleep(wait)
                 continue
             raise
     raise last_err
 
-# ---------------- スキーマ定義(Gemini responseSchema) ----------------
-# 以前は以下5つのタスクをそれぞれ独立したGemini呼び出しで行っていたが、
-# 無料枠のレート制限(429)が常態化したため、1回のリクエストにまとめた
-# (COMBINED_RESPONSE_SCHEMA を参照)。個々のスキーマ定義自体はプロンプトの
-# 構造を分かりやすく保つために残している。
+
+def call_groq(api_key, prompt, schema):
+    """Groq(OpenAI互換API)を使い、JSONオブジェクトを1回のchat completionsで取得する。
+    Groqの構造化出力(response_format=json_object)には「JSON」という語をプロンプトに
+    含める必要があるため、指示文にも明記している。スキーマはプロンプト内の説明で
+    表現し、パース側は既存コードと同様に.get()で欠損キーに寛容に対応する。"""
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    schema_hint = (
+        "\n\n出力は必ず次のJSONスキーマ(キー名)に従うJSONオブジェクトのみとし、"
+        "説明文やコードブロック記法(```)は一切付けないこと:\n"
+        + json.dumps(schema, ensure_ascii=False)
+    )
+    body = {
+        "model": GROQ_MODEL,
+        "messages": [
+            {"role": "user", "content": prompt + schema_hint},
+        ],
+        "temperature": 0.2,
+        "response_format": {"type": "json_object"},
+    }
+    req = urllib.request.Request(
+        url,
+        data=json.dumps(body).encode("utf-8"),
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}",
+        },
+        method="POST",
+    )
+    last_err = None
+    for attempt in range(1, GROQ_MAX_RETRIES + 1):
+        _wait_for_interval("groq", GROQ_MIN_INTERVAL_SEC)
+        try:
+            with urllib.request.urlopen(req, timeout=90) as res:
+                payload = json.loads(res.read().decode("utf-8"))
+            _last_call_ts["groq"] = time.time()
+            text = payload["choices"][0]["message"]["content"]
+            return json.loads(text)
+        except urllib.error.HTTPError as e:
+            _last_call_ts["groq"] = time.time()
+            last_err = e
+            if e.code == 429 and attempt < GROQ_MAX_RETRIES:
+                wait = GROQ_RETRY_BASE_SEC * attempt
+                log(f"[Groq] HTTP 429(レート制限)のため{wait}秒待機してリトライします({attempt}/{GROQ_MAX_RETRIES})")
+                time.sleep(wait)
+                continue
+            raise
+    raise last_err
+
+
+def call_llm(provider, gemini_key, groq_key, prompt, schema):
+    if provider == "gemini":
+        return call_gemini(gemini_key, prompt, schema)
+    return call_groq(groq_key, prompt, schema)
+
+
+def call_with_fallback(group_name, primary_provider, gemini_key, groq_key, prompt, schema):
+    """割り当てられたプロバイダで呼び出し、失敗したらもう片方のキーがあれば
+    フォールバック再試行する。両方失敗/未設定なら None を返す(既存値を保持)。"""
+    providers_tried = []
+    order = [primary_provider] + [p for p in ("gemini", "groq") if p != primary_provider]
+    for provider in order:
+        key = gemini_key if provider == "gemini" else groq_key
+        if not key:
+            continue
+        providers_tried.append(provider)
+        try:
+            result = call_llm(provider, gemini_key, groq_key, prompt, schema)
+            if provider != primary_provider:
+                log(f"[{group_name}] {primary_provider}が失敗したため{provider}にフォールバックして成功しました。")
+            return result
+        except Exception as e:
+            log(f"[{group_name}] {provider}呼び出しが失敗しました: {e}")
+    if not providers_tried:
+        log(f"[{group_name}] 利用可能なAPIキーが無いためスキップします(既存値を保持)。")
+    else:
+        log(f"[{group_name}] 全プロバイダ({', '.join(providers_tried)})が失敗しました(既存値を保持)。")
+    return None
+
+
+# ---------------- スキーマ定義 ----------------
 
 NEWS_ITEM_SCHEMA = {
     "type": "OBJECT",
@@ -157,7 +251,6 @@ US_NEWS_ITEM_SCHEMA = {
         "headline": {"type": "STRING"},
         "url": {"type": "STRING"},
         "time": {"type": "STRING"},
-        # ---- 「好材料の織り込み済み(材料出尽くし)」矛盾分析(任意項目) ----
         "baked_in_verdict": {
             "type": "STRING",
             "enum": ["本物の初動", "過熱・警戒", "材料出尽くし", "判定不能"],
@@ -187,26 +280,46 @@ THEME_TAG_ITEM_SCHEMA = {
     "required": ["code", "theme"],
 }
 
-# 5タスクぶんの出力を1回のレスポンスにまとめて受け取るための統合スキーマ。
-COMBINED_RESPONSE_SCHEMA = {
+# グループA(Gemini担当): 地政学ニュース + 米国株好材料ニュース
+GROUP_A_SCHEMA = {
     "type": "OBJECT",
     "properties": {
         "news_items": {"type": "ARRAY", "items": NEWS_ITEM_SCHEMA},
-        "movers_items": {"type": "ARRAY", "items": MOVERS_ITEM_SCHEMA},
         "us_news_items": {"type": "ARRAY", "items": US_NEWS_ITEM_SCHEMA},
+    },
+    "required": ["news_items", "us_news_items"],
+}
+
+# グループB(Groq担当): 値動き話題株 + 織り込み済みリスク + テーマタグ
+GROUP_B_SCHEMA = {
+    "type": "OBJECT",
+    "properties": {
+        "movers_items": {"type": "ARRAY", "items": MOVERS_ITEM_SCHEMA},
         "tech_risk_items": {"type": "ARRAY", "items": TECH_RISK_ITEM_SCHEMA},
         "theme_items": {"type": "ARRAY", "items": THEME_TAG_ITEM_SCHEMA},
     },
-    "required": ["news_items", "movers_items", "us_news_items", "tech_risk_items", "theme_items"],
+    "required": ["movers_items", "tech_risk_items", "theme_items"],
 }
+
 
 # ---------------- プロンプト構築 ----------------
 
-COMBINED_INSTRUCTIONS = """あなたは日本株デイトレード情報ダッシュボードの分析担当です。
-以下に独立した5つのタスク(タスク1〜5)を示します。すべてのタスクを行い、
+GROUP_A_INSTRUCTIONS = """あなたは日本株デイトレード情報ダッシュボードの分析担当です。
+以下に独立した2つのタスク(タスク1・タスク3)を示します。すべてのタスクを行い、
 1つのJSONオブジェクトとして出力してください。出力オブジェクトは必ず次の
-5つのキーをすべて持つこと: news_items, movers_items, us_news_items,
-tech_risk_items, theme_items
+2つのキーをすべて持つこと: news_items, us_news_items
+
+- 各キーには、それぞれ対応するタスクの結果(配列)を入れること。
+- あるタスクの候補データが「(候補なし)」と書かれている場合、または該当する
+  結果が無い場合は、そのキーを空配列 [] にすること(無理に何かを埋めない)。
+- 各タスクはそれぞれ独立しており、他のタスクの結果と混同しないこと。
+
+"""
+
+GROUP_B_INSTRUCTIONS = """あなたは日本株デイトレード情報ダッシュボードの分析担当です。
+以下に独立した3つのタスク(タスク2・タスク4・タスク5)を示します。すべてのタスクを行い、
+1つのJSONオブジェクトとして出力してください。出力オブジェクトは必ず次の
+3つのキーをすべて持つこと: movers_items, tech_risk_items, theme_items
 
 - 各キーには、それぞれ対応するタスクの結果(配列)を入れること。
 - あるタスクの候補データが「(候補なし)」と書かれている場合、または該当する
@@ -331,10 +444,12 @@ theme_items にタグ付けしてください。
 対象銘柄一覧:
 """
 
+
 def build_task_block(rules, candidates):
     if not candidates:
         return rules + "(候補なし。このタスクは空配列を返すこと)\n\n"
     return rules + json.dumps(candidates, ensure_ascii=False, indent=2) + "\n\n"
+
 
 # ---------------- メイン処理 ----------------
 
@@ -342,9 +457,10 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "morning"
     data_path = sys.argv[2] if len(sys.argv) > 2 else "data.json"
 
-    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    if not api_key:
-        log("GEMINI_API_KEY未設定のため、ニュース系フィールドの更新をスキップします(既存値を保持)。")
+    gemini_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    groq_key = os.environ.get("GROQ_API_KEY", "").strip()
+    if not gemini_key and not groq_key:
+        log("GEMINI_API_KEY・GROQ_API_KEYともに未設定のため、ニュース系フィールドの更新をスキップします(既存値を保持)。")
         return
 
     with open(data_path, encoding="utf-8") as f:
@@ -353,7 +469,7 @@ def main():
     news_field = "afterclose_news" if mode == "evening" else "overnight_news"
     movers_field = "movers_afterclose" if mode == "evening" else "movers_morning"
 
-    # ---- 候補データの収集(RSS取得・ローカルデータ整形のみ。Gemini呼び出しはまだ行わない) ----
+    # ---- 候補データの収集(RSS取得・ローカルデータ整形のみ。API呼び出しはまだ行わない) ----
 
     news_candidates = []
     try:
@@ -432,27 +548,27 @@ def main():
             entry["recent_catalyst"] = g.get("title", "")
         theme_candidates.append(entry)
 
-    # ---- 5タスクぶんをまとめて1回のGemini呼び出しで依頼する ----
-    # (以前は5回に分けて呼んでいたが、無料枠のレート制限429が常態化したため統合。
-    #  1回にまとめることでリクエスト数を5分の1に減らし、429を回避しやすくする。)
-    try:
-        combined_prompt = (
-            COMBINED_INSTRUCTIONS
-            + build_task_block(NEWS_RULES, news_candidates)
-            + build_task_block(MOVERS_RULES, mover_candidates)
-            + build_task_block(US_NEWS_RULES, us_candidates)
-            + build_task_block(TECH_RISK_RULES, tech_candidates)
-            + build_task_block(THEME_RULES, theme_candidates)
-        )
-        result = call_gemini(api_key, combined_prompt, COMBINED_RESPONSE_SCHEMA)
-    except Exception as e:
-        log(f"統合ニュース分析ステップが失敗しました(既存値を保持): {e}")
-        result = None
+    # ---- グループA(Gemini担当・失敗時はGroqへフォールバック): news_items, us_news_items ----
+    group_a_prompt = (
+        GROUP_A_INSTRUCTIONS
+        + build_task_block(NEWS_RULES, news_candidates)
+        + build_task_block(US_NEWS_RULES, us_candidates)
+    )
+    result_a = call_with_fallback("グループA(ニュース系)", "gemini", gemini_key, groq_key, group_a_prompt, GROUP_A_SCHEMA)
 
-    if result is not None:
+    # ---- グループB(Groq担当・失敗時はGeminiへフォールバック): movers_items, tech_risk_items, theme_items ----
+    group_b_prompt = (
+        GROUP_B_INSTRUCTIONS
+        + build_task_block(MOVERS_RULES, mover_candidates)
+        + build_task_block(TECH_RISK_RULES, tech_candidates)
+        + build_task_block(THEME_RULES, theme_candidates)
+    )
+    result_b = call_with_fallback("グループB(値動き・テーマ系)", "groq", gemini_key, groq_key, group_b_prompt, GROUP_B_SCHEMA)
+
+    if result_a is not None:
         # ---- 1) 地政学・市場材料ニュース ----
         try:
-            items = [it for it in result.get("news_items", []) if it.get("title") and it.get("url")]
+            items = [it for it in result_a.get("news_items", []) if it.get("title") and it.get("url")]
             if items:
                 for it in items:
                     if not it.get("money_flow_type"):
@@ -470,18 +586,9 @@ def main():
         except Exception as e:
             log(f"ニュース分析結果の反映に失敗しました(既存値を保持): {e}")
 
-        # ---- 2) 値動き・出来高で話題の銘柄 ----
-        try:
-            items = [it for it in result.get("movers_items", []) if it.get("name") and it.get("reason")]
-            if items:
-                root[movers_field] = items
-                log(f"{movers_field} を{len(items)}件更新しました。")
-        except Exception as e:
-            log(f"値動き話題株結果の反映に失敗しました(既存値を保持): {e}")
-
         # ---- 3) 米国株の好材料ニュース ----
         try:
-            items = [it for it in result.get("us_news_items", []) if it.get("headline") and it.get("category")]
+            items = [it for it in result_a.get("us_news_items", []) if it.get("headline") and it.get("category")]
             if items:
                 for it in items:
                     if it.get("baked_in_verdict") in (None, "", "判定不能") or not it.get("baked_in_reason"):
@@ -492,11 +599,21 @@ def main():
         except Exception as e:
             log(f"米国株好材料結果の反映に失敗しました(既存値を保持): {e}")
 
+    if result_b is not None:
+        # ---- 2) 値動き・出来高で話題の銘柄 ----
+        try:
+            items = [it for it in result_b.get("movers_items", []) if it.get("name") and it.get("reason")]
+            if items:
+                root[movers_field] = items
+                log(f"{movers_field} を{len(items)}件更新しました。")
+        except Exception as e:
+            log(f"値動き話題株結果の反映に失敗しました(既存値を保持): {e}")
+
         # ---- 4) 織り込み済みリスク判定 ----
         try:
             warn_map = {
                 it["code"]: it.get("reason", "")
-                for it in result.get("tech_risk_items", [])
+                for it in result_b.get("tech_risk_items", [])
                 if it.get("code") and it.get("warning")
             }
             if warn_map:
@@ -514,7 +631,7 @@ def main():
         try:
             theme_map = {
                 it["code"]: it
-                for it in result.get("theme_items", [])
+                for it in result_b.get("theme_items", [])
                 if it.get("code") and it.get("theme")
             }
             if theme_map:
@@ -533,6 +650,7 @@ def main():
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)
     log("data.json を書き戻しました。")
+
 
 if __name__ == "__main__":
     try:
