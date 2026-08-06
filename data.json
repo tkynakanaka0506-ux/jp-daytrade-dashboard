@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06 18:35",
+  "generated_at": "2026-08-06 20:43",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.86円",
-    "change_pct": 0.11,
+    "value": "157.84円",
+    "change_pct": 0.1,
     "asof": "8/6終値"
   },
   "nikkei_futures": {
-    "value": "65,555.00",
-    "change_pct": -0.24,
+    "value": "65,660.00",
+    "change_pct": -0.08,
     "asof": "8/6終値"
   },
   "nikkei225": {
@@ -296,6 +296,30 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "18:50",
+      "code": "―",
+      "company": "農中Ｅｘ―Ｆ",
+      "title": "弊社ＥＴＦの基準価額と市場価格の重要な乖離についてのお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513354.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ソケッツ",
+      "title": "2027年３月期 第１四半期決算説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260715594676.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ティアフォー",
+      "title": "第三者割当増資の結果に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513031.pdf",
+      "tag": "エク"
+    },
+    {
       "time": "18:05",
       "code": "―",
       "company": "アンビＤＸ",
@@ -307,17 +331,17 @@
       "time": "18:05",
       "code": "―",
       "company": "大崎電",
-      "title": "Notice Concerning Completion of Payment for Disposal of Treasury Shares as Restricted Stock Compensation",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513288.pdf",
-      "tag": "他"
+      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513164.pdf",
+      "tag": "エク"
     },
     {
       "time": "18:05",
       "code": "―",
       "company": "大崎電",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513164.pdf",
-      "tag": "エク"
+      "title": "Notice Concerning Completion of Payment for Disposal of Treasury Shares as Restricted Stock Compensation",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513288.pdf",
+      "tag": "他"
     },
     {
       "time": "18:00",
@@ -331,16 +355,16 @@
       "time": "18:00",
       "code": "―",
       "company": "オリオン",
-      "title": "Announcement Regarding the Publication of an Analyst Report By Envalith Co., Ltd. (From a Management Perspective)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513181.pdf",
+      "title": "株式会社エンヴァリスによる当社アナリスト・レポート（経営者の視点）公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513149.pdf",
       "tag": "他"
     },
     {
       "time": "18:00",
       "code": "―",
       "company": "オリオン",
-      "title": "株式会社エンヴァリスによる当社アナリスト・レポート（経営者の視点）公開のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513149.pdf",
+      "title": "Announcement Regarding the Publication of an Analyst Report By Envalith Co., Ltd. (From a Management Perspective)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513181.pdf",
       "tag": "他"
     },
     {
@@ -427,33 +451,9 @@
       "time": "17:00",
       "code": "―",
       "company": "佐藤渡辺",
-      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260730503664.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "佐藤渡辺",
-      "title": "自己株式の取得および自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508887.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "佐藤渡辺",
       "title": "完全子会社の吸収合併（簡易合併・略式合併）に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508640.pdf",
       "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "アスクル",
-      "title": "譲渡制限付株式報酬としての自己株式の処分に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512753.pdf",
-      "tag": "エク"
     }
   ],
   "afterclose_news": [
@@ -1358,7 +1358,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - newswitch.jp",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
       "keyword": "データセンター",
       "asof": "8/6 12:02"
@@ -1378,6 +1378,14 @@
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBDcmZzMVVPeUZ0MHlRUmUzeUQxSFpuNm1CYi0yRVVIVnl6aWlqUExRQVJ4X0l0ZzVoVkhoNFJ3dDE5NkVQTmZtVGFkR2IzOUFpLWlqZA?oc=5",
       "keyword": "データセンター",
       "asof": "8/4 07:03"
+    },
+    {
+      "code": "5401",
+      "company": "日本製鉄",
+      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ - news.tv-aichi.co.jp",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9VNGZSRlJsa3dTXy1zN1lHenEtM2ZsV1A3alVZVktlR0tiMHg2Q2hvQThnYUxRZGNNQm1PMkNlV25ud1VKanI1cDJ6TUhvclVwY2JRMUxLRFBlUQ?oc=5",
+      "keyword": "新工場",
+      "asof": "8/6 19:06"
     }
   ],
   "line_notify_last": {
