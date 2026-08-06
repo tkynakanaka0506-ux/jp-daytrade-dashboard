@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-06 17:30",
-  "run_type": "morning",
+  "generated_at": "2026-08-06 18:35",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,723.55",
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.84円",
-    "change_pct": 0.09,
+    "value": "157.86円",
+    "change_pct": 0.11,
     "asof": "8/6終値"
   },
   "nikkei_futures": {
-    "value": "65,510.00",
-    "change_pct": -0.3,
+    "value": "65,555.00",
+    "change_pct": -0.24,
     "asof": "8/6終値"
   },
   "nikkei225": {
@@ -296,164 +296,164 @@
   ],
   "tdnet_afterclose": [
     {
-      "time": "08:50",
+      "time": "18:05",
       "code": "―",
-      "company": "ｉＦ高配４０",
-      "title": "iFreeETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510856.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸＵＳＴ配",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510791.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸＮカバコ",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510792.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸ優先証券",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510793.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸＳカバコ",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510794.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸ価格日株",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510795.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ｉＦ米債３無",
-      "title": "iFreeETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510857.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ｉＦ米債３有",
-      "title": "iFreeETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510858.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸ中テ１０",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510796.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:50",
-      "code": "―",
-      "company": "ＧＸＮデカバ",
-      "title": "ETFの収益分配金見込額のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510797.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "08:30",
-      "code": "―",
-      "company": "ダイナマップ",
-      "title": "シーラにてダイナミックマッププラットフォームの3Dmapspocketが採用 不動産開発プロセスの効率化を支援",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510702.pdf",
+      "company": "アンビＤＸ",
+      "title": "当社サーバーへの不正アクセスの発生について（第1報）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512943.pdf",
       "tag": "他"
     },
     {
-      "time": "08:30",
+      "time": "18:05",
       "code": "―",
-      "company": "ニデック",
-      "title": "【Delayed】Regarding a Request by a Shareholder to File an Action",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805511043.pdf",
+      "company": "大崎電",
+      "title": "Notice Concerning Completion of Payment for Disposal of Treasury Shares as Restricted Stock Compensation",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513288.pdf",
       "tag": "他"
     },
     {
-      "time": "08:30",
+      "time": "18:05",
       "code": "―",
-      "company": "松風",
-      "title": "法定事前開示書類（合併）（松風バイオフィックス株式会社）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260728500636.pdf",
+      "company": "大崎電",
+      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513164.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "東レ",
+      "title": "[Delayed]Corporate Governance Report",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513142.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "18:00",
       "code": "―",
-      "company": "―",
-      "title": "第74期定時株主総会招集ご通知 他 今日 08:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805509939.pdf",
+      "company": "オリオン",
+      "title": "Announcement Regarding the Publication of an Analyst Report By Envalith Co., Ltd. (From a Management Perspective)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513181.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "18:00",
       "code": "―",
-      "company": "―",
-      "title": "2026年定時株主総会招集通知及び株主総会資料 他 今日 08:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510408.pdf",
+      "company": "オリオン",
+      "title": "株式会社エンヴァリスによる当社アナリスト・レポート（経営者の視点）公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513149.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "17:34",
       "code": "―",
-      "company": "―",
-      "title": "第13期定時株主総会招集ご通知及び株主総会資料 他 今日 08:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260730503549.pdf",
+      "company": "ＮＫＫ",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/06",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260730503694.pdf",
       "tag": "他"
     },
     {
-      "time": "08:00",
+      "time": "17:30",
       "code": "―",
-      "company": "サニーサイド",
-      "title": "臨時株主総会招集ご通知及び株主総会資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508347.pdf",
+      "company": "アドソル日進",
+      "title": "Notice Regarding Determination of Details of Issuance of Stock Compensation-type Stock Options (Stock Acquisition Rights)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508916.pdf",
       "tag": "他"
     },
     {
-      "time": "08:00",
+      "time": "17:30",
       "code": "―",
-      "company": "グロービング",
-      "title": "第11期定時株主総会招集ご通知",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508748.pdf",
+      "company": "アドソル日進",
+      "title": "株式報酬型ストックオプション（新株予約権）の発行内容の確定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508914.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ユーザーロカ",
+      "title": "Financial Results Briefing Materials for FY2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511894.pdf",
       "tag": "他"
     },
     {
-      "time": "08:00",
+      "time": "17:30",
       "code": "―",
-      "company": "グロービング",
-      "title": "第11期定時株主総会招集ご通知交付書面省略事項",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508749.pdf",
+      "company": "ユーザーロカ",
+      "title": "2026年6月期 決算説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511740.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ＣＥＨＤ",
+      "title": "[Delayed]Summary of Consolidated Financial Results for the Nine Months Ended June 30, 2026 (Based on Japanese GAAP)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513038.pdf",
       "tag": "他"
     },
     {
-      "time": "08:00",
+      "time": "17:30",
       "code": "―",
-      "company": "グロービング",
-      "title": "NOTICE OF THE 11TH ORDINARY GENERAL MEETING OF SHAREHOLDERS",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508750.pdf",
+      "company": "スカＪＳＡＴ",
+      "title": "スカパーＪＳＡＴ、「日経・東証ＩＲフェア 2026」に出展・登壇",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513032.pdf",
       "tag": "他"
+    },
+    {
+      "time": "17:15",
+      "code": "―",
+      "company": "地域新聞社",
+      "title": "（開示事項の経過）株主による新株予約権無償割当て差止めの仮処分の申立て却下の決定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513126.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:12",
+      "code": "―",
+      "company": "ＴＯブックス",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/06",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260724598971.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:05",
+      "code": "―",
+      "company": "東洋電",
+      "title": "第三者割当に係る株式譲渡報告確約書（自己株式）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511643.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "佐藤渡辺",
+      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260730503664.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "佐藤渡辺",
+      "title": "自己株式の取得および自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508887.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "佐藤渡辺",
+      "title": "完全子会社の吸収合併（簡易合併・略式合併）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508640.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "アスクル",
+      "title": "譲渡制限付株式報酬としての自己株式の処分に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512753.pdf",
+      "tag": "エク"
     }
   ],
   "afterclose_news": [
@@ -1216,7 +1216,7 @@
       "reason": "TDnet適時開示「2027年３月期 業績予想の修正および配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
       "asof": "今日 16:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260729501888.pdf",
-      "double_signal": true
+      "double_signal": false
     },
     {
       "company": "福田組",
@@ -1302,7 +1302,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - nikkei.com",
+      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 17:26"
@@ -1310,7 +1310,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - nikkei.com",
+      "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
       "keyword": "設備投資",
       "asof": "7/29 07:28"
@@ -1366,7 +1366,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - kyodo.co.jp",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
@@ -1374,7 +1374,7 @@
     {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - zaikai.jp",
+      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - 財界オンライン",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBDcmZzMVVPeUZ0MHlRUmUzeUQxSFpuNm1CYi0yRVVIVnl6aWlqUExRQVJ4X0l0ZzVoVkhoNFJ3dDE5NkVQTmZtVGFkR2IzOUFpLWlqZA?oc=5",
       "keyword": "データセンター",
       "asof": "8/4 07:03"
