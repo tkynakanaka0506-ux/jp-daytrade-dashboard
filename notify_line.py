@@ -5,17 +5,35 @@ data.json の内容から「本日の最注力銘柄」を1銘柄だけ機械的
 プッシュメッセージで通知するスクリプト。Main.java(データ収集) → news_analyzer.py(Gemini補完)
 → render_dashboard.py(HTML生成) のあとに実行する想定。
 
-選定条件(いずれかを満たす銘柄を候補とする):
-A) ダブルシグナル: growth_candidates 側で double_signal=true になっている銘柄
-(「業績予想の上方修正」と「決算」の開示が同一社で重なっているケース)。
-B) 出来高急増+好材料: technical 側の volume_ratio が5日平均の2倍以上(volume_surge=true)、
-かつ同じ銘柄が growth_candidates(好材料のみを抽出したTDnet開示)にも登場している。
+2026-08-06: 通知ロジックを「後追い型」から「先行シグナル型」に全面転換。
 
-候補が複数ある場合は、以下の優先順位で1銘柄だけに絞る:
-1) 条件A・B両方を満たす銘柄
-2) 条件A(ダブルシグナル)のみ
-3) 条件B(出来高急増+好材料)のみ
-同順位内では technical.change_pct(値上がり率)が大きい銘柄を優先する。
+旧ロジック(廃止)の問題点:
+旧版は growth_candidates の double_signal(決算+上方修正の同時TDnet開示)や
+technical の volume_surge(出来高急増)など、「すでに公開された好材料」を検知して
+通知していた。これらは開示・急増が起きた瞬間に市場が即座に織り込むため、
+開示が引け後〜翌朝寄り前に出た場合、通知を受け取った時点(=翌朝以降)には
+寄り付きで既に株価が上がってしまっており、前日中に仕込む余地が無かった
+(ユーザーからの報告: 「通知が来た当日に株価を見たら朝イチで既に上がっていた」)。
+
+新ロジック:
+「まだ市場が十分に織り込んでいない可能性がある、先回り的なシグナル」だけを対象にする。
+市場時間中(8:30〜15:30 JST)は15分おきにパイプラインが回るため、当日の取引時間内
+(15:30まで)に検知できたシグナルはその日のうちに通知される。
+
+優先度順(高い方から1つだけ選ぶ):
+4) EDINET大量保有報告書(5%ルール) … 大口投資家の保有異動は市場の一般的な注目が
+   集まる前に開示されることが多い先行指標(EDINET_API_KEY未設定時はデータ自体が無い)。
+3) pre_earnings_watch(決算に先行する断片ニュース: 増産・受注拡大・工場増強等) …
+   決算発表そのものではなく、その手前の関連ニュースの段階で拾う設計(Main.java参照)。
+2) 信用倍率(squeeze_potential: 買残/売残<1倍=踏み上げ余地)+ RSI30台以下(売られ過ぎ)の
+   組み合わせ … 需給が良く、かつ売られ過ぎで反発余地がある状態。
+1) セクター逆行高(sector_contrarian) … 同業種が軟調な中で単独で強い銘柄は、
+   他の同業種銘柄への物色波及や見直し買いが後から入る余地がある。
+0) 信用倍率(squeeze_potential)のみ。
+
+いずれの優先度でも、volume_surge(出来高急増)または gap_up(寄り付き窓開け)が
+既についている銘柄は「すでに動いてしまった」とみなして候補から除外する
+(先行シグナルの主旨に反するため)。
 
 注意:
 - LINE Notify は2025年3月末でサービス終了しているため、後継の LINE Messaging API
@@ -24,15 +42,10 @@ B) 出来高急増+好材料: technical 側の volume_ratio が5日平均の2倍
 既存のパイプラインを止めないよう、ログを出すだけで正常終了する(exit code 0)。
 - 同じ銘柄への通知が15分間隔の自動実行のたびに重複して飛ばないよう、data.json内の
 line_notify_last(当日日付+銘柄コード)で簡易的な重複送信防止を行う。
-
-2026-08-05: 不具合修正。technical(固定20銘柄の主力ウォッッリスト)を起点に
-growth_candidates(TDnetの好材料開示から機械的に抽出した、ウォッチリストとは別の
-中小型株中心の銘柄群)を突き合わせていたため、条件A(ダブルシグナル)ですら
-「growth_candidates側でdouble_signal=trueだが、たまたまウォッチリスト20銘柄には
-含まれない銘柄」を一切拾えず、実質的に通知条件を満たす銘柄が現れない状態になっていた
-(data.json の line_notify_last が一度も設定されたことがなかったことで判明)。
-起点を growth_candidates 側に変え、technicalとの一致は「あれば価格等を補完情報として使う」
-任意情報に変更した。
+- 本ロジックはあくまで機械的な条件抽出であり、翌日の株価上昇を保証するものではない
+(それが可能なら誰でも儲かってしまう)。あくまで「まだ十分に織り込まれていない可能性が
+相対的に高い」候補を絞り込むものであり、最終的な投資判断は必ず開示原文・チャートを
+自分の目で確認したうえで自己責任で行うこと。
 
 使い方: python3 notify_line.py <data.jsonのパス>
 """
@@ -44,88 +57,160 @@ from datetime import datetime, timezone, timedelta
 
 JST = timezone(timedelta(hours=9))
 
+
 def log(msg):
     print(f"[notify_line] {msg}", file=sys.stderr)
 
-def pick_most_important_stock(root):
-    technical = root.get("technical", [])
-    growth = root.get("growth_candidates", [])
-    technical_by_name = {t.get("name"): t for t in technical if t.get("name")}
+
+def _already_moved(t):
+    """volume_surge(出来高急増)またはgap_up(寄り付き窓開け)が付いている銘柄は、
+    先行シグナルの主旨に反する(既に動いてしまった)ため除外する。"""
+    if not t:
+        return False
+    return bool(t.get("volume_surge")) or bool(t.get("gap_up"))
+
+
+def _fmt_num(v, suffix=""):
+    if isinstance(v, (int, float)):
+        return f"{v}{suffix}"
+    return "―"
+
+
+def pick_leading_signal_stock(root):
+    """「先行シグナル型」の最注力銘柄を1つだけ選ぶ。候補が無ければNoneを返す。"""
+    technical = root.get("technical", []) or []
+    pre_earnings = root.get("pre_earnings_watch", []) or []
+    edinet = root.get("edinet_large_holdings", []) or []
+
+    technical_by_code = {t.get("code"): t for t in technical if t.get("code")}
 
     candidates = []
-    for g in growth:
-        name = g.get("company")
-        if not name:
+
+    # 優先度4: EDINET大量保有報告書(5%ルール)
+    for e in edinet:
+        code = e.get("code")
+        t = technical_by_code.get(code)
+        if _already_moved(t):
             continue
-        # ウォッチリスト20銘柄に同じ会社があれば、価格・出来高等の補完情報として使う
-        # (無ければ None のままでよい。条件A自体はgrowth_candidatesだけで判定できる)。
-        t = technical_by_name.get(name)
-        has_double_signal = bool(g.get("double_signal"))
-        has_volume_surge_and_news = bool(t and t.get("volume_surge"))
-
-        if not (has_double_signal or has_volume_surge_and_news):
-            continue
-
-        # 優先度: 両条件を満たす(2) > ダブルシグナルのみ(1) > 出来高急増+好材料のみ(0)
-        if has_double_signal and has_volume_surge_and_news:
-            priority = 2
-        elif has_double_signal:
-            priority = 1
-        else:
-            priority = 0
-
-        change_pct = t.get("change_pct") if t else None
-        if not isinstance(change_pct, (int, float)):
-            change_pct = -999.0
-
         candidates.append({
-            "priority": priority,
-            "change_pct": change_pct,
+            "priority": 4,
+            "code": code,
+            "name": e.get("name") or (t.get("name") if t else "") or "",
             "technical": t,
-            "growth": g,
-            "has_double_signal": has_double_signal,
-            "has_volume_surge_and_news": has_volume_surge_and_news,
+            "reason": f"EDINET{e.get('doc_type', '大量保有報告書')}を検知(提出者: {e.get('filer_name', '―')})",
+            "detail": e.get("doc_description"),
+            "url": None,
+            "tiebreak": 0.0,
+        })
+
+    # 優先度3: 決算に先行する断片ニュース(pre_earnings_watch)
+    for p in pre_earnings:
+        code = p.get("code")
+        t = technical_by_code.get(code)
+        if _already_moved(t):
+            continue
+        candidates.append({
+            "priority": 3,
+            "code": code,
+            "name": p.get("company", ""),
+            "technical": t,
+            "reason": f"決算に先行する材料ニュース「{p.get('keyword', '')}」を検知",
+            "detail": p.get("title"),
+            "url": p.get("url"),
+            "tiebreak": 0.0,
+        })
+
+    # 優先度2: 信用倍率(踏み上げ余地)+ RSI売られ過ぎ
+    for t in technical:
+        if not t.get("squeeze_potential"):
+            continue
+        if _already_moved(t):
+            continue
+        rsi = t.get("rsi")
+        if not (isinstance(rsi, (int, float)) and rsi <= 35):
+            continue
+        candidates.append({
+            "priority": 2,
+            "code": t.get("code"),
+            "name": t.get("name", ""),
+            "technical": t,
+            "reason": f"信用倍率{_fmt_num(t.get('credit_ratio'), '倍')}(踏み上げ余地)+RSI{_fmt_num(rsi)}(売られ過ぎ)",
+            "detail": None,
+            "url": None,
+            "tiebreak": rsi,  # 低いほど優先
+        })
+
+    # 優先度1: セクター逆行高
+    for t in technical:
+        if not t.get("sector_contrarian"):
+            continue
+        if _already_moved(t):
+            continue
+        sector_avg = t.get("sector_avg_change_pct")
+        own = t.get("change_pct")
+        gap = (own - sector_avg) if isinstance(own, (int, float)) and isinstance(sector_avg, (int, float)) else 0.0
+        candidates.append({
+            "priority": 1,
+            "code": t.get("code"),
+            "name": t.get("name", ""),
+            "technical": t,
+            "reason": f"{t.get('sector', '同業種')}が軟調な中で逆行高(セクター平均{_fmt_num(sector_avg, '%')}に対し{_fmt_num(own, '%')})",
+            "detail": None,
+            "url": None,
+            "tiebreak": -gap,  # 乖離が大きいほど優先
+        })
+
+    # 優先度0: 信用倍率(踏み上げ余地)のみ
+    for t in technical:
+        if not t.get("squeeze_potential"):
+            continue
+        if _already_moved(t):
+            continue
+        candidates.append({
+            "priority": 0,
+            "code": t.get("code"),
+            "name": t.get("name", ""),
+            "technical": t,
+            "reason": f"信用倍率{_fmt_num(t.get('credit_ratio'), '倍')}(踏み上げ余地)",
+            "detail": None,
+            "url": None,
+            "tiebreak": t.get("credit_ratio") if isinstance(t.get("credit_ratio"), (int, float)) else 999.0,
         })
 
     if not candidates:
         return None
 
-    candidates.sort(key=lambda c: (c["priority"], c["change_pct"]), reverse=True)
+    candidates.sort(key=lambda c: (c["priority"], -c["tiebreak"]), reverse=True)
     return candidates[0]
+
 
 def build_message(pick):
     t = pick["technical"] or {}
-    g = pick["growth"]
-    name = t.get("name") or g.get("company", "")
-    code = t.get("code", "")
+    name = pick["name"] or t.get("name") or ""
+    code = pick["code"] or t.get("code") or ""
     price = t.get("price", "")
     change_pct = t.get("change_pct")
     change_str = f"{change_pct:+.2f}%" if isinstance(change_pct, (int, float)) else "―"
 
-    reasons = []
-    if pick["has_double_signal"]:
-        reasons.append("ダブルシグナル(決算+業績上方修正が重複)")
-    if pick["has_volume_surge_and_news"]:
-        ratio = t.get("volume_ratio")
-        ratio_str = f"(出来高{ratio:.1f}倍)" if isinstance(ratio, (int, float)) else ""
-        reasons.append(f"出来高急増{ratio_str}+好材料")
-    reason_line = "・".join(reasons)
-
     lines = [
-        "📌 本日の最注力銘柄",
+        "📡 先行シグナル銘柄(仕込み検討用)",
         f"{name}({code})" if code else f"{name}",
     ]
     if price:
-        lines.append(f"株価: {price} ({change_str})")
-    lines.append(f"理由: {reason_line}")
-    if g and g.get("title"):
-        lines.append(f"材料: {g['title']}")
-    theme = t.get("theme")
-    if theme:
-        lines.append(f"関連テーマ: {theme}")
+        lines.append(f"現在値: {price} ({change_str})")
+    lines.append(f"シグナル: {pick['reason']}")
+    if pick.get("detail"):
+        lines.append(f"詳細: {pick['detail']}")
+    if pick.get("url"):
+        lines.append(f"参照: {pick['url']}")
 
-    lines.append("※本通知は機械的な条件抽出であり、投資判断は自己責任でお願いします。")
+    lines.append(
+        "※本通知は「市場がまだ十分に織り込んでいない可能性が相対的に高い」条件を"
+        "機械的に抽出したものであり、翌日の上昇を保証するものではありません。"
+        "必ずご自身でチャート・開示原文を確認のうえ、自己責任でご判断ください。"
+    )
     return "\n".join(lines)
+
 
 def send_line_push(token, user_id, message_text):
     url = "https://api.line.me/v2/bot/message/push"
@@ -145,6 +230,7 @@ def send_line_push(token, user_id, message_text):
     with urllib.request.urlopen(req, timeout=20) as res:
         return res.status
 
+
 def main():
     data_path = sys.argv[1] if len(sys.argv) > 1 else "data.json"
 
@@ -157,15 +243,12 @@ def main():
     with open(data_path, encoding="utf-8") as f:
         root = json.load(f)
 
-    pick = pick_most_important_stock(root)
+    pick = pick_leading_signal_stock(root)
     if not pick:
-        log("最注力銘柄の条件を満たす銘柄が無いため、通知はスキップします。")
+        log("先行シグナルの条件を満たす銘柄が無いため、通知はスキップします。")
         return
 
-    t = pick["technical"]
-    g = pick["growth"]
-    # 重複送信防止キー: ウォッチリストの証券コードがあればそれを、無ければ会社名を使う。
-    dedup_key = (t.get("code") if t else None) or g.get("company", "")
+    dedup_key = pick["code"] or pick["name"]
     today_str = datetime.now(JST).strftime("%Y-%m-%d")
     last = root.get("line_notify_last") or {}
     if last.get("date") == today_str and last.get("code") == dedup_key:
@@ -175,8 +258,7 @@ def main():
     message = build_message(pick)
     try:
         status = send_line_push(token, user_id, message)
-        sent_name = (t.get("name") if t else None) or g.get("company", "")
-        log(f"LINE通知を送信しました(HTTP {status}): {sent_name}")
+        log(f"LINE通知を送信しました(HTTP {status}): {pick['name']}(優先度{pick['priority']})")
     except Exception as e:
         log(f"LINE通知の送信に失敗しました(パイプラインは継続します): {e}")
         return
@@ -185,6 +267,7 @@ def main():
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)
     log("data.json に通知済み状態を書き戻しました。")
+
 
 if __name__ == "__main__":
     try:
