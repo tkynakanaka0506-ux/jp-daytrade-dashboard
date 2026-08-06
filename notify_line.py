@@ -8,6 +8,9 @@ data.json の内容から「本日の最注力銘柄」を1銘柄だけ選び、
 2026-08-06: 通知ロジックを「後追い型」から「先行シグナル型」に全面転換。
 2026-08-06(同日・第2弾): 選定方式を「優先度カスケード(高い方から1つだけ採用)」から
 「複合スコアリング(銘柄ごとに複数シグナルを合算)」に変更。
+2026-08-06(同日・第3弾): technical(固定ウォッチリスト約20銘柄)に含まれない、
+より小型・割安な銘柄も候補に入るよう growth_candidates(TDnet全銘柄対象の
+増配・上方修正開示スキャン)をシグナルカテゴリとして追加。
 
 --- 第1弾(先行シグナル型への転換)の経緯 ---
 旧版は growth_candidates の double_signal(決算+上方修正の同時TDnet開示)や
@@ -29,6 +32,31 @@ technical の volume_surge(出来高急増)など、「すでに公開された�
 接近しすぎている銘柄は「すでに市場が織り込み始めている」とみなして減点する
 「過熱減点」、の3つを導入し、最もスコアの高い1銘柄を選ぶ方式に変更した。
 
+--- 第3弾(growth_candidatesの追加)の経緯 ---
+第2弾までのシグナル(EDINET/pre_earnings_watch/信用倍率/セクター逆行高)は、いずれも
+technical配列に含まれる固定ウォッチリスト銘柄(トヨタ・ソニー・ファナック・任天堂・
+ダイキン・ソフトバンクG等、時価総額の大きい有名企業が中心)にしか計算されておらず、
+結果として通知される銘柄が毎回「有名かつ株価の高い大型株」に偏っていた
+(ユーザーからの指摘: 「有名すぎるし株価高すぎる。手頃な株価の成長株が知りたい」)。
+growth_candidatesはTDnetの適時開示をウォッチリストに限らず全銘柄横断でスキャンし、
+増配・上方修正を検知したものなので、より小型・無名・割安な銘柄が拾える。ただし
+これは「すでに開示された当日の情報」であり、第1弾の趣旨(先行シグナル=まだ市場に
+出ていない情報)とは性質が異なるため、他カテゴリより基本点をやや低めに設定し、
+通知文にもその旨(既に一部織り込まれている可能性がある)を明記する。
+また growth_candidates には証券コード・株価データが含まれない(データ取得元の
+株探TDnet開示一覧ページ自体にコードが載っていないため)。technicalの銘柄名と
+完全一致した場合のみ価格等を補完し、一致しない場合は「価格帯要確認」の注記を付ける。
+さらに、growth_candidatesを追加しただけでは、ファナック・任天堂・ダイキン等の
+ウォッチリスト銘柄がpre_earnings_watchで先に強いシグナルを出した場合、結局
+それらが選ばれてしまい「有名・値がさ株偏重」が解消されないままだった(実データで
+検証したところ、ファナックのpre_earningsシグナル(スコア35)がgrowth_candidatesの
+どの銘柄(最大21)よりも高く、結局ファナックが選ばれてしまうケースを確認)。
+そこで、カテゴリを問わず一律で「株価が高いほど減点する」_price_penalty()を導入し、
+株価データのある(=ウォッチリスト内の)銘柄が値がさであるほどスコアを下げることで、
+「手頃な株価の銘柄を優先する」というユーザーの意向をスコアリング自体に組み込んだ。
+株価データが無い(growth_candidatesのウォッチリスト外銘柄)場合は判定不能のため
+減点なしとする。
+
 シグナルカテゴリ(1カテゴリにつき1回だけ加点。同一カテゴリ内の複数シグナルは
 ボーナスのみ小さく加算):
 ・EDINET大量保有報告書(新規, docTypeCode=350) … 大口投資家の新規5%保有は、市場の
@@ -40,10 +68,13 @@ technical の volume_surge(出来高急増)など、「すでに公開された�
 ・信用倍率(squeeze_potential: 買残/売残<1倍=踏み上げ余地)+ RSI30台以下(売られ過ぎ)。
 ・セクター逆行高(sector_contrarian) … 同業種が軟調な中で単独で強い銘柄。
 ・信用倍率(squeeze_potential)のみ。
+・growth_candidates(TDnet全銘柄横断の増配・上方修正開示) … ウォッチリスト外の
+  小型・割安銘柄を拾うための補助シグナル。既に開示済みの当日情報である点に注意。
 
 いずれのカテゴリでも、volume_surge(出来高急増)または gap_up(寄り付き窓開け)が
 既についている銘柄は「すでに動いてしまった」とみなして候補から除外する
-(先行シグナルの主旨に反するため)。
+(先行シグナルの主旨に反するため)。growth_candidatesはtechnicalデータが無い
+(=ウォッチリスト外の)銘柄が大半のため、この判定はtechnicalに一致した場合のみ働く。
 
 注意:
 - LINE Notify は2025年3月末でサービス終了しているため、後継の LINE Messaging API
@@ -51,7 +82,7 @@ technical の volume_surge(出来高急増)など、「すでに公開された�
 - LINE_CHANNEL_ACCESS_TOKEN / LINE_USER_ID が未設定、またはAPI呼び出しが失敗した場合は、
 既存のパイプラインを止めないよう、ログを出すだけで正常終了する(exit code 0)。
 - 同じ銘柄への通知が15分間隔の自動実行のたびに重複して飛ばないよう、data.json内の
-line_notify_last(当日日付+銘柄コード)で簡易的な重複送信防止を行う。
+line_notify_last(当日日付+銘柄コードまたは銘柄名)で簡易的な重複送信防止を行う。
 - 本ロジックはあくまで機械的な条件抽出・スコアリングであり、翌日の株価上昇を保証する
 ものではない(それが可能なら誰でも儲かってしまう)。あくまで「まだ十分に織り込まれて
 いない可能性が相対的に高い」候補を絞り込むものであり、最終的な投資判断は必ず開示原文・
@@ -67,8 +98,8 @@ from datetime import datetime, timezone, timedelta
 
 JST = timezone(timedelta(hours=9))
 
-# pre_earnings_watch のタイトルや EDINET の doc_description に含まれていたら、
-# 「好材料」としては数えない(むしろ悪材料寄り)とみなすキーワード。
+# pre_earnings_watch/growth_candidates のタイトルや EDINET の doc_description に
+# 含まれていたら、「好材料」としては数えない(むしろ悪材料寄り)とみなすキーワード。
 # 例: 「AI投資」というキーワードでヒットしても、タイトルが「AI投資回収の懸念で急落」
 # のような下落記事であれば、先行シグナルとしては逆効果なので除外する。
 NEGATIVE_KEYWORDS = (
@@ -81,6 +112,14 @@ NEGATIVE_KEYWORDS = (
 # EDINETの変更報告書(docTypeCode=351)が「保有株式の増加」方向かどうかの簡易判定用。
 EDINET_INCREASE_HINTS = ("増加", "取得")
 EDINET_DECREASE_HINTS = ("減少", "売却")
+
+# growth_candidatesのcatalyst種別ごとの重み補正。上方修正は業績そのものの上振れであり、
+# 増配(配当という資本政策上の意思決定)よりもやや事業実態に近い変化とみなし、わずかに
+# 加点する。
+GROWTH_CATALYST_BONUS = {
+    "上方修正": 3.0,
+    "増配": 0.0,
+}
 
 
 def log(msg):
@@ -108,15 +147,19 @@ def _fmt_num(v, suffix=""):
 
 
 def _collect_signal_hits(root):
-    """data.json から、銘柄コードごとの「先行シグナル」候補(カテゴリ単位)を集める。
-    戻り値: {code: [hit, hit, ...]}。hitは
-    {category, weight, name, reason, detail, url} の辞書。
+    """data.json から、銘柄コード(または銘柄名)ごとの「先行シグナル」候補
+    (カテゴリ単位)を集める。
+    戻り値: {key: [hit, hit, ...]}, technical_by_code。
+    keyは銘柄コード(technicalに存在する場合)、無ければ "NAME:会社名"。
+    hitは {category, weight, name, reason, detail, url} の辞書。
     """
     technical = root.get("technical", []) or []
     pre_earnings = root.get("pre_earnings_watch", []) or []
     edinet = root.get("edinet_large_holdings", []) or []
+    growth_candidates = root.get("growth_candidates", []) or []
 
     technical_by_code = {t.get("code"): t for t in technical if t.get("code")}
+    technical_by_name = {t.get("name"): t for t in technical if t.get("name")}
     hits_by_code = {}
 
     def add_hit(code, hit):
@@ -222,6 +265,35 @@ def _collect_signal_hits(root):
             "url": None,
         })
 
+    # growth_candidates(TDnet全銘柄横断の増配・上方修正開示。ウォッチリスト外の
+    # 小型・割安銘柄を拾うための補助シグナル)
+    for g in growth_candidates:
+        company = (g.get("company") or "").strip()
+        if not company:
+            continue
+        title = (g.get("title") or "").strip()
+        catalyst = (g.get("catalyst") or "").strip()
+        if _has_negative_keyword(title) or _has_negative_keyword(catalyst):
+            continue
+        t = technical_by_name.get(company)
+        if _already_moved(t):
+            continue
+        code = (t.get("code") if t else None) or f"NAME:{company}"
+        weight = 18.0 + GROWTH_CATALYST_BONUS.get(catalyst, 0.0)
+        if g.get("double_signal"):
+            weight += 12.0
+        reason = f"TDnet適時開示「{catalyst}」を検知(ウォッチリスト外・当日開示情報)"
+        if g.get("double_signal"):
+            reason += "(業績・配当の両修正で複合シグナル)"
+        add_hit(code, {
+            "category": "growth_candidate",
+            "weight": weight,
+            "name": company,
+            "reason": reason,
+            "detail": title,
+            "url": g.get("url"),
+        })
+
     return hits_by_code, technical_by_code
 
 
@@ -229,6 +301,7 @@ def _overheat_penalty(t):
     """既に短期的に上がりすぎている・52週高値に接近しすぎている・RSIが過熱域にある
     銘柄は、先行シグナルの旨みが薄い(市場が織り込み始めている)とみなして減点する。
     render_dashboard.py の4項目スコアリングにおける「期待値」軸と同じ考え方。
+    technicalデータが無い銘柄(ウォッチリスト外)は判定できないため減点なし。
     戻り値: (penalty(0以上の数値), reasons(list[str]))
     """
     if not t:
@@ -254,9 +327,53 @@ def _overheat_penalty(t):
     return penalty, reasons
 
 
+def _parse_price(price):
+    """technical[].price はJSON上「6,430.0」のようなカンマ区切り文字列、または
+    寄り付き前などデータ未取得時は「―」というプレースホルダー文字列で入っている。
+    数値化できた場合のみfloatを返し、それ以外はNoneを返す。"""
+    if isinstance(price, (int, float)):
+        return float(price)
+    if isinstance(price, str):
+        cleaned = price.replace(",", "").strip()
+        try:
+            return float(cleaned)
+        except ValueError:
+            return None
+    return None
+
+
+def _price_penalty(t):
+    """カテゴリを問わず一律で、株価が高いほど減点する。「有名だが値がさ株ばかり
+    通知される」問題に対し、特定カテゴリだけを優遇するのではなく、株価そのものを
+    スコアに反映させることで「手頃な株価の銘柄を優先する」方針を実現する。
+    growth_candidatesのウォッチリスト外銘柄など、株価データが無い場合は判定不能
+    のため減点なし(=相対的に不利にならない)。
+    戻り値: (penalty(0以上の数値), reasons(list[str]))
+    """
+    if not t:
+        return 0.0, []
+    price = _parse_price(t.get("price"))
+    if price is None:
+        # technical(固定ウォッチリスト)に載っている時点で、寄り付き前などで株価
+        # データが未取得でも、トヨタ・ソニー・ファナック・任天堂級の有名大型株で
+        # あることに変わりはない。株価を判定できないからといって無条件扱いに
+        # すると値がさ株が抜け道になってしまうため、既定のペナルティを一律で
+        # かけておく(手頃な株価の銘柄を優先する方針)。
+        return 15.0, ["株価データ未取得ですがウォッチリスト内の有名大型株のため一定減点"]
+    if price <= 2000:
+        return 0.0, []
+    if price <= 5000:
+        penalty = (price - 2000) / 1000.0 * 3.0
+    else:
+        penalty = 9.0 + min((price - 5000) / 1000.0, 4.2) * 5.0
+    penalty = min(penalty, 30.0)
+    return penalty, [f"株価{price:,.0f}円で値がさ(手頃な株価の銘柄を優先する方針のため減点)"]
+
+
 def score_candidates(root):
-    """銘柄コードごとにシグナルを合算し、複合スコアの高い順に候補リストを返す。
-    各候補: {code, name, technical, score, category_count, reasons, hits}
+    """銘柄コード(または銘柄名)ごとにシグナルを合算し、複合スコアの高い順に
+    候補リストを返す。
+    各候補: {code, name, technical, score, category_count, categories, reasons, hits}
     """
     hits_by_code, technical_by_code = _collect_signal_hits(root)
     if not hits_by_code:
@@ -284,8 +401,13 @@ def score_candidates(root):
         confluence_bonus = 15.0 * (category_count - 1) if category_count >= 2 else 0.0
         confluence_bonus = min(confluence_bonus, 45.0)
 
-        t = technical_by_code.get(code)
-        penalty, penalty_reasons = _overheat_penalty(t)
+        # technicalデータは実際の証券コードにのみ紐づく("NAME:"キーは無し)。
+        real_code = code if not code.startswith("NAME:") else None
+        t = technical_by_code.get(real_code)
+        overheat_pen, overheat_reasons = _overheat_penalty(t)
+        price_pen, price_reasons = _price_penalty(t)
+        penalty = overheat_pen + price_pen
+        penalty_reasons = overheat_reasons + price_reasons
 
         score = base_score + confluence_bonus - penalty
 
@@ -294,11 +416,13 @@ def score_candidates(root):
         )
 
         candidates.append({
-            "code": code,
+            "code": real_code,
+            "display_name": name,
             "name": name,
             "technical": t,
             "score": round(score, 1),
             "category_count": category_count,
+            "categories": list(by_category.keys()),
             "confluence_bonus": confluence_bonus,
             "penalty": penalty,
             "penalty_reasons": penalty_reasons,
@@ -331,6 +455,8 @@ def build_message(pick):
     ]
     if price:
         lines.append(f"現在値: {price} ({change_str})")
+    elif not t:
+        lines.append("現在値: ―(ウォッチリスト外銘柄のため株価データなし。ご自身でチャート確認をお願いします)")
     lines.append(f"総合スコア: {pick['score']:.0f}点(該当シグナル{pick['category_count']}種)")
     for r in pick["reasons"]:
         lines.append(f"・{r}")
@@ -340,6 +466,11 @@ def build_message(pick):
         lines.append(f"参照: {pick['urls'][0]}")
     if pick["penalty_reasons"]:
         lines.append("注意: " + "、".join(pick["penalty_reasons"]) + "(既に一部織り込み済みの可能性)")
+    if "growth_candidate" in pick.get("categories", []):
+        lines.append(
+            "※本銘柄はTDnet適時開示ベースの当日公開情報を含みます。"
+            "先行シグナル(未公開情報)とは性質が異なり、既に一部織り込まれている可能性があります。"
+        )
 
     lines.append(
         "※本通知は複数の先行シグナルを機械的にスコア化して抽出したものであり、"
