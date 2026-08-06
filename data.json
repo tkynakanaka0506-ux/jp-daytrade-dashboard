@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06 16:23",
+  "generated_at": "2026-08-06 17:30",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.75円",
-    "change_pct": 0.04,
+    "value": "157.84円",
+    "change_pct": 0.09,
     "asof": "8/6終値"
   },
   "nikkei_futures": {
-    "value": "65,685.00",
-    "change_pct": -0.04,
+    "value": "65,510.00",
+    "change_pct": -0.3,
     "asof": "8/6終値"
   },
   "nikkei225": {
@@ -100,164 +100,164 @@
   ],
   "tdnet_morning": [
     {
-      "time": "16:15",
+      "time": "17:30",
       "code": "―",
-      "company": "ホドルワン",
-      "title": "暗号資産（イーサリアム）保有状況に関するお知らせ（2026年7月末時点）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512793.pdf",
+      "company": "アドソル日進",
+      "title": "Notice Regarding Determination of Details of Issuance of Stock Compensation-type Stock Options (Stock Acquisition Rights)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508916.pdf",
       "tag": "他"
     },
     {
-      "time": "16:10",
+      "time": "17:30",
       "code": "―",
-      "company": "セイワＨＤ",
-      "title": "名古屋証券取引所ネクスト市場への重複上場のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512736.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "販売用不動産の売却に関するお知らせ 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512657.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "私募債の発行に関するお知らせ 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512686.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "資金の借入に関するお知らせ 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512715.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "太洋基礎",
-      "title": "「令和8年熊本地震」で被災された方々への支援について",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512679.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "大本組",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511480.pdf",
+      "company": "アドソル日進",
+      "title": "株式報酬型ストックオプション（新株予約権）の発行内容の確定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508914.pdf",
       "tag": "エク"
     },
     {
-      "time": "16:00",
+      "time": "17:30",
       "code": "―",
-      "company": "若築建",
-      "title": "2027年３月期 第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508473.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "若築建",
-      "title": "[Summary]Consolidated Financial Results for the Three Months Ended June 30, 2026(Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508501.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "日揮ＨＤ",
-      "title": "Notice on Completion of Disposal of Treasury Shares as Perfomance Share Unit",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512304.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "日揮ＨＤ",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512296.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "日揮ＨＤ",
-      "title": "業績連動型株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512268.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "日揮ＨＤ",
-      "title": "Notice on Completion of Disposal of Treasury Shares as Restricted Stock Compensation",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512317.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ニップン",
-      "title": "Consolidated Financial Results for the First Quarter of FY2027[J-GAAP]",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511482.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ニップン",
-      "title": "2027年３月期 第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511446.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ニップン",
-      "title": "(株)ニップン 第１四半期連結累計期間の業績および通期連結業績予想",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511431.pdf",
+      "company": "ユーザーロカ",
+      "title": "2026年6月期 決算説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511740.pdf",
       "tag": "追訂"
     },
     {
-      "time": "16:00",
+      "time": "17:30",
       "code": "―",
-      "company": "ニップン",
-      "title": "Summary of Consolidated Financial Results for the First Quarter of FY2027, and Forecast of Consolidated Financial Results for FY2027",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511475.pdf",
+      "company": "ユーザーロカ",
+      "title": "Financial Results Briefing Materials for FY2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511894.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:30",
       "code": "―",
-      "company": "サニーサイド",
-      "title": "法定事前開示書類（株式併合）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508412.pdf",
+      "company": "ＣＥＨＤ",
+      "title": "[Delayed]Summary of Consolidated Financial Results for the Nine Months Ended June 30, 2026 (Based on Japanese GAAP)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513038.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:30",
       "code": "―",
-      "company": "北海コカ",
-      "title": "2026年12月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260514535017.pdf",
+      "company": "スカＪＳＡＴ",
+      "title": "スカパーＪＳＡＴ、「日経・東証ＩＲフェア 2026」に出展・登壇",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513032.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:15",
+      "code": "―",
+      "company": "地域新聞社",
+      "title": "（開示事項の経過）株主による新株予約権無償割当て差止めの仮処分の申立て却下の決定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513126.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:12",
+      "code": "―",
+      "company": "ＴＯブックス",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/06",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260724598971.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:05",
+      "code": "―",
+      "company": "東洋電",
+      "title": "第三者割当に係る株式譲渡報告確約書（自己株式）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511643.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "佐藤渡辺",
+      "title": "完全子会社の吸収合併（簡易合併・略式合併）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508640.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "佐藤渡辺",
+      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260730503664.pdf",
       "tag": "決算"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "ＭＩＣ",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(非連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260805510915.pdf",
+      "company": "佐藤渡辺",
+      "title": "自己株式の取得および自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508887.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "アスクル",
+      "title": "Notice Regarding Disposal of Treasury Stock as Restricted Stock Remuneration",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512759.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "アスクル",
+      "title": "譲渡制限付株式報酬としての自己株式の処分に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512753.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ユニネク",
+      "title": "2026年12月期第２四半期決算説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511820.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "トーモク",
+      "title": "[Updated]Consolidated Financial Results for the Three Months Ended June 30, 2026 (Under Japanese GAAP)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260731505677.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "保土谷",
+      "title": "2027年３月期 第１四半期決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512495.pdf",
       "tag": "決算"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "保土谷",
+      "title": "Summary of Consolidated Financial Results for the Three Months Ended June 30, 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512528.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "保土谷",
+      "title": "2026年度第1四半期決算説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512551.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "保土谷",
+      "title": "Consolidated Financial Results for FY2026 First Quarter",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806512560.pdf",
+      "tag": "他"
     }
   ],
   "movers_morning": [
@@ -1216,7 +1216,7 @@
       "reason": "TDnet適時開示「2027年３月期 業績予想の修正および配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
       "asof": "今日 16:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260729501888.pdf",
-      "double_signal": false
+      "double_signal": true
     },
     {
       "company": "福田組",
@@ -1326,7 +1326,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - nikkei.com",
+      "title": "決算:ファナック純利益上振れ 27年3月期19%増、AI投資で制御装置が拡大 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBCUUFOV0cxT1EtU0poRVQ2bVhCZV9RcmhnSUpLaEN0bWlXLVpoaUNmeUtKVXlzZThib2ttOUN0MjE5czFRN1J6Uk1vbUNsMXRVdDN4eEV1WFdvMURMb0RFaklQQ2swUDlnbDdGOQ?oc=5",
       "keyword": "AI投資",
       "asof": "7/31 15:43"
@@ -1358,7 +1358,15 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
+      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
+      "keyword": "データセンター",
+      "asof": "8/6 12:02"
+    },
+    {
+      "code": "6367",
+      "company": "ダイキン工業",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - kyodo.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
@@ -1366,7 +1374,7 @@
     {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - 財界オンライン",
+      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - zaikai.jp",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBDcmZzMVVPeUZ0MHlRUmUzeUQxSFpuNm1CYi0yRVVIVnl6aWlqUExRQVJ4X0l0ZzVoVkhoNFJ3dDE5NkVQTmZtVGFkR2IzOUFpLWlqZA?oc=5",
       "keyword": "データセンター",
       "asof": "8/4 07:03"
@@ -1374,6 +1382,6 @@
   ],
   "line_notify_last": {
     "date": "2026-08-06",
-    "code": "多木化"
+    "code": "ＤＮＣ"
   }
 }
