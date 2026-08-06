@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-06 20:43",
+  "generated_at": "2026-08-06 23:52",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,723.55",
-      "change_pct": -0.17,
+      "value": "7,723.27",
+      "change_pct": 0.0,
       "asof": "8/6終値"
     },
     "dow": {
-      "value": "54,349.12",
-      "change_pct": 0.49,
+      "value": "54,179.07",
+      "change_pct": -0.31,
       "asof": "8/6終値"
     },
     "nasdaq": {
-      "value": "26,363.44",
-      "change_pct": -0.83,
+      "value": "26,404.33",
+      "change_pct": 0.16,
       "asof": "8/6終値"
     },
     "sox": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.84円",
-    "change_pct": 0.1,
+    "value": "158.24円",
+    "change_pct": 0.34,
     "asof": "8/6終値"
   },
   "nikkei_futures": {
-    "value": "65,660.00",
-    "change_pct": -0.08,
+    "value": "66,215.00",
+    "change_pct": 0.77,
     "asof": "8/6終値"
   },
   "nikkei225": {
@@ -296,6 +296,14 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "23:06",
+      "code": "―",
+      "company": "住友電",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/06",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513599.pdf",
+      "tag": "他"
+    },
+    {
       "time": "18:50",
       "code": "―",
       "company": "農中Ｅｘ―Ｆ",
@@ -331,17 +339,17 @@
       "time": "18:05",
       "code": "―",
       "company": "大崎電",
-      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513164.pdf",
-      "tag": "エク"
+      "title": "Notice Concerning Completion of Payment for Disposal of Treasury Shares as Restricted Stock Compensation",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513288.pdf",
+      "tag": "他"
     },
     {
       "time": "18:05",
       "code": "―",
       "company": "大崎電",
-      "title": "Notice Concerning Completion of Payment for Disposal of Treasury Shares as Restricted Stock Compensation",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513288.pdf",
-      "tag": "他"
+      "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806513164.pdf",
+      "tag": "エク"
     },
     {
       "time": "18:00",
@@ -446,14 +454,6 @@
       "title": "第三者割当に係る株式譲渡報告確約書（自己株式）",
       "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260806511643.pdf",
       "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "佐藤渡辺",
-      "title": "完全子会社の吸収合併（簡易合併・略式合併）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260806/140120260804508640.pdf",
-      "tag": "他"
     }
   ],
   "afterclose_news": [
@@ -502,44 +502,44 @@
   ],
   "movers_afterclose": [
     {
-      "code": "3907",
-      "name": "シリコンスタジオ",
-      "price": "1,310円",
-      "change_pct": 25.5,
-      "volume_note": "ストップ高",
-      "reason": "具体的な材料は確認できず、思惑的な物色とみられる"
-    },
-    {
-      "code": "4424",
-      "name": "Amazia",
-      "price": "384円",
-      "change_pct": 19.6,
-      "volume_note": "急騰",
-      "reason": "具体的な材料は確認できず、思惑的な物色とみられる"
-    },
-    {
-      "code": "6522",
-      "name": "アスタリスク",
-      "price": "1,804円",
-      "change_pct": 18.8,
-      "volume_note": "急騰",
-      "reason": "東証が信用規制を解除したことを材料視"
-    },
-    {
-      "code": "4564",
-      "name": "オンコセラピー・サイエンス",
-      "price": "21円",
+      "code": "",
+      "name": "アルベマール",
+      "price": null,
       "change_pct": null,
-      "volume_note": "出来高急増(32,136,100株、出来高ランキング上位)",
-      "reason": "出来高急増、具体的な材料は確認できず思惑的な物色とみられる"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
     },
     {
-      "code": "9432",
-      "name": "ＮＴＴ",
-      "price": "151.3円",
+      "code": "",
+      "name": "クロノス",
+      "price": null,
       "change_pct": null,
-      "volume_note": "出来高上位(3位)",
-      "reason": "個人投資家中心に売買が活発、具体的な単独材料は確認できず"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "スウィートグリーン",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "アムジェン",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "ダイトロン",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "ストップ高比例配分"
     }
   ],
   "technical": [
@@ -595,7 +595,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "電気機器",
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "8306",
@@ -676,7 +678,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -3.92,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+8.31%上昇、52週高値まで2.72%の距離"
     },
     {
       "code": "6954",
@@ -784,7 +788,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -2.23,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "9433",
@@ -973,7 +979,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -3.81,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "4519",
@@ -1027,7 +1035,9 @@
       "squeeze_potential": false,
       "sector": "鉄鋼",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+3.56%上昇、52週高値まで2.33%の距離"
     },
     {
       "code": "2413",
@@ -1081,7 +1091,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+31.92%上昇、52週高値まで1.59%の距離"
     }
   ],
   "us_good_news": [
@@ -1305,7 +1317,7 @@
       "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
-      "asof": "7/28 17:26"
+      "asof": "7/28 16:00"
     },
     {
       "code": "6861",
@@ -1313,7 +1325,7 @@
       "title": "今日の株価材料（新聞など、29日）キーエンス純利益51%増1391億円 4〜6月、設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE4xVXJuYXVMRWdJaWZPNG55SHZabWRPQ2JIekNVRE1GS2FCbkdZSmNhYTJGWGhrYVU5c0lHUG05R25tV0hZZ1VBZlF6OE4wWWJaWjJlSjhVb1R6aU9vaWdCeEVBTUs0WkRaeUpuUA?oc=5",
       "keyword": "設備投資",
-      "asof": "7/29 07:28"
+      "asof": "7/29 16:00"
     },
     {
       "code": "6954",
@@ -1358,7 +1370,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - newswitch.jp",
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
       "keyword": "データセンター",
       "asof": "8/6 12:02"
@@ -1372,24 +1384,24 @@
       "asof": "8/5 10:00"
     },
     {
-      "code": "9983",
-      "company": "ファーストリテイリング",
-      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - 財界オンライン",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBDcmZzMVVPeUZ0MHlRUmUzeUQxSFpuNm1CYi0yRVVIVnl6aWlqUExRQVJ4X0l0ZzVoVkhoNFJ3dDE5NkVQTmZtVGFkR2IzOUFpLWlqZA?oc=5",
-      "keyword": "データセンター",
-      "asof": "8/4 07:03"
+      "code": "5401",
+      "company": "日本製鉄",
+      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ（テレビ愛知） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBSNWg2dkp6dGhtWHNUUWNrTVZwT2VDUGZsRmNXdndHSHB6T0VBZXJzdHFEc0JLSFlsQkh4Y1g0aUh4TUJsU015MzRTZVEzZnRhYWJiUWNUNDVIQlFNdUJjb29aRDBlbmMza1ZqcWtqSW93NE96bGVmOVFUbXVwS0U?oc=5",
+      "keyword": "新工場",
+      "asof": "8/6 18:57"
     },
     {
       "code": "5401",
       "company": "日本製鉄",
-      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ - news.tv-aichi.co.jp",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE9VNGZSRlJsa3dTXy1zN1lHenEtM2ZsV1A3alVZVktlR0tiMHg2Q2hvQThnYUxRZGNNQm1PMkNlV25ud1VKanI1cDJ6TUhvclVwY2JRMUxLRFBlUQ?oc=5",
+      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ - ｄメニューニュース",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV2VWRmpNZkZLMlBZYkVvZl9iY2ltS0MzNThZcHpDaFFKMmE1bjI1eEVaMnlTbmNySnZkRDZOd1BabnVqcXoxRzBkdGVVS1RvMkNtN3Q3bEdLYTZvOWdEYTBkTW1zRERHVjU1dWtBOExDUmNaNm1IdlVBWHFsWnROT296U1Azd1dacl9kQ25NTQ?oc=5",
       "keyword": "新工場",
-      "asof": "8/6 19:06"
+      "asof": "8/6 18:57"
     }
   ],
   "line_notify_last": {
     "date": "2026-08-06",
-    "code": "ＤＮＣ"
+    "code": "鶴見製"
   }
 }
