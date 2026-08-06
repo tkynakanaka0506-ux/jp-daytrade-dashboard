@@ -106,7 +106,7 @@ def call_gemini(api_key, prompt, schema):
     req = urllib.request.Request(
         url,
         data=json.dumps(body).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headheaders={"User-Agent": UA, "Content-Type": "application/json"},,
         method="POST",
     )
     last_err = None
@@ -154,6 +154,7 @@ def call_groq(api_key, prompt, schema):
         data=json.dumps(body).encode("utf-8"),
         headers={
             "Content-Type": "application/json",
+          "User-Agent": UA,
             "Authorization": f"Bearer {api_key}",
         },
         method="POST",
