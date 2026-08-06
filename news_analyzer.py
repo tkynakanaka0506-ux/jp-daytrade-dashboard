@@ -106,7 +106,7 @@ def call_gemini(api_key, prompt, schema):
     req = urllib.request.Request(
         url,
         data=json.dumps(body).encode("utf-8"),
-        headheaders={"User-Agent": UA, "Content-Type": "application/json"},,
+        headers={"User-Agent": UA, "Content-Type": "application/json"},
         method="POST",
     )
     last_err = None
