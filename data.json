@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-08 02:42",
+  "generated_at": "2026-08-08 04:45",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,745.87",
-      "change_pct": 0.47,
+      "value": "7,751.33",
+      "change_pct": 0.54,
       "asof": "8/8終値"
     },
     "dow": {
-      "value": "53,981.18",
-      "change_pct": 0.18,
+      "value": "54,042.22",
+      "change_pct": 0.29,
       "asof": "8/8終値"
     },
     "nasdaq": {
-      "value": "26,600.98",
-      "change_pct": 0.96,
+      "value": "26,648.87",
+      "change_pct": 1.14,
       "asof": "8/8終値"
     },
     "sox": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.43円",
-    "change_pct": -0.11,
+    "value": "157.50円",
+    "change_pct": -0.06,
     "asof": "8/8終値"
   },
   "nikkei_futures": {
-    "value": "65,975.00",
-    "change_pct": 0.64,
+    "value": "66,210.00",
+    "change_pct": 1.0,
     "asof": "8/8終値"
   },
   "nikkei225": {
@@ -304,6 +304,14 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "03:30",
+      "code": "―",
+      "company": "スマイルＨＤ",
+      "title": "機関投資家・アナリスト向け説明会開催のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515341.pdf",
+      "tag": "他"
+    },
+    {
       "time": "00:30",
       "code": "―",
       "company": "長谷工",
@@ -454,14 +462,6 @@
       "title": "タスキＨＤ、「JPX日経中小型株指数」構成銘柄への継続選定に関するお知らせ 他 8月7日(金) 18:10",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515750.pdf",
       "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＡＩメカ、（数値データ訂正）「2026年６月期 決算短信〔日本基準〕（連結）」の一部訂正について 追訂 8月7日(金) 18:10",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515672.pdf",
-      "tag": "他"
     }
   ],
   "afterclose_news": [
@@ -512,37 +512,42 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": null,
-      "change_pct": null,
-      "reason": "本日急騰している"
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰している"
     },
     {
       "code": "",
       "name": "ダイトロン",
-      "price": null,
-      "change_pct": null,
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
       "reason": "急騰"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
-      "change_pct": null,
-      "reason": "本日急騰した"
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰した"
     },
     {
       "code": "",
       "name": "ファースト・ソーラー",
-      "price": null,
-      "change_pct": null,
-      "reason": "本日急騰した"
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰した"
     },
     {
       "code": "",
       "name": "アルベマール",
-      "price": null,
-      "change_pct": null,
-      "reason": "本日急騰している"
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰している"
     }
   ],
   "technical": [
@@ -681,9 +686,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.78%上昇、52週高値まで3.2%で材料出尽くしのリスク",
+      "baked_in_reason": "直近5日で7.78%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -767,7 +772,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で1.94%上昇、52週高値まで1.16%で材料出尽くしのリスク"
+      "baked_in_reason": "直近5日で1.94%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -796,7 +801,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -1041,7 +1046,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で5.68%上昇、52週高値まで1.48%で材料出尽くしのリスク"
+      "baked_in_reason": "直近5日で5.68%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -1097,7 +1102,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で28.3%上昇、52週高値まで4.29%で材料出尽くしのリスク"
+      "baked_in_reason": "直近5日で28.3%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [
@@ -1312,7 +1317,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - nikkei.com",
+      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 16:00"
@@ -1336,7 +1341,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - diamond.jp",
+      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - ダイヤモンド・オンライン",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9Mc3VQQkZqa2RRZl95NFo3MUZSeDN6WVZBTHJQUVJmcDRDWTVoU0dZTU45RXVkZC05ZXFULXZwYnI2b1hjUjhKREtXNGHSAU9BVV95cUxPb1AyTkZoV2xuczFBZlNVZWNldzZ2SFBEa2dZelJwYUNMc3VmaU1VRTFoR19OM0dHaHRlejFPVzdITk9TdVk4Vkd3c0plNnBv?oc=5",
       "keyword": "設備投資",
       "asof": "8/7 04:45"
@@ -1368,7 +1373,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "決算:KDDIが22％増益、携帯やデータセンター好調 情報漏洩の不祥事が影 - nikkei.com",
+      "title": "決算:KDDIが22％増益、携帯やデータセンター好調 情報漏洩の不祥事が影 - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBuR1hESFJaaUtHaWpRb3JPUkJEdHRRSkhFa1RMM2d3WC1BQ2pWcWtodnR5eWpjYnRhT05CSjJxOThSUEJrYjkzRFRuemIzRFZxUzA4eUd3a19WUk9kQlhNVHEyVC1wVlVvX0x2VA?oc=5",
       "keyword": "データセンター",
       "asof": "8/7 19:40"
@@ -1384,7 +1389,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - newswitch.jp",
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
       "keyword": "データセンター",
       "asof": "8/6 12:02"
