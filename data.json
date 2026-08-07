@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-08 08:26",
-  "run_type": "evening",
+  "generated_at": "2026-08-08 08:55",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,757.64",
@@ -100,206 +100,206 @@
   ],
   "tdnet_morning": [
     {
-      "time": "16:03",
+      "time": "―",
       "code": "―",
-      "company": "ＶＰＪ",
-      "title": "2026年12月期第2四半期（中間期）決算短信〔日本基準〕（非連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513205.pdf",
-      "tag": "決算"
+      "company": "―",
+      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 今日 08:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513729.pdf",
+      "tag": "他"
     },
     {
-      "time": "16:03",
+      "time": "03:30",
       "code": "―",
-      "company": "ＶＰＪ",
-      "title": "2026年12月期第2四半期（中間期）決算説明資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513221.pdf",
-      "tag": "追訂"
+      "company": "スマイルＨＤ",
+      "title": "機関投資家・アナリスト向け説明会開催のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515341.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "長谷工",
+      "title": "長谷工グループ統合報告書2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513915.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "ミルボン",
+      "title": "[Delayed] Milbon Published Integrated Report",
+      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515621.pdf",
+      "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ 自社 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513611.pdf",
+      "title": "グリーンエナ、定款 2026/07/23 他 8月7日(金) 20:42",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515800.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "エムビーエス",
-      "title": "NETIS登録に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514225.pdf",
+      "company": "―",
+      "title": "京進、株式会社京進　中長期経営方針（2035年のありたい姿）に関するQ&A 他 8月7日(金) 20:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515831.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "コロンビア",
-      "title": "「BIASTA MEGURO」竣工に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514120.pdf",
+      "company": "―",
+      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "三井松島ＨＤ",
-      "title": "Notice of Acquisition of Shares of Kounan Co., Ltd. to Make It a Subsidiary",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514996.pdf",
+      "company": "―",
+      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料（データシート） 追訂 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515839.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "三井松島ＨＤ",
-      "title": "株式会社コウナンの株式取得（子会社化）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514898.pdf",
+      "company": "―",
+      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料 追訂 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515834.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "三井松島ＨＤ",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513261.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "三井松島ＨＤ",
-      "title": "[Summary] Consolidated Financial Results for the Three Months Ended June 30, 2026 (Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514610.pdf",
+      "company": "―",
+      "title": "栄電子、2027年3月期 第1四半期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "リョー菱ＨＤ",
-      "title": "[Summary] Consolidated Financial Review for the First Quarter Ended June 30, 2026 [Japanese standards] (Consolidated)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806512039.pdf",
+      "company": "―",
+      "title": "光ビジネス、（訂正）「2026年12月期 第２四半期決算短信〔日本基準〕（非連結）」の一部訂正について 決算 8月7日(金) 19:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515845.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "リョー菱ＨＤ",
-      "title": "（開示事項の経過）当社連結子会社における主要取引先との特約店契約の終了及び業績予想の公表に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260721597051.pdf",
-      "tag": "業修"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "リョー菱ＨＤ",
-      "title": "2027年3月期 第1四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260616572008.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "リョー菱ＨＤ",
-      "title": "(Update on disclosed matter) Notice Concerning Termination of Authorized Distributor Agreement between a Consolidated Subsidiary and a Major Business",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514146.pdf",
+      "company": "―",
+      "title": "アンビＤＸ、当社サーバーへの不正アクセスの発生について（第2報） 他 8月7日(金) 19:25",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515802.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "明豊ファシリ",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(非連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514716.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "明豊ファシリ",
-      "title": "[Summary] Financial Results for the Three Months Ended June 30, 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515293.pdf",
+      "company": "―",
+      "title": "サンアスタ、Notice Regarding Consideration of Application for Approval for Extension of Submission Deadline for the Semi-Annual Report for FY2026 他 8月7日(金) 19:15",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515842.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "奥村組",
-      "title": "Notice Concerning the Recording of Non-Operating Income(Valuation Gains on Forward Exchange Contracts)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806512853.pdf",
+      "company": "―",
+      "title": "サンアスタ、2026年12月期半期報告書の提出期限延長に係る承認申請の検討に関するお知らせ 他 8月7日(金) 19:15",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515835.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "奥村組",
-      "title": "2027年３月期　第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806512706.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "奥村組",
-      "title": "Financial Results Supplementary Materials for the First Quarter of the Fiscal Year Ending March 31, 2027",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806512848.pdf",
+      "company": "―",
+      "title": "ＩＰＳＨＤ、2026年６月期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 18:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515764.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "奥村組",
-      "title": "2027年３月期　第１四半期決算補足資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806512738.pdf",
-      "tag": "追訂"
+      "company": "―",
+      "title": "ＩＰＳＨＤ、個別業績予想と実績値との差異に関するお知らせ 業修 8月7日(金) 18:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515760.pdf",
+      "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "奥村組",
-      "title": "Consolidated Financial Results for the Three Months Ended June 30, 2026(Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806512823.pdf",
+      "company": "―",
+      "title": "Ａｒｅｎｔ、[Delayed] Full-Year Financial Results Presentation for the Fiscal Year Ended June 2026 他 8月7日(金) 18:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515520.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ヨネックス、Notice Regarding Unauthorized Access to Systems at Taiwan Subsidiary 他 8月7日(金) 18:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515714.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "ヨネックス、台湾子会社における不正アクセスの発生に関するお知らせ 他 8月7日(金) 18:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515056.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "アルファＰ、TVアニメ『異世界転生騒動記』2027年1月から放送決定！キービジュアル第1弾、PV第1弾を公開！さらに、追加キャラクター＆キャストを公開！ 他 8月7日(金) 18:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513378.pdf",
       "tag": "他"
     }
   ],
   "movers_morning": [
     {
       "code": "",
-      "name": "任天堂",
-      "price": null,
+      "name": "ニューモント・マイニング",
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
-      "reason": "決算好調で急騰"
+      "volume_note": "",
+      "reason": "本日急騰している"
     },
     {
       "code": "",
       "name": "ダイトロン",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰"
     },
     {
       "code": "",
-      "name": "JPMC",
-      "price": null,
+      "name": "アプライド・オプトエレクトロニクス",
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
-      "reason": "ストップ高比例配分"
+      "volume_note": "",
+      "reason": "本日急騰した"
+    },
+    {
+      "code": "",
+      "name": "キングスパン",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
-      "reason": "急騰"
-    },
-    {
-      "code": "",
-      "name": "ファースト・ソーラー",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "急騰"
+      "volume_note": "",
+      "reason": "本日急騰した"
     }
   ],
   "tdnet_afterclose": [
@@ -657,8 +657,7 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "電力・再エネ"
+      "sector_contrarian": false
     },
     {
       "code": "6861",
@@ -689,7 +688,7 @@
       "baked_in_warning": true,
       "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "6954",
@@ -716,8 +715,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "ロボット"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -802,7 +800,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "9433",
@@ -856,7 +854,9 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で4.0%上昇、52週高値まで5.2%の距離"
     },
     {
       "code": "7267",
@@ -993,7 +993,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "4519",
@@ -1105,7 +1107,9 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目度が高い"
     }
   ],
   "us_good_news": [
@@ -1302,6 +1306,22 @@
   ],
   "pre_earnings_watch": [
     {
+      "code": "6758",
+      "company": "ソニーグループ",
+      "title": "熊本地震でルネサスやソニーセミコンが生産停止、TSMCは新工場建設中断 - 日経ビジネス電子版",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5QTXAtTmxXcmZaLWR1Z1BXY3dibXRldFNHeHhJaVVFd1Izd3gzRzVyN1VDdWJRMkJFbWtyamFUVGJmMlBPU05kR0RBbGgtUENlS2NfQVRTT0xkRjlTdXpWTXg5XzlGcW8?oc=5",
+      "keyword": "新工場",
+      "asof": "7/29 16:00"
+    },
+    {
+      "code": "6758",
+      "company": "ソニーグループ",
+      "title": "政府支援約3900億円で巨大AIデータセンター構築へ、国産AI開発「ノエトラ」がエヌビディア最新AIサーバー約380ラック導入…ソフトバンクが鍵を握る国産フィジカルAI計画の全容 - ダイヤモンド・オンライン",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE40X2g0a0toOEJycnlyNnplUEVncGthLWM5Ym9Fdm12dnRJYkhnX1ZNMkxTczh5eDFTSlFmY3hTcTVXWWNVTDc0MUVtcmLSAU9BVV95cUxNd3BRZ1JYb1lMRndVakJQeHNvOWNlbVJpS21MN0tKVnhMTGsyN3VKeXE4WWZudUpKU2NVc28zUDZ0RGNUQzJNVk9MbXFXM01B?oc=5",
+      "keyword": "データセンター",
+      "asof": "7/27 16:00"
+    },
+    {
       "code": "9984",
       "company": "ソフトバンクグループ",
       "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益 アームAGI CPU需要増、AIインフラ投資加速 - ビジネス+IT",
@@ -1404,22 +1424,6 @@
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
-    },
-    {
-      "code": "5401",
-      "company": "日本製鉄",
-      "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - 中部経済新聞",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB1M2tma0hYZEJjZ1NVcXVsUnFhOTFaTHVkSmhqV29nM3diTy1TV0hWakdXclYya2hmXzdIVzU3REo2RENfdHhzR3pvWHNxMHNPRlJ2cXZBZ202MWRnMG52UFlMNHpTTGtqUXFLVlBHeW5JamM?oc=5",
-      "keyword": "生産能力",
-      "asof": "8/7 05:15"
-    },
-    {
-      "code": "5401",
-      "company": "日本製鉄",
-      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ（テレビ愛知） - Yahoo!ニュース",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBSNWg2dkp6dGhtWHNUUWNrTVZwT2VDUGZsRmNXdndHSHB6T0VBZXJzdHFEc0JLSFlsQkh4Y1g0aUh4TUJsU015MzRTZVEzZnRhYWJiUWNUNDVIQlFNdUJjb29aRDBlbmMza1ZqcWtqSW93NE96bGVmOVFUbXVwS0U?oc=5",
-      "keyword": "新工場",
-      "asof": "8/6 18:57"
     }
   ],
   "line_notify_last": {
