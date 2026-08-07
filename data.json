@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07 18:53",
+  "generated_at": "2026-08-07 20:39",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "158.35円",
+    "value": "158.34円",
     "change_pct": 0.47,
     "asof": "8/7終値"
   },
   "nikkei_futures": {
-    "value": "65,765.00",
-    "change_pct": 0.32,
+    "value": "65,970.00",
+    "change_pct": 0.63,
     "asof": "8/7終値"
   },
   "nikkei225": {
@@ -304,6 +304,126 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "20:00",
+      "code": "―",
+      "company": "京進",
+      "title": "株式会社京進　中長期経営方針（2035年のありたい姿）に関するQ&A",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515831.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:50",
+      "code": "―",
+      "company": "栄電子",
+      "title": "2027年3月期 第1四半期 決算補足説明資料（データシート）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515839.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "19:50",
+      "code": "―",
+      "company": "栄電子",
+      "title": "2027年3月期 第1四半期 決算補足説明資料",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515834.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "19:50",
+      "code": "―",
+      "company": "栄電子",
+      "title": "2027年3月期 第1四半期 決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "19:50",
+      "code": "―",
+      "company": "栄電子",
+      "title": "2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
+      "tag": "業修"
+    },
+    {
+      "time": "19:30",
+      "code": "―",
+      "company": "光ビジネス",
+      "title": "（訂正）「2026年12月期 第２四半期決算短信〔日本基準〕（非連結）」の一部訂正について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515845.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "19:25",
+      "code": "―",
+      "company": "アンビＤＸ",
+      "title": "当社サーバーへの不正アクセスの発生について（第2報）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515802.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:15",
+      "code": "―",
+      "company": "サンアスタ",
+      "title": "Notice Regarding Consideration of Application for Approval for Extension of Submission Deadline for the Semi-Annual Report for FY2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515842.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:15",
+      "code": "―",
+      "company": "サンアスタ",
+      "title": "2026年12月期半期報告書の提出期限延長に係る承認申請の検討に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515835.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ＩＰＳＨＤ",
+      "title": "2026年６月期 決算短信〔日本基準〕（連結）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515764.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ＩＰＳＨＤ",
+      "title": "個別業績予想と実績値との差異に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515760.pdf",
+      "tag": "業修"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "Ａｒｅｎｔ",
+      "title": "[Delayed] Full-Year Financial Results Presentation for the Fiscal Year Ended June 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515520.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ヨネックス",
+      "title": "Notice Regarding Unauthorized Access to Systems at Taiwan Subsidiary",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515714.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ヨネックス",
+      "title": "台湾子会社における不正アクセスの発生に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515056.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "アルファＰ",
+      "title": "TVアニメ『異世界転生騒動記』2027年1月から放送決定！キービジュアル第1弾、PV第1弾を公開！さらに、追加キャラクター＆キャストを公開！",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513378.pdf",
+      "tag": "他"
+    },
+    {
       "time": "18:10",
       "code": "―",
       "company": "タスキＨＤ",
@@ -331,14 +451,6 @@
       "time": "18:00",
       "code": "―",
       "company": "日本アクア",
-      "title": "「2026年12月期中間期決算および今後の成長戦略について」に関する動画配信のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514658.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "日本アクア",
       "title": "Nippon Aqua Releases IR Video on FY2026 Interim Results and Future Growth Strategy",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514670.pdf",
       "tag": "他"
@@ -346,121 +458,9 @@
     {
       "time": "18:00",
       "code": "―",
-      "company": "弘電社",
-      "title": "法定事前開示書類（株式併合）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515720.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ジェイテック",
-      "title": "第三者割当に係る株式譲渡報告書（自己株式）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515636.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＪＨＤ",
-      "title": "臨時株主総会の開催日時及び検査役の選任に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515571.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "光ビジネス",
-      "title": "2026年12月期 第２四半期（中間期）決算短信〔日本基準〕（非連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513285.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "積水樹",
-      "title": "野村IR主催「個人投資家向けWEB説明会」アーカイブ動画公開のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514598.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "マクアケ",
-      "title": "［Delayed］Notice of Release of Earnings Presentation Video (English) for Q3 FY2026/9",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260716595351.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＳＢＩＧＡＭ",
-      "title": "『ＳＢＩ・Ｊ-ＲＥＩＴ（分配）ファンド（年４回決算型）』第9回分配金のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515718.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＫＰＰＧＨＤ",
-      "title": "[Summary] Financial Results for the Three Months Ended June 30, 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515664.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＫＰＰＧＨＤ",
-      "title": "2027年３月期第１四半期決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515643.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "17:35",
-      "code": "―",
-      "company": "ブレーキ",
-      "title": "株式報酬型ストックオプション（新株予約権）の発行内容の確定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515546.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "17:35",
-      "code": "―",
-      "company": "ブレーキ",
-      "title": "Announcement Regarding Final Conditions of Share-based Payment Stock Options (Share acquisition rights)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515712.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "シンワワイズ",
-      "title": "独立役員届出書",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515648.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "インターメス",
-      "title": "Zoff PR_メガネブランド「Zoff」と「MLB」人気6球団による国内初のコラボレーションアイウェア「Zoff｜MLB」発売決定",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515335.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "ビーロット",
-      "title": "「ＪＰＸ日経中小型株指数」構成銘柄選定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515681.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "オルトＰ",
-      "title": "ゲームアプリ『ヒプノシスマイク -Alternative Rap Battle-』 イベント「ササラ・ヌルデの震えるハナシ 後編～身の毛もよだつ体験談～」",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515372.pdf",
+      "company": "日本アクア",
+      "title": "「2026年12月期中間期決算および今後の成長戦略について」に関する動画配信のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514658.pdf",
       "tag": "他"
     }
   ],
@@ -603,7 +603,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "電気機器",
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "8306",
@@ -686,8 +688,8 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
-      "theme": "半導体",
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "theme": "電気機器",
       "theme_trend_note": "市場で注目度が高い"
     },
     {
@@ -715,8 +717,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "機械"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -772,7 +773,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -855,7 +856,9 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で4.0%上昇、52週高値まで5.2%の距離"
     },
     {
       "code": "7267",
@@ -882,7 +885,9 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で3.54%上昇、52週高値まで2.72%の距離"
     },
     {
       "code": "6367",
@@ -990,7 +995,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "4519",
@@ -1046,7 +1053,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -1102,7 +1109,9 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
+      "theme": "電気機器",
+      "theme_trend_note": "市場で注目度が高い"
     }
   ],
   "us_good_news": [
