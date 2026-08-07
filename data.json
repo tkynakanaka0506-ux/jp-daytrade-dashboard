@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-08-07 20:39",
+  "generated_at": "2026-08-07 23:06",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,709.96",
-      "change_pct": -0.18,
+      "value": "7,733.15",
+      "change_pct": 0.3,
       "asof": "8/7終値"
     },
     "dow": {
-      "value": "53,885.10",
-      "change_pct": -0.85,
+      "value": "53,971.24",
+      "change_pct": 0.16,
       "asof": "8/7終値"
     },
     "nasdaq": {
-      "value": "26,348.35",
-      "change_pct": -0.06,
+      "value": "26,538.72",
+      "change_pct": 0.72,
       "asof": "8/7終値"
     },
     "sox": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "158.34円",
-    "change_pct": 0.47,
+    "value": "157.76円",
+    "change_pct": 0.1,
     "asof": "8/7終値"
   },
   "nikkei_futures": {
-    "value": "65,970.00",
-    "change_pct": 0.63,
+    "value": "66,380.00",
+    "change_pct": 1.26,
     "asof": "8/7終値"
   },
   "nikkei225": {
@@ -304,6 +304,14 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "20:42",
+      "code": "―",
+      "company": "グリーンエナ",
+      "title": "定款 2026/07/23",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515800.pdf",
+      "tag": "他"
+    },
+    {
       "time": "20:00",
       "code": "―",
       "company": "京進",
@@ -403,16 +411,16 @@
       "time": "18:30",
       "code": "―",
       "company": "ヨネックス",
-      "title": "Notice Regarding Unauthorized Access to Systems at Taiwan Subsidiary",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515714.pdf",
+      "title": "台湾子会社における不正アクセスの発生に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515056.pdf",
       "tag": "他"
     },
     {
       "time": "18:30",
       "code": "―",
       "company": "ヨネックス",
-      "title": "台湾子会社における不正アクセスの発生に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515056.pdf",
+      "title": "Notice Regarding Unauthorized Access to Systems at Taiwan Subsidiary",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515714.pdf",
       "tag": "他"
     },
     {
@@ -453,14 +461,6 @@
       "company": "日本アクア",
       "title": "Nippon Aqua Releases IR Video on FY2026 Interim Results and Future Growth Strategy",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514670.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "日本アクア",
-      "title": "「2026年12月期中間期決算および今後の成長戦略について」に関する動画配信のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807514658.pdf",
       "tag": "他"
     }
   ],
@@ -511,11 +511,11 @@
   "movers_afterclose": [
     {
       "code": "",
-      "name": "任天堂",
+      "name": "ウォーツ・ウォーター・テクノロジーズ",
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "決算好調で急騰"
+      "reason": "本日急騰した理由"
     },
     {
       "code": "",
@@ -527,19 +527,11 @@
     },
     {
       "code": "",
-      "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "急騰"
-    },
-    {
-      "code": "",
       "name": "ファースト・ソーラー",
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "急騰"
+      "reason": "本日急騰した理由"
     },
     {
       "code": "",
@@ -547,7 +539,15 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "急騰"
+      "reason": "本日急騰している理由"
+    },
+    {
+      "code": "",
+      "name": "インスメッド",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "本日急騰した理由"
     }
   ],
   "technical": [
@@ -603,9 +603,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目度が高い"
+      "sector_contrarian": false
     },
     {
       "code": "8306",
@@ -689,8 +687,8 @@
       "sector_contrarian": false,
       "baked_in_warning": true,
       "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -717,7 +715,8 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "機械"
     },
     {
       "code": "7974",
@@ -802,7 +801,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -856,9 +855,7 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.0%上昇、52週高値まで5.2%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "7267",
@@ -885,9 +882,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で3.54%上昇、52週高値まで2.72%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -995,9 +990,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -1109,9 +1102,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目度が高い"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [
@@ -1384,6 +1375,14 @@
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9DWGtDWkVpb2VpLXlPaElWcGxfLWxtWVZXQW5HbS1xUkJHd05KbGRpa09hSl9Ga1owQmtKekozdVcyc2xaRDBOcEpleGwwNGpHM1BHaUxyeWFOclhFTGxZUjYwbFdzUQ?oc=5",
       "keyword": "データセンター",
       "asof": "8/1 16:00"
+    },
+    {
+      "code": "9433",
+      "company": "KDDI",
+      "title": "決算:KDDIが22％増益、携帯やデータセンター好調 情報漏洩の不祥事が影 - 日本経済新聞",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBuR1hESFJaaUtHaWpRb3JPUkJEdHRRSkhFa1RMM2d3WC1BQ2pWcWtodnR5eWpjYnRhT05CSjJxOThSUEJrYjkzRFRuemIzRFZxUzA4eUd3a19WUk9kQlhNVHEyVC1wVlVvX0x2VA?oc=5",
+      "keyword": "データセンター",
+      "asof": "8/7 19:40"
     },
     {
       "code": "9433",
