@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 06:31",
+  "generated_at": "2026-08-08 08:26",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -304,6 +304,14 @@
   ],
   "tdnet_afterclose": [
     {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 今日 08:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513729.pdf",
+      "tag": "他"
+    },
+    {
       "time": "03:30",
       "code": "―",
       "company": "スマイルＨＤ",
@@ -347,6 +355,14 @@
       "time": "―",
       "code": "―",
       "company": "―",
+      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
       "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料（データシート） 追訂 8月7日(金) 19:50",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515839.pdf",
       "tag": "他"
@@ -365,14 +381,6 @@
       "company": "―",
       "title": "栄電子、2027年3月期 第1四半期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 19:50",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
       "tag": "他"
     },
     {
@@ -454,14 +462,6 @@
       "title": "アルファＰ、TVアニメ『異世界転生騒動記』2027年1月から放送決定！キービジュアル第1弾、PV第1弾を公開！さらに、追加キャラクター＆キャストを公開！ 他 8月7日(金) 18:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513378.pdf",
       "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "タスキＨＤ、「JPX日経中小型株指数」構成銘柄への継続選定に関するお知らせ 他 8月7日(金) 18:10",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515750.pdf",
-      "tag": "他"
     }
   ],
   "afterclose_news": [
@@ -512,42 +512,42 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "本日急騰している"
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰している"
     },
     {
       "code": "",
-      "name": "ダイトロン",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "急騰"
+      "name": "アプライド・オプトエレクトロニクス",
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰した"
+    },
+    {
+      "code": "",
+      "name": "キングスパン",
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰した"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "本日急騰した"
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰した"
     },
     {
       "code": "",
-      "name": "ファースト・ソーラー",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "本日急騰した"
-    },
-    {
-      "code": "",
-      "name": "アルベマール",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "本日急騰している"
+      "name": "ダイトロン",
+      "price": "",
+      "change_pct": "",
+      "volume_note": "",
+      "reason": "急騰"
     }
   ],
   "technical": [
@@ -657,7 +657,8 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "電力・再エネ"
     },
     {
       "code": "6861",
@@ -686,9 +687,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -716,8 +717,7 @@
       "sector": "機械",
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
-      "theme": "機械",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme": "ロボット"
     },
     {
       "code": "7974",
@@ -773,7 +773,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -802,7 +802,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -885,7 +885,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+3.54%上昇、52週高値まで2.72%の距離"
+      "baked_in_reason": "直近5日で3.54%上昇、52週高値まで2.72%の距離"
     },
     {
       "code": "6367",
@@ -1049,7 +1049,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -1105,7 +1105,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [
