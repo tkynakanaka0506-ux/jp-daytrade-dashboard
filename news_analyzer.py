@@ -22,11 +22,10 @@ TDnet開示・テクニカル指標)は Main.java が担当し、このスクリ
       グループB(Groq):   movers_items, tech_risk_items, theme_items
   - さらに、割り当てられたプロバイダの呼び出しが失敗した場合、もう片方のAPIキーが
     設定されていればそちらでフォールバック再試行する(クロスプロバイダ・フォールバック)。
-    両方失敗した場合のみ、そのグループの既存値をそのまま保持する。
-  - GEMINI_API_KEY・GROQ_API_KEYのどちらも未設定の場合は、ニュース系フィールドの
-    更新を丸ごとスキップし、既存の data.json の値をそのまま保持して正常終了する(exit code 0)。
-    このスクリプトの失敗でパイプライン全体(Java取得・HTML生成・push)を
-    止めないことを最優先する。
+    両方失敗した場合は対象配列を空にし、取得不可状態を記録する。
+  - GEMINI_API_KEY・GROQ_API_KEYのどちらも未設定の場合も、ニュース系フィールドを
+    空にして取得不可状態を保存し、正常終了する(exit code 0)。このスクリプトの失敗で
+    パイプライン全体(Java取得・HTML生成・push)を止めないことを最優先する。
 
 使い方: python3 news_analyzer.py <morning|evening> <data.jsonのパス>
 """
@@ -63,10 +62,37 @@ def log(msg):
     print(f"[news_analyzer] {msg}", file=sys.stderr)
 
 
+def _checked_at():
+    return datetime.now(JST).strftime("%Y-%m-%d %H:%M")
+
+
+def set_data_status(root, field, state, message):
+    """当回の取得状態を保存する。失敗時も理由を残し、前回値を有効扱いしない。"""
+    statuses = root.setdefault("data_status", {})
+    statuses[field] = {
+        "state": state,
+        "checked_at": _checked_at(),
+        "message": message,
+    }
+
+
 def mark_updated(root, field):
-    """成功したデータだけに更新時刻を残し、古い表示を画面で判別できるようにする。"""
+    """今回の実行で取得・更新したデータだけに更新時刻を残す。"""
     timestamps = root.setdefault("data_updated_at", {})
-    timestamps[field] = datetime.now(JST).strftime("%Y-%m-%d %H:%M")
+    updated_at = _checked_at()
+    timestamps[field] = updated_at
+    set_data_status(root, field, "updated", "今回の実行で取得・更新しました。")
+
+
+def mark_empty(root, field, message):
+    """取得には成功したが該当がなかった状態を記録する。"""
+    mark_updated(root, field)
+    set_data_status(root, field, "empty", message)
+
+
+def mark_unavailable(root, field, message):
+    """取得できなかったデータを空のまま取得不可として記録する。"""
+    set_data_status(root, field, "unavailable", message)
 
 
 def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
@@ -195,8 +221,8 @@ def call_llm(provider, gemini_key, groq_key, prompt, schema):
 
 
 def call_with_fallback(group_name, primary_provider, gemini_key, groq_key, prompt, schema):
-    """割り当てられたプロバイダで呼び出し、失敗したらもう片方のキーがあれば
-    フォールバック再試行する。両方失敗/未設定なら None を返す(既存値を保持)。"""
+    """割り当てられたプロバイダで呼び出し、失敗時はもう片方で再試行する。
+    両方失敗または未設定ならNoneを返し、呼び出し側が当回の空配列と取得不可状態を保存する。"""
     providers_tried = []
     order = [primary_provider] + [p for p in ("gemini", "groq") if p != primary_provider]
     for provider in order:
@@ -212,9 +238,9 @@ def call_with_fallback(group_name, primary_provider, gemini_key, groq_key, promp
         except Exception as e:
             log(f"[{group_name}] {provider}呼び出しが失敗しました: {e}")
     if not providers_tried:
-        log(f"[{group_name}] 利用可能なAPIキーが無いためスキップします(既存値を保持)。")
+        log(f"[{group_name}] 利用可能なAPIキーが無いため取得不可として処理します。")
     else:
-        log(f"[{group_name}] 全プロバイダ({', '.join(providers_tried)})が失敗しました(既存値を保持)。")
+        log(f"[{group_name}] 全プロバイダ({', '.join(providers_tried)})が失敗しました。前回値は利用しません。")
     return None
 
 
@@ -466,17 +492,32 @@ def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "morning"
     data_path = sys.argv[2] if len(sys.argv) > 2 else "data.json"
 
-    gemini_key = os.environ.get("GEMINI_API_KEY", "").strip()
-    groq_key = os.environ.get("GROQ_API_KEY", "").strip()
-    if not gemini_key and not groq_key:
-        log("GEMINI_API_KEY・GROQ_API_KEYともに未設定のため、ニュース系フィールドの更新をスキップします(既存値を保持)。")
-        return
-
     with open(data_path, encoding="utf-8") as f:
         root = json.load(f)
 
     news_field = "afterclose_news" if mode == "evening" else "overnight_news"
     movers_field = "movers_afterclose" if mode == "evening" else "movers_morning"
+
+    # news_analyzer.pyを単独で実行した場合も含め、前回の分析結果を絶対に流用しない。
+    # Java側の生データ(technical)は保持するが、LLM由来の補足フィールドは先に消去する。
+    root[news_field] = []
+    root[movers_field] = []
+    root["us_good_news"] = []
+    for technical_item in root.get("technical", []) or []:
+        for key in ("baked_in_warning", "baked_in_reason", "theme", "theme_trend_note"):
+            technical_item.pop(key, None)
+
+    gemini_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    groq_key = os.environ.get("GROQ_API_KEY", "").strip()
+    if not gemini_key and not groq_key:
+        message = "GEMINI_API_KEY・GROQ_API_KEYともに未設定のため取得できませんでした。"
+        mark_unavailable(root, news_field, message)
+        mark_unavailable(root, movers_field, message)
+        mark_unavailable(root, "us_good_news", message)
+        with open(data_path, "w", encoding="utf-8") as f:
+            json.dump(root, f, ensure_ascii=False, indent=2)
+        log(message + " 前回値は消去しました。")
+        return
 
     # ---- 候補データの収集(RSS取得・ローカルデータ整形のみ。API呼び出しはまだ行わない) ----
 
@@ -574,52 +615,68 @@ def main():
     )
     result_b = call_with_fallback("グループB(値動き・テーマ系)", "groq", gemini_key, groq_key, group_b_prompt, GROUP_B_SCHEMA)
 
-    if result_a is not None:
-        # ---- 1) 地政学・市場材料ニュース ----
+    # ---- 1) 地政学・市場材料ニュース / 3) 米国株好材料ニュース ----
+    if result_a is None:
+        mark_unavailable(root, news_field, "ニュース分析APIで取得できませんでした。")
+        mark_unavailable(root, "us_good_news", "ニュース分析APIで取得できませんでした。")
+    else:
         try:
             items = [it for it in result_a.get("news_items", []) if it.get("title") and it.get("url")]
+            for it in items:
+                if not it.get("money_flow_type"):
+                    it.pop("money_flow_type", None)
+                if not it.get("investment_sector"):
+                    it.pop("investment_sector", None)
+                if not it.get("investment_companies"):
+                    it.pop("investment_companies", None)
+                if not it.get("money_flow"):
+                    it.pop("money_flow", None)
+            root[news_field] = items
             if items:
-                for it in items:
-                    if not it.get("money_flow_type"):
-                        it.pop("money_flow_type", None)
-                    if not it.get("investment_sector"):
-                        it.pop("investment_sector", None)
-                    if not it.get("investment_companies"):
-                        it.pop("investment_companies", None)
-                    if not it.get("money_flow"):
-                        it.pop("money_flow", None)
-                root[news_field] = items
                 mark_updated(root, news_field)
                 log(f"{news_field} を{len(items)}件更新しました。")
             else:
-                log("ニュース候補が0件のため、newsフィールドはスキップします。")
+                mark_empty(root, news_field, "取得済み・該当する主要ニュースはありません。")
         except Exception as e:
-            log(f"ニュース分析結果の反映に失敗しました(既存値を保持): {e}")
+            root[news_field] = []
+            mark_unavailable(root, news_field, "ニュース分析結果を反映できませんでした。")
+            log(f"ニュース分析結果の反映に失敗しました: {e}")
 
-        # ---- 3) 米国株の好材料ニュース ----
         try:
             items = [it for it in result_a.get("us_news_items", []) if it.get("headline") and it.get("category")]
+            for it in items:
+                if it.get("baked_in_verdict") in (None, "", "判定不能") or not it.get("baked_in_reason"):
+                    it.pop("baked_in_verdict", None)
+                    it.pop("baked_in_reason", None)
+            root["us_good_news"] = items
             if items:
-                for it in items:
-                    if it.get("baked_in_verdict") in (None, "", "判定不能") or not it.get("baked_in_reason"):
-                        it.pop("baked_in_verdict", None)
-                        it.pop("baked_in_reason", None)
-                root["us_good_news"] = items
                 mark_updated(root, "us_good_news")
                 log(f"us_good_news を{len(items)}件更新しました。")
+            else:
+                mark_empty(root, "us_good_news", "取得済み・該当する米国株好材料はありません。")
         except Exception as e:
-            log(f"米国株好材料結果の反映に失敗しました(既存値を保持): {e}")
+            root["us_good_news"] = []
+            mark_unavailable(root, "us_good_news", "米国株好材料の分析結果を反映できませんでした。")
+            log(f"米国株好材料結果の反映に失敗しました: {e}")
 
-    if result_b is not None:
-        # ---- 2) 値動き・出来高で話題の銘柄 ----
+    # ---- 2) 値動き・出来高で話題の銘柄 ----
+    if result_b is None:
+        mark_unavailable(root, movers_field, "話題株分析APIで取得できませんでした。")
+    else:
         try:
             items = [it for it in result_b.get("movers_items", []) if it.get("name") and it.get("reason")]
+            root[movers_field] = items
             if items:
-                root[movers_field] = items
                 mark_updated(root, movers_field)
                 log(f"{movers_field} を{len(items)}件更新しました。")
+            else:
+                mark_empty(root, movers_field, "取得済み・該当する話題株はありません。")
         except Exception as e:
-            log(f"値動き話題株結果の反映に失敗しました(既存値を保持): {e}")
+            root[movers_field] = []
+            mark_unavailable(root, movers_field, "話題株分析結果を反映できませんでした。")
+            log(f"値動き話題株結果の反映に失敗しました: {e}")
+
+    if result_b is not None:
 
         # ---- 4) 織り込み済みリスク判定 ----
         try:
@@ -638,7 +695,7 @@ def main():
                 mark_updated(root, "technical")
                 log(f"baked-in warning(材料出尽くし警戒)を{len(warn_map)}件付与しました。")
         except Exception as e:
-            log(f"織り込み済みリスク判定結果の反映に失敗しました(既存値を保持): {e}")
+            log(f"織り込み済みリスク判定結果の反映に失敗しました。今回の補足結果は空のままです: {e}")
 
         # ---- 5) 「テーマ性」の自動タグ付け ----
         try:
@@ -659,7 +716,7 @@ def main():
                 mark_updated(root, "technical")
                 log(f"投資テーマタグを{len(theme_map)}件付与しました。")
         except Exception as e:
-            log(f"投資テーマタグ付け結果の反映に失敗しました(既存値を保持): {e}")
+            log(f"投資テーマタグ付け結果の反映に失敗しました。今回の補足結果は空のままです: {e}")
 
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)
@@ -670,6 +727,6 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        # このスクリプトの失敗でパイプライン全体を止めない
-        log(f"予期しないエラー(既存data.jsonは変更せず終了します): {e}")
+        # パイプラインを停止させない。個別の取得失敗はmain内で空配列と取得不可状態として保存する。
+        log(f"予期しないエラー: {e}")
         sys.exit(0)

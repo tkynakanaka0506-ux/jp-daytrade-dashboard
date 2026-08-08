@@ -908,7 +908,7 @@ def market_mood_signal(data):
     3つだけを組み合わせた、あくまで機械的な簡易判定であり、AIによる高度な分析や投資助言ではない。
     実際の相場は個別要因が複雑に絡むため、最終判断は必ず自身の責任で行うこと。
     戻り値: {"level": "green"|"yellow"|"red", "icon": str, "label": str, "desc": str, "reasons": [str, ...]}"""
-    us = data.get("us_market", {}) or {}
+    us = current_object(data, "market_quotes").get("us_market", {}) or {}
     changes = []
     for key in ("sp500", "dow", "nasdaq"):
         v = (us.get(key) or {}).get("change_pct")
@@ -916,7 +916,7 @@ def market_mood_signal(data):
             changes.append(v)
     us_avg = sum(changes) / len(changes) if changes else None
 
-    technical = data.get("technical", []) or []
+    technical = current_items(data, "technical")
     rsi_values = []
     for t in technical:
         try:
@@ -925,9 +925,9 @@ def market_mood_signal(data):
             continue
     overheat_flag = bool(rsi_values) and (sum(1 for r in rsi_values if r >= 70) / len(rsi_values)) >= 0.5
 
-    has_good = _has_positive_jp_catalyst(data.get("tdnet_morning", []), data.get("tdnet_afterclose", [])) \
-        or _has_positive_us_catalyst(data.get("us_good_news", []))
-    has_bad_jp = _has_negative_jp_news(data.get("tdnet_morning", []), data.get("tdnet_afterclose", []))
+    has_good = _has_positive_jp_catalyst(current_items(data, "tdnet_morning"), current_items(data, "tdnet_afterclose")) \
+        or _has_positive_us_catalyst(current_items(data, "us_good_news"))
+    has_bad_jp = _has_negative_jp_news(current_items(data, "tdnet_morning"), current_items(data, "tdnet_afterclose"))
 
     reasons = []
     if us_avg is not None:
@@ -978,7 +978,7 @@ def theme_summary_html(data, empty_msg="現時点で投資関連分野・注目�
     """時間外・引け後の各ニュースに付与された投資関連分野(investment_sector)と
     注目企業(investment_companies)を集約し、「本日の注目テーマ」として一覧化する。
     ニュース見出しから機械的に抽出した参考情報であり、投資助言ではない。"""
-    all_news = list(data.get("overnight_news", []) or []) + list(data.get("afterclose_news", []) or [])
+    all_news = list(current_items(data, "overnight_news")) + list(current_items(data, "afterclose_news"))
     themes = {}
     order = []
     for it in all_news:
@@ -1354,10 +1354,10 @@ def _calendar_importance(it):
 
 def signal_alignment_rows(data):
     """テーマ別ニュースの関連銘柄ごとに、材料の方向感とテクニカルシグナルを重ね合わせた判定行のリストを返す。"""
-    technical = data.get("technical", []) or []
+    technical = current_items(data, "technical")
     tech_lookup = _technical_lookup(technical)
 
-    all_news = list(data.get("overnight_news", []) or []) + list(data.get("afterclose_news", []) or [])
+    all_news = list(current_items(data, "overnight_news")) + list(current_items(data, "afterclose_news"))
     themes = {}
     order = []
     for it in all_news:
@@ -2373,9 +2373,80 @@ def _stamp_headings(html_text, generated_at):
     )
 
 
+# data_status.state のうち、今回の実行で中身を確定できた状態だけを表示・判定に使う。
+# unavailable / pending / not_requested は空データとして扱い、過去実行の内容を再利用しない。
+USABLE_DATA_STATES = {"updated", "partial", "empty"}
+STATUS_LABELS = {
+    "updated": "更新済み",
+    "partial": "一部取得",
+    "empty": "取得済み(該当なし)",
+    "unavailable": "取得不可",
+    "not_requested": "今回未取得",
+    "pending": "更新処理中",
+}
+
+
+def get_data_status(data, field):
+    raw = (data.get("data_status", {}) or {}).get(field, {}) or {}
+    state = raw.get("state", "unavailable")
+    return {
+        "state": state,
+        "checked_at": raw.get("checked_at", ""),
+        "message": raw.get("message", "当回の取得状態が記録されていません。"),
+    }
+
+
+def data_is_usable(data, field):
+    return get_data_status(data, field)["state"] in USABLE_DATA_STATES
+
+
+def current_items(data, field):
+    """今回取得済みと確認できた配列だけを返す。"""
+    return (data.get(field, []) or []) if data_is_usable(data, field) else []
+
+
+def current_object(data, field):
+    """今回取得済みと確認できたオブジェクトだけを返す。市場指数はルート項目を返す。"""
+    if not data_is_usable(data, field):
+        return {}
+    if field == "market_quotes":
+        return data
+    value = data.get(field, {}) or {}
+    return value if isinstance(value, dict) else {}
+
+
+def data_status_note(data, *fields):
+    """未取得・部分取得の理由をセクション内に表示する。"""
+    notes = []
+    for field in fields:
+        status = get_data_status(data, field)
+        if status["state"] not in {"updated", "empty"}:
+            label = STATUS_LABELS.get(status["state"], status["state"])
+            notes.append(f"{label}: {status['message']}")
+    if not notes:
+        return ""
+    return f'<p class="empty"><b>データ状態:</b> {esc(" / ".join(notes))}</p>'
+
+
+def current_snapshot(data):
+    """当回の取得状態を基準に、描画・派生計算用の安全なデータだけを複製する。"""
+    snapshot = dict(data)
+    for field in (
+        "tdnet_morning", "tdnet_afterclose", "technical", "growth_candidates",
+        "pre_earnings_watch", "overnight_news", "afterclose_news", "movers_morning",
+        "movers_afterclose", "us_good_news", "edinet_large_holdings", "economic_calendar",
+    ):
+        snapshot[field] = current_items(data, field)
+    market = current_object(data, "market_quotes")
+    snapshot["us_market"] = market.get("us_market", {}) or {}
+    snapshot["fx"] = market.get("fx", {}) or {}
+    snapshot["nikkei225"] = market.get("nikkei225", {}) or {}
+    snapshot["nikkei_futures"] = market.get("nikkei_futures", {}) or {}
+    return snapshot
+
+
 def data_update_log_html(data, generated_at):
-    """取得に成功したデータごとの最終更新時刻を一覧化し、更新停止を判別可能にする。"""
-    timestamps = data.get("data_updated_at", {}) or {}
+    """当回のデータ取得状態を一覧化する。失敗時は古い値を表示しない。"""
     labels = [
         ("market_quotes", "市場指数・為替"),
         ("tdnet_morning", "朝のTDnet開示"),
@@ -2393,13 +2464,15 @@ def data_update_log_html(data, generated_at):
     ]
     rows = []
     for key, label in labels:
-        updated = timestamps.get(key)
-        status = _format_date_jp(updated) + " (JST)" if updated else "更新記録なし(次回の自動取得から記録)"
+        entry = get_data_status(data, key)
+        state_label = STATUS_LABELS.get(entry["state"], entry["state"])
+        checked = _format_date_jp(entry["checked_at"]) + " (JST)" if entry["checked_at"] else "時刻未記録"
+        status = f"{state_label}・確認: {checked}。{entry['message']}"
         rows.append(f'<span class="update-log-item"><b>{esc(label)}</b>: {esc(status)}</span>')
     return f"""
     <section id="update-log" class="update-log-section">
       <h2>🕒 データ更新記録 {_display_stamp(generated_at)}</h2>
-      <p class="section-desc">表示日時と、各データを実際に取得できた最終時刻です。取得失敗時は古いデータを保持し、そのことをここに明記します。</p>
+      <p class="section-desc">各データを今回の実行で取得できたかを示します。<b>取得不可・今回未取得の項目は空表示となり、前回の内容は表示・通知に利用しません。</b></p>
       <div class="update-log-grid">{''.join(rows)}</div>
     </section>"""
 
@@ -2410,8 +2483,8 @@ def conclusion_first_html(data):
     既存の4項目スコアリング(compute_stock_scores)をそのまま再利用し、新たな判定ロジックは追加しない。
     あくまでルールベースの機械的な順位付けであり、投資助言ではない。
     """
-    items = data.get("technical", []) or []
-    growth = data.get("growth_candidates", []) or []
+    items = current_items(data, "technical")
+    growth = current_items(data, "growth_candidates")
     growth_by_name = {g.get("company"): g for g in growth if g.get("company")}
     date_label = _format_date_jp(data.get("generated_at", ""))
 
@@ -2492,6 +2565,7 @@ def conclusion_first_html(data):
 
 def build_html(data: dict) -> str:
     generated_at = data.get("generated_at", datetime.now().strftime("%Y-%m-%d %H:%M"))
+    data = current_snapshot(data)
     run_type = data.get("run_type", "")
     run_label = {"morning": "朝(寄り付き前)更新", "evening": "夜(引け後)更新"}.get(run_type, run_type)
 
@@ -2520,28 +2594,34 @@ def build_html(data: dict) -> str:
       <div class="card">
         <h3>米国市場・為替・日経先物</h3>
         <div class="idx-grid">{idx_cards}</div>
+        {data_status_note(data, "market_quotes")}
       </div>
       <div class="card">
         <h3>📅 経済カレンダー(重要度)</h3>
         <p class="section-desc">雇用統計・CPI・日銀会合など、相場が動きやすいイベントを重要度(★)で示しています。<b>実際の相場変動を保証するものではありません。</b></p>
         {calendar_html}
+        {data_status_note(data, "economic_calendar")}
       </div>
       <div class="card">
         <h3>🎯 本日の注目テーマと関連銘柄</h3>
         <p class="section-desc">ニュースの投資関連分野・注目企業タグを集約した参考情報です。<b>投資助言ではなく、実際に株価が動くことを保証するものではありません。</b></p>
         {theme_html}
+        {data_status_note(data, "overnight_news", "afterclose_news")}
       </div>
       <div class="card">
         <h3>時間外・朝の主要ニュース</h3>
         {news_list(data.get("overnight_news", []))}
+        {data_status_note(data, "overnight_news")}
       </div>
       <div class="card">
         <h3>TDnet 適時開示(朝までの分)</h3>
         {tdnet_table(data.get("tdnet_morning", []))}
+        {data_status_note(data, "tdnet_morning")}
       </div>
       <div class="card">
         <h3>出来高・値動きで話題の銘柄</h3>
         {movers_table(data.get("movers_morning", []))}
+        {data_status_note(data, "movers_morning")}
       </div>
     </section>"""
 
@@ -2558,15 +2638,18 @@ def build_html(data: dict) -> str:
       <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
       <div class="card">
         <h3>本日のTDnet適時開示</h3>
-        {tdnet_table(data.get("tdnet_afterclose", []), empty_msg="本日の適時開示データは取得できませんでした。")}
+        {tdnet_table(data.get("tdnet_afterclose", []), empty_msg="本日の適時開示データはありません。")}
+        {data_status_note(data, "tdnet_afterclose")}
       </div>
       <div class="card">
         <h3>引け後の主要ニュース</h3>
         {news_list(data.get("afterclose_news", []))}
+        {data_status_note(data, "afterclose_news")}
       </div>
       <div class="card">
         <h3>本日の値動き・出来高で話題の銘柄</h3>
         {movers_table(data.get("movers_afterclose", []))}
+        {data_status_note(data, "movers_afterclose")}
       </div>
       <div class="card">
         <h3>TDnet開示 好材料ランキング(日本株 TOP5)</h3>
@@ -2580,6 +2663,7 @@ def build_html(data: dict) -> str:
           反落するリスクへの機械的な注意喚起であり、決算内容そのものの良し悪しを判定するものではありません)。
         </p>
         {good_news_rank_html_jp}
+        {data_status_note(data, "tdnet_morning", "tdnet_afterclose", "technical")}
       </div>
       <div class="card">
         <h3>好材料ランキング(米国株 TOP5)</h3>
@@ -2592,6 +2676,7 @@ def build_html(data: dict) -> str:
           実際のチャートを参照した判定ではないため、必ず自身でも株価を確認してください)。
         </p>
         {good_news_rank_html_us}
+        {data_status_note(data, "us_good_news")}
       </div>
     </section>"""
 
@@ -2606,6 +2691,7 @@ def build_html(data: dict) -> str:
       </p>
       <div class="card">
         {technical_table(data.get("technical", []), growth=data.get("growth_candidates", []))}
+        {data_status_note(data, "technical", "growth_candidates")}
       </div>
       <div class="card">
         <h3>強気シグナル数ランキング</h3>
@@ -2641,6 +2727,7 @@ def build_html(data: dict) -> str:
       <div class="card">
         <h3>好材料開示に基づく成長株候補</h3>
         {growth_candidates_html(data.get("growth_candidates", []))}
+        {data_status_note(data, "growth_candidates")}
       </div>
     </section>"""
 
@@ -2658,6 +2745,7 @@ def build_html(data: dict) -> str:
       <div class="card">
         <h3>ウォッチリスト銘柄の先行材料ニュース(直近14日・見出しキーワード一致)</h3>
         {pre_earnings_watch_html(data.get("pre_earnings_watch", []))}
+        {data_status_note(data, "pre_earnings_watch")}
       </div>
     </section>"""
 
@@ -2674,6 +2762,7 @@ def build_html(data: dict) -> str:
       <div class="card">
         <h3>直近の大量保有報告書・変更報告書</h3>
         {edinet_holdings_html(data.get("edinet_large_holdings", []))}
+        {data_status_note(data, "edinet_large_holdings")}
       </div>
     </section>"""
 

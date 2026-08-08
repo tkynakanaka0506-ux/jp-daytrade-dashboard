@@ -186,8 +186,22 @@ def _is_after_close_window(now=None):
     return AFTER_CLOSE_START_MINUTE <= minute <= AFTER_CLOSE_END_MINUTE
 
 
+USABLE_DATA_STATES = {"updated", "partial", "empty"}
+
+
+def _current_items(root, field):
+    """今回の取得成功が記録された配列だけを通知候補に使う。"""
+    status = ((root.get("data_status") or {}).get(field) or {}).get("state")
+    if status not in USABLE_DATA_STATES:
+        return []
+    return root.get(field, []) or []
+
+
 def _data_is_fresh(root, now=None):
-    """パイプライン全体が遅れた場合に、古いdata.jsonでLINEを送らない。"""
+    """パイプライン遅延や取得状態の欠落時に、LINEで古いdata.jsonを送らない。"""
+    statuses = root.get("data_status")
+    if not isinstance(statuses, dict):
+        return False, "データ取得状態が記録されていません"
     generated_at = (root.get("generated_at") or "").strip()
     if not generated_at:
         return False, "更新時刻がありません"
@@ -319,10 +333,10 @@ def _collect_signal_hits(root):
     keyは銘柄コード(technicalに存在する場合)、無ければ "NAME:会社名"。
     hitは {category, weight, name, reason, detail, url} の辞書。
     """
-    technical = root.get("technical", []) or []
-    pre_earnings = root.get("pre_earnings_watch", []) or []
-    edinet = root.get("edinet_large_holdings", []) or []
-    growth_candidates = root.get("growth_candidates", []) or []
+    technical = _current_items(root, "technical")
+    pre_earnings = _current_items(root, "pre_earnings_watch")
+    edinet = _current_items(root, "edinet_large_holdings")
+    growth_candidates = _current_items(root, "growth_candidates")
 
     technical_by_code = {t.get("code"): t for t in technical if t.get("code")}
     technical_by_name = {t.get("name"): t for t in technical if t.get("name")}
@@ -606,7 +620,7 @@ def _after_close_material(candidate, root, now):
     if "growth_candidate" not in candidate.get("categories", []):
         return None
     urls = set(candidate.get("urls", []))
-    for item in root.get("growth_candidates", []) or []:
+    for item in _current_items(root, "growth_candidates"):
         if item.get("url") not in urls:
             continue
         asof = (item.get("asof") or "").strip()
