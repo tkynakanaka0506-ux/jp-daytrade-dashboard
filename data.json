@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 22:39",
+  "generated_at": "2026-08-09 00:21",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -46,31 +46,31 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 今日 08:00",
+      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 8月8日(土) 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513729.pdf",
       "tag": "他"
     },
     {
-      "time": "03:30",
+      "time": "―",
       "code": "―",
-      "company": "スマイルＨＤ",
-      "title": "機関投資家・アナリスト向け説明会開催のお知らせ",
+      "company": "―",
+      "title": "スマイルＨＤ、機関投資家・アナリスト向け説明会開催のお知らせ 他 8月8日(土) 03:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515341.pdf",
       "tag": "他"
     },
     {
-      "time": "00:30",
+      "time": "―",
       "code": "―",
-      "company": "長谷工",
-      "title": "長谷工グループ統合報告書2026",
+      "company": "―",
+      "title": "長谷工、長谷工グループ統合報告書2026 他 8月8日(土) 00:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513915.pdf",
       "tag": "他"
     },
     {
-      "time": "00:30",
+      "time": "―",
       "code": "―",
-      "company": "ミルボン",
-      "title": "[Delayed] Milbon Published Integrated Report",
+      "company": "―",
+      "title": "ミルボン、[Delayed] Milbon Published Integrated Report 他 8月8日(土) 00:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515621.pdf",
       "tag": "他"
     },
@@ -211,7 +211,7 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "決算好調で急騰"
+      "reason": "急騰している"
     },
     {
       "code": "",
@@ -219,7 +219,7 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "決算好調で急騰"
+      "reason": "急騰した"
     },
     {
       "code": "",
@@ -227,15 +227,7 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "決算好調で急騰"
-    },
-    {
-      "code": "",
-      "name": "ユニティ ソフトウェア",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "決算好調で急騰"
+      "reason": "急騰した"
     },
     {
       "code": "",
@@ -243,7 +235,15 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "決算好調で急騰"
+      "reason": "急騰している"
+    },
+    {
+      "code": "",
+      "name": "インスメッド",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "急騰した"
     }
   ],
   "technical": [
@@ -384,7 +384,7 @@
       "baked_in_warning": true,
       "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -411,9 +411,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "機械",
-      "theme_trend_note": "市場で注目度が高い"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -498,7 +496,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -579,7 +577,9 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+3.54%上昇、52週高値まで2.72%の距離"
     },
     {
       "code": "6367",
@@ -687,7 +687,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "4519",
@@ -997,18 +999,18 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "【ライブ】日経平均株価/任天堂 株式売出価格決定/JX金属 増産へ/《決算速報》オラクル エニーカラー 三井ハイテック/株式投資/最新情報｜3月11日(水)〈Every Stock NEWS〉 Kevin Warsh (d3zg970OKO) - Mshale",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9tYXZpcGVBdUlHQ0VtSktJYndhMkdtcDV6RUF0R3lINTBteUctWWNBRlpfZFVuUjZPQzd0M2U0Qmt5ZEVQTGk1dzB2a0pkSUpjODJZTi1sUzROb2s?oc=5",
-      "keyword": "増産",
-      "asof": "8/8 13:56"
-    },
-    {
-      "code": "7974",
-      "company": "任天堂",
       "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - ITmedia",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 19:43"
+    },
+    {
+      "code": "7974",
+      "company": "任天堂",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - ITmedia",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5ZT1ZJTEo1em11Vnk4R1pCT0tOTkFyRVc5dVZTcE9yZlBOaFI0SERiZ0RPeTBQNkNHNTZCYmZYUE5sczdBT0ladldYbXl5ck5lU0Jrb21zN2x4ZHR5VzFfdkVtVjliQXdPcExESnJrRjlzbFVMTDI5LUZmVQ?oc=5",
+      "keyword": "増産",
+      "asof": "7/28 22:17"
     },
     {
       "code": "8035",
@@ -1051,20 +1053,20 @@
       "asof": "8/5 10:00"
     },
     {
+      "code": "4063",
+      "company": "信越化学工業",
+      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUek9aM2RtaG93aFVMTXBSR1F3S1U0MWFTTldVelVtUkc2Q0R2eGlCZzhZSVgyTXljam9jWFk4eFRZTmdtUXF6M3R1X2JhUF9BR0FhR0E5aXUzbVE?oc=5",
+      "keyword": "新工場",
+      "asof": "8/8 11:15"
+    },
+    {
       "code": "5401",
       "company": "日本製鉄",
       "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - 中部経済新聞",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB1M2tma0hYZEJjZ1NVcXVsUnFhOTFaTHVkSmhqV29nM3diTy1TV0hWakdXclYya2hmXzdIVzU3REo2RENfdHhzR3pvWHNxMHNPRlJ2cXZBZ202MWRnMG52UFlMNHpTTGtqUXFLVlBHeW5JamM?oc=5",
       "keyword": "生産能力",
       "asof": "8/7 05:15"
-    },
-    {
-      "code": "5401",
-      "company": "日本製鉄",
-      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ（テレビ愛知） - Yahoo!ニュース",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBSNWg2dkp6dGhtWHNUUWNrTVZwT2VDUGZsRmNXdndHSHB6T0VBZXJzdHFEc0JLSFlsQkh4Y1g0aUh4TUJsU015MzRTZVEzZnRhYWJiUWNUNDVIQlFNdUJjb29aRDBlbmMza1ZqcWtqSW93NE96bGVmOVFUbXVwS0U?oc=5",
-      "keyword": "新工場",
-      "asof": "8/6 18:57"
     }
   ],
   "line_notify_last": {
@@ -1072,80 +1074,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-08 22:39",
-    "tdnet_afterclose": "2026-08-08 22:39",
-    "technical": "2026-08-08 22:40",
-    "growth_candidates": "2026-08-08 22:39",
-    "pre_earnings_watch": "2026-08-08 22:39",
-    "edinet_large_holdings": "2026-08-08 22:39",
-    "economic_calendar": "2026-08-08 22:39",
-    "movers_afterclose": "2026-08-08 22:40"
+    "market_quotes": "2026-08-09 00:21",
+    "tdnet_afterclose": "2026-08-09 00:21",
+    "technical": "2026-08-09 00:22",
+    "growth_candidates": "2026-08-09 00:21",
+    "pre_earnings_watch": "2026-08-09 00:21",
+    "edinet_large_holdings": "2026-08-09 00:21",
+    "economic_calendar": "2026-08-09 00:21",
+    "movers_afterclose": "2026-08-09 00:22"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:40",
+      "checked_at": "2026-08-09 00:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-08 22:40",
+      "checked_at": "2026-08-09 00:22",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:40",
+      "checked_at": "2026-08-09 00:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-08 22:40",
+      "checked_at": "2026-08-09 00:22",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-08 22:39",
+      "checked_at": "2026-08-09 00:21",
       "message": "今回の実行で取得・更新しました。"
     }
   }
