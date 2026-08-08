@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 12:56",
+  "generated_at": "2026-08-08 13:25",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -18,9 +18,9 @@
       "asof": "8/8終値"
     },
     "sox": {
-      "value": "11,311.08",
-      "change_pct": 0.07,
-      "asof": "8/1Ã§ÂµÂÃ¥ÂÂ¤"
+      "value": "12,356.79",
+      "change_pct": 2.56,
+      "asof": "8/8終値"
     }
   },
   "fx": {
@@ -29,8 +29,8 @@
     "asof": "8/8終値"
   },
   "nikkei_futures": {
-    "value": "66,295.00",
-    "change_pct": 1.13,
+    "value": "66,315.00",
+    "change_pct": 1.16,
     "asof": "8/8終値"
   },
   "nikkei225": {
@@ -38,66 +38,7 @@
     "change_pct": -0.12,
     "asof": "8/7終値"
   },
-  "overnight_news": [
-    {
-      "title": "中国発コンテナ輸出運賃が2倍超、紅海・スエズ運河の航行混乱で船社が7月一括値上げ(GRI)・繁忙期サーチャージ(PSS)を発表",
-      "url": "https://newswitch.jp/p/42224",
-      "source": "ニュースイッチ(日刊工業新聞社)",
-      "time": "7/25",
-      "investment_sector": "海運",
-      "investment_companies": [
-        "日本郵船(9101)",
-        "商船三井(9104)",
-        "川崎汽船(9107)"
-      ],
-      "money_flow": "紅海・スエズ運河の航行混乱が続き、船社が7月の運賃一括値上げ(GRI)と繁忙期サーチャージ(PSS)を発表するなど海上運賃の上昇が続いており、海運株に資金が流入している",
-      "money_flow_type": "current"
-    },
-    {
-      "title": "ホルムズ海峡周辺で地政学リスクが再燃、原油の供給不安が意識される展開に",
-      "url": "https://www.matsui.co.jp/money-satellite/column/beginner/stock/cl-geopolitical-risk.html",
-      "source": "マネーサテライト(松井証券)",
-      "time": "7/25",
-      "investment_sector": "エネルギー・資源",
-      "investment_companies": [
-        "INPEX(1605)",
-        "出光興産(5019)"
-      ],
-      "money_flow": "ホルムズ海峡周辺の地政学リスクが意識され、原油供給への不安が長期化すればエネルギー・資源株に資金が向かう可能性がある",
-      "money_flow_type": "expected"
-    },
-    {
-      "title": "日経平均、AI特需の持続懸念で1811円安の急落",
-      "url": "https://www.nikkei.com/article/DGXZQOUB240HFTU6A720C2000000/",
-      "source": "日本経済新聞",
-      "time": "7/24",
-      "investment_sector": "半導体・AI関連",
-      "investment_companies": [
-        "イビデン"
-      ]
-    },
-    {
-      "title": "来週は日米韓のテック決算とFOMC・日銀会合が集中、キオクシアなど関心高まる",
-      "url": "https://s.kabutan.jp/news/n202607241176/",
-      "source": "株探",
-      "time": "7/24",
-      "investment_sector": "半導体",
-      "investment_companies": [
-        "キオクシアホールディングス"
-      ],
-      "money_flow": "FOMC・日銀会合を控え、政策金利の思惑から金融・銀行株に関心が向かう可能性がある",
-      "money_flow_type": "expected"
-    },
-    {
-      "title": "NYダウは3日ぶり反発も、ナスダックは3日続落。AIへの過剰投資懸念や原油高が重荷",
-      "url": "https://www.zaikei.co.jp/article/20260724/862565.html",
-      "source": "財経新聞",
-      "time": "7/24",
-      "investment_sector": "AI・ハイテク株",
-      "money_flow": "原油高が投資家心理の重荷となっており、資源関連株への関心が高まりつつある",
-      "money_flow_type": "expected"
-    }
-  ],
+  "overnight_news": [],
   "tdnet_morning": [
     {
       "time": "―",
@@ -264,292 +205,47 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "本日急騰している"
     },
     {
       "code": "",
       "name": "ダイトロン",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "ユニティ ソフトウェア",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "本日急騰した"
     }
   ],
-  "tdnet_afterclose": [
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 今日 08:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513729.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "03:30",
-      "code": "―",
-      "company": "スマイルＨＤ",
-      "title": "機関投資家・アナリスト向け説明会開催のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515341.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "00:30",
-      "code": "―",
-      "company": "長谷工",
-      "title": "長谷工グループ統合報告書2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513915.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "00:30",
-      "code": "―",
-      "company": "ミルボン",
-      "title": "[Delayed] Milbon Published Integrated Report",
-      "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807515621.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "グリーンエナ、定款 2026/07/23 他 8月7日(金) 20:42",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515800.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "京進、株式会社京進　中長期経営方針（2035年のありたい姿）に関するQ&A 他 8月7日(金) 20:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515831.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料（データシート） 追訂 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515839.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料 追訂 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515834.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "光ビジネス、（訂正）「2026年12月期 第２四半期決算短信〔日本基準〕（非連結）」の一部訂正について 決算 8月7日(金) 19:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515845.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "アンビＤＸ、当社サーバーへの不正アクセスの発生について（第2報） 他 8月7日(金) 19:25",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515802.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "サンアスタ、Notice Regarding Consideration of Application for Approval for Extension of Submission Deadline for the Semi-Annual Report for FY2026 他 8月7日(金) 19:15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515842.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "サンアスタ、2026年12月期半期報告書の提出期限延長に係る承認申請の検討に関するお知らせ 他 8月7日(金) 19:15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515835.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＩＰＳＨＤ、2026年６月期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515764.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＩＰＳＨＤ、個別業績予想と実績値との差異に関するお知らせ 業修 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515760.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "Ａｒｅｎｔ、[Delayed] Full-Year Financial Results Presentation for the Fiscal Year Ended June 2026 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515520.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ヨネックス、Notice Regarding Unauthorized Access to Systems at Taiwan Subsidiary 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515714.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ヨネックス、台湾子会社における不正アクセスの発生に関するお知らせ 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515056.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "アルファＰ、TVアニメ『異世界転生騒動記』2027年1月から放送決定！キービジュアル第1弾、PV第1弾を公開！さらに、追加キャラクター＆キャストを公開！ 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513378.pdf",
-      "tag": "他"
-    }
-  ],
-  "afterclose_news": [
-    {
-      "title": "トランプ政権、新関税を7月24日発動。60カ国・地域が対象、日本は追加関税で計12.5%に",
-      "url": "https://news.yahoo.co.jp/articles/d5b95dbb4032949ddc2da0768d79e4f9296409ad",
-      "source": "毎日新聞(Yahoo!ニュース)",
-      "time": "7/24",
-      "investment_sector": "自動車・輸出関連",
-      "investment_companies": [
-        "トヨタ自動車(7203)",
-        "日産自動車(7201)",
-        "SUBARU(7270)"
-      ],
-      "money_flow": "新関税の発動により輸出採算の悪化が懸念され、自動車株には既に警戒感が織り込まれつつある",
-      "money_flow_type": "current"
-    },
-    {
-      "title": "日銀、タカ派傾斜を強める。円安による物価上振れリスクを警戒し利上げペース加速に柔軟姿勢との報道",
-      "url": "https://www.bloomberg.com/jp/news/articles/2026-07-22/TIJSOWT96OSG00",
-      "source": "Bloomberg",
-      "time": "7/22",
-      "investment_sector": "金融・銀行",
-      "investment_companies": [
-        "三菱ＵＦＪフィナンシャル・グループ(8306)",
-        "三井住友フィナンシャルグループ(8316)",
-        "みずほフィナンシャルグループ(8411)"
-      ],
-      "money_flow": "7月30-31日の日銀会合を控え、タカ派傾斜報道を受けて金利上昇を見込んだ資金が銀行株に向かう可能性がある",
-      "money_flow_type": "expected"
-    },
-    {
-      "title": "台湾、AI向け先端半導体の対中輸出規制強化を検討との報道",
-      "url": "https://www.bloomberg.com/jp/news/articles/2026-06-09/TGD08XT96OSH00",
-      "source": "Bloomberg",
-      "time": "6/9",
-      "investment_sector": "半導体製造装置",
-      "investment_companies": [
-        "東京エレクトロン(8035)",
-        "アドバンテスト(6857)",
-        "ディスコ(6146)"
-      ],
-      "money_flow": "対中輸出規制の強化が続けば、代替供給網構築への思惑から国内半導体製造装置株に関心が向かう可能性がある",
-      "money_flow_type": "expected"
-    }
-  ],
-  "movers_afterclose": [
-    {
-      "code": "",
-      "name": "ニューモント・マイニング",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰している"
-    },
-    {
-      "code": "",
-      "name": "アプライド・オプトエレクトロニクス",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した"
-    },
-    {
-      "code": "",
-      "name": "キングスパン",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した"
-    },
-    {
-      "code": "",
-      "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した"
-    },
-    {
-      "code": "",
-      "name": "ダイトロン",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰"
-    }
-  ],
+  "tdnet_afterclose": [],
+  "afterclose_news": [],
+  "movers_afterclose": [],
   "technical": [
     {
       "code": "7203",
@@ -686,7 +382,7 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
       "theme_trend_note": "市場で注目されている"
     },
@@ -771,7 +467,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -881,7 +577,9 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で3.54%上昇、52週高値まで2.72%の距離"
     },
     {
       "code": "6367",
@@ -989,9 +687,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -1047,7 +743,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -1103,59 +799,12 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     }
   ],
-  "us_good_news": [
-    {
-      "ticker": "UNP",
-      "company": "Union Pacific",
-      "category": "earnings_beat",
-      "headline": "Union Pacificが2Q決算でEPS・売上高とも市場予想を上回り、通期見通しも上方修正。株価は一時52週高値近辺まで上昇",
-      "url": "https://www.chartmill.com/news/UNP/Chartmill-51508-Union-Pacific-NYSEUNP-Surges-on-Earnings-Beat-Showcasing-Quality-Stock-Performance",
-      "time": "7/23"
-    },
-    {
-      "ticker": "THC",
-      "company": "Tenet Healthcare",
-      "category": "guidance_raise",
-      "headline": "Tenet Healthcareが2Q決算で大幅増益、通期業績見通しを2億9500万ドル引き上げ。株価は時間外で17%超上昇",
-      "url": "https://finance.yahoo.com/healthcare/articles/tenet-healthcare-shares-jump-second-103508861.html",
-      "time": "7/24"
-    },
-    {
-      "ticker": "DLR",
-      "company": "Digital Realty Trust",
-      "category": "upgrade",
-      "headline": "Digital Realty TrustがAI・クラウド需要を背景に2Q決算で大幅増益、TD Cowenが「Hold」から「Buy」に格上げ",
-      "url": "https://www.tradingpedia.com/2026/07/24/digital-realty-rallies-as-analysts-upgrade-stock/",
-      "time": "7/24"
-    },
-    {
-      "ticker": "SSNC",
-      "company": "SS&C Technologies",
-      "category": "buyback",
-      "headline": "SS&C Technologiesが2Q決算で増収増益、四半期として過去最大となる4億3500万ドルの自社株買いを実施し通期見通しも上方修正",
-      "url": "https://stockstotrade.com/news/ss-c-technologies-holdings-inc-ssnc-news-2026_07_24/",
-      "time": "7/24"
-    },
-    {
-      "ticker": "BPOP",
-      "company": "Popular Inc",
-      "category": "dividend_hike",
-      "headline": "Popular Incが四半期配当を0.75ドルから0.90ドルへ20%増配、新たに10億ドルの自社株買いプログラムも発表",
-      "url": "https://www.tipranks.com/news/company-announcements/popular-boosts-dividend-and-launches-new-buyback-program",
-      "time": "7/23"
-    },
-    {
-      "ticker": "EW",
-      "company": "Edwards Lifesciences",
-      "category": "earnings_beat",
-      "headline": "Edwards Lifesciencesが2Q決算でEPS・売上高とも予想超え、TAVR事業の好調を受け2026年売上高見通しを上方修正。株価は時間外で6%超上昇",
-      "url": "https://www.chartmill.com/news/EW/Chartmill-51555-Edwards-Lifesciences-NYSEEW-Raises-Guidance-After-Solid-Q2-Earnings-Stock-Surges-6",
-      "time": "7/23"
-    }
-  ],
+  "us_good_news": [],
   "economic_calendar": [
     {
       "date": "2026-09-04",
@@ -1425,12 +1074,81 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-08 12:56",
-    "tdnet_morning": "2026-08-08 12:56",
-    "technical": "2026-08-08 12:57",
-    "growth_candidates": "2026-08-08 12:56",
-    "pre_earnings_watch": "2026-08-08 12:56",
-    "economic_calendar": "2026-08-08 12:56",
-    "movers_morning": "2026-08-08 12:57"
+    "market_quotes": "2026-08-08 13:25",
+    "tdnet_morning": "2026-08-08 13:25",
+    "technical": "2026-08-08 13:26",
+    "growth_candidates": "2026-08-08 13:25",
+    "pre_earnings_watch": "2026-08-08 13:25",
+    "edinet_large_holdings": "2026-08-08 13:25",
+    "economic_calendar": "2026-08-08 13:25",
+    "movers_morning": "2026-08-08 13:26"
+  },
+  "edinet_large_holdings": [],
+  "data_status": {
+    "market_quotes": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:25",
+      "message": "今回の実行で取得・更新しました。"
+    },
+    "tdnet_morning": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:25",
+      "message": "今回の実行で取得・更新しました。"
+    },
+    "tdnet_afterclose": {
+      "state": "not_requested",
+      "checked_at": "2026-08-08 13:25",
+      "message": "今回の実行モードでは更新対象外です。"
+    },
+    "technical": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:26",
+      "message": "今回の実行で取得・更新しました。"
+    },
+    "growth_candidates": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:25",
+      "message": "今回の実行で取得・更新しました。"
+    },
+    "pre_earnings_watch": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:25",
+      "message": "今回の実行で取得・更新しました。"
+    },
+    "overnight_news": {
+      "state": "unavailable",
+      "checked_at": "2026-08-08 13:26",
+      "message": "ニュース分析APIで取得できませんでした。"
+    },
+    "afterclose_news": {
+      "state": "pending",
+      "checked_at": "2026-08-08 13:25",
+      "message": "更新処理中です。"
+    },
+    "movers_morning": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:26",
+      "message": "今回の実行で取得・更新しました。"
+    },
+    "movers_afterclose": {
+      "state": "pending",
+      "checked_at": "2026-08-08 13:25",
+      "message": "更新処理中です。"
+    },
+    "us_good_news": {
+      "state": "unavailable",
+      "checked_at": "2026-08-08 13:26",
+      "message": "ニュース分析APIで取得できませんでした。"
+    },
+    "edinet_large_holdings": {
+      "state": "empty",
+      "checked_at": "2026-08-08 13:25",
+      "message": "取得済み・該当する大量保有報告書はありません。"
+    },
+    "economic_calendar": {
+      "state": "updated",
+      "checked_at": "2026-08-08 13:25",
+      "message": "今回の実行で取得・更新しました。"
+    }
   }
 }
