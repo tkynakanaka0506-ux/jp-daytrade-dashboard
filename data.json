@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 18:29",
+  "generated_at": "2026-08-08 20:21",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -208,42 +208,37 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "本日急騰している"
-    },
-    {
-      "code": "",
-      "name": "ダイトロン",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰"
+      "reason": "本日急騰"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "本日急騰した"
+      "reason": "本日急騰"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "本日急騰した"
+      "reason": "本日急騰"
     },
     {
       "code": "",
-      "name": "SKハイニックス",
-      "price": "",
+      "name": "ユニティ ソフトウェア",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "本日急落した"
+      "reason": "本日急騰"
+    },
+    {
+      "code": "",
+      "name": "アルベマール",
+      "price": null,
+      "change_pct": null,
+      "reason": "本日急騰"
     }
   ],
   "technical": [
@@ -382,9 +377,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "6954",
@@ -468,7 +463,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -497,7 +492,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "9433",
@@ -578,7 +573,9 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+3.54%上昇、52週高値まで2.72%の距離"
     },
     {
       "code": "6367",
@@ -605,8 +602,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "機械"
+      "sector_contrarian": false
     },
     {
       "code": "9983",
@@ -743,7 +739,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -799,7 +795,8 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離",
+      "theme": "電気機器"
     }
   ],
   "us_good_news": [],
@@ -973,7 +970,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンスは急反発、製造業中心に設備投資続き第１四半期営業益は４５％増 - みんかぶ",
+      "title": "キーエンスは急反発、製造業中心に設備投資続き第１四半期営業益は４５％増 - minkabu.jp",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9PWGtKNHV3NzdDY05lXzhGcGYwcEdCQWFuWnN5VnloaklQcTNnRDRySXFVR19DTElTNG00aVpqcU15ZVVkN1E?oc=5",
       "keyword": "設備投資",
       "asof": "7/29 16:00"
@@ -1037,7 +1034,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - newswitch.jp",
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
       "keyword": "データセンター",
       "asof": "8/6 12:02"
@@ -1045,7 +1042,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - kyodo.co.jp",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
@@ -1072,80 +1069,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-08 18:29",
-    "tdnet_afterclose": "2026-08-08 18:29",
-    "technical": "2026-08-08 18:30",
-    "growth_candidates": "2026-08-08 18:29",
-    "pre_earnings_watch": "2026-08-08 18:29",
-    "edinet_large_holdings": "2026-08-08 18:29",
-    "economic_calendar": "2026-08-08 18:29",
-    "movers_afterclose": "2026-08-08 18:30"
+    "market_quotes": "2026-08-08 20:21",
+    "tdnet_afterclose": "2026-08-08 20:21",
+    "technical": "2026-08-08 20:22",
+    "growth_candidates": "2026-08-08 20:21",
+    "pre_earnings_watch": "2026-08-08 20:21",
+    "edinet_large_holdings": "2026-08-08 20:21",
+    "economic_calendar": "2026-08-08 20:21",
+    "movers_afterclose": "2026-08-08 20:22"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:30",
+      "checked_at": "2026-08-08 20:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 18:30",
+      "checked_at": "2026-08-08 20:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-08 18:30",
+      "checked_at": "2026-08-08 20:22",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 18:30",
+      "checked_at": "2026-08-08 20:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:30",
+      "checked_at": "2026-08-08 20:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-08 18:30",
+      "checked_at": "2026-08-08 20:22",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-08 18:29",
+      "checked_at": "2026-08-08 20:21",
       "message": "今回の実行で取得・更新しました。"
     }
   }
