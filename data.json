@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 13:48",
+  "generated_at": "2026-08-08 14:33",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -205,41 +205,41 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰している"
     },
     {
       "code": "",
       "name": "ダイトロン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "急騰"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "ユニティ ソフトウェア",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰した"
     }
   ],
@@ -299,9 +299,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "8306",
@@ -413,8 +411,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "機械"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -800,7 +797,9 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     }
   ],
   "us_good_news": [],
@@ -966,7 +965,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - 日本経済新聞",
+      "title": "キーエンス純利益51%増の1391億円 4〜6月、アジアで設備投資堅調 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9ieUxrT3pEWlQ2N3JpTEhUWjVic080eUhlQVI3M1hSZUhQZzFjMnc5ZFlIMEItZHpYdUlLcmgyRUJHMXBVa3JsWjVxOFdZOWZsNmxBV0Y5cENLNE1lLWU3QlpvYXRXWVcwTmZURw?oc=5",
       "keyword": "設備投資",
       "asof": "7/28 16:00"
@@ -990,7 +989,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
+      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - moneyworld.jp",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
       "keyword": "受注",
       "asof": "8/7 10:15"
@@ -998,7 +997,7 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - itmedia.co.jp",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - ITmedia",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 19:43"
@@ -1006,7 +1005,7 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - itmedia.co.jp",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - ITmedia",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5ZT1ZJTEo1em11Vnk4R1pCT0tOTkFyRVc5dVZTcE9yZlBOaFI0SERiZ0RPeTBQNkNHNTZCYmZYUE5sczdBT0ladldYbXl5ck5lU0Jrb21zN2x4ZHR5VzFfdkVtVjliQXdPcExESnJrRjlzbFVMTDI5LUZmVQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 22:17"
@@ -1030,7 +1029,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "決算:KDDIが22％増益、携帯やデータセンター好調 情報漏洩の不祥事が影 - 日本経済新聞",
+      "title": "決算:KDDIが22％増益、携帯やデータセンター好調 情報漏洩の不祥事が影 - nikkei.com",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBuR1hESFJaaUtHaWpRb3JPUkJEdHRRSkhFa1RMM2d3WC1BQ2pWcWtodnR5eWpjYnRhT05CSjJxOThSUEJrYjkzRFRuemIzRFZxUzA4eUd3a19WUk9kQlhNVHEyVC1wVlVvX0x2VA?oc=5",
       "keyword": "データセンター",
       "asof": "8/7 19:40"
@@ -1046,7 +1045,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - kyodo.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
@@ -1073,80 +1072,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-08 13:48",
-    "tdnet_morning": "2026-08-08 13:48",
-    "technical": "2026-08-08 13:49",
-    "growth_candidates": "2026-08-08 13:48",
-    "pre_earnings_watch": "2026-08-08 13:48",
-    "edinet_large_holdings": "2026-08-08 13:48",
-    "economic_calendar": "2026-08-08 13:48",
-    "movers_morning": "2026-08-08 13:49"
+    "market_quotes": "2026-08-08 14:33",
+    "tdnet_morning": "2026-08-08 14:33",
+    "technical": "2026-08-08 14:34",
+    "growth_candidates": "2026-08-08 14:33",
+    "pre_earnings_watch": "2026-08-08 14:33",
+    "edinet_large_holdings": "2026-08-08 14:33",
+    "economic_calendar": "2026-08-08 14:33",
+    "movers_morning": "2026-08-08 14:34"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:49",
+      "checked_at": "2026-08-08 14:34",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-08 13:49",
+      "checked_at": "2026-08-08 14:34",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:34",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:49",
+      "checked_at": "2026-08-08 14:34",
       "message": "今回の実行で取得・更新しました。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:34",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-08 13:49",
+      "checked_at": "2026-08-08 14:34",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-08 13:48",
+      "checked_at": "2026-08-08 14:33",
       "message": "今回の実行で取得・更新しました。"
     }
   }
