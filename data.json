@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 00:21",
+  "generated_at": "2026-08-09 02:22",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -208,41 +208,41 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰している"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰した"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰した"
     },
     {
       "code": "",
       "name": "アルベマール",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰している"
     },
     {
       "code": "",
       "name": "インスメッド",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "volume_note": null,
+      "volume_note": "",
       "reason": "急騰した"
     }
   ],
@@ -382,7 +382,7 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
       "theme_trend_note": "市場で注目されている"
     },
@@ -467,7 +467,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -577,9 +577,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+3.54%上昇、52週高値まで2.72%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -745,7 +743,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -801,7 +799,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [],
@@ -999,18 +997,18 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - ITmedia",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
+      "title": "【ライブ】日経平均株価/任天堂 株式売出価格決定/JX金属 増産へ/《決算速報》オラクル エニーカラー 三井ハイテック/株式投資/最新情報｜3月11日(水)〈Every Stock NEWS〉 Kevin Warsh (d3zg970OKO) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9tYXZpcGVBdUlHQ0VtSktJYndhMkdtcDV6RUF0R3lINTBteUctWWNBRlpfZFVuUjZPQzd0M2U0Qmt5ZEVQTGk1dzB2a0pkSUpjODJZTi1sUzROb2s?oc=5",
       "keyword": "増産",
-      "asof": "7/28 19:43"
+      "asof": "8/8 13:56"
     },
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - ITmedia",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5ZT1ZJTEo1em11Vnk4R1pCT0tOTkFyRVc5dVZTcE9yZlBOaFI0SERiZ0RPeTBQNkNHNTZCYmZYUE5sczdBT0ladldYbXl5ck5lU0Jrb21zN2x4ZHR5VzFfdkVtVjliQXdPcExESnJrRjlzbFVMTDI5LUZmVQ?oc=5",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - ITmedia",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
       "keyword": "増産",
-      "asof": "7/28 22:17"
+      "asof": "7/28 19:43"
     },
     {
       "code": "8035",
@@ -1047,18 +1045,10 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
+      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - kyodo.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
-    },
-    {
-      "code": "4063",
-      "company": "信越化学工業",
-      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - Mshale",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUek9aM2RtaG93aFVMTXBSR1F3S1U0MWFTTldVelVtUkc2Q0R2eGlCZzhZSVgyTXljam9jWFk4eFRZTmdtUXF6M3R1X2JhUF9BR0FhR0E5aXUzbVE?oc=5",
-      "keyword": "新工場",
-      "asof": "8/8 11:15"
     },
     {
       "code": "5401",
@@ -1067,6 +1057,14 @@
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB1M2tma0hYZEJjZ1NVcXVsUnFhOTFaTHVkSmhqV29nM3diTy1TV0hWakdXclYya2hmXzdIVzU3REo2RENfdHhzR3pvWHNxMHNPRlJ2cXZBZ202MWRnMG52UFlMNHpTTGtqUXFLVlBHeW5JamM?oc=5",
       "keyword": "生産能力",
       "asof": "8/7 05:15"
+    },
+    {
+      "code": "5401",
+      "company": "日本製鉄",
+      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ（テレビ愛知） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBSNWg2dkp6dGhtWHNUUWNrTVZwT2VDUGZsRmNXdndHSHB6T0VBZXJzdHFEc0JLSFlsQkh4Y1g0aUh4TUJsU015MzRTZVEzZnRhYWJiUWNUNDVIQlFNdUJjb29aRDBlbmMza1ZqcWtqSW93NE96bGVmOVFUbXVwS0U?oc=5",
+      "keyword": "新工場",
+      "asof": "8/6 18:57"
     }
   ],
   "line_notify_last": {
@@ -1074,80 +1072,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 00:21",
-    "tdnet_afterclose": "2026-08-09 00:21",
-    "technical": "2026-08-09 00:22",
-    "growth_candidates": "2026-08-09 00:21",
-    "pre_earnings_watch": "2026-08-09 00:21",
-    "edinet_large_holdings": "2026-08-09 00:21",
-    "economic_calendar": "2026-08-09 00:21",
-    "movers_afterclose": "2026-08-09 00:22"
+    "market_quotes": "2026-08-09 02:22",
+    "tdnet_afterclose": "2026-08-09 02:22",
+    "technical": "2026-08-09 02:23",
+    "growth_candidates": "2026-08-09 02:22",
+    "pre_earnings_watch": "2026-08-09 02:22",
+    "edinet_large_holdings": "2026-08-09 02:22",
+    "economic_calendar": "2026-08-09 02:22",
+    "movers_afterclose": "2026-08-09 02:23"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:22",
+      "checked_at": "2026-08-09 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 00:22",
+      "checked_at": "2026-08-09 02:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 00:22",
+      "checked_at": "2026-08-09 02:23",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 00:22",
+      "checked_at": "2026-08-09 02:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:22",
+      "checked_at": "2026-08-09 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 00:22",
+      "checked_at": "2026-08-09 02:23",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 00:21",
+      "checked_at": "2026-08-09 02:22",
       "message": "今回の実行で取得・更新しました。"
     }
   }
