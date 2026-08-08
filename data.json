@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 08:55",
+  "generated_at": "2026-08-08 09:44",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -686,9 +686,7 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離"
     },
     {
       "code": "6954",
@@ -800,7 +798,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -854,9 +852,7 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.0%上昇、52週高値まで5.2%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "7267",
@@ -995,7 +991,7 @@
       "sector_avg_change_pct": -1.58,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "4519",
@@ -1109,7 +1105,7 @@
       "baked_in_warning": true,
       "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "theme_trend_note": "市場で注目されている"
     }
   ],
   "us_good_news": [
@@ -1306,28 +1302,12 @@
   ],
   "pre_earnings_watch": [
     {
-      "code": "6758",
-      "company": "ソニーグループ",
-      "title": "熊本地震でルネサスやソニーセミコンが生産停止、TSMCは新工場建設中断 - 日経ビジネス電子版",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5QTXAtTmxXcmZaLWR1Z1BXY3dibXRldFNHeHhJaVVFd1Izd3gzRzVyN1VDdWJRMkJFbWtyamFUVGJmMlBPU05kR0RBbGgtUENlS2NfQVRTT0xkRjlTdXpWTXg5XzlGcW8?oc=5",
-      "keyword": "新工場",
-      "asof": "7/29 16:00"
-    },
-    {
-      "code": "6758",
-      "company": "ソニーグループ",
-      "title": "政府支援約3900億円で巨大AIデータセンター構築へ、国産AI開発「ノエトラ」がエヌビディア最新AIサーバー約380ラック導入…ソフトバンクが鍵を握る国産フィジカルAI計画の全容 - ダイヤモンド・オンライン",
-      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE40X2g0a0toOEJycnlyNnplUEVncGthLWM5Ym9Fdm12dnRJYkhnX1ZNMkxTczh5eDFTSlFmY3hTcTVXWWNVTDc0MUVtcmLSAU9BVV95cUxNd3BRZ1JYb1lMRndVakJQeHNvOWNlbVJpS21MN0tKVnhMTGsyN3VKeXE4WWZudUpKU2NVc28zUDZ0RGNUQzJNVk9MbXFXM01B?oc=5",
-      "keyword": "データセンター",
-      "asof": "7/27 16:00"
-    },
-    {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益 アームAGI CPU需要増、AIインフラ投資加速 - ビジネス+IT",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1TRjVmTHBMYjZ2R204TjM2aC1ZSlhHV1g2S3dIZE5jaHVpVlFaQ2RSVWh3WXRwRGdXWHVpVzdOTmVhckNHUWoxV3NhRWNqUi0yVFE4?oc=5",
+      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益（ビジネス＋IT） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBrSEVhX1lIYV8xU2d0SkUybF91UUxRdlh5U0MyVTVTRFQzcmhQSXpSbW8xYkhQa0EtNXphZFN1YlY3aDM0ejdONzlQSHZOS2I5bmFGN0liNGRaRXJoaW9MLWxNNGxiSFpva045dzFmTWZXVGsteVlZWlJvbGdZeDQ?oc=5",
       "keyword": "AI投資",
-      "asof": "8/6 18:00"
+      "asof": "8/8 05:40"
     },
     {
       "code": "9984",
@@ -1356,18 +1336,18 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
-      "keyword": "受注",
-      "asof": "8/7 10:15"
-    },
-    {
-      "code": "6954",
-      "company": "ファナック",
       "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - ダイヤモンド・オンライン",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9Mc3VQQkZqa2RRZl95NFo3MUZSeDN6WVZBTHJQUVJmcDRDWTVoU0dZTU45RXVkZC05ZXFULXZwYnI2b1hjUjhKREtXNGHSAU9BVV95cUxPb1AyTkZoV2xuczFBZlNVZWNldzZ2SFBEa2dZelJwYUNMc3VmaU1VRTFoR19OM0dHaHRlejFPVzdITk9TdVk4Vkd3c0plNnBv?oc=5",
       "keyword": "設備投資",
       "asof": "8/7 04:45"
+    },
+    {
+      "code": "6954",
+      "company": "ファナック",
+      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
+      "keyword": "受注",
+      "asof": "8/7 10:15"
     },
     {
       "code": "7974",
@@ -1424,6 +1404,22 @@
       "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
       "keyword": "受注",
       "asof": "8/5 10:00"
+    },
+    {
+      "code": "5401",
+      "company": "日本製鉄",
+      "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - 中部経済新聞",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB1M2tma0hYZEJjZ1NVcXVsUnFhOTFaTHVkSmhqV29nM3diTy1TV0hWakdXclYya2hmXzdIVzU3REo2RENfdHhzR3pvWHNxMHNPRlJ2cXZBZ202MWRnMG52UFlMNHpTTGtqUXFLVlBHeW5JamM?oc=5",
+      "keyword": "生産能力",
+      "asof": "8/7 05:15"
+    },
+    {
+      "code": "5401",
+      "company": "日本製鉄",
+      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ（テレビ愛知） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBSNWg2dkp6dGhtWHNUUWNrTVZwT2VDUGZsRmNXdndHSHB6T0VBZXJzdHFEc0JLSFlsQkh4Y1g0aUh4TUJsU015MzRTZVEzZnRhYWJiUWNUNDVIQlFNdUJjb29aRDBlbmMza1ZqcWtqSW93NE96bGVmOVFUbXVwS0U?oc=5",
+      "keyword": "新工場",
+      "asof": "8/6 18:57"
     }
   ],
   "line_notify_last": {
