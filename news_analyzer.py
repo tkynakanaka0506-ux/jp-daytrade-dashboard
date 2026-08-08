@@ -497,6 +497,13 @@ def main():
 
     news_field = "afterclose_news" if mode == "evening" else "overnight_news"
     movers_field = "movers_afterclose" if mode == "evening" else "movers_morning"
+    inactive_news_field = "overnight_news" if mode == "evening" else "afterclose_news"
+    inactive_movers_field = "movers_morning" if mode == "evening" else "movers_afterclose"
+
+    # 今回の実行対象外の時間帯データも、前回値は使わず「今回未取得」と明記する。
+    # Java側で空配列化した状態を保ち、画面上の「更新処理中」表示を残さない。
+    set_data_status(root, inactive_news_field, "not_requested", "今回の実行モードでは更新対象外です。")
+    set_data_status(root, inactive_movers_field, "not_requested", "今回の実行モードでは更新対象外です。")
 
     # news_analyzer.pyを単独で実行した場合も含め、前回の分析結果を絶対に流用しない。
     # Java側の生データ(technical)は保持するが、LLM由来の補足フィールドは先に消去する。
