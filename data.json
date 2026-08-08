@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 02:22",
+  "generated_at": "2026-08-09 04:22",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -208,42 +208,42 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰している"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰した"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰した"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
     },
     {
       "code": "",
       "name": "アルベマール",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰している"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
     },
     {
       "code": "",
       "name": "インスメッド",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰した"
+      "volume_note": null,
+      "reason": "決算好調で急騰"
     }
   ],
   "technical": [
@@ -382,9 +382,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "6954",
@@ -411,7 +411,8 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "機械"
     },
     {
       "code": "7974",
@@ -467,7 +468,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -496,7 +497,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "9433",
@@ -685,9 +686,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -743,7 +742,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -799,7 +798,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [],
@@ -1013,6 +1012,14 @@
     {
       "code": "8035",
       "company": "東京エレクトロン",
+      "title": "東京エレクトロンの投資分析｜AI半導体設備投資と高収益装置 - d-sharing.jp",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE90azB6b0ZiRmRpVGFzdUtrREpYaEQxQ3NITmFpbFMyVkpEZ2lQS2hzTnNKVzg0NHFpWnVJVVpKZGFBc2Z4dW05cE96dHdYVGs5LTBEbGdXRUVIanNuTXV2bnJFWXZvTDQ3a2ZncHFvVDRPMDFs?oc=5",
+      "keyword": "設備投資",
+      "asof": "8/8 23:09"
+    },
+    {
+      "code": "8035",
+      "company": "東京エレクトロン",
       "title": "AIデータセンター性能向上の鍵は「CPO」光電融合の最前線 | サイエンス リポート | TELESCOPE magazine - tel.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9DWGtDWkVpb2VpLXlPaElWcGxfLWxtWVZXQW5HbS1xUkJHd05KbGRpa09hSl9Ga1owQmtKekozdVcyc2xaRDBOcEpleGwwNGpHM1BHaUxyeWFOclhFTGxZUjYwbFdzUQ?oc=5",
       "keyword": "データセンター",
@@ -1037,34 +1044,26 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
+      "title": "ダイキン工業の投資分析｜過去最高1QとAIデータセンター冷却 - d-sharing.jp",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1rZmt0ZDZPSnZsZmhLaEI4OE03a20wYWM3bzBWVHliM2k5c1loOUhrSldpYjMxTkN2MW1ONUJlY0pqSkp6RTZIZDNiUDdvakxRbTJoek1PMzZtMWU0ZWViOEVZWTM0NWJFc3RmMnFuUFl1NXluYkJwZg?oc=5",
+      "keyword": "データセンター",
+      "asof": "8/8 23:09"
+    },
+    {
+      "code": "6367",
+      "company": "ダイキン工業",
       "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
       "keyword": "データセンター",
       "asof": "8/6 12:02"
     },
     {
-      "code": "6367",
-      "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - kyodo.co.jp",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
-      "keyword": "受注",
-      "asof": "8/5 10:00"
-    },
-    {
-      "code": "5401",
-      "company": "日本製鉄",
-      "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - 中部経済新聞",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB1M2tma0hYZEJjZ1NVcXVsUnFhOTFaTHVkSmhqV29nM3diTy1TV0hWakdXclYya2hmXzdIVzU3REo2RENfdHhzR3pvWHNxMHNPRlJ2cXZBZ202MWRnMG52UFlMNHpTTGtqUXFLVlBHeW5JamM?oc=5",
-      "keyword": "生産能力",
-      "asof": "8/7 05:15"
-    },
-    {
-      "code": "5401",
-      "company": "日本製鉄",
-      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ（テレビ愛知） - Yahoo!ニュース",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBSNWg2dkp6dGhtWHNUUWNrTVZwT2VDUGZsRmNXdndHSHB6T0VBZXJzdHFEc0JLSFlsQkh4Y1g0aUh4TUJsU015MzRTZVEzZnRhYWJiUWNUNDVIQlFNdUJjb29aRDBlbmMza1ZqcWtqSW93NE96bGVmOVFUbXVwS0U?oc=5",
+      "code": "4063",
+      "company": "信越化学工業",
+      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUek9aM2RtaG93aFVMTXBSR1F3S1U0MWFTTldVelVtUkc2Q0R2eGlCZzhZSVgyTXljam9jWFk4eFRZTmdtUXF6M3R1X2JhUF9BR0FhR0E5aXUzbVE?oc=5",
       "keyword": "新工場",
-      "asof": "8/6 18:57"
+      "asof": "8/8 11:15"
     }
   ],
   "line_notify_last": {
@@ -1072,80 +1071,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 02:22",
-    "tdnet_afterclose": "2026-08-09 02:22",
-    "technical": "2026-08-09 02:23",
-    "growth_candidates": "2026-08-09 02:22",
-    "pre_earnings_watch": "2026-08-09 02:22",
-    "edinet_large_holdings": "2026-08-09 02:22",
-    "economic_calendar": "2026-08-09 02:22",
-    "movers_afterclose": "2026-08-09 02:23"
+    "market_quotes": "2026-08-09 04:22",
+    "tdnet_afterclose": "2026-08-09 04:22",
+    "technical": "2026-08-09 04:23",
+    "growth_candidates": "2026-08-09 04:22",
+    "pre_earnings_watch": "2026-08-09 04:22",
+    "edinet_large_holdings": "2026-08-09 04:22",
+    "economic_calendar": "2026-08-09 04:22",
+    "movers_afterclose": "2026-08-09 04:23"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:23",
+      "checked_at": "2026-08-09 04:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 02:23",
+      "checked_at": "2026-08-09 04:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 02:23",
+      "checked_at": "2026-08-09 04:23",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 02:23",
+      "checked_at": "2026-08-09 04:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:23",
+      "checked_at": "2026-08-09 04:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 02:23",
+      "checked_at": "2026-08-09 04:23",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 02:22",
+      "checked_at": "2026-08-09 04:22",
       "message": "今回の実行で取得・更新しました。"
     }
   }
