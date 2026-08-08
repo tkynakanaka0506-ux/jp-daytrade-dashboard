@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-09 08:20",
-  "run_type": "evening",
+  "generated_at": "2026-08-09 08:52",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,757.64",
@@ -39,9 +39,7 @@
     "asof": "8/7終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [],
-  "movers_morning": [],
-  "tdnet_afterclose": [
+  "tdnet_morning": [
     {
       "time": "―",
       "code": "―",
@@ -203,21 +201,20 @@
       "tag": "他"
     }
   ],
-  "afterclose_news": [],
-  "movers_afterclose": [
+  "movers_morning": [
     {
       "code": "",
       "name": "キングスパン",
       "price": "",
-      "change_pct": "",
+      "change_pct": null,
       "volume_note": "",
-      "reason": "決算好調で急騰"
+      "reason": "急騰した理由"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
       "price": "",
-      "change_pct": "",
+      "change_pct": null,
       "volume_note": "",
       "reason": "急騰した理由"
     },
@@ -225,7 +222,7 @@
       "code": "",
       "name": "アルベマール",
       "price": "",
-      "change_pct": "",
+      "change_pct": null,
       "volume_note": "",
       "reason": "急騰している理由"
     },
@@ -233,19 +230,14 @@
       "code": "",
       "name": "インスメッド",
       "price": "",
-      "change_pct": "",
+      "change_pct": null,
       "volume_note": "",
       "reason": "急騰した理由"
-    },
-    {
-      "code": "",
-      "name": "SKハイニックス",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急落した理由"
     }
   ],
+  "tdnet_afterclose": [],
+  "afterclose_news": [],
+  "movers_afterclose": [],
   "technical": [
     {
       "code": "7203",
@@ -382,9 +374,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離があるため材料出尽くしのリスク",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目されているテーマ"
     },
     {
       "code": "6954",
@@ -411,7 +403,8 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "機械"
     },
     {
       "code": "7974",
@@ -467,7 +460,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離があるため材料出尽くしのリスク"
     },
     {
       "code": "8035",
@@ -496,7 +489,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目されているテーマ"
     },
     {
       "code": "9433",
@@ -685,9 +678,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -743,7 +734,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離があるため材料出尽くしのリスク"
     },
     {
       "code": "2413",
@@ -799,7 +790,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離があるため材料出尽くしのリスク"
     }
   ],
   "us_good_news": [],
@@ -1059,12 +1050,12 @@
       "asof": "8/6 12:02"
     },
     {
-      "code": "9983",
-      "company": "ファーストリテイリング",
-      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - zaikai.jp",
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBDcmZzMVVPeUZ0MHlRUmUzeUQxSFpuNm1CYi0yRVVIVnl6aWlqUExRQVJ4X0l0ZzVoVkhoNFJ3dDE5NkVQTmZtVGFkR2IzOUFpLWlqZA?oc=5",
-      "keyword": "データセンター",
-      "asof": "8/4 07:03"
+      "code": "4063",
+      "company": "信越化学工業",
+      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUek9aM2RtaG93aFVMTXBSR1F3S1U0MWFTTldVelVtUkc2Q0R2eGlCZzhZSVgyTXljam9jWFk4eFRZTmdtUXF6M3R1X2JhUF9BR0FhR0E5aXUzbVE?oc=5",
+      "keyword": "新工場",
+      "asof": "8/8 11:15"
     }
   ],
   "line_notify_last": {
@@ -1072,80 +1063,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 08:20",
-    "tdnet_afterclose": "2026-08-09 08:20",
-    "technical": "2026-08-09 08:21",
-    "growth_candidates": "2026-08-09 08:20",
-    "pre_earnings_watch": "2026-08-09 08:20",
-    "edinet_large_holdings": "2026-08-09 08:20",
-    "economic_calendar": "2026-08-09 08:20",
-    "movers_afterclose": "2026-08-09 08:21"
+    "market_quotes": "2026-08-09 08:52",
+    "tdnet_morning": "2026-08-09 08:52",
+    "technical": "2026-08-09 08:53",
+    "growth_candidates": "2026-08-09 08:52",
+    "pre_earnings_watch": "2026-08-09 08:52",
+    "edinet_large_holdings": "2026-08-09 08:52",
+    "economic_calendar": "2026-08-09 08:52",
+    "movers_morning": "2026-08-09 08:53"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 08:20",
+      "checked_at": "2026-08-09 08:52",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "not_requested",
-      "checked_at": "2026-08-09 08:20",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-09 08:52",
+      "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-09 08:20",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-09 08:52",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 08:21",
+      "checked_at": "2026-08-09 08:53",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 08:20",
+      "checked_at": "2026-08-09 08:52",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 08:20",
+      "checked_at": "2026-08-09 08:52",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-09 08:20",
-      "message": "今回の実行モードでは更新対象外です。"
-    },
-    "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 08:21",
+      "checked_at": "2026-08-09 08:53",
       "message": "ニュース分析APIで取得できませんでした。"
     },
-    "movers_morning": {
+    "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 08:20",
+      "checked_at": "2026-08-09 08:52",
       "message": "今回の実行モードでは更新対象外です。"
     },
-    "movers_afterclose": {
+    "movers_morning": {
       "state": "updated",
-      "checked_at": "2026-08-09 08:21",
+      "checked_at": "2026-08-09 08:53",
       "message": "今回の実行で取得・更新しました。"
+    },
+    "movers_afterclose": {
+      "state": "not_requested",
+      "checked_at": "2026-08-09 08:52",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 08:21",
+      "checked_at": "2026-08-09 08:53",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 08:20",
+      "checked_at": "2026-08-09 08:52",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 08:20",
+      "checked_at": "2026-08-09 08:52",
       "message": "今回の実行で取得・更新しました。"
     }
   }
