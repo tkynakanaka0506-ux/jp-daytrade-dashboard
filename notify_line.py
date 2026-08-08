@@ -94,9 +94,24 @@ import json
 import os
 import sys
 import urllib.request
+import urllib.parse
 from datetime import datetime, timezone, timedelta
 
 JST = timezone(timedelta(hours=9))
+
+# LINEは「材料が出た」ことを知らせるだけではなく、通知した時点でもまだ
+# エントリーを検討できる位置にある銘柄だけを送る。値は保守的な初期値であり、
+# 実績を見ながら環境変数で調整できる。
+MAX_DATA_AGE_MINUTES = int(os.environ.get("LINE_MAX_DATA_AGE_MINUTES", "30"))
+MAX_DAY_CHANGE_PCT = float(os.environ.get("LINE_MAX_DAY_CHANGE_PCT", "2.5"))
+MAX_OPEN_GAP_PCT = float(os.environ.get("LINE_MAX_OPEN_GAP_PCT", "1.5"))
+MAX_FROM_DAY_LOW_PCT = float(os.environ.get("LINE_MAX_FROM_DAY_LOW_PCT", "2.0"))
+MAX_FROM_DAY_HIGH_PCT = float(os.environ.get("LINE_MAX_FROM_DAY_HIGH_PCT", "1.0"))
+
+# 取引開始直後の値動きが落ち着かない時間帯と、引け間際を避ける。GitHub Actionsの
+# 開始遅延があっても、前日終値のまま通知することを防ぐため、立会時間外は送信しない。
+MARKET_OPEN_MINUTE = 9 * 60 + 5
+MARKET_CLOSE_MINUTE = 15 * 60 + 15
 
 # pre_earnings_watch/growth_candidates のタイトルや EDINET の doc_description に
 # 含まれていたら、「好材料」としては数えない(むしろ悪材料寄り)とみなすキーワード。
@@ -144,6 +159,145 @@ def _fmt_num(v, suffix=""):
     if isinstance(v, (int, float)):
         return f"{v}{suffix}"
     return "―"
+
+
+def _jst_now():
+    return datetime.now(JST)
+
+
+def _is_regular_session(now=None):
+    """東証の通常立会時間中かを判定する(祝日は価格データ検証でも弾かれる)。"""
+    now = now or _jst_now()
+    if now.weekday() >= 5:
+        return False
+    minute = now.hour * 60 + now.minute
+    return MARKET_OPEN_MINUTE <= minute <= MARKET_CLOSE_MINUTE
+
+
+def _data_is_fresh(root, now=None):
+    """パイプライン全体が遅れた場合に、古いdata.jsonでLINEを送らない。"""
+    generated_at = (root.get("generated_at") or "").strip()
+    if not generated_at:
+        return False, "更新時刻がありません"
+    try:
+        generated = datetime.strptime(generated_at, "%Y-%m-%d %H:%M").replace(tzinfo=JST)
+    except ValueError:
+        return False, f"更新時刻の形式が不正です({generated_at})"
+    age_minutes = ((now or _jst_now()) - generated).total_seconds() / 60
+    # 時計ずれで未来になるケースは小さな誤差だけ許容する。
+    if age_minutes < -5 or age_minutes > MAX_DATA_AGE_MINUTES:
+        return False, f"データが{age_minutes:.0f}分前で新鮮ではありません"
+    return True, None
+
+
+def _fetch_json(url, timeout=12):
+    req = urllib.request.Request(url, headers={"User-Agent": "jp-daytrade-dashboard/1.0"})
+    with urllib.request.urlopen(req, timeout=timeout) as res:
+        return json.loads(res.read().decode("utf-8"))
+
+
+def _resolve_yahoo_symbol(name, code=None):
+    """証券コードがないTDnet銘柄も、Yahoo検索で東証コードを特定する。
+
+    完全一致で確認できない曖昧な社名は、誤通知を防ぐため候補から外す。
+    """
+    if code and str(code).isdigit():
+        return f"{code}.T", str(code)
+    query = urllib.parse.quote(name)
+    payload = _fetch_json(
+        f"https://query1.finance.yahoo.com/v1/finance/search?q={query}&quotesCount=10&newsCount=0"
+    )
+    normalized = (name or "").replace(" ", "").replace("　", "")
+    matches = []
+    for quote in payload.get("quotes", []):
+        symbol = quote.get("symbol", "")
+        quote_name = (quote.get("shortname") or quote.get("longname") or "").replace(" ", "").replace("　", "")
+        if not symbol.endswith(".T") or quote.get("quoteType") != "EQUITY":
+            continue
+        if quote_name == normalized:
+            matches.append((symbol, symbol[:-2]))
+    if len(matches) == 1:
+        return matches[0]
+    return None, None
+
+
+def _fetch_live_quote(symbol):
+    """Yahoo Financeの1分足から、通知時点の価格・寄り付き・当日高安を取得する。"""
+    encoded = urllib.parse.quote(symbol, safe="^=.-")
+    payload = _fetch_json(
+        f"https://query1.finance.yahoo.com/v8/finance/chart/{encoded}?interval=1m&range=1d&includePrePost=false"
+    )
+    result = ((payload.get("chart") or {}).get("result") or [None])[0]
+    if not result:
+        return None
+    meta = result.get("meta") or {}
+    quote = (((result.get("indicators") or {}).get("quote") or [{}])[0])
+    opens = [x for x in quote.get("open", []) if isinstance(x, (int, float))]
+    highs = [x for x in quote.get("high", []) if isinstance(x, (int, float))]
+    lows = [x for x in quote.get("low", []) if isinstance(x, (int, float))]
+    closes = [x for x in quote.get("close", []) if isinstance(x, (int, float))]
+    price = meta.get("regularMarketPrice")
+    prev_close = meta.get("previousClose") or meta.get("chartPreviousClose")
+    if not isinstance(price, (int, float)) or not isinstance(prev_close, (int, float)) or prev_close <= 0:
+        return None
+    if not opens or not highs or not lows or not closes:
+        return None
+    return {
+        "price": float(price),
+        "previous_close": float(prev_close),
+        "open": float(opens[0]),
+        "day_high": float(max(highs)),
+        "day_low": float(min(lows)),
+        "market_state": meta.get("marketState", ""),
+        "regular_market_time": meta.get("regularMarketTime"),
+    }
+
+
+def _pct(current, base):
+    return (current - base) / base * 100.0 if base else None
+
+
+def _entry_check(candidate):
+    """候補を通知直前の値動きで再判定する。
+
+    Trueの場合だけLINEに送る。データが取得できない場合も通知しないことで、
+    "上がり切ったか不明な銘柄"を買い候補として誤って送らない。
+    """
+    try:
+        symbol, resolved_code = _resolve_yahoo_symbol(candidate["name"], candidate.get("code"))
+        if not symbol:
+            return False, "東証コードを一意に特定できません", None
+        quote = _fetch_live_quote(symbol)
+        if not quote:
+            return False, "リアルタイム株価を取得できません", None
+    except Exception as e:
+        log(f"リアルタイム価格の取得失敗({candidate['name']}): {e}")
+        return False, "リアルタイム株価の取得に失敗しました", None
+
+    price = quote["price"]
+    day_change = _pct(price, quote["previous_close"])
+    open_gap = _pct(quote["open"], quote["previous_close"])
+    from_low = _pct(price, quote["day_low"])
+    from_high = _pct(quote["day_high"], price)
+    failures = []
+    if day_change is None or day_change > MAX_DAY_CHANGE_PCT:
+        failures.append(f"前日終値比{_fmt_num(day_change, '%')}で上昇済み")
+    if open_gap is None or open_gap > MAX_OPEN_GAP_PCT:
+        failures.append(f"寄り付きギャップ{_fmt_num(open_gap, '%')}が大きい")
+    if from_low is None or from_low > MAX_FROM_DAY_LOW_PCT:
+        failures.append(f"当日安値から{_fmt_num(from_low, '%')}上昇済み")
+    if from_high is None or from_high > MAX_FROM_DAY_HIGH_PCT:
+        failures.append(f"高値から{_fmt_num(from_high, '%')}下落している")
+    if failures:
+        return False, "、".join(failures), None
+
+    quote["symbol"] = symbol
+    quote["code"] = resolved_code
+    quote["day_change_pct"] = round(day_change, 2)
+    quote["open_gap_pct"] = round(open_gap, 2)
+    quote["from_day_low_pct"] = round(from_low, 2)
+    quote["from_day_high_pct"] = round(from_high, 2)
+    return True, None, quote
 
 
 def _collect_signal_hits(root):
@@ -436,17 +590,33 @@ def score_candidates(root):
 
 
 def pick_best_candidate(root):
-    """複合スコアが最も高い1銘柄を選ぶ。候補が無ければNoneを返す。"""
-    candidates = score_candidates(root)
-    return candidates[0] if candidates else None
+    """スコア上位から、通知時点でも上がり切っていない銘柄を選ぶ。
+
+    材料だけで選ばず、全候補にリアルタイム再判定を行う。最上位が急騰済みでも
+    次点を検討でき、全候補が不適格なら無理にLINEを送らない。
+    """
+    rejected = []
+    for candidate in score_candidates(root):
+        eligible, reason, quote = _entry_check(candidate)
+        if not eligible:
+            rejected.append(f"{candidate['name']}: {reason}")
+            continue
+        candidate["live_quote"] = quote
+        if quote.get("code"):
+            candidate["code"] = quote["code"]
+        return candidate, rejected
+    return None, rejected
 
 
 def build_message(pick):
     t = pick.get("technical") or {}
+    live = pick.get("live_quote") or {}
     name = pick["name"] or t.get("name") or ""
     code = pick["code"] or ""
-    price = t.get("price", "")
-    change_pct = t.get("change_pct")
+    price = live.get("price") or t.get("price", "")
+    change_pct = live.get("day_change_pct")
+    if change_pct is None:
+        change_pct = t.get("change_pct")
     change_str = f"{change_pct:+.2f}%" if isinstance(change_pct, (int, float)) else "―"
 
     lines = [
@@ -454,7 +624,8 @@ def build_message(pick):
         f"{name}({code})" if code else f"{name}",
     ]
     if price:
-        lines.append(f"現在値: {price} ({change_str})")
+        price_str = f"{price:,.0f}円" if isinstance(price, (int, float)) else str(price)
+        lines.append(f"現在値: {price_str} ({change_str})")
     elif not t:
         lines.append("現在値: ―(ウォッチリスト外銘柄のため株価データなし。ご自身でチャート確認をお願いします)")
     lines.append(f"総合スコア: {pick['score']:.0f}点(該当シグナル{pick['category_count']}種)")
@@ -466,6 +637,17 @@ def build_message(pick):
         lines.append(f"参照: {pick['urls'][0]}")
     if pick["penalty_reasons"]:
         lines.append("注意: " + "、".join(pick["penalty_reasons"]) + "(既に一部織り込み済みの可能性)")
+    if live:
+        lines.append(
+            "値動き確認: "
+            f"寄り付き比{live['open_gap_pct']:+.2f}% / "
+            f"安値から{live['from_day_low_pct']:+.2f}% / "
+            f"高値から{live['from_day_high_pct']:+.2f}%"
+        )
+        lines.append(
+            f"検討価格帯: {live['day_low']:,.0f}〜{live['price']:,.0f}円 "
+            "(この範囲を上回って追いかけない)"
+        )
     if "growth_candidate" in pick.get("categories", []):
         lines.append(
             "※本銘柄はTDnet適時開示ベースの当日公開情報を含みます。"
@@ -511,13 +693,24 @@ def main():
     with open(data_path, encoding="utf-8") as f:
         root = json.load(f)
 
-    pick = pick_best_candidate(root)
+    now = _jst_now()
+    if not _is_regular_session(now):
+        log("立会時間外または開始直後のため、前日価格ベースのLINE通知をスキップします。")
+        return
+
+    fresh, fresh_reason = _data_is_fresh(root, now)
+    if not fresh:
+        log(f"{fresh_reason}。古い候補での通知をスキップします。")
+        return
+
+    pick, rejected = pick_best_candidate(root)
     if not pick:
-        log("先行シグナルの条件を満たす銘柄が無いため、通知はスキップします。")
+        summary = " / ".join(rejected[:5]) if rejected else "先行シグナルの候補なし"
+        log(f"エントリー可能な候補が無いため、通知はスキップします。除外理由: {summary}")
         return
 
     dedup_key = pick["code"] or pick["name"]
-    today_str = datetime.now(JST).strftime("%Y-%m-%d")
+    today_str = now.strftime("%Y-%m-%d")
     last = root.get("line_notify_last") or {}
     if last.get("date") == today_str and last.get("code") == dedup_key:
         log(f"本日は既に{dedup_key}を通知済みのため、重複通知をスキップします。")

@@ -56,3 +56,20 @@ src/main/java/Main.java          データ取得ロジック本体
 Claudeスケジュールタスクは、このGitHub Actionsワークフローが有効になれば
 不要になる(同じ処理を毎回LLMがブラウザ操作で行っていたもの)。
 重複更新やコンフリクトを避けるため、Actionsの動作確認後に無効化/削除することを推奨する。
+
+## LINE通知のエントリー判定
+
+`notify_line.py` は、材料を検知しただけでは通知しない。東証の通常立会時間中に、
+Yahoo Finance の1分足で通知直前の価格を再確認し、次のいずれかに当てはまる銘柄は
+「既に動いた」として通知から除外する。
+
+- 前日終値比が +2.5% 超
+- 寄り付きギャップが +1.5% 超
+- 当日安値から +2.0% 超
+- 当日高値から 1.0% 超下落(高値掴み・失速の回避)
+- 東証コードまたはリアルタイム価格を確実に取得できない
+
+基準値は必要に応じて GitHub Actions の環境変数で調整できる。
+`LINE_MAX_DAY_CHANGE_PCT`、`LINE_MAX_OPEN_GAP_PCT`、
+`LINE_MAX_FROM_DAY_LOW_PCT`、`LINE_MAX_FROM_DAY_HIGH_PCT`、
+`LINE_MAX_DATA_AGE_MINUTES` を設定しなければ、上記の既定値を使う。
