@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 09:44",
+  "generated_at": "2026-08-08 11:34",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -35,7 +35,7 @@
   },
   "nikkei225": {
     "value": "65,606.71",
-    "change_pct": -1.05,
+    "change_pct": -0.12,
     "asof": "8/7終値"
   },
   "overnight_news": [
@@ -103,7 +103,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 今日 08:00 New!",
+      "title": "第26回定時株主総会招集ご通知及び株主総会資料 他 今日 08:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260808/140120260807513729.pdf",
       "tag": "他"
     },
@@ -264,41 +264,41 @@
     {
       "code": "",
       "name": "ニューモント・マイニング",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰している"
     },
     {
       "code": "",
       "name": "ダイトロン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "急騰"
     },
     {
       "code": "",
       "name": "アプライド・オプトエレクトロニクス",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰した"
     }
   ],
@@ -686,7 +686,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離"
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -713,7 +715,9 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "7974",
@@ -989,9 +993,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -1103,9 +1105,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [
@@ -1312,10 +1312,10 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "PayPayが資本増強、ソフトバンクグループから460億円調達 資金力生かして「競争勝ち抜く」（画像）（1/2枚目） - ITmedia",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRNFd6ekxqTVVhWlFTVjUxV2ZHTVlTYkFDaWNFcjBtN2VwYkpDbFVHblRFTzRvQUd3OVAxX0JpMWc2QXlQdktjVUJ0TktxZlcwUVU2cWQyWWVFQndEQXdSNXFFclZveGQ5bExWYzlSTGphRmdKUVZuVlF0MA?oc=5",
-      "keyword": "増強",
-      "asof": "7/29 11:59"
+      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益 (ビジネス＋IT) - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNb0thalN1UHp4RjRjamtZWHB6aXVxcTVXSEpWT0c4RkJmd0ZEREdrYWk2ZG02T2pvWjNieFZTT1ZEblgyZ3NHdzZYdHJKMFJ1QWZ0VnNSc0hZMjRheGJ0OHNaVUVwMW0teU9NVWJTd2pYREh2Y3VmSFNvMWNIYUZkZFJ6cU96SW1DWTFlS1pn?oc=5",
+      "keyword": "AI投資",
+      "asof": "8/8 07:12"
     },
     {
       "code": "6861",
@@ -1425,5 +1425,14 @@
   "line_notify_last": {
     "date": "2026-08-08",
     "code": "9433"
+  },
+  "data_updated_at": {
+    "market_quotes": "2026-08-08 11:34",
+    "tdnet_morning": "2026-08-08 11:34",
+    "technical": "2026-08-08 11:35",
+    "growth_candidates": "2026-08-08 11:34",
+    "pre_earnings_watch": "2026-08-08 11:34",
+    "economic_calendar": "2026-08-08 11:34",
+    "movers_morning": "2026-08-08 11:35"
   }
 }
