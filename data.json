@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08 11:34",
+  "generated_at": "2026-08-08 12:56",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -279,14 +279,6 @@
     },
     {
       "code": "",
-      "name": "アプライド・オプトエレクトロニクス",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "本日急騰した"
-    },
-    {
-      "code": "",
       "name": "キングスパン",
       "price": null,
       "change_pct": null,
@@ -296,6 +288,14 @@
     {
       "code": "",
       "name": "ウォーツ・ウォーター・テクノロジーズ",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "本日急騰した"
+    },
+    {
+      "code": "",
+      "name": "ユニティ ソフトウェア",
       "price": null,
       "change_pct": null,
       "volume_note": null,
@@ -686,7 +686,7 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
       "theme_trend_note": "市場で注目されている"
     },
@@ -715,9 +715,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -773,7 +771,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -883,9 +881,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で3.54%上昇、52週高値まで2.72%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -993,7 +989,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "4519",
@@ -1049,7 +1047,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -1105,7 +1103,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [
@@ -1344,7 +1342,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
+      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - moneyworld.jp",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
       "keyword": "受注",
       "asof": "8/7 10:15"
@@ -1427,12 +1425,12 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-08 11:34",
-    "tdnet_morning": "2026-08-08 11:34",
-    "technical": "2026-08-08 11:35",
-    "growth_candidates": "2026-08-08 11:34",
-    "pre_earnings_watch": "2026-08-08 11:34",
-    "economic_calendar": "2026-08-08 11:34",
-    "movers_morning": "2026-08-08 11:35"
+    "market_quotes": "2026-08-08 12:56",
+    "tdnet_morning": "2026-08-08 12:56",
+    "technical": "2026-08-08 12:57",
+    "growth_candidates": "2026-08-08 12:56",
+    "pre_earnings_watch": "2026-08-08 12:56",
+    "economic_calendar": "2026-08-08 12:56",
+    "movers_morning": "2026-08-08 12:57"
   }
 }
