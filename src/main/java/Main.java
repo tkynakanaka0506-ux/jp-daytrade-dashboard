@@ -49,6 +49,15 @@ public class Main {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
+    // 画面・通知で利用するすべての取得データ。実行開始時に必ず空にし、前回実行の
+    // 成功データが今回の失敗時に残らないようにする。
+    private static final String[] TRACKED_FIELDS = {
+        "market_quotes", "tdnet_morning", "tdnet_afterclose", "technical",
+        "growth_candidates", "pre_earnings_watch", "overnight_news", "afterclose_news",
+        "movers_morning", "movers_afterclose", "us_good_news", "edinet_large_holdings",
+        "economic_calendar"
+    };
+
     // 定点観測する個別銘柄。増減したい場合はここを編集するだけでよい。
     // 2026-08-01: これまでクロード側が手動収集していたテクニカル指標20銘柄と同一構成に拡張。
     private static final String[][] WATCHLIST = {
@@ -112,27 +121,42 @@ public class Main {
         String generatedAt = nowJst.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         root.put("generated_at", generatedAt);
         root.put("run_type", mode);
+        // 毎実行時に前回値を先に消去する。以降の各取得が失敗しても、過去の情報を
+        // 当回の情報として表示・通知に流用しないためのフェイルクローズ設計である。
+        resetStaleData(root, generatedAt);
 
         // ---- 市場指標(無料・キー不要のYahoo Finance chart APIから取得) ----
-        boolean marketUpdated = false;
-        marketUpdated |= updateNested(root, "us_market", "sp500", "^GSPC", false);
-        marketUpdated |= updateNested(root, "us_market", "dow", "^DJI", false);
-        marketUpdated |= updateNested(root, "us_market", "nasdaq", "^IXIC", false);
-        marketUpdated |= updateTopLevel(root, "fx", "JPY=X", true);
-        marketUpdated |= updateTopLevel(root, "nikkei225", "^N225", false);
-        marketUpdated |= updateTopLevel(root, "nikkei_futures", "NIY=F", false); // ベストエフォート。取れなければ既存値を保持
-        if (marketUpdated) markUpdated(root, "market_quotes", generatedAt);
+        int marketSuccessCount = 0;
+        if (updateNested(root, "us_market", "sp500", "^GSPC", false)) marketSuccessCount++;
+        if (updateNested(root, "us_market", "dow", "^DJI", false)) marketSuccessCount++;
+        if (updateNested(root, "us_market", "nasdaq", "^IXIC", false)) marketSuccessCount++;
+        if (updateNested(root, "us_market", "sox", "^SOX", false)) marketSuccessCount++;
+        if (updateTopLevel(root, "fx", "JPY=X", true)) marketSuccessCount++;
+        if (updateTopLevel(root, "nikkei225", "^N225", false)) marketSuccessCount++;
+        if (updateTopLevel(root, "nikkei_futures", "NIY=F", false)) marketSuccessCount++;
+        if (marketSuccessCount == 7) {
+            markUpdated(root, "market_quotes", generatedAt);
+        } else if (marketSuccessCount > 0) {
+            markPartial(root, "market_quotes", generatedAt,
+                "7項目中" + marketSuccessCount + "項目を取得。一部は取得不可です。");
+        } else {
+            markUnavailable(root, "market_quotes", generatedAt, "市場指数・為替を取得できませんでした。");
+        }
 
         // ---- TDnet適時開示(株探モバイル版ミラーをスクレイピング) ----
-        ArrayNode disclosures = null;
+        String tdnetField = "evening".equals(mode) ? "tdnet_afterclose" : "tdnet_morning";
+        String otherTdnetField = "evening".equals(mode) ? "tdnet_morning" : "tdnet_afterclose";
+        markNotRequested(root, otherTdnetField, generatedAt, "今回の実行モードでは更新対象外です。");
         try {
-            disclosures = scrapeKabutanDisclosures(3);
+            ArrayNode disclosures = scrapeKabutanDisclosures(3);
+            root.set(tdnetField, disclosures);
             if (disclosures.size() > 0) {
-                String field = "evening".equals(mode) ? "tdnet_afterclose" : "tdnet_morning";
-                root.set(field, disclosures);
-                markUpdated(root, field, generatedAt);
+                markUpdated(root, tdnetField, generatedAt);
+            } else {
+                markEmpty(root, tdnetField, generatedAt, "取得済み・該当する開示はありません。");
             }
         } catch (Exception e) {
+            markUnavailable(root, tdnetField, generatedAt, "TDnet開示を取得できませんでした。");
             System.err.println("[WARN] kabutan disclosures fetch failed: " + e);
         }
 
@@ -178,9 +202,14 @@ public class Main {
             System.err.println("[WARN] sector comparison failed: " + e);
         }
 
-        if (technical.size() > 0) {
-            root.set("technical", technical);
+        root.set("technical", technical);
+        if (technical.size() == WATCHLIST.length) {
             markUpdated(root, "technical", generatedAt);
+        } else if (technical.size() > 0) {
+            markPartial(root, "technical", generatedAt,
+                "監視銘柄" + WATCHLIST.length + "件中" + technical.size() + "件を取得。一部は取得不可です。");
+        } else {
+            markUnavailable(root, "technical", generatedAt, "テクニカル指標を取得できませんでした。");
         }
 
         // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
@@ -192,11 +221,14 @@ public class Main {
             // (取りこぼしを減らすための無料の改善。詳細はscrapeKessanCompanies()のJavadoc参照)。
             java.util.Set<String> kessanCompanies = scrapeKessanCompanies(10, 150);
             markDoubleSignals(growth, kessanCompanies);
+            root.set("growth_candidates", growth);
             if (growth.size() > 0) {
-                root.set("growth_candidates", growth);
                 markUpdated(root, "growth_candidates", generatedAt);
+            } else {
+                markEmpty(root, "growth_candidates", generatedAt, "取得済み・該当する好材料開示はありません。");
             }
         } catch (Exception e) {
+            markUnavailable(root, "growth_candidates", generatedAt, "成長株候補を取得できませんでした。");
             System.err.println("[WARN] growth candidates fetch failed: " + e);
         }
         // 注: 4項目5段階スコアリング(材料・テクニカル・需給・期待値)は、Gemini補完後
@@ -212,36 +244,37 @@ public class Main {
         // 固定キーワードが含まれるかどうかだけで機械的に抽出する。
         try {
             ArrayNode watch = scrapePreEarningsWatch(2, 15, 14);
+            root.set("pre_earnings_watch", watch);
             if (watch.size() > 0) {
-                root.set("pre_earnings_watch", watch);
                 markUpdated(root, "pre_earnings_watch", generatedAt);
+            } else {
+                markEmpty(root, "pre_earnings_watch", generatedAt, "取得済み・該当する先行材料ニュースはありません。");
             }
         } catch (Exception e) {
+            markUnavailable(root, "pre_earnings_watch", generatedAt, "決算前材料ウォッチを取得できませんでした。");
             System.err.println("[WARN] pre-earnings watch fetch failed: " + e);
         }
 
         // ---- EDINET 大量保有報告書(5%ルール)の簡易チェック(プロトタイプ) ----
-        // 2026-08-02: 「EDINET 5%ルールの簡易チェック」機能追加。EDINET APIはVersion 2から
-        // 利用登録(電話番号必須・無料)とAPIキー(Subscription-Key)が必須になっており、
-        // 完全に登録不要のAPIではなくなっている。そのため他の無料スクレイピングと同様の
-        // 「キー不要」までは実現できず、EDINET_API_KEY環境変数(GitHub Secrets)が
-        // 未設定の場合は既存値を保持してスキップする(GEMINI_API_KEYと同じ扱い)。
-        // また大量保有報告書(docTypeCode=350/351)のAPIレスポンスには対象銘柄の証券コードが
-        // 構造化フィールドとして安定して入っていないため、書類概要(docDescription)に
-        // ウォッチリストの会社名が含まれるかという簡易文字列一致で検知するプロトタイプ実装とする
-        // (取りこぼし・誤検知はあり得る前提のベストエフォート機能)。
+        // EDINET APIは利用登録とAPIキーが必要なため、未設定時も前回値は使わず、
+        // 当回は「取得不可」として空配列を表示する。
         try {
             String edinetApiKey = System.getenv("EDINET_API_KEY");
             if (edinetApiKey == null || edinetApiKey.isBlank()) {
-                System.err.println("[INFO] EDINET_API_KEY未設定のため、大量保有報告書チェックをスキップします。");
+                markUnavailable(root, "edinet_large_holdings", generatedAt,
+                    "EDINET_API_KEYが未設定のため取得できませんでした。");
+                System.err.println("[INFO] EDINET_API_KEY未設定のため、大量保有報告書チェックを取得不可として記録します。");
             } else {
                 ArrayNode holdings = fetchEdinetLargeHoldings(WATCHLIST, edinetApiKey, 3);
+                root.set("edinet_large_holdings", holdings);
                 if (holdings.size() > 0) {
-                    root.set("edinet_large_holdings", holdings);
                     markUpdated(root, "edinet_large_holdings", generatedAt);
+                } else {
+                    markEmpty(root, "edinet_large_holdings", generatedAt, "取得済み・該当する大量保有報告書はありません。");
                 }
             }
         } catch (Exception e) {
+            markUnavailable(root, "edinet_large_holdings", generatedAt, "EDINET大量保有報告書を取得できませんでした。");
             System.err.println("[WARN] EDINET large holdings check failed: " + e);
         }
 
@@ -252,31 +285,98 @@ public class Main {
         // より実際の発表日が前後する可能性があるため note で注記する、ベストエフォート機能)。
         try {
             ArrayNode calendar = buildEconomicCalendar();
+            root.set("economic_calendar", calendar);
             if (calendar.size() > 0) {
-                root.set("economic_calendar", calendar);
                 markUpdated(root, "economic_calendar", generatedAt);
+            } else {
+                markEmpty(root, "economic_calendar", generatedAt, "取得済み・今後の経済イベントはありません。");
             }
         } catch (Exception e) {
+            markUnavailable(root, "economic_calendar", generatedAt, "経済カレンダーを作成できませんでした。");
             System.err.println("[WARN] economic calendar build failed: " + e);
         }
 
-        // 注: overnight_news / afterclose_news / movers_morning / movers_afterclose は
-        // 「話題性のあるニュース・銘柄」を選ぶ性質上、無料の決定論的APIだけでは再現できないため
-        // このJava版では更新対象外(既存の値をそのまま保持する)。
-        // ニュースAPI等を導入する場合は、キーをGitHub Secretsに登録しここで読み込む形に拡張する。
+        // overnight_news / afterclose_news / movers_morning / movers_afterclose / us_good_news は
+        // news_analyzer.py が同一実行内で必ず空配列または新規取得結果へ更新する。
+        // このJava処理開始時点で前回値を消去済みのため、更新失敗時に古い内容が残ることはない。
 
         MAPPER.writerWithDefaultPrettyPrinter().writeValue(dataFile, root);
         System.out.println("[OK] data.json updated (mode=" + mode + ")");
     }
 
-    /** 各表示ブロックが実際に取得・更新された時刻を保持する。
-     * 取得に失敗した場合は呼び出さないため、画面上で古いデータを判別できる。 */
+    /**
+     * 当回の処理開始時に、表示・通知に使う前回値と前回の更新時刻を必ず消去する。
+     * 取得できなかったデータは空配列または空オブジェクトのまま、data_statusで
+     * 「取得不可」と明示される。これにより、失敗時に古い内容が残る経路を遮断する。
+     */
+    private static void resetStaleData(ObjectNode root, String checkedAt) {
+        for (String field : new String[] {
+            "tdnet_morning", "tdnet_afterclose", "technical", "growth_candidates",
+            "pre_earnings_watch", "overnight_news", "afterclose_news", "movers_morning",
+            "movers_afterclose", "us_good_news", "edinet_large_holdings", "economic_calendar"
+        }) {
+            root.set(field, MAPPER.createArrayNode());
+        }
+        root.set("us_market", MAPPER.createObjectNode());
+        root.set("fx", MAPPER.createObjectNode());
+        root.set("nikkei225", MAPPER.createObjectNode());
+        root.set("nikkei_futures", MAPPER.createObjectNode());
+        root.set("data_updated_at", MAPPER.createObjectNode());
+
+        ObjectNode statuses = MAPPER.createObjectNode();
+        for (String field : TRACKED_FIELDS) {
+            ObjectNode status = MAPPER.createObjectNode();
+            status.put("state", "pending");
+            status.put("checked_at", checkedAt);
+            status.put("message", "更新処理中です。");
+            statuses.set(field, status);
+        }
+        root.set("data_status", statuses);
+    }
+
+    /** データ種別ごとの当回の取得状態・確認時刻・理由を保存する。 */
+    private static void setDataStatus(ObjectNode root, String field, String state, String checkedAt, String message) {
+        ObjectNode statuses = root.has("data_status") && root.get("data_status").isObject()
+            ? (ObjectNode) root.get("data_status")
+            : MAPPER.createObjectNode();
+        ObjectNode status = MAPPER.createObjectNode();
+        status.put("state", state);
+        status.put("checked_at", checkedAt);
+        status.put("message", message);
+        statuses.set(field, status);
+        root.set("data_status", statuses);
+    }
+
+    /** 正常に取得できたデータの更新時刻と状態を保存する。 */
     private static void markUpdated(ObjectNode root, String field, String updatedAt) {
         ObjectNode timestamps = root.has("data_updated_at") && root.get("data_updated_at").isObject()
             ? (ObjectNode) root.get("data_updated_at")
             : MAPPER.createObjectNode();
         timestamps.put(field, updatedAt);
         root.set("data_updated_at", timestamps);
+        setDataStatus(root, field, "updated", updatedAt, "今回の実行で取得・更新しました。");
+    }
+
+    /** 一部の項目だけを取得できた場合は、取得済み部分と不足を併記する。 */
+    private static void markPartial(ObjectNode root, String field, String checkedAt, String message) {
+        markUpdated(root, field, checkedAt);
+        setDataStatus(root, field, "partial", checkedAt, message);
+    }
+
+    /** 取得処理は成功し、該当データがなかった場合を記録する。 */
+    private static void markEmpty(ObjectNode root, String field, String checkedAt, String message) {
+        markUpdated(root, field, checkedAt);
+        setDataStatus(root, field, "empty", checkedAt, message);
+    }
+
+    /** 取得できなかったデータは空のまま、理由を記録する。 */
+    private static void markUnavailable(ObjectNode root, String field, String checkedAt, String message) {
+        setDataStatus(root, field, "unavailable", checkedAt, message);
+    }
+
+    /** 今回の実行対象外のデータは、前回値を使わず未更新として記録する。 */
+    private static void markNotRequested(ObjectNode root, String field, String checkedAt, String message) {
+        setDataStatus(root, field, "not_requested", checkedAt, message);
     }
 
     // ---------------- 市場指標 ----------------
@@ -284,7 +384,7 @@ public class Main {
     /** us_market.sp500 のような1階層ネストしたオブジェクトを更新する */
     private static boolean updateNested(ObjectNode root, String parentField, String field, String symbol, boolean isFx) {
         ObjectNode target = MAPPER.createObjectNode();
-        if (!fillQuote(target, symbol, isFx)) return false; // 失敗時は既存値を保持
+        if (!fillQuote(target, symbol, isFx)) return false; // 呼び出し側で当回の取得不可として記録
         ObjectNode parent = root.has(parentField) && root.get(parentField).isObject()
             ? (ObjectNode) root.get(parentField)
             : MAPPER.createObjectNode();
@@ -296,7 +396,7 @@ public class Main {
     /** fx / nikkei225 / nikkei_futures のようなトップレベル直下のフィールドを更新する */
     private static boolean updateTopLevel(ObjectNode root, String field, String symbol, boolean isFx) {
         ObjectNode target = MAPPER.createObjectNode();
-        if (!fillQuote(target, symbol, isFx)) return false; // 失敗時は既存値を保持
+        if (!fillQuote(target, symbol, isFx)) return false; // 呼び出し側で当回の取得不可として記録
         root.set(field, target);
         return true;
     }
