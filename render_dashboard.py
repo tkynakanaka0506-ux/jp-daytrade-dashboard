@@ -1710,6 +1710,23 @@ nav.tabs a:hover {
   box-shadow: 0 0 20px rgba(212,175,55,0.35);
 }
 section { margin: 32px 20px; }
+.display-stamp {
+  display: inline-block; margin-left: 8px; padding: 2px 7px; border-radius: 10px;
+  color: var(--muted); background: rgba(212,175,55,0.10); border: 1px solid var(--border-soft);
+  font-family: "Inter", "Noto Sans JP", sans-serif; font-size: 10px; font-weight: 500;
+  letter-spacing: 0; text-transform: none; vertical-align: middle; white-space: nowrap;
+}
+.update-log-section { margin-top: 20px; }
+.update-log-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;
+  padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--panel);
+}
+.update-log-item {
+  padding: 7px 9px; border-radius: 6px; background: var(--panel2); color: var(--muted);
+  font-size: 11px; line-height: 1.45;
+}
+.update-log-item b { color: var(--text); }
 section > h2 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
@@ -2340,6 +2357,53 @@ def _format_date_jp(generated_at):
         return generated_at or "―"
 
 
+def _display_stamp(generated_at):
+    """各表示ブロックに、いつ画面へ出力された内容かを常に併記する。"""
+    return f'<span class="display-stamp">表示: {esc(_format_date_jp(generated_at))} (JST)</span>'
+
+
+def _stamp_headings(html_text, generated_at):
+    """全セクション・全カード見出しへページ表示日時を付ける。"""
+    stamp = _display_stamp(generated_at)
+    return re.sub(
+        r"(<h([23])\b[^>]*>)(.*?)(</h\2>)",
+        lambda m: f"{m.group(1)}{m.group(3)} {stamp}{m.group(4)}",
+        html_text,
+        flags=re.DOTALL,
+    )
+
+
+def data_update_log_html(data, generated_at):
+    """取得に成功したデータごとの最終更新時刻を一覧化し、更新停止を判別可能にする。"""
+    timestamps = data.get("data_updated_at", {}) or {}
+    labels = [
+        ("market_quotes", "市場指数・為替"),
+        ("tdnet_morning", "朝のTDnet開示"),
+        ("tdnet_afterclose", "引け後TDnet開示"),
+        ("technical", "テクニカル指標"),
+        ("growth_candidates", "成長株候補"),
+        ("pre_earnings_watch", "決算前材料ウォッチ"),
+        ("overnight_news", "時間外・朝ニュース"),
+        ("afterclose_news", "引け後ニュース"),
+        ("movers_morning", "朝の話題株"),
+        ("movers_afterclose", "引け後の話題株"),
+        ("us_good_news", "米国株好材料"),
+        ("edinet_large_holdings", "EDINET大量保有報告"),
+        ("economic_calendar", "経済カレンダー"),
+    ]
+    rows = []
+    for key, label in labels:
+        updated = timestamps.get(key)
+        status = _format_date_jp(updated) + " (JST)" if updated else "更新記録なし(次回の自動取得から記録)"
+        rows.append(f'<span class="update-log-item"><b>{esc(label)}</b>: {esc(status)}</span>')
+    return f"""
+    <section id="update-log" class="update-log-section">
+      <h2>🕒 データ更新記録 {_display_stamp(generated_at)}</h2>
+      <p class="section-desc">表示日時と、各データを実際に取得できた最終時刻です。取得失敗時は古いデータを保持し、そのことをここに明記します。</p>
+      <div class="update-log-grid">{''.join(rows)}</div>
+    </section>"""
+
+
 def conclusion_first_html(data):
     """結論ファースト: compute_stock_scores()の総合スコア上位2〜3銘柄を、根拠つきで先頭に表示する。
 
@@ -2649,6 +2713,15 @@ def build_html(data: dict) -> str:
         f'style="background-image:url(\'{esc(u)}\')" data-order="{i}" data-caption="{esc(cap)}"></div>'
         for i, (u, cap) in enumerate(rotation)
     )
+    update_log_html = data_update_log_html(data, generated_at).strip()
+    conclusion_html = _stamp_headings(conclusion_html, generated_at).strip()
+    detail_content_html = _stamp_headings(
+        "\n".join([
+            morning_html, evening_html, technical_html, alignment_html,
+            growth_html, pre_earnings_html, edinet_html,
+        ]),
+        generated_at,
+    ).strip()
 
     html_out = f"""<!DOCTYPE html>
 <html lang="ja">
@@ -2688,17 +2761,11 @@ def build_html(data: dict) -> str:
   <div class="disclaimer">
     ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> {disclaimer_text}
   </div>
+  {update_log_html}
   {conclusion_html}
   {mood_html}
   <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
-
-  {morning_html}
-  {evening_html}
-  {technical_html}
-  {alignment_html}
-  {growth_html}
-  {pre_earnings_html}
-  {edinet_html}
+  {detail_content_html}
 
   <footer>
     <div class="disclaimer">

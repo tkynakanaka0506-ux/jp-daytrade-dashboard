@@ -39,6 +39,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+from datetime import datetime, timezone, timedelta
 
 UA = "Mozilla/5.0 (compatible; jp-daytrade-dashboard-bot/1.0)"
 GEMINI_MODEL = "gemini-2.5-flash-lite"
@@ -55,10 +56,17 @@ GROQ_MAX_RETRIES = 3
 GROQ_RETRY_BASE_SEC = 5
 
 _last_call_ts = {"gemini": 0.0, "groq": 0.0}
+JST = timezone(timedelta(hours=9))
 
 
 def log(msg):
     print(f"[news_analyzer] {msg}", file=sys.stderr)
+
+
+def mark_updated(root, field):
+    """成功したデータだけに更新時刻を残し、古い表示を画面で判別できるようにする。"""
+    timestamps = root.setdefault("data_updated_at", {})
+    timestamps[field] = datetime.now(JST).strftime("%Y-%m-%d %H:%M")
 
 
 def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
@@ -581,6 +589,7 @@ def main():
                     if not it.get("money_flow"):
                         it.pop("money_flow", None)
                 root[news_field] = items
+                mark_updated(root, news_field)
                 log(f"{news_field} を{len(items)}件更新しました。")
             else:
                 log("ニュース候補が0件のため、newsフィールドはスキップします。")
@@ -596,6 +605,7 @@ def main():
                         it.pop("baked_in_verdict", None)
                         it.pop("baked_in_reason", None)
                 root["us_good_news"] = items
+                mark_updated(root, "us_good_news")
                 log(f"us_good_news を{len(items)}件更新しました。")
         except Exception as e:
             log(f"米国株好材料結果の反映に失敗しました(既存値を保持): {e}")
@@ -606,6 +616,7 @@ def main():
             items = [it for it in result_b.get("movers_items", []) if it.get("name") and it.get("reason")]
             if items:
                 root[movers_field] = items
+                mark_updated(root, movers_field)
                 log(f"{movers_field} を{len(items)}件更新しました。")
         except Exception as e:
             log(f"値動き話題株結果の反映に失敗しました(既存値を保持): {e}")
@@ -624,6 +635,7 @@ def main():
                         t["baked_in_warning"] = True
                         t["baked_in_reason"] = warn_map[code]
                 root["technical"] = technical
+                mark_updated(root, "technical")
                 log(f"baked-in warning(材料出尽くし警戒)を{len(warn_map)}件付与しました。")
         except Exception as e:
             log(f"織り込み済みリスク判定結果の反映に失敗しました(既存値を保持): {e}")
@@ -644,6 +656,7 @@ def main():
                         if note:
                             t["theme_trend_note"] = note
                 root["technical"] = technical
+                mark_updated(root, "technical")
                 log(f"投資テーマタグを{len(theme_map)}件付与しました。")
         except Exception as e:
             log(f"投資テーマタグ付け結果の反映に失敗しました(既存値を保持): {e}")

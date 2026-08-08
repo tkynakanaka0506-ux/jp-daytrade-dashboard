@@ -92,6 +92,7 @@ line_notify_last(当日日付+銘柄コードまたは銘柄名)で簡易的な�
 """
 import json
 import os
+import re
 import sys
 import urllib.request
 import urllib.parse
@@ -112,6 +113,8 @@ MAX_FROM_DAY_HIGH_PCT = float(os.environ.get("LINE_MAX_FROM_DAY_HIGH_PCT", "1.0"
 # 開始遅延があっても、前日終値のまま通知することを防ぐため、立会時間外は送信しない。
 MARKET_OPEN_MINUTE = 9 * 60 + 5
 MARKET_CLOSE_MINUTE = 15 * 60 + 15
+AFTER_CLOSE_START_MINUTE = 15 * 60 + 30
+AFTER_CLOSE_END_MINUTE = 23 * 60 + 55
 
 # pre_earnings_watch/growth_candidates のタイトルや EDINET の doc_description に
 # 含まれていたら、「好材料」としては数えない(むしろ悪材料寄り)とみなすキーワード。
@@ -172,6 +175,15 @@ def _is_regular_session(now=None):
         return False
     minute = now.hour * 60 + now.minute
     return MARKET_OPEN_MINUTE <= minute <= MARKET_CLOSE_MINUTE
+
+
+def _is_after_close_window(now=None):
+    """引け後に公表された材料を、翌営業日前の仕込み候補として通知する時間帯。"""
+    now = now or _jst_now()
+    if now.weekday() >= 5:
+        return False
+    minute = now.hour * 60 + now.minute
+    return AFTER_CLOSE_START_MINUTE <= minute <= AFTER_CLOSE_END_MINUTE
 
 
 def _data_is_fresh(root, now=None):
@@ -589,14 +601,48 @@ def score_candidates(root):
     return candidates
 
 
-def pick_best_candidate(root):
+def _after_close_material(candidate, root, now):
+    """当日引け後のTDnet好材料だけを、翌営業日向けの通知候補にする。"""
+    if "growth_candidate" not in candidate.get("categories", []):
+        return None
+    urls = set(candidate.get("urls", []))
+    for item in root.get("growth_candidates", []) or []:
+        if item.get("url") not in urls:
+            continue
+        asof = (item.get("asof") or "").strip()
+        clock = re.search(r"(\d{1,2}):(\d{2})", asof)
+        if not clock:
+            continue
+        hour, minute = int(clock.group(1)), int(clock.group(2))
+        if hour * 60 + minute < 15 * 60:
+            continue
+        is_today = "今日" in asof
+        md = re.search(r"(\d{1,2})月(\d{1,2})日", asof)
+        if md:
+            is_today = int(md.group(1)) == now.month and int(md.group(2)) == now.day
+        if is_today:
+            return item
+    return None
+
+
+def pick_best_candidate(root, now=None, after_close=False):
     """スコア上位から、通知時点でも上がり切っていない銘柄を選ぶ。
 
     材料だけで選ばず、全候補にリアルタイム再判定を行う。最上位が急騰済みでも
     次点を検討でき、全候補が不適格なら無理にLINEを送らない。
     """
+    now = now or _jst_now()
     rejected = []
     for candidate in score_candidates(root):
+        if after_close:
+            material = _after_close_material(candidate, root, now)
+            if not material:
+                rejected.append(f"{candidate['name']}: 当日引け後のTDnet好材料ではありません")
+                continue
+            candidate["notification_mode"] = "after_close"
+            candidate["material_asof"] = material.get("asof", "")
+            candidate["material_url"] = material.get("url", "")
+            return candidate, rejected
         eligible, reason, quote = _entry_check(candidate)
         if not eligible:
             rejected.append(f"{candidate['name']}: {reason}")
@@ -612,18 +658,22 @@ def build_message(pick):
     t = pick.get("technical") or {}
     live = pick.get("live_quote") or {}
     name = pick["name"] or t.get("name") or ""
-    code = pick["code"] or ""
+    code = pick.get("code") or ""
     price = live.get("price") or t.get("price", "")
     change_pct = live.get("day_change_pct")
     if change_pct is None:
         change_pct = t.get("change_pct")
     change_str = f"{change_pct:+.2f}%" if isinstance(change_pct, (int, float)) else "―"
 
+    after_close = pick.get("notification_mode") == "after_close"
     lines = [
-        "📡 先行シグナル銘柄(仕込み検討用)",
+        "🌙 引け後の好材料・翌営業日監視候補" if after_close else "📡 場中の先行シグナル銘柄(仕込み検討用)",
         f"{name}({code})" if code else f"{name}",
     ]
-    if price:
+    if after_close:
+        lines.append(f"開示日時: {pick.get('material_asof') or '―'}")
+        lines.append("翌営業日の寄り付き後に、株価・板・出来高を確認してから検討してください。")
+    elif price:
         price_str = f"{price:,.0f}円" if isinstance(price, (int, float)) else str(price)
         lines.append(f"現在値: {price_str} ({change_str})")
     elif not t:
@@ -694,8 +744,10 @@ def main():
         root = json.load(f)
 
     now = _jst_now()
-    if not _is_regular_session(now):
-        log("立会時間外または開始直後のため、前日価格ベースのLINE通知をスキップします。")
+    after_close = _is_after_close_window(now)
+    regular_session = _is_regular_session(now)
+    if not regular_session and not after_close:
+        log("場中・引け後の通知対象時間外のため、LINE通知をスキップします。")
         return
 
     fresh, fresh_reason = _data_is_fresh(root, now)
@@ -703,7 +755,7 @@ def main():
         log(f"{fresh_reason}。古い候補での通知をスキップします。")
         return
 
-    pick, rejected = pick_best_candidate(root)
+    pick, rejected = pick_best_candidate(root, now=now, after_close=after_close)
     if not pick:
         summary = " / ".join(rejected[:5]) if rejected else "先行シグナルの候補なし"
         log(f"エントリー可能な候補が無いため、通知はスキップします。除外理由: {summary}")
@@ -712,8 +764,16 @@ def main():
     dedup_key = pick["code"] or pick["name"]
     today_str = now.strftime("%Y-%m-%d")
     last = root.get("line_notify_last") or {}
-    if last.get("date") == today_str and last.get("code") == dedup_key:
+    if not after_close and last.get("date") == today_str and last.get("code") == dedup_key:
         log(f"本日は既に{dedup_key}を通知済みのため、重複通知をスキップします。")
+        return
+
+    # 引け後の同じ適時開示は、夜間に一度だけ通知する。翌朝も候補一覧に残っている
+    # だけで再通知されることを防ぎつつ、翌営業日にはサイト上で継続して確認できる。
+    event_key = pick.get("material_url") if after_close else None
+    history = root.get("line_notify_history") or []
+    if event_key and any(item.get("event_key") == event_key for item in history if isinstance(item, dict)):
+        log("この引け後材料は既に通知済みのため、重複通知をスキップします。")
         return
 
     message = build_message(pick)
@@ -725,6 +785,14 @@ def main():
         return
 
     root["line_notify_last"] = {"date": today_str, "code": dedup_key}
+    if event_key:
+        history.append({
+            "event_key": event_key,
+            "sent_at": now.strftime("%Y-%m-%d %H:%M"),
+            "code": dedup_key,
+        })
+        # data.jsonを無制限に膨らませないため、直近30件だけを残す。
+        root["line_notify_history"] = history[-30:]
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)
     log("data.json に通知済み状態を書き戻しました。")

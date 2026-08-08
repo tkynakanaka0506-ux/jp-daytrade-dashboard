@@ -109,23 +109,28 @@ public class Main {
         ObjectNode root = (ObjectNode) MAPPER.readTree(dataFile);
 
         ZonedDateTime nowJst = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
-        root.put("generated_at", nowJst.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        String generatedAt = nowJst.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        root.put("generated_at", generatedAt);
         root.put("run_type", mode);
 
         // ---- 市場指標(無料・キー不要のYahoo Finance chart APIから取得) ----
-        updateNested(root, "us_market", "sp500", "^GSPC", false);
-        updateNested(root, "us_market", "dow", "^DJI", false);
-        updateNested(root, "us_market", "nasdaq", "^IXIC", false);
-        updateTopLevel(root, "fx", "JPY=X", true);
-        updateTopLevel(root, "nikkei225", "^N225", false);
-        updateTopLevel(root, "nikkei_futures", "NIY=F", false); // ベストエフォート。取れなければ既存値を保持
+        boolean marketUpdated = false;
+        marketUpdated |= updateNested(root, "us_market", "sp500", "^GSPC", false);
+        marketUpdated |= updateNested(root, "us_market", "dow", "^DJI", false);
+        marketUpdated |= updateNested(root, "us_market", "nasdaq", "^IXIC", false);
+        marketUpdated |= updateTopLevel(root, "fx", "JPY=X", true);
+        marketUpdated |= updateTopLevel(root, "nikkei225", "^N225", false);
+        marketUpdated |= updateTopLevel(root, "nikkei_futures", "NIY=F", false); // ベストエフォート。取れなければ既存値を保持
+        if (marketUpdated) markUpdated(root, "market_quotes", generatedAt);
 
         // ---- TDnet適時開示(株探モバイル版ミラーをスクレイピング) ----
         ArrayNode disclosures = null;
         try {
             disclosures = scrapeKabutanDisclosures(3);
             if (disclosures.size() > 0) {
-                root.set("evening".equals(mode) ? "tdnet_afterclose" : "tdnet_morning", disclosures);
+                String field = "evening".equals(mode) ? "tdnet_afterclose" : "tdnet_morning";
+                root.set(field, disclosures);
+                markUpdated(root, field, generatedAt);
             }
         } catch (Exception e) {
             System.err.println("[WARN] kabutan disclosures fetch failed: " + e);
@@ -175,6 +180,7 @@ public class Main {
 
         if (technical.size() > 0) {
             root.set("technical", technical);
+            markUpdated(root, "technical", generatedAt);
         }
 
         // ---- 成長株候補(TDnet「業績予想の修正」開示のうち好材料のみを機械的に抽出) ----
@@ -188,6 +194,7 @@ public class Main {
             markDoubleSignals(growth, kessanCompanies);
             if (growth.size() > 0) {
                 root.set("growth_candidates", growth);
+                markUpdated(root, "growth_candidates", generatedAt);
             }
         } catch (Exception e) {
             System.err.println("[WARN] growth candidates fetch failed: " + e);
@@ -207,6 +214,7 @@ public class Main {
             ArrayNode watch = scrapePreEarningsWatch(2, 15, 14);
             if (watch.size() > 0) {
                 root.set("pre_earnings_watch", watch);
+                markUpdated(root, "pre_earnings_watch", generatedAt);
             }
         } catch (Exception e) {
             System.err.println("[WARN] pre-earnings watch fetch failed: " + e);
@@ -230,6 +238,7 @@ public class Main {
                 ArrayNode holdings = fetchEdinetLargeHoldings(WATCHLIST, edinetApiKey, 3);
                 if (holdings.size() > 0) {
                     root.set("edinet_large_holdings", holdings);
+                    markUpdated(root, "edinet_large_holdings", generatedAt);
                 }
             }
         } catch (Exception e) {
@@ -245,6 +254,7 @@ public class Main {
             ArrayNode calendar = buildEconomicCalendar();
             if (calendar.size() > 0) {
                 root.set("economic_calendar", calendar);
+                markUpdated(root, "economic_calendar", generatedAt);
             }
         } catch (Exception e) {
             System.err.println("[WARN] economic calendar build failed: " + e);
@@ -259,24 +269,36 @@ public class Main {
         System.out.println("[OK] data.json updated (mode=" + mode + ")");
     }
 
+    /** 各表示ブロックが実際に取得・更新された時刻を保持する。
+     * 取得に失敗した場合は呼び出さないため、画面上で古いデータを判別できる。 */
+    private static void markUpdated(ObjectNode root, String field, String updatedAt) {
+        ObjectNode timestamps = root.has("data_updated_at") && root.get("data_updated_at").isObject()
+            ? (ObjectNode) root.get("data_updated_at")
+            : MAPPER.createObjectNode();
+        timestamps.put(field, updatedAt);
+        root.set("data_updated_at", timestamps);
+    }
+
     // ---------------- 市場指標 ----------------
 
     /** us_market.sp500 のような1階層ネストしたオブジェクトを更新する */
-    private static void updateNested(ObjectNode root, String parentField, String field, String symbol, boolean isFx) {
+    private static boolean updateNested(ObjectNode root, String parentField, String field, String symbol, boolean isFx) {
         ObjectNode target = MAPPER.createObjectNode();
-        if (!fillQuote(target, symbol, isFx)) return; // 失敗時は既存値を保持
+        if (!fillQuote(target, symbol, isFx)) return false; // 失敗時は既存値を保持
         ObjectNode parent = root.has(parentField) && root.get(parentField).isObject()
             ? (ObjectNode) root.get(parentField)
             : MAPPER.createObjectNode();
         parent.set(field, target);
         root.set(parentField, parent);
+        return true;
     }
 
     /** fx / nikkei225 / nikkei_futures のようなトップレベル直下のフィールドを更新する */
-    private static void updateTopLevel(ObjectNode root, String field, String symbol, boolean isFx) {
+    private static boolean updateTopLevel(ObjectNode root, String field, String symbol, boolean isFx) {
         ObjectNode target = MAPPER.createObjectNode();
-        if (!fillQuote(target, symbol, isFx)) return; // 失敗時は既存値を保持
+        if (!fillQuote(target, symbol, isFx)) return false; // 失敗時は既存値を保持
         root.set(field, target);
+        return true;
     }
 
     private static boolean fillQuote(ObjectNode target, String symbol, boolean isFx) {
