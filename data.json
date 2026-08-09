@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-10 08:22",
-  "run_type": "evening",
+  "generated_at": "2026-08-10 08:56",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,757.64",
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "157.88円",
+    "value": "157.87円",
     "change_pct": -0.34,
     "asof": "8/10終値"
   },
   "nikkei_futures": {
-    "value": "66,330.00",
-    "change_pct": 0.17,
+    "value": "66,360.00",
+    "change_pct": 0.21,
     "asof": "8/10終値"
   },
   "nikkei225": {
@@ -39,9 +39,55 @@
     "asof": "8/7終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [],
-  "movers_morning": [],
-  "tdnet_afterclose": [
+  "tdnet_morning": [
+    {
+      "time": "08:45",
+      "code": "―",
+      "company": "特殊陶",
+      "title": "Notice Regarding the Withdrawal from the Automotive Components Business and Partial Transfer of Business of Wells",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810515949.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:45",
+      "code": "―",
+      "company": "特殊陶",
+      "title": "Wells Vehicle Electronics Holdings Corp.及びWells Vehicle Electronics, L.P.自動車部品事業の撤退に伴う一部事業譲渡のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810515948.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＷＴ金",
+      "title": "上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810515967.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＷＴ金",
+      "title": "上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810515966.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "関西電",
+      "title": "Notice Regarding Automatic Reactor Shutdown at Ohi Nuclear Power Station Unit 3",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810515972.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "関西電",
+      "title": "大飯発電所３号機の原子炉自動停止について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810515971.pdf",
+      "tag": "他"
+    },
     {
       "time": "08:00",
       "code": "―",
@@ -153,99 +199,12 @@
       "title": "京進、株式会社京進　中長期経営方針（2035年のありたい姿）に関するQ&A 他 8月7日(金) 20:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515831.pdf",
       "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料（データシート） 追訂 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515839.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料 追訂 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515834.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "光ビジネス、（訂正）「2026年12月期 第２四半期決算短信〔日本基準〕（非連結）」の一部訂正について 決算 8月7日(金) 19:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515845.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "アンビＤＸ、当社サーバーへの不正アクセスの発生について（第2報） 他 8月7日(金) 19:25",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515802.pdf",
-      "tag": "他"
     }
   ],
+  "movers_morning": [],
+  "tdnet_afterclose": [],
   "afterclose_news": [],
-  "movers_afterclose": [
-    {
-      "code": "",
-      "name": "キングスパン",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "決算好調で急騰"
-    },
-    {
-      "code": "",
-      "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した理由"
-    },
-    {
-      "code": "",
-      "name": "アルベマール",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰している理由"
-    },
-    {
-      "code": "",
-      "name": "インスメッド",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した理由"
-    },
-    {
-      "code": "",
-      "name": "ファースト・ソーラー",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した理由"
-    }
-  ],
+  "movers_afterclose": [],
   "technical": [
     {
       "code": "7203",
@@ -380,11 +339,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -2.16,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -411,9 +366,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -467,9 +420,7 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -496,9 +447,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.83,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -741,9 +690,7 @@
       "squeeze_potential": false,
       "sector": "鉄鋼",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "2413",
@@ -797,9 +744,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.41,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [],
@@ -997,7 +942,7 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "【ライブ】日経平均株価/任天堂 株式売出価格決定/JX金属 増産へ/《決算速報》オラクル エニーカラー 三井ハイテック/株式投資/最新情報｜3月11日(水)〈Every Stock NEWS〉 Kevin Warsh (d3zg970OKO) - Mshale",
+      "title": "【ライブ】日経平均株価/任天堂 株式売出価格決定/JX金属 増産へ/《決算速報》オラクル エニーカラー 三井ハイテック/株式投資/最新情報｜3月11日(水)〈Every Stock NEWS〉 Kevin Warsh (d3zg970OKO) - mshale.com",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9tYXZpcGVBdUlHQ0VtSktJYndhMkdtcDV6RUF0R3lINTBteUctWWNBRlpfZFVuUjZPQzd0M2U0Qmt5ZEVQTGk1dzB2a0pkSUpjODJZTi1sUzROb2s?oc=5",
       "keyword": "増産",
       "asof": "8/8 13:56"
@@ -1029,7 +974,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - ビジネスネットワーク",
+      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - businessnetwork.jp",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE95NjJtRXEwX3htbkNGSmpDRFN2dEh5UWc5cmZ3eEZVemgyRXdscVhfdzZaUTg0Yi1wSmQwcjdmS3VwMHhCcHdud25rR2VBWjQ0Yk9Z?oc=5",
       "keyword": "データセンター",
       "asof": "8/7 17:45"
@@ -1061,7 +1006,7 @@
     {
       "code": "4063",
       "company": "信越化学工業",
-      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - Mshale",
+      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - mshale.com",
       "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUek9aM2RtaG93aFVMTXBSR1F3S1U0MWFTTldVelVtUkc2Q0R2eGlCZzhZSVgyTXljam9jWFk4eFRZTmdtUXF6M3R1X2JhUF9BR0FhR0E5aXUzbVE?oc=5",
       "keyword": "新工場",
       "asof": "8/8 11:15"
@@ -1072,80 +1017,79 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-10 08:22",
-    "tdnet_afterclose": "2026-08-10 08:22",
-    "technical": "2026-08-10 08:24",
-    "growth_candidates": "2026-08-10 08:22",
-    "pre_earnings_watch": "2026-08-10 08:22",
-    "edinet_large_holdings": "2026-08-10 08:22",
-    "economic_calendar": "2026-08-10 08:22",
-    "movers_afterclose": "2026-08-10 08:24"
+    "market_quotes": "2026-08-10 08:56",
+    "tdnet_morning": "2026-08-10 08:56",
+    "technical": "2026-08-10 08:56",
+    "growth_candidates": "2026-08-10 08:56",
+    "pre_earnings_watch": "2026-08-10 08:56",
+    "edinet_large_holdings": "2026-08-10 08:56",
+    "economic_calendar": "2026-08-10 08:56"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-10 08:22",
+      "checked_at": "2026-08-10 08:56",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "not_requested",
-      "checked_at": "2026-08-10 08:22",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-10 08:56",
+      "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-10 08:22",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-10 08:56",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-10 08:24",
+      "checked_at": "2026-08-10 08:56",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-10 08:22",
+      "checked_at": "2026-08-10 08:56",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-10 08:22",
+      "checked_at": "2026-08-10 08:56",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-10 08:23",
-      "message": "今回の実行モードでは更新対象外です。"
-    },
-    "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 08:24",
+      "checked_at": "2026-08-10 08:58",
       "message": "ニュース分析APIで取得できませんでした。"
     },
-    "movers_morning": {
+    "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 08:23",
+      "checked_at": "2026-08-10 08:56",
       "message": "今回の実行モードでは更新対象外です。"
     },
+    "movers_morning": {
+      "state": "unavailable",
+      "checked_at": "2026-08-10 08:58",
+      "message": "話題株分析APIで取得できませんでした。"
+    },
     "movers_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-10 08:24",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-10 08:56",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 08:24",
+      "checked_at": "2026-08-10 08:58",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-10 08:22",
+      "checked_at": "2026-08-10 08:56",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-10 08:22",
+      "checked_at": "2026-08-10 08:56",
       "message": "今回の実行で取得・更新しました。"
     }
   }
