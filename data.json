@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-09 15:51",
-  "run_type": "morning",
+  "generated_at": "2026-08-09 16:46",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,757.64",
@@ -39,7 +39,9 @@
     "asof": "8/7終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [
+  "tdnet_morning": [],
+  "movers_morning": [],
+  "tdnet_afterclose": [
     {
       "time": "―",
       "code": "―",
@@ -201,10 +203,49 @@
       "tag": "他"
     }
   ],
-  "movers_morning": [],
-  "tdnet_afterclose": [],
   "afterclose_news": [],
-  "movers_afterclose": [],
+  "movers_afterclose": [
+    {
+      "code": "",
+      "name": "キングスパン",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "ウォーツ・ウォーター・テクノロジーズ",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "急騰した理由"
+    },
+    {
+      "code": "",
+      "name": "アルベマール",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "急騰している理由"
+    },
+    {
+      "code": "",
+      "name": "インスメッド",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "急騰した理由"
+    },
+    {
+      "code": "",
+      "name": "ファースト・ソーラー",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "急騰した理由"
+    }
+  ],
   "technical": [
     {
       "code": "7203",
@@ -339,7 +380,11 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -2.16,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -366,7 +411,8 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "機械"
     },
     {
       "code": "7974",
@@ -420,7 +466,9 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -447,7 +495,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.83,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -690,7 +740,9 @@
       "squeeze_potential": false,
       "sector": "鉄鋼",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -744,7 +796,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.41,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [],
@@ -902,7 +956,7 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益（ビジネス＋IT） - news.yahoo.co.jp",
+      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益（ビジネス＋IT） - Yahoo!ニュース",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBrSEVhX1lIYV8xU2d0SkUybF91UUxRdlh5U0MyVTVTRFQzcmhQSXpSbW8xYkhQa0EtNXphZFN1YlY3aDM0ejdONzlQSHZOS2I5bmFGN0liNGRaRXJoaW9MLWxNNGxiSFpva045dzFmTWZXVGsteVlZWlJvbGdZeDQ?oc=5",
       "keyword": "AI投資",
       "asof": "8/8 05:40"
@@ -918,7 +972,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "キーエンスは急反発、製造業中心に設備投資続き第１四半期営業益は４５％増 - minkabu.jp",
+      "title": "キーエンスは急反発、製造業中心に設備投資続き第１四半期営業益は４５％増 - みんかぶ",
       "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9PWGtKNHV3NzdDY05lXzhGcGYwcEdCQWFuWnN5VnloaklQcTNnRDRySXFVR19DTElTNG00aVpqcU15ZVVkN1E?oc=5",
       "keyword": "設備投資",
       "asof": "7/29 16:00"
@@ -1017,79 +1071,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 15:51",
-    "tdnet_morning": "2026-08-09 15:51",
-    "technical": "2026-08-09 15:51",
-    "growth_candidates": "2026-08-09 15:51",
-    "pre_earnings_watch": "2026-08-09 15:51",
-    "edinet_large_holdings": "2026-08-09 15:51",
-    "economic_calendar": "2026-08-09 15:51"
+    "market_quotes": "2026-08-09 16:46",
+    "tdnet_afterclose": "2026-08-09 16:46",
+    "technical": "2026-08-09 16:48",
+    "growth_candidates": "2026-08-09 16:46",
+    "pre_earnings_watch": "2026-08-09 16:46",
+    "edinet_large_holdings": "2026-08-09 16:46",
+    "economic_calendar": "2026-08-09 16:46",
+    "movers_afterclose": "2026-08-09 16:48"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 15:51",
+      "checked_at": "2026-08-09 16:46",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "updated",
-      "checked_at": "2026-08-09 15:51",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-09 16:46",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-08-09 15:51",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-09 16:46",
+      "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 15:51",
+      "checked_at": "2026-08-09 16:48",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 15:51",
+      "checked_at": "2026-08-09 16:46",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 15:51",
+      "checked_at": "2026-08-09 16:46",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "unavailable",
-      "checked_at": "2026-08-09 15:53",
-      "message": "ニュース分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-08-09 16:47",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-09 15:51",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-08-09 16:48",
+      "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
-      "state": "unavailable",
-      "checked_at": "2026-08-09 15:53",
-      "message": "話題株分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-08-09 16:47",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-08-09 15:51",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-09 16:48",
+      "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 15:53",
+      "checked_at": "2026-08-09 16:48",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 15:51",
+      "checked_at": "2026-08-09 16:46",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 15:51",
+      "checked_at": "2026-08-09 16:46",
       "message": "今回の実行で取得・更新しました。"
     }
   }
