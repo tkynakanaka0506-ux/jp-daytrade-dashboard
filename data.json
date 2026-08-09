@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 11:55",
+  "generated_at": "2026-08-09 13:10",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -216,7 +216,7 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "急騰した理由"
+      "reason": "好材料により急騰"
     },
     {
       "code": "",
@@ -224,7 +224,7 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "急騰している理由"
+      "reason": "好材料により急騰"
     },
     {
       "code": "",
@@ -232,15 +232,15 @@
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "急騰した理由"
+      "reason": "好材料により急騰"
     },
     {
       "code": "",
-      "name": "ファースト・ソーラー",
+      "name": "キオクシア",
       "price": null,
       "change_pct": null,
       "volume_note": null,
-      "reason": "急騰した理由"
+      "reason": "材料出尽くしにより急落"
     }
   ],
   "tdnet_afterclose": [],
@@ -353,7 +353,9 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "情報・通信業",
+      "theme_trend_note": "市場で注目されているテーマ"
     },
     {
       "code": "6861",
@@ -382,9 +384,9 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目されているテーマ"
     },
     {
       "code": "6954",
@@ -412,8 +414,7 @@
       "sector": "機械",
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme": "機械"
     },
     {
       "code": "7974",
@@ -469,7 +470,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -498,7 +499,7 @@
       "sector_avg_change_pct": -1.83,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目されているテーマ"
     },
     {
       "code": "9433",
@@ -579,9 +580,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で3.54%上昇、52週高値まで2.72%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -745,7 +744,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -801,7 +800,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [],
@@ -991,10 +990,18 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
+      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - moneyworld.jp",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
       "keyword": "受注",
       "asof": "8/7 10:15"
+    },
+    {
+      "code": "7974",
+      "company": "任天堂",
+      "title": "【ライブ】日経平均株価/任天堂 株式売出価格決定/JX金属 増産へ/《決算速報》オラクル エニーカラー 三井ハイテック/株式投資/最新情報｜3月11日(水)〈Every Stock NEWS〉 Kevin Warsh (d3zg970OKO) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9tYXZpcGVBdUlHQ0VtSktJYndhMkdtcDV6RUF0R3lINTBteUctWWNBRlpfZFVuUjZPQzd0M2U0Qmt5ZEVQTGk1dzB2a0pkSUpjODJZTi1sUzROb2s?oc=5",
+      "keyword": "増産",
+      "asof": "8/8 13:56"
     },
     {
       "code": "7974",
@@ -1003,14 +1010,6 @@
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 19:43"
-    },
-    {
-      "code": "7974",
-      "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（1/2枚目） - ITmedia",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5ZT1ZJTEo1em11Vnk4R1pCT0tOTkFyRVc5dVZTcE9yZlBOaFI0SERiZ0RPeTBQNkNHNTZCYmZYUE5sczdBT0ladldYbXl5ck5lU0Jrb21zN2x4ZHR5VzFfdkVtVjliQXdPcExESnJrRjlzbFVMTDI5LUZmVQ?oc=5",
-      "keyword": "増産",
-      "asof": "7/28 22:17"
     },
     {
       "code": "8035",
@@ -1074,80 +1073,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 11:55",
-    "tdnet_morning": "2026-08-09 11:55",
-    "technical": "2026-08-09 11:57",
-    "growth_candidates": "2026-08-09 11:55",
-    "pre_earnings_watch": "2026-08-09 11:55",
-    "edinet_large_holdings": "2026-08-09 11:55",
-    "economic_calendar": "2026-08-09 11:55",
-    "movers_morning": "2026-08-09 11:57"
+    "market_quotes": "2026-08-09 13:10",
+    "tdnet_morning": "2026-08-09 13:10",
+    "technical": "2026-08-09 13:11",
+    "growth_candidates": "2026-08-09 13:10",
+    "pre_earnings_watch": "2026-08-09 13:10",
+    "edinet_large_holdings": "2026-08-09 13:10",
+    "economic_calendar": "2026-08-09 13:10",
+    "movers_morning": "2026-08-09 13:11"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:57",
+      "checked_at": "2026-08-09 13:11",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 11:57",
+      "checked_at": "2026-08-09 13:11",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 11:56",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:57",
+      "checked_at": "2026-08-09 13:11",
       "message": "今回の実行で取得・更新しました。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 11:56",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 11:57",
+      "checked_at": "2026-08-09 13:11",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 11:55",
+      "checked_at": "2026-08-09 13:10",
       "message": "今回の実行で取得・更新しました。"
     }
   }
