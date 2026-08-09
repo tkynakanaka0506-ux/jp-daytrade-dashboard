@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 13:10",
+  "generated_at": "2026-08-09 14:16",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -201,48 +201,7 @@
       "tag": "他"
     }
   ],
-  "movers_morning": [
-    {
-      "code": "",
-      "name": "キングスパン",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "決算好調で急騰"
-    },
-    {
-      "code": "",
-      "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "好材料により急騰"
-    },
-    {
-      "code": "",
-      "name": "アルベマール",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "好材料により急騰"
-    },
-    {
-      "code": "",
-      "name": "インスメッド",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "好材料により急騰"
-    },
-    {
-      "code": "",
-      "name": "キオクシア",
-      "price": null,
-      "change_pct": null,
-      "volume_note": null,
-      "reason": "材料出尽くしにより急落"
-    }
-  ],
+  "movers_morning": [],
   "tdnet_afterclose": [],
   "afterclose_news": [],
   "movers_afterclose": [],
@@ -353,9 +312,7 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "情報・通信業",
-      "theme_trend_note": "市場で注目されているテーマ"
+      "sector_contrarian": false
     },
     {
       "code": "6861",
@@ -382,11 +339,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -2.16,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されているテーマ"
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -413,8 +366,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "機械"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -468,9 +420,7 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -497,9 +447,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.83,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されているテーマ"
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -742,9 +690,7 @@
       "squeeze_potential": false,
       "sector": "鉄鋼",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "2413",
@@ -798,9 +744,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.41,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [],
@@ -982,7 +926,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - ダイヤモンド・オンライン",
+      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - diamond.jp",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9Mc3VQQkZqa2RRZl95NFo3MUZSeDN6WVZBTHJQUVJmcDRDWTVoU0dZTU45RXVkZC05ZXFULXZwYnI2b1hjUjhKREtXNGHSAU9BVV95cUxPb1AyTkZoV2xuczFBZlNVZWNldzZ2SFBEa2dZelJwYUNMc3VmaU1VRTFoR19OM0dHaHRlejFPVzdITk9TdVk4Vkd3c0plNnBv?oc=5",
       "keyword": "設備投資",
       "asof": "8/7 04:45"
@@ -990,7 +934,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - moneyworld.jp",
+      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
       "keyword": "受注",
       "asof": "8/7 10:15"
@@ -1006,7 +950,7 @@
     {
       "code": "7974",
       "company": "任天堂",
-      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - ITmedia",
+      "title": "手のひらファミコン「クラシックミニ」150万台販売 「世界で品切れ、増産中」と任天堂（画像）（2/2枚目） - itmedia.co.jp",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFB1dmp3NkloM1ZDRkxhYkdLN25CRFY4OVNIT09jcUE1azBYWEhmQWhyNkxLeHhMNVFabWZRWWlTZmg3a0RYLWFsVV9SY3FtSlhGLUJaYS1XNW1NVHhxaEk4QXJTdmVkenNuVEh5OUUyTkZWd1h1dUEwU1hQTQ?oc=5",
       "keyword": "増産",
       "asof": "7/28 19:43"
@@ -1073,80 +1017,79 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 13:10",
-    "tdnet_morning": "2026-08-09 13:10",
-    "technical": "2026-08-09 13:11",
-    "growth_candidates": "2026-08-09 13:10",
-    "pre_earnings_watch": "2026-08-09 13:10",
-    "edinet_large_holdings": "2026-08-09 13:10",
-    "economic_calendar": "2026-08-09 13:10",
-    "movers_morning": "2026-08-09 13:11"
+    "market_quotes": "2026-08-09 14:16",
+    "tdnet_morning": "2026-08-09 14:16",
+    "technical": "2026-08-09 14:16",
+    "growth_candidates": "2026-08-09 14:16",
+    "pre_earnings_watch": "2026-08-09 14:16",
+    "edinet_large_holdings": "2026-08-09 14:16",
+    "economic_calendar": "2026-08-09 14:16"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 13:11",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 13:11",
+      "checked_at": "2026-08-09 14:18",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:17",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
-      "state": "updated",
-      "checked_at": "2026-08-09 13:11",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "unavailable",
+      "checked_at": "2026-08-09 14:18",
+      "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:17",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 13:11",
+      "checked_at": "2026-08-09 14:18",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 13:10",
+      "checked_at": "2026-08-09 14:16",
       "message": "今回の実行で取得・更新しました。"
     }
   }
