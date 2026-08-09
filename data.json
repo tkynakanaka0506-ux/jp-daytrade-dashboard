@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 00:23",
+  "generated_at": "2026-08-10 02:23",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -42,6 +42,46 @@
   "tdnet_morning": [],
   "movers_morning": [],
   "tdnet_afterclose": [
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "ＳＢＳＨＤ",
+      "title": "ＳＢＳグループ統合報告書",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260806513548.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "太陽誘電",
+      "title": "Safety & Environmental Report 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260806513069.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "太陽誘電",
+      "title": "安全・環境報告書2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260806512316.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "京阪神ビル",
+      "title": "Information Disclosure Based on TCFD Recommendations",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260804508929.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "00:30",
+      "code": "―",
+      "company": "京阪神ビル",
+      "title": "TCFD提言に基づく情報開示",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260804508923.pdf",
+      "tag": "他"
+    },
     {
       "time": "―",
       "code": "―",
@@ -94,8 +134,8 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
+      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料 追訂 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515834.pdf",
       "tag": "他"
     },
     {
@@ -110,16 +150,16 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算補足説明資料 追訂 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515834.pdf",
+      "title": "栄電子、2027年3月期 第1四半期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "栄電子、2027年3月期 第1四半期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 19:50",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515828.pdf",
+      "title": "栄電子、2027年3月期第2四半期（中間期）および通期業績予想の修正に関するお知らせ 業修 8月7日(金) 19:50",
+      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515819.pdf",
       "tag": "他"
     },
     {
@@ -160,46 +200,6 @@
       "company": "―",
       "title": "ＩＰＳＨＤ、2026年６月期 決算短信〔日本基準〕（連結） 決算 8月7日(金) 18:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515764.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ＩＰＳＨＤ、個別業績予想と実績値との差異に関するお知らせ 業修 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515760.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "Ａｒｅｎｔ、[Delayed] Full-Year Financial Results Presentation for the Fiscal Year Ended June 2026 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515520.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ヨネックス、Notice Regarding Unauthorized Access to Systems at Taiwan Subsidiary 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515714.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ヨネックス、台湾子会社における不正アクセスの発生に関するお知らせ 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260807515056.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "アルファＰ、TVアニメ『異世界転生騒動記』2027年1月から放送決定！キービジュアル第1弾、PV第1弾を公開！さらに、追加キャラクター＆キャストを公開！ 他 8月7日(金) 18:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260807/140120260806513378.pdf",
       "tag": "他"
     }
   ],
@@ -382,9 +382,7 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離"
     },
     {
       "code": "6954",
@@ -445,8 +443,8 @@
       "name": "リクルートホールディングス",
       "price": "―",
       "change_pct": null,
-      "ma5_dev": "+3.61%",
-      "ma25_dev": "+5.19%",
+      "ma5_dev": "+1.61%",
+      "ma25_dev": "+2.73%",
       "rsi": 54.79,
       "signal": "弱気",
       "summary": "売り2/中立5/買い0。RSIは中立域。",
@@ -467,7 +465,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -503,8 +501,8 @@
       "name": "KDDI",
       "price": "―",
       "change_pct": null,
-      "ma5_dev": "+2.69%",
-      "ma25_dev": "+3.62%",
+      "ma5_dev": "+0.48%",
+      "ma25_dev": "+0.95%",
       "rsi": 58.86,
       "signal": "中立",
       "summary": "売り1/中立5/買い1。RSIは中立域。",
@@ -743,7 +741,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -799,7 +797,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [],
@@ -949,7 +947,7 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益（ビジネス＋IT） - Yahoo!ニュース",
+      "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益（ビジネス＋IT） - news.yahoo.co.jp",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBrSEVhX1lIYV8xU2d0SkUybF91UUxRdlh5U0MyVTVTRFQzcmhQSXpSbW8xYkhQa0EtNXphZFN1YlY3aDM0ejdONzlQSHZOS2I5bmFGN0liNGRaRXJoaW9MLWxNNGxiSFpva045dzFmTWZXVGsteVlZWlJvbGdZeDQ?oc=5",
       "keyword": "AI投資",
       "asof": "8/8 05:40"
@@ -1053,7 +1051,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - newswitch.jp",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
       "keyword": "データセンター",
       "asof": "8/6 12:02"
@@ -1072,80 +1070,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-10 00:23",
-    "tdnet_afterclose": "2026-08-10 00:23",
-    "technical": "2026-08-10 00:24",
-    "growth_candidates": "2026-08-10 00:23",
-    "pre_earnings_watch": "2026-08-10 00:23",
-    "edinet_large_holdings": "2026-08-10 00:23",
-    "economic_calendar": "2026-08-10 00:23",
-    "movers_afterclose": "2026-08-10 00:24"
+    "market_quotes": "2026-08-10 02:23",
+    "tdnet_afterclose": "2026-08-10 02:23",
+    "technical": "2026-08-10 02:24",
+    "growth_candidates": "2026-08-10 02:23",
+    "pre_earnings_watch": "2026-08-10 02:23",
+    "edinet_large_holdings": "2026-08-10 02:23",
+    "economic_calendar": "2026-08-10 02:23",
+    "movers_afterclose": "2026-08-10 02:24"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:24",
+      "checked_at": "2026-08-10 02:24",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 00:24",
+      "checked_at": "2026-08-10 02:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:24",
+      "checked_at": "2026-08-10 02:24",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 00:24",
+      "checked_at": "2026-08-10 02:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-10 00:23",
+      "checked_at": "2026-08-10 02:23",
       "message": "今回の実行で取得・更新しました。"
     }
   }
