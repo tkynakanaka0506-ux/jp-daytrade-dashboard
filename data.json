@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09 16:46",
+  "generated_at": "2026-08-09 18:31",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -46,7 +46,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "TDnetシステム稼動確認データ 他 今日 14:20 New!",
+      "title": "TDnetシステム稼動確認データ 他 今日 14:20",
       "url": "https://tdnet-pdf.kabutan.jp/20260809/140120260809515943.pdf",
       "tag": "他"
     },
@@ -382,7 +382,7 @@
       "sector_avg_change_pct": -2.16,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.88%上昇、52週高値まで3.2%の距離",
+      "baked_in_reason": "直近5日で+4.88%上昇、52週高値まで3.2%の距離",
       "theme": "半導体",
       "theme_trend_note": "市場で注目されている"
     },
@@ -411,8 +411,7 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "機械"
+      "sector_contrarian": false
     },
     {
       "code": "7974",
@@ -468,7 +467,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で4.9%上昇、52週高値まで1.16%の距離"
+      "baked_in_reason": "直近5日で+4.9%上昇、52週高値まで1.16%の距離"
     },
     {
       "code": "8035",
@@ -686,7 +685,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.58,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "4519",
@@ -742,7 +743,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.37%上昇、52週高値まで1.48%の距離"
+      "baked_in_reason": "直近5日で+7.37%上昇、52週高値まで1.48%の距離"
     },
     {
       "code": "2413",
@@ -798,7 +799,7 @@
       "sector_avg_change_pct": -1.41,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で22.14%上昇、52週高値まで4.29%の距離"
+      "baked_in_reason": "直近5日で+22.14%上昇、52週高値まで4.29%の距離"
     }
   ],
   "us_good_news": [],
@@ -948,18 +949,18 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクグループの投資分析｜AI投資・Arm・NAV - d-sharing.jp",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBTMnBaSHVGZm9FbFJTZ19sTkNWdVdZSDNmS3hEbnVCYWg0czEyVHFPamVHUUhyc1hvWW9XTEJ6dC1RUkRhT1IyaXRvMzRDR0hjUWpzWHNseG9PbEM5Rlp5RFZoRHdxLTFL?oc=5",
-      "keyword": "AI投資",
-      "asof": "8/9 06:21"
-    },
-    {
-      "code": "9984",
-      "company": "ソフトバンクグループ",
       "title": "ソフトバンクグループ第1四半期決算、純利益3473億円、AI投資増で前年比減益（ビジネス＋IT） - Yahoo!ニュース",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBrSEVhX1lIYV8xU2d0SkUybF91UUxRdlh5U0MyVTVTRFQzcmhQSXpSbW8xYkhQa0EtNXphZFN1YlY3aDM0ejdONzlQSHZOS2I5bmFGN0liNGRaRXJoaW9MLWxNNGxiSFpva045dzFmTWZXVGsteVlZWlJvbGdZeDQ?oc=5",
       "keyword": "AI投資",
       "asof": "8/8 05:40"
+    },
+    {
+      "code": "9984",
+      "company": "ソフトバンクグループ",
+      "title": "ソフトバンクグループの投資分析｜AI投資・Arm・NAV - d-sharing.jp",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBTMnBaSHVGZm9FbFJTZ19sTkNWdVdZSDNmS3hEbnVCYWg0czEyVHFPamVHUUhyc1hvWW9XTEJ6dC1RUkRhT1IyaXRvMzRDR0hjUWpzWHNseG9PbEM5Rlp5RFZoRHdxLTFL?oc=5",
+      "keyword": "AI投資",
+      "asof": "8/9 06:21"
     },
     {
       "code": "6861",
@@ -1071,80 +1072,80 @@
     "code": "9433"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-09 16:46",
-    "tdnet_afterclose": "2026-08-09 16:46",
-    "technical": "2026-08-09 16:48",
-    "growth_candidates": "2026-08-09 16:46",
-    "pre_earnings_watch": "2026-08-09 16:46",
-    "edinet_large_holdings": "2026-08-09 16:46",
-    "economic_calendar": "2026-08-09 16:46",
-    "movers_afterclose": "2026-08-09 16:48"
+    "market_quotes": "2026-08-09 18:31",
+    "tdnet_afterclose": "2026-08-09 18:31",
+    "technical": "2026-08-09 18:32",
+    "growth_candidates": "2026-08-09 18:31",
+    "pre_earnings_watch": "2026-08-09 18:31",
+    "edinet_large_holdings": "2026-08-09 18:31",
+    "economic_calendar": "2026-08-09 18:31",
+    "movers_afterclose": "2026-08-09 18:32"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:48",
+      "checked_at": "2026-08-09 18:32",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 16:47",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 16:48",
+      "checked_at": "2026-08-09 18:32",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-09 16:47",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:48",
+      "checked_at": "2026-08-09 18:32",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-09 16:48",
+      "checked_at": "2026-08-09 18:32",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-09 16:46",
+      "checked_at": "2026-08-09 18:31",
       "message": "今回の実行で取得・更新しました。"
     }
   }
