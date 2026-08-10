@@ -38,6 +38,22 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+import ssl
+try:
+    import certifi
+    _CERTIFI_AVAILABLE = True
+except Exception:
+    certifi = None
+    _CERTIFI_AVAILABLE = False
+
+def _get_ssl_context():
+    if _CERTIFI_AVAILABLE:
+        return ssl.create_default_context(cafile=certifi.where())
+    # certifi が無ければ検証無効化してでも動かす(ユーザは pip install certifi を推奨)
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    return ctx
 from datetime import datetime, timezone, timedelta
 
 UA = "Mozilla/5.0 (compatible; jp-daytrade-dashboard-bot/1.0)"
@@ -103,7 +119,8 @@ def fetch_rss(query, hl="ja", gl="JP", ceid="JP:ja", limit=10):
         + f"&hl={hl}&gl={gl}&ceid={ceid}"
     )
     req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=20) as res:
+    ctx = _get_ssl_context()
+    with urllib.request.urlopen(req, timeout=20, context=ctx) as res:
         data = res.read()
     root = ET.fromstring(data)
     items = []
@@ -147,7 +164,8 @@ def call_gemini(api_key, prompt, schema):
     for attempt in range(1, GEMINI_MAX_RETRIES + 1):
         _wait_for_interval("gemini", GEMINI_MIN_INTERVAL_SEC)
         try:
-            with urllib.request.urlopen(req, timeout=90) as res:
+            ctx = _get_ssl_context()
+            with urllib.request.urlopen(req, timeout=90, context=ctx) as res:
                 payload = json.loads(res.read().decode("utf-8"))
             _last_call_ts["gemini"] = time.time()
             text = payload["candidates"][0]["content"]["parts"][0]["text"]
@@ -197,7 +215,8 @@ def call_groq(api_key, prompt, schema):
     for attempt in range(1, GROQ_MAX_RETRIES + 1):
         _wait_for_interval("groq", GROQ_MIN_INTERVAL_SEC)
         try:
-            with urllib.request.urlopen(req, timeout=90) as res:
+            ctx = _get_ssl_context()
+            with urllib.request.urlopen(req, timeout=90, context=ctx) as res:
                 payload = json.loads(res.read().decode("utf-8"))
             _last_call_ts["groq"] = time.time()
             text = payload["choices"][0]["message"]["content"]
@@ -314,6 +333,495 @@ THEME_TAG_ITEM_SCHEMA = {
     },
     "required": ["code", "theme"],
 }
+
+
+def _heuristic_us_good_from_rss(candidates):
+    """Simple deterministic extractor for US good-news categories from RSS titles.
+    This is a fallback when the LLM-based analysis is unavailable or returns empty.
+    It returns a list of objects with at least `headline` and `category` filled.
+    """
+    out = []
+    if not candidates:
+        return out
+    for it in candidates:
+        title = (it.get("title") or "").strip()
+        url = it.get("url") or ""
+        time_ = it.get("time") or ""
+        t = title.lower()
+        cat = None
+        # earnings beat
+        if re.search(r"\bbeat(s|ing)?\b|beats (estimates|expectations|consensus)|beat (estimates|consensus)", t):
+            cat = "earnings_beat"
+        # guidance raise / outlook up
+        elif re.search(r"raise(s|d)? (guidance|outlook)|updat(e|ed) guidance|boost(s|ed) (guidance|outlook)|guidance (raise|up)", t):
+            cat = "guidance_raise"
+        # upgrade / price target up
+        elif re.search(r"upgrad(e|ed|es)|raise(d)? (price )?target|initiated coverage|rating (upgrade|raised)", t):
+            cat = "upgrade"
+        # buyback
+        elif re.search(r"buyback|share repurchase|repurchase|announc(es|ed) repurchase", t):
+            cat = "buyback"
+        # dividend hike
+        elif re.search(r"dividend (hike|increase|raise|boost)|raises dividend|increase in dividend", t):
+            cat = "dividend_hike"
+
+        if cat:
+            out.append({
+                "ticker": "",
+                "company": "",
+                "category": cat,
+                "headline": title,
+                "url": url,
+                "time": time_,
+            })
+    return out
+
+
+def _compute_pre_earnings_indicator(root, technical, news_candidates, growth_candidates):
+    """Compute deterministic leading (pre-earnings) indicators per technical item.
+    Returns a list of {code, name, score, signals, detail_urls} sorted by score desc.
+    Uses RSS news hit counts, recent growth_candidates, short-term returns and sector signals.
+    """
+    indicators = []
+    if not technical:
+        return indicators
+
+    # keyword lists (Japanese and English) indicating forward-looking positive signals
+    positive_kw = [
+        "受注", "増産", "受注好調", "受注拡大", "出荷", "販売好調", "増収見込み", "ガイダンス上方",
+        "guidance", "beat", "order", "demand", "boost", "raise", "outlook up", "ship",
+    ]
+
+    growth_by_name = {g.get("company"): g for g in (growth_candidates or []) if g.get("company")}
+
+    # prepare lowercased titles for quick search
+    titles = [(it.get("title") or "", it.get("url")) for it in (news_candidates or [])]
+    titles_lc = [(t.lower(), u) for (t, u) in titles]
+
+    for t in technical:
+        code = t.get("code") or f"NAME:{t.get('name','') }"
+        name = (t.get("name") or "").strip()
+        score = 0.0
+        signals = []
+        urls = []
+
+        # 1) growth_candidates direct match
+        g = growth_by_name.get(name)
+        if g:
+            score += 20.0
+            signals.append("TDnet: 当日開示(増配/上方修正など)")
+            if g.get("url"):
+                urls.append(g.get("url"))
+
+        # 2) news mentions with positive keywords
+        mention_hits = 0
+        for tlc, u in titles_lc:
+            if not name:
+                continue
+            if name.lower() in tlc:
+                for kw in positive_kw:
+                    if kw in tlc:
+                        mention_hits += 1
+                        if u:
+                            urls.append(u)
+                        break
+        if mention_hits:
+            add = min(mention_hits * 6.0, 30.0)
+            score += add
+            signals.append(f"ニュース指標: 関連見出し {mention_hits}件")
+
+        # 3) short-term momentum (ret_5d_pct)
+        ret5 = t.get("ret_5d_pct")
+        if isinstance(ret5, (int, float)):
+            if ret5 >= 5.0:
+                score += 10.0
+                signals.append(f"直近5日上昇 {ret5:.1f}%")
+            elif ret5 <= -5.0:
+                score -= 8.0
+                signals.append(f"直近5日下落 {ret5:.1f}%(減点)")
+
+        # 4) sector contrarian
+        if t.get("sector_contrarian"):
+            score += 8.0
+            signals.append("セクター逆行高")
+
+        # 5) squeeze / credit ratio & RSI
+        credit_ratio = t.get("credit_ratio")
+        rsi = t.get("rsi")
+        if isinstance(credit_ratio, (int, float)) and credit_ratio < 1.0:
+            bonus = max(0.0, (1.0 - credit_ratio)) * 6.0
+            score += bonus
+            signals.append(f"信用倍率低め(踏み上げ余地) {credit_ratio}")
+        if isinstance(rsi, (int, float)) and rsi <= 35:
+            score += 6.0
+            signals.append(f"RSI売られ過ぎ {rsi}")
+
+        # 6) high price penalty (reduce notifications for very hot/value stocks)
+        high_dist = t.get("high_52w_dist_pct")
+        if isinstance(high_dist, (int, float)) and high_dist <= 3.0:
+            score -= 10.0
+            signals.append("52週高値に接近(過熱・減点)")
+
+        # floor/ceiling and normalization
+        score = max(-20.0, min(50.0, score))
+        # scale to 0-100
+        norm = int((score + 20.0) / 70.0 * 100.0)
+        indicators.append({
+            "code": code,
+            "name": name,
+            "score": norm,
+            "raw_score": round(score, 2),
+            "signals": signals,
+            "urls": urls,
+        })
+
+    indicators.sort(key=lambda x: x.get("score", 0), reverse=True)
+    return indicators
+
+
+def _assess_industry_spillover(gemini_key, groq_key, technical, news_candidates):
+    """Ask the LLM to infer whether recent peer/company headlines imply positive spillover
+    to a watched ticker. Returns a map (code_or_name -> {influence, reason, confidence})."""
+    if not gemini_key and not groq_key:
+        return {}
+    # Group by sector and prepare prompts per sector to limit LLM calls
+    sector_map = {}
+    for t in technical:
+        sector = (t.get("sector") or "").strip()
+        if not sector:
+            continue
+        sector_map.setdefault(sector, []).append(t)
+
+    # prepare news by company mention
+    titles = [(it.get("title") or "", it.get("url") or "") for it in (news_candidates or [])]
+
+    schema = {
+        "type": "OBJECT",
+        "properties": {
+            "assessments": {"type": "ARRAY", "items": {"type": "OBJECT"}},
+        },
+        "required": ["assessments"],
+    }
+
+    result_map = {}
+    for sector, items in sector_map.items():
+        # collect peer headlines mentioning sector companies
+        sector_news = []
+        for title, url in titles:
+            lc = title.lower()
+            for t in items:
+                name = (t.get("name") or "").lower()
+                if name and name in lc:
+                    sector_news.append({"company": t.get("name"), "title": title, "url": url})
+                    break
+        if not sector_news:
+            continue
+        # build prompt
+        prompt = (
+            f"あなたは日本株の業界影響分析の補助者です。業種: {sector}\n"
+            "以下は同業他社の最近の見出し一覧です。これらの見出しがウォッチリストの他の銘柄に対して"
+            "ポジティブな波及効果(業績上振れの予兆)を示すかどうかを、銘柄ごとに評価してください。"
+            "出力は JSON 配列 'assessments' として、各要素は {\"code\"(任意), \"name\", \"influence\":\"positive|neutral|negative\",\"reason\":\"...\",\"confidence\":0-100} の形にしてください。\n"
+            "同じ業種に属するウォッチリスト銘柄: "
+        )
+        prompt += ", ".join([t.get("name","") for t in items]) + "\n\n"
+        prompt += "最近の見出し一覧:\n"
+        for n in sector_news:
+            prompt += f"- {n['company']}: {n['title']} ({n['url']})\n"
+
+        try:
+            resp = call_with_fallback(f"業種波及({sector})", "gemini", gemini_key, groq_key, prompt, schema)
+            if not resp:
+                continue
+            assessments = resp.get("assessments") or []
+            for a in assessments:
+                key = a.get("code") or a.get("name")
+                if not key:
+                    continue
+                result_map[key] = {
+                    "influence": a.get("influence"),
+                    "reason": a.get("reason"),
+                    "confidence": a.get("confidence"),
+                }
+        except Exception as e:
+            log(f"業種波及のLLM評価が失敗しました({sector}): {e}")
+            continue
+    return result_map
+
+
+def _compute_prediction_scenarios(indicators, technical, root, news_candidates):
+    """Add prediction labels and risk triggers based on five modules:
+    1) supply-demand squeeze
+    2) VWAP/volume accumulation (approx)
+    3) management confidence (ir_tone)
+    4) sector rotation
+    5) combine into scenario labels and prediction_score
+    Modifies indicators in-place and returns them.
+    """
+    tech_map = {t.get('code') or t.get('name'): t for t in (technical or [])}
+    titles = [(it.get('title') or '').lower() for it in (news_candidates or [])]
+
+    for ind in indicators:
+        code = ind.get('code')
+        name = ind.get('name')
+        key = code if code in tech_map else name
+        t = tech_map.get(key, {})
+        # initialize fields
+        ind.setdefault('prediction_labels', [])
+        ind.setdefault('prediction_notes', [])
+        ind.setdefault('risk_triggers', [])
+        pred_score = 0.0
+
+        # 1) supply-demand squeeze heuristic
+        credit_ratio = t.get('credit_ratio')
+        ma5_dev = t.get('ma5_dev')
+        ma5_above = False
+        try:
+            if isinstance(ma5_dev, str) and ma5_dev.endswith('%'):
+                ma5_val = float(ma5_dev.replace('%','').replace('+',''))
+                ma5_above = ma5_val > 0
+            elif isinstance(ma5_dev, (int,float)):
+                ma5_above = ma5_dev > 0
+        except Exception:
+            ma5_above = False
+
+        news_hit = False
+        lname = (name or '').lower()
+        for tl in titles:
+            if lname and lname in tl:
+                news_hit = True
+                break
+
+        squeeze_flag = False
+        if isinstance(credit_ratio, (int, float)) and credit_ratio < 1.0:
+            # mark sell-side pressure (canonical flag)
+            ind.setdefault('prediction_notes', []).append(f'信用倍率低め({credit_ratio})')
+            ind.setdefault('reason_flags', []).append('売り残過多')
+            # extra boost when price is above MA5 and news exists
+            if ma5_above and news_hit:
+                squeeze_flag = True
+                ind.setdefault('prediction_labels', []).append('踏み上げ期待')
+                ind.setdefault('prediction_notes', []).append('売り残増・5日線上・材料予兆(🚀)')
+                pred_score += 28.0
+            else:
+                # partial signal when only sell-side increase is observed
+                pred_score += 6.0
+
+        # 2) VWAP / volume accumulation
+        vol = t.get('volume')
+        avg5 = t.get('avg_volume_5d')
+        price = None
+        live = t.get('live_quote') or {}
+        price = live.get('price') or t.get('price')
+        # prefer explicit VWAP if available
+        vwap = None
+        try:
+            vwap = float(live.get('vwap')) if live.get('vwap') is not None else None
+        except Exception:
+            vwap = None
+        if isinstance(vol, (int,float)) and isinstance(avg5, (int,float)) and vol > avg5 and ((vwap is not None and isinstance(price,(int,float)) and price > vwap) or ma5_above):
+            vwap_like = True
+            if 'クジラ追随' not in ind['prediction_labels']:
+                ind.setdefault('prediction_labels', []).append('クジラ追随')
+            ind.setdefault('prediction_notes', []).append('出来高増・VWAP上(大口買い疑い)')
+            pred_score += 15.0
+
+        # detect gradual volume increase without news
+        if isinstance(vol, (int,float)) and isinstance(avg5, (int,float)) and vol > avg5 * 1.5 and not news_hit:
+            ind.setdefault('prediction_notes', []).append('出来高じわ増(先回り買い疑い)')
+            pred_score += 10.0
+
+        # 3) management confidence via existing ir_tone if present
+        ir = ind.get('ir_tone') or {}
+        if ir:
+            tone = ir.get('tone')
+            if tone == 'positive':
+                ind.setdefault('prediction_labels', []).append('隠れ好業績予想')
+                ind.setdefault('prediction_notes', []).append('IRトーン強気')
+                ind.setdefault('reason_flags', []).append('経営者強気')
+                pred_score += 20.0
+            elif tone == 'negative':
+                ind['prediction_notes'].append('IRトーン弱気(減点)')
+                pred_score -= 15.0
+
+        # 4) sector rotation: sector rising but stock lagging
+        sector_avg = t.get('sector_avg_change_pct')
+        ret5 = t.get('ret_5d_pct')
+        if isinstance(sector_avg, (int,float)) and sector_avg > 1.0 and (not isinstance(ret5,(int,float)) or ret5 < 1.0):
+            ind.setdefault('prediction_labels', []).append('出遅れ優良株')
+            ind.setdefault('prediction_notes', []).append('セクター好調だが個別は未上昇')
+            ind.setdefault('reason_flags', []).append('同業好調')
+            pred_score += 10.0
+
+        # 5) FX tailwind (existing fx_map integrated earlier may add fx_bonus into raw_score)
+        # combine pred_score with existing raw_score
+        raw = ind.get('raw_score', 0)
+        combined = raw + pred_score
+        # map to 0-100
+        combined_norm = int(max(0, min(100, (combined + 40.0) / 90.0 * 100.0)))
+        ind['prediction_score'] = round(combined, 2)
+        ind['prediction_confidence'] = combined_norm
+
+        # risk triggers and automated stop-loss calculation
+        if isinstance(price, (int,float)):
+            # stop-loss: either recent low (day_low) if available, else 90% of price, and VWAP-like (ma5) as secondary
+            day_low = None
+            if isinstance(live.get('day_low'), (int,float)):
+                day_low = live.get('day_low')
+            if day_low:
+                sl_price = int(day_low)
+                sl_note = '直近安値を割ったら撤退'
+            else:
+                sl_price = int(price * 0.90)
+                sl_note = '現在値の10%下(目安)を撤退ライン'
+            ind['risk_triggers'].append({'type':'stop_loss_price','value':sl_price,'note':sl_note})
+            # relative pct
+            try:
+                pct = round((price - sl_price) / price * 100.0, 1)
+                ind['risk_triggers'][-1]['pct'] = pct
+            except Exception:
+                pass
+        if not ma5_above:
+            ind.setdefault('risk_triggers', []).append({'type':'ma5_breach','note':'5日線割れでシナリオ崩れ'})
+        # VWAP breach as stop signal
+        if vwap is not None:
+            try:
+                ind.setdefault('risk_triggers', []).append({'type':'vwap_breach','value':int(vwap),'note':'VWAP下抜けでシナリオ崩れ'})
+                if isinstance(price,(int,float)):
+                    ind['risk_triggers'][-1]['pct'] = round((price - vwap) / price * 100.0, 1)
+            except Exception:
+                pass
+
+        # final label consolidation for high-score picks
+        # if prediction_confidence (soon) or combined_norm >=70, ensure one of primary labels exists
+        # we'll assign 'クジラ追随' when vwap_like True, else '踏み上げ期待' when squeeze_flag True
+        # (labels may already exist from above rules)
+        if combined_norm >= 70:
+            if vwap_like and 'クジラ追随' not in ind['prediction_labels']:
+                ind.setdefault('prediction_labels', []).append('クジラ追随')
+            if squeeze_flag and '踏み上げ期待' not in ind['prediction_labels']:
+                ind.setdefault('prediction_labels', []).append('踏み上げ期待')
+
+    return indicators
+
+
+def _update_credit_history(root, technical):
+    """Store and compare credit_ratio history to detect sudden increases in sell-side.
+    Assumes credit_ratio = buy_balance / sell_balance (JPX convention). A sharp drop
+    in credit_ratio implies sell balance increased (踏み上げ期待)。
+    Stores history under root['credit_history'] as {code: {'last': val, 'ts': 'YYYY-MM-DD HH:MM'}}
+    Returns a dict of flags per code: {code: {'delta': float, 'sell_rise': bool, 'notes':[...]}}
+    """
+    hist = root.setdefault("credit_history", {})
+    now = datetime.now(JST).strftime("%Y-%m-%d %H:%M")
+    flags = {}
+    for t in technical:
+        code = t.get("code")
+        if not code:
+            continue
+        cur = t.get("credit_ratio")
+        prev = None
+        entry = hist.get(code)
+        if entry and isinstance(entry.get("last"), (int, float)):
+            prev = float(entry.get("last"))
+        if isinstance(cur, (int, float)):
+            hist[code] = {"last": cur, "ts": now}
+        # compute change if prev exists
+        delta = None
+        sell_rise = False
+        notes = []
+        if prev is not None and isinstance(cur, (int, float)) and prev > 0:
+            delta = (cur - prev) / prev
+            # if ratio dropped by >=20% -> implies sell-side increased
+            if delta <= -0.2:
+                sell_rise = True
+                notes.append(f"信用倍率が{prev:.2f}→{cur:.2f}に低下(売り残増加の可能性)")
+        flags[code] = {"delta": None if delta is None else round(delta, 3), "sell_rise": sell_rise, "notes": notes}
+    # persist hist back
+    root["credit_history"] = hist
+    return flags
+
+
+def _assess_ir_tone(gemini_key, groq_key, tdnet_items):
+    """Use LLM to assess tone of recent TDnet/IR text titles. Returns map by company/code.
+    If API keys absent, returns empty dict.
+    """
+    if not gemini_key and not groq_key:
+        return {}
+    schema = {
+        "type": "OBJECT",
+        "properties": {
+            "assessments": {"type": "ARRAY", "items": {"type": "OBJECT"}},
+        },
+        "required": ["assessments"],
+    }
+    # batch by company: collect recent titles per company
+    by_comp = {}
+    for it in tdnet_items or []:
+        comp = it.get("company") or it.get("code") or it.get("title")
+        if not comp:
+            continue
+        by_comp.setdefault(comp, []).append({"title": it.get("title",""), "url": it.get("url",""), "asof": it.get("time","")})
+
+    out = {}
+    for comp, items in by_comp.items():
+        prompt = (
+            f"以下はある企業の直近TDnet/IR見出しの一覧です。経営者のトーン、文面の自信度、"
+            "およびこれらが業績見通しに対してポジティブ/ニュートラル/ネガティブのどれを示唆するかを短く評価してください。"
+            "出力はJSONで、'assessments'配列に{name, tone: 'positive|neutral|negative', confidence:0-100, reason: '...'}を入れてください。\n\n"
+        )
+        prompt += "\n".join([f"- {i['title']} ({i['asof']}) {i['url']}" for i in items[:6]])
+        try:
+            resp = call_with_fallback(f"IRトーン評価({comp})", "gemini", gemini_key, groq_key, prompt, schema)
+            if not resp:
+                continue
+            assessments = resp.get("assessments") or []
+            if assessments:
+                a = assessments[0]
+                out_key = a.get("name") or comp
+                out[out_key] = {"tone": a.get("tone"), "confidence": a.get("confidence"), "reason": a.get("reason")}
+        except Exception as e:
+            log(f"IRトーン評価失敗({comp}): {e}")
+            continue
+    return out
+
+
+def _assess_fx_impact(root, technical):
+    """Estimate USD/JPY and export sensitivity. Returns per-code fx_bonus and notes.
+    Uses root['fx']['value'] if present. Matches sectors likely to benefit from weaker yen.
+    """
+    fx_val = None
+    fx = root.get("fx") or {}
+    val = fx.get("value")
+    if isinstance(val, str):
+        m = re.search(r"([0-9]+(?:\.[0-9]+)?)", val.replace(",", ""))
+        if m:
+            try:
+                fx_val = float(m.group(1))
+            except Exception:
+                fx_val = None
+    results = {}
+    if fx_val is None:
+        return results
+    # sectors considered exporters
+    exporter_keywords = ["輸出", "電気機器", "機械", "輸送用機器", "化学", "精密", "半導体", "素材"]
+    # heuristic: if USDJPY is strong (high) and sector matches, give bonus
+    for t in technical:
+        code = t.get("code")
+        if not code:
+            continue
+        sector = (t.get("sector") or "")
+        bonus = 0.0
+        notes = []
+        for kw in exporter_keywords:
+            if kw in sector:
+                # stronger yen (higher number) benefits exporters when stock not yet priced in
+                if fx_val >= 150:
+                    bonus = 12.0
+                    notes.append(f"為替({fx_val})で輸出メリット想定")
+                break
+        results[code] = {"fx_bonus": bonus, "notes": notes}
+    return results
 
 # グループA(Gemini担当): 地政学ニュース + 米国株好材料ニュース
 GROUP_A_SCHEMA = {
@@ -651,10 +1159,21 @@ def main():
 
         try:
             items = [it for it in result_a.get("us_news_items", []) if it.get("headline") and it.get("category")]
+            # ノイズを削ぎ落とす: baked_in_verdict が判定不能の場合は理由が無ければ外す
             for it in items:
                 if it.get("baked_in_verdict") in (None, "", "判定不能") or not it.get("baked_in_reason"):
                     it.pop("baked_in_verdict", None)
                     it.pop("baked_in_reason", None)
+            # LLM が空だった場合、RSS の見出しを単純ルールで解析して代替出力する
+            if not items:
+                try:
+                    fallback = _heuristic_us_good_from_rss(us_candidates)
+                    if fallback:
+                        items = fallback
+                        log(f"us_good_news: LLM出力が空のためRSSヒューリスティックで{len(items)}件を代替取得しました。")
+                except Exception as e:
+                    log(f"us_good_news heuristic fallback failed: {e}")
+
             root["us_good_news"] = items
             if items:
                 mark_updated(root, "us_good_news")
@@ -724,6 +1243,87 @@ def main():
                 log(f"投資テーマタグを{len(theme_map)}件付与しました。")
         except Exception as e:
             log(f"投資テーマタグ付け結果の反映に失敗しました。今回の補足結果は空のままです: {e}")
+
+    # ---- 6) 先行指標(決算前シグナル)の算出(決定論的) + 需給/IR/為替の突合 ----
+    try:
+        # credit history / sell-side increase detection
+        credit_flags = _update_credit_history(root, technical)
+        # TDnet items for IR tone analysis
+        tdnet_items = (root.get("tdnet_morning", []) or []) + (root.get("tdnet_afterclose", []) or [])
+        ir_map = _assess_ir_tone(gemini_key, groq_key, tdnet_items)
+        fx_map = _assess_fx_impact(root, technical)
+
+        indicators = _compute_pre_earnings_indicator(root, technical, news_candidates, growth)
+        # integrate credit/IR/FX into indicators
+        for ind in indicators:
+            code = ind.get("code")
+            name = ind.get("name")
+            # credit flags
+            if code and code in credit_flags:
+                cf = credit_flags[code]
+                ind.setdefault("credit_flags", cf)
+                if cf.get("sell_rise"):
+                    ind["raw_score"] = round(ind.get("raw_score", 0) + 12.0, 2)
+                    ind.setdefault("signals", []).insert(0, "売り残増加(踏み上げ期待)")
+            # IR tone
+            ir_key = None
+            if code and code in ir_map:
+                ir_key = code
+            elif name and name in ir_map:
+                ir_key = name
+            if ir_key:
+                ir = ir_map[ir_key]
+                ind.setdefault("ir_tone", ir)
+                if ir.get("tone") == "positive":
+                    ind["raw_score"] = round(ind.get("raw_score", 0) + 15.0, 2)
+                    ind.setdefault("signals", []).append("IR文書のトーン: 強気")
+                elif ir.get("tone") == "negative":
+                    ind["raw_score"] = round(ind.get("raw_score", 0) - 12.0, 2)
+                    ind.setdefault("signals", []).append("IR文書のトーン: 弱気(減点)")
+            # FX impact
+            if code and code in fx_map and fx_map[code].get("fx_bonus"):
+                ind["raw_score"] = round(ind.get("raw_score", 0) + fx_map[code].get("fx_bonus", 0), 2)
+                ind.setdefault("signals", []).append("為替追い風")
+        # renormalize into 0-100
+        for ind in indicators:
+            raw = ind.get("raw_score", 0)
+            norm = int(max(0, min(100, (raw + 20.0) / 70.0 * 100.0)))
+            ind["score"] = norm
+
+        root["pre_earnings_indicator"] = indicators
+        if indicators:
+            mark_updated(root, "pre_earnings_indicator")
+            log(f"pre_earnings_indicator を{len(indicators)}件生成しました。")
+        else:
+            mark_empty(root, "pre_earnings_indicator", "先行指標の該当銘柄はありませんでした。")
+    except Exception as e:
+        root["pre_earnings_indicator"] = []
+        mark_unavailable(root, "pre_earnings_indicator", "先行指標の算出に失敗しました。")
+        log(f"先行指標の算出に失敗しました: {e}")
+    # LLM による同業他社波及評価(任意・APIキーがある場合のみ)
+    try:
+        industry_map = _assess_industry_spillover(gemini_key, groq_key, technical, news_candidates)
+        if industry_map:
+            # attach results to indicators
+            for ind in root.get("pre_earnings_indicator", []):
+                key = ind.get("code") or ind.get("name")
+                if key in industry_map:
+                    ind.setdefault("industry_influence", {}).update(industry_map[key])
+            mark_updated(root, "pre_earnings_indicator")
+            log(f"pre_earnings_indicator に業種波及評価を付与しました({len(industry_map)}件)。")
+    except Exception as e:
+        log(f"業種波及評価の付与に失敗しました: {e}")
+
+    # ---- 7) 予測シナリオ(クジラ/踏み上げ/隠れ好業績など)の算出 ----
+    try:
+        preds = _compute_prediction_scenarios(root.get("pre_earnings_indicator", []), technical, root, news_candidates)
+        if preds:
+            # merge back
+            root["pre_earnings_indicator"] = preds
+            mark_updated(root, "pre_earnings_indicator")
+            log(f"pre_earnings_indicator に予測シナリオを付与しました({len(preds)}件)。")
+    except Exception as e:
+        log(f"予測シナリオの算出に失敗しました: {e}")
 
     with open(data_path, "w", encoding="utf-8") as f:
         json.dump(root, f, ensure_ascii=False, indent=2)

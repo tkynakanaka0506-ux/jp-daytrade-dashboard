@@ -1273,6 +1273,46 @@ def pre_earnings_watch_html(items, empty_msg="現時点で該当する先行材�
     return "".join(rows)
 
 
+def pre_earnings_indicator_html(items, empty_msg="先行指標は見つかりませんでした。"):
+    if not items:
+        return f'<p class="empty">{esc(empty_msg)}</p>'
+    rows = []
+    for it in items[:10]:
+        name = esc(it.get("name", ""))
+        code = esc(it.get("code", ""))
+        score = esc(it.get("score", ""))
+        raw = esc(it.get("raw_score", ""))
+        signals = it.get("signals") or []
+        industry = it.get("industry_influence") or {}
+        reason = esc(industry.get("reason", ""))
+        inf = esc(industry.get("influence", ""))
+        conf = esc(industry.get("confidence", ""))
+        credit = it.get("credit_flags") or {}
+        ir = it.get("ir_tone") or {}
+        preds = it.get('prediction_labels') or []
+        pred_score = esc(it.get('prediction_score',''))
+        pred_conf = esc(it.get('prediction_confidence',''))
+        priority_badge = " <span class=\"badge hot\">先回り推奨</span>" if (isinstance(it.get("score"), int) and it.get("score") >= 70) else ""
+        credit_note = esc('; '.join(credit.get("notes", []))) if credit else ""
+        ir_note = esc(ir.get("reason", "")) if ir else ""
+        ir_tone = esc(ir.get("tone", "")) if ir else ""
+        rows.append(f"""
+        <div class="rank-item">
+          <div class="rank-num">📈</div>
+          <div class="rank-body">
+            <div class="rank-head">{name}({code}) <span class="badge bull">期待度 {score}%</span>{priority_badge}</div>
+            <div class="rank-desc">スコア(raw={raw}): {esc(', '.join(signals[:2]))}</div>
+            <div class="rank-desc">同業波及推定: {inf} (信頼度:{conf}%)</div>
+            <div class="rank-desc">波及理由: {reason}</div>
+            <div class="rank-desc">IRトーン: {ir_tone} {ir_note}</div>
+            <div class="rank-desc">需給メモ: {credit_note}</div>
+            <div class="rank-desc">予想シナリオ: {esc(', '.join(preds))} (予測値:{pred_score} 信頼度:{pred_conf}%)</div>
+            <div class="rank-desc">リスク: {esc('; '.join([r.get('note','') if isinstance(r,dict) else str(r) for r in (it.get('risk_triggers') or [])]))}</div>
+          </div>
+        </div>""")
+    return "".join(rows)
+
+
 def edinet_holdings_html(items, empty_msg="現時点で該当する大量保有報告書・変更報告書は見つかりませんでした(EDINET_API_KEY未設定の場合は常にこの表示になります)。"):
     """EDINET 大量保有報告書(5%ルール)の簡易チェック(プロトタイプ)。
 
@@ -1727,6 +1767,18 @@ section { margin: 32px 20px; }
   font-size: 11px; line-height: 1.45;
 }
 .update-log-item b { color: var(--text); }
+/* 状態別の色分け: updated=緑, partial=黄, empty=淡い灰, unavailable=赤, not_requested/pending=薄いグレー */
+.update-log-item.state-updated { background: linear-gradient(90deg, rgba(34,197,94,0.08), rgba(34,197,94,0.04)); border: 1px solid rgba(34,197,94,0.18); color: var(--text); }
+.update-log-item.state-partial { background: linear-gradient(90deg, rgba(250,204,21,0.06), rgba(250,204,21,0.03)); border: 1px solid rgba(250,204,21,0.12); color: var(--text); }
+.update-log-item.state-empty { background: linear-gradient(90deg, rgba(148,163,184,0.03), rgba(148,163,184,0.02)); border: 1px solid rgba(148,163,184,0.06); color: var(--muted); }
+.update-log-item.state-unavailable { background: linear-gradient(90deg, rgba(239,68,68,0.06), rgba(239,68,68,0.03)); border: 1px solid rgba(239,68,68,0.12); color: var(--text); }
+.update-log-item.state-not_requested, .update-log-item.state-pending { background: rgba(255,255,255,0.02); border: 1px dashed var(--border); color: var(--muted); }
+.update-log-item .state-badge { display:inline-block; margin-left:8px; font-size:10px; padding:2px 6px; border-radius:8px; vertical-align:middle; }
+.update-log-item.state-updated .state-badge { background: rgba(34,197,94,0.12); color: #064e3b; border: 1px solid rgba(34,197,94,0.18); }
+.update-log-item.state-partial .state-badge { background: rgba(250,204,21,0.12); color: #78350f; border: 1px solid rgba(250,204,21,0.12); }
+.update-log-item.state-empty .state-badge { background: rgba(148,163,184,0.06); color: #1f2937; border: 1px solid rgba(148,163,184,0.06); }
+.update-log-item.state-unavailable .state-badge { background: rgba(239,68,68,0.12); color: #7f1d1d; border: 1px solid rgba(239,68,68,0.12); }
+.update-log-item.state-not_requested .state-badge, .update-log-item.state-pending .state-badge { background: rgba(255,255,255,0.02); color: var(--muted); border: 1px dashed var(--border); }
 section > h2 {
   font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
   font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
@@ -2468,7 +2520,15 @@ def data_update_log_html(data, generated_at):
         state_label = STATUS_LABELS.get(entry["state"], entry["state"])
         checked = _format_date_jp(entry["checked_at"]) + " (JST)" if entry["checked_at"] else "時刻未記録"
         status = f"{state_label}・確認: {checked}。{entry['message']}"
-        rows.append(f'<span class="update-log-item"><b>{esc(label)}</b>: {esc(status)}</span>')
+        state = entry["state"] or "unavailable"
+        css_state = esc(state.replace(" ", "-"))
+        # 状態ごとに色分けされたカードとして出力。バッジで状態ラベルも表示する。
+        badge = f'<span class="state-badge">{esc(state_label)}</span>'
+        rows.append(
+            f'<div class="update-log-item state-{css_state}" role="group" aria-label="{esc(label)}: {esc(state_label)}">'
+            f'<b>{esc(label)}</b>: {esc(status)} {badge}'
+            f'</div>'
+        )
     return f"""
     <section id="update-log" class="update-log-section">
       <h2>🕒 データ更新記録 {_display_stamp(generated_at)}</h2>
@@ -2746,6 +2806,16 @@ def build_html(data: dict) -> str:
         <h3>ウォッチリスト銘柄の先行材料ニュース(直近14日・見出しキーワード一致)</h3>
         {pre_earnings_watch_html(data.get("pre_earnings_watch", []))}
         {data_status_note(data, "pre_earnings_watch")}
+      </div>
+    </section>"""
+    indicator_html = f"""
+    <section id="pre-earnings-indicator">
+      <h2>🔮 決算期待度スコア(予兆)</h2>
+      <p class="section-desc">LLM補正および断片ニュース・テクニカルを組み合わせた決算前の期待度スコアです。根拠(見出し・同業波及推定等)を併記しています。</p>
+      <div class="card">
+        <h3>先行指標(上位)</h3>
+        {pre_earnings_indicator_html(data.get("pre_earnings_indicator", []))}
+        {data_status_note(data, "pre_earnings_indicator")}
       </div>
     </section>"""
 

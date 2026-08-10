@@ -97,6 +97,21 @@ import sys
 import urllib.request
 import urllib.parse
 from datetime import datetime, timezone, timedelta
+import ssl
+try:
+    import certifi
+    _CERTIFI_AVAILABLE = True
+except Exception:
+    certifi = None
+    _CERTIFI_AVAILABLE = False
+
+def _get_ssl_context():
+    if _CERTIFI_AVAILABLE:
+        return ssl.create_default_context(cafile=certifi.where())
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    return ctx
 
 JST = timezone(timedelta(hours=9))
 
@@ -218,7 +233,8 @@ def _data_is_fresh(root, now=None):
 
 def _fetch_json(url, timeout=12):
     req = urllib.request.Request(url, headers={"User-Agent": "jp-daytrade-dashboard/1.0"})
-    with urllib.request.urlopen(req, timeout=timeout) as res:
+    ctx = _get_ssl_context()
+    with urllib.request.urlopen(req, timeout=timeout, context=ctx) as res:
         return json.loads(res.read().decode("utf-8"))
 
 
@@ -610,6 +626,19 @@ def score_candidates(root):
             "details": [h["detail"] for h in used_hits if h.get("detail")],
             "urls": [h["url"] for h in used_hits if h.get("url")],
         })
+        # attach pre_earnings_indicator info when available
+        pre_list = root.get("pre_earnings_indicator") or []
+        match = None
+        for p in pre_list:
+            # match by code or name
+            if p.get("code") and p.get("code") == (real_code or ""):
+                match = p
+                break
+            if p.get("name") and p.get("name") == name:
+                match = p
+                break
+        if match:
+            candidates[-1]["pre_earnings"] = match
 
     candidates.sort(key=lambda c: (c["score"], c["category_count"]), reverse=True)
     return candidates
@@ -680,10 +709,13 @@ def build_message(pick):
     change_str = f"{change_pct:+.2f}%" if isinstance(change_pct, (int, float)) else "―"
 
     after_close = pick.get("notification_mode") == "after_close"
-    lines = [
-        "🌙 引け後の好材料・翌営業日監視候補" if after_close else "📡 場中の先行シグナル銘柄(仕込み検討用)",
-        f"{name}({code})" if code else f"{name}",
-    ]
+    header = "🌙 引け後の好材料・翌営業日監視候補" if after_close else "📡 場中の先行シグナル銘柄(仕込み検討用)"
+    if pick.get("priority"):
+        header = "🔥【先回り推奨】 " + header
+    lines = [header, f"{name}({code})" if code else f"{name}"]
+    # include concise priority reasons (slash-separated)
+    if pick.get("priority") and pick.get("priority_reasons"):
+        lines.append("理由: " + " / ".join(pick.get("priority_reasons")[:3]))
     if after_close:
         lines.append(f"開示日時: {pick.get('material_asof') or '―'}")
         lines.append("翌営業日の寄り付き後に、株価・板・出来高を確認してから検討してください。")
@@ -695,6 +727,36 @@ def build_message(pick):
     lines.append(f"総合スコア: {pick['score']:.0f}点(該当シグナル{pick['category_count']}種)")
     for r in pick["reasons"]:
         lines.append(f"・{r}")
+    # 決算期待度スコア(先行指標)があれば表示
+    pre = pick.get("pre_earnings") or {}
+    if pre:
+        pre_score = pre.get("score")
+        if pre_score is not None:
+            lines.append(f"決算期待度スコア(予兆アリ): {pre_score}%")
+        for s in (pre.get("signals") or [])[:3]:
+            lines.append(f"・予兆理由: {s}")
+        # industry_influence from LLM
+        inf = (pre.get("industry_influence") or {})
+        if inf:
+            lines.append(f"・同業波及推定: {inf.get('influence','')}(信頼度 {inf.get('confidence','')}%)")
+            if inf.get("reason"):
+                lines.append(f"・波及根拠: {inf.get('reason')}")
+        # prediction scenarios and labels
+        labels = pre.get('prediction_labels') or []
+        if labels:
+            lines.append('予想シナリオ: ' + ' / '.join(labels))
+        # prediction details and confidence
+        if pre.get('prediction_score') is not None:
+            lines.append(f"予測スコア: {pre.get('prediction_score')} (信頼度:{pre.get('prediction_confidence',0)}%)")
+        for note in (pre.get('prediction_notes') or [])[:3]:
+            lines.append(f"・注目点: {note}")
+        # risk triggers
+        for rt in (pre.get('risk_triggers') or [])[:2]:
+            if isinstance(rt, dict):
+                if rt.get('type') == 'stop_loss_price':
+                    lines.append(f"リスクライン: {rt.get('value')}円を割るとシナリオ崩れ ({rt.get('note')})")
+                else:
+                    lines.append(f"リスク: {rt.get('note')}")
     for d in pick["details"][:2]:
         lines.append(f"詳細: {d}")
     if pick["urls"]:
@@ -741,7 +803,8 @@ def send_line_push(token, user_id, message_text):
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=20) as res:
+    ctx = _get_ssl_context()
+    with urllib.request.urlopen(req, timeout=20, context=ctx) as res:
         return res.status
 
 
@@ -774,6 +837,42 @@ def main():
         summary = " / ".join(rejected[:5]) if rejected else "先行シグナルの候補なし"
         log(f"エントリー可能な候補が無いため、通知はスキップします。除外理由: {summary}")
         return
+
+    # Determine pre_earnings score for this pick
+    pre = pick.get("pre_earnings") or {}
+    if not pre:
+        # try to find in global pre_earnings_indicator list
+        for p in (root.get("pre_earnings_indicator") or []):
+            if p.get("code") and p.get("code") == pick.get("code"):
+                pre = p
+                break
+            if p.get("name") and p.get("name") == pick.get("name"):
+                pre = p
+                break
+    pre_score = (pre.get("score") if isinstance(pre.get("score"), (int, float)) else None)
+    PRIORITY_THRESHOLD = int(os.environ.get("LINE_PRIORITY_THRESHOLD", "70"))
+    if pre_score is None or pre_score < PRIORITY_THRESHOLD:
+        log(f"候補は見つかりましたが、決算期待度が閾値({PRIORITY_THRESHOLD})未満のため通知をスキップします。(score={pre_score})")
+        return
+    # attach priority flag and concise reason list (prefer prediction_notes, then ir/credit)
+    pick["priority"] = True
+    reasons = []
+    # canonical ordering: 同業好調 / 経営者強気 / 売り残過多
+    rf = set(pre.get('reason_flags') or [])
+    for canonical in ("同業好調", "経営者強気", "売り残過多"):
+        if canonical in rf and len(reasons) < 3:
+            reasons.append(canonical)
+    # supplement with concise prediction notes
+    for s in (pre.get("prediction_notes") or []):
+        if len(reasons) >= 3:
+            break
+        if s not in reasons:
+            reasons.append(s)
+    # fallback: signals
+    if len(reasons) < 3:
+        for s in (pre.get("signals") or [])[: (3 - len(reasons))]:
+            reasons.append(s)
+    pick["priority_reasons"] = reasons
 
     dedup_key = pick["code"] or pick["name"]
     today_str = now.strftime("%Y-%m-%d")
