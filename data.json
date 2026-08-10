@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10 19:10",
+  "generated_at": "2026-08-10 20:42",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "158.86円",
-    "change_pct": 0.29,
+    "value": "158.81円",
+    "change_pct": 0.26,
     "asof": "8/10終値"
   },
   "nikkei_futures": {
-    "value": "67,240.00",
-    "change_pct": 1.54,
+    "value": "67,170.00",
+    "change_pct": 1.43,
     "asof": "8/10終値"
   },
   "nikkei225": {
@@ -42,6 +42,22 @@
   "tdnet_morning": [],
   "movers_morning": [],
   "tdnet_afterclose": [
+    {
+      "time": "19:45",
+      "code": "―",
+      "company": "イノバセル",
+      "title": "事業進捗アップデート_2026年12月期第2四半期",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516099.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "19:30",
+      "code": "―",
+      "company": "イーレックス",
+      "title": "イーレックス、カンボジア王国におけるデータセンター事業性調査および 投資実施に関する政府承認取得のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517354.pdf",
+      "tag": "他"
+    },
     {
       "time": "19:00",
       "code": "―",
@@ -110,17 +126,17 @@
       "time": "18:40",
       "code": "―",
       "company": "モダリス",
-      "title": "（訂正）2026年12月期第２四半期決算説明資料の訂正に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517182.pdf",
-      "tag": "追訂"
+      "title": "(Correction) Notice Concerning Corrections to Business and Financial report for Six Months Ended June 30, 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517303.pdf",
+      "tag": "他"
     },
     {
       "time": "18:40",
       "code": "―",
       "company": "モダリス",
-      "title": "(Correction) Notice Concerning Corrections to Business and Financial report for Six Months Ended June 30, 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517303.pdf",
-      "tag": "他"
+      "title": "（訂正）2026年12月期第２四半期決算説明資料の訂正に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517182.pdf",
+      "tag": "追訂"
     },
     {
       "time": "18:35",
@@ -185,22 +201,6 @@
       "title": "iFreeETFの収益分配のお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517298.pdf",
       "tag": "配当"
-    },
-    {
-      "time": "18:25",
-      "code": "―",
-      "company": "ｉＦ米債３有",
-      "title": "iFreeETFの収益分配のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517299.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "2026年12月期 配当予想の修正に関するお知らせ 配当 今日 18:20 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517277.pdf",
-      "tag": "他"
     }
   ],
   "afterclose_news": [],
@@ -208,41 +208,41 @@
     {
       "code": "",
       "name": "ニトリ",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "決算好調で急騰"
     },
     {
       "code": "",
       "name": "ジョウェル・グローバル",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日50%超急騰"
     },
     {
       "code": "",
       "name": "コア・リチウム",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
+      "reason": "本日急騰"
+    },
+    {
+      "code": "",
+      "name": "ニューモント・マイニング",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
       "reason": "本日急騰"
     },
     {
       "code": "",
       "name": "キングスパン",
-      "price": "",
+      "price": null,
       "change_pct": null,
-      "volume_note": "",
-      "reason": "本日急騰"
-    },
-    {
-      "code": "",
-      "name": "アルベマール",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
+      "volume_note": null,
       "reason": "本日急騰"
     }
   ],
@@ -382,9 +382,9 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+5.45%上昇、52週高値まで3.32%",
+      "baked_in_reason": "直近5日で5.45%上昇、52週高値まで3.32%の距離",
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "6954",
@@ -467,7 +467,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+30.52%上昇、52週高値まで0.0%"
+      "baked_in_reason": "直近5日で30.52%上昇、52週高値まで0.0%の距離"
     },
     {
       "code": "8035",
@@ -496,7 +496,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "9433",
@@ -552,7 +552,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+4.85%上昇、52週高値まで4.37%"
+      "baked_in_reason": "直近5日で4.85%上昇、52週高値まで4.37%の距離"
     },
     {
       "code": "7267",
@@ -581,7 +581,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+7.98%上昇、52週高値まで2.2%"
+      "baked_in_reason": "直近5日で7.98%上昇、52週高値まで2.2%の距離"
     },
     {
       "code": "6367",
@@ -691,7 +691,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "theme_trend_note": "市場で注目度が高い"
     },
     {
       "code": "4519",
@@ -801,7 +801,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+28.25%上昇、52週高値まで0.79%"
+      "baked_in_reason": "直近5日で28.25%上昇、52週高値まで0.79%の距離"
     }
   ],
   "us_good_news": [],
@@ -1074,80 +1074,80 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-10 19:10",
-    "tdnet_afterclose": "2026-08-10 19:10",
-    "technical": "2026-08-10 19:11",
-    "growth_candidates": "2026-08-10 19:10",
-    "pre_earnings_watch": "2026-08-10 19:10",
-    "edinet_large_holdings": "2026-08-10 19:10",
-    "economic_calendar": "2026-08-10 19:10",
-    "movers_afterclose": "2026-08-10 19:11"
+    "market_quotes": "2026-08-10 20:42",
+    "tdnet_afterclose": "2026-08-10 20:42",
+    "technical": "2026-08-10 20:43",
+    "growth_candidates": "2026-08-10 20:42",
+    "pre_earnings_watch": "2026-08-10 20:42",
+    "edinet_large_holdings": "2026-08-10 20:42",
+    "economic_calendar": "2026-08-10 20:42",
+    "movers_afterclose": "2026-08-10 20:43"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:11",
+      "checked_at": "2026-08-10 20:43",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:43",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 19:11",
+      "checked_at": "2026-08-10 20:43",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:43",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:11",
+      "checked_at": "2026-08-10 20:43",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 19:11",
+      "checked_at": "2026-08-10 20:43",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-10 19:10",
+      "checked_at": "2026-08-10 20:42",
       "message": "今回の実行で取得・更新しました。"
     }
   },
