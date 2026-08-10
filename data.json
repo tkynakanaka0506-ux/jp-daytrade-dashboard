@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-10 16:25",
-  "run_type": "morning",
+  "generated_at": "2026-08-10 17:22",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,757.64",
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "158.43円",
-    "change_pct": 0.01,
+    "value": "158.47円",
+    "change_pct": 0.04,
     "asof": "8/10終値"
   },
   "nikkei_futures": {
-    "value": "67,085.00",
-    "change_pct": 1.31,
+    "value": "67,505.00",
+    "change_pct": 1.94,
     "asof": "8/10終値"
   },
   "nikkei225": {
@@ -39,211 +39,170 @@
     "asof": "8/10終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [
+  "tdnet_morning": [],
+  "movers_morning": [],
+  "tdnet_afterclose": [
     {
-      "time": "16:15",
+      "time": "17:20",
       "code": "―",
-      "company": "ジョイ本田",
-      "title": "2026年6月期 決算説明会動画および書き起こし掲載のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516257.pdf",
+      "company": "野村ＲＥＩＴ",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517209.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村ナスＨ無",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517210.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村ダウＨ無",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517211.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村タイ５０",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517212.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村マレシア",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517213.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村インド株",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517214.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村ナスＨ有",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517215.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:20",
+      "code": "―",
+      "company": "野村ダウＨ有",
+      "title": "ETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517216.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "17:15",
+      "code": "―",
+      "company": "地域新聞社",
+      "title": "（開示事項の経過）株主による新株予約権無償割当て差止めの仮処分の申立て却下の決定内容に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517190.pdf",
       "tag": "他"
     },
     {
-      "time": "16:10",
+      "time": "17:15",
       "code": "―",
-      "company": "トレイダーズ",
-      "title": "【トレイダーズ証券】お客様からの預り資産が1,400 億円を突破　",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516558.pdf",
+      "company": "ビーエンジ",
+      "title": "2027年３月期 第１四半期決算説明 動画公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517185.pdf",
       "tag": "他"
     },
     {
-      "time": "16:08",
+      "time": "17:15",
       "code": "―",
-      "company": "ＧＥＮＯＶＡ",
-      "title": "2027年３月期第１四半期決算説明資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516994.pdf",
+      "company": "ミズノ",
+      "title": "Notice Regarding Completion of Payment for Disposal of Treasury Shares as Restricted Stock Incentive for Employee Stock Ownership Plan and Partial For",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260807514063.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:15",
+      "code": "―",
+      "company": "ミズノ",
+      "title": "従業員持株会向け譲渡制限付株式インセンティブとしての自己株式の処分の払込完了及び一部失権に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260807514011.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:10",
+      "code": "―",
+      "company": "リーダー電子",
+      "title": "投資有価証券売却益（特別利益）計上に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517147.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:05",
+      "code": "―",
+      "company": "ベーシック",
+      "title": "2026年12月期 第２四半期決算に関する質疑応答（要旨）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517035.pdf",
       "tag": "追訂"
     },
     {
-      "time": "16:02",
+      "time": "―",
       "code": "―",
-      "company": "タウンＮ",
-      "title": "コーポレート・ガバナンスに関する報告書 2026/08/10",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260720596341.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:02",
-      "code": "―",
-      "company": "東京計器",
-      "title": "Consolidated Financial Results for the Three Months Ended June 30, 2026 (Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260807515827.pdf",
+      "company": "―",
+      "title": "上場申請のための特定証券情報（発行者情報） 他 今日 17:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517095.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "2026年12月期 中間決算短信〔日本基準〕（連結） 決算 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516592.pdf",
+      "title": "上場申請のための特定証券情報（発行者情報） 他 今日 17:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517092.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "―",
       "code": "―",
-      "company": "１ｓｔコーポ",
-      "title": "第三者割当に係る株式譲渡報告確約書（自己株式）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260807514537.pdf",
+      "company": "―",
+      "title": "支配株主等に関する事項について 他 今日 17:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517097.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "日本ドライ",
-      "title": "2027年3月期 第1四半期決算短信〔日本基準〕(連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260728501209.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "サンテック",
-      "title": "2027年３月期 第１四半期決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260806511160.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "構造計画ＨＤ",
-      "title": "2026年６月期 決算短信〔日本基準〕（連結）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517029.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "構造計画ＨＤ",
-      "title": "自己株式取得に係る事項の決定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516846.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "構造計画ＨＤ",
-      "title": "定款一部変更に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516853.pdf",
+      "company": "ヤマト",
+      "title": "2027年3月期第１四半期決算補足説明資料書き起こし記事公開に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516830.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "構造計画ＨＤ",
-      "title": "剰余金の配当（期末配当及び特別配当）の決定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516841.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ジーエヌアイ",
-      "title": "アナリスト・機関投資家向け 2026年12月期第２四半期決算説明会開催のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516729.pdf",
+      "company": "ＡＳＪ",
+      "title": "Notice Concerning Absorption-Type Merger Between Wholly-Owned Subsidiaries",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516974.pdf",
       "tag": "他"
     },
     {
-      "time": "16:00",
+      "time": "17:00",
       "code": "―",
-      "company": "ｍｅｉｔｏ",
-      "title": "2027年３月期　第１四半期決算短信[日本基準](連結)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260805510272.pdf",
-      "tag": "決算"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ｍｅｉｔｏ",
-      "title": "Notice Regarding Revision to Full-Year Consolidated Financial Results Forecast",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516065.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ｍｅｉｔｏ",
-      "title": "通期連結業績予想の修正に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516035.pdf",
-      "tag": "業修"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "ｍｅｉｔｏ",
-      "title": "Consolidated Financial Results for the Three Months Ended June 30, 2026(Under Japanese GAAP)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516062.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "フォーサイド",
-      "title": "役員報酬の減額に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516761.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "サイネックス",
-      "title": "蒲郡市との官民協働事業 『わが街ポータル』の協働構築・運用に関する協定締結のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516178.pdf",
+      "company": "ＡＳＪ",
+      "title": "完全子会社間の吸収合併に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516971.pdf",
       "tag": "他"
     }
   ],
-  "movers_morning": [
-    {
-      "code": "",
-      "name": "ニトリ",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "決算好調で急騰"
-    },
-    {
-      "code": "",
-      "name": "コア・リチウム",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した理由"
-    },
-    {
-      "code": "",
-      "name": "キングスパン",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した理由"
-    },
-    {
-      "code": "",
-      "name": "アルベマール",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰している理由"
-    },
-    {
-      "code": "",
-      "name": "ウォーツ・ウォーター・テクノロジーズ",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰した理由"
-    }
-  ],
-  "tdnet_afterclose": [],
   "afterclose_news": [],
   "movers_afterclose": [],
   "technical": [
@@ -380,11 +339,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で5.45%上昇、52週高値まで3.32%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -465,9 +420,7 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で30.52%上昇、52週高値まで0.0%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -494,9 +447,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -577,9 +528,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.98%上昇、52週高値まで2.2%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -687,11 +636,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で9.0%上昇、52週高値まで4.67%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -799,9 +744,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で28.25%上昇、52週高値まで0.79%の距離"
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [],
@@ -875,6 +818,15 @@
   ],
   "growth_candidates": [
     {
+      "company": "ＧＭＯ－ＰＰ",
+      "title": "通期業績予想及び配当予想の修正（上方修正）に関するお知らせ",
+      "catalyst": "上方修正",
+      "reason": "TDnet適時開示「通期業績予想及び配当予想の修正（上方修正）に関するお知らせ」より、上方修正を確認。",
+      "asof": "今日 16:31",
+      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260806512335.pdf",
+      "double_signal": true
+    },
+    {
       "company": "コミニックス",
       "title": "2027年３月期 第２四半期(中間期)及び通期連結業績予想の修正、 並びに中間及び期末配当予想の修正(増配)に関するお知らせ",
       "catalyst": "増配",
@@ -890,7 +842,7 @@
       "reason": "TDnet適時開示「2027年3月期 第2四半期(中間期)及び通期連結業績予想の修正 並びに配当予想の修正(増配)に関するお知らせ」より、増配を確認。",
       "asof": "今日 16:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260805510416.pdf",
-      "double_signal": true
+      "double_signal": false
     },
     {
       "company": "ミルボン",
@@ -936,22 +888,13 @@
       "asof": "今日 13:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516647.pdf",
       "double_signal": false
-    },
-    {
-      "company": "ＦＣＥ",
-      "title": "連結業績予想および期末配当予想の修正（増配）に関するお知らせ",
-      "catalyst": "増配",
-      "reason": "TDnet適時開示「連結業績予想および期末配当予想の修正（増配）に関するお知らせ」より、増配を確認。",
-      "asof": "今日 12:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810516344.pdf",
-      "double_signal": false
     }
   ],
   "pre_earnings_watch": [
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクG「巨額AI投資」とNTT「小型国産AI」1年後に企業価値が上がるのはどっち？ - ダイヤモンド・オンライン",
+      "title": "ソフトバンクG「巨額AI投資」とNTT「小型国産AI」1年後に企業価値が上がるのはどっち？ - diamond.jp",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5ZNFRvLVZNVWpNQzdTTDRoa1RhS2JfWkR1Nzg2T0gtOE83V3lVTnk0TFVuTTNzMFJHYzF1dkRiRnVsZ0lSWGJfNmFkZnXSAU9BVV95cUxONjFOOTJVWWxrYVlvYUpENlhSZXNBa1Q1VW5HYVQteUFzbmdtOGR2NzZyRVhXU3JpQnlsVWVFSDFQSXBhVmU1akxEaEdoOG5R?oc=5",
       "keyword": "AI投資",
       "asof": "8/10 08:10"
@@ -983,7 +926,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - ダイヤモンド・オンライン",
+      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説 - diamond.jp",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9Mc3VQQkZqa2RRZl95NFo3MUZSeDN6WVZBTHJQUVJmcDRDWTVoU0dZTU45RXVkZC05ZXFULXZwYnI2b1hjUjhKREtXNGHSAU9BVV95cUxPb1AyTkZoV2xuczFBZlNVZWNldzZ2SFBEa2dZelJwYUNMc3VmaU1VRTFoR19OM0dHaHRlejFPVzdITk9TdVk4Vkd3c0plNnBv?oc=5",
       "keyword": "設備投資",
       "asof": "8/7 04:45"
@@ -991,7 +934,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - moneyworld.jp",
+      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
       "keyword": "受注",
       "asof": "8/7 10:15"
@@ -1039,7 +982,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - ビジネスネットワーク",
+      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - businessnetwork.jp",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE95NjJtRXEwX3htbkNGSmpDRFN2dEh5UWc5cmZ3eEZVemgyRXdscVhfdzZaUTg0Yi1wSmQwcjdmS3VwMHhCcHdud25rR2VBWjQ0Yk9Z?oc=5",
       "keyword": "データセンター",
       "asof": "8/7 17:45"
@@ -1063,7 +1006,7 @@
     {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - 財界オンライン",
+      "title": "データセンターに不可欠な光ファイバーで急成長 ≫ フジクラ社長・岡田直樹の技術論「見えない技術優位性、見えない差別化でトップの座を！」 - zaikai.jp",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBDcmZzMVVPeUZ0MHlRUmUzeUQxSFpuNm1CYi0yRVVIVnl6aWlqUExRQVJ4X0l0ZzVoVkhoNFJ3dDE5NkVQTmZtVGFkR2IzOUFpLWlqZA?oc=5",
       "keyword": "データセンター",
       "asof": "8/4 07:03"
@@ -1071,83 +1014,82 @@
   ],
   "line_notify_last": {
     "date": "2026-08-10",
-    "code": "コミニックス"
+    "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-10 16:25",
-    "tdnet_morning": "2026-08-10 16:25",
-    "technical": "2026-08-10 16:27",
-    "growth_candidates": "2026-08-10 16:25",
-    "pre_earnings_watch": "2026-08-10 16:25",
-    "edinet_large_holdings": "2026-08-10 16:25",
-    "economic_calendar": "2026-08-10 16:25",
-    "movers_morning": "2026-08-10 16:27"
+    "market_quotes": "2026-08-10 17:22",
+    "tdnet_afterclose": "2026-08-10 17:22",
+    "technical": "2026-08-10 17:22",
+    "growth_candidates": "2026-08-10 17:22",
+    "pre_earnings_watch": "2026-08-10 17:22",
+    "edinet_large_holdings": "2026-08-10 17:22",
+    "economic_calendar": "2026-08-10 17:22"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-10 16:25",
+      "checked_at": "2026-08-10 17:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "updated",
-      "checked_at": "2026-08-10 16:25",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-10 17:22",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-08-10 16:25",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-10 17:22",
+      "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-10 16:27",
+      "checked_at": "2026-08-10 17:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-10 16:25",
+      "checked_at": "2026-08-10 17:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-10 16:25",
+      "checked_at": "2026-08-10 17:22",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "unavailable",
-      "checked_at": "2026-08-10 16:27",
-      "message": "ニュース分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-08-10 17:22",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-10 16:26",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-08-10 17:24",
+      "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
-      "state": "updated",
-      "checked_at": "2026-08-10 16:27",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-10 17:22",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-08-10 16:26",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-08-10 17:24",
+      "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-10 16:27",
+      "checked_at": "2026-08-10 17:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-10 16:25",
+      "checked_at": "2026-08-10 17:22",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-10 16:25",
+      "checked_at": "2026-08-10 17:22",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1156,6 +1098,11 @@
       "event_key": "https://tdnet-pdf.kabutan.jp/20260810/140120260807514779.pdf",
       "sent_at": "2026-08-10 16:27",
       "code": "コミニックス"
+    },
+    {
+      "event_key": "https://tdnet-pdf.kabutan.jp/20260810/140120260806512335.pdf",
+      "sent_at": "2026-08-10 17:24",
+      "code": "ＧＭＯ－ＰＰ"
     }
   ]
 }
