@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11 11:58",
+  "generated_at": "2026-08-11 13:16",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.27円",
-    "change_pct": 0.87,
+    "value": "159.17円",
+    "change_pct": 0.81,
     "asof": "8/11終値"
   },
   "nikkei_futures": {
-    "value": "67,115.00",
-    "change_pct": 0.77,
+    "value": "67,045.00",
+    "change_pct": 1.25,
     "asof": "8/11終値"
   },
   "nikkei225": {
@@ -40,6 +40,14 @@
   },
   "overnight_news": [],
   "tdnet_morning": [
+    {
+      "time": "12:40",
+      "code": "―",
+      "company": "エアロエッジ",
+      "title": "定款 2026/07/01",
+      "url": "https://tdnet-pdf.kabutan.jp/20260811/140120260811517471.pdf",
+      "tag": "他"
+    },
     {
       "time": "08:30",
       "code": "―",
@@ -191,46 +199,9 @@
       "title": "上場米債０ラ、ＥＴＦの収益分配のお知らせ 配当 8月10日(月) 18:35",
       "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517328.pdf",
       "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "上場豪債ヘ有、ＥＴＦの収益分配のお知らせ 配当 8月10日(月) 18:35",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517329.pdf",
-      "tag": "他"
     }
   ],
-  "movers_morning": [
-    {
-      "code": "",
-      "name": "オーストラル",
-      "price": null,
-      "change_pct": null,
-      "reason": "急騰"
-    },
-    {
-      "code": "",
-      "name": "ニトリ",
-      "price": null,
-      "change_pct": null,
-      "reason": "急騰"
-    },
-    {
-      "code": "",
-      "name": "ジョウェル・グローバル",
-      "price": null,
-      "change_pct": null,
-      "reason": "50%超急騰"
-    },
-    {
-      "code": "",
-      "name": "コア・リチウム",
-      "price": null,
-      "change_pct": null,
-      "reason": "急騰"
-    }
-  ],
+  "movers_morning": [],
   "tdnet_afterclose": [],
   "afterclose_news": [],
   "movers_afterclose": [],
@@ -368,9 +339,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で5.45%上昇、52週高値まで3.32%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -451,9 +420,7 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で30.52%上昇、52週高値まで0.0%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -480,9 +447,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -563,9 +528,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.98%上昇、52週高値まで2.2%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -673,11 +636,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で9.0%上昇、52週高値まで4.67%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -785,11 +744,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で28.25%上昇、52週高値まで0.79%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目度が高い"
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [],
@@ -1011,10 +966,10 @@
     {
       "code": "8035",
       "company": "東京エレクトロン",
-      "title": "AIデータセンター性能向上の鍵は「CPO」光電融合の最前線 | サイエンス リポート | TELESCOPE magazine - tel.co.jp",
-      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9DWGtDWkVpb2VpLXlPaElWcGxfLWxtWVZXQW5HbS1xUkJHd05KbGRpa09hSl9Ga1owQmtKekozdVcyc2xaRDBOcEpleGwwNGpHM1BHaUxyeWFOclhFTGxZUjYwbFdzUQ?oc=5",
-      "keyword": "データセンター",
-      "asof": "8/1 16:00"
+      "title": "東京エレク､上期営業利益予想を4580億円に上方修正－AI投資が追い風（Bloomberg） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE8xMWNGZEI4VUpZMHZrQjRwOHFNaDg4S2hkMkNWdThjN01rSHA1cEdKbllUdVZfOUpITjdWR05GTW0xZXJLUk1udTk0WnVDRmMwNU9yNE1pUGh2ZjdkNUJTQUcyU0VjNWNLSjZWdGlSQzVpWnR3aC1ZTjBybEppQ0k?oc=5",
+      "keyword": "AI投資",
+      "asof": "7/30 16:00"
     },
     {
       "code": "9433",
@@ -1027,7 +982,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - ビジネスネットワーク",
+      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - businessnetwork.jp",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE95NjJtRXEwX3htbkNGSmpDRFN2dEh5UWc5cmZ3eEZVemgyRXdscVhfdzZaUTg0Yi1wSmQwcjdmS3VwMHhCcHdud25rR2VBWjQ0Yk9Z?oc=5",
       "keyword": "データセンター",
       "asof": "8/7 17:45"
@@ -1062,86 +1017,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-11 11:58",
-    "tdnet_morning": "2026-08-11 11:58",
-    "technical": "2026-08-11 11:59",
-    "growth_candidates": "2026-08-11 11:58",
-    "pre_earnings_watch": "2026-08-11 11:58",
-    "edinet_large_holdings": "2026-08-11 11:58",
-    "economic_calendar": "2026-08-11 11:58",
-    "movers_morning": "2026-08-11 11:59",
-    "pre_earnings_indicator": "2026-08-11 12:00"
+    "market_quotes": "2026-08-11 13:16",
+    "tdnet_morning": "2026-08-11 13:16",
+    "technical": "2026-08-11 13:16",
+    "growth_candidates": "2026-08-11 13:16",
+    "pre_earnings_watch": "2026-08-11 13:16",
+    "edinet_large_holdings": "2026-08-11 13:16",
+    "economic_calendar": "2026-08-11 13:16",
+    "pre_earnings_indicator": "2026-08-11 13:18"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-11 11:59",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-11 11:59",
+      "checked_at": "2026-08-11 13:17",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:17",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
-      "state": "updated",
-      "checked_at": "2026-08-11 11:59",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "unavailable",
+      "checked_at": "2026-08-11 13:17",
+      "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:17",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-11 11:59",
+      "checked_at": "2026-08-11 13:17",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-11 11:58",
+      "checked_at": "2026-08-11 13:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-11 12:00",
+      "checked_at": "2026-08-11 13:18",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1160,83 +1114,83 @@
   "credit_history": {
     "7203": {
       "last": 14.3,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6758": {
       "last": 11.98,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "8306": {
       "last": 13.12,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "9984": {
       "last": 9.77,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6861": {
       "last": 1.23,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6954": {
       "last": 12.87,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "7974": {
       "last": 11.93,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6098": {
       "last": 0.92,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "8035": {
       "last": 15.46,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "9433": {
       "last": 0.6,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "9432": {
       "last": 12.29,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "7267": {
       "last": 4.61,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6367": {
       "last": 7.71,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "9983": {
       "last": 1.22,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "4063": {
       "last": 16.95,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6857": {
       "last": 1.41,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "4519": {
       "last": 47.31,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "5401": {
       "last": 10.41,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "2413": {
       "last": 11.44,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     },
     "6645": {
       "last": 9.73,
-      "ts": "2026-08-11 11:59"
+      "ts": "2026-08-11 13:17"
     }
   },
   "pre_earnings_indicator": [
