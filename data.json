@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-11 08:26",
-  "run_type": "evening",
+  "generated_at": "2026-08-11 08:58",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,753.11",
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.26円",
-    "change_pct": 0.86,
+    "value": "159.13円",
+    "change_pct": 0.78,
     "asof": "8/11終値"
   },
   "nikkei_futures": {
-    "value": "66,660.00",
-    "change_pct": 0.66,
+    "value": "66,525.00",
+    "change_pct": 0.46,
     "asof": "8/11終値"
   },
   "nikkei225": {
@@ -39,9 +39,15 @@
     "asof": "8/10終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [],
-  "movers_morning": [],
-  "tdnet_afterclose": [
+  "tdnet_morning": [
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ウネリー",
+      "title": "【独自調査】春の日本百名山、熊の出没が集中した東北は2年で登山者数34%減＜人流ビッグデータで見る来訪動向＞",
+      "url": "https://tdnet-pdf.kabutan.jp/20260811/140120260803507072.pdf",
+      "tag": "他"
+    },
     {
       "time": "08:00",
       "code": "―",
@@ -193,59 +199,12 @@
       "title": "上場豪債ヘ有、ＥＴＦの収益分配のお知らせ 配当 8月10日(月) 18:35",
       "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517329.pdf",
       "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "上場豪債ヘ無、ＥＴＦの収益分配のお知らせ 配当 8月10日(月) 18:35",
-      "url": "https://tdnet-pdf.kabutan.jp/20260810/140120260810517330.pdf",
-      "tag": "他"
     }
   ],
+  "movers_morning": [],
+  "tdnet_afterclose": [],
   "afterclose_news": [],
-  "movers_afterclose": [
-    {
-      "code": "",
-      "name": "ニトリ",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "決算好調で急騰"
-    },
-    {
-      "code": "",
-      "name": "ジョウェル・グローバル",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰"
-    },
-    {
-      "code": "",
-      "name": "コア・リチウム",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰"
-    },
-    {
-      "code": "",
-      "name": "キングスパン",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰"
-    },
-    {
-      "code": "",
-      "name": "ニューモント・マイニング",
-      "price": "",
-      "change_pct": "",
-      "volume_note": "",
-      "reason": "急騰"
-    }
-  ],
+  "movers_afterclose": [],
   "technical": [
     {
       "code": "7203",
@@ -380,11 +339,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で5.45%上昇、52週高値まで3.32%の距離があるため材料出尽くしのリスク",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -465,9 +420,7 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で30.52%上昇、52週高値まで0.0%の距離があるため材料出尽くしのリスク"
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -494,9 +447,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -577,9 +528,7 @@
       "squeeze_potential": false,
       "sector": "輸送用機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で7.98%上昇、52週高値まで2.2%の距離があるため材料出尽くしのリスク"
+      "sector_contrarian": false
     },
     {
       "code": "6367",
@@ -687,11 +636,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で9.0%上昇、52週高値まで4.67%の距離があるため材料出尽くしのリスク",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -799,11 +744,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で28.25%上昇、52週高値まで0.79%の距離があるため材料出尽くしのリスク",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [],
@@ -1076,86 +1017,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-11 08:26",
-    "tdnet_afterclose": "2026-08-11 08:26",
-    "technical": "2026-08-11 08:28",
-    "growth_candidates": "2026-08-11 08:26",
-    "pre_earnings_watch": "2026-08-11 08:26",
-    "edinet_large_holdings": "2026-08-11 08:26",
-    "economic_calendar": "2026-08-11 08:26",
-    "movers_afterclose": "2026-08-11 08:28",
-    "pre_earnings_indicator": "2026-08-11 08:30"
+    "market_quotes": "2026-08-11 08:58",
+    "tdnet_morning": "2026-08-11 08:58",
+    "technical": "2026-08-11 08:58",
+    "growth_candidates": "2026-08-11 08:58",
+    "pre_earnings_watch": "2026-08-11 08:58",
+    "edinet_large_holdings": "2026-08-11 08:58",
+    "economic_calendar": "2026-08-11 08:58",
+    "pre_earnings_indicator": "2026-08-11 09:03"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-11 08:26",
+      "checked_at": "2026-08-11 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "not_requested",
-      "checked_at": "2026-08-11 08:26",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-11 08:58",
+      "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-11 08:26",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-11 08:58",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-11 08:28",
+      "checked_at": "2026-08-11 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-11 08:26",
+      "checked_at": "2026-08-11 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-11 08:26",
+      "checked_at": "2026-08-11 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-11 08:27",
-      "message": "今回の実行モードでは更新対象外です。"
-    },
-    "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-11 08:28",
+      "checked_at": "2026-08-11 09:00",
       "message": "ニュース分析APIで取得できませんでした。"
     },
-    "movers_morning": {
+    "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-11 08:27",
+      "checked_at": "2026-08-11 08:58",
       "message": "今回の実行モードでは更新対象外です。"
     },
+    "movers_morning": {
+      "state": "unavailable",
+      "checked_at": "2026-08-11 09:00",
+      "message": "話題株分析APIで取得できませんでした。"
+    },
     "movers_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-11 08:28",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-11 08:58",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-11 08:28",
+      "checked_at": "2026-08-11 09:00",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-11 08:26",
+      "checked_at": "2026-08-11 08:58",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-11 08:26",
+      "checked_at": "2026-08-11 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-11 08:30",
+      "checked_at": "2026-08-11 09:03",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1174,83 +1114,83 @@
   "credit_history": {
     "7203": {
       "last": 14.3,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6758": {
       "last": 11.98,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "8306": {
       "last": 13.12,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "9984": {
       "last": 9.77,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6861": {
       "last": 1.23,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6954": {
       "last": 12.87,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "7974": {
       "last": 11.93,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6098": {
       "last": 0.92,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "8035": {
       "last": 15.46,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "9433": {
       "last": 0.6,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "9432": {
       "last": 12.29,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "7267": {
       "last": 4.61,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6367": {
       "last": 7.71,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "9983": {
       "last": 1.22,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "4063": {
       "last": 16.95,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6857": {
       "last": 1.41,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "4519": {
       "last": 47.31,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "5401": {
       "last": 10.41,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "2413": {
       "last": 11.44,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     },
     "6645": {
       "last": 9.73,
-      "ts": "2026-08-11 08:28"
+      "ts": "2026-08-11 09:00"
     }
   },
   "pre_earnings_indicator": [
