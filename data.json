@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-12 18:54",
+  "generated_at": "2026-08-12 20:40",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.11円",
-    "change_pct": -0.03,
+    "value": "159.08円",
+    "change_pct": -0.05,
     "asof": "8/12終値"
   },
   "nikkei_futures": {
-    "value": "67,925.00",
-    "change_pct": 1.15,
+    "value": "68,060.00",
+    "change_pct": 1.36,
     "asof": "8/12終値"
   },
   "nikkei225": {
@@ -54,7 +54,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "剰余金の配当（中間配当無配）及び期末配当予想の修正に関するお知らせ 配当 今日 18:30 New!",
+      "title": "剰余金の配当（中間配当無配）及び期末配当予想の修正に関するお知らせ 配当 今日 18:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812518509.pdf",
       "tag": "他"
     },
@@ -62,7 +62,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "通期業績予想の修正及び役員報酬の減額に関するお知らせ 業修 今日 18:30 New!",
+      "title": "通期業績予想の修正及び役員報酬の減額に関するお知らせ 業修 今日 18:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812518506.pdf",
       "tag": "他"
     },
@@ -70,7 +70,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "2026年12月期中間決算短信〔日本基準〕(非連結) 決算 今日 18:30 New!",
+      "title": "2026年12月期中間決算短信〔日本基準〕(非連結) 決算 今日 18:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812518502.pdf",
       "tag": "他"
     },
@@ -86,7 +86,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "2026年12月期中間決算短信〔日本基準〕（連結） 決算 今日 17:30 New!",
+      "title": "2026年12月期中間決算短信〔日本基準〕（連結） 決算 今日 17:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260807515765.pdf",
       "tag": "他"
     },
@@ -150,7 +150,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "上場申請のための有価証券報告書等の適正性に関する確認書 他 今日 17:00 New!",
+      "title": "上場申請のための有価証券報告書等の適正性に関する確認書 他 今日 17:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812518443.pdf",
       "tag": "他"
     },
@@ -158,7 +158,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "上場申請のための半期報告書 他 今日 17:00 New!",
+      "title": "上場申請のための半期報告書 他 今日 17:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812518442.pdf",
       "tag": "他"
     },
@@ -166,7 +166,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "上場申請のための有価証券報告書 他 今日 17:00 New!",
+      "title": "上場申請のための有価証券報告書 他 今日 17:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812518441.pdf",
       "tag": "他"
     },
@@ -174,7 +174,7 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "減損損失の計上及び連結業績予想の修正に関するお知らせ 業修 今日 17:00 New!",
+      "title": "減損損失の計上及び連結業績予想の修正に関するお知らせ 業修 今日 17:00",
       "url": "https://tdnet-pdf.kabutan.jp/20260812/140120260812517591.pdf",
       "tag": "他"
     },
@@ -204,7 +204,48 @@
     }
   ],
   "afterclose_news": [],
-  "movers_afterclose": [],
+  "movers_afterclose": [
+    {
+      "code": "",
+      "name": "M3",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "スクウェア・エニックス",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "AGLエナジー",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "ネビウス",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "急騰している"
+    },
+    {
+      "code": "",
+      "name": "Sea Ltd",
+      "price": null,
+      "change_pct": null,
+      "volume_note": null,
+      "reason": "急騰した"
+    }
+  ],
   "technical": [
     {
       "code": "7203",
@@ -339,7 +380,11 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+5.19%上昇、52週高値まで0.82%",
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -393,7 +438,9 @@
       "squeeze_potential": false,
       "sector": "その他製品",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+12.3%上昇、52週高値まで42.63%"
     },
     {
       "code": "6098",
@@ -420,7 +467,9 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+34.19%上昇、52週高値まで1.71%"
     },
     {
       "code": "8035",
@@ -447,7 +496,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -636,7 +687,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "4519",
@@ -690,7 +743,9 @@
       "squeeze_potential": false,
       "sector": "鉄鋼",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+6.95%上昇、52週高値まで2.42%"
     },
     {
       "code": "2413",
@@ -744,7 +799,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -0.05,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+23.69%上昇、52週高値まで1.14%"
     }
   ],
   "us_good_news": [],
@@ -902,10 +959,10 @@
     {
       "code": "6758",
       "company": "ソニーグループ",
-      "title": "ソニーとＴＳＭＣ、次世代画像センサーで合弁会社設立…熊本の新工場で２９年量産開始（読売新聞オンライン） - Yahoo!ニュース",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9DMmt1N2VKWDRQOXFLU2pqMzFibjh3Q3hKdWRKYWZ6a0FTcFpjb1lyQU11UzJsR1RISERGbWpfQ2t6X2xaRXFuczNvWTJReU1JY0NodVpXbTVtYkptaVhRczEzZy1fYmpLMEFHTDJ3cUtBS3FtOWh5VEZXWFQyQlE?oc=5",
-      "keyword": "新工場",
-      "asof": "8/11 19:59"
+      "title": "ソニーグループとTSMCがスマホ向け次世代画像センサー量産へ 合弁会社を設立し2029年量産開始目指す - Infoseek",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE5rekJNNlVxRmtpUWdoYlR5bV9mUE96b19ZOXZKX292U0ZFS1FvRmgxWEtfUXJnb010RmRrUy1sRWVvNlBQcHR0U2QwaDZxb3YyTjh2eVpLQkdaa1dOTkJFLWxFVkJTY0Mx0gFuQVVfeXFMTXN5WWZ6WVQ0V0ktTTVtS2RKTDI3cEVSNUhwUUpPNjZWck11dGNMRGNJaWRJMGpVbkNQVkF6R0lyZWx5cFdIdHM0QTN1amdKR3lOdkRJS3YteWZsSG5hbWdndGdteVF1UEJrUnJDRnc?oc=5",
+      "keyword": "量産開始",
+      "asof": "8/12 19:41"
     },
     {
       "code": "9984",
@@ -926,10 +983,18 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "熊本に1兆円投資報道、半導体設備投資が再加速【今日の市場はどう動いた？】 - finance.yahoo.co.jp",
+      "title": "熊本に1兆円投資報道、半導体設備投資が再加速【今日の市場はどう動いた？】 - Yahoo!ファイナンス",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9DcFVIXzZyUnRFcTZVdDQ3cDYwVFBaTGg5aXpHcmxteHg0a2lVU2RwUWZULWdJb1ZiMFhFZWprcnYtSURjS3p5Nl9yRDNUM05ta3AzblNqMWRqLUxqNmZfZFFfLUo?oc=5",
       "keyword": "設備投資",
       "asof": "8/10 11:55"
+    },
+    {
+      "code": "6954",
+      "company": "ファナック",
+      "title": "【6954.T FY2026 Q1 決算説明会】ファナック、受注36.9%急増も「先行発注」警戒—通期売上高は過去最高9481億円へ上方修正 - BigGo ファイナンス",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9zYllFMEliS1hqMHVYT0pkaXVzc2dLR0o0UXBsVnMyLTZWU25wTlFUbEdqSi1Ubl81MHYwb0tXYmRrVFVrRVFtOHlyUUlKZ01kdkUxd011cEstWWNOZ0lF?oc=5",
+      "keyword": "受注",
+      "asof": "8/11 17:25"
     },
     {
       "code": "6954",
@@ -938,14 +1003,6 @@
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9Mc3VQQkZqa2RRZl95NFo3MUZSeDN6WVZBTHJQUVJmcDRDWTVoU0dZTU45RXVkZC05ZXFULXZwYnI2b1hjUjhKREtXNGHSAU9BVV95cUxPb1AyTkZoV2xuczFBZlNVZWNldzZ2SFBEa2dZelJwYUNMc3VmaU1VRTFoR19OM0dHaHRlejFPVzdITk9TdVk4Vkd3c0plNnBv?oc=5",
       "keyword": "設備投資",
       "asof": "8/7 04:45"
-    },
-    {
-      "code": "6954",
-      "company": "ファナック",
-      "title": "ファナック(6954) 1Q受注高は四半期で過去最高更新。当研究所の業績予想を引き上げる - QUICK Money World",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE9zQWllT29sUm9fOG5hUDZoN2c0dHRxeVQ1MjBkSG52VXdtSXUxWkZ0bERFQjdvSkxNdTNraHF3YXNsNXFQM2JWUlV0TkVMbTZEODV1SFFB?oc=5",
-      "keyword": "受注",
-      "asof": "8/7 10:15"
     },
     {
       "code": "7974",
@@ -1017,85 +1074,86 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-12 18:54",
-    "tdnet_afterclose": "2026-08-12 18:54",
-    "technical": "2026-08-12 18:54",
-    "growth_candidates": "2026-08-12 18:54",
-    "pre_earnings_watch": "2026-08-12 18:54",
-    "edinet_large_holdings": "2026-08-12 18:54",
-    "economic_calendar": "2026-08-12 18:54",
-    "pre_earnings_indicator": "2026-08-12 18:56"
+    "market_quotes": "2026-08-12 20:40",
+    "tdnet_afterclose": "2026-08-12 20:40",
+    "technical": "2026-08-12 20:41",
+    "growth_candidates": "2026-08-12 20:40",
+    "pre_earnings_watch": "2026-08-12 20:40",
+    "edinet_large_holdings": "2026-08-12 20:40",
+    "economic_calendar": "2026-08-12 20:40",
+    "movers_afterclose": "2026-08-12 20:41",
+    "pre_earnings_indicator": "2026-08-12 20:45"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:41",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-12 18:55",
+      "checked_at": "2026-08-12 20:41",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:41",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
-      "state": "unavailable",
-      "checked_at": "2026-08-12 18:55",
-      "message": "話題株分析APIで取得できませんでした。"
+      "state": "updated",
+      "checked_at": "2026-08-12 20:41",
+      "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-12 18:55",
+      "checked_at": "2026-08-12 20:41",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:54",
+      "checked_at": "2026-08-12 20:40",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-12 18:56",
+      "checked_at": "2026-08-12 20:45",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1114,83 +1172,83 @@
   "credit_history": {
     "7203": {
       "last": 15.12,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6758": {
       "last": 12.96,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "8306": {
       "last": 11.28,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "9984": {
       "last": 9.52,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6861": {
       "last": 1.04,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6954": {
       "last": 19.78,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "7974": {
       "last": 10.71,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6098": {
       "last": 0.6,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "8035": {
       "last": 17.11,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "9433": {
       "last": 0.67,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "9432": {
       "last": 6.38,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "7267": {
       "last": 2.56,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6367": {
       "last": 12.0,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "9983": {
       "last": 1.26,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "4063": {
       "last": 17.75,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6857": {
       "last": 1.41,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "4519": {
       "last": 54.23,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "5401": {
       "last": 8.87,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "2413": {
       "last": 12.16,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     },
     "6645": {
       "last": 3.67,
-      "ts": "2026-08-12 18:55"
+      "ts": "2026-08-12 20:41"
     }
   },
   "pre_earnings_indicator": [
