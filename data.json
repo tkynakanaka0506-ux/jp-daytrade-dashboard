@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-08-14 00:52",
+  "generated_at": "2026-08-14 02:51",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,779.83",
-      "change_pct": 0.4,
+      "value": "7,790.42",
+      "change_pct": 0.54,
       "asof": "8/14終値"
     },
     "dow": {
-      "value": "53,711.52",
-      "change_pct": -0.11,
+      "value": "53,745.67",
+      "change_pct": -0.05,
       "asof": "8/14終値"
     },
     "nasdaq": {
-      "value": "26,724.98",
-      "change_pct": 0.51,
+      "value": "26,787.52",
+      "change_pct": 0.75,
       "asof": "8/14終値"
     },
     "sox": {
-      "value": "12,576.79",
-      "change_pct": 1.43,
+      "value": "12,661.46",
+      "change_pct": 2.11,
       "asof": "8/14終値"
     }
   },
   "fx": {
-    "value": "159.35円",
-    "change_pct": 0.05,
+    "value": "159.51円",
+    "change_pct": 0.16,
     "asof": "8/14終値"
   },
   "nikkei_futures": {
-    "value": "69,265.00",
-    "change_pct": 1.37,
+    "value": "69,395.00",
+    "change_pct": 1.56,
     "asof": "8/14終値"
   },
   "nikkei225": {
@@ -204,7 +204,48 @@
     }
   ],
   "afterclose_news": [],
-  "movers_afterclose": [],
+  "movers_afterclose": [
+    {
+      "code": "",
+      "name": "サンディスク",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "ロビンフッド",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "オットーボック",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "デル",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "決算好調で急騰"
+    },
+    {
+      "code": "",
+      "name": "Sixt",
+      "price": "",
+      "change_pct": null,
+      "volume_note": "",
+      "reason": "決算好調で急騰"
+    }
+  ],
   "technical": [
     {
       "code": "7203",
@@ -258,7 +299,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -0.65,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "電気機器",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "8306",
@@ -339,7 +382,11 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": -1.65,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+4.5%上昇、52週高値まで1.47%の距離",
+      "theme": "電気機器",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "6954",
@@ -366,7 +413,9 @@
       "squeeze_potential": false,
       "sector": "機械",
       "sector_avg_change_pct": -0.95,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "機械",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "7974",
@@ -420,7 +469,9 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+35.24%上昇、52週高値まで1.12%の距離"
     },
     {
       "code": "8035",
@@ -447,7 +498,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "半導体",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9433",
@@ -474,7 +527,9 @@
       "squeeze_potential": true,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "情報・通信業",
+      "theme_trend_note": "市場で注目されている"
     },
     {
       "code": "9432",
@@ -501,7 +556,9 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+6.72%上昇、52週高値まで4.01%の距離"
     },
     {
       "code": "7267",
@@ -636,7 +693,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+15.94%上昇、52週高値まで2.97%の距離"
     },
     {
       "code": "4519",
@@ -744,7 +803,9 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "baked_in_warning": true,
+      "baked_in_reason": "直近5日で+26.44%上昇、52週高値まで2.04%の距離"
     }
   ],
   "us_good_news": [],
@@ -990,7 +1051,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - ビジネスネットワーク",
+      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - businessnetwork.jp",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE95NjJtRXEwX3htbkNGSmpDRFN2dEh5UWc5cmZ3eEZVemgyRXdscVhfdzZaUTg0Yi1wSmQwcjdmS3VwMHhCcHdud25rR2VBWjQ0Yk9Z?oc=5",
       "keyword": "データセンター",
       "asof": "8/7 17:45"
@@ -1017,85 +1078,86 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-14 00:52",
-    "tdnet_afterclose": "2026-08-14 00:52",
-    "technical": "2026-08-14 00:52",
-    "growth_candidates": "2026-08-14 00:52",
-    "pre_earnings_watch": "2026-08-14 00:52",
-    "edinet_large_holdings": "2026-08-14 00:52",
-    "economic_calendar": "2026-08-14 00:52",
-    "pre_earnings_indicator": "2026-08-14 00:53"
+    "market_quotes": "2026-08-14 02:51",
+    "tdnet_afterclose": "2026-08-14 02:51",
+    "technical": "2026-08-14 02:52",
+    "growth_candidates": "2026-08-14 02:51",
+    "pre_earnings_watch": "2026-08-14 02:51",
+    "edinet_large_holdings": "2026-08-14 02:51",
+    "economic_calendar": "2026-08-14 02:51",
+    "movers_afterclose": "2026-08-14 02:52",
+    "pre_earnings_indicator": "2026-08-14 02:52"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:52",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:52",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-14 00:53",
+      "checked_at": "2026-08-14 02:52",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:52",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
-      "state": "unavailable",
-      "checked_at": "2026-08-14 00:53",
-      "message": "話題株分析APIで取得できませんでした。"
+      "state": "updated",
+      "checked_at": "2026-08-14 02:52",
+      "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-14 00:53",
+      "checked_at": "2026-08-14 02:52",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:52",
+      "checked_at": "2026-08-14 02:51",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-14 00:53",
+      "checked_at": "2026-08-14 02:52",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1114,83 +1176,83 @@
   "credit_history": {
     "7203": {
       "last": 15.12,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6758": {
       "last": 12.96,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "8306": {
       "last": 11.28,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "9984": {
       "last": 9.52,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6861": {
       "last": 1.04,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6954": {
       "last": 19.78,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "7974": {
       "last": 10.71,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6098": {
       "last": 0.6,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "8035": {
       "last": 17.11,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "9433": {
       "last": 0.67,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "9432": {
       "last": 6.38,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "7267": {
       "last": 2.56,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6367": {
       "last": 12.0,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "9983": {
       "last": 1.26,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "4063": {
       "last": 17.75,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6857": {
       "last": 1.41,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "4519": {
       "last": 54.23,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "5401": {
       "last": 8.87,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "2413": {
       "last": 12.16,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     },
     "6645": {
       "last": 3.67,
-      "ts": "2026-08-14 00:53"
+      "ts": "2026-08-14 02:52"
     }
   },
   "pre_earnings_indicator": [
