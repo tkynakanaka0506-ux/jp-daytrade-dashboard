@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-16 08:12",
-  "run_type": "evening",
+  "generated_at": "2026-08-16 08:41",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,785.76",
@@ -39,9 +39,7 @@
     "asof": "8/14終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [],
-  "movers_morning": [],
-  "tdnet_afterclose": [
+  "tdnet_morning": [
     {
       "time": "―",
       "code": "―",
@@ -203,49 +201,10 @@
       "tag": "他"
     }
   ],
+  "movers_morning": [],
+  "tdnet_afterclose": [],
   "afterclose_news": [],
-  "movers_afterclose": [
-    {
-      "code": "",
-      "name": "ウエスタンデジタル",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
-      "reason": "決算好調で急騰"
-    },
-    {
-      "code": "",
-      "name": "SanDisk",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰している"
-    },
-    {
-      "code": "",
-      "name": "オットーボック",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰した"
-    },
-    {
-      "code": "",
-      "name": "マイケル・ページ",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰した"
-    },
-    {
-      "code": "",
-      "name": "アプライド・オプトエレクトロニクス",
-      "price": "",
-      "change_pct": null,
-      "volume_note": "",
-      "reason": "急騰した"
-    }
-  ],
+  "movers_afterclose": [],
   "technical": [
     {
       "code": "7203",
@@ -299,9 +258,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "8306",
@@ -382,11 +339,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で2.49%上昇、52週高値まで0.3%の距離",
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "6954",
@@ -467,9 +420,7 @@
       "squeeze_potential": true,
       "sector": "サービス業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で28.1%上昇、52週高値まで3.09%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "8035",
@@ -496,9 +447,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "9433",
@@ -552,9 +501,7 @@
       "squeeze_potential": false,
       "sector": "情報・通信業",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で5.31%上昇、52週高値まで2.69%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "7267",
@@ -689,11 +636,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で11.96%上昇、52週高値まで4.8%の距離",
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     },
     {
       "code": "4519",
@@ -801,9 +744,7 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "theme": "電気機器",
-      "theme_trend_note": "市場で注目されている"
+      "sector_contrarian": false
     }
   ],
   "us_good_news": [],
@@ -953,7 +894,7 @@
     {
       "code": "6758",
       "company": "ソニーグループ",
-      "title": "ソニーとＴＳＭＣが合弁、熊本の新工場でスマホ向け製品量産へ…熊本県知事「経済復興に向けた起爆剤となる」 - 読売新聞",
+      "title": "ソニーとＴＳＭＣが合弁、熊本の新工場でスマホ向け製品量産へ…熊本県知事「経済復興に向けた起爆剤となる」 - yomiuri.co.jp",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTFBURWlBOWt1cUplMkVmUzVOY2NZVWlkWGpERkNreTc4Y1dVOFk4OVl4MU1Tb3FCWFhKbGJJQTdhZ0w2RmU1OWZ6WUdLdm93XzU4Wm5lbU5oR1hFZlRfM1NuUzlhTGQ?oc=5",
       "keyword": "新工場",
       "asof": "8/12 23:17"
@@ -985,7 +926,7 @@
     {
       "code": "6861",
       "company": "キーエンス",
-      "title": "熊本に1兆円投資報道、半導体設備投資が再加速【今日の市場はどう動いた？】 - finance.yahoo.co.jp",
+      "title": "熊本に1兆円投資報道、半導体設備投資が再加速【今日の市場はどう動いた？】 - Yahoo!ファイナンス",
       "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE9DcFVIXzZyUnRFcTZVdDQ3cDYwVFBaTGg5aXpHcmxteHg0a2lVU2RwUWZULWdJb1ZiMFhFZWprcnYtSURjS3p5Nl9yRDNUM05ta3AzblNqMWRqLUxqNmZfZFFfLUo?oc=5",
       "keyword": "設備投資",
       "asof": "8/10 11:55"
@@ -1033,18 +974,18 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "レイズネクスト、ダイキン工業鹿島製作所のパーフルオロゴム新生産プラントの建設を受注 - 株式会社共同通信社",
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTFBIdzRGQzIxZFVVREkzV2NXZ0VSeC0wS192V0loZ1NZeDNyVTZ3Y1RDNG13dm5JcVVYUTFTV2hDa2FkbmkxaG9WU2FxUDRaTnFxMndzbzVralNRdw?oc=5",
-      "keyword": "受注",
-      "asof": "8/5 16:00"
+      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - newswitch.jp",
+      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
+      "keyword": "データセンター",
+      "asof": "8/6 16:00"
     },
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "データセンター向け空調などけん引…ダイキンの4－6月期、営業最高益 - ニュースイッチ by 日刊工業新聞社",
-      "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE52MlRieGpvT2M4Zm5LeVNqSkVqWWU2LUg5NWFnRzBUOEx0b3VJRHducEE3akdmTzVadFZiYThlU3lEdw?oc=5",
+      "title": "ダイキン工業の投資分析｜過去最高1QとAIデータセンター冷却 - d-sharing.jp",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1rZmt0ZDZPSnZsZmhLaEI4OE03a20wYWM3bzBWVHliM2k5c1loOUhrSldpYjMxTkN2MW1ONUJlY0pqSkp6RTZIZDNiUDdvakxRbTJoek1PMzZtMWU0ZWViOEVZWTM0NWJFc3RmMnFuUFl1NXluYkJwZg?oc=5",
       "keyword": "データセンター",
-      "asof": "8/6 16:00"
+      "asof": "8/8 23:09"
     },
     {
       "code": "4063",
@@ -1076,86 +1017,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-16 08:12",
-    "tdnet_afterclose": "2026-08-16 08:12",
-    "technical": "2026-08-16 08:13",
-    "growth_candidates": "2026-08-16 08:12",
-    "pre_earnings_watch": "2026-08-16 08:12",
-    "edinet_large_holdings": "2026-08-16 08:12",
-    "economic_calendar": "2026-08-16 08:12",
-    "movers_afterclose": "2026-08-16 08:13",
-    "pre_earnings_indicator": "2026-08-16 08:14"
+    "market_quotes": "2026-08-16 08:41",
+    "tdnet_morning": "2026-08-16 08:41",
+    "technical": "2026-08-16 08:41",
+    "growth_candidates": "2026-08-16 08:41",
+    "pre_earnings_watch": "2026-08-16 08:41",
+    "edinet_large_holdings": "2026-08-16 08:41",
+    "economic_calendar": "2026-08-16 08:41",
+    "pre_earnings_indicator": "2026-08-16 08:43"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-16 08:12",
+      "checked_at": "2026-08-16 08:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "not_requested",
-      "checked_at": "2026-08-16 08:12",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-16 08:41",
+      "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-16 08:12",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-16 08:41",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-16 08:13",
+      "checked_at": "2026-08-16 08:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-16 08:12",
+      "checked_at": "2026-08-16 08:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-16 08:12",
+      "checked_at": "2026-08-16 08:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-16 08:13",
-      "message": "今回の実行モードでは更新対象外です。"
-    },
-    "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-16 08:13",
+      "checked_at": "2026-08-16 08:43",
       "message": "ニュース分析APIで取得できませんでした。"
     },
-    "movers_morning": {
+    "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-16 08:13",
+      "checked_at": "2026-08-16 08:42",
       "message": "今回の実行モードでは更新対象外です。"
     },
+    "movers_morning": {
+      "state": "unavailable",
+      "checked_at": "2026-08-16 08:43",
+      "message": "話題株分析APIで取得できませんでした。"
+    },
     "movers_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-16 08:13",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-16 08:42",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-16 08:13",
+      "checked_at": "2026-08-16 08:43",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-16 08:12",
+      "checked_at": "2026-08-16 08:41",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-16 08:12",
+      "checked_at": "2026-08-16 08:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-16 08:14",
+      "checked_at": "2026-08-16 08:43",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1174,83 +1114,83 @@
   "credit_history": {
     "7203": {
       "last": 15.12,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6758": {
       "last": 12.96,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "8306": {
       "last": 11.28,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "9984": {
       "last": 9.52,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6861": {
       "last": 1.04,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6954": {
       "last": 19.78,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "7974": {
       "last": 10.71,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6098": {
       "last": 0.6,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "8035": {
       "last": 17.11,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "9433": {
       "last": 0.67,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "9432": {
       "last": 6.38,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "7267": {
       "last": 2.56,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6367": {
       "last": 12.0,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "9983": {
       "last": 1.26,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "4063": {
       "last": 17.75,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6857": {
       "last": 1.41,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "4519": {
       "last": 54.23,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "5401": {
       "last": 8.87,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "2413": {
       "last": 12.16,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     },
     "6645": {
       "last": 3.67,
-      "ts": "2026-08-16 08:13"
+      "ts": "2026-08-16 08:43"
     }
   },
   "pre_earnings_indicator": [
