@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16 20:12",
+  "generated_at": "2026-08-16 22:25",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -207,38 +207,43 @@
   "movers_afterclose": [
     {
       "code": "",
-      "name": "SanDisk",
-      "price": null,
+      "name": "ウエスタンデジタル",
+      "price": "",
       "change_pct": null,
-      "reason": "決算好調で急騰"
+      "volume_note": "",
+      "reason": "本日急騰した"
     },
     {
       "code": "",
-      "name": "ウエスタンデジタル",
-      "price": null,
+      "name": "SanDisk",
+      "price": "",
       "change_pct": null,
-      "reason": "急騰した理由"
+      "volume_note": "",
+      "reason": "本日急騰している"
     },
     {
       "code": "",
       "name": "マイケル・ページ",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "reason": "急騰した理由"
+      "volume_note": "",
+      "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "オットーボック",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "reason": "急騰した理由"
+      "volume_note": "",
+      "reason": "本日急騰した"
     },
     {
       "code": "",
       "name": "アプライド・オプトエレクトロニクス",
-      "price": null,
+      "price": "",
       "change_pct": null,
-      "reason": "急騰した理由"
+      "volume_note": "",
+      "reason": "本日急騰した"
     }
   ],
   "technical": [
@@ -377,9 +382,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+2.49%上昇、52週高値まで0.3%の距離",
-      "theme": "半導体",
-      "theme_trend_note": "市場で注目されている"
+      "baked_in_reason": "直近5日で2.49%上昇、52週高値まで0.3%の距離"
     },
     {
       "code": "6954",
@@ -433,9 +436,7 @@
       "squeeze_potential": false,
       "sector": "その他製品",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+16.48%上昇、52週高値まで39.84%の距離"
+      "sector_contrarian": false
     },
     {
       "code": "6098",
@@ -464,7 +465,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+28.1%上昇、52週高値まで3.09%の距離"
+      "baked_in_reason": "直近5日で28.1%上昇、52週高値まで3.09%の距離"
     },
     {
       "code": "8035",
@@ -492,8 +493,6 @@
       "sector": "電気機器",
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
-      "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+6.87%上昇、52週高値まで27.23%の距離",
       "theme": "半導体",
       "theme_trend_note": "市場で注目されている"
     },
@@ -551,7 +550,7 @@
       "sector_avg_change_pct": null,
       "sector_contrarian": false,
       "baked_in_warning": true,
-      "baked_in_reason": "直近5日で+5.31%上昇、52週高値まで2.69%の距離"
+      "baked_in_reason": "直近5日で5.31%上昇、52週高値まで2.69%の距離"
     },
     {
       "code": "7267",
@@ -796,7 +795,8 @@
       "squeeze_potential": false,
       "sector": "電気機器",
       "sector_avg_change_pct": null,
-      "sector_contrarian": false
+      "sector_contrarian": false,
+      "theme": "電気機器"
     }
   ],
   "us_good_news": [],
@@ -1050,7 +1050,7 @@
     {
       "code": "5401",
       "company": "日本製鉄",
-      "title": "日産『キックス』受注1万1388台、これからの課題は？…今週のビジネス記事ランキング 5枚目の写真・画像 - レスポンス（Response.jp）",
+      "title": "日産『キックス』受注1万1388台、これからの課題は？…今週のビジネス記事ランキング 5枚目の写真・画像 - s.response.jp",
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQck1wRFNzTy03dHRmUzlfRmZxQlFkQWp1SXYzQVBnVkJLMW1yOE9VRFNWQmEtbFc2QUVyT3NDalB3aGZScFFkbFVtUVdTdXRRSjhxbGVuSXNUQURpOXduV0NZX05kWjJmQXdMRnQwdnVZaHhKdkd4NXJXR0VuSktGaTFvNy12OUxZd2h1YkJUMA?oc=5",
       "keyword": "受注",
       "asof": "8/14 10:30"
@@ -1069,86 +1069,86 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-16 20:12",
-    "tdnet_afterclose": "2026-08-16 20:12",
-    "technical": "2026-08-16 20:13",
-    "growth_candidates": "2026-08-16 20:12",
-    "pre_earnings_watch": "2026-08-16 20:12",
-    "edinet_large_holdings": "2026-08-16 20:12",
-    "economic_calendar": "2026-08-16 20:12",
-    "movers_afterclose": "2026-08-16 20:13",
-    "pre_earnings_indicator": "2026-08-16 20:14"
+    "market_quotes": "2026-08-16 22:25",
+    "tdnet_afterclose": "2026-08-16 22:25",
+    "technical": "2026-08-16 22:26",
+    "growth_candidates": "2026-08-16 22:25",
+    "pre_earnings_watch": "2026-08-16 22:25",
+    "edinet_large_holdings": "2026-08-16 22:25",
+    "economic_calendar": "2026-08-16 22:25",
+    "movers_afterclose": "2026-08-16 22:26",
+    "pre_earnings_indicator": "2026-08-16 22:26"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:13",
+      "checked_at": "2026-08-16 22:26",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-16 20:13",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-16 20:13",
+      "checked_at": "2026-08-16 22:26",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-16 20:13",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:13",
+      "checked_at": "2026-08-16 22:26",
       "message": "今回の実行で取得・更新しました。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-16 20:13",
+      "checked_at": "2026-08-16 22:26",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:12",
+      "checked_at": "2026-08-16 22:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-16 20:14",
+      "checked_at": "2026-08-16 22:26",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1167,83 +1167,83 @@
   "credit_history": {
     "7203": {
       "last": 15.12,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6758": {
       "last": 12.96,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "8306": {
       "last": 11.28,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "9984": {
       "last": 9.52,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6861": {
       "last": 1.04,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6954": {
       "last": 19.78,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "7974": {
       "last": 10.71,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6098": {
       "last": 0.6,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "8035": {
       "last": 17.11,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "9433": {
       "last": 0.67,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "9432": {
       "last": 6.38,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "7267": {
       "last": 2.56,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6367": {
       "last": 12.0,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "9983": {
       "last": 1.26,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "4063": {
       "last": 17.75,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6857": {
       "last": 1.41,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "4519": {
       "last": 54.23,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "5401": {
       "last": 8.87,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "2413": {
       "last": 12.16,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     },
     "6645": {
       "last": 3.67,
-      "ts": "2026-08-16 20:13"
+      "ts": "2026-08-16 22:26"
     }
   },
   "pre_earnings_indicator": [
