@@ -1,41 +1,41 @@
 {
-  "generated_at": "2026-08-19 00:23",
+  "generated_at": "2026-08-19 02:19",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,696.31",
-      "change_pct": -1.15,
+      "value": "7,703.20",
+      "change_pct": -0.54,
       "asof": "8/19終値"
     },
     "dow": {
-      "value": "53,336.15",
-      "change_pct": -0.74,
+      "value": "53,383.93",
+      "change_pct": -0.14,
       "asof": "8/19終値"
     },
     "nasdaq": {
-      "value": "26,302.62",
-      "change_pct": -1.6,
+      "value": "26,342.52",
+      "change_pct": -1.13,
       "asof": "8/19終値"
     },
     "sox": {
-      "value": "11,888.27",
-      "change_pct": -4.26,
+      "value": "11,918.37",
+      "change_pct": -5.57,
       "asof": "8/19終値"
     }
   },
   "fx": {
-    "value": "159.57円",
-    "change_pct": 0.22,
+    "value": "159.60円",
+    "change_pct": 0.24,
     "asof": "8/19終値"
   },
   "nikkei_futures": {
-    "value": "66,300.00",
-    "change_pct": -4.03,
+    "value": "66,365.00",
+    "change_pct": -3.94,
     "asof": "8/19終値"
   },
   "nikkei225": {
     "value": "67,460.73",
-    "change_pct": -1.24,
+    "change_pct": -1.82,
     "asof": "8/18終値"
   },
   "overnight_news": [],
@@ -918,7 +918,7 @@
     {
       "code": "9984",
       "company": "ソフトバンクグループ",
-      "title": "ソフトバンクG、第2四半期にTSMC株を7割超売却し2.7億ドルを現金化、AI投資の軸足はエコシステムへシフト - BigGo ファイナンス",
+      "title": "ソフトバンクG、第2四半期にTSMC株を7割超売却し2.7億ドルを現金化、AI投資の軸足はエコシステムへシフト - finance.biggo.jp",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5LRkJSWWZzaElqR1puWWVNTkdtVEQzNmRGNUp3MGJfSnI1ME9WWl9JeFNWWTF6Z09YbUNRRy0zc1Jyb3FPODFHakRRVmRIckZPeWhObUlHN3ZBdjFTa1FsWWRvUFpzLWpGOFY2ek96WVB6dXdu?oc=5",
       "keyword": "AI投資",
       "asof": "8/15 05:25"
@@ -934,7 +934,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "【6954.T FY2026 Q1 決算説明会】ファナック、受注36.9%急増も「先行発注」警戒—通期売上高は過去最高9481億円へ上方修正 - BigGo ファイナンス",
+      "title": "【6954.T FY2026 Q1 決算説明会】ファナック、受注36.9%急増も「先行発注」警戒—通期売上高は過去最高9481億円へ上方修正 - finance.biggo.jp",
       "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9zYllFMEliS1hqMHVYT0pkaXVzc2dLR0o0UXBsVnMyLTZWU25wTlFUbEdqSi1Ubl81MHYwb0tXYmRrVFVrRVFtOHlyUUlKZ01kdkUxd011cEstWWNOZ0lF?oc=5",
       "keyword": "受注",
       "asof": "8/11 17:25"
@@ -1006,10 +1006,10 @@
     {
       "code": "5401",
       "company": "日本製鉄",
-      "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - 47NEWS",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE1IOHdoWVBwZU80b2lvQUN3bUY4enJwcjdBaEJ4d1hoWnFNMVo3WXc0VjlsZGVvRFJkNjh4RW0wN1ZmNjEzRnplamc0MA?oc=5",
-      "keyword": "生産能力",
-      "asof": "8/7 16:00"
+      "title": "自動車の車体の軽量化に応える 日本製鉄が愛知県東海市に新工場 厚さ25cmの鉄を薄い板へ - locipo.jp",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1uSDcteUQtMy1CWUNQMTFQZHZ1bG5GMGxnWkluNTYyNHJ4dUpxYjFOLUx6QTVJc1o2bEtkbzdPcVo3SXJkT0pIdkNMOGlVQTZwRnZVVEhkdTlRNnpiS3lVR1A1aE9fSDJ3cEM2aTQ3NFI?oc=5",
+      "keyword": "新工場",
+      "asof": "8/12 19:00"
     }
   ],
   "line_notify_last": {
@@ -1017,85 +1017,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-19 00:23",
-    "tdnet_afterclose": "2026-08-19 00:23",
-    "technical": "2026-08-19 00:23",
-    "growth_candidates": "2026-08-19 00:23",
-    "pre_earnings_watch": "2026-08-19 00:23",
-    "edinet_large_holdings": "2026-08-19 00:23",
-    "economic_calendar": "2026-08-19 00:23",
-    "pre_earnings_indicator": "2026-08-19 00:24"
+    "market_quotes": "2026-08-19 02:19",
+    "tdnet_afterclose": "2026-08-19 02:19",
+    "technical": "2026-08-19 02:19",
+    "growth_candidates": "2026-08-19 02:19",
+    "pre_earnings_watch": "2026-08-19 02:19",
+    "edinet_large_holdings": "2026-08-19 02:19",
+    "economic_calendar": "2026-08-19 02:19",
+    "pre_earnings_indicator": "2026-08-19 02:20"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:20",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-19 00:24",
+      "checked_at": "2026-08-19 02:20",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:20",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-19 00:24",
+      "checked_at": "2026-08-19 02:20",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-19 00:24",
+      "checked_at": "2026-08-19 02:20",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:23",
+      "checked_at": "2026-08-19 02:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-19 00:24",
+      "checked_at": "2026-08-19 02:20",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1114,83 +1114,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-19 00:24"
+      "ts": "2026-08-19 02:20"
     }
   },
   "pre_earnings_indicator": [
