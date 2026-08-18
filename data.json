@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-08-18 20:17",
+  "generated_at": "2026-08-18 22:36",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,745.06",
-      "change_pct": -0.69,
+      "value": "7,705.86",
+      "change_pct": -1.03,
       "asof": "8/18終値"
     },
     "dow": {
-      "value": "53,459.78",
-      "change_pct": -0.71,
+      "value": "53,302.53",
+      "change_pct": -0.8,
       "asof": "8/18終値"
     },
     "nasdaq": {
-      "value": "26,644.91",
-      "change_pct": -0.59,
+      "value": "26,356.04",
+      "change_pct": -1.4,
       "asof": "8/18終値"
     },
     "sox": {
-      "value": "12,621.00",
-      "change_pct": 1.32,
+      "value": "12,168.51",
+      "change_pct": -2.0,
       "asof": "8/18終値"
     }
   },
   "fx": {
-    "value": "159.72円",
-    "change_pct": 0.31,
+    "value": "159.61円",
+    "change_pct": 0.24,
     "asof": "8/18終値"
   },
   "nikkei_futures": {
-    "value": "67,345.00",
-    "change_pct": -2.52,
+    "value": "67,155.00",
+    "change_pct": -2.79,
     "asof": "8/18終値"
   },
   "nikkei225": {
@@ -43,12 +43,68 @@
   "movers_morning": [],
   "tdnet_afterclose": [
     {
+      "time": "21:30",
+      "code": "―",
+      "company": "メタプラ",
+      "title": "Metaplanet's U.S. Bitcoin Treasury Platform, Listed on Nasdaq",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522614.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "21:30",
+      "code": "―",
+      "company": "メタプラ",
+      "title": "Nasdaq上場の米国ビットコイン・トレジャリー・プラットフォーム",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522608.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "21:30",
+      "code": "―",
+      "company": "メタプラ",
+      "title": "Metaplanet to Invest 2,100 Bitcoin in Super League to Launch U.S. Bitcoin Treasury Platform, Superplanet",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522606.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "21:30",
+      "code": "―",
+      "company": "メタプラ",
+      "title": "Super Leagueに2,100ビットコインを現物出資し、米国ビットコイン・ トレジャリー・プラットフォーム「Superplanet」を始動",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522604.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "21:30",
+      "code": "―",
+      "company": "メタプラ",
+      "title": "Notice Regarding the Execution of a Subscription Agreement for a Strategic Investment in Bitcoin in Super League Enterprise, Inc. (Nasdaq: SLE), Its P",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522603.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "21:30",
+      "code": "―",
+      "company": "メタプラ",
+      "title": "Super League Enterprise, Inc.に対するビットコインの戦略投資に係る出資契約の締結、同社の連結子会社化（予定）及び同社の商号変更（予定）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522578.pdf",
+      "tag": "他"
+    },
+    {
       "time": "19:15",
       "code": "―",
       "company": "Ａバランス",
       "title": "過年度の有価証券報告書等の訂正報告書の提出及び過年度の決算短信の訂正に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522630.pdf",
       "tag": "追訂"
+    },
+    {
+      "time": "18:35",
+      "code": "―",
+      "company": "ｕｎｂａｎｋ",
+      "title": "資本金及び資本準備金の額の減少並びに剰余金の処分に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522144.pdf",
+      "tag": "他"
     },
     {
       "time": "18:35",
@@ -64,14 +120,6 @@
       "company": "ｕｎｂａｎｋ",
       "title": "取締役（監査等委員である者を除く。）候補者及び監査等委員である取締役候補者の選任に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522618.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:35",
-      "code": "―",
-      "company": "ｕｎｂａｎｋ",
-      "title": "資本金及び資本準備金の額の減少並びに剰余金の処分に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522144.pdf",
       "tag": "他"
     },
     {
@@ -126,16 +174,16 @@
       "time": "18:20",
       "code": "―",
       "company": "ノジマ",
-      "title": "役員（執行役）の異動に関する知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522611.pdf",
+      "title": "Notice Concerning Changes in Officers(Executive Officers)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522619.pdf",
       "tag": "他"
     },
     {
       "time": "18:20",
       "code": "―",
       "company": "ノジマ",
-      "title": "Notice Concerning Changes in Officers(Executive Officers)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522619.pdf",
+      "title": "役員（執行役）の異動に関する知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522611.pdf",
       "tag": "他"
     },
     {
@@ -152,54 +200,6 @@
       "company": "ティムス",
       "title": "第10回新株予約権（行使価額修正条項付）の 大量行使に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522587.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "オーミケンシ",
-      "title": "第161回定時株主総会継続会開催のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522152.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:15",
-      "code": "―",
-      "company": "日本アクア",
-      "title": "断熱＋防水の一体改修工法「FUKUGEN工法」を「高機能素材Week（猛暑テック）」で紹介",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522555.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:05",
-      "code": "―",
-      "company": "カナデビア",
-      "title": "（差替）「（開示事項の経過）当社向島工場における不適切行為について」の差替について",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522431.pdf",
-      "tag": "追訂"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "上場申請のための半期報告書 他 今日 17:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522536.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "上場申請のための有価証券報告書等の適正性に関する確認書 他 今日 17:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522537.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "上場申請のための有価証券報告書 他 今日 17:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260818/140120260818522535.pdf",
       "tag": "他"
     }
   ],
@@ -902,7 +902,7 @@
     {
       "code": "6758",
       "company": "ソニーグループ",
-      "title": "ソニーグループとTSMCがスマホ向け次世代画像センサー量産へ 合弁会社を設立し2029年量産開始目指す - news.ntv.co.jp",
+      "title": "ソニーグループとTSMCがスマホ向け次世代画像センサー量産へ 合弁会社を設立し2029年量産開始目指す - 日テレNEWS NNN",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOaHlvNjJLTmNKRVhsVnJaQkh3cERGMm1CcWFmYlFhV0QtQWJWeU5jWXF5MU41TlBGSGNzU3FzMDl1UV84U3dyOVpRdUpPVXM0NFhoMnBxNXptZ3dfaDFQaERGZDlrc3F5ZEM5LXRWb2x2XzJzY2RCa0RZLWJNdGwwOUR6bGR0T2c?oc=5",
       "keyword": "量産開始",
       "asof": "8/12 19:41"
@@ -930,6 +930,14 @@
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE9Mc3VQQkZqa2RRZl95NFo3MUZSeDN6WVZBTHJQUVJmcDRDWTVoU0dZTU45RXVkZC05ZXFULXZwYnI2b1hjUjhKREtXNGHSAU9BVV95cUxPb1AyTkZoV2xuczFBZlNVZWNldzZ2SFBEa2dZelJwYUNMc3VmaU1VRTFoR19OM0dHaHRlejFPVzdITk9TdVk4Vkd3c0plNnBv?oc=5",
       "keyword": "設備投資",
       "asof": "8/7 16:00"
+    },
+    {
+      "code": "6954",
+      "company": "ファナック",
+      "title": "【6954.T FY2026 Q1 決算説明会】ファナック、受注36.9%急増も「先行発注」警戒—通期売上高は過去最高9481億円へ上方修正 - finance.biggo.jp",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9zYllFMEliS1hqMHVYT0pkaXVzc2dLR0o0UXBsVnMyLTZWU25wTlFUbEdqSi1Ubl81MHYwb0tXYmRrVFVrRVFtOHlyUUlKZ01kdkUxd011cEstWWNOZ0lF?oc=5",
+      "keyword": "受注",
+      "asof": "8/11 17:25"
     },
     {
       "code": "7974",
@@ -1009,85 +1017,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-18 20:17",
-    "tdnet_afterclose": "2026-08-18 20:17",
-    "technical": "2026-08-18 20:17",
-    "growth_candidates": "2026-08-18 20:17",
-    "pre_earnings_watch": "2026-08-18 20:17",
-    "edinet_large_holdings": "2026-08-18 20:17",
-    "economic_calendar": "2026-08-18 20:17",
-    "pre_earnings_indicator": "2026-08-18 20:19"
+    "market_quotes": "2026-08-18 22:36",
+    "tdnet_afterclose": "2026-08-18 22:36",
+    "technical": "2026-08-18 22:36",
+    "growth_candidates": "2026-08-18 22:36",
+    "pre_earnings_watch": "2026-08-18 22:36",
+    "edinet_large_holdings": "2026-08-18 22:36",
+    "economic_calendar": "2026-08-18 22:36",
+    "pre_earnings_indicator": "2026-08-18 22:37"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-18 20:18",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-18 20:18",
+      "checked_at": "2026-08-18 22:36",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-18 20:18",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-18 20:18",
+      "checked_at": "2026-08-18 22:36",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-18 20:18",
+      "checked_at": "2026-08-18 22:36",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:17",
+      "checked_at": "2026-08-18 22:36",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-18 20:19",
+      "checked_at": "2026-08-18 22:37",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1106,83 +1114,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-18 20:18"
+      "ts": "2026-08-18 22:36"
     }
   },
   "pre_earnings_indicator": [
