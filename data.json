@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20 16:34",
+  "generated_at": "2026-08-20 18:25",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "158.50円",
-    "change_pct": -0.66,
+    "value": "158.23円",
+    "change_pct": -0.83,
     "asof": "8/20終値"
   },
   "nikkei_futures": {
-    "value": "66,015.00",
-    "change_pct": 0.08,
+    "value": "65,840.00",
+    "change_pct": -0.18,
     "asof": "8/20終値"
   },
   "nikkei225": {
@@ -43,163 +43,163 @@
   "movers_morning": [],
   "tdnet_afterclose": [
     {
-      "time": "―",
+      "time": "18:00",
       "code": "―",
-      "company": "―",
-      "title": "支配株主等に関する事項について 他 今日 16:30 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523883.pdf",
+      "company": "Ｊ４百ベア２",
+      "title": "ＥＴＦの収益分配金のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523961.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "アエリア",
+      "title": "株式会社サイバード　「イケメンシリーズ」ファンクラブ限定 リアルイベント「イケシリツアー2026」が今年も開催！",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523917.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "18:00",
       "code": "―",
-      "company": "―",
-      "title": "上場申請のための特定証券情報（発行者情報） 他 今日 16:30 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523882.pdf",
+      "company": "アエリア",
+      "title": "株式会社リベル・エンタテインメント　イケメン役者育成ゲーム『A3!（エースリー）』 メインストーリー第五部が大好評配信中！配信記念の駅広告も掲出開始！",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523913.pdf",
       "tag": "他"
     },
     {
-      "time": "―",
+      "time": "18:00",
       "code": "―",
-      "company": "―",
-      "title": "子会社設立に関するお知らせ 他 今日 16:30 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523402.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "カネ美食品",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ＴｏＳＴＮｅＴ－３）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523829.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "Ｓａｐｅｅｔ",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による 自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523907.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "グロービング",
-      "title": "Notice Regarding Disposal of Treasury Shares as Restricted Stock for Employees",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523905.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "グロービング",
-      "title": "従業員に対する譲渡制限付株式としての自己株式の処分に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523656.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "アリアケ",
-      "title": "Notice Concerning Repurchase of Own Shares Through Off-Auction Own Share Repurchase Trading System (ToSTNeT-3)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523881.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "アリアケ",
-      "title": "自己株式立会外買付取引（ＴｏＳＴＮｅＴ－３）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260812517992.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "ハブ",
-      "title": "新規出店決定のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523874.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "ＪＢイレブン",
-      "title": "自己株式の取得及び自己株式立会外買付取引（Ｎ－ＮＥＴ３）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523568.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "アドバンスＲ",
-      "title": "国内不動産の取得に関するお知らせ≪レジディア東日暮里・レジディア亀戸II≫",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523753.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "アドバンスＲ",
-      "title": "Notice Concerning Acquisition of Real Estate in Japan(RESIDIA Higashinippori and RESIDIA KameidoII)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523761.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "アドバンスＲ",
-      "title": "資金の借入れ及び借入金の返済に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523767.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "アドバンスＲ",
-      "title": "Notice Concerning Debt Financing and Repayment of Loan",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523772.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "はてな",
-      "title": "はてな、創業25周年を迎えた節目に新サービス「はてなパークス」を正式リリース",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260819523329.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "有機薬",
+      "company": "日特塗",
       "title": "譲渡制限付株式報酬としての自己株式の処分の払込完了に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523871.pdf",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523963.pdf",
       "tag": "エク"
     },
     {
-      "time": "16:30",
+      "time": "18:00",
       "code": "―",
-      "company": "ＪＦＥシステ",
-      "title": "ＪＦＥシステムズ、社員・グループ会社向け「JFE-SIフォーラム2026」をハイブリッド開催",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523533.pdf",
+      "company": "ＳＭＥＪ",
+      "title": "ＩＲ公式「note」にて当社の自己紹介および事業内容に関する記事を公開いたしました",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523915.pdf",
       "tag": "他"
     },
     {
-      "time": "16:30",
+      "time": "18:00",
       "code": "―",
-      "company": "エステー",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523780.pdf",
+      "company": "エリッツＨＤ",
+      "title": "個人情報流出の可能性に関するお知らせ（第１報）",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523965.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ギックス",
+      "title": "（訂正）「2026年６月期 決算短信〔日本基準〕（連結）」の一部訂正について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523759.pdf",
+      "tag": "決算"
+    },
+    {
+      "time": "17:05",
+      "code": "―",
+      "company": "日本リート",
+      "title": "Summary of Financial Results for the Fiscal Period Ended June 30, 2026 (REIT)",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523916.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "証書貸付契約及び当座貸越契約の締結に関するお知らせ 他 今日 17:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523646.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "（訂正）「通期連結業績予想の修正に関するお知らせ」の一部訂正について 業修 今日 17:00 New!",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523911.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ｆｏｎｆｕｎ",
+      "title": "2027年3月期第1四半期決算説明会アーカイブ動画およびQ&A書き起こし記事公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523658.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ＪＨＤ",
+      "title": "臨時株主総会の開催場所に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523715.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "パピレス",
+      "title": "自己株式立会外買付（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523862.pdf",
       "tag": "自社"
     },
     {
-      "time": "16:30",
+      "time": "17:00",
       "code": "―",
-      "company": "エステー",
-      "title": "Notice Concerning Acquisition of Treasury Shares and Repurchase of Treasury Shares through Off-Auction Own Share Repurchase Trading System (ToSTNeT-3)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523791.pdf",
+      "company": "ヤプリ",
+      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-３）による自己株式の買付けに関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523534.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ｅＷｅＬＬ",
+      "title": "[Delayed]FY12 2026 2Q Financial Results and Explanatory Materials",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523854.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ｅＷｅＬＬ",
+      "title": "2026年12月期第２四半期決算説明会 書き起こし記事及び動画の公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523731.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "セイワＨＤ",
+      "title": "当社株式の貸借銘柄選定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523451.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "シーラＨＤ",
+      "title": "IR番組「 IRTV Channel 」出演のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523630.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ロジネットＪ",
+      "title": "自己株式の取得及び立会外自己株式取得取引による自己株式の買付け 並びに自己株式の消却に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523921.pdf",
+      "tag": "自社"
+    },
+    {
+      "time": "17:00",
+      "code": "―",
+      "company": "ＷＴＯＫＹＯ",
+      "title": "商号の変更及び定款の一部変更に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260820/140120260820523757.pdf",
       "tag": "他"
     }
   ],
@@ -958,10 +958,10 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDI、世界全45拠点のデータセンターで「再エネ100％」を達成！ AI需要の拡大に応えつつ脱炭素化を加速。 - DXマガジン",
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1pb2pGbkR1eXBDWG1fbzhYcUkyVzZzT0NBeUJwRHN6cElGVXhveWludWJtWmEtemVlNXRfQWpiU1U5UHY1czFncThCQWRNTWc?oc=5",
+      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - ビジネスネットワーク",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE95NjJtRXEwX3htbkNGSmpDRFN2dEh5UWc5cmZ3eEZVemgyRXdscVhfdzZaUTg0Yi1wSmQwcjdmS3VwMHhCcHdud25rR2VBWjQ0Yk9Z?oc=5",
       "keyword": "データセンター",
-      "asof": "8/12 16:00"
+      "asof": "8/7 16:00"
     },
     {
       "code": "4063",
@@ -982,7 +982,7 @@
     {
       "code": "5401",
       "company": "日本製鉄",
-      "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - chukei-news.co.jp",
+      "title": "日本製鉄名古屋製鉄所 熱延ライン 63年ぶり新設 ３千億円投資 生産能力２割増 - 中部経済新聞",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB1M2tma0hYZEJjZ1NVcXVsUnFhOTFaTHVkSmhqV29nM3diTy1TV0hWakdXclYya2hmXzdIVzU3REo2RENfdHhzR3pvWHNxMHNPRlJ2cXZBZ202MWRnMG52UFlMNHpTTGtqUXFLVlBHeW5JamM?oc=5",
       "keyword": "生産能力",
       "asof": "8/7 16:00"
@@ -998,7 +998,7 @@
     {
       "code": "2413",
       "company": "エムスリー",
-      "title": "機械受注やＦＯＭＣ議事要旨に注目(スケジュールチェック) - moneyworld.jp",
+      "title": "機械受注やＦＯＭＣ議事要旨に注目(スケジュールチェック) - QUICK Money World",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE96Q18zSHRSVlVRWGVBd0ZzUk5LNnloOFNkbE43bmp5d2tlZHJ4RTBWb094SC1kSll4SUNGY2R0QnRiOEpkb2xwUWkxdnF4NWptMlNXbkh3?oc=5",
       "keyword": "受注",
       "asof": "8/18 17:20"
@@ -1009,85 +1009,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-20 16:34",
-    "tdnet_afterclose": "2026-08-20 16:34",
-    "technical": "2026-08-20 16:34",
-    "growth_candidates": "2026-08-20 16:34",
-    "pre_earnings_watch": "2026-08-20 16:34",
-    "edinet_large_holdings": "2026-08-20 16:34",
-    "economic_calendar": "2026-08-20 16:34",
-    "pre_earnings_indicator": "2026-08-20 16:36"
+    "market_quotes": "2026-08-20 18:25",
+    "tdnet_afterclose": "2026-08-20 18:25",
+    "technical": "2026-08-20 18:25",
+    "growth_candidates": "2026-08-20 18:25",
+    "pre_earnings_watch": "2026-08-20 18:25",
+    "edinet_large_holdings": "2026-08-20 18:25",
+    "economic_calendar": "2026-08-20 18:25",
+    "pre_earnings_indicator": "2026-08-20 18:27"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:26",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-20 16:35",
+      "checked_at": "2026-08-20 18:26",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:26",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-20 16:35",
+      "checked_at": "2026-08-20 18:26",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-20 16:35",
+      "checked_at": "2026-08-20 18:26",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:34",
+      "checked_at": "2026-08-20 18:25",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-20 16:36",
+      "checked_at": "2026-08-20 18:27",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1106,83 +1106,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-20 16:35"
+      "ts": "2026-08-20 18:26"
     }
   },
   "pre_earnings_indicator": [
