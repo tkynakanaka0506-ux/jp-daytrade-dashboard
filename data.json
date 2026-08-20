@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-08-21 04:24",
+  "generated_at": "2026-08-21 06:19",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,655.07",
-      "change_pct": -0.69,
+      "value": "7,641.16",
+      "change_pct": -0.87,
       "asof": "8/21終値"
     },
     "dow": {
-      "value": "52,842.76",
-      "change_pct": -1.16,
+      "value": "52,759.21",
+      "change_pct": -1.32,
       "asof": "8/21終値"
     },
     "nasdaq": {
-      "value": "26,085.33",
-      "change_pct": -0.93,
+      "value": "26,067.17",
+      "change_pct": -1.0,
       "asof": "8/21終値"
     },
     "sox": {
-      "value": "11,791.75",
-      "change_pct": 0.46,
+      "value": "11,800.02",
+      "change_pct": 0.53,
       "asof": "8/21終値"
     }
   },
   "fx": {
-    "value": "159.12円",
-    "change_pct": -0.27,
+    "value": "159.03円",
+    "change_pct": 0.48,
     "asof": "8/21終値"
   },
   "nikkei_futures": {
-    "value": "65,475.00",
-    "change_pct": -0.74,
+    "value": "65,525.00",
+    "change_pct": -0.66,
     "asof": "8/21終値"
   },
   "nikkei225": {
@@ -958,10 +958,10 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIの1Q決算は増収増益 データセンターやAI、金融事業などが好調 - ビジネスネットワーク",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE95NjJtRXEwX3htbkNGSmpDRFN2dEh5UWc5cmZ3eEZVemgyRXdscVhfdzZaUTg0Yi1wSmQwcjdmS3VwMHhCcHdud25rR2VBWjQ0Yk9Z?oc=5",
+      "title": "KDDI、世界全45拠点のデータセンターで「再エネ100％」を達成！ AI需要の拡大に応えつつ脱炭素化を加速。 - DXマガジン",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1pb2pGbkR1eXBDWG1fbzhYcUkyVzZzT0NBeUJwRHN6cElGVXhveWludWJtWmEtemVlNXRfQWpiU1U5UHY1czFncThCQWRNTWc?oc=5",
       "keyword": "データセンター",
-      "asof": "8/7 16:00"
+      "asof": "8/12 16:00"
     },
     {
       "code": "4063",
@@ -1009,85 +1009,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-21 04:24",
-    "tdnet_afterclose": "2026-08-21 04:24",
-    "technical": "2026-08-21 04:24",
-    "growth_candidates": "2026-08-21 04:24",
-    "pre_earnings_watch": "2026-08-21 04:24",
-    "edinet_large_holdings": "2026-08-21 04:24",
-    "economic_calendar": "2026-08-21 04:24",
-    "pre_earnings_indicator": "2026-08-21 04:25"
+    "market_quotes": "2026-08-21 06:19",
+    "tdnet_afterclose": "2026-08-21 06:19",
+    "technical": "2026-08-21 06:19",
+    "growth_candidates": "2026-08-21 06:19",
+    "pre_earnings_watch": "2026-08-21 06:19",
+    "edinet_large_holdings": "2026-08-21 06:19",
+    "economic_calendar": "2026-08-21 06:19",
+    "pre_earnings_indicator": "2026-08-21 06:20"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-21 04:25",
+      "checked_at": "2026-08-21 06:20",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-21 04:25",
+      "checked_at": "2026-08-21 06:20",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-21 04:25",
+      "checked_at": "2026-08-21 06:20",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-21 04:25",
+      "checked_at": "2026-08-21 06:20",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-21 04:25",
+      "checked_at": "2026-08-21 06:20",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:24",
+      "checked_at": "2026-08-21 06:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-21 04:25",
+      "checked_at": "2026-08-21 06:20",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1106,83 +1106,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-21 04:25"
+      "ts": "2026-08-21 06:20"
     }
   },
   "pre_earnings_indicator": [
