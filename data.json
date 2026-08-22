@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22 11:03",
+  "generated_at": "2026-08-22 12:05",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -966,18 +966,18 @@
     {
       "code": "4063",
       "company": "信越化学工業",
-      "title": "【寄稿】日本はレアアースの「中国依存」から脱却できるか 南鳥島開発と信越化学の新工場 | 海中雄 | ニュース - 風傳媒",
-      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE42ZUhVZUpydWY1NXdaZS1WdnVNZmg4Z3Q2cDVsOU1KVkpwMmZwQ0tNRmdNczFGRWtndGdCc01ydno5TlNHRnlzSkM2Q2hwYnAy?oc=5",
-      "keyword": "新工場",
-      "asof": "8/18 15:53"
+      "title": "信越化学工業、米で5300億円投資 塩ビ原料増産、2工場新設 - 日刊工業新聞",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE0xWG5mcl9pUXdDNkRwZElUN0FlMWtzS0NBWnh3bkZlaWRJcVRKcnQ2Qmdtc1dKT0lrVGd1UW9EWmQxNWxzUDBabmVMN3RNb2E2WE1pS0xfdHQ?oc=5",
+      "keyword": "増産",
+      "asof": "8/21 18:25"
     },
     {
       "code": "4063",
       "company": "信越化学工業",
-      "title": "【株式投資銘柄分析】信越化学工業（4063）レアアース精製関連特許の地雷原！中国を無力化するフォトレジスト新工場 Norovirus (gOvBcPT1UT) - Mshale",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBUek9aM2RtaG93aFVMTXBSR1F3S1U0MWFTTldVelVtUkc2Q0R2eGlCZzhZSVgyTXljam9jWFk4eFRZTmdtUXF6M3R1X2JhUF9BR0FhR0E5aXUzbVE?oc=5",
+      "title": "【寄稿】日本はレアアースの「中国依存」から脱却できるか 南鳥島開発と信越化学の新工場 | 海中雄 | ニュース - 風傳媒",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE42ZUhVZUpydWY1NXdaZS1WdnVNZmg4Z3Q2cDVsOU1KVkpwMmZwQ0tNRmdNczFGRWtndGdCc01ydno5TlNHRnlzSkM2Q2hwYnAy?oc=5",
       "keyword": "新工場",
-      "asof": "8/8 11:15"
+      "asof": "8/18 15:53"
     },
     {
       "code": "2413",
@@ -993,85 +993,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-22 11:03",
-    "tdnet_morning": "2026-08-22 11:03",
-    "technical": "2026-08-22 11:03",
-    "growth_candidates": "2026-08-22 11:03",
-    "pre_earnings_watch": "2026-08-22 11:03",
-    "edinet_large_holdings": "2026-08-22 11:03",
-    "economic_calendar": "2026-08-22 11:03",
-    "pre_earnings_indicator": "2026-08-22 11:05"
+    "market_quotes": "2026-08-22 12:05",
+    "tdnet_morning": "2026-08-22 12:05",
+    "technical": "2026-08-22 12:05",
+    "growth_candidates": "2026-08-22 12:05",
+    "pre_earnings_watch": "2026-08-22 12:05",
+    "edinet_large_holdings": "2026-08-22 12:05",
+    "economic_calendar": "2026-08-22 12:05",
+    "pre_earnings_indicator": "2026-08-22 12:06"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-22 11:04",
+      "checked_at": "2026-08-22 12:06",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-22 11:04",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-08-22 11:04",
+      "checked_at": "2026-08-22 12:06",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-22 11:04",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-22 11:04",
+      "checked_at": "2026-08-22 12:06",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:03",
+      "checked_at": "2026-08-22 12:05",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-22 11:05",
+      "checked_at": "2026-08-22 12:06",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1090,83 +1090,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-22 11:04"
+      "ts": "2026-08-22 12:06"
     }
   },
   "pre_earnings_indicator": [
