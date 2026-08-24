@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-08-25 00:31",
+  "generated_at": "2026-08-25 02:23",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,656.42",
-      "change_pct": -0.23,
+      "value": "7,654.67",
+      "change_pct": -0.26,
       "asof": "8/25終値"
     },
     "dow": {
-      "value": "53,440.73",
-      "change_pct": 0.31,
+      "value": "53,360.63",
+      "change_pct": 0.16,
       "asof": "8/25終値"
     },
     "nasdaq": {
-      "value": "26,058.05",
-      "change_pct": -0.47,
+      "value": "26,036.73",
+      "change_pct": -0.55,
       "asof": "8/25終値"
     },
     "sox": {
-      "value": "11,355.36",
-      "change_pct": -3.28,
+      "value": "11,411.01",
+      "change_pct": -2.81,
       "asof": "8/25終値"
     }
   },
   "fx": {
-    "value": "159.11円",
-    "change_pct": 0.14,
+    "value": "159.16円",
+    "change_pct": 0.17,
     "asof": "8/25終値"
   },
   "nikkei_futures": {
-    "value": "65,030.00",
-    "change_pct": -1.34,
+    "value": "65,425.00",
+    "change_pct": -0.74,
     "asof": "8/25終値"
   },
   "nikkei225": {
@@ -977,85 +977,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-25 00:31",
-    "tdnet_afterclose": "2026-08-25 00:31",
-    "technical": "2026-08-25 00:31",
-    "growth_candidates": "2026-08-25 00:31",
-    "pre_earnings_watch": "2026-08-25 00:31",
-    "edinet_large_holdings": "2026-08-25 00:31",
-    "economic_calendar": "2026-08-25 00:31",
-    "pre_earnings_indicator": "2026-08-25 00:32"
+    "market_quotes": "2026-08-25 02:23",
+    "tdnet_afterclose": "2026-08-25 02:23",
+    "technical": "2026-08-25 02:23",
+    "growth_candidates": "2026-08-25 02:23",
+    "pre_earnings_watch": "2026-08-25 02:23",
+    "edinet_large_holdings": "2026-08-25 02:23",
+    "economic_calendar": "2026-08-25 02:23",
+    "pre_earnings_indicator": "2026-08-25 02:25"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 00:32",
+      "checked_at": "2026-08-25 02:24",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 00:32",
+      "checked_at": "2026-08-25 02:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 00:32",
+      "checked_at": "2026-08-25 02:24",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 00:32",
+      "checked_at": "2026-08-25 02:24",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 00:32",
+      "checked_at": "2026-08-25 02:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:31",
+      "checked_at": "2026-08-25 02:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-25 00:32",
+      "checked_at": "2026-08-25 02:25",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1074,83 +1074,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-25 00:32"
+      "ts": "2026-08-25 02:24"
     }
   },
   "pre_earnings_indicator": [
