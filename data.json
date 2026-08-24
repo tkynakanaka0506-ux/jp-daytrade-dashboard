@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24 18:38",
+  "generated_at": "2026-08-24 20:19",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.18円",
-    "change_pct": 0.18,
+    "value": "159.19円",
+    "change_pct": 0.19,
     "asof": "8/24終値"
   },
   "nikkei_futures": {
-    "value": "65,680.00",
-    "change_pct": -0.36,
+    "value": "65,605.00",
+    "change_pct": -0.47,
     "asof": "8/24終値"
   },
   "nikkei225": {
@@ -42,6 +42,62 @@
   "tdnet_morning": [],
   "movers_morning": [],
   "tdnet_afterclose": [
+    {
+      "time": "19:30",
+      "code": "―",
+      "company": "スプリックス",
+      "title": "完全子会社の吸収合併（簡易合併・略式合併）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260821524038.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:22",
+      "code": "―",
+      "company": "ニプロ",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/24",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525327.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:08",
+      "code": "―",
+      "company": "ワールド",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/05/28",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525362.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "地域新聞社",
+      "title": "（開示事項の経過）当社新株予約権の（一部）取得に係る非適格者等の確定及び当社新株予約権の消却に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525385.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "オープンＧ",
+      "title": "オープングループ株式会社（証券コード：6572）に対する公開買付けに準ずる行為として政令で定める買集め行為に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525352.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "19:00",
+      "code": "―",
+      "company": "オープンＧ",
+      "title": "Notice Concerning Act of Buying Up of Shares of OPEN Group, Inc. (Securities code:6572) Specified by Cabinet Order as Equivalent to a Tender Offer",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525354.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:59",
+      "code": "―",
+      "company": "ＦフォースＧ",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/24",
+      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260820523665.pdf",
+      "tag": "他"
+    },
     {
       "time": "18:20",
       "code": "―",
@@ -145,62 +201,6 @@
       "title": "ETFの収益分配のお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525213.pdf",
       "tag": "配当"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＧＸロジＲグ",
-      "title": "ETFの収益分配のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525226.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "クラシル",
-      "title": "法定事前開示書類（会社分割）（LIVEwith株式会社）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525313.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "クラシル",
-      "title": "法定事後開示書類（会社分割）（LIVEwith株式会社）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525315.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＧＸステコイ",
-      "title": "ETFの収益分配のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525227.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "ＧＸ防衛日株",
-      "title": "ETFの収益分配のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525228.pdf",
-      "tag": "配当"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "アコム",
-      "title": "Partial Corrections to the \"Brief Statement of the First Quarter Financial Results for the Fiscal Year Ending March 2027 [Japanese GAAP (Consolidated)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525292.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "18:00",
-      "code": "―",
-      "company": "アコム",
-      "title": "Partial Corrections to the \"Brief Statement of Financial Results for the Fiscal Year Ended March 2026 [Japanese GAAP (Consolidated)]\" (Including Corre",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525293.pdf",
-      "tag": "他"
     }
   ],
   "afterclose_news": [],
@@ -913,7 +913,7 @@
       "title": "ソフトバンクG、個人向け社債1兆円 国内最大規模、AI投資を加速 [AIの時代] - 朝日新聞",
       "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE10bUN0aV9SNThfdFNtVDQ4TGNraV9UWDZOSlYxRkp0RVJxVmg2YnlZZ0dVYVhYdjVEVFJhNTluNVoxalY2dGpFdlJFTi1Bcl9xLW9FVm4yTVZscEM2S09ibHdiSEpOSGM?oc=5",
       "keyword": "AI投資",
-      "asof": "8/24 16:23"
+      "asof": "8/24 11:47"
     },
     {
       "code": "9984",
@@ -977,85 +977,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-24 18:38",
-    "tdnet_afterclose": "2026-08-24 18:38",
-    "technical": "2026-08-24 18:38",
-    "growth_candidates": "2026-08-24 18:38",
-    "pre_earnings_watch": "2026-08-24 18:38",
-    "edinet_large_holdings": "2026-08-24 18:38",
-    "economic_calendar": "2026-08-24 18:38",
-    "pre_earnings_indicator": "2026-08-24 18:40"
+    "market_quotes": "2026-08-24 20:19",
+    "tdnet_afterclose": "2026-08-24 20:19",
+    "technical": "2026-08-24 20:19",
+    "growth_candidates": "2026-08-24 20:19",
+    "pre_earnings_watch": "2026-08-24 20:19",
+    "edinet_large_holdings": "2026-08-24 20:19",
+    "economic_calendar": "2026-08-24 20:19",
+    "pre_earnings_indicator": "2026-08-24 20:22"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:20",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-24 18:39",
+      "checked_at": "2026-08-24 20:20",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:20",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-24 18:39",
+      "checked_at": "2026-08-24 20:20",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-24 18:39",
+      "checked_at": "2026-08-24 20:20",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:38",
+      "checked_at": "2026-08-24 20:19",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-24 18:40",
+      "checked_at": "2026-08-24 20:22",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1074,83 +1074,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-24 18:39"
+      "ts": "2026-08-24 20:20"
     }
   },
   "pre_earnings_indicator": [
