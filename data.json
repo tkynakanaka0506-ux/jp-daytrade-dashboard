@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-08-25 20:19",
+  "generated_at": "2026-08-25 22:41",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,652.86",
-      "change_pct": -0.28,
+      "value": "7,681.61",
+      "change_pct": 0.38,
       "asof": "8/25終値"
     },
     "dow": {
-      "value": "53,417.20",
-      "change_pct": 0.26,
+      "value": "53,499.80",
+      "change_pct": 0.15,
       "asof": "8/25終値"
     },
     "nasdaq": {
-      "value": "25,980.19",
-      "change_pct": -0.76,
+      "value": "26,175.26",
+      "change_pct": 0.75,
       "asof": "8/25終値"
     },
     "sox": {
-      "value": "11,423.17",
-      "change_pct": -2.7,
+      "value": "11,638.44",
+      "change_pct": 1.88,
       "asof": "8/25終値"
     }
   },
   "fx": {
-    "value": "159.31円",
-    "change_pct": 0.25,
+    "value": "159.23円",
+    "change_pct": 0.21,
     "asof": "8/25終値"
   },
   "nikkei_futures": {
-    "value": "66,120.00",
-    "change_pct": 1.16,
+    "value": "66,075.00",
+    "change_pct": 1.09,
     "asof": "8/25終値"
   },
   "nikkei225": {
@@ -948,6 +948,14 @@
       "asof": "8/17 07:00"
     },
     {
+      "code": "9433",
+      "company": "KDDI",
+      "title": "KDDI堺データセンター、シャープ堺工場を転換（2ページ目） - 日経クロステック",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPY1NTaGQ3TlN5RFZxQWRrT2cyR2FsSVJBZFE2UDlnUDB3cjZJbEFKenBaeWtBWHF5VzdVY194OEJmYUlhQWtOMkRhNEkzSjJhbzVpV3J0aHlUOGp0X0JRcXd6d3ZBY3psLW5jVzZiSDhIU2JyMXYycnpOVUlnRlBBVElVMGdhcDM3eW1GNVpBdzFVbExFUVpTVUtST0kxZTh0a05IdVR2aG5tZjVnUUxacjN2Zmt5UUk4WkJj?oc=5",
+      "keyword": "データセンター",
+      "asof": "8/17 07:00"
+    },
+    {
       "code": "4063",
       "company": "信越化学工業",
       "title": "信越化学工業、米で5300億円投資 塩ビ原料増産、2工場新設 - 日刊工業新聞",
@@ -962,6 +970,14 @@
       "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE42ZUhVZUpydWY1NXdaZS1WdnVNZmg4Z3Q2cDVsOU1KVkpwMmZwQ0tNRmdNczFGRWtndGdCc01ydno5TlNHRnlzSkM2Q2hwYnAy?oc=5",
       "keyword": "新工場",
       "asof": "8/18 15:53"
+    },
+    {
+      "code": "6857",
+      "company": "アドバンテスト",
+      "title": "【NEC急反発】6.3兆円AI投資で次に見る日本株3銘柄#日本株 #AI関連株 #NEC #アドバンテスト #フジクラ #富士電機 #半導体 #データセンター #Claude #Anthropic Shane Mosley Jr (uJH9u9U0Om) - Mshale",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBfZE51RktxNFVZS1F3SUI5S3NqRmFLVFNsaUgyRUJ3RzBsZHM4bVB1WXExa3NWUkFyY2Roc3praXNOWkhWM0tRV0Y1YmYzamd2OXhBdWZndWh5RzQ?oc=5",
+      "keyword": "データセンター",
+      "asof": "8/24 14:41"
     }
   ],
   "line_notify_last": {
@@ -969,85 +985,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-25 20:19",
-    "tdnet_afterclose": "2026-08-25 20:19",
-    "technical": "2026-08-25 20:19",
-    "growth_candidates": "2026-08-25 20:19",
-    "pre_earnings_watch": "2026-08-25 20:19",
-    "edinet_large_holdings": "2026-08-25 20:19",
-    "economic_calendar": "2026-08-25 20:19",
-    "pre_earnings_indicator": "2026-08-25 20:21"
+    "market_quotes": "2026-08-25 22:41",
+    "tdnet_afterclose": "2026-08-25 22:41",
+    "technical": "2026-08-25 22:41",
+    "growth_candidates": "2026-08-25 22:41",
+    "pre_earnings_watch": "2026-08-25 22:41",
+    "edinet_large_holdings": "2026-08-25 22:41",
+    "economic_calendar": "2026-08-25 22:41",
+    "pre_earnings_indicator": "2026-08-25 22:43"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 20:20",
+      "checked_at": "2026-08-25 22:42",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 20:20",
+      "checked_at": "2026-08-25 22:42",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 20:20",
+      "checked_at": "2026-08-25 22:42",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 20:20",
+      "checked_at": "2026-08-25 22:42",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 20:20",
+      "checked_at": "2026-08-25 22:42",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:19",
+      "checked_at": "2026-08-25 22:41",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-25 20:21",
+      "checked_at": "2026-08-25 22:43",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1066,83 +1082,83 @@
   "credit_history": {
     "7203": {
       "last": 7.14,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6758": {
       "last": 15.99,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "8306": {
       "last": 21.04,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "9984": {
       "last": 9.56,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6861": {
       "last": 1.86,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6954": {
       "last": 28.65,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "7974": {
       "last": 9.35,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6098": {
       "last": 1.23,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "8035": {
       "last": 11.2,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "9433": {
       "last": 0.91,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "9432": {
       "last": 2.62,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "7267": {
       "last": 1.87,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6367": {
       "last": 19.84,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "9983": {
       "last": 2.32,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "4063": {
       "last": 14.37,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6857": {
       "last": 1.0,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "4519": {
       "last": 39.81,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "5401": {
       "last": 11.69,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "2413": {
       "last": 10.86,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     },
     "6645": {
       "last": 8.21,
-      "ts": "2026-08-25 20:20"
+      "ts": "2026-08-25 22:42"
     }
   },
   "pre_earnings_indicator": [
