@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25 08:43",
+  "generated_at": "2026-08-25 08:58",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.14円",
-    "change_pct": 0.15,
+    "value": "159.13円",
+    "change_pct": 0.14,
     "asof": "8/25終値"
   },
   "nikkei_futures": {
-    "value": "65,330.00",
-    "change_pct": -0.89,
+    "value": "65,165.00",
+    "change_pct": -1.14,
     "asof": "8/25終値"
   },
   "nikkei225": {
@@ -40,6 +40,14 @@
   },
   "overnight_news": [],
   "tdnet_morning": [
+    {
+      "time": "08:55",
+      "code": "―",
+      "company": "ダイナマップ",
+      "title": "ダイナミックマッププラットフォーム、Esri「ArcGIS」上で 道路標識・構造物クリアランスデータなどのサンプル公開を開始",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525444.pdf",
+      "tag": "他"
+    },
     {
       "time": "08:40",
       "code": "―",
@@ -108,16 +116,16 @@
       "time": "08:00",
       "code": "―",
       "company": "ＨＭＴ",
-      "title": "第23回定時株主総会の招集に際しての電子提供措置事項",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524359.pdf",
+      "title": "第23回定時株主総会招集ご通知",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524343.pdf",
       "tag": "他"
     },
     {
       "time": "08:00",
       "code": "―",
       "company": "ＨＭＴ",
-      "title": "第23回定時株主総会招集ご通知",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524343.pdf",
+      "title": "第23回定時株主総会の招集に際しての電子提供措置事項",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524359.pdf",
       "tag": "他"
     },
     {
@@ -140,14 +148,6 @@
       "time": "08:00",
       "code": "―",
       "company": "キングジム",
-      "title": "第78回定時株主総会招集ご通知",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525173.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "08:00",
-      "code": "―",
-      "company": "キングジム",
       "title": "第78回定時株主総会その他の電子提供措置事項（交付書面省略事項）",
       "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525174.pdf",
       "tag": "他"
@@ -158,6 +158,14 @@
       "company": "キングジム",
       "title": "NOTICE OF THE 78TH ANNUAL GENERAL MEETING OF SHEAREHOLDERS",
       "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525175.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "キングジム",
+      "title": "第78回定時株主総会招集ご通知",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525173.pdf",
       "tag": "他"
     },
     {
@@ -190,14 +198,6 @@
       "company": "新日本電工",
       "title": "Integrated Report 2026",
       "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525102.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "丸井Ｇ、2031年満期ユーロ円建取得条項付転換社債型新株予約権付社債の発行条件等の決定に関するお知らせ エク 8月24日(月) 22:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260824/140120260824525357.pdf",
       "tag": "他"
     }
   ],
@@ -977,85 +977,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-25 08:43",
-    "tdnet_morning": "2026-08-25 08:43",
-    "technical": "2026-08-25 08:43",
-    "growth_candidates": "2026-08-25 08:43",
-    "pre_earnings_watch": "2026-08-25 08:43",
-    "edinet_large_holdings": "2026-08-25 08:43",
-    "economic_calendar": "2026-08-25 08:43",
-    "pre_earnings_indicator": "2026-08-25 08:45"
+    "market_quotes": "2026-08-25 08:58",
+    "tdnet_morning": "2026-08-25 08:58",
+    "technical": "2026-08-25 08:58",
+    "growth_candidates": "2026-08-25 08:58",
+    "pre_earnings_watch": "2026-08-25 08:58",
+    "edinet_large_holdings": "2026-08-25 08:58",
+    "economic_calendar": "2026-08-25 08:58",
+    "pre_earnings_indicator": "2026-08-25 09:00"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 08:44",
+      "checked_at": "2026-08-25 08:59",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 08:44",
+      "checked_at": "2026-08-25 08:59",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 08:44",
+      "checked_at": "2026-08-25 08:59",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 08:44",
+      "checked_at": "2026-08-25 08:59",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 08:44",
+      "checked_at": "2026-08-25 08:59",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:43",
+      "checked_at": "2026-08-25 08:58",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-25 08:45",
+      "checked_at": "2026-08-25 09:00",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1074,83 +1074,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-25 08:44"
+      "ts": "2026-08-25 08:59"
     }
   },
   "pre_earnings_indicator": [
