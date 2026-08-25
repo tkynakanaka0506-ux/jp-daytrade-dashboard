@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25 14:15",
+  "generated_at": "2026-08-25 14:54",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -25,27 +25,75 @@
   },
   "fx": {
     "value": "159.31円",
-    "change_pct": 0.26,
+    "change_pct": 0.25,
     "asof": "8/25終値"
   },
   "nikkei_futures": {
-    "value": "65,730.00",
-    "change_pct": 0.56,
+    "value": "65,725.00",
+    "change_pct": 0.55,
     "asof": "8/25終値"
   },
   "nikkei225": {
-    "value": "65,754.84",
-    "change_pct": 0.35,
+    "value": "65,803.08",
+    "change_pct": 0.42,
     "asof": "8/25終値"
   },
   "overnight_news": [],
   "tdnet_morning": [
     {
-      "time": "14:00",
+      "time": "14:30",
       "code": "―",
-      "company": "大和ハウス",
-      "title": "Notice Regarding Completion of Payment for New Shares Issued as Subsequent Delivery-Type and Performance-Linked Restricted Stock Compensation",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525491.pdf",
+      "company": "コージンＢ",
+      "title": "長崎県及び大村市との立地協定の締結に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524718.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "14:30",
+      "code": "―",
+      "company": "ウェッジＨＤ",
+      "title": "完全子会社の吸収合併（簡易合併・略式合併）に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525777.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "14:30",
+      "code": "―",
+      "company": "カーボン",
+      "title": "Notice Concerning Introduction of Shareholder Benefit Program",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524512.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "14:30",
+      "code": "―",
+      "company": "カーボン",
+      "title": "株主優待制度の導入に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524508.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "14:30",
+      "code": "―",
+      "company": "ひろぎんＨＤ",
+      "title": "Notice Regarding Capital Adequacy Ratio for the First Quarter of FY2026 ending March 31, 2027",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525571.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "14:30",
+      "code": "―",
+      "company": "ひろぎんＨＤ",
+      "title": "2027年3月期 第1四半期末の自己資本比率について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525301.pdf",
+      "tag": "追訂"
+    },
+    {
+      "time": "14:22",
+      "code": "―",
+      "company": "平和紙業",
+      "title": "コーポレート・ガバナンスに関する報告書 2026/08/25",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525817.pdf",
       "tag": "他"
     },
     {
@@ -55,6 +103,14 @@
       "title": "事後交付型譲渡制限付株式報酬及び業績連動型譲渡制限付株式報酬としての新株式の発行の払込完了に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525486.pdf",
       "tag": "エク"
+    },
+    {
+      "time": "14:00",
+      "code": "―",
+      "company": "大和ハウス",
+      "title": "Notice Regarding Completion of Payment for New Shares Issued as Subsequent Delivery-Type and Performance-Linked Restricted Stock Compensation",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525491.pdf",
+      "tag": "他"
     },
     {
       "time": "14:00",
@@ -143,62 +199,6 @@
       "title": "Financial Results for the Six Months Ended June 30, 2026",
       "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525343.pdf",
       "tag": "他"
-    },
-    {
-      "time": "13:10",
-      "code": "―",
-      "company": "神鋼商",
-      "title": "「くるみん」認定について",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525732.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "13:00",
-      "code": "―",
-      "company": "石油資源",
-      "title": "【Delayed】Annual Securities Report for the Fiscal Year Ended March 31, 2026 (the 56th Term)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525653.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "13:00",
-      "code": "―",
-      "company": "ウェルネオＳ",
-      "title": "Notice Regarding Change in an Equity-Method Affiliate (Share Transfer)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525387.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "13:00",
-      "code": "―",
-      "company": "ウェルネオＳ",
-      "title": "持分法適用関連会社の異動（株式譲渡）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525386.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "13:00",
-      "code": "―",
-      "company": "エスプール",
-      "title": "CyberCrew、外部リスク管理プラットフォーム「ALIENGATE」を正式リリース",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525663.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "13:00",
-      "code": "―",
-      "company": "ケイ・ウノ",
-      "title": "冥界の扉を開く準備はいいか？「遊☆戯☆王デュエルモンスターズ」千年アイテム ミニフィギュア　全7種類。これは選ばれし者の証",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525685.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "13:00",
-      "code": "―",
-      "company": "ケイ・ウノ",
-      "title": "首元にシルバーを纏うとかさ！「遊☆戯☆王デュエルモンスターズ」アテムの証、古代神官文字を刻んだカルトゥーシュネックレス。王の誇りを、君の胸元に",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525682.pdf",
-      "tag": "他"
     }
   ],
   "movers_morning": [],
@@ -216,12 +216,12 @@
       "rsi": 66.63,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
-      "ret_5d_pct": 1.82,
+      "ret_5d_pct": 1.92,
       "high_52w": 4000.0,
-      "high_52w_dist_pct": 23.08,
-      "volume": 12201300,
+      "high_52w_dist_pct": 23.0,
+      "volume": 13243800,
       "avg_volume_5d": 23979640,
-      "volume_ratio": 0.51,
+      "volume_ratio": 0.55,
       "volume_surge": false,
       "gap_pct": -0.96,
       "gap_up": false,
@@ -243,12 +243,12 @@
       "rsi": 63.96,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": 3.47,
+      "ret_5d_pct": 3.39,
       "high_52w": 4776.0,
-      "high_52w_dist_pct": 19.45,
-      "volume": 6297100,
+      "high_52w_dist_pct": 19.51,
+      "volume": 6647600,
       "avg_volume_5d": 11782200,
-      "volume_ratio": 0.53,
+      "volume_ratio": 0.56,
       "volume_surge": false,
       "gap_pct": 0.81,
       "gap_up": false,
@@ -270,12 +270,12 @@
       "rsi": 44.56,
       "signal": "中立",
       "summary": "売り1/中立5/買い1。RSIは中立域。",
-      "ret_5d_pct": -3.75,
+      "ret_5d_pct": -3.72,
       "high_52w": 3813.0,
-      "high_52w_dist_pct": 7.76,
-      "volume": 14394200,
+      "high_52w_dist_pct": 7.74,
+      "volume": 15587600,
       "avg_volume_5d": 33306440,
-      "volume_ratio": 0.43,
+      "volume_ratio": 0.47,
       "volume_surge": false,
       "gap_pct": 0.26,
       "gap_up": false,
@@ -297,12 +297,12 @@
       "rsi": 43.04,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": -13.19,
+      "ret_5d_pct": -13.04,
       "high_52w": 9074.0,
-      "high_52w_dist_pct": 44.23,
-      "volume": 22762000,
+      "high_52w_dist_pct": 44.13,
+      "volume": 24199300,
       "avg_volume_5d": 40618000,
-      "volume_ratio": 0.56,
+      "volume_ratio": 0.6,
       "volume_surge": false,
       "gap_pct": -0.5,
       "gap_up": false,
@@ -324,12 +324,12 @@
       "rsi": 50.61,
       "signal": "中立",
       "summary": "売り1/中立5/買い1。RSIは中立域。",
-      "ret_5d_pct": -2.97,
+      "ret_5d_pct": -2.84,
       "high_52w": 87920.0,
-      "high_52w_dist_pct": 7.15,
-      "volume": 201400,
+      "high_52w_dist_pct": 7.03,
+      "volume": 222300,
       "avg_volume_5d": 527460,
-      "volume_ratio": 0.38,
+      "volume_ratio": 0.42,
       "volume_surge": false,
       "gap_pct": 0.06,
       "gap_up": false,
@@ -351,12 +351,12 @@
       "rsi": 48.18,
       "signal": "強気",
       "summary": "売り0/中立4/買い3。RSIは中立域。",
-      "ret_5d_pct": -4.38,
+      "ret_5d_pct": -4.18,
       "high_52w": 8880.0,
-      "high_52w_dist_pct": 32.32,
-      "volume": 2995500,
+      "high_52w_dist_pct": 32.18,
+      "volume": 3233000,
       "avg_volume_5d": 4909060,
-      "volume_ratio": 0.61,
+      "volume_ratio": 0.66,
       "volume_surge": false,
       "gap_pct": -1.45,
       "gap_up": false,
@@ -378,12 +378,12 @@
       "rsi": 71.03,
       "signal": "弱気(過熱感)",
       "summary": "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
-      "ret_5d_pct": 1.8,
+      "ret_5d_pct": 1.52,
       "high_52w": 14630.0,
-      "high_52w_dist_pct": 39.04,
-      "volume": 5242800,
+      "high_52w_dist_pct": 39.21,
+      "volume": 5489100,
       "avg_volume_5d": 7634640,
-      "volume_ratio": 0.69,
+      "volume_ratio": 0.72,
       "volume_surge": false,
       "gap_pct": 1.18,
       "gap_up": false,
@@ -405,12 +405,12 @@
       "rsi": 80.73,
       "signal": "弱気(過熱感)",
       "summary": "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
-      "ret_5d_pct": 3.62,
+      "ret_5d_pct": 3.4,
       "high_52w": 16980.0,
-      "high_52w_dist_pct": 2.24,
-      "volume": 1565700,
+      "high_52w_dist_pct": 2.44,
+      "volume": 1650000,
       "avg_volume_5d": 3054920,
-      "volume_ratio": 0.51,
+      "volume_ratio": 0.54,
       "volume_surge": false,
       "gap_pct": -0.97,
       "gap_up": false,
@@ -432,12 +432,12 @@
       "rsi": 50.38,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": -1.88,
+      "ret_5d_pct": -1.84,
       "high_52w": 81260.0,
-      "high_52w_dist_pct": 31.92,
-      "volume": 1745000,
+      "high_52w_dist_pct": 31.9,
+      "volume": 1866800,
       "avg_volume_5d": 2957140,
-      "volume_ratio": 0.59,
+      "volume_ratio": 0.63,
       "volume_surge": false,
       "gap_pct": -1.81,
       "gap_up": false,
@@ -459,12 +459,12 @@
       "rsi": 46.81,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": 2.14,
+      "ret_5d_pct": 1.91,
       "high_52w": 3121.0,
-      "high_52w_dist_pct": 6.6,
-      "volume": 3479600,
+      "high_52w_dist_pct": 6.81,
+      "volume": 3714700,
       "avg_volume_5d": 8768000,
-      "volume_ratio": 0.4,
+      "volume_ratio": 0.42,
       "volume_surge": false,
       "gap_pct": 0.76,
       "gap_up": false,
@@ -486,12 +486,12 @@
       "rsi": 75.18,
       "signal": "弱気(過熱感)",
       "summary": "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
-      "ret_5d_pct": 5.36,
+      "ret_5d_pct": 5.17,
       "high_52w": 169.4,
-      "high_52w_dist_pct": 0.24,
-      "volume": 137502800,
+      "high_52w_dist_pct": 0.41,
+      "volume": 146172700,
       "avg_volume_5d": 232729620,
-      "volume_ratio": 0.59,
+      "volume_ratio": 0.63,
       "volume_surge": false,
       "gap_pct": 0.54,
       "gap_up": false,
@@ -513,12 +513,12 @@
       "rsi": 73.5,
       "signal": "弱気(過熱感)",
       "summary": "売り2/中立5/買い0。RSIが70超で過熱感、短期的な反落リスクに留意。",
-      "ret_5d_pct": -1.11,
+      "ret_5d_pct": -1.28,
       "high_52w": 1762.5,
-      "high_52w_dist_pct": 3.89,
-      "volume": 9574300,
+      "high_52w_dist_pct": 4.06,
+      "volume": 10643400,
       "avg_volume_5d": 16295400,
-      "volume_ratio": 0.59,
+      "volume_ratio": 0.65,
       "volume_surge": false,
       "gap_pct": -0.97,
       "gap_up": false,
@@ -540,12 +540,12 @@
       "rsi": 17.03,
       "signal": "強気(売られ過ぎ)",
       "summary": "売り0/中立4/買い3。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
-      "ret_5d_pct": -1.14,
+      "ret_5d_pct": -1.09,
       "high_52w": 26440.0,
-      "high_52w_dist_pct": 21.05,
-      "volume": 503300,
+      "high_52w_dist_pct": 21.01,
+      "volume": 539700,
       "avg_volume_5d": 947160,
-      "volume_ratio": 0.53,
+      "volume_ratio": 0.57,
       "volume_surge": false,
       "gap_pct": 0.5,
       "gap_up": false,
@@ -567,12 +567,12 @@
       "rsi": 26.4,
       "signal": "強気(売られ過ぎ)",
       "summary": "売り0/中立3/買い4。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
-      "ret_5d_pct": -2.89,
+      "ret_5d_pct": -3.09,
       "high_52w": 88690.0,
-      "high_52w_dist_pct": 17.87,
-      "volume": 365800,
+      "high_52w_dist_pct": 18.04,
+      "volume": 398300,
       "avg_volume_5d": 920720,
-      "volume_ratio": 0.4,
+      "volume_ratio": 0.43,
       "volume_surge": false,
       "gap_pct": -0.63,
       "gap_up": false,
@@ -594,12 +594,12 @@
       "rsi": 58.63,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": -3.57,
+      "ret_5d_pct": -3.67,
       "high_52w": 7930.0,
-      "high_52w_dist_pct": 24.1,
-      "volume": 3788200,
+      "high_52w_dist_pct": 24.17,
+      "volume": 4041900,
       "avg_volume_5d": 5393960,
-      "volume_ratio": 0.7,
+      "volume_ratio": 0.75,
       "volume_surge": false,
       "gap_pct": -0.5,
       "gap_up": false,
@@ -621,12 +621,12 @@
       "rsi": 60.03,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": -4.49,
+      "ret_5d_pct": -4.02,
       "high_52w": 38730.0,
-      "high_52w_dist_pct": 11.57,
-      "volume": 6989400,
+      "high_52w_dist_pct": 11.13,
+      "volume": 7663100,
       "avg_volume_5d": 7405600,
-      "volume_ratio": 0.94,
+      "volume_ratio": 1.03,
       "volume_surge": false,
       "gap_pct": -1.74,
       "gap_up": false,
@@ -648,12 +648,12 @@
       "rsi": 62.34,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": 1.88,
+      "ret_5d_pct": 1.68,
       "high_52w": 10700.0,
-      "high_52w_dist_pct": 34.8,
-      "volume": 778000,
+      "high_52w_dist_pct": 34.93,
+      "volume": 836800,
       "avg_volume_5d": 2185600,
-      "volume_ratio": 0.36,
+      "volume_ratio": 0.38,
       "volume_surge": false,
       "gap_pct": -1.04,
       "gap_up": false,
@@ -675,12 +675,12 @@
       "rsi": 56.56,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": -3.04,
+      "ret_5d_pct": -2.88,
       "high_52w": 708.0,
-      "high_52w_dist_pct": 5.01,
-      "volume": 19197100,
+      "high_52w_dist_pct": 4.86,
+      "volume": 21013200,
       "avg_volume_5d": 42585040,
-      "volume_ratio": 0.45,
+      "volume_ratio": 0.49,
       "volume_surge": false,
       "gap_pct": 0.98,
       "gap_up": false,
@@ -702,12 +702,12 @@
       "rsi": 45.42,
       "signal": "強気",
       "summary": "売り0/中立5/買い2。RSIは中立域。",
-      "ret_5d_pct": 2.95,
+      "ret_5d_pct": 3.13,
       "high_52w": 2746.0,
-      "high_52w_dist_pct": 36.43,
-      "volume": 3238800,
+      "high_52w_dist_pct": 36.33,
+      "volume": 3522100,
       "avg_volume_5d": 4740300,
-      "volume_ratio": 0.68,
+      "volume_ratio": 0.74,
       "volume_surge": false,
       "gap_pct": -2.33,
       "gap_up": false,
@@ -729,12 +729,12 @@
       "rsi": 66.49,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": -6.7,
+      "ret_5d_pct": -5.66,
       "high_52w": 7245.0,
-      "high_52w_dist_pct": 11.79,
-      "volume": 732700,
+      "high_52w_dist_pct": 10.81,
+      "volume": 896700,
       "avg_volume_5d": 1172100,
-      "volume_ratio": 0.63,
+      "volume_ratio": 0.77,
       "volume_surge": false,
       "gap_pct": -0.19,
       "gap_up": false,
@@ -892,22 +892,6 @@
   ],
   "pre_earnings_watch": [
     {
-      "code": "7203",
-      "company": "トヨタ自動車",
-      "title": "EVシフト失速で大不振の｢パワー半導体業界｣にAI投資で見えた光明､国内大型再編へ大手自動車メーカーが関与？ - 東洋経済オンライン",
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9Gc1RxbkRXWlk0OVEyUVhKaGcyNnJrbFd4ajNaN2ZQUEJHQUVlNDdZZnVHUllCTWZOaF83cU1FdWJrTERsdlhxY2xqb3g5TV9xVVBheGp1cC1BYllHbmJ3?oc=5",
-      "keyword": "AI投資",
-      "asof": "8/25 05:50"
-    },
-    {
-      "code": "7203",
-      "company": "トヨタ自動車",
-      "title": "【米国―生産】ＬＧＥＳ、ミシガンで電池セル工場の稼働開始 - 国際自動車ニュース",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFAydXVJX3FDZU81UlpZSjdtd0VCZjlBSjdfZjR5WmRod3FYYkVoQVVfa0NQM3pPaGNna2l3YllITVAzWUwtWkoydzRhMUNZaEozTS0yZHhzTDlVTndmSlFadVF2VW1kclFEZHU5Tl84QVd6U19mTkU4Uk9DdEZDZw?oc=5",
-      "keyword": "稼働開始",
-      "asof": "8/19 15:23"
-    },
-    {
       "code": "6758",
       "company": "ソニーグループ",
       "title": "「ソニー×台湾TSMC」提携による半導体イメージセンサー共同生産の勝算と課題、“工場軽量化”への戦略大転換で設備投資を大幅削減するシナリオとは？《再配信》 - ダイヤモンド・オンライン",
@@ -1001,85 +985,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-25 14:15",
-    "tdnet_morning": "2026-08-25 14:15",
-    "technical": "2026-08-25 14:15",
-    "growth_candidates": "2026-08-25 14:15",
-    "pre_earnings_watch": "2026-08-25 14:15",
-    "edinet_large_holdings": "2026-08-25 14:15",
-    "economic_calendar": "2026-08-25 14:15",
-    "pre_earnings_indicator": "2026-08-25 14:17"
+    "market_quotes": "2026-08-25 14:54",
+    "tdnet_morning": "2026-08-25 14:54",
+    "technical": "2026-08-25 14:54",
+    "growth_candidates": "2026-08-25 14:54",
+    "pre_earnings_watch": "2026-08-25 14:54",
+    "edinet_large_holdings": "2026-08-25 14:54",
+    "economic_calendar": "2026-08-25 14:54",
+    "pre_earnings_indicator": "2026-08-25 14:56"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 14:16",
+      "checked_at": "2026-08-25 14:54",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 14:16",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 14:16",
+      "checked_at": "2026-08-25 14:54",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 14:16",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 14:16",
+      "checked_at": "2026-08-25 14:54",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:15",
+      "checked_at": "2026-08-25 14:54",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-25 14:17",
+      "checked_at": "2026-08-25 14:56",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1098,83 +1082,83 @@
   "credit_history": {
     "7203": {
       "last": 13.12,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6758": {
       "last": 7.72,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "8306": {
       "last": 14.39,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6861": {
       "last": 0.76,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6954": {
       "last": 20.76,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "7974": {
       "last": 7.83,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6098": {
       "last": 1.01,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "8035": {
       "last": 13.44,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "9433": {
       "last": 1.04,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "9432": {
       "last": 3.93,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "7267": {
       "last": 2.58,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6367": {
       "last": 15.71,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "9983": {
       "last": 1.71,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "4063": {
       "last": 14.99,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6857": {
       "last": 0.92,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "4519": {
       "last": 47.37,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "5401": {
       "last": 9.11,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "2413": {
       "last": 12.72,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     },
     "6645": {
       "last": 4.26,
-      "ts": "2026-08-25 14:16"
+      "ts": "2026-08-25 14:54"
     }
   },
   "pre_earnings_indicator": [
@@ -1436,7 +1420,7 @@
       "score": 28,
       "raw_score": 0.0,
       "signals": [
-        "直近5日上昇 5.4%",
+        "直近5日上昇 5.2%",
         "52週高値に接近(過熱・減点)"
       ],
       "urls": [],
@@ -1566,7 +1550,7 @@
       "score": 17,
       "raw_score": -8.0,
       "signals": [
-        "直近5日下落 -13.2%(減点)"
+        "直近5日下落 -13.0%(減点)"
       ],
       "urls": [],
       "credit_flags": {
@@ -1591,7 +1575,7 @@
       "score": 34,
       "raw_score": 4.0,
       "signals": [
-        "直近5日下落 -6.7%(減点)",
+        "直近5日下落 -5.7%(減点)",
         "為替追い風"
       ],
       "urls": [],
