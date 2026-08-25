@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25 16:37",
+  "generated_at": "2026-08-25 18:27",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -8,7 +8,7 @@
       "asof": "8/25終値"
     },
     "dow": {
-      "value": "53,417.20",
+      "value": "53,417.16",
       "change_pct": 0.26,
       "asof": "8/25終値"
     },
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.40円",
-    "change_pct": 0.31,
+    "value": "159.33円",
+    "change_pct": 0.27,
     "asof": "8/25終値"
   },
   "nikkei_futures": {
-    "value": "65,850.00",
-    "change_pct": 0.74,
+    "value": "66,070.00",
+    "change_pct": 1.08,
     "asof": "8/25終値"
   },
   "nikkei225": {
@@ -43,164 +43,164 @@
   "movers_morning": [],
   "tdnet_afterclose": [
     {
-      "time": "16:34",
+      "time": "18:20",
       "code": "―",
-      "company": "１ｓｔコーポ",
-      "title": "コーポレート・ガバナンスに関する報告書 2026/08/25",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260823524750.pdf",
+      "company": "ｉＦ米債７無",
+      "title": "iFreeETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526045.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "18:20",
+      "code": "―",
+      "company": "ｉＦ米債７有",
+      "title": "iFreeETFの収益分配のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526046.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "18:20",
+      "code": "―",
+      "company": "シーラＨＤ",
+      "title": "独立役員届出書",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526044.pdf",
       "tag": "他"
     },
     {
-      "time": "16:33",
+      "time": "18:00",
       "code": "―",
-      "company": "阪急阪神Ｒ",
-      "title": "不動産投資信託証券に関する発行者等の運用体制に関する報告書 2026/08/25",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525961.pdf",
+      "company": "テラドローン",
+      "title": "防衛装備庁の「迎撃ドローン早期取得プログラム」における実証試験の通過のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260714593498.pdf",
       "tag": "他"
     },
     {
-      "time": "16:30",
+      "time": "18:00",
       "code": "―",
-      "company": "明豊ファシリ",
-      "title": "当社が移転プロジェクトを支援した 船井総研グループ様の大阪本社オフィス「サステナグローススクエア OSAKA」が 「近畿ニューオフィス推進賞」を受賞しました",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525937.pdf",
+      "company": "東洋紡",
+      "title": "エルサルバドル子会社の事業休止に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525763.pdf",
       "tag": "他"
     },
     {
-      "time": "16:30",
+      "time": "18:00",
       "code": "―",
-      "company": "明豊ファシリ",
-      "title": "当社が改装プロジェクトを支援した 富士フイルムビジネスイノベーション株式会社様の横浜みなとみらい事業所が 「関東ニューオフィス奨励賞」を受賞しました",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525940.pdf",
+      "company": "東洋紡",
+      "title": "Notice regarding the suspension of operations of the El Salvador subsidiary",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525774.pdf",
       "tag": "他"
     },
     {
-      "time": "16:30",
+      "time": "18:00",
       "code": "―",
-      "company": "明豊ファシリ",
-      "title": "当社がプロジェクトを支援した TPR株式会社 様の拠点フロンティア・イノベーションセンターが 「ニューオフィス推進賞」を受賞しました",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525893.pdf",
+      "company": "アエリア",
+      "title": "株式会社サイバード　『イケメンヴィラン 闇夜にひらく悪の恋』本日より新組織“ライブラ”の３名がコミュやガチャに登場！“ライブラ”が初登場イベント開催中",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525929.pdf",
       "tag": "他"
     },
     {
-      "time": "16:30",
+      "time": "18:00",
       "code": "―",
-      "company": "森永乳",
-      "title": "株主優待制度および株主優待基準日の変更に関する補足説明資料",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525979.pdf",
+      "company": "ＡＣＳＬ",
+      "title": "海外募集による新株式発行に係る発行価格等の決定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526021.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＡＣＳＬ",
+      "title": "Notice Regarding Determination of Issue Price and Other Matters of Issuance of New Shares through an International Offering",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526029.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ＡＣＳＬ",
+      "title": "第２回無担保転換社債型新株予約権付社債の転換価額等の調整に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526037.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "新晃工",
+      "title": "[Delayed] Corporate Governance Report",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525570.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ジンジブ",
+      "title": "2027年３月期 第１四半期 決算説明動画公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526007.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ＪＤＳＣ",
+      "title": "有償ストック・オプション（新株予約権）の発行に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526008.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ＪＤＳＣ",
+      "title": "譲渡制限付株式（報酬）としての新株式発行に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526005.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ＪＤＳＣ",
+      "title": "従業員持株会の奨励金付与率引き上げに関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825526000.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "キッズバイオ",
+      "title": "株式報酬型ストック・オプション（新株予約権）の発行内容確定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525560.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ティムス",
+      "title": "(Correction) Notice of Partial Correction to “Presentation Materials”",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525959.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ティムス",
+      "title": "2026年12月期第２四半期（中間期）決算説明会の動画公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525971.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "ティムス",
+      "title": "（訂正）「2026年12月期第２四半期（中間期）決算説明資料」の一部訂正に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525933.pdf",
       "tag": "追訂"
     },
     {
-      "time": "16:30",
+      "time": "17:30",
       "code": "―",
-      "company": "Ｒみらい",
-      "title": "Notice Concerning Performance of Variable Rent Assets (Hotels) (July 2026)",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525516.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "Ｒみらい",
-      "title": "変動賃料物件（ホテル）の運用状況についてのお知らせ（2026年7月）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525511.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "木村工機",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ＴｏＳＴＮｅＴ－３）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525949.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "竹田ｉＰ",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824524893.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "大光銀",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-3）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525538.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "ｕｎｂａｎｋ",
-      "title": "独立役員届出書",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525947.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:15",
-      "code": "―",
-      "company": "ポラリスＨＤ",
-      "title": "Monthly Business Report - July 2026",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525945.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "コシダカＨＤ",
-      "title": "Notice Concerning Completion of Conversion for 1st Series Unsecured Covertible-Bond-Type Bonds with Share Acquisition Rights",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525714.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "ポラリスＨＤ",
-      "title": "『月次経営レポート』公表に関するお知らせ（2026 年7 月度）",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525939.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "（訂正）「2026年11月期 中間決算短信〔日本基準〕(連結)」の一部訂正について 決算 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260824525378.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "2026年11月期 中間発行者情報 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260821524412.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "野村日経平均",
-      "title": "上場投資信託（ETF）の受益権分割および売買単位変更に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525905.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "野村金連動",
-      "title": "上場投資信託（ETF）の受益権分割および売買単位変更に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525906.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:00",
-      "code": "―",
-      "company": "野村ダウＨ無",
-      "title": "上場投資信託（ETF）の受益権分割および売買単位変更に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525907.pdf",
-      "tag": "他"
+      "company": "シーラＨＤ",
+      "title": "第3回新株予約権の権利行使期間延長に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260825/140120260825525944.pdf",
+      "tag": "エク"
     }
   ],
   "afterclose_news": [],
@@ -902,9 +902,9 @@
     {
       "code": "6758",
       "company": "ソニーグループ",
-      "title": "ソニーとTSMCが合弁会社設立 熊本の新工場で次世代画像センサー量産へ（2026年8月12日掲載）｜日テレNEWS NNN - 日テレNEWS NNN",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1KSGx4eGdFTXJ1cFk0Z2cxZTJKamRBdGpJcjNzWlJFMGZxUF9UU2d3TWM4SWlBN25qbGJUenQ2SkpMRnF5TUpINzdRME5kNG9XQnF4dVRpRTdkQzNmZHNUMFhRQ3k2RWZ5US1MVUJ5X2dMMjZvZkFrYTQ5NWc?oc=5",
-      "keyword": "新工場",
+      "title": "ソニーグループとTSMCがスマホ向け次世代画像センサー量産へ 合弁会社を設立し2029年量産開始目指す - 日テレNEWS NNN",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOaHlvNjJLTmNKRVhsVnJaQkh3cERGMm1CcWFmYlFhV0QtQWJWeU5jWXF5MU41TlBGSGNzU3FzMDl1UV84U3dyOVpRdUpPVXM0NFhoMnBxNXptZ3dfaDFQaERGZDlrc3F5ZEM5LXRWb2x2XzJzY2RCa0RZLWJNdGwwOUR6bGR0T2c?oc=5",
+      "keyword": "量産開始",
       "asof": "8/12 16:00"
     },
     {
@@ -969,85 +969,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-25 16:37",
-    "tdnet_afterclose": "2026-08-25 16:37",
-    "technical": "2026-08-25 16:37",
-    "growth_candidates": "2026-08-25 16:37",
-    "pre_earnings_watch": "2026-08-25 16:37",
-    "edinet_large_holdings": "2026-08-25 16:37",
-    "economic_calendar": "2026-08-25 16:37",
-    "pre_earnings_indicator": "2026-08-25 16:39"
+    "market_quotes": "2026-08-25 18:27",
+    "tdnet_afterclose": "2026-08-25 18:27",
+    "technical": "2026-08-25 18:27",
+    "growth_candidates": "2026-08-25 18:27",
+    "pre_earnings_watch": "2026-08-25 18:27",
+    "edinet_large_holdings": "2026-08-25 18:27",
+    "economic_calendar": "2026-08-25 18:27",
+    "pre_earnings_indicator": "2026-08-25 18:29"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 16:38",
+      "checked_at": "2026-08-25 18:28",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 16:38",
+      "checked_at": "2026-08-25 18:28",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-25 16:38",
+      "checked_at": "2026-08-25 18:28",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:37",
+      "checked_at": "2026-08-25 18:27",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-25 16:39",
+      "checked_at": "2026-08-25 18:29",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1066,83 +1066,83 @@
   "credit_history": {
     "7203": {
       "last": 7.14,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6758": {
       "last": 15.99,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "8306": {
       "last": 21.04,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "9984": {
       "last": 9.56,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6861": {
       "last": 1.86,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6954": {
       "last": 28.65,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "7974": {
       "last": 9.35,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6098": {
       "last": 1.23,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "8035": {
       "last": 11.2,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "9433": {
       "last": 0.91,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "9432": {
       "last": 2.62,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "7267": {
       "last": 1.87,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6367": {
       "last": 19.84,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "9983": {
       "last": 2.32,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "4063": {
       "last": 14.37,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6857": {
       "last": 1.0,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "4519": {
       "last": 39.81,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "5401": {
       "last": 11.69,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "2413": {
       "last": 10.86,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     },
     "6645": {
       "last": 8.21,
-      "ts": "2026-08-25 16:38"
+      "ts": "2026-08-25 18:28"
     }
   },
   "pre_earnings_indicator": [
@@ -1157,7 +1157,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.263,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1177,7 +1177,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.357,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1202,7 +1202,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.125,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1220,25 +1220,22 @@
     {
       "code": "7203",
       "name": "トヨタ自動車",
-      "score": 62,
-      "raw_score": 24.0,
+      "score": 45,
+      "raw_score": 12.0,
       "signals": [
-        "売り残増加(踏み上げ期待)",
         "為替追い風"
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.456,
-        "sell_rise": true,
-        "notes": [
-          "信用倍率が13.12→7.14に低下(売り残増加の可能性)"
-        ]
+        "delta": 0.0,
+        "sell_rise": false,
+        "notes": []
       },
       "prediction_labels": [],
       "prediction_notes": [],
       "risk_triggers": [],
-      "prediction_score": 24.0,
-      "prediction_confidence": 71
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "6758",
@@ -1250,10 +1247,15 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 1.071,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "8306",
@@ -1263,10 +1265,15 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": 0.462,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "6861",
@@ -1278,10 +1285,15 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 1.447,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "6954",
@@ -1293,10 +1305,20 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.38,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [
+        {
+          "type": "ma5_breach",
+          "note": "5日線割れでシナリオ崩れ"
+        }
+      ],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "7974",
@@ -1306,10 +1328,15 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": 0.194,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "8035",
@@ -1321,47 +1348,61 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.167,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "9432",
       "name": "日本電信電話",
-      "score": 45,
-      "raw_score": 12.0,
+      "score": 28,
+      "raw_score": 0.0,
       "signals": [
-        "売り残増加(踏み上げ期待)",
         "直近5日上昇 5.5%",
         "52週高値に接近(過熱・減点)"
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.333,
-        "sell_rise": true,
-        "notes": [
-          "信用倍率が3.93→2.62に低下(売り残増加の可能性)"
-        ]
-      }
+        "delta": 0.0,
+        "sell_rise": false,
+        "notes": []
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "7267",
       "name": "本田技研工業",
-      "score": 62,
-      "raw_score": 24.0,
+      "score": 45,
+      "raw_score": 12.0,
       "signals": [
-        "売り残増加(踏み上げ期待)",
         "為替追い風"
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.275,
-        "sell_rise": true,
-        "notes": [
-          "信用倍率が2.58→1.87に低下(売り残増加の可能性)"
-        ]
-      }
+        "delta": 0.0,
+        "sell_rise": false,
+        "notes": []
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [
+        {
+          "type": "ma5_breach",
+          "note": "5日線割れでシナリオ崩れ"
+        }
+      ],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "4063",
@@ -1373,10 +1414,20 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.041,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [
+        {
+          "type": "ma5_breach",
+          "note": "5日線割れでシナリオ崩れ"
+        }
+      ],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "6857",
@@ -1388,10 +1439,20 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.087,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [
+        {
+          "type": "ma5_breach",
+          "note": "5日線割れでシナリオ崩れ"
+        }
+      ],
+      "prediction_score": 12.0,
+      "prediction_confidence": 57
     },
     {
       "code": "4519",
@@ -1401,10 +1462,20 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": -0.16,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [
+        {
+          "type": "ma5_breach",
+          "note": "5日線割れでシナリオ崩れ"
+        }
+      ],
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "5401",
@@ -1414,10 +1485,15 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": 0.283,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "2413",
@@ -1427,10 +1503,15 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": -0.146,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "9984",
@@ -1442,10 +1523,20 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.053,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [
+        {
+          "type": "ma5_breach",
+          "note": "5日線割れでシナリオ崩れ"
+        }
+      ],
+      "prediction_score": -8.0,
+      "prediction_confidence": 35
     },
     {
       "code": "6645",
@@ -1458,10 +1549,19 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.927,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [
+        "クジラ追随"
+      ],
+      "prediction_notes": [
+        "出来高増・VWAP上(大口買い疑い)"
+      ],
+      "risk_triggers": [],
+      "prediction_score": 19.0,
+      "prediction_confidence": 65
     },
     {
       "code": "6098",
@@ -1473,10 +1573,15 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.218,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
-      }
+      },
+      "prediction_labels": [],
+      "prediction_notes": [],
+      "risk_triggers": [],
+      "prediction_score": -10.0,
+      "prediction_confidence": 33
     }
   ]
 }
