@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26 18:33",
+  "generated_at": "2026-08-26 20:21",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "159.00円",
-    "change_pct": -0.09,
+    "value": "159.12円",
+    "change_pct": -0.01,
     "asof": "8/26終値"
   },
   "nikkei_futures": {
-    "value": "66,245.00",
-    "change_pct": 0.28,
+    "value": "66,305.00",
+    "change_pct": 0.37,
     "asof": "8/26終値"
   },
   "nikkei225": {
@@ -43,12 +43,44 @@
   "movers_morning": [],
   "tdnet_afterclose": [
     {
-      "time": "―",
+      "time": "19:00",
       "code": "―",
-      "company": "―",
-      "title": "TDnetシステム稼動確認データ 他 今日 18:24 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526756.pdf",
+      "company": "ヴィレッジＶ",
+      "title": "役員体制に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526766.pdf",
       "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "ＧＶＡテック",
+      "title": "OSHIKABU LIVEにおけるアーカイブ動画公開のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526709.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "シード",
+      "title": "ラックスシェア・プレシジョン・ケイマン・リミテッドによる株式会社シード（証券コード：7743）の普通株式に対する公開買付けの開始に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526753.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "シード",
+      "title": "ラックスシェア・プレシジョン・ケイマン・リミテッドによる当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526750.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:30",
+      "code": "―",
+      "company": "シード",
+      "title": "2027年３月期の期末配当予想の修正（無配）及び株主優待制度の廃止に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526720.pdf",
+      "tag": "配当"
     },
     {
       "time": "18:19",
@@ -86,17 +118,17 @@
       "time": "18:00",
       "code": "―",
       "company": "ｇｕｍｉ",
-      "title": "(Correction) Partial Correction to Notice Concerning Intra-group Organizational Restructuring",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526488.pdf",
-      "tag": "他"
+      "title": "(訂正) 「グループ内組織再編（子会社に対する債権放棄、現物分配による子会社株式の取得、および完全子会社の吸収合併）に関するお知らせ」の一部訂正について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526458.pdf",
+      "tag": "追訂"
     },
     {
       "time": "18:00",
       "code": "―",
       "company": "ｇｕｍｉ",
-      "title": "(訂正) 「グループ内組織再編（子会社に対する債権放棄、現物分配による子会社株式の取得、および完全子会社の吸収合併）に関するお知らせ」の一部訂正について",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526458.pdf",
-      "tag": "追訂"
+      "title": "(Correction) Partial Correction to Notice Concerning Intra-group Organizational Restructuring",
+      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526488.pdf",
+      "tag": "他"
     },
     {
       "time": "18:00",
@@ -168,38 +200,6 @@
       "company": "ＷＮＩウェザ",
       "title": "[Targeting Gross Margin Above 60%] Profitability Improvement Measures for Gross Profit Margin via AI Utilization and High-Margin Products (Mid-Term Vi",
       "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526685.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "東亜建",
-      "title": "[Delayed]Notice of Release of FY2026 1Q Financial Results Briefing Archived Video and Transcript",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526661.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "日本Ｍ＆Ａ",
-      "title": "株式会社レイシャス TOKYO PRO Market上場に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526627.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "ホドルワン",
-      "title": "代表取締役及び取締役からの暗号資産融資枠コミットメントライン契約の締結に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526620.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:00",
-      "code": "―",
-      "company": "ホドルワン",
-      "title": "第14回株主説明会開催のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260826/140120260826526426.pdf",
       "tag": "他"
     }
   ],
@@ -985,85 +985,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-26 18:33",
-    "tdnet_afterclose": "2026-08-26 18:33",
-    "technical": "2026-08-26 18:33",
-    "growth_candidates": "2026-08-26 18:33",
-    "pre_earnings_watch": "2026-08-26 18:33",
-    "edinet_large_holdings": "2026-08-26 18:33",
-    "economic_calendar": "2026-08-26 18:33",
-    "pre_earnings_indicator": "2026-08-26 18:34"
+    "market_quotes": "2026-08-26 20:21",
+    "tdnet_afterclose": "2026-08-26 20:21",
+    "technical": "2026-08-26 20:21",
+    "growth_candidates": "2026-08-26 20:21",
+    "pre_earnings_watch": "2026-08-26 20:21",
+    "edinet_large_holdings": "2026-08-26 20:21",
+    "economic_calendar": "2026-08-26 20:21",
+    "pre_earnings_indicator": "2026-08-26 20:23"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:22",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:22",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:22",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:22",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:33",
+      "checked_at": "2026-08-26 20:21",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-26 18:34",
+      "checked_at": "2026-08-26 20:23",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1082,83 +1082,83 @@
   "credit_history": {
     "7203": {
       "last": 7.14,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6758": {
       "last": 15.99,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "8306": {
       "last": 21.04,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "9984": {
       "last": 9.56,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6861": {
       "last": 1.86,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6954": {
       "last": 28.65,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "7974": {
       "last": 9.35,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6098": {
       "last": 1.23,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "8035": {
       "last": 11.2,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "9433": {
       "last": 0.91,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "9432": {
       "last": 2.62,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "7267": {
       "last": 1.87,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6367": {
       "last": 19.84,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "9983": {
       "last": 2.32,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "4063": {
       "last": 14.37,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6857": {
       "last": 1.0,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "4519": {
       "last": 39.81,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "5401": {
       "last": 11.69,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "2413": {
       "last": 10.86,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     },
     "6645": {
       "last": 8.21,
-      "ts": "2026-08-26 18:33"
+      "ts": "2026-08-26 20:22"
     }
   },
   "pre_earnings_indicator": [
