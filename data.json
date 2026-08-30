@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-30 09:59",
-  "run_type": "evening",
+  "generated_at": "2026-08-30 10:23",
+  "run_type": "morning",
   "us_market": {
     "sp500": {
       "value": "7,711.76",
@@ -39,9 +39,15 @@
     "asof": "8/28終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [],
-  "movers_morning": [],
-  "tdnet_afterclose": [
+  "tdnet_morning": [
+    {
+      "time": "10:10",
+      "code": "―",
+      "company": "エスポア",
+      "title": "第三者委員会の一部委員の辞任及び調査報告書提出の再延期について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260830/140120260830527792.pdf",
+      "tag": "他"
+    },
     {
       "time": "―",
       "code": "―",
@@ -190,19 +196,13 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "ＳＢＩ、BASE株式会社株式（証券コード：4477）に対する公開買付けの開始及び同社との資本業務提携契約の締結に関するお知らせ 他 8月28日(金) 22:30",
-      "url": "https://tdnet-pdf.kabutan.jp/20260828/140120260828528173.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
       "title": "ＳＢＩ、Notice Regarding Commencement of a Tender Offer for the Shares of BASE, Inc. (Securities Code: 4477) and Conclusion of a Capital and Business Allianc 他 8月28日(金) 22:30",
       "url": "https://tdnet-pdf.kabutan.jp/20260828/140120260828528182.pdf",
       "tag": "他"
     }
   ],
+  "movers_morning": [],
+  "tdnet_afterclose": [],
   "afterclose_news": [],
   "movers_afterclose": [],
   "technical": [
@@ -1001,85 +1001,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-08-30 09:59",
-    "tdnet_afterclose": "2026-08-30 09:59",
-    "technical": "2026-08-30 09:59",
-    "growth_candidates": "2026-08-30 09:59",
-    "pre_earnings_watch": "2026-08-30 09:59",
-    "edinet_large_holdings": "2026-08-30 09:59",
-    "economic_calendar": "2026-08-30 09:59",
-    "pre_earnings_indicator": "2026-08-30 10:00"
+    "market_quotes": "2026-08-30 10:23",
+    "tdnet_morning": "2026-08-30 10:23",
+    "technical": "2026-08-30 10:23",
+    "growth_candidates": "2026-08-30 10:23",
+    "pre_earnings_watch": "2026-08-30 10:23",
+    "edinet_large_holdings": "2026-08-30 10:23",
+    "economic_calendar": "2026-08-30 10:23",
+    "pre_earnings_indicator": "2026-08-30 10:24"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-08-30 09:59",
+      "checked_at": "2026-08-30 10:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "not_requested",
-      "checked_at": "2026-08-30 09:59",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-08-30 10:23",
+      "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
-      "state": "updated",
-      "checked_at": "2026-08-30 09:59",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-08-30 10:23",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-08-30 09:59",
+      "checked_at": "2026-08-30 10:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-08-30 09:59",
+      "checked_at": "2026-08-30 10:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-08-30 09:59",
+      "checked_at": "2026-08-30 10:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "not_requested",
-      "checked_at": "2026-08-30 10:00",
-      "message": "今回の実行モードでは更新対象外です。"
-    },
-    "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-30 10:00",
+      "checked_at": "2026-08-30 10:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
-    "movers_morning": {
+    "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-08-30 10:00",
+      "checked_at": "2026-08-30 10:24",
       "message": "今回の実行モードでは更新対象外です。"
     },
-    "movers_afterclose": {
+    "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-08-30 10:00",
+      "checked_at": "2026-08-30 10:24",
       "message": "話題株分析APIで取得できませんでした。"
+    },
+    "movers_afterclose": {
+      "state": "not_requested",
+      "checked_at": "2026-08-30 10:24",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-08-30 10:00",
+      "checked_at": "2026-08-30 10:24",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-08-30 09:59",
+      "checked_at": "2026-08-30 10:23",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-08-30 09:59",
+      "checked_at": "2026-08-30 10:23",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-08-30 10:00",
+      "checked_at": "2026-08-30 10:24",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1098,83 +1098,83 @@
   "credit_history": {
     "7203": {
       "last": 7.14,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6758": {
       "last": 15.99,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "8306": {
       "last": 21.04,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "9984": {
       "last": 9.56,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6861": {
       "last": 1.86,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6954": {
       "last": 28.65,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "7974": {
       "last": 9.35,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6098": {
       "last": 1.23,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "8035": {
       "last": 11.2,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "9433": {
       "last": 0.91,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "9432": {
       "last": 2.62,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "7267": {
       "last": 1.87,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6367": {
       "last": 19.84,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "9983": {
       "last": 2.32,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "4063": {
       "last": 14.37,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6857": {
       "last": 1.0,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "4519": {
       "last": 39.81,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "5401": {
       "last": 11.69,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "2413": {
       "last": 10.86,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     },
     "6645": {
       "last": 8.21,
-      "ts": "2026-08-30 10:00"
+      "ts": "2026-08-30 10:24"
     }
   },
   "pre_earnings_indicator": [
