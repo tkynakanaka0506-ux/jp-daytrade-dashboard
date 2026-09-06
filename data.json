@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07 00:55",
+  "generated_at": "2026-09-07 03:45",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -365,33 +365,6 @@
       "credit_ratio": 27.32,
       "squeeze_potential": false,
       "sector": "機械",
-      "sector_avg_change_pct": null,
-      "sector_contrarian": false
-    },
-    {
-      "code": "7974",
-      "name": "任天堂",
-      "price": "8,839.0",
-      "change_pct": -0.18,
-      "ma5_dev": "-1.05%",
-      "ma25_dev": "+4.18%",
-      "rsi": 52.24,
-      "signal": "中立(やや弱気)",
-      "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": -1.71,
-      "high_52w": 14630.0,
-      "high_52w_dist_pct": 39.58,
-      "volume": 5577200,
-      "avg_volume_5d": 8556720,
-      "volume_ratio": 0.65,
-      "volume_surge": false,
-      "gap_pct": -0.09,
-      "gap_up": false,
-      "gap_down": false,
-      "minkabu_url": "https://minkabu.jp/stock/7974/analyst_consensus",
-      "credit_ratio": 7.31,
-      "squeeze_potential": false,
-      "sector": "その他製品",
       "sector_avg_change_pct": null,
       "sector_contrarian": false
     },
@@ -908,14 +881,6 @@
       "asof": "9/2 10:12"
     },
     {
-      "code": "8306",
-      "company": "三菱UFJフィナンシャル・グループ",
-      "title": "東京都心に小型AIデータセンター設置省スペースで用地取得などに利点 - 朝日放送",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5wM09yWXQwSHBXMUxzdG9NX3E3aDVMX2VEeDNVWm9yb25ubUU0Nm5raG1qR1ZWY0ZDeGs0TE5TQTdZX3lFVjZpMmVSU2RfajdVTnNGcjlVYWJoenlyRXkySkJSenVfVlk?oc=5",
-      "keyword": "データセンター",
-      "asof": "8/27 20:33"
-    },
-    {
       "code": "9984",
       "company": "ソフトバンクグループ",
       "title": "ソフトバンクG、個人向け社債1兆円 国内最大規模、AI投資を加速 [AIの時代] - 朝日新聞",
@@ -950,7 +915,7 @@
     {
       "code": "6098",
       "company": "リクルートホールディングス",
-      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉の正体【9月1日の国内株式市場概況】 - gentosha-go.com",
+      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉の正体【9月1日の国内株式市場概況】 - ゴールドオンライン",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5pa2tQbHhGekYwdXNLeGlLRUY0NjF4SmRITmZrTm9NZGhuLXVIcWQ2RUJtSTc0NF9QRHJqNDdKSmE3MFYwQ21KakRZUmEzYnhjcEE?oc=5",
       "keyword": "データセンター",
       "asof": "9/1 17:00"
@@ -966,7 +931,7 @@
     {
       "code": "6367",
       "company": "ダイキン工業",
-      "title": "ダイキン、メキシコにデータセンター冷却の新工場 売上高8000億円へ - nikkei.com",
+      "title": "ダイキン、メキシコにデータセンター冷却の新工場 売上高8000億円へ - 日本経済新聞",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1ZQ3dZN2s5Q0NRUDJpVXZCR3BuSjkzclZyWXJ6M1NBVmFuZUo2cGhtQUVSQ1NZN1VMMWVYNzJxOG9Dbk4yTl9lWG5pVW8wZVRCSUpKSEhrbTF6NFczV2V4XzRCcFF4VXJIV3NJZg?oc=5",
       "keyword": "新工場",
       "asof": "8/25 16:00"
@@ -982,18 +947,10 @@
     {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉 - ニコニコニュース",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9rU3NOSXpOOUxDMGwwSHo3Nzdkd1FibmNpRmxHSEdnaHBIcTFDS1R3OUZlT2dOOFdZbm5JLW1EOG9HSlB3dWdkT196YTlpQ0ZyU0JiSG1uYXA2RFN2Y2w1ekxCR0lPc2x6bjdUN2luMnYwdHJocnEwd2xLVQ?oc=5",
+      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉の正体【9月1日の国内株式市場概況】 - ゴールドオンライン",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5pa2tQbHhGekYwdXNLeGlLRUY0NjF4SmRITmZrTm9NZGhuLXVIcWQ2RUJtSTc0NF9QRHJqNDdKSmE3MFYwQ21KakRZUmEzYnhjcEE?oc=5",
       "keyword": "データセンター",
-      "asof": "9/2 14:51"
-    },
-    {
-      "code": "6857",
-      "company": "アドバンテスト",
-      "title": "【NEC急反発】6.3兆円AI投資で次に見る日本株3銘柄#日本株 #AI関連株 #NEC #アドバンテスト #フジクラ #富士電機 #半導体 #データセンター #Claude #Anthropic Shane Mosley Jr (uJH9u9U0Om) - mshale.com",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBfZE51RktxNFVZS1F3SUI5S3NqRmFLVFNsaUgyRUJ3RzBsZHM4bVB1WXExa3NWUkFyY2Roc3praXNOWkhWM0tRV0Y1YmYzamd2OXhBdWZndWh5RzQ?oc=5",
-      "keyword": "データセンター",
-      "asof": "8/30 05:08"
+      "asof": "9/1 17:00"
     },
     {
       "code": "5401",
@@ -1009,85 +966,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-07 00:55",
-    "tdnet_afterclose": "2026-09-07 00:55",
-    "technical": "2026-09-07 00:55",
-    "growth_candidates": "2026-09-07 00:55",
-    "pre_earnings_watch": "2026-09-07 00:55",
-    "edinet_large_holdings": "2026-09-07 00:55",
-    "economic_calendar": "2026-09-07 00:55",
-    "pre_earnings_indicator": "2026-09-07 00:55"
+    "market_quotes": "2026-09-07 03:45",
+    "tdnet_afterclose": "2026-09-07 03:45",
+    "technical": "2026-09-07 03:45",
+    "growth_candidates": "2026-09-07 03:45",
+    "pre_earnings_watch": "2026-09-07 03:45",
+    "edinet_large_holdings": "2026-09-07 03:45",
+    "economic_calendar": "2026-09-07 03:45",
+    "pre_earnings_indicator": "2026-09-07 03:46"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
-      "state": "updated",
-      "checked_at": "2026-09-07 00:55",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "partial",
+      "checked_at": "2026-09-07 03:45",
+      "message": "監視銘柄20件中19件を取得。一部は取得不可です。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:46",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:46",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:46",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:46",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:46",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:45",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-07 00:55",
+      "checked_at": "2026-09-07 03:46",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1106,27 +1063,27 @@
   "credit_history": {
     "7203": {
       "last": 7.19,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "6758": {
       "last": 10.79,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "8306": {
       "last": 14.91,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "9984": {
       "last": 9.08,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "6861": {
       "last": 1.58,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "6954": {
       "last": 27.32,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "7974": {
       "last": 7.31,
@@ -1134,55 +1091,55 @@
     },
     "6098": {
       "last": 1.08,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "8035": {
       "last": 9.78,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "9433": {
       "last": 0.98,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "9432": {
       "last": 2.83,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "7267": {
       "last": 2.07,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "6367": {
       "last": 18.71,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "9983": {
       "last": 2.57,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "4063": {
       "last": 18.74,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "6857": {
       "last": 1.17,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "4519": {
       "last": 34.66,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "5401": {
       "last": 10.25,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "2413": {
       "last": 8.05,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     },
     "6645": {
       "last": 7.03,
-      "ts": "2026-09-07 00:55"
+      "ts": "2026-09-07 03:46"
     }
   },
   "pre_earnings_indicator": [
@@ -1366,29 +1323,6 @@
       ],
       "prediction_score": 12.0,
       "prediction_confidence": 57
-    },
-    {
-      "code": "7974",
-      "name": "任天堂",
-      "score": 28,
-      "raw_score": 0.0,
-      "signals": [],
-      "urls": [],
-      "credit_flags": {
-        "delta": 0.0,
-        "sell_rise": false,
-        "notes": []
-      },
-      "prediction_labels": [],
-      "prediction_notes": [],
-      "risk_triggers": [
-        {
-          "type": "ma5_breach",
-          "note": "5日線割れでシナリオ崩れ"
-        }
-      ],
-      "prediction_score": 0.0,
-      "prediction_confidence": 44
     },
     {
       "code": "9433",
