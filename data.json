@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-12 10:18",
+  "generated_at": "2026-09-12 10:55",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -35,7 +35,7 @@
   },
   "nikkei225": {
     "value": "64,011.34",
-    "change_pct": -1.74,
+    "change_pct": -1.93,
     "asof": "9/11終値"
   },
   "overnight_news": [],
@@ -948,26 +948,10 @@
       "asof": "9/1 16:00"
     },
     {
-      "code": "4519",
-      "company": "中外製薬",
-      "title": "「ビジネス創出できる」データセンター誘致企業代表が講演 秋田市 [秋田県] - asahi.com",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxONzR4NG5mRDJYdW5JZTk5UGpvUURkTG1tUXE2RWs3bkNQTnhRWWVSNUkzSmIyS3BlZnpLTmVVTGVTTk1RX09ZVm5aSW5oX3l4RXFBemZReWg5NE1lWUw1QWcwbTVmN2prRWVYQ09fT1FPTnZWaDlMbUxJZkxNd09RQ2hFN3dkV1dDX1lsR3J3?oc=5",
-      "keyword": "データセンター",
-      "asof": "9/8 10:00"
-    },
-    {
-      "code": "4519",
-      "company": "中外製薬",
-      "title": "「ビジネス創出できる」データセンター誘致企業代表が講演 秋田市 [秋田県] - asahi.com",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPYzRibW5kdlRQSE1DY1BLeWVJYXhRNUNGWThGVDBPaF83TnJXNDk0ZmJidUs0U21OTUFvY3BtWGh5QkFqcmRrdXVBNDcyOEl4bmlwX2paYVNYUXJCSFNkNTZIT2lwelNLNkZ3TzEyNDNwZVBBbUtkWWNEdTIwTl83RlFHUTdvV3dHam95MnpGSlVuZ3lEbl84dXFB?oc=5",
-      "keyword": "データセンター",
-      "asof": "9/8 10:00"
-    },
-    {
       "code": "5401",
       "company": "日本製鉄",
-      "title": "ＣＯ２を回収し液化炭酸ガスに　日本液炭が２００億円超の新工場　日本製鉄大分地区に - topics.smt.docomo.ne.jp",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE8zSk94WHFRVF9kMnc0X3hJRFlWamUxTm50b2pkUExFSFRGRkw4Z3ZDcXVsYUNsemJRMG5MVDZjZHVLVzNyNUFlM0lQSFVxemljMkVPUDRWLVpCUEJOdkJ0R2VXV3pJRFFKM1VXRWRiNTljSmVNZXJCZUVOYVPSAYIBQVVfeXFMTlRaTjd3Q19WamphOVlBS3diWHZrem9UaVZwRTNYU2oxY25IejcyMV8yQUpIZkFvVkk4WE5yY2d0bjNmMGxMOUJWVnpEV3BNSEt1UUpHZk05VjZxQ0RRVWZOcHVoUlNOaWgtR2FzRmg2X1J1cDBUZVVEVGpzcE1Fakxhdw?oc=5",
+      "title": "ＣＯ２を回収し液化炭酸ガスに 日本液炭が２００億円超の新工場 日本製鉄大分地区に（ＯＡＢ大分朝日放送） - Yahoo!ニュース",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5KY2FHVWt5SGRCS1RNa21iS0xaSFlzUjNqc09Wa19Sa2U2dFdDcWNqRXhORjRtSE1zUEFnMDl4RzJHNldSX0JGb1RCOHJXRmRUdUQzc1B2NE51b3YybFlxbHFGMkcxOHpVeFBiYlFyRFdoeVRMN20zUEQ3RTc5RDg?oc=5",
       "keyword": "新工場",
       "asof": "9/2 16:00"
     }
@@ -977,85 +961,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-12 10:18",
-    "tdnet_morning": "2026-09-12 10:18",
-    "technical": "2026-09-12 10:18",
-    "growth_candidates": "2026-09-12 10:18",
-    "pre_earnings_watch": "2026-09-12 10:18",
-    "edinet_large_holdings": "2026-09-12 10:18",
-    "economic_calendar": "2026-09-12 10:18",
-    "pre_earnings_indicator": "2026-09-12 10:19"
+    "market_quotes": "2026-09-12 10:55",
+    "tdnet_morning": "2026-09-12 10:55",
+    "technical": "2026-09-12 10:55",
+    "growth_candidates": "2026-09-12 10:55",
+    "pre_earnings_watch": "2026-09-12 10:55",
+    "edinet_large_holdings": "2026-09-12 10:55",
+    "economic_calendar": "2026-09-12 10:55",
+    "pre_earnings_indicator": "2026-09-12 10:56"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-12 10:19",
+      "checked_at": "2026-09-12 10:56",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-12 10:19",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-09-12 10:19",
+      "checked_at": "2026-09-12 10:56",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-09-12 10:19",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-12 10:19",
+      "checked_at": "2026-09-12 10:56",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:18",
+      "checked_at": "2026-09-12 10:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-12 10:19",
+      "checked_at": "2026-09-12 10:56",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1074,83 +1058,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6758": {
       "last": 11.73,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "8306": {
       "last": 12.07,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "9984": {
       "last": 6.7,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6861": {
       "last": 2.93,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6954": {
       "last": 20.59,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "7974": {
       "last": 9.39,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6098": {
       "last": 1.42,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "8035": {
       "last": 11.96,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "9433": {
       "last": 0.83,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "9432": {
       "last": 3.57,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "7267": {
       "last": 2.5,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6367": {
       "last": 21.73,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "9983": {
       "last": 2.77,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "4063": {
       "last": 21.13,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6857": {
       "last": 1.43,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "4519": {
       "last": 54.19,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "5401": {
       "last": 10.93,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "2413": {
       "last": 4.48,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     },
     "6645": {
       "last": 13.42,
-      "ts": "2026-09-12 10:19"
+      "ts": "2026-09-12 10:56"
     }
   },
   "pre_earnings_indicator": [
