@@ -5,11 +5,13 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from . import backtest as backtest_mod
+from . import catalyst_export
 from . import impact as impact_mod
 from . import llm as llm_mod
 from . import rss as rss_mod
 from . import stocks as stocks_mod
-from .config import FEEDS, JST, MARKET_TICKERS, MAX_AGE_HOURS, MAX_NEWS_ITEMS, PER_FEED_LIMIT
+from .config import FEEDS, GOV_FEEDS, JST, MARKET_TICKERS, MAX_AGE_HOURS, MAX_NEWS_ITEMS, PER_FEED_LIMIT
 
 DIRECTION_LABEL = impact_mod.DIRECTION_LABEL
 
@@ -60,12 +62,47 @@ def market_snapshot(data_json_path):
     return out
 
 
+NOVELTY_LABEL = {"high": "新規", "medium": "続報", "low": "再報道"}
+
+
+def _news_novelty(item, prior_norms):
+    """[PRESENTATION LAYER] 「初出/続報/再報道」の3段階。
+
+    政策として重要でも、既に何度も報じられているニュースは新しい投資材料
+    とは限らない、という考え方をスコアと別軸で表現する。theme/direction/
+    direct-indirect(FACTUAL LAYER)には一切使わない・影響しない。
+
+    判定材料は2つ:
+      - related(同日内に他媒体が同じ話題を報じた数。rss.collect が既に集計済み)
+      - 過去日の記録(backtest_events.jsonl)に似た見出しが既にあるか
+        (=違う日にも同じ話題が出ている「続報」らしさ)
+
+    prior_norms は事前に rss._normalize() 済みの文字列を渡すこと
+    (_same_topic は正規化済み同士の比較を前提にしているため)。
+    """
+    norm = rss_mod._normalize(item["title"])
+    seen_before = any(rss_mod._same_topic(norm, prior) for prior in prior_norms)
+    related_count = len(item.get("related", []))
+
+    if seen_before:
+        return "low", "similar_seen_before"
+    if related_count >= 2:
+        return "medium", f"{related_count + 1}媒体が同時報道"
+    return "high", "初出・類似の過去記録なし"
+
+
 def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS_ITEMS):
     """ニュースを集めて、1件ずつに重要度・カテゴリ・影響銘柄を付けたリストを返す。"""
     rules = rules or impact_mod.load()
     master = master or stocks_mod.load()
-    raw_items = rss_mod.collect(feeds or FEEDS, per_feed_limit=PER_FEED_LIMIT, max_age_hours=MAX_AGE_HOURS)
+    raw_items = rss_mod.collect(
+        feeds or FEEDS, direct_feeds=GOV_FEEDS, per_feed_limit=PER_FEED_LIMIT, max_age_hours=MAX_AGE_HOURS
+    )
     log(f"重複を束ねた結果 {len(raw_items)} 件の話題を取得しました。")
+
+    today = datetime.now(JST).strftime("%Y-%m-%d")
+    prior_titles = backtest_mod.load_prior_titles(today)
+    prior_norms = [rss_mod._normalize(t) for t in prior_titles]
 
     news = []
     for item in raw_items:
@@ -76,6 +113,12 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
         stars, reason = impact_mod.score_importance(item, themes, rules)
         impacts = impact_mod.affected_stocks(item, themes, rules, master, max_items=8)
         category = impact_mod.pick_category(item, themes, rules)
+        maturity_score, maturity_label = impact_mod.score_policy_maturity(title, rules)
+        novelty, novelty_reason = _news_novelty(item, prior_norms)
+        # [PRESENTATION LAYER] 表示用の統合スコアを付与するだけで、direction/theme
+        # など impacts の中身(FACTUAL LAYER)は書き換えない。
+        for imp in impacts:
+            imp["policy_impact_score"] = impact_mod.compute_policy_impact_score(imp, maturity_score)
         news.append({
             "id": item["id"],
             "title": title,
@@ -88,6 +131,11 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             "category_emoji": rules.category_emoji.get(category, "📰"),
             "importance": stars,
             "importance_reason": reason,
+            "future_signal": impact_mod.is_future_signal(title, rules),
+            "policy_maturity": maturity_score,
+            "policy_maturity_label": maturity_label,
+            "news_novelty": novelty,
+            "news_novelty_label": NOVELTY_LABEL[novelty],
             "themes": [t["label"] for t in themes],
             "summary": "",
             "impact_comment": "",
@@ -106,11 +154,29 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
 
 
 def _apply_llm(news, master, target=14):
-    """上位ニュースにだけ要約・コメント・追加銘柄を付ける(無料枠を節約するため)。"""
+    """上位ニュースにだけ要約・コメント・追加銘柄を付ける(無料枠を節約するため)。
+
+    candidate_stocks も全銘柄ではなく、今回のニュースのテーマに関係する銘柄
+    (+主力銘柄は保険として常に残す)だけに絞り、プロンプトのトークン量を減らす。
+    """
     targets = news[:target]
+    if not targets:
+        return
+    used_themes = set()
+    for n in targets:
+        used_themes.update(n.get("themes", []))
+    if used_themes:
+        pool = [s for s in master.stocks if used_themes & set(s.get("themes", []))]
+    else:
+        pool = list(master.stocks)
+    seen = {s["code"] for s in pool}
+    for s in master.stocks:
+        if "主力" in s.get("themes", []) and s["code"] not in seen:
+            pool.append(s)
+            seen.add(s["code"])
     candidates = [
         {"code": s["code"], "name": s["name"], "sector": s.get("sector", ""), "themes": s.get("themes", [])}
-        for s in master.stocks
+        for s in pool
     ]
     result = llm_mod.enrich(targets, candidates)
     if not result:
@@ -195,6 +261,22 @@ def build(data_json_path="data.json", use_llm=True):
     now = datetime.now(JST)
     news = build_news(rules=rules, master=master, use_llm=use_llm)
     ranking = stock_ranking(news)
+    # [バックテスト基盤] 本番ビルドのたびに今回判定したイベントをログへ追記する。
+    # 株価データはまだ接続していないため、現時点ではニュース×銘柄×スコアの
+    # 履歴を貯めるだけ(dev.py backtest で BACKTEST_STATUS を確認できる)。
+    try:
+        backtest_mod.record_events(news, generated_at=now)
+    except Exception as e:  # バックテスト記録の失敗でサイト生成自体を止めない
+        log(f"バックテストイベントの記録に失敗しました({e})。サイト生成は続行します。")
+
+    # [Catalyst Intelligence 出力] 他プロジェクト(投資判断エンジン側)が読み込む
+    # 「今アクティブな政策材料」スナップショット。統合演算はしない(catalyst_export
+    # のdocstring参照)。書き出しの失敗でサイト生成自体は止めない。
+    try:
+        n = catalyst_export.export_signals(news)
+        log(f"政策材料シグナルを{n}件書き出しました({catalyst_export.EXPORT_PATH})。")
+    except Exception as e:
+        log(f"政策材料シグナルの書き出しに失敗しました({e})。サイト生成は続行します。")
 
     status = "updated" if news else "unavailable"
     status_message = (

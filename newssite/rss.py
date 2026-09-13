@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """Google News RSS の取得と正規化(標準ライブラリのみ)。"""
+import concurrent.futures
 import hashlib
 import re
 import ssl
@@ -99,6 +100,95 @@ def fetch(query, category="market", base_weight=1, limit=12, hl="ja", gl="JP", c
     return items
 
 
+def _parse_rdf_date(value):
+    """RSS1.0(RDF)の dc:date (ISO8601) を JST datetime に変換する。"""
+    if not value:
+        return None
+    try:
+        v = value.strip()
+        if v.endswith("Z"):
+            v = v[:-1] + "+00:00"
+        return datetime.fromisoformat(v).astimezone(JST)
+    except Exception:
+        return None
+
+
+def fetch_direct(url, source_label, category="japan", base_weight=2, limit=15, timeout=20):
+    """省庁など一次情報のRSS/RDFフィードをURL指定で直接取得する。
+
+    Google News 経由(報道機関が書き終えるまで待つ)より速く、
+    発表そのものを最速で拾うための経路。RSS2.0とRSS1.0(RDF)の両方に対応する。
+    失敗時は空リスト(パイプラインは止めない)。
+    """
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout, context=ssl_context()) as res:
+            raw = res.read()
+        try:
+            root = ET.fromstring(raw)
+        except (ET.ParseError, ValueError):
+            # Shift_JIS等、標準パーサーが直接扱えないエンコーディングで配信している
+            # サイトがある(総務省など)。宣言されたエンコーディングで読み直す。
+            m = re.search(rb'encoding=["\']([\w-]+)["\']', raw[:200])
+            enc = m.group(1).decode("ascii", "ignore") if m else "shift_jis"
+            text = raw.decode(enc, errors="replace")
+            # 宣言されたエンコーディングのまま re-encode すると矛盾するので UTF-8 に書き換える
+            text = re.sub(r'encoding=["\'][\w-]+["\']', 'encoding="UTF-8"', text, count=1)
+            root = ET.fromstring(text.encode("utf-8"))
+    except Exception as e:
+        log(f"直接取得失敗 url={url!r}: {e}")
+        return []
+
+    RSS1 = "{http://purl.org/rss/1.0/}"
+    DC = "{http://purl.org/dc/elements/1.1/}"
+    ATOM = "{http://www.w3.org/2005/Atom}"
+    nodes = root.findall("./channel/item")
+    if not nodes:
+        # RSS1.0/RDF は item が channel の外、ルート直下の兄弟要素になる
+        nodes = root.findall(f"./{RSS1}item") or root.findall("./item")
+    if not nodes:
+        # Atom は entry が feed 直下の兄弟要素になる
+        nodes = root.findall(f"./{ATOM}entry") or root.findall("./entry")
+
+    def _atom_link(node):
+        """Atomの<link href="...">はテキストでなく属性にURLが入る。"""
+        candidates = node.findall(f"{ATOM}link") + node.findall("link")
+        for el in candidates:
+            if el.get("href") and el.get("rel", "alternate") == "alternate":
+                return el.get("href").strip()
+        for el in candidates:
+            if el.get("href"):
+                return el.get("href").strip()
+        return ""
+
+    items = []
+    for node in nodes[:limit]:
+        title = (
+            node.findtext("title") or node.findtext(f"{RSS1}title") or node.findtext(f"{ATOM}title") or ""
+        ).strip()
+        link = (node.findtext("link") or node.findtext(f"{RSS1}link") or "").strip() or _atom_link(node)
+        if not title or not link:
+            continue
+        published = (
+            _parse_time(node.findtext("pubDate"))
+            or _parse_rdf_date(node.findtext(f"{DC}date"))
+            or _parse_rdf_date(node.findtext(f"{ATOM}updated"))
+            or _parse_rdf_date(node.findtext(f"{ATOM}published"))
+        )
+        items.append({
+            "id": news_id(title, link),
+            "title": title,
+            "url": link,
+            "source": source_label,
+            "published": published,
+            "feed_query": source_label,
+            "feed_category": category,
+            "feed_weight": base_weight,
+        })
+    log(f"{len(items)}件 取得(直接) source={source_label!r}")
+    return items
+
+
 def _normalize(title):
     """比較用に記号・空白を落とした文字列を作る。"""
     return re.sub(r"[\s　【】「」『』\[\]()()、。,\.\-—–:：/|・\"\'%％]", "", title)
@@ -128,38 +218,76 @@ def _same_topic(a, b):
     return _similarity(a, b) >= SIMILARITY_THRESHOLD
 
 
-def collect(feeds, per_feed_limit=12, max_age_hours=48):
+def collect(feeds, direct_feeds=None, per_feed_limit=12, max_age_hours=48, max_workers=8):
     """全フィードを取得し、同じ話題を束ねて1リストにする。
 
-    同じ出来事が複数媒体で報じられている場合は related にまとめ、
-    報道の広がり(related の数)を後段の重要度計算で使う。
+    feeds: Google News検索クエリ (query, category, weight) のリスト。
+    direct_feeds: 省庁など一次情報のRSS/RDFを直接購読する (url, source_label, category, weight) のリスト。
+                  一次情報を先にマージすることで、後から来る同一トピックの報道記事は
+                  「related(関連報道)」側に回り、一次情報そのものが主表示になる。
+    フィードごとの取得はネットワーク待ちが支配的なので、スレッドで並列に投げて
+    合計の待ち時間を短縮する(件数・除外条件など結果自体は逐次実行と同じ)。
     """
     now = datetime.now(JST)
+    feeds = list(feeds)
+    direct_feeds = list(direct_feeds or [])
+    results = [[] for _ in feeds]
+    direct_results = [[] for _ in direct_feeds]
+    total = len(feeds) + len(direct_feeds)
+    if total:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, min(max_workers, total))) as pool:
+            future_to_slot = {}
+            for idx, (query, category, weight) in enumerate(feeds):
+                fut = pool.submit(fetch, query, category, weight, per_feed_limit)
+                future_to_slot[fut] = ("query", idx, query)
+            for idx, (url, label, category, weight) in enumerate(direct_feeds):
+                fut = pool.submit(fetch_direct, url, label, category, weight, per_feed_limit)
+                future_to_slot[fut] = ("direct", idx, label)
+            for future in concurrent.futures.as_completed(future_to_slot):
+                kind, idx, name = future_to_slot[future]
+                try:
+                    result = future.result()
+                except Exception as e:
+                    log(f"取得失敗(並列) source={name!r}: {e}")
+                    result = []
+                if kind == "query":
+                    results[idx] = result
+                else:
+                    direct_results[idx] = result
+
     merged = []
-    for query, category, weight in feeds:
-        for item in fetch(query, category, weight, limit=per_feed_limit):
-            if item["published"] and now - item["published"] > timedelta(hours=max_age_hours):
-                continue
-            norm = _normalize(item["title"])
-            base = None
-            for candidate in merged:
-                if _same_topic(norm, candidate["_norm"]):
-                    base = candidate
-                    break
-            if base is None:
-                item["_norm"] = norm
-                item["related"] = []
-                item["feed_categories"] = [item["feed_category"]]
-                merged.append(item)
-                continue
-            if item["url"] != base["url"] and all(r["url"] != item["url"] for r in base["related"]):
-                base["related"].append({
-                    "title": item["title"], "url": item["url"], "source": item["source"],
-                })
-            # 別カテゴリのフィードにも載った = 話題の広がりが大きい
-            base["feed_weight"] = max(base["feed_weight"], item["feed_weight"])
-            if item["feed_category"] not in base["feed_categories"]:
-                base["feed_categories"].append(item["feed_category"])
+
+    def _merge_one(item):
+        if item["published"] and now - item["published"] > timedelta(hours=max_age_hours):
+            return
+        norm = _normalize(item["title"])
+        base = None
+        for candidate in merged:
+            if _same_topic(norm, candidate["_norm"]):
+                base = candidate
+                break
+        if base is None:
+            item["_norm"] = norm
+            item["related"] = []
+            item["feed_categories"] = [item["feed_category"]]
+            merged.append(item)
+            return
+        if item["url"] != base["url"] and all(r["url"] != item["url"] for r in base["related"]):
+            base["related"].append({
+                "title": item["title"], "url": item["url"], "source": item["source"],
+            })
+        # 別カテゴリのフィードにも載った = 話題の広がりが大きい
+        base["feed_weight"] = max(base["feed_weight"], item["feed_weight"])
+        if item["feed_category"] not in base["feed_categories"]:
+            base["feed_categories"].append(item["feed_category"])
+
+    # 一次情報(省庁RSS)を先にマージし、後続の同一トピック報道は related に回す
+    for idx in range(len(direct_feeds)):
+        for item in direct_results[idx]:
+            _merge_one(item)
+    for idx in range(len(feeds)):
+        for item in results[idx]:
+            _merge_one(item)
 
     for item in merged:
         item.pop("_norm", None)

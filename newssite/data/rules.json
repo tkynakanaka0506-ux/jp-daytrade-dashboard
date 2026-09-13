@@ -1,287 +1,1561 @@
 {
-  "_comment": "ニュース見出し→重要度・カテゴリ・影響銘柄を判定するルール。Cursorで自由に追記・調整してよい。keywords/excludeは見出し文字列への部分一致(大文字小文字は区別しない)。impacts[].themesはstocks.jsonのthemesタグ、impacts[].codesは証券コード直指定。",
-
+  "_comment": "ニュース見出し→重要度・カテゴリ・影響銘柄を判定するルール。Cursorで自由に追記・調整してよい。keywords/excludeは見出し文字列への部分一致(大文字小文字は区別しない)。impacts[].themesはstocks.jsonのthemesタグ、impacts[].codesは証券コード直指定。\n\n【新しいテーマを追加する前のチェックリスト(過去に実際に踏んだ地雷)】\n1. keywordsに単体の一般語(例:「安全保障」「規制」)を使わない。複合語にするか、   他テーマ名や無関係な文脈(例:「経済安全保障」「女性・平和・安全保障(WPS)」)を   誤って拾わないか疑似見出しで確認する。\n2. そのテーマの見出しが正反対の意味になり得るか考える   (例:「侵攻激化」と「停戦」は同じ地政学テーマでも資源・防衛への影響が逆になる)。   なり得るなら impacts[].direction は固定値ではなく \"watch\" にし、   positive_words/negative_words 側で語調を判定させる。\n3. 同じテーマ内で複数のimpactsブロックが同じ銘柄(タグ)を拾いうる場合、   後ろのブロックのlimitは「全体件数」を基準に余裕を持たせる。   重複除外(seen_in_theme)はlimit適用後に効くため、limitが小さいと   本来見せたい新規の間接銘柄が0件になることがある(防衛×造船で発生した実例)。\n4. 新テーマのkeywordsが既存テーマのkeywordsの部分文字列/上位互換になっていないか確認する   (例:「先端半導体」を追加したら、既存semi_demandの「半導体」が誤発火しないか   excludeを見直す)。python3 -m unittest discover -s tests で必ず回帰確認する。\n5. 追加したら疑似見出しを4〜8パターン作って dev.py 経由で実データも1回流し、   「この銘柄がこの方向になった理由を、見出しの文言だけで説明できるか」を確認する。   tests/test_rule_audit.py の自動チェックも合わせて実行されるので、そちらも参照。\n\n【表示層の機能(primary_theme/topic_keywords/今後のスコアリング等)を追加する前のチェックリスト】\n(_comment_layering_principle も必ず参照すること)\n1. 変更前に python3 dev.py test と python3 dev.py score を実行し、現在の値を記録する。\n2. 表示順を変えるコードが、direction/theme/directとindirectの判定結果そのものには\n   一切触れていないか確認する(topic_keywordsの実装で一度、direct優先の原則を\n   壊しかけた実例があるため、特に注意)。\n3. 変更後に同じ2コマンドを再実行し、theme判定・方向判定・誤帰属率・\n   golden_headlines.jsonの結果が変化していないことを確認する\n   (表示順や新スコアの値だけが変わっているのが正しい状態)。\n4. 変化があった場合は「表示層の変更のはずが受益関係の判定に侵食した」バグとして扱う。",
   "categories": [
-    {"id": "policy",      "label": "金融政策・金利", "emoji": "🏦"},
-    {"id": "fx",          "label": "為替",           "emoji": "💱"},
-    {"id": "geopolitics", "label": "地政学・有事",   "emoji": "🌍"},
-    {"id": "trade",       "label": "通商・規制",     "emoji": "⚖️"},
-    {"id": "resources",   "label": "資源・エネルギー", "emoji": "🛢️"},
-    {"id": "tech",        "label": "半導体・AI",     "emoji": "🤖"},
-    {"id": "corporate",   "label": "企業・決算",     "emoji": "🏢"},
-    {"id": "japan",       "label": "日本経済・政治", "emoji": "🗾"},
-    {"id": "us",          "label": "米国市場",       "emoji": "🇺🇸"},
-    {"id": "market",      "label": "株式市況",       "emoji": "📈"}
+    {
+      "id": "policy",
+      "label": "金融政策・金利",
+      "emoji": "🏦"
+    },
+    {
+      "id": "fx",
+      "label": "為替",
+      "emoji": "💱"
+    },
+    {
+      "id": "geopolitics",
+      "label": "地政学・有事",
+      "emoji": "🌍"
+    },
+    {
+      "id": "trade",
+      "label": "通商・規制",
+      "emoji": "⚖️"
+    },
+    {
+      "id": "resources",
+      "label": "資源・エネルギー",
+      "emoji": "🛢️"
+    },
+    {
+      "id": "tech",
+      "label": "半導体・AI",
+      "emoji": "🤖"
+    },
+    {
+      "id": "corporate",
+      "label": "企業・決算",
+      "emoji": "🏢"
+    },
+    {
+      "id": "japan",
+      "label": "日本経済・政治",
+      "emoji": "🗾"
+    },
+    {
+      "id": "us",
+      "label": "米国市場",
+      "emoji": "🇺🇸"
+    },
+    {
+      "id": "market",
+      "label": "株式市況",
+      "emoji": "📈"
+    }
   ],
-
   "importance_keywords": [
-    {"words": ["利上げ", "利下げ", "政策金利", "金融政策決定会合", "FOMC", "量的緩和", "為替介入"], "score": 4},
-    {"words": ["関税", "禁輸", "経済制裁", "輸出規制", "貿易摩擦"], "score": 4},
-    {"words": ["戦争", "侵攻", "空爆", "軍事衝突", "停戦", "有事", "ミサイル"], "score": 4},
-    {"words": ["緊急事態", "過去最大", "過去最高", "最大規模", "急落", "急騰", "暴落", "暴騰"], "score": 3},
-    {"words": ["上方修正", "下方修正", "経営統合", "買収", "TOB", "自社株買い", "増配", "減配", "業務提携"], "score": 3},
-    {"words": ["決算", "四半期", "通期予想", "受注", "増産", "設備投資"], "score": 2},
-    {"words": ["首相", "大統領", "日銀総裁", "財務相", "内閣", "解散", "選挙"], "score": 2},
-    {"words": ["CPI", "消費者物価", "雇用統計", "GDP", "景気", "インフレ"], "score": 2}
+    {
+      "words": [
+        "利上げ",
+        "利下げ",
+        "政策金利",
+        "金融政策決定会合",
+        "FOMC",
+        "量的緩和",
+        "為替介入"
+      ],
+      "score": 4
+    },
+    {
+      "words": [
+        "関税",
+        "禁輸",
+        "経済制裁",
+        "輸出規制",
+        "貿易摩擦"
+      ],
+      "score": 4
+    },
+    {
+      "words": [
+        "戦争",
+        "侵攻",
+        "空爆",
+        "軍事衝突",
+        "停戦",
+        "有事",
+        "ミサイル"
+      ],
+      "score": 4
+    },
+    {
+      "words": [
+        "緊急事態",
+        "過去最大",
+        "過去最高",
+        "最大規模",
+        "急落",
+        "急騰",
+        "暴落",
+        "暴騰"
+      ],
+      "score": 3
+    },
+    {
+      "words": [
+        "上方修正",
+        "下方修正",
+        "経営統合",
+        "買収",
+        "TOB",
+        "自社株買い",
+        "増配",
+        "減配",
+        "業務提携"
+      ],
+      "score": 3
+    },
+    {
+      "words": [
+        "決算",
+        "四半期",
+        "通期予想",
+        "受注",
+        "増産",
+        "設備投資"
+      ],
+      "score": 2
+    },
+    {
+      "words": [
+        "首相",
+        "大統領",
+        "日銀総裁",
+        "財務相",
+        "内閣",
+        "解散",
+        "選挙"
+      ],
+      "score": 2
+    },
+    {
+      "words": [
+        "CPI",
+        "消費者物価",
+        "雇用統計",
+        "GDP",
+        "景気",
+        "インフレ"
+      ],
+      "score": 2
+    }
   ],
-
-  "noise_keywords": ["占い", "スポーツ", "芸能", "ライブ配信", "プレゼント", "セール情報", "レシピ"],
-
-  "positive_words": ["上方修正", "最高益", "増配", "自社株買い", "受注", "増産", "過去最高益", "黒字転換", "提携", "採用", "承認", "好調", "復活", "上昇"],
-  "negative_words": ["下方修正", "減配", "赤字", "リコール", "不正", "違反", "減益", "販売停止", "訴訟", "下落", "急落", "業績悪化", "希望退職"],
-
+  "noise_keywords": [
+    "占い",
+    "スポーツ",
+    "芸能",
+    "ライブ配信",
+    "プレゼント",
+    "セール情報",
+    "レシピ"
+  ],
+  "positive_words": [
+    "上方修正",
+    "最高益",
+    "増配",
+    "自社株買い",
+    "受注",
+    "増産",
+    "過去最高益",
+    "黒字転換",
+    "提携",
+    "採用",
+    "承認",
+    "好調",
+    "復活",
+    "上昇",
+    "拡大",
+    "支援策",
+    "補助金",
+    "促進",
+    "規制緩和",
+    "推進",
+    "侵攻",
+    "攻撃激化"
+  ],
+  "negative_words": [
+    "下方修正",
+    "減配",
+    "赤字",
+    "リコール",
+    "不正",
+    "違反",
+    "減益",
+    "販売停止",
+    "訴訟",
+    "下落",
+    "急落",
+    "業績悪化",
+    "希望退職",
+    "規制強化",
+    "義務化",
+    "課税強化",
+    "禁止",
+    "罰則",
+    "制限",
+    "停戦",
+    "和平合意"
+  ],
   "themes": [
     {
-      "id": "yen_weak", "label": "円安進行", "category": "fx", "weight": 3,
-      "keywords": ["円安", "ドル高・円安", "円が下落", "円相場下落", "円、一時"],
-      "exclude": ["円高"],
+      "id": "yen_weak",
+      "label": "円安進行",
+      "category": "fx",
+      "weight": 3,
+      "keywords": [
+        "円安",
+        "ドル高・円安",
+        "円が下落",
+        "円相場下落",
+        "円、一時",
+        "円が急落"
+      ],
+      "exclude": [
+        "円高"
+      ],
       "impacts": [
-        {"themes": ["円安メリット"], "limit": 6, "direction": "positive", "strength": "中",
-         "reason": "海外売上比率が高く、円安は円換算の売上・利益を押し上げる方向に働きやすい"},
-        {"themes": ["円安デメリット"], "limit": 4, "direction": "negative", "strength": "中",
-         "reason": "輸入原材料・仕入コストが膨らみ、採算の重しになりやすい"}
+        {
+          "themes": [
+            "円安メリット"
+          ],
+          "limit": 6,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "海外売上比率が高く、円安は円換算の売上・利益を押し上げる方向に働きやすい"
+        },
+        {
+          "themes": [
+            "円安デメリット"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "輸入原材料・仕入コストが膨らみ、採算の重しになりやすい"
+        }
+      ],
+      "exclude_regex": [
+        "\\d+円安"
       ]
     },
     {
-      "id": "yen_strong", "label": "円高進行", "category": "fx", "weight": 3,
-      "keywords": ["円高", "円が上昇", "円相場上昇", "ドル安・円高"],
-      "exclude": ["円安"],
+      "id": "yen_strong",
+      "label": "円高進行",
+      "category": "fx",
+      "weight": 3,
+      "keywords": [
+        "円高",
+        "円が上昇",
+        "円相場上昇",
+        "ドル安・円高"
+      ],
+      "exclude": [
+        "円安"
+      ],
       "impacts": [
-        {"themes": ["円安メリット"], "limit": 6, "direction": "negative", "strength": "中",
-         "reason": "海外売上の円換算額が目減りし、輸出関連の採算悪化要因になりやすい"},
-        {"themes": ["円高メリット", "円安デメリット"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "輸入コスト低下が採算改善につながりやすい"}
+        {
+          "themes": [
+            "円安メリット"
+          ],
+          "limit": 6,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "海外売上の円換算額が目減りし、輸出関連の採算悪化要因になりやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        },
+        {
+          "themes": [
+            "円高メリット",
+            "円安デメリット"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "輸入コスト低下が採算改善につながりやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        }
+      ],
+      "exclude_regex": [
+        "\\d+円高"
       ]
     },
     {
-      "id": "boj_hike", "label": "日銀の利上げ・金融正常化", "category": "policy", "weight": 4,
-      "keywords": ["日銀 利上げ", "日銀が利上げ", "追加利上げ", "金融正常化", "マイナス金利解除", "長期金利 上昇", "国債利回り 上昇", "政策金利引き上げ"],
+      "id": "boj_hike",
+      "label": "日銀の利上げ・金融正常化",
+      "category": "policy",
+      "weight": 4,
+      "keywords": [
+        "日銀 利上げ",
+        "日銀が利上げ",
+        "追加利上げ",
+        "金融正常化",
+        "マイナス金利解除",
+        "長期金利 上昇",
+        "国債利回り 上昇",
+        "政策金利 引き上げ",
+        "政策金利 上げ"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["金利上昇メリット"], "limit": 6, "direction": "positive", "strength": "大",
-         "reason": "利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい"},
-        {"themes": ["金利上昇デメリット"], "limit": 4, "direction": "negative", "strength": "中",
-         "reason": "調達コストの上昇や不動産市況の減速が意識されやすい"},
-        {"themes": ["グロース"], "limit": 2, "direction": "negative", "strength": "小",
-         "reason": "高PER銘柄は割引率上昇でバリュエーションが圧迫されやすい"}
+        {
+          "themes": [
+            "金利上昇メリット"
+          ],
+          "limit": 6,
+          "direction": "positive",
+          "strength": "大",
+          "reason": "利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        },
+        {
+          "themes": [
+            "金利上昇デメリット"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "調達コストの上昇や不動産市況の減速が意識されやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "3-6m"
+        },
+        {
+          "themes": [
+            "グロース"
+          ],
+          "limit": 2,
+          "direction": "negative",
+          "strength": "小",
+          "reason": "高PER銘柄は割引率上昇でバリュエーションが圧迫されやすい",
+          "beneficiary_tier": "primary",
+          "revenue_horizon": "0-3m"
+        }
       ]
     },
     {
-      "id": "rate_cut", "label": "利下げ・金融緩和", "category": "policy", "weight": 4,
-      "keywords": ["利下げ", "金融緩和", "緩和的", "ハト派"],
+      "id": "rate_cut",
+      "label": "利下げ・金融緩和",
+      "category": "policy",
+      "weight": 4,
+      "keywords": [
+        "利下げ",
+        "金融緩和",
+        "緩和的",
+        "ハト派"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["グロース", "不動産"], "limit": 5, "direction": "positive", "strength": "中",
-         "reason": "金利低下は割引率低下・調達コスト低下につながり、成長株や不動産に追い風になりやすい"},
-        {"themes": ["銀行"], "limit": 3, "direction": "negative", "strength": "小",
-         "reason": "利ざや縮小が意識されやすい"}
+        {
+          "themes": [
+            "グロース",
+            "不動産"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "金利低下は割引率低下・調達コスト低下につながり、成長株や不動産に追い風になりやすい"
+        },
+        {
+          "themes": [
+            "銀行"
+          ],
+          "limit": 3,
+          "direction": "negative",
+          "strength": "小",
+          "reason": "利ざや縮小が意識されやすい"
+        }
       ]
     },
     {
-      "id": "semi_demand", "label": "半導体・AI投資の拡大", "category": "tech", "weight": 4,
-      "keywords": ["半導体", "生成AI", "AI半導体", "エヌビディア", "NVIDIA", "TSMC", "データセンター", "AIサーバー", "設備投資 増額"],
-      "exclude": ["規制", "輸出制限", "禁輸"],
+      "id": "semi_demand",
+      "label": "半導体・AI投資の拡大",
+      "category": "tech",
+      "weight": 4,
+      "keywords": [
+        "半導体",
+        "生成AI",
+        "AI半導体",
+        "エヌビディア",
+        "NVIDIA",
+        "TSMC",
+        "データセンター",
+        "AIサーバー",
+        "設備投資 増額"
+      ],
+      "exclude": [
+        "規制",
+        "輸出制限",
+        "禁輸",
+        "補助金",
+        "経済安全保障",
+        "支援",
+        "先端半導体",
+        "国内生産",
+        "サプライチェーン",
+        "人材育成",
+        "特定半導体基金"
+      ],
       "impacts": [
-        {"themes": ["半導体製造装置"], "limit": 5, "direction": "positive", "strength": "大",
-         "reason": "半導体設備投資の増加は装置メーカーの受注に直結しやすい"},
-        {"themes": ["半導体材料"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "ウエハー・材料の需要増が業績に波及しやすい"},
-        {"themes": ["AI", "データセンター"], "limit": 5, "direction": "positive", "strength": "中",
-         "reason": "AI関連の需要拡大が受注・売上に波及しやすい"}
+        {
+          "themes": [
+            "半導体製造装置"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "大",
+          "reason": "半導体設備投資の増加は装置メーカーの受注に直結しやすい"
+        },
+        {
+          "themes": [
+            "半導体材料"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "ウエハー・材料の需要増が業績に波及しやすい"
+        },
+        {
+          "themes": [
+            "AI",
+            "データセンター"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "AI関連の需要拡大が受注・売上に波及しやすい"
+        }
       ]
     },
     {
-      "id": "semi_regulation", "label": "半導体の輸出規制・対中規制", "category": "trade", "weight": 4,
-      "keywords": ["半導体 規制", "輸出規制", "対中規制", "輸出制限", "禁輸", "エンティティリスト"],
+      "id": "semi_regulation",
+      "label": "半導体の輸出規制・対中規制",
+      "category": "trade",
+      "weight": 4,
+      "keywords": [
+        "半導体 規制",
+        "輸出規制",
+        "対中規制",
+        "輸出制限",
+        "禁輸",
+        "エンティティリスト"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["半導体製造装置"], "limit": 5, "direction": "negative", "strength": "大",
-         "reason": "中国向け売上比率が高く、規制強化は受注減・出荷制限のリスク要因になりやすい"},
-        {"themes": ["中国関連"], "limit": 4, "direction": "negative", "strength": "中",
-         "reason": "中国事業の不透明感が高まりやすい"},
-        {"themes": ["防衛", "サイバーセキュリティ"], "limit": 3, "direction": "positive", "strength": "小",
-         "reason": "経済安全保障関連の需要が意識されやすい"}
+        {
+          "themes": [
+            "半導体製造装置"
+          ],
+          "limit": 5,
+          "direction": "negative",
+          "strength": "大",
+          "reason": "中国向け売上比率が高く、規制強化は受注減・出荷制限のリスク要因になりやすい"
+        },
+        {
+          "themes": [
+            "中国関連"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "中国事業の不透明感が高まりやすい"
+        },
+        {
+          "themes": [
+            "防衛",
+            "サイバーセキュリティ"
+          ],
+          "limit": 3,
+          "direction": "positive",
+          "strength": "小",
+          "reason": "経済安全保障関連の需要が意識されやすい"
+        }
       ]
     },
     {
-      "id": "tariff", "label": "関税・通商摩擦", "category": "trade", "weight": 4,
-      "keywords": ["関税", "追加関税", "貿易摩擦", "通商政策", "相互関税", "報復関税"],
+      "id": "tariff",
+      "label": "関税・通商摩擦",
+      "category": "trade",
+      "weight": 4,
+      "keywords": [
+        "関税",
+        "追加関税",
+        "貿易摩擦",
+        "通商政策",
+        "相互関税",
+        "報復関税"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["自動車"], "limit": 5, "direction": "negative", "strength": "大",
-         "reason": "対米輸出比率が高く、関税引き上げは採算悪化・価格転嫁の負担につながりやすい"},
-        {"themes": ["鉄鋼", "海運"], "limit": 4, "direction": "negative", "strength": "中",
-         "reason": "貿易量の減少・コスト増が業績の重しになりやすい"},
-        {"themes": ["内需", "内需小売", "ディフェンシブ"], "limit": 4, "direction": "positive", "strength": "小",
-         "reason": "海外要因の影響が相対的に小さく、資金の逃避先として意識されやすい"}
+        {
+          "themes": [
+            "自動車"
+          ],
+          "limit": 5,
+          "direction": "negative",
+          "strength": "大",
+          "reason": "対米輸出比率が高く、関税引き上げは採算悪化・価格転嫁の負担につながりやすい"
+        },
+        {
+          "themes": [
+            "鉄鋼",
+            "海運"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "貿易量の減少・コスト増が業績の重しになりやすい"
+        },
+        {
+          "themes": [
+            "内需",
+            "内需小売",
+            "ディフェンシブ"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "小",
+          "reason": "海外要因の影響が相対的に小さく、資金の逃避先として意識されやすい"
+        }
       ]
     },
     {
-      "id": "middle_east", "label": "中東情勢・地政学リスク", "category": "geopolitics", "weight": 4,
-      "keywords": ["中東", "イスラエル", "イラン", "ホルムズ", "紅海", "ハマス", "ガザ"],
+      "id": "middle_east",
+      "label": "中東情勢・地政学リスク",
+      "category": "geopolitics",
+      "weight": 4,
+      "keywords": [
+        "中東",
+        "イスラエル",
+        "イラン",
+        "ホルムズ",
+        "紅海",
+        "ハマス",
+        "ガザ"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["石油", "原油高メリット"], "limit": 4, "direction": "positive", "strength": "大",
-         "reason": "原油価格の上昇観測は在庫評価益・資源権益の採算改善につながりやすい"},
-        {"themes": ["海運"], "limit": 3, "direction": "positive", "strength": "中",
-         "reason": "航路迂回による運賃上昇が意識されやすい"},
-        {"themes": ["防衛"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "安全保障・防衛需要の高まりが材料視されやすい"},
-        {"themes": ["空運", "燃料コスト"], "limit": 4, "direction": "negative", "strength": "中",
-         "reason": "燃料費の上昇がコスト増要因になりやすい"}
+        {
+          "themes": [
+            "石油",
+            "原油高メリット"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "大",
+          "reason": "原油価格の上昇観測は在庫評価益・資源権益の採算改善につながりやすい"
+        },
+        {
+          "themes": [
+            "海運"
+          ],
+          "limit": 3,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "航路迂回による運賃上昇が意識されやすい"
+        },
+        {
+          "themes": [
+            "防衛"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "安全保障・防衛需要の高まりが材料視されやすい"
+        },
+        {
+          "themes": [
+            "空運",
+            "燃料コスト"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "燃料費の上昇がコスト増要因になりやすい"
+        }
       ]
     },
     {
-      "id": "ukraine_russia", "label": "ウクライナ・ロシア情勢", "category": "geopolitics", "weight": 3,
-      "keywords": ["ウクライナ", "ロシア", "プーチン", "停戦", "NATO"],
+      "id": "ukraine_russia",
+      "label": "ウクライナ・ロシア情勢",
+      "category": "geopolitics",
+      "weight": 3,
+      "keywords": [
+        "ウクライナ",
+        "ロシア",
+        "プーチン",
+        "停戦",
+        "NATO"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["資源エネルギー", "商社"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "資源価格・LNG権益への思惑が働きやすい"},
-        {"themes": ["防衛"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "防衛関連の需要観測が材料視されやすい"},
-        {"themes": ["穀物", "食品"], "limit": 3, "direction": "negative", "strength": "小",
-         "reason": "穀物相場の変動が原材料コストに影響しやすい"}
+        {
+          "themes": [
+            "資源エネルギー",
+            "商社"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "資源価格・LNG権益への思惑が働きやすい(方向は情勢緊迫化か沈静化かによって変わる)"
+        },
+        {
+          "themes": [
+            "防衛"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "防衛関連の需要観測が材料視されやすい(方向は情勢緊迫化か沈静化かによって変わる)"
+        },
+        {
+          "themes": [
+            "穀物",
+            "食品"
+          ],
+          "limit": 3,
+          "direction": "negative",
+          "strength": "小",
+          "reason": "穀物相場の変動が原材料コストに影響しやすい"
+        }
       ]
     },
     {
-      "id": "taiwan_china", "label": "台湾・中国情勢", "category": "geopolitics", "weight": 4,
-      "keywords": ["台湾", "中国軍", "南シナ海", "尖閣", "台湾有事"],
+      "id": "taiwan_china",
+      "label": "台湾・中国情勢",
+      "category": "geopolitics",
+      "weight": 4,
+      "keywords": [
+        "台湾",
+        "中国軍",
+        "南シナ海",
+        "尖閣",
+        "台湾有事"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["防衛"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "安全保障関連の思惑が働きやすい"},
-        {"themes": ["中国関連"], "limit": 5, "direction": "negative", "strength": "中",
-         "reason": "中国売上比率が高く、地政学リスクの高まりは業績不透明感につながりやすい"},
-        {"themes": ["半導体"], "limit": 4, "direction": "negative", "strength": "小",
-         "reason": "サプライチェーン寸断リスクが意識されやすい"}
+        {
+          "themes": [
+            "防衛"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "安全保障関連の思惑が働きやすい"
+        },
+        {
+          "themes": [
+            "中国関連"
+          ],
+          "limit": 5,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "中国売上比率が高く、地政学リスクの高まりは業績不透明感につながりやすい"
+        },
+        {
+          "themes": [
+            "半導体"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "小",
+          "reason": "サプライチェーン寸断リスクが意識されやすい"
+        }
       ]
     },
     {
-      "id": "china_economy", "label": "中国経済・景気", "category": "geopolitics", "weight": 3,
-      "keywords": ["中国経済", "中国 景気", "中国 GDP", "不動産不況 中国", "中国 消費"],
+      "id": "china_economy",
+      "label": "中国経済・景気",
+      "category": "geopolitics",
+      "weight": 3,
+      "keywords": [
+        "中国経済",
+        "中国 景気",
+        "中国 GDP",
+        "不動産不況 中国",
+        "中国 消費"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["中国関連"], "limit": 6, "direction": "watch", "strength": "中",
-         "reason": "中国売上比率が高く、現地景気の変化が業績に直結しやすい"}
+        {
+          "themes": [
+            "中国関連"
+          ],
+          "limit": 6,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "中国売上比率が高く、現地景気の変化が業績に直結しやすい"
+        }
       ]
     },
     {
-      "id": "oil_up", "label": "原油高", "category": "resources", "weight": 3,
-      "keywords": ["原油高", "原油 上昇", "原油価格 上昇", "OPEC 減産", "WTI 上昇", "ガソリン 値上げ"],
-      "exclude": ["原油安"],
+      "id": "oil_up",
+      "label": "原油高",
+      "category": "resources",
+      "weight": 3,
+      "keywords": [
+        "原油高",
+        "原油 上昇",
+        "原油価格 上昇",
+        "OPEC 減産",
+        "WTI 上昇",
+        "ガソリン 値上げ"
+      ],
+      "exclude": [
+        "原油安"
+      ],
       "impacts": [
-        {"themes": ["原油高メリット", "石油"], "limit": 4, "direction": "positive", "strength": "大",
-         "reason": "販売価格・権益収入の改善につながりやすい"},
-        {"themes": ["商社"], "limit": 3, "direction": "positive", "strength": "中",
-         "reason": "資源権益の採算改善が意識されやすい"},
-        {"themes": ["燃料コスト", "原油高デメリット"], "limit": 5, "direction": "negative", "strength": "中",
-         "reason": "燃料・原材料コストの上昇が採算を圧迫しやすい"}
+        {
+          "themes": [
+            "原油高メリット",
+            "石油"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "大",
+          "reason": "販売価格・権益収入の改善につながりやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        },
+        {
+          "themes": [
+            "商社"
+          ],
+          "limit": 3,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "資源権益の採算改善が意識されやすい",
+          "beneficiary_tier": "primary",
+          "revenue_horizon": "0-3m"
+        },
+        {
+          "themes": [
+            "燃料コスト",
+            "原油高デメリット"
+          ],
+          "limit": 5,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "燃料・原材料コストの上昇が採算を圧迫しやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        }
       ]
     },
     {
-      "id": "oil_down", "label": "原油安", "category": "resources", "weight": 3,
-      "keywords": ["原油安", "原油 下落", "原油価格 下落", "OPEC 増産", "WTI 下落"],
-      "exclude": ["原油高"],
+      "id": "oil_down",
+      "label": "原油安",
+      "category": "resources",
+      "weight": 3,
+      "keywords": [
+        "原油安",
+        "原油 下落",
+        "原油価格 下落",
+        "OPEC 増産",
+        "WTI 下落"
+      ],
+      "exclude": [
+        "原油高"
+      ],
       "impacts": [
-        {"themes": ["燃料コスト"], "limit": 5, "direction": "positive", "strength": "中",
-         "reason": "燃料費の低下がコスト改善につながりやすい"},
-        {"themes": ["石油", "原油高メリット"], "limit": 4, "direction": "negative", "strength": "中",
-         "reason": "販売価格・権益収入の悪化が意識されやすい"}
+        {
+          "themes": [
+            "燃料コスト"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "燃料費の低下がコスト改善につながりやすい"
+        },
+        {
+          "themes": [
+            "石油",
+            "原油高メリット"
+          ],
+          "limit": 4,
+          "direction": "negative",
+          "strength": "中",
+          "reason": "販売価格・権益収入の悪化が意識されやすい"
+        }
       ]
     },
     {
-      "id": "defense_budget", "label": "防衛・安全保障", "category": "japan", "weight": 3,
-      "keywords": ["防衛費", "防衛予算", "防衛装備", "安全保障", "自衛隊", "ミサイル防衛"],
+      "id": "defense_budget",
+      "label": "防衛・安全保障",
+      "category": "japan",
+      "weight": 3,
+      "keywords": [
+        "防衛費",
+        "防衛予算",
+        "防衛装備",
+        "自衛隊",
+        "ミサイル防衛"
+      ],
+      "exclude": [
+        "経済安全保障"
+      ],
+      "impacts": [
+        {
+          "themes": [
+            "防衛"
+          ],
+          "limit": 6,
+          "direction": "positive",
+          "strength": "大",
+          "reason": "防衛関連の受注拡大観測が直接の材料になりやすい"
+        },
+        {
+          "themes": [
+            "造船"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "護衛艦・艦艇の建造需要を通じて造船会社にも間接的に波及しうる",
+          "topic_keywords": [
+            "護衛艦",
+            "艦艇建造",
+            "艦艇整備"
+          ]
+        },
+        {
+          "themes": [
+            "サイバーセキュリティ"
+          ],
+          "limit": 2,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "経済安全保障・サイバー防衛関連の需要を通じて間接的に波及しうる",
+          "topic_keywords": [
+            "サイバー防衛",
+            "サイバー部隊",
+            "サイバー攻撃"
+          ]
+        }
+      ],
+      "keywords_medium": [
+        "防衛政策",
+        "装備品調達"
+      ],
+      "keywords_weak": [
+        "安全保障",
+        "強化"
+      ]
+    },
+    {
+      "id": "inbound",
+      "label": "インバウンド・訪日需要",
+      "category": "japan",
+      "weight": 2,
+      "keywords": [
+        "訪日客",
+        "インバウンド",
+        "訪日外国人",
+        "観光客 増加",
+        "免税"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["防衛"], "limit": 6, "direction": "positive", "strength": "大",
-         "reason": "防衛関連の受注拡大観測が直接の材料になりやすい"}
+        {
+          "themes": [
+            "インバウンド"
+          ],
+          "limit": 6,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "訪日消費の拡大が売上に直結しやすい"
+        }
       ]
     },
     {
-      "id": "inbound", "label": "インバウンド・訪日需要", "category": "japan", "weight": 2,
-      "keywords": ["訪日客", "インバウンド", "訪日外国人", "観光客 増加", "免税"],
+      "id": "power_demand",
+      "label": "電力需要・データセンター",
+      "category": "tech",
+      "weight": 3,
+      "keywords": [
+        "電力需要",
+        "データセンター 建設",
+        "原発 再稼働",
+        "送電",
+        "電力不足"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["インバウンド"], "limit": 6, "direction": "positive", "strength": "中",
-         "reason": "訪日消費の拡大が売上に直結しやすい"}
+        {
+          "themes": [
+            "電力"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "電力需要の拡大が収益機会として意識されやすい"
+        },
+        {
+          "themes": [
+            "重電",
+            "電線",
+            "データセンター"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "電力インフラ・設備投資の受注拡大につながりやすい"
+        }
       ]
     },
     {
-      "id": "power_demand", "label": "電力需要・データセンター", "category": "tech", "weight": 3,
-      "keywords": ["電力需要", "データセンター 建設", "原発 再稼働", "送電", "電力不足"],
+      "id": "us_stock_move",
+      "label": "米国株・ハイテク株の変動",
+      "category": "us",
+      "weight": 3,
+      "keywords": [
+        "米国株",
+        "ダウ平均",
+        "ナスダック",
+        "S&P500",
+        "ウォール街",
+        "米ハイテク株"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["電力"], "limit": 4, "direction": "positive", "strength": "中",
-         "reason": "電力需要の拡大が収益機会として意識されやすい"},
-        {"themes": ["重電", "電線", "データセンター"], "limit": 5, "direction": "positive", "strength": "中",
-         "reason": "電力インフラ・設備投資の受注拡大につながりやすい"}
+        {
+          "themes": [
+            "相場連動",
+            "主力"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "米国市場の値動きに連動しやすく、寄り付きの需給に影響が出やすい",
+          "beneficiary_tier": "peripheral",
+          "revenue_horizon": "0-3m"
+        }
       ]
     },
     {
-      "id": "us_stock_move", "label": "米国株・ハイテク株の変動", "category": "us", "weight": 3,
-      "keywords": ["米国株", "ダウ平均", "ナスダック", "S&P500", "ウォール街", "米ハイテク株"],
+      "id": "cyber",
+      "label": "サイバー攻撃・情報漏えい",
+      "category": "tech",
+      "weight": 2,
+      "keywords": [
+        "サイバー攻撃",
+        "情報漏えい",
+        "ランサムウェア",
+        "不正アクセス"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["相場連動", "主力"], "limit": 5, "direction": "watch", "strength": "中",
-         "reason": "米国市場の値動きに連動しやすく、寄り付きの需給に影響が出やすい"}
+        {
+          "themes": [
+            "サイバーセキュリティ"
+          ],
+          "limit": 3,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "セキュリティ投資の拡大観測が材料視されやすい"
+        }
       ]
     },
     {
-      "id": "cyber", "label": "サイバー攻撃・情報漏えい", "category": "tech", "weight": 2,
-      "keywords": ["サイバー攻撃", "情報漏えい", "ランサムウェア", "不正アクセス"],
+      "id": "gold",
+      "label": "金・貴金属市況",
+      "category": "resources",
+      "weight": 2,
+      "keywords": [
+        "金価格",
+        "金相場",
+        "ゴールド 最高値",
+        "貴金属"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["サイバーセキュリティ"], "limit": 3, "direction": "positive", "strength": "中",
-         "reason": "セキュリティ投資の拡大観測が材料視されやすい"}
+        {
+          "themes": [
+            "金関連",
+            "非鉄"
+          ],
+          "limit": 3,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "金・非鉄市況の上昇が採算改善につながりやすい"
+        }
       ]
     },
     {
-      "id": "gold", "label": "金・貴金属市況", "category": "resources", "weight": 2,
-      "keywords": ["金価格", "金相場", "ゴールド 最高値", "貴金属"],
+      "id": "jp_politics",
+      "label": "日本の政局・経済対策",
+      "category": "japan",
+      "weight": 3,
+      "keywords": [
+        "経済対策",
+        "補正予算",
+        "首相",
+        "内閣",
+        "解散総選挙",
+        "自民党",
+        "減税"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["金関連", "非鉄"], "limit": 3, "direction": "positive", "strength": "中",
-         "reason": "金・非鉄市況の上昇が採算改善につながりやすい"}
+        {
+          "themes": [
+            "建設",
+            "国土強靭化"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "小",
+          "reason": "財政出動・公共投資の拡大観測が材料になりやすい",
+          "beneficiary_tier": "secondary",
+          "revenue_horizon": "1-3y"
+        },
+        {
+          "themes": [
+            "内需",
+            "内需小売"
+          ],
+          "limit": 3,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "家計向け政策の内容次第で内需関連の業績見通しが変わりやすい",
+          "beneficiary_tier": "secondary",
+          "revenue_horizon": "6-12m"
+        }
       ]
     },
     {
-      "id": "jp_politics", "label": "日本の政局・経済対策", "category": "japan", "weight": 3,
-      "keywords": ["経済対策", "補正予算", "首相", "内閣", "解散総選挙", "自民党", "減税"],
+      "id": "shipping_rate",
+      "label": "海運市況・物流",
+      "category": "resources",
+      "weight": 2,
+      "keywords": [
+        "海運運賃",
+        "コンテナ運賃",
+        "スエズ",
+        "パナマ運河",
+        "船舶"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["建設", "国土強靭化"], "limit": 4, "direction": "positive", "strength": "小",
-         "reason": "財政出動・公共投資の拡大観測が材料になりやすい"},
-        {"themes": ["内需", "内需小売"], "limit": 3, "direction": "watch", "strength": "小",
-         "reason": "家計向け政策の内容次第で内需関連の業績見通しが変わりやすい"}
+        {
+          "themes": [
+            "海運"
+          ],
+          "limit": 3,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "運賃市況の変動が業績に直結しやすい"
+        }
       ]
     },
     {
-      "id": "shipping_rate", "label": "海運市況・物流", "category": "resources", "weight": 2,
-      "keywords": ["海運運賃", "コンテナ運賃", "スエズ", "パナマ運河", "船舶"],
+      "id": "pharma",
+      "label": "医薬・薬価・創薬",
+      "category": "corporate",
+      "weight": 2,
+      "keywords": [
+        "新薬",
+        "薬価",
+        "治験",
+        "承認申請",
+        "FDA"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["海運"], "limit": 3, "direction": "positive", "strength": "中",
-         "reason": "運賃市況の変動が業績に直結しやすい"}
+        {
+          "themes": [
+            "医薬"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "承認・薬価改定の内容が収益見通しに影響しやすい"
+        }
       ]
     },
     {
-      "id": "pharma", "label": "医薬・薬価・創薬", "category": "corporate", "weight": 2,
-      "keywords": ["新薬", "薬価", "治験", "承認申請", "FDA"],
+      "id": "ev",
+      "label": "EV・車載電池",
+      "category": "corporate",
+      "weight": 2,
+      "keywords": [
+        "EV",
+        "電気自動車",
+        "車載電池",
+        "全固体電池",
+        "充電インフラ"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["医薬"], "limit": 4, "direction": "watch", "strength": "小",
-         "reason": "承認・薬価改定の内容が収益見通しに影響しやすい"}
+        {
+          "themes": [
+            "EV"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "EV関連の需要動向が部材・車載事業の見通しに影響しやすい"
+        }
       ]
     },
     {
-      "id": "ev", "label": "EV・車載電池", "category": "corporate", "weight": 2,
-      "keywords": ["EV", "電気自動車", "車載電池", "全固体電池", "充電インフラ"],
+      "id": "shipbuilding_policy",
+      "label": "造船・海事産業政策",
+      "category": "japan",
+      "weight": 2,
+      "keywords": [
+        "造船",
+        "海事産業",
+        "海事クラスター",
+        "国産船",
+        "邦船社",
+        "造船業支援",
+        "海事局"
+      ],
       "exclude": [],
       "impacts": [
-        {"themes": ["EV"], "limit": 5, "direction": "watch", "strength": "小",
-         "reason": "EV関連の需要動向が部材・車載事業の見通しに影響しやすい"}
+        {
+          "themes": [
+            "造船"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "政府の造船・海事産業支援策(投資・補助・規制緩和など)の直接の受益者になりやすい"
+        },
+        {
+          "themes": [
+            "海運"
+          ],
+          "limit": 3,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "新造船コストや供給網の変化を通じて間接的に波及しうる"
+        }
+      ]
+    },
+    {
+      "id": "infra_construction_policy",
+      "label": "建設投資・インフラ政策",
+      "category": "japan",
+      "weight": 2,
+      "keywords": [
+        "建設投資",
+        "公共工事",
+        "国土強靭化",
+        "インフラ整備",
+        "建設業支援",
+        "公共事業",
+        "建設投資見通し",
+        "建設業",
+        "建設規制",
+        "建設現場",
+        "省エネ法",
+        "建築基準法",
+        "建築物省エネ法"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "建設"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "建設関連の政策動向(投資拡大・規制強化など)が業績に影響しうる。方向は見出しの内容次第"
+        }
+      ]
+    },
+    {
+      "id": "logistics_port_policy",
+      "label": "港湾・物流政策",
+      "category": "japan",
+      "weight": 2,
+      "keywords": [
+        "港湾統計",
+        "港湾整備",
+        "港湾計画",
+        "コンテナ取扱量",
+        "港湾工事"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "海運"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "港湾整備・港湾統計の動向は海運会社の取扱量に影響しうる"
+        }
+      ]
+    },
+    {
+      "id": "aviation_policy",
+      "label": "航空・空港政策",
+      "category": "japan",
+      "weight": 1,
+      "keywords": [
+        "航空需要",
+        "空港政策",
+        "航空旅客",
+        "空港整備",
+        "航空輸送統計",
+        "航空業界",
+        "空港規制"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "空運"
+          ],
+          "limit": 3,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "航空関連の政策動向(需要喚起・規制強化など)が業績に影響しうる。方向は見出しの内容次第"
+        }
+      ]
+    },
+    {
+      "id": "semi_policy",
+      "label": "半導体産業政策・国内投資支援",
+      "category": "tech",
+      "weight": 3,
+      "keywords": [
+        "半導体 補助金",
+        "半導体 国内生産",
+        "先端半導体",
+        "半導体工場",
+        "経済安全保障 半導体",
+        "半導体 サプライチェーン",
+        "半導体 人材育成",
+        "半導体 研究開発支援",
+        "特定半導体基金",
+        "ラピダス",
+        "Rapidus"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "半導体製造装置"
+          ],
+          "limit": 5,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "国内工場新設・増設向けの補助金や支援策は装置メーカーの受注機会を増やしやすい",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "3-6m"
+        },
+        {
+          "themes": [
+            "半導体材料"
+          ],
+          "limit": 4,
+          "direction": "positive",
+          "strength": "中",
+          "reason": "国内生産能力の拡大はウエハー・材料メーカーの需要増につながりやすい",
+          "beneficiary_tier": "primary",
+          "revenue_horizon": "6-12m"
+        },
+        {
+          "themes": [
+            "建設",
+            "電力"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "半導体工場の新設・稼働を通じて建設・電力会社にも間接的に波及しうる",
+          "beneficiary_tier": "secondary",
+          "revenue_horizon": "1-3y"
+        }
+      ]
+    },
+    {
+      "id": "gx_decarbonization",
+      "label": "GX・脱炭素政策",
+      "category": "japan",
+      "weight": 2,
+      "keywords": [
+        "GX",
+        "脱炭素",
+        "カーボンニュートラル",
+        "再生可能エネルギー",
+        "再エネ",
+        "GX経済移行債",
+        "排出量取引",
+        "系統増強",
+        "電力インフラ投資",
+        "省エネ投資"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "電力",
+            "重電"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "GX関連の投資拡大・規制強化の両方が起こりうるテーマ。見出しの内容次第で方向が変わる"
+        },
+        {
+          "themes": [
+            "化学",
+            "電線",
+            "水素"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "電力・重電向けの部材や水素関連事業を通じて間接的に波及しうる"
+        }
+      ]
+    },
+    {
+      "id": "ai_policy",
+      "label": "AI・デジタル政策",
+      "category": "tech",
+      "weight": 3,
+      "keywords": [
+        "AI規制",
+        "AI法",
+        "AI戦略",
+        "AI計算基盤",
+        "AI人材育成",
+        "AIガバナンス",
+        "生成AI開発支援",
+        "AI活用促進",
+        "AI安全性",
+        "AI基本方針",
+        "データセンター整備",
+        "データセンター投資支援",
+        "計算資源"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "AI",
+            "データセンター"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "AI政策(支援策/規制)の両方が起こりうるテーマ。見出しの内容次第で方向が変わる"
+        },
+        {
+          "themes": [
+            "通信",
+            "電力"
+          ],
+          "limit": 3,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "AI計算基盤の整備を通じて通信・電力会社にも間接的に波及しうる"
+        }
+      ]
+    },
+    {
+      "id": "logistics_2024_problem",
+      "label": "物流2024年問題・省人化",
+      "category": "japan",
+      "weight": 2,
+      "keywords": [
+        "物流の2024年問題",
+        "ドライバー不足",
+        "物流DX",
+        "省人化",
+        "物流自動化",
+        "モーダルシフト",
+        "再配達削減",
+        "物流効率化",
+        "運送コスト",
+        "トラック輸送 規制",
+        "トラック運送",
+        "運送業",
+        "物流 強靱化",
+        "国際物流"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "FA"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "省人化・自動化投資の直接の受益者になりやすい(方向は見出しの内容次第)"
+        },
+        {
+          "themes": [
+            "物流"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "運送会社自身の収益への影響。効率化は追い風、コスト増・規制負担は逆風になりうる"
+        },
+        {
+          "themes": [
+            "海運"
+          ],
+          "limit": 3,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "モーダルシフト(トラックから鉄道・海運への転換)を通じて間接的に波及しうる"
+        }
+      ]
+    }
+  ],
+  "future_signal_keywords": [
+    "中間とりまとめ",
+    "とりまとめ案",
+    "ワーキンググループ",
+    "WG",
+    "審議会",
+    "有識者会議",
+    "検討会",
+    "報告書案",
+    "方針案",
+    "パブリックコメント",
+    "意見募集",
+    "ロードマップ",
+    "骨太の方針",
+    "概算要求",
+    "基本方針",
+    "工程表",
+    "実証事業",
+    "実証実験",
+    "議論",
+    "検討",
+    "制度改正",
+    "改正案",
+    "予算要求"
+  ],
+  "_comment_layering_principle": [
+    "受益関係の判定(FACTUAL LAYER)と表示・ランキング(PRESENTATION LAYER)を完全に分離する。各層の内訳は _comment_layers を参照。",
+    "FACTUAL LAYERには、direct/indirect、theme、direction、誤帰属除外(exclude)、dedupなどを含む。",
+    "FACTUAL LAYERは事実関係を表すため、表示順・primary_theme・各種スコア(PRESENTATION LAYER)によって書き換えてはならない。",
+    "PRESENTATION LAYERには、primary_theme、topic_keywords、政策実現度、受益距離、統合スコアなどを含む。",
+    "PRESENTATION LAYERの変更は、FACTUAL LAYERが確定させたtheme/direction/direct/indirectの判定結果を変更してはならない。",
+    "スコアは表示順位を決めるための情報であり、theme/direction/direct/indirectを決定する情報ではない。",
+    "同一テーマ内で表示順を変更する場合も、受益関係の優先順位(direct > indirect等)を崩してはならない。",
+    "新しいPRESENTATION LAYER機能を追加する際は、『FACTUAL LAYERの判定結果を変えず、同じ結果の表示順だけを変える』ことを必須条件とする。",
+    "実装前後で受益関係の回帰テストを実行し、theme/direction/direct/indirectが変化していないことを確認する。"
+  ],
+  "_comment_layers": {
+    "FACTUAL_LAYER": [
+      "theme",
+      "direction",
+      "direct/indirect(impactsの宣言順とseen_in_theme)",
+      "exclude(誤帰属除外)",
+      "dedup(同一銘柄の重複排除)"
+    ],
+    "PRESENTATION_LAYER": [
+      "primary_theme",
+      "topic_keywords(表示順の並び替え)",
+      "policy_maturity(未実装/Phase2)",
+      "impact_score(未実装/Phase6)",
+      "ranking",
+      "max_items"
+    ],
+    "rule": "PRESENTATION_LAYERの変更は、FACTUAL_LAYERが確定させた判定結果(どの銘柄が対象か・どの方向か)を上書きしてはならない。並び替えてよいのは表示順だけ。"
+  },
+  "_comment_pre_commit_check": [
+    "この変更はtheme/direction/direct/indirect(FACTUAL LAYER)を変更する変更か？",
+    "表示順だけを変更する変更なら、既存の受益関係判定(FACTUAL LAYER)に触れていないか？",
+    "スコアが低いdirectを、スコアが高いindirectより下位にしていないか？",
+    "primary_themeやtopic_keywordsがdirect/indirectの優先順位を逆転させていないか？",
+    "既存golden datasetの受益関係判定が全件維持されているか？(python3 dev.py test / dev.py score)"
+  ],
+  "policy_maturity_stages": [
+    {
+      "score": 100,
+      "label": "施策実施",
+      "keywords": [
+        "施策を開始",
+        "運用を開始",
+        "制度がスタート",
+        "運用開始",
+        "施行"
+      ]
+    },
+    {
+      "score": 85,
+      "label": "予算成立",
+      "keywords": [
+        "予算成立",
+        "予算 成立",
+        "予算案が成立"
+      ]
+    },
+    {
+      "score": 75,
+      "label": "法案成立",
+      "keywords": [
+        "法案成立",
+        "法律が成立",
+        "可決・成立",
+        "改正法が成立",
+        "法案 成立"
+      ]
+    },
+    {
+      "score": 60,
+      "label": "法案提出",
+      "keywords": [
+        "法案提出",
+        "法案 提出",
+        "国会 提出",
+        "改正案 提出"
+      ]
+    },
+    {
+      "score": 45,
+      "label": "パブコメ",
+      "keywords": [
+        "パブリックコメント",
+        "意見募集"
+      ]
+    },
+    {
+      "score": 35,
+      "label": "審議会・検討会",
+      "keywords": [
+        "審議会",
+        "検討会",
+        "有識者会議",
+        "ワーキンググループ"
+      ]
+    },
+    {
+      "score": 25,
+      "label": "議論",
+      "keywords": [
+        "議論"
+      ]
+    },
+    {
+      "score": 20,
+      "label": "検討",
+      "keywords": [
+        "検討"
       ]
     }
   ]

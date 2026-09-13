@@ -39,8 +39,36 @@ FEEDS = [
     ("上方修正 業績予想 決算", "corporate", 2),
     ("自社株買い 増配 TOB 買収", "corporate", 2),
     ("経済対策 補正予算 政府", "japan", 1),
+    ("造船 海事 政策 支援 投資", "japan", 2),
+    ("経済安全保障 基幹産業 支援策 国土交通省 経済産業省", "japan", 1),
     ("訪日客 インバウンド 消費", "japan", 1),
     ("米国株 ダウ ナスダック", "us", 1),
+]
+
+# 省庁など一次情報のRSS/RDFを直接購読する。(url, 表示ソース名, category, 基礎重要度)
+# Google Newsは報道機関が記事を書き終えるまで拾えないため、発表そのものを
+# 直接取りに行くための経路。追加するときは URL が本物か必ず確認すること
+# (見つからない/ブロックされる省庁も多く、404や403は静かに無視される)。
+GOV_FEEDS = [
+    ("https://www.cao.go.jp/rss/news.rdf", "内閣府", "japan", 2),
+    ("https://www.digital.go.jp/rss/news.xml", "デジタル庁", "japan", 2),
+    ("https://www.kantei.go.jp/index-jnews.rdf", "首相官邸", "japan", 2),
+    ("https://www.mhlw.go.jp/stf/news.rdf", "厚生労働省", "japan", 1),
+    ("https://www.mhlw.go.jp/stf/kinkyu.rdf", "厚生労働省(緊急情報)", "japan", 2),
+    ("https://www.fsa.go.jp/fsaNewsListAll_rss2.xml", "金融庁", "japan", 2),
+    ("https://www.moj.go.jp/news.xml", "法務省", "japan", 1),
+    ("https://www.mof.go.jp/news.rss", "財務省", "japan", 2),
+    ("https://www.maff.go.jp/rss.xml", "農林水産省", "japan", 1),
+    ("https://www.meti.go.jp/ml_index_release_atom.xml", "経済産業省", "japan", 2),
+    ("https://www.mod.go.jp/j/rss/news.xml", "防衛省", "japan", 1),
+    ("https://www.soumu.go.jp/news.rdf", "総務省", "japan", 1),
+    ("https://www.mlit.go.jp/pressrelease.rdf", "国土交通省(プレスリリース)", "japan", 2),
+    ("https://www.mlit.go.jp/index.rdf", "国土交通省(新着情報)", "japan", 1),
+    ("https://www.jpcert.or.jp/rss/jpcert.rdf", "JPCERT/CC", "trade", 2),
+    ("https://www.caa.go.jp/news.rss", "消費者庁", "japan", 1),
+    ("https://www.ipa.go.jp/about/newsonly-rss.rdf", "IPA(新着情報)", "tech", 1),
+    ("https://www.ipa.go.jp/about/press-rss.rdf", "IPA(プレスリリース)", "tech", 2),
+    ("https://www.ipa.go.jp/security/alert-rss.rdf", "IPA(セキュリティ注意喚起)", "tech", 2),
 ]
 
 # 市況ヘッダーに出す指標(data.json 由来。取得できない場合は非表示)

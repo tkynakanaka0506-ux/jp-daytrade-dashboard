@@ -1,0 +1,146 @@
+[
+  {
+    "headline": "第3回日ASEAN女性・平和・安全保障(WPS)協力プロジェクトについて",
+    "category": "広すぎるkeyword",
+    "expected_theme_ids": [],
+    "note": "WPS誤帰属バグ(安全保障の広すぎるキーワード一致)の再発防止"
+  },
+  {
+    "headline": "日経平均、AI特需の持続懸念で1811円安の急落",
+    "category": "広すぎるkeyword",
+    "expected_theme_ids": [],
+    "note": "「1811円安」(指数の下げ幅)を為替の円安と誤認しないことの確認(バックテスト検証中に発見)"
+  },
+  {
+    "headline": "円安が加速、ドル円は一時155円台に上昇",
+    "category": null,
+    "expected_theme_ids": ["yen_weak"],
+    "note": "為替の文脈がある円安は引き続き正しく検出できることの確認(回帰防止)"
+  },
+  {
+    "headline": "日経平均、AI特需の反動で1811円高の急騰",
+    "category": "広すぎるkeyword",
+    "expected_theme_ids": [],
+    "note": "円安と同じ構造のバグがyen_strongにも残っていたのを発見・修正(exclude_regexで対応)"
+  },
+  {
+    "headline": "円が急落、ドル円は一時160円台に",
+    "category": "keyword漏れ",
+    "expected_theme_ids": ["yen_weak"],
+    "note": "exclude_regex追加時に「急落」を単純exclude語にして正当なケースまで消しかけたバグの再発防止。円が急落は正しくyen_weakに一致すべき"
+  },
+  {
+    "headline": "安全保障協力を強化、日米間で覚書に署名",
+    "category": "広すぎるkeyword",
+    "expected_theme_ids": [],
+    "note": "弱キーワード(安全保障+強化)が2つ重なっても単独では絶対にテーマ成立しないことの確認"
+  },
+  {
+    "headline": "防衛政策の見直しを検討、防衛省が新方針を策定へ",
+    "category": null,
+    "expected_theme_ids": ["defense_budget"],
+    "note": "中一致(keywords_medium)が単独でテーマを成立させることの確認"
+  },
+  {
+    "headline": "米仲介再開で限定停戦の可能性も 松田元駐ウクライナ大使",
+    "category": "方向反転",
+    "expected_theme_ids": ["ukraine_russia"],
+    "expect_direction": {"8058": "negative"},
+    "note": "停戦=沈静化は資源商社にnegative(固定positiveだったバグの再発防止)"
+  },
+  {
+    "headline": "ロシアがウクライナへの侵攻を激化、東部で戦闘拡大",
+    "category": "方向反転",
+    "expected_theme_ids": ["ukraine_russia"],
+    "expect_direction": {"8058": "positive"},
+    "note": "侵攻激化=緊迫化は資源商社にpositive(停戦と逆方向であることの確認)"
+  },
+  {
+    "headline": "防衛費増額を閣議決定、来年度予算は過去最高に",
+    "category": null,
+    "expected_theme_ids": ["defense_budget"],
+    "expect_direction": {"7011": "positive"},
+    "note": "防衛予算テーマの基本ケース(baseline)"
+  },
+  {
+    "headline": "護衛艦建造を強化、防衛費で艦艇整備を加速",
+    "category": "表示枠",
+    "expected_stocks_present": ["7003", "7014"],
+    "expect_direction": {"7011": "positive"},
+    "note": "造船の間接ブロックがlimitで埋もれず三井E&S/名村造船所まで拾えるか(limit×dedupバグの再発防止)。かつtopic_keywordsによる並び替えでも三菱重工の直接positiveが崩れないこと"
+  },
+  {
+    "headline": "サイバー防衛強化へ防衛費を拡大、自衛隊のサイバー部隊を増強",
+    "category": "primary_theme誤り",
+    "expected_stocks_present": ["4704"],
+    "expect_direction": {"7011": "positive"},
+    "expect_before": [["4704", "7003"]],
+    "note": "primary_theme(topic_keywords)でサイバー枠が表示枠から漏れず、造船より先に出ること。かつ直接ブロック(防衛)の優先順位は崩れないこと"
+  },
+  {
+    "headline": "先端半導体の量産技術を確立、次世代プロセスで国内メーカーが前進",
+    "category": "二重ヒット",
+    "expected_theme_ids": ["semi_policy"],
+    "note": "semi_demandが誤って二重ヒットしないか(先端半導体の誤帰属バグの再発防止)"
+  },
+  {
+    "headline": "経済安全保障の観点から半導体の国内生産体制を強化する方針",
+    "category": "二重ヒット",
+    "expected_theme_ids": ["semi_policy"],
+    "note": "defense_budgetが誤って二重ヒットしないか(経済安全保障の誤帰属バグの再発防止)"
+  },
+  {
+    "headline": "AI半導体需要拡大でエヌビディアが好決算",
+    "category": "二重ヒット",
+    "expected_theme_ids": ["semi_demand"],
+    "note": "純粋な需要主導ニュースがsemi_policyと二重ヒットしないか(負のコントロール)"
+  },
+  {
+    "headline": "生成AI開発支援策を政府が拡大、研究機関に予算配分",
+    "category": "二重ヒット",
+    "expected_theme_ids": ["ai_policy"],
+    "note": "支援策系ニュースがsemi_demandと誤って二重ヒットしないか"
+  },
+  {
+    "headline": "AI規制強化法案が国会提出、企業に対応義務",
+    "category": "方向反転",
+    "expected_theme_ids": ["ai_policy"],
+    "expect_direction_theme_wide": "negative",
+    "note": "同じai_policyの銘柄群が支援策とは逆にnegativeへ反転するか"
+  },
+  {
+    "headline": "国交省、公共工事拡大へ建設投資見通しを上方修正",
+    "category": "方向反転",
+    "expected_theme_ids": ["infra_construction_policy"],
+    "expect_direction": {"1801": "positive"},
+    "note": "建設テーマの補助金/拡大フレーム"
+  },
+  {
+    "headline": "建設業への規制強化案を国交省が検討、罰則も導入へ",
+    "category": "方向反転",
+    "expected_theme_ids": ["infra_construction_policy"],
+    "expect_direction": {"1801": "negative"},
+    "note": "同じ建設テーマが規制フレームで逆方向になるか"
+  },
+  {
+    "headline": "建設現場の事故対策で国交省が新基準を公表",
+    "category": "方向反転",
+    "expected_theme_ids": ["infra_construction_policy"],
+    "expect_direction": {"1801": "watch"},
+    "note": "語調なしの見出しは中立(watch)のままであるべき"
+  },
+  {
+    "headline": "トラック運送業への規制強化で対応コスト増、業界に負担",
+    "category": "keyword漏れ",
+    "expected_theme_ids": ["logistics_2024_problem"],
+    "expect_direction_theme_wide": "negative",
+    "note": "「トラック運送」表記ゆれの取りこぼしバグの再発防止"
+  },
+  {
+    "headline": "政府、造船業に1兆円投資へ 海事産業強化策を閣議決定",
+    "category": null,
+    "expected_theme_ids": ["shipbuilding_policy"],
+    "expect_direction": {"7011": "positive", "9101": "watch"},
+    "note": "造船=直接positive/海運=間接watchの基本ケース(baseline)"
+  }
+]

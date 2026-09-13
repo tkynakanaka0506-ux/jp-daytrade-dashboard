@@ -10,6 +10,8 @@
   python3 dev.py test      テストを実行
   python3 dev.py check     stocks.json / rules.json の整合性チェック
   python3 dev.py open      生成済み index.html をブラウザで開く
+  python3 dev.py score     ルール判定の品質スコアカード(tests/golden_headlines.json 集計)
+  python3 dev.py backtest  Policy Impact Score バックテストの蓄積状況(BACKTEST_STATUS)を表示
 
 Python 3.9 以上があれば動きます(pip install 不要)。
 """
@@ -314,6 +316,20 @@ def cmd_setup(args):
     return 0
 
 
+def cmd_score(args):
+    """ルール判定の品質スコアカード(tests/golden_headlines.json 集計)。"""
+    from newssite import rule_scorecard
+    rule_scorecard.run()
+    return 0
+
+
+def cmd_backtest(args):
+    """Policy Impact Score バックテストの蓄積状況(BACKTEST_STATUS)を表示する。"""
+    from newssite import backtest
+    backtest.print_status()
+    return 0
+
+
 COMMANDS = {
     "setup": cmd_setup,
     "sample": cmd_sample,
@@ -323,6 +339,8 @@ COMMANDS = {
     "test": cmd_test,
     "check": cmd_check,
     "open": cmd_open,
+    "score": cmd_score,
+    "backtest": cmd_backtest,
 }
 
 
