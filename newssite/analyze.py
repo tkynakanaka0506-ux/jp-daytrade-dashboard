@@ -142,9 +142,23 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             )
         # [PRESENTATION LAYER] 表示用の統合スコアを付与するだけで、direction/theme
         # など impacts の中身(FACTUAL LAYER)は書き換えない。
+        # 「政府・政策が市場を動かす力」(policy_impact_score)と「巨大テックの
+        # 設備投資が需要を動かす力」(ai_capex_impact_score)は別の力学なので、
+        # 同じ計算式(compute_policy_impact_score)を使い回しつつ、別フィールド
+        # として書き分ける(MJS側にも分離したまま渡す。ユーザー方針2026-09-13)。
+        # platform_regulation(プラットフォーム規制リスク)はどちらの実現度
+        # スコアにも馴染まないため、どちらのフィールドにも値を入れない
+        # (テーマ検出・重要度スコアのみ。JP株への波及先が無い設計のため)。
         source_tier = item.get("source_tier")
         for imp in impacts:
-            imp["policy_impact_score"] = impact_mod.compute_policy_impact_score(imp, maturity_score, source_tier)
+            layer = rules.theme_layer.get(imp.get("theme_id"), "government_policy")
+            score = (
+                impact_mod.compute_policy_impact_score(imp, maturity_score, source_tier)
+                if layer in ("government_policy", "corporate_capex") else None
+            )
+            imp["intelligence_layer"] = layer
+            imp["policy_impact_score"] = score if layer == "government_policy" else None
+            imp["ai_capex_impact_score"] = score if layer == "corporate_capex" else None
             imp["policy_to_earnings_stage"] = impact_mod.policy_to_earnings_stage(
                 maturity_score, imp.get("revenue_horizon")
             )

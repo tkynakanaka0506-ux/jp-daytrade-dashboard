@@ -34,6 +34,13 @@ class Rules:
         self.negative_words = raw.get("negative_words", [])
         self.future_signal_keywords = raw.get("future_signal_keywords", [])
         self.policy_maturity_stages = raw.get("policy_maturity_stages", [])
+        # 「政府・政策が市場を動かす力」(government_policy、既定値)と
+        # 「巨大テックの設備投資が需要を動かす力」(corporate_capex)は別物、
+        # というユーザー方針(2026-09-13)。テーマ側にintelligence_layerが
+        # 無ければ従来通りgovernment_policy(政策)として扱う(後方互換)。
+        self.theme_layer = {
+            t["id"]: t.get("intelligence_layer", "government_policy") for t in self.themes
+        }
 
 
 def load(path=RULES_PATH):
@@ -252,12 +259,16 @@ REVENUE_HORIZON_LABEL = {
 
 def _impact_entry(
     stock, direction, strength, reason, origin, theme_label="",
-    beneficiary_tier=None, revenue_horizon=None, matched_keyword=None,
+    beneficiary_tier=None, revenue_horizon=None, matched_keyword=None, theme_id=None,
 ):
     """[PRESENTATION LAYER] beneficiary_tier/revenue_horizon/matched_keyword は表示用の付加情報。
 
     未指定(None)なら何も表示されないだけで、direction/theme/origin など
     FACTUAL LAYER の判定には一切影響しない。
+
+    theme_id: どのテーマ由来の影響かを識別する(rules.jsonのthemes[].id)。
+    intelligence_layer(政府政策/企業Capex/プラットフォーム規制のどれか)の
+    判定にanalyze.py側で使う。当事者(direct)判定にはテーマが無いためNone。
     """
     return {
         "code": stock["code"],
@@ -268,6 +279,7 @@ def _impact_entry(
         "strength": strength,
         "reason": reason,
         "theme": theme_label,
+        "theme_id": theme_id,
         "origin": origin,
         "beneficiary_tier": beneficiary_tier,
         "beneficiary_tier_label": BENEFICIARY_TIER_LABEL.get(beneficiary_tier, ""),
@@ -347,6 +359,7 @@ def affected_stocks(item, matched_themes, rules, master, max_items=8):
                     beneficiary_tier=rule.get("beneficiary_tier"),
                     revenue_horizon=rule.get("revenue_horizon"),
                     matched_keyword=matched_kw,
+                    theme_id=theme.get("id"),
                 ))
         if theme_bucket:
             buckets.append(theme_bucket)

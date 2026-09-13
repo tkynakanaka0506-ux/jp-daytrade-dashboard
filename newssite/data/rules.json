@@ -180,7 +180,9 @@
     "規制緩和",
     "推進",
     "侵攻",
-    "攻撃激化"
+    "攻撃激化",
+    "増額",
+    "前倒し"
   ],
   "negative_words": [
     "下方修正",
@@ -203,7 +205,10 @@
     "罰則",
     "制限",
     "停戦",
-    "和平合意"
+    "和平合意",
+    "減額",
+    "延期",
+    "縮小"
   ],
   "themes": [
     {
@@ -403,7 +408,12 @@
         "国内生産",
         "サプライチェーン",
         "人材育成",
-        "特定半導体基金"
+        "特定半導体基金",
+        "延期",
+        "縮小",
+        "減額",
+        "発注減",
+        "投資減速"
       ],
       "impacts": [
         {
@@ -1421,6 +1431,137 @@
           "reason": "モーダルシフト(トラックから鉄道・海運への転換)を通じて間接的に波及しうる"
         }
       ]
+    },
+    {
+      "id": "ai_capex_cycle",
+      "label": "巨大テックのAI設備投資サイクル",
+      "category": "tech",
+      "intelligence_layer": "corporate_capex",
+      "_comment": "「政府・政策が市場を動かす力」(government_policy)ではなく「巨大テックの設備投資が需要を動かす力」(corporate_capex)。Meta/Microsoft/Amazon/Alphabet/Oracle/ByteDance等のCapex増減・DC投資・GPU調達の増減を、AI半導体サプライチェーンへの先行警戒/先行好感シグナルとして拾う。増額系キーワードだけを拾うと『AI投資は常に追い風』という偏りが出るため、減額・延期・縮小系も同じ重みで拾うこと(ユーザー指示、必ず守ること)。",
+      "weight": 4,
+      "keywords": [
+        "データセンター投資 増額",
+        "データセンター投資 拡大",
+        "データセンター投資 延期",
+        "データセンター投資 縮小",
+        "データセンター 建設加速",
+        "データセンター 計画縮小",
+        "データセンター 新設稼働",
+        "AI設備投資 増額",
+        "AI設備投資 減額",
+        "AI関連投資 減速",
+        "GPU調達 拡大",
+        "GPU発注 減",
+        "Capex 増額",
+        "Capex 減額",
+        "設備投資計画 上方修正",
+        "設備投資計画 下方修正"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "半導体"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "大",
+          "reason": "AI投資サイクルの一次受益(GPU・半導体設計/製造)。Capex増減に最も早く反応しやすい(方向は増額/減額どちらの文脈かで変わる)",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        },
+        {
+          "themes": [
+            "半導体製造装置",
+            "半導体材料"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "AI投資サイクルの二次受益(装置・材料)。受注・出荷を通じて数ヶ月遅れで反応しやすい(方向は増額/減額どちらの文脈かで変わる)",
+          "beneficiary_tier": "primary",
+          "revenue_horizon": "3-6m"
+        },
+        {
+          "themes": [
+            "データセンター",
+            "電力",
+            "通信"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "AI投資サイクルの三次受益(データセンター・電力・通信インフラ)。建設・稼働まで時間がかかる分、反応も遅れやすい(方向は増額/減額どちらの文脈かで変わる)",
+          "beneficiary_tier": "secondary",
+          "revenue_horizon": "6-12m"
+        }
+      ]
+    },
+    {
+      "id": "ai_demand_risk",
+      "label": "AI投資の資金負担リスク",
+      "category": "tech",
+      "intelligence_layer": "corporate_capex",
+      "_comment": "ai_capex_cycleとは別テーマにする(ユーザー指示、必ず守ること)。FCF急減・資金調達コスト増加は『AI投資が重い』ことの証拠であって、『AI需要が崩壊した』ことの証拠ではない(実例: Meta 2026Q2は売上+28%・広告インプレッション+14%・広告単価+12%と本業は堅調なままFCFだけ急減した)。だからai_capex_cycleより弱いstrength・watch方向のみとし、単独で需要減速と断定する書き方を reason にしないこと。既知の限界: direction=watchはheadline_sentiment(グローバルなpositive_words/negative_words)で解決されるため、『上昇』のような文脈依存語(コスト上昇=悪い/株価上昇=良い)が紛れ込むと意図しない方向に解決されることがある。このテーマのkeywordsには意図的に『上昇』を使わない(『増加』を使う)ことでリスクを下げているが、実際のニュース文面側に『上昇』が含まれていれば防げない。",
+      "weight": 3,
+      "keywords": [
+        "FCF 急減",
+        "フリーキャッシュフロー 急減",
+        "フリーキャッシュフロー 減少",
+        "資金調達コスト 増加",
+        "起債 拡大",
+        "有利子負債 増加",
+        "資金繰り 悪化",
+        "営業CF 比率上昇"
+      ],
+      "exclude": [],
+      "impacts": [
+        {
+          "themes": [
+            "半導体"
+          ],
+          "limit": 4,
+          "direction": "watch",
+          "strength": "中",
+          "reason": "AI投資主体の資金負担が急拡大している兆候。本業(売上・広告収益等)が堅調でも先行して出ることがあるため、単独ではAI需要減速と断定しない",
+          "beneficiary_tier": "direct",
+          "revenue_horizon": "0-3m"
+        },
+        {
+          "themes": [
+            "半導体製造装置",
+            "半導体材料",
+            "データセンター",
+            "電力"
+          ],
+          "limit": 5,
+          "direction": "watch",
+          "strength": "小",
+          "reason": "AI投資主体の資金負担拡大が今後の発注ペースに影響しうるという先行警戒シグナル(確定情報ではない)",
+          "beneficiary_tier": "secondary",
+          "revenue_horizon": "6-12m"
+        }
+      ]
+    },
+    {
+      "id": "platform_regulation_risk",
+      "label": "プラットフォーム規制リスク",
+      "category": "trade",
+      "intelligence_layer": "platform_regulation",
+      "_comment": "AI Capexリスクとは別軸(ユーザー指示、必ず守ること)。Meta等のSNS/プラットフォーム企業への規制・訴訟・利用制限の動き。実例: Meta 2026年8月の未成年SNS依存訴訟(最大180億ドル・10年分割、1日2時間の利用時間制限等を受諾)、カリフォルニア州の16歳未満向け無限スクロール/アルゴリズム自動再生規制法(2026年9月11日成立)。JP株への具体的な受益チェーンが無いため、impactsは空(テーマ検出・重要度スコアのみの記録用)。",
+      "weight": 2,
+      "keywords": [
+        "SNS 規制",
+        "SNS 依存",
+        "未成年 SNS",
+        "アルゴリズム 規制",
+        "無限スクロール 規制",
+        "自動再生 制限",
+        "Meta 和解金",
+        "Meta 訴訟"
+      ],
+      "exclude": [],
+      "impacts": []
     }
   ],
   "future_signal_keywords": [

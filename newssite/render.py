@@ -90,6 +90,7 @@ def impact_chip_html(imp):
             {f'<span class="chip-tag">⏱ {esc(imp["revenue_horizon_label"])}</span>' if imp.get('revenue_horizon') else ''}
             {f'<span class="chip-tag" title="政策発表→予算確保→受注→設備投資→売上→利益のどこまで来ていそうか(政策の確度×業績到達時期の見積もりから推定。表示専用)">🛤 {esc(imp["policy_to_earnings_stage"])}</span>' if imp.get('policy_to_earnings_stage') else ''}
             {f'<span class="chip-tag" title="政策実現度×受益距離×時間軸×感応度の合成スコア(表示専用、銘柄判定には使っていません)">🎯 {esc(imp["policy_impact_score"])}</span>' if imp.get('policy_impact_score') is not None else ''}
+            {f'<span class="chip-tag" title="巨大テックのAI設備投資サイクルが強さの拠り所(政府政策ではなく企業投資が起点。Policy Impact Scoreとは別物、表示専用)">🖥️ {esc(imp["ai_capex_impact_score"])}</span>' if imp.get('ai_capex_impact_score') is not None else ''}
             <span class="chip-reason">{esc(imp.get('reason', ''))}</span>
             <a class="chip-link" href="{esc(YAHOO_QUOTE.format(code=imp['code']))}" target="_blank" rel="noopener">株価 ↗</a>
           </div>

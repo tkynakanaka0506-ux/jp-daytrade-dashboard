@@ -47,6 +47,31 @@ ALLOWED_KEYWORD_OVERLAPS = {
         "semi_demand/semi_policy。TSMC等の新工場稼働は需要材料としても妥当なため、"
         "他の政策系複合語(国内生産/サプライチェーン/人材育成等)と違いexcludeしない"
     ),
+    ("データセンター", "データセンター投資 拡大"): (
+        "semi_demand(positive固定)/ai_capex_cycle(watch)。どちらも増額・拡大方向で"
+        "意味が一致する多重ヒットなので方向は矛盾しない(減額・延期系はsemi_demand側の"
+        "excludeで既に住み分け済み)"
+    ),
+    ("データセンター", "データセンター投資 増額"): (
+        "semi_demand(positive固定)/ai_capex_cycle(watch)。どちらも増額方向で"
+        "意味が一致する多重ヒットなので方向は矛盾しない"
+    ),
+    ("データセンター", "データセンター 建設加速"): (
+        "semi_demand(positive固定)/ai_capex_cycle(watch)。「建設加速」は増額方向で"
+        "意味が一致するため方向は矛盾しない"
+    ),
+    ("データセンター", "データセンター 新設稼働"): (
+        "semi_demand(positive固定)/ai_capex_cycle(watch)。「新設稼働」は増額方向で"
+        "意味が一致するため方向は矛盾しない"
+    ),
+    ("設備投資 増額", "AI設備投資 増額"): (
+        "semi_demand(positive固定)/ai_capex_cycle(watch)。どちらも「増額」で方向が"
+        "一致する近縁ワードの多重ヒット"
+    ),
+    ("データセンター 建設", "データセンター 建設加速"): (
+        "power_demand(watch)/ai_capex_cycle(watch)。どちらも建設・拡大方向で"
+        "意味が一致するため方向は矛盾しない"
+    ),
 }
 
 # --- チェック3(自己矛盾する方向固定)で許容する既知のテーマ ---

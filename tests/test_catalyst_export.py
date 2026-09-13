@@ -19,7 +19,7 @@ REQUIRED_FIELDS = {
     "direction", "tier", "policy_maturity", "time_horizon",
     "policy_impact_score", "matched_keyword", "reason", "source", "url",
     "news_novelty", "policy_event_id", "policy_event_is_update", "source_tier",
-    "policy_to_earnings_stage",
+    "policy_to_earnings_stage", "ai_capex_impact_score", "intelligence_layer",
 }
 
 
