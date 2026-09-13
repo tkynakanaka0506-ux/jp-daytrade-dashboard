@@ -4,6 +4,14 @@
 
 `python3 build_news_site.py --sample` から使う。ルール判定は本番と同じコードを通すので、
 data/rules.json や data/stocks.json を編集した結果の確認にも使える。
+
+【プロジェクト原則】ここでbuild_news()の判定ロジックを部分的にでも
+再実装しないこと。過去に一度、themes/importance/impactsだけ本番と同じ
+関数を呼び、その後追加されたpolicy_maturity・news_novelty・
+policy_event_id等は複製し忘れる(=このプレビューにだけ表示されない)
+というdriftが実際に発生した(該当コミット参照)。raw_items/
+persist_lifecycleを使ってbuild_news()自体に委譲し、判定ロジックの
+実体は常に1箇所(analyze.build_news)にする。
 """
 from datetime import datetime, timedelta
 
