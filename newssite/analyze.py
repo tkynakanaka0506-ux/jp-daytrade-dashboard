@@ -92,19 +92,28 @@ def _news_novelty(item, prior_norms):
     return "high", "初出・類似の過去記録なし"
 
 
-def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS_ITEMS):
-    """ニュースを集めて、1件ずつに重要度・カテゴリ・影響銘柄を付けたリストを返す。"""
+def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS_ITEMS,
+                raw_items=None, persist_lifecycle=True):
+    """ニュースを集めて、1件ずつに重要度・カテゴリ・影響銘柄を付けたリストを返す。
+
+    raw_items: 指定すればRSS取得をスキップしてこれを使う(sample.py等、本番と
+    同じ判定ロジックを通したいがネット接続はしたくない呼び出し元向け)。
+    persist_lifecycle: Falseならpolicy_event_registry.jsonの読み書きをせず、
+    その場限りの空レジストリで判定する(サンプル/テスト実行が本番の
+    政策ライフサイクル追跡状態を汚さないようにするため)。
+    """
     rules = rules or impact_mod.load()
     master = master or stocks_mod.load()
-    raw_items = rss_mod.collect(
-        feeds or FEEDS, direct_feeds=GOV_FEEDS, per_feed_limit=PER_FEED_LIMIT, max_age_hours=MAX_AGE_HOURS
-    )
+    if raw_items is None:
+        raw_items = rss_mod.collect(
+            feeds or FEEDS, direct_feeds=GOV_FEEDS, per_feed_limit=PER_FEED_LIMIT, max_age_hours=MAX_AGE_HOURS
+        )
     log(f"重複を束ねた結果 {len(raw_items)} 件の話題を取得しました。")
 
     today = datetime.now(JST).strftime("%Y-%m-%d")
     prior_titles = backtest_mod.load_prior_titles(today)
     prior_norms = [rss_mod._normalize(t) for t in prior_titles]
-    lifecycle_registry = policy_lifecycle._load_registry()
+    lifecycle_registry = policy_lifecycle._load_registry() if persist_lifecycle else {"active": {}, "_seq": {}}
 
     news = []
     for item in raw_items:
@@ -162,7 +171,8 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             "related": item.get("related", [])[:4],
         })
 
-    policy_lifecycle._save_registry(lifecycle_registry)
+    if persist_lifecycle:
+        policy_lifecycle._save_registry(lifecycle_registry)
 
     # 重要度 → 新しさ の順に並べ、上位だけをページに載せる
     news.sort(key=lambda n: (-n["importance"], -n["published_ts"]))

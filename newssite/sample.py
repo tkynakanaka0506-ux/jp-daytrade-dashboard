@@ -7,7 +7,7 @@ data/rules.json や data/stocks.json を編集した結果の確認にも使え�
 """
 from datetime import datetime, timedelta
 
-from . import analyze, impact as impact_mod, stocks as stocks_mod
+from . import analyze, impact as impact_mod
 from .config import JST
 from .rss import news_id
 
@@ -29,7 +29,6 @@ SAMPLE_HEADLINES = [
 
 def sample_data():
     rules = impact_mod.load()
-    master = stocks_mod.load()
     now = datetime.now(JST)
 
     items = []
@@ -52,30 +51,12 @@ def sample_data():
             ],
         })
 
-    news = []
-    for item in items:
-        themes = impact_mod.match_themes(item["title"], rules)
-        stars, reason = impact_mod.score_importance(item, themes, rules)
-        category = impact_mod.pick_category(item, themes, rules)
-        news.append({
-            "id": item["id"],
-            "title": item["title"],
-            "url": item["url"],
-            "source": item["source"],
-            "published_at": item["published"].strftime("%Y-%m-%d %H:%M"),
-            "published_ts": item["published"].timestamp(),
-            "category": category,
-            "category_label": rules.category_label.get(category, "市況"),
-            "category_emoji": rules.category_emoji.get(category, "📰"),
-            "importance": stars,
-            "importance_reason": reason,
-            "themes": [t["label"] for t in themes],
-            "summary": "",
-            "impact_comment": "",
-            "impacts": impact_mod.affected_stocks(item, themes, rules, master, max_items=8),
-            "related": item["related"],
-        })
-    news.sort(key=lambda n: (-n["importance"], -n["published_ts"]))
+    # raw_items/persist_lifecycle=False: RSS取得はスキップしつつ、判定ロジック
+    # (成熟度・新規性・policy_event_id含む)は本番のbuild_news()と完全に同じ
+    # コードを通す(ここで別ロジックを書くと、今回のように機能追加のたびに
+    # サンプル画面だけ表示されない、という drift が再発するため)。
+    # 本番のpolicy_event_registry.jsonは汚さない(persist_lifecycle=False)。
+    news = analyze.build_news(rules=rules, raw_items=items, use_llm=False, persist_lifecycle=False)
     ranking = analyze.stock_ranking(news)
 
     return {
