@@ -143,6 +143,37 @@ class SourceTierScoreTest(unittest.TestCase):
         self.assertEqual(entry, snapshot, "compute_policy_impact_scoreがimpact_entryを書き換えてはいけない")
 
 
+class PolicyToEarningsStageTest(unittest.TestCase):
+    """② 政策→業績距離の厳密化。既存のpolicy_maturityとrevenue_horizonの
+    組み合わせだけで判定する(新しいキーワード判定は増やさない)。"""
+
+    def test_none_maturity_returns_none(self):
+        self.assertIsNone(impact_mod.policy_to_earnings_stage(None, "0-3m"))
+
+    def test_early_maturity_is_policy_announcement_regardless_of_horizon(self):
+        for maturity in (20, 25, 35):  # 検討・議論・審議会
+            for horizon in ("0-3m", "1-3y", None):
+                self.assertEqual(impact_mod.policy_to_earnings_stage(maturity, horizon), "政策発表")
+
+    def test_mid_maturity_is_bill_stage(self):
+        for maturity in (45, 60):  # パブコメ・法案提出
+            self.assertEqual(impact_mod.policy_to_earnings_stage(maturity, "0-3m"), "法案化")
+
+    def test_high_maturity_is_budget_secured(self):
+        for maturity in (75, 85):  # 法案成立・予算成立
+            self.assertEqual(impact_mod.policy_to_earnings_stage(maturity, "0-3m"), "予算確保")
+
+    def test_implemented_maturity_uses_horizon_to_pick_downstream_stage(self):
+        self.assertEqual(impact_mod.policy_to_earnings_stage(100, "0-3m"), "受注")
+        self.assertEqual(impact_mod.policy_to_earnings_stage(100, "3-6m"), "設備投資")
+        self.assertEqual(impact_mod.policy_to_earnings_stage(100, "6-12m"), "売上寄与")
+        self.assertEqual(impact_mod.policy_to_earnings_stage(100, "1-3y"), "利益寄与")
+
+    def test_implemented_maturity_without_horizon_falls_back_to_implementation_label(self):
+        self.assertEqual(impact_mod.policy_to_earnings_stage(100, None), "施策実施")
+        self.assertEqual(impact_mod.policy_to_earnings_stage(100, "unknown-bucket"), "施策実施")
+
+
 class ImpactTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

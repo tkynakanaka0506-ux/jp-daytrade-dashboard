@@ -167,6 +167,35 @@ def compute_policy_impact_score(impact_entry, policy_maturity, source_tier=None)
     return round(score * confidence_mult)
 
 
+# ② 政策→業績距離の厳密化(ユーザー指示、必ず守ること):
+# 新しいキーワード判定は増やさない。既存のpolicy_maturity(政策側の確度、
+# 0-100)とrevenue_horizon(受益企業の業績到達時期、ルール作成者の見積もり)
+# の2つを組み合わせるだけで、「政策発表→予算確保→受注→設備投資→売上→利益」
+# のどこまで来ていそうかを表す。施策実施前は政策側の進捗だけで決まり
+# (revenue_horizonは「実現したら」の見積もりでしかないため、まだ実現前の
+# 段階では参照しない)、施策実施後になって初めてrevenue_horizonの近さで
+# 受注〜利益のどこにいそうかを推定する。
+_HORIZON_STAGE_AFTER_IMPLEMENTATION = {
+    "0-3m": "受注", "3-6m": "設備投資", "6-12m": "売上寄与", "1-3y": "利益寄与",
+}
+
+
+def policy_to_earnings_stage(policy_maturity, revenue_horizon):
+    """[PRESENTATION LAYER] 表示専用。direction/theme/tier等の判定には使わない。
+
+    policy_maturityがNone(成熟度キーワード不一致)なら判定材料が無いのでNone。
+    """
+    if policy_maturity is None:
+        return None
+    if policy_maturity < 45:  # 検討・議論・審議会/検討会
+        return "政策発表"
+    if policy_maturity < 75:  # パブコメ・法案提出
+        return "法案化"
+    if policy_maturity < 100:  # 法案成立・予算成立
+        return "予算確保"
+    return _HORIZON_STAGE_AFTER_IMPLEMENTATION.get(revenue_horizon, "施策実施")
+
+
 def score_importance(item, matched_themes, rules):
     """重要度(1〜5)とその根拠テキストを返す。"""
     text = item["title"]

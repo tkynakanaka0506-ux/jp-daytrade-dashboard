@@ -61,6 +61,7 @@ def build_signals(news_items):
                 "policy_maturity": item.get("policy_maturity"),
                 "time_horizon": imp.get("revenue_horizon"),
                 "policy_impact_score": imp.get("policy_impact_score"),
+                "policy_to_earnings_stage": imp.get("policy_to_earnings_stage"),
                 "matched_keyword": imp.get("matched_keyword"),
                 "reason": imp.get("reason", ""),
                 "source": item.get("source", ""),
@@ -104,6 +105,7 @@ def build_event_signals(news_items):
                 "tier": imp.get("beneficiary_tier"),
                 "theme": imp.get("theme", ""),
                 "policy_impact_score": imp.get("policy_impact_score"),
+                "policy_to_earnings_stage": imp.get("policy_to_earnings_stage"),
             }
             for imp in rule_impacts
         ]
@@ -121,6 +123,7 @@ def build_event_signals(news_items):
             "policy_maturity": item.get("policy_maturity"),
             "time_horizon": top.get("revenue_horizon"),
             "policy_impact_score": top.get("policy_impact_score"),
+            "policy_to_earnings_stage": top.get("policy_to_earnings_stage"),
             "source_tier": item.get("source_tier"),
             "matched_keyword": top.get("matched_keyword"),
             "reason": top.get("reason", ""),

@@ -145,6 +145,9 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
         source_tier = item.get("source_tier")
         for imp in impacts:
             imp["policy_impact_score"] = impact_mod.compute_policy_impact_score(imp, maturity_score, source_tier)
+            imp["policy_to_earnings_stage"] = impact_mod.policy_to_earnings_stage(
+                maturity_score, imp.get("revenue_horizon")
+            )
         news.append({
             "id": item["id"],
             "title": title,
