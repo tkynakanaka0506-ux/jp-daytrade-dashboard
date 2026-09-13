@@ -53,6 +53,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: ニュース判定ロジックのテスト
+        run: python3 -m unittest discover -s tests
+
       - name: Javaプログラムをビルド
         run: mvn -q -B package
 
@@ -69,8 +72,14 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python3 news_analyzer.py "${{ steps.mode.outputs.mode }}" data.json
 
-      - name: HTML再生成(既存のPure Pythonレンダラー)
-        run: python3 render_dashboard.py data.json index.html
+      - name: 重要ニュースサイトを生成(index.html)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python3 build_news_site.py
+
+      - name: 旧デイトレードダッシュボードを生成(dashboard.html・アーカイブ用)
+        run: python3 render_dashboard.py data.json dashboard.html
 
       - name: 最注力銘柄をLINEへ通知(任意・条件を満たす銘柄がある場合のみ)
         env:
@@ -85,7 +94,9 @@ jobs:
 
           # 一時的に別の場所に退避
           cp data.json data.json.tmp
+          cp news.json news.json.tmp
           cp index.html index.html.tmp
+          cp dashboard.html dashboard.html.tmp
 
           # リモートの最新状態を取得して強制的に同期
           git fetch --prune origin main
@@ -94,9 +105,11 @@ jobs:
 
           # 退避していたファイルを戻す
           mv data.json.tmp data.json
+          mv news.json.tmp news.json
           mv index.html.tmp index.html
+          mv dashboard.html.tmp dashboard.html
 
-          git add data.json index.html
+          git add data.json news.json index.html dashboard.html
 
           if ! git diff --cached --quiet; then
             git commit -m "Auto update (Force)"
