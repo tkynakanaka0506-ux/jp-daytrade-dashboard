@@ -66,6 +66,8 @@ def build_signals(news_items):
                 "source": item.get("source", ""),
                 "url": item.get("url", ""),
                 "news_novelty": item.get("news_novelty"),
+                "policy_event_id": item.get("policy_event_id"),
+                "policy_event_is_update": item.get("policy_event_is_update", False),
             })
     return records
 
@@ -105,7 +107,12 @@ def build_event_signals(news_items):
             for imp in rule_impacts
         ]
         events.append({
-            "event_id": item["id"],
+            # policy_event_id があればそれを使う(=同一政策の続報系列を1つの
+            # イベントとして受け手側に見せる)。無ければ従来通りニュースID
+            # にフォールバックする(policy_lifecycle未実行の単体テスト等)。
+            "event_id": item.get("policy_event_id") or item["id"],
+            "policy_event_is_update": item.get("policy_event_is_update", False),
+            "policy_event_first_seen": item.get("policy_event_first_seen"),
             "theme": top.get("theme", ""),
             "primary_theme": primary_theme,
             "direction": top.get("direction", "watch"),

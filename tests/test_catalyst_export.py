@@ -18,7 +18,7 @@ REQUIRED_FIELDS = {
     "event_id", "code", "name", "published_at", "theme", "primary_theme",
     "direction", "tier", "policy_maturity", "time_horizon",
     "policy_impact_score", "matched_keyword", "reason", "source", "url",
-    "news_novelty",
+    "news_novelty", "policy_event_id", "policy_event_is_update",
 }
 
 
@@ -63,6 +63,31 @@ class CatalystExportTest(unittest.TestCase):
         self.assertEqual(r["direction"], "positive")
         self.assertEqual(r["tier"], "direct")
         self.assertEqual(r["primary_theme"], "半導体産業政策・国内投資支援")
+
+    def test_build_event_signals_falls_back_to_news_id_without_lifecycle(self):
+        events = catalyst_export.build_event_signals([_news_item()])
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["event_id"], "news-1", "policy_event_id未設定なら従来通りニュースIDを使う")
+        self.assertFalse(events[0]["policy_event_is_update"])
+
+    def test_build_event_signals_uses_policy_event_id_when_present(self):
+        item = _news_item()
+        item["policy_event_id"] = "semiconductor_support-20260901-01"
+        item["policy_event_is_update"] = True
+        item["policy_event_first_seen"] = "2026-09-01"
+        events = catalyst_export.build_event_signals([item])
+        self.assertEqual(events[0]["event_id"], "semiconductor_support-20260901-01",
+                         "policy_event_idがあれば続報系列の識別にそちらを使う")
+        self.assertTrue(events[0]["policy_event_is_update"])
+        self.assertEqual(events[0]["policy_event_first_seen"], "2026-09-01")
+
+    def test_build_signals_passes_through_policy_event_id(self):
+        item = _news_item()
+        item["policy_event_id"] = "yen_weak-20260901-01"
+        item["policy_event_is_update"] = True
+        records = catalyst_export.build_signals([item])
+        self.assertEqual(records[0]["policy_event_id"], "yen_weak-20260901-01")
+        self.assertTrue(records[0]["policy_event_is_update"])
 
     def test_export_signals_writes_valid_json(self):
         with tempfile.TemporaryDirectory() as tmpdir:

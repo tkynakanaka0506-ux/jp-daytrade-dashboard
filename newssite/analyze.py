@@ -9,6 +9,7 @@ from . import backtest as backtest_mod
 from . import catalyst_export
 from . import impact as impact_mod
 from . import llm as llm_mod
+from . import policy_lifecycle
 from . import rss as rss_mod
 from . import stocks as stocks_mod
 from .config import FEEDS, GOV_FEEDS, JST, MARKET_TICKERS, MAX_AGE_HOURS, MAX_NEWS_ITEMS, PER_FEED_LIMIT
@@ -103,6 +104,7 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
     today = datetime.now(JST).strftime("%Y-%m-%d")
     prior_titles = backtest_mod.load_prior_titles(today)
     prior_norms = [rss_mod._normalize(t) for t in prior_titles]
+    lifecycle_registry = policy_lifecycle._load_registry()
 
     news = []
     for item in raw_items:
@@ -115,6 +117,20 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
         category = impact_mod.pick_category(item, themes, rules)
         maturity_score, maturity_label = impact_mod.score_policy_maturity(title, rules)
         novelty, novelty_reason = _news_novelty(item, prior_norms)
+        # [FACTUAL LAYER] 同じ政策の続報に安定したIDを割り当てるだけで、
+        # score/direction/primary_themeの再計算はしない(policy_lifecycle.py参照)。
+        policy_event_id = policy_event_is_update = policy_event_first_seen = None
+        if themes:
+            policy_event_id, policy_event_is_update, policy_event_first_seen = (
+                policy_lifecycle.resolve_policy_event_id(
+                    lifecycle_registry,
+                    theme_id=themes[0].get("id", ""),
+                    matched_keyword=themes[0].get("_matched_keyword"),
+                    maturity_score=maturity_score,
+                    title=title,
+                    day=today,
+                )
+            )
         # [PRESENTATION LAYER] 表示用の統合スコアを付与するだけで、direction/theme
         # など impacts の中身(FACTUAL LAYER)は書き換えない。
         for imp in impacts:
@@ -136,12 +152,17 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             "policy_maturity_label": maturity_label,
             "news_novelty": novelty,
             "news_novelty_label": NOVELTY_LABEL[novelty],
+            "policy_event_id": policy_event_id,
+            "policy_event_is_update": policy_event_is_update,
+            "policy_event_first_seen": policy_event_first_seen,
             "themes": [t["label"] for t in themes],
             "summary": "",
             "impact_comment": "",
             "impacts": impacts,
             "related": item.get("related", [])[:4],
         })
+
+    policy_lifecycle._save_registry(lifecycle_registry)
 
     # 重要度 → 新しさ の順に並べ、上位だけをページに載せる
     news.sort(key=lambda n: (-n["importance"], -n["published_ts"]))
