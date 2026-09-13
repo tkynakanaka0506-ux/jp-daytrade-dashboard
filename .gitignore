@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 target/
 .DS_Store
+preview.html
+preview.news.json

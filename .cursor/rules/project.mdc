@@ -20,14 +20,20 @@ GitHub Actions で定期生成し、GitHub Pages で公開している。
   「〜の可能性がある」「〜が意識されやすい」に留める。投資助言にしない。
 - **数字を創作しない**: 見出しに無い株価・業績数値をコードやプロンプトで作らない。
 
-## エントリポイント
+## コマンド
+
+ローカル作業は `dev.py` を使う（出力は `preview.html` のみ。公開用の `index.html` は
+GitHub Actions だけが生成するので、ローカルから上書きしない）。
 
 ```bash
-python3 build_news_site.py --sample     # ネット無しで表示確認
-python3 build_news_site.py --no-llm     # 実データ・ルール判定のみ
-python3 build_news_site.py --render-only # HTMLだけ再生成
-python3 -m unittest discover -s tests   # テスト
+python3 dev.py serve --watch   # プレビュー＋保存のたび自動再生成・自動リロード
+python3 dev.py sample          # サンプルデータで生成(ネット不要)
+python3 dev.py build           # 実ニュースを取得して生成(--llm でAI補強)
+python3 dev.py check           # stocks.json / rules.json の整合性チェック
+python3 dev.py test            # テスト
 ```
+
+JSONデータを編集したら `dev.py check`、ロジックを変えたら `dev.py test` を必ず通すこと。
 
 ## どこを触るか
 

@@ -223,5 +223,40 @@ class RenderTest(unittest.TestCase):
         self.assertEqual(render.stars(0), "★☆☆☆☆")
 
 
+class DevToolTest(unittest.TestCase):
+    """開発用コマンド(dev.py)の検査機能。"""
+
+    def _check(self):
+        import argparse
+        import contextlib
+        import dev
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = dev.cmd_check(argparse.Namespace(verbose=False))
+        return code, buf.getvalue()
+
+    def test_check_passes_on_current_data(self):
+        code, out = self._check()
+        self.assertEqual(code, 0, out)
+        self.assertIn("整合性チェックOK", out)
+
+    def test_check_detects_unknown_theme_tag(self):
+        import dev
+        rules = impact_mod.load()
+        rules.themes[0]["impacts"][0]["themes"] = ["存在しないタグ"]
+        with mock.patch.object(impact_mod, "load", return_value=rules):
+            code, out = self._check()
+        self.assertEqual(code, 1)
+        self.assertIn("存在しないタグ", out)
+
+    def test_check_detects_duplicate_code(self):
+        master = stocks_mod.load()
+        master.stocks.append(dict(master.stocks[0]))
+        with mock.patch.object(stocks_mod, "load", return_value=master):
+            code, out = self._check()
+        self.assertEqual(code, 1)
+        self.assertIn("重複", out)
+
+
 if __name__ == "__main__":
     unittest.main()

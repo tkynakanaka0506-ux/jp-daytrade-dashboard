@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "サンプルデータで生成(デバッグ)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/build_news_site.py",
+      "args": ["--sample", "--out", "${workspaceFolder}/preview.html",
+               "--news-json", "${workspaceFolder}/preview.news.json"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "実ニュースを取得して生成(デバッグ)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/build_news_site.py",
+      "args": ["--no-llm", "--out", "${workspaceFolder}/preview.html",
+               "--news-json", "${workspaceFolder}/preview.news.json"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "テスト(デバッグ)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "unittest",
+      "args": ["discover", "-s", "tests", "-v"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

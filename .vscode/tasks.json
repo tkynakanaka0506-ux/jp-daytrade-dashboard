@@ -1,0 +1,57 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "① プレビューを開く(自動再生成つき)",
+      "type": "shell",
+      "command": "python3 dev.py serve --watch",
+      "windows": { "command": "py dev.py serve --watch" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "detail": "ローカルサーバを立てて preview.html を開く。newssite/ を保存するたびに作り直してブラウザも再読み込みする"
+    },
+    {
+      "label": "② サンプルデータで生成",
+      "type": "shell",
+      "command": "python3 dev.py sample",
+      "windows": { "command": "py dev.py sample" },
+      "problemMatcher": [],
+      "detail": "ネット接続なしで preview.html を作る"
+    },
+    {
+      "label": "③ 実ニュースを取得して生成",
+      "type": "shell",
+      "command": "python3 dev.py build",
+      "windows": { "command": "py dev.py build" },
+      "problemMatcher": [],
+      "detail": "Google ニュースRSSから実データを取得して preview.html を作る(--llm でAI補強)"
+    },
+    {
+      "label": "④ データの整合性チェック",
+      "type": "shell",
+      "command": "python3 dev.py check",
+      "windows": { "command": "py dev.py check" },
+      "problemMatcher": [],
+      "detail": "stocks.json / rules.json のタグ誤字・重複コードなどを検査する"
+    },
+    {
+      "label": "⑤ テスト",
+      "type": "shell",
+      "command": "python3 dev.py test -v",
+      "windows": { "command": "py dev.py test -v" },
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": [],
+      "detail": "ルール判定・重複統合・HTML生成のテストを実行する"
+    },
+    {
+      "label": "⑥ 初回セットアップ",
+      "type": "shell",
+      "command": "python3 dev.py setup",
+      "windows": { "command": "py dev.py setup" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": [],
+      "detail": "環境チェック → 整合性チェック → テスト → サンプル生成"
+    }
+  ]
+}

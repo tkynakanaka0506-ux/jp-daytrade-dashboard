@@ -32,27 +32,59 @@ APIキーが無くても、キーワードルールだけでサイトは完成�
 
 各銘柄には「なぜ効くのか」の理由文が必ず付きます。
 
-## ローカルで動かす（Cursor での作業手順）
+## Cursor で開発する
 
-Python 3.9 以上があれば依存パッケージのインストールは不要です（標準ライブラリのみ）。
+### 最初の1回
 
 ```bash
-# 1. 表示確認だけしたい(ネット接続不要・サンプルデータ)
-python3 build_news_site.py --sample
-open index.html          # Windows は start index.html
-
-# 2. 実際にニュースを取得して生成する
-python3 build_news_site.py --no-llm      # ルール判定のみ
-python3 build_news_site.py               # GEMINI_API_KEY / GROQ_API_KEY があればAI補強あり
-
-# 3. news.json はそのままでHTMLだけ作り直す(デザイン調整時に速い)
-python3 build_news_site.py --render-only
-
-# 4. テスト(ルール判定・重複統合・HTML生成)
-python3 -m unittest discover -s tests -v
+git clone https://github.com/tkynakanaka0506-ux/jp-daytrade-dashboard.git
+cd jp-daytrade-dashboard
+./setup_cursor.sh          # Windows は setup_cursor.bat をダブルクリック
 ```
 
-生成物は `news.json`（データ）と `index.html`（ページ）の2つだけです。
+`setup_cursor.sh` / `setup_cursor.bat` が、Pythonのバージョン確認 → データ整合性チェック →
+テスト → サンプルページ生成まで一気に済ませます。**pip install は不要**（標準ライブラリのみ）。
+そのまま Cursor でフォルダを開いてください。
+
+### ふだんの作業
+
+```bash
+python3 dev.py serve --watch   # これ1つでOK(Windows は py dev.py serve --watch)
+```
+
+ローカルサーバが立ち上がってブラウザでプレビューが開きます。`newssite/` のファイルを保存すると
+**自動でページを作り直し、ブラウザも自動で再読み込み**します。CSSや文言をいじりながら確認できます。
+
+Cursor のコマンドパレット（Cmd/Ctrl + Shift + P →「Tasks: Run Task」）からも同じことができます。
+`.vscode/tasks.json` に①〜⑥を登録済みです。
+
+### dev.py のコマンド
+
+| コマンド | 内容 |
+| --- | --- |
+| `python3 dev.py setup` | 初回セットアップ（環境確認＋チェック＋テスト＋生成） |
+| `python3 dev.py serve --watch` | プレビューを開いて、保存のたびに自動再生成・自動リロード |
+| `python3 dev.py sample` | サンプルデータで生成（ネット接続不要） |
+| `python3 dev.py build` | 実際のニュースを取得して生成（`--llm` でAI補強あり） |
+| `python3 dev.py render` | データはそのままHTMLだけ作り直す |
+| `python3 dev.py check` | `stocks.json` / `rules.json` のタグ誤字・コード重複を検査 |
+| `python3 dev.py test` | テストを実行 |
+| `python3 dev.py open` | 生成済みプレビューをブラウザで開く |
+
+`--port 8001` でポート変更、`--no-open` でブラウザ自動起動なし。
+
+> **ローカル作業は `preview.html` にだけ書き出します。**
+> 公開される `index.html` / `news.json` は GitHub Actions だけが生成するので、
+> ローカルの試し打ちが公開ページを壊すことはありません（両ファイルは `.gitignore` 済み）。
+
+### 手動で直接動かしたいとき
+
+```bash
+python3 build_news_site.py --sample      # 本番と同じ出力先(index.html)に書きます
+python3 build_news_site.py --no-llm
+python3 build_news_site.py --render-only
+python3 -m unittest discover -s tests -v
+```
 
 ## よくある編集
 
@@ -111,7 +143,10 @@ Secrets（すべて任意）: `GEMINI_API_KEY`, `GROQ_API_KEY`, `EDINET_API_KEY`
 ## ファイル構成
 
 ```
-build_news_site.py        エントリポイント(これを実行する)
+setup_cursor.sh / .bat    初回セットアップ(Cursorで開発を始めるとき)
+dev.py                    ローカル開発コマンド(serve/sample/build/check/test)
+.vscode/tasks.json        Cursorのコマンドパレットから実行できるタスク
+build_news_site.py        生成本体(GitHub Actions が実行する)
 newssite/
   config.py               収集フィード・定数
   rss.py                  Google ニュースRSS取得・重複統合
@@ -124,7 +159,8 @@ newssite/
   data/stocks.json        銘柄マスタ(150銘柄)
   data/rules.json         ニュース→影響銘柄のルール
 tests/test_pipeline.py    テスト
-index.html / news.json    生成物
+index.html / news.json    生成物(Actionsが生成・コミットする)
+preview.html              ローカル確認用の生成物(gitignore済み)
 
 # 以下は旧デイトレードダッシュボード(dashboard.html として存続)
 render_dashboard.py, news_analyzer.py, notify_line.py, data.json,
