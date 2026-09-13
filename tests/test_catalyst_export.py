@@ -19,7 +19,7 @@ REQUIRED_FIELDS = {
     "direction", "tier", "policy_maturity", "time_horizon",
     "policy_impact_score", "matched_keyword", "reason", "source", "url",
     "news_novelty", "policy_event_id", "policy_event_is_update", "source_tier",
-    "policy_to_earnings_stage", "ai_capex_impact_score", "intelligence_layer",
+    "policy_to_earnings_stage", "ai_capex_impact_score", "intelligence_layer", "theme_id",
 }
 
 
@@ -97,6 +97,15 @@ class CatalystExportTest(unittest.TestCase):
         self.assertEqual(records[0]["source_tier"], "commentary")
         events = catalyst_export.build_event_signals([item])
         self.assertEqual(events[0]["source_tier"], "commentary")
+
+    def test_build_signals_and_events_pass_through_theme_id(self):
+        item = _news_item()
+        item["impacts"][0]["theme_id"] = "ai_demand_risk"
+        records = catalyst_export.build_signals([item])
+        self.assertEqual(records[0]["theme_id"], "ai_demand_risk")
+        events = catalyst_export.build_event_signals([item])
+        self.assertEqual(events[0]["theme_id"], "ai_demand_risk")
+        self.assertEqual(events[0]["stocks"][0]["theme_id"], "ai_demand_risk")
 
     def test_build_signals_and_events_pass_through_policy_to_earnings_stage(self):
         item = _news_item()
