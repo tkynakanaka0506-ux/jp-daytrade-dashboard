@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from email.utils import parsedate_to_datetime
 
-from .config import JST, UA
+from .config import COMMENTARY_SOURCE_KEYWORDS, JST, UA
 
 try:  # certifi があれば使う(GitHub Actions 環境では通常不要)
     import certifi
@@ -61,6 +61,15 @@ def news_id(title, url):
     return hashlib.sha1(key.encode("utf-8")).hexdigest()[:12]
 
 
+def _source_tier(source):
+    """⑤ Google News経由(fetch())の記事だけに使う一次/二次/解説の判定。
+    fetch_direct()(省庁直接購読)はここを通さず、常にprimaryを直接付与する。
+    """
+    if source and any(kw in source for kw in COMMENTARY_SOURCE_KEYWORDS):
+        return "commentary"
+    return "secondary"
+
+
 def fetch(query, category="market", base_weight=1, limit=12, hl="ja", gl="JP", ceid="JP:ja", timeout=20):
     """1クエリ分の記事リストを返す。失敗時は空リスト(パイプラインは止めない)。"""
     url = (
@@ -91,6 +100,7 @@ def fetch(query, category="market", base_weight=1, limit=12, hl="ja", gl="JP", c
             "title": title,
             "url": link,
             "source": source or "Google News",
+            "source_tier": _source_tier(source),
             "published": published,
             "feed_query": query,
             "feed_category": category,
@@ -180,6 +190,7 @@ def fetch_direct(url, source_label, category="japan", base_weight=2, limit=15, t
             "title": title,
             "url": link,
             "source": source_label,
+            "source_tier": "primary",  # 省庁の一次情報を直接購読しているため確定
             "published": published,
             "feed_query": source_label,
             "feed_category": category,

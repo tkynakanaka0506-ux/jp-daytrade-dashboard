@@ -81,6 +81,67 @@ class RssTest(unittest.TestCase):
         with mock.patch("urllib.request.urlopen", side_effect=lambda *a, **k: FakeResponse(payload)):
             self.assertEqual(rss.collect([("q1", "policy", 1)], max_age_hours=24), [])
 
+    # ---- ⑤ 一次情報/二次情報/市場解説(source_tier) ----------
+
+    def test_fetch_tags_secondary_by_default(self):
+        payload = make_rss([("日銀が追加利上げを決定", "日本経済新聞", "https://example.com/a")])
+        with mock.patch("urllib.request.urlopen", return_value=FakeResponse(payload)):
+            items = rss.fetch("dummy")
+        self.assertEqual(items[0]["source_tier"], "secondary")
+
+    def test_fetch_tags_commentary_for_known_commentary_outlets(self):
+        payload = make_rss([("トヨタの上方修正をどう読むか", "東洋経済オンライン", "https://example.com/a")])
+        with mock.patch("urllib.request.urlopen", return_value=FakeResponse(payload)):
+            items = rss.fetch("dummy")
+        self.assertEqual(items[0]["source_tier"], "commentary")
+
+    def test_fetch_direct_always_tags_primary(self):
+        rdf = (
+            '<?xml version="1.0"?><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">'
+            '<item><title>省庁の発表</title><link>https://example.com/gov</link></item></rdf:RDF>'
+        ).encode("utf-8")
+        with mock.patch("urllib.request.urlopen", return_value=FakeResponse(rdf)):
+            items = rss.fetch_direct("https://example.com/rss", "経済産業省")
+        self.assertEqual(items[0]["source_tier"], "primary")
+
+
+class SourceTierScoreTest(unittest.TestCase):
+    """⑤ policy_impact_scoreへの信頼度反映(compute_policy_impact_score)。"""
+
+    def _entry(self):
+        return {"beneficiary_tier": "direct", "revenue_horizon": "0-3m", "strength": "大"}
+
+    def test_primary_source_does_not_discount(self):
+        base = impact_mod.compute_policy_impact_score(self._entry(), 100, None)
+        primary = impact_mod.compute_policy_impact_score(self._entry(), 100, "primary")
+        self.assertEqual(primary, base)
+
+    def test_secondary_source_discounts_score(self):
+        base = impact_mod.compute_policy_impact_score(self._entry(), 100, None)
+        secondary = impact_mod.compute_policy_impact_score(self._entry(), 100, "secondary")
+        self.assertLess(secondary, base)
+        self.assertEqual(secondary, round(base * 0.85))
+
+    def test_commentary_source_discounts_more_than_secondary(self):
+        base = impact_mod.compute_policy_impact_score(self._entry(), 100, None)
+        secondary = impact_mod.compute_policy_impact_score(self._entry(), 100, "secondary")
+        commentary = impact_mod.compute_policy_impact_score(self._entry(), 100, "commentary")
+        self.assertLess(commentary, secondary)
+        self.assertEqual(commentary, round(base * 0.65))
+
+    def test_unknown_source_tier_does_not_discount(self):
+        """source_tier不明(テスト等)なら従来通り割り引かない(勝手に不信を疑わない)。"""
+        base = impact_mod.compute_policy_impact_score(self._entry(), 100, None)
+        unknown = impact_mod.compute_policy_impact_score(self._entry(), 100, "something_new")
+        self.assertEqual(unknown, base)
+
+    def test_direction_theme_tier_untouched_by_source_tier(self):
+        """FACTUAL LAYERには一切影響しない(スコアの数値だけが変わる)。"""
+        entry = self._entry()
+        snapshot = dict(entry)
+        impact_mod.compute_policy_impact_score(entry, 100, "commentary")
+        self.assertEqual(entry, snapshot, "compute_policy_impact_scoreがimpact_entryを書き換えてはいけない")
+
 
 class ImpactTest(unittest.TestCase):
     @classmethod

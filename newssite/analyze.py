@@ -142,13 +142,16 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             )
         # [PRESENTATION LAYER] 表示用の統合スコアを付与するだけで、direction/theme
         # など impacts の中身(FACTUAL LAYER)は書き換えない。
+        source_tier = item.get("source_tier")
         for imp in impacts:
-            imp["policy_impact_score"] = impact_mod.compute_policy_impact_score(imp, maturity_score)
+            imp["policy_impact_score"] = impact_mod.compute_policy_impact_score(imp, maturity_score, source_tier)
         news.append({
             "id": item["id"],
             "title": title,
             "url": item["url"],
             "source": item["source"],
+            "source_tier": source_tier,
+            "source_tier_label": impact_mod.SOURCE_TIER_LABEL.get(source_tier, ""),
             "published_at": _fmt_dt(item.get("published")),
             "published_ts": item["published"].timestamp() if item.get("published") else 0,
             "category": category,

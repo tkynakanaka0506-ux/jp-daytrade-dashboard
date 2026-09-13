@@ -9,21 +9,26 @@ from datetime import datetime, timedelta
 
 from . import analyze, impact as impact_mod
 from .config import JST
-from .rss import news_id
+from .rss import _source_tier, news_id
 
+# ⑤ 一次情報/二次情報/市場解説の信頼度をサンプルでも確認できるよう、
+# 一部の見出しは意図的にsource(取得元)をprimary/commentaryの実例に
+# している(経済産業省=省庁直接購読を模したprimary、東洋経済オンライン=
+# COMMENTARY_SOURCE_KEYWORDS該当のcommentary)。tier未指定はNoneのまま
+# _source_tier()に渡し、fetch()と同じ判定(secondary/commentary)を通す。
 SAMPLE_HEADLINES = [
-    ("日銀、追加利上げを決定 政策金利0.75%に 長期金利は上昇", "日本経済新聞", "policy", 2, 3),
-    ("米政権、日本車への追加関税を表明 自動車業界に影響懸念", "ロイター", "trade", 2, 2),
-    ("中東情勢が緊迫 ホルムズ海峡に警戒感、原油価格が急騰", "時事通信", "geopolitics", 2, 1),
-    ("エヌビディア決算が市場予想を上回る AI半導体とデータセンター投資が拡大", "Bloomberg", "tech", 2, 1),
-    ("円安進行、一時1ドル=158円台 輸入コスト上昇に警戒", "NHK", "fx", 1, 0),
-    ("政府、半導体の対中輸出規制を強化へ 経済安全保障を重視", "共同通信", "trade", 2, 2),
-    ("トヨタ自動車、通期業績予想を上方修正 過去最高益へ", "日経QUICK", "corporate", 2, 1),
-    ("訪日外国人客が過去最高を更新 インバウンド消費も拡大", "観光経済新聞", "japan", 1, 0),
-    ("政府が経済対策を閣議決定 補正予算は規模拡大へ", "読売新聞", "japan", 1, 1),
-    ("米国株、ナスダックが反落 ハイテク株に利益確定売り", "ロイター", "us", 1, 0),
-    ("データセンター向け電力需要が急増 原発の再稼働論議も", "電気新聞", "resources", 1, 0),
-    ("大手商社に大規模なサイバー攻撃 情報漏えいの可能性", "ITmedia", "tech", 1, 0),
+    ("日銀、追加利上げを決定 政策金利0.75%に 長期金利は上昇", "日本経済新聞", "policy", 2, 3, None),
+    ("米政権、日本車への追加関税を表明 自動車業界に影響懸念", "ロイター", "trade", 2, 2, None),
+    ("中東情勢が緊迫 ホルムズ海峡に警戒感、原油価格が急騰", "時事通信", "geopolitics", 2, 1, None),
+    ("エヌビディア決算が市場予想を上回る AI半導体とデータセンター投資が拡大", "Bloomberg", "tech", 2, 1, None),
+    ("円安進行、一時1ドル=158円台 輸入コスト上昇に警戒", "NHK", "fx", 1, 0, None),
+    ("半導体の対中輸出規制を強化へ 経済安全保障を重視", "経済産業省", "trade", 2, 2, "primary"),
+    ("トヨタ自動車の上方修正をどう読むか 増益基調は続くか", "東洋経済オンライン", "corporate", 2, 1, None),
+    ("訪日外国人客が過去最高を更新 インバウンド消費も拡大", "観光経済新聞", "japan", 1, 0, None),
+    ("政府が経済対策を閣議決定 補正予算は規模拡大へ", "読売新聞", "japan", 1, 1, None),
+    ("米国株、ナスダックが反落 ハイテク株に利益確定売り", "ロイター", "us", 1, 0, None),
+    ("データセンター向け電力需要が急増 原発の再稼働論議も", "電気新聞", "resources", 1, 0, None),
+    ("大手商社に大規模なサイバー攻撃 情報漏えいの可能性", "ITmedia", "tech", 1, 0, None),
 ]
 
 
@@ -32,13 +37,14 @@ def sample_data():
     now = datetime.now(JST)
 
     items = []
-    for i, (title, source, category, weight, related_count) in enumerate(SAMPLE_HEADLINES):
+    for i, (title, source, category, weight, related_count, tier) in enumerate(SAMPLE_HEADLINES):
         published = now - timedelta(hours=i * 2 + 1)
         items.append({
             "id": news_id(title, f"https://example.com/sample/{i}"),
             "title": title,
             "url": f"https://news.google.com/search?q={i}",
             "source": source,
+            "source_tier": tier or _source_tier(source),
             "published": published,
             "feed_query": "sample",
             "feed_category": category,

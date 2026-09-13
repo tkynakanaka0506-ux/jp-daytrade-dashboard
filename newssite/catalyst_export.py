@@ -68,6 +68,7 @@ def build_signals(news_items):
                 "news_novelty": item.get("news_novelty"),
                 "policy_event_id": item.get("policy_event_id"),
                 "policy_event_is_update": item.get("policy_event_is_update", False),
+                "source_tier": item.get("source_tier"),
             })
     return records
 
@@ -120,6 +121,7 @@ def build_event_signals(news_items):
             "policy_maturity": item.get("policy_maturity"),
             "time_horizon": top.get("revenue_horizon"),
             "policy_impact_score": top.get("policy_impact_score"),
+            "source_tier": item.get("source_tier"),
             "matched_keyword": top.get("matched_keyword"),
             "reason": top.get("reason", ""),
             "source": item.get("source", ""),

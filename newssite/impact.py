@@ -135,8 +135,19 @@ _HORIZON_WEIGHT = {"0-3m": 1.0, "3-6m": 0.8, "6-12m": 0.6, "1-3y": 0.3}
 _STRENGTH_WEIGHT = {"大": 1.0, "中": 0.6, "小": 0.3}
 _DEFAULT_WEIGHT = 0.5
 
+# ⑤ 一次情報/二次情報/市場解説の信頼度(rss.pyのsource_tier)。
+# 「材料そのものの強さ」(4要素の加重平均)とは別軸の「この報道自体を
+# どれだけ信頼して良いか」を、掛け算のディスカウント係数として反映する。
+# 新しい重み要素として加算する(=既存4要素の重みを再配分する)のではなく、
+# 掛け算のペナルティにしているのは、情報源が弱いという理由で「材料は
+# 弱いが情報源は一次情報だから加点」のような逆方向の底上げをしないため
+# (一次情報であることは信頼度の上限であって、材料の強さの代わりにはならない)。
+# source_tier不明(None、テスト等)は従来通りディスカウントしない。
+SOURCE_TIER_LABEL = {"primary": "一次情報", "secondary": "二次情報", "commentary": "市場解説"}
+_SOURCE_CONFIDENCE_MULT = {"primary": 1.0, "secondary": 0.85, "commentary": 0.65}
 
-def compute_policy_impact_score(impact_entry, policy_maturity):
+
+def compute_policy_impact_score(impact_entry, policy_maturity, source_tier=None):
     """[PRESENTATION LAYER] 政策実現度×受益距離×時間軸×感応度(strength)の統合スコア(0-100)。
 
     あくまでランキング・表示用の合成値であり、direction/theme/direct-indirect
@@ -152,7 +163,8 @@ def compute_policy_impact_score(impact_entry, policy_maturity):
     strength_w = _STRENGTH_WEIGHT.get(impact_entry.get("strength"), _DEFAULT_WEIGHT)
 
     score = 100 * (0.35 * maturity_norm + 0.25 * tier_w + 0.20 * horizon_w + 0.20 * strength_w)
-    return round(score)
+    confidence_mult = _SOURCE_CONFIDENCE_MULT.get(source_tier, 1.0)
+    return round(score * confidence_mult)
 
 
 def score_importance(item, matched_themes, rules):

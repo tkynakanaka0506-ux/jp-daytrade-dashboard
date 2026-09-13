@@ -71,6 +71,19 @@ GOV_FEEDS = [
     ("https://www.ipa.go.jp/security/alert-rss.rdf", "IPA(セキュリティ注意喚起)", "tech", 2),
 ]
 
+# ⑤ 一次情報/二次情報/市場解説の信頼度区分(FEEDS経由=Google Newsの記事の
+# source名にこれらの語が含まれれば「市場解説(commentary)」とみなす。
+# GOV_FEEDS(省庁直接購読)は取得元の時点でprimaryと確定しているため
+# ここには含めない(rss.fetch_direct側でsource_tier="primary"を付与する)。
+# 現状「企業IR(適時開示等)を直接購読するprimary経路」は無い(バックログ入り)。
+# 経験則によるリストで網羅的ではない: 該当しない解説系メディアは
+# 従来通りsecondary扱いになる(信頼度を不当に下げるわけではないので実害は無い)。
+COMMENTARY_SOURCE_KEYWORDS = [
+    "東洋経済", "ダイヤモンド", "会社四季報", "みんかぶ", "株探",
+    "トウシル", "ZUUonline", "ZUU online", "Finasee", "モーニングスター",
+    "マネーポストWEB", "現代ビジネス",
+]
+
 # 市況ヘッダーに出す指標(data.json 由来。取得できない場合は非表示)
 MARKET_TICKERS = [
     ("nikkei225", "日経平均"),

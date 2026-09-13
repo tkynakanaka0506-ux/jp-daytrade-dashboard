@@ -160,6 +160,16 @@ def news_card_html(item, now):
         f'♻️ {esc(item.get("news_novelty_label", ""))}</span>'
         if item.get("news_novelty") == "low" else ""
     )
+    # ⑤ 一次情報/二次情報/市場解説。secondary(大多数)は無表示にして視覚的な
+    # ノイズを避け、primary(信頼度を上げた)とcommentary(下げた)だけ明示する。
+    source_tier = item.get("source_tier")
+    source_tier_badge = (
+        f'<span class="source-tier-badge tier-{esc(source_tier)}" '
+        f'title="情報源の区分。政策インパクトスコアの信頼度に反映済み(一次情報=そのまま/'
+        f'二次情報=×0.85/市場解説=×0.65)。表示のみでtheme/direction等の判定には影響しません">'
+        f'{"🏛️" if source_tier == "primary" else "💬"} {esc(item.get("source_tier_label", ""))}</span>'
+        if source_tier in ("primary", "commentary") else ""
+    )
     return f"""
     <article class="news-card" data-category="{esc(item['category'])}" data-importance="{esc(item['importance'])}"
              data-codes="{esc(codes)}" data-search="{esc(search_blob)}" data-ts="{esc(item.get('published_at', ''))}"
@@ -171,6 +181,7 @@ def news_card_html(item, now):
         {future_badge}
         {maturity_badge}
         {novelty_badge}
+        {source_tier_badge}
         <span class="time">{esc(_relative(item.get('published_at'), now))}</span>
         <span class="source">{esc(item.get('source', ''))}</span>
         <button class="copy-link" type="button" data-url="{esc(item['url'])}" data-title="{esc(item['title'])}"
@@ -418,6 +429,9 @@ header.site::before{content:"";position:absolute;inset:0;pointer-events:none;
   border-radius:999px;padding:1px 10px;font-size:12px;white-space:nowrap;font-family:var(--font-mono)}
 .novelty-badge{background:var(--card-2);border:1px solid rgba(224,195,74,.4);color:var(--flat);
   border-radius:999px;padding:1px 10px;font-size:12px;white-space:nowrap}
+.source-tier-badge{border-radius:999px;padding:1px 10px;font-size:12px;white-space:nowrap;background:var(--card-2)}
+.source-tier-badge.tier-primary{border:1px solid rgba(77,255,126,.4);color:var(--accent)}
+.source-tier-badge.tier-commentary{border:1px solid rgba(224,195,74,.4);color:var(--flat)}
 
 .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;z-index:30;
   background:linear-gradient(90deg,var(--accent-lime),var(--accent),var(--accent-2),var(--accent-3));

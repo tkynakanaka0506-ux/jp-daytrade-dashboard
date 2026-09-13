@@ -18,7 +18,7 @@ REQUIRED_FIELDS = {
     "event_id", "code", "name", "published_at", "theme", "primary_theme",
     "direction", "tier", "policy_maturity", "time_horizon",
     "policy_impact_score", "matched_keyword", "reason", "source", "url",
-    "news_novelty", "policy_event_id", "policy_event_is_update",
+    "news_novelty", "policy_event_id", "policy_event_is_update", "source_tier",
 }
 
 
@@ -88,6 +88,14 @@ class CatalystExportTest(unittest.TestCase):
         records = catalyst_export.build_signals([item])
         self.assertEqual(records[0]["policy_event_id"], "yen_weak-20260901-01")
         self.assertTrue(records[0]["policy_event_is_update"])
+
+    def test_build_signals_and_events_pass_through_source_tier(self):
+        item = _news_item()
+        item["source_tier"] = "commentary"
+        records = catalyst_export.build_signals([item])
+        self.assertEqual(records[0]["source_tier"], "commentary")
+        events = catalyst_export.build_event_signals([item])
+        self.assertEqual(events[0]["source_tier"], "commentary")
 
     def test_export_signals_writes_valid_json(self):
         with tempfile.TemporaryDirectory() as tmpdir:
