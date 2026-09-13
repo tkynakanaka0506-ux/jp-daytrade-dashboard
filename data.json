@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14 04:09",
+  "generated_at": "2026-09-14 07:44",
   "run_type": "evening",
   "us_market": {
     "sp500": {
@@ -24,14 +24,14 @@
     }
   },
   "fx": {
-    "value": "153.55円",
-    "change_pct": -0.6,
-    "asof": "9/12終値"
+    "value": "153.70円",
+    "change_pct": -0.51,
+    "asof": "9/14終値"
   },
   "nikkei_futures": {
-    "value": "64,535.00",
-    "change_pct": 0.81,
-    "asof": "9/12終値"
+    "value": "63,305.00",
+    "change_pct": -2.17,
+    "asof": "9/14終値"
   },
   "nikkei225": {
     "value": "64,011.34",
@@ -969,85 +969,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-14 04:09",
-    "tdnet_afterclose": "2026-09-14 04:09",
-    "technical": "2026-09-14 04:09",
-    "growth_candidates": "2026-09-14 04:09",
-    "pre_earnings_watch": "2026-09-14 04:09",
-    "edinet_large_holdings": "2026-09-14 04:09",
-    "economic_calendar": "2026-09-14 04:09",
-    "pre_earnings_indicator": "2026-09-14 04:10"
+    "market_quotes": "2026-09-14 07:44",
+    "tdnet_afterclose": "2026-09-14 07:44",
+    "technical": "2026-09-14 07:44",
+    "growth_candidates": "2026-09-14 07:44",
+    "pre_earnings_watch": "2026-09-14 07:44",
+    "edinet_large_holdings": "2026-09-14 07:44",
+    "economic_calendar": "2026-09-14 07:44",
+    "pre_earnings_indicator": "2026-09-14 07:45"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:45",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:45",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:45",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:45",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:45",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:09",
+      "checked_at": "2026-09-14 07:44",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-14 04:10",
+      "checked_at": "2026-09-14 07:45",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1066,83 +1066,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6758": {
       "last": 11.73,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "8306": {
       "last": 12.07,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "9984": {
       "last": 6.7,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6861": {
       "last": 2.93,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6954": {
       "last": 20.59,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "7974": {
       "last": 9.39,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6098": {
       "last": 1.42,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "8035": {
       "last": 11.96,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "9433": {
       "last": 0.83,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "9432": {
       "last": 3.57,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "7267": {
       "last": 2.5,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6367": {
       "last": 21.73,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "9983": {
       "last": 2.77,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "4063": {
       "last": 21.13,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6857": {
       "last": 1.43,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "4519": {
       "last": 54.19,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "5401": {
       "last": 10.93,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "2413": {
       "last": 4.48,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     },
     "6645": {
       "last": 13.42,
-      "ts": "2026-09-14 04:09"
+      "ts": "2026-09-14 07:45"
     }
   },
   "pre_earnings_indicator": [
