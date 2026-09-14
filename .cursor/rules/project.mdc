@@ -1,0 +1,57 @@
+---
+description: このリポジトリの構成と編集ルール
+alwaysApply: true
+---
+
+# jp-daytrade-dashboard（重要ニュース × 影響銘柄サイト）
+
+日本株の重要ニュースを集め、各ニュースで影響が出うる銘柄を表示する静的サイト。
+GitHub Actions で定期生成し、GitHub Pages で公開している。
+
+## 方針
+
+- **依存を増やさない**: Python標準ライブラリのみで動かす（pip install 不要を維持）。
+  ビルドツール・フレームワーク・npmパッケージは導入しない。
+- **APIキー無しでも動く**: 生成AI(`newssite/llm.py`)はあくまで補強。キーが無い/失敗した場合も
+  `newssite/data/rules.json` のルール判定だけでページが完成する状態を壊さないこと。
+- **ネットワーク失敗で落とさない**: RSS取得やAPI呼び出しの失敗は握りつぶしてログに残し、
+  ページ生成は続行する（パイプライン全体を止めない）。
+- **断定表現を書かない**: 表示文・プロンプトともに「必ず上がる」等の確約表現は使わず、
+  「〜の可能性がある」「〜が意識されやすい」に留める。投資助言にしない。
+- **数字を創作しない**: 見出しに無い株価・業績数値をコードやプロンプトで作らない。
+
+## コマンド
+
+ローカル作業は `dev.py` を使う（出力は `preview.html` のみ。公開用の `index.html` は
+GitHub Actions だけが生成するので、ローカルから上書きしない）。
+
+```bash
+python3 dev.py serve --watch   # プレビュー＋保存のたび自動再生成・自動リロード
+python3 dev.py sample          # サンプルデータで生成(ネット不要)
+python3 dev.py build           # 実ニュースを取得して生成(--llm でAI補強)
+python3 dev.py check           # stocks.json / rules.json の整合性チェック
+python3 dev.py test            # テスト
+```
+
+JSONデータを編集したら `dev.py check`、ロジックを変えたら `dev.py test` を必ず通すこと。
+
+## どこを触るか
+
+- 銘柄追加・テーマタグ変更 → `newssite/data/stocks.json`
+- ニュース→銘柄の関係、重要度キーワード → `newssite/data/rules.json`
+- 収集するニュースの種類 → `newssite/config.py` の `FEEDS`
+- 見た目・ページ構成 → `newssite/render.py`（`CSS` / `JS` / `build_html`）
+- AIへの指示文 → `newssite/llm.py` の `PROMPT_HEADER`
+
+`stocks.json` の `themes` と `rules.json` の `impacts[].themes` は同じタグ語彙。
+新しいタグを使うときは両方に入れる（テストが不整合を検出する）。
+
+## 生成物
+
+`index.html` と `news.json` は自動生成物。手で編集せず、生成元のコードを直すこと。
+
+## 旧ダッシュボード
+
+`render_dashboard.py` / `news_analyzer.py` / `notify_line.py` / `Main.java` は
+旧デイトレードダッシュボード（`dashboard.html`）用。市況ヘッダーの指数データは
+`data.json` 経由でニュースサイトも使っているため、消さずに残している。
