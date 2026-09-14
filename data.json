@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-09-14 20:43",
-  "run_type": "morning",
+  "generated_at": "2026-09-14 22:31",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,656.98",
-      "change_pct": 0.86,
-      "asof": "9/12終値"
+      "value": "7,600.26",
+      "change_pct": -0.74,
+      "asof": "9/14終値"
     },
     "dow": {
-      "value": "52,573.29",
-      "change_pct": 0.98,
-      "asof": "9/12終値"
+      "value": "52,413.17",
+      "change_pct": -0.3,
+      "asof": "9/14終値"
     },
     "nasdaq": {
-      "value": "26,333.03",
-      "change_pct": 0.96,
-      "asof": "9/12終値"
+      "value": "26,012.93",
+      "change_pct": -1.22,
+      "asof": "9/14終値"
     },
     "sox": {
-      "value": "11,824.00",
-      "change_pct": 1.81,
-      "asof": "9/12終値"
+      "value": "11,198.86",
+      "change_pct": -5.29,
+      "asof": "9/14終値"
     }
   },
   "fx": {
-    "value": "154.54円",
-    "change_pct": 0.04,
+    "value": "154.88円",
+    "change_pct": 0.26,
     "asof": "9/14終値"
   },
   "nikkei_futures": {
-    "value": "62,990.00",
-    "change_pct": -2.66,
+    "value": "63,090.00",
+    "change_pct": -2.5,
     "asof": "9/14終値"
   },
   "nikkei225": {
@@ -39,7 +39,9 @@
     "asof": "9/14終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [
+  "tdnet_morning": [],
+  "movers_morning": [],
+  "tdnet_afterclose": [
     {
       "time": "20:00",
       "code": "―",
@@ -201,8 +203,6 @@
       "tag": "エク"
     }
   ],
-  "movers_morning": [],
-  "tdnet_afterclose": [],
   "afterclose_news": [],
   "movers_afterclose": [],
   "technical": [
@@ -950,7 +950,7 @@
     {
       "code": "9983",
       "company": "ファーストリテイリング",
-      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉 - news.nicovideo.jp",
+      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉 - ニコニコニュース",
       "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1ISFJkWUNOY2ZLMUFidC1pMXhZTFlRMkhGUzAzMWFXanpwWGhza0g5Rzh6eHB5N1doalhwUEN3Y0JxRk85Q0stT0RTMGhFaTBfdTRBbw?oc=5",
       "keyword": "データセンター",
       "asof": "9/1 16:00"
@@ -969,85 +969,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-14 20:43",
-    "tdnet_morning": "2026-09-14 20:43",
-    "technical": "2026-09-14 20:43",
-    "growth_candidates": "2026-09-14 20:43",
-    "pre_earnings_watch": "2026-09-14 20:43",
-    "edinet_large_holdings": "2026-09-14 20:43",
-    "economic_calendar": "2026-09-14 20:43",
-    "pre_earnings_indicator": "2026-09-14 20:45"
+    "market_quotes": "2026-09-14 22:31",
+    "tdnet_afterclose": "2026-09-14 22:31",
+    "technical": "2026-09-14 22:31",
+    "growth_candidates": "2026-09-14 22:31",
+    "pre_earnings_watch": "2026-09-14 22:31",
+    "edinet_large_holdings": "2026-09-14 22:31",
+    "economic_calendar": "2026-09-14 22:31",
+    "pre_earnings_indicator": "2026-09-14 22:33"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-14 20:43",
+      "checked_at": "2026-09-14 22:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "updated",
-      "checked_at": "2026-09-14 20:43",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-09-14 22:31",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-09-14 20:43",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-09-14 22:31",
+      "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-14 20:43",
+      "checked_at": "2026-09-14 22:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-14 20:43",
+      "checked_at": "2026-09-14 22:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-14 20:43",
+      "checked_at": "2026-09-14 22:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "unavailable",
-      "checked_at": "2026-09-14 20:44",
-      "message": "ニュース分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-09-14 22:32",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
-      "state": "not_requested",
-      "checked_at": "2026-09-14 20:44",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-09-14 22:32",
+      "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
-      "state": "unavailable",
-      "checked_at": "2026-09-14 20:44",
-      "message": "話題株分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-09-14 22:32",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-09-14 20:44",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-09-14 22:32",
+      "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-14 20:44",
+      "checked_at": "2026-09-14 22:32",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-14 20:43",
+      "checked_at": "2026-09-14 22:31",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-14 20:43",
+      "checked_at": "2026-09-14 22:31",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-14 20:45",
+      "checked_at": "2026-09-14 22:33",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1066,83 +1066,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6758": {
       "last": 11.73,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "8306": {
       "last": 12.07,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "9984": {
       "last": 6.7,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6861": {
       "last": 2.93,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6954": {
       "last": 20.59,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "7974": {
       "last": 9.39,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6098": {
       "last": 1.42,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "8035": {
       "last": 11.96,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "9433": {
       "last": 0.83,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "9432": {
       "last": 3.57,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "7267": {
       "last": 2.5,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6367": {
       "last": 21.73,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "9983": {
       "last": 2.77,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "4063": {
       "last": 21.13,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6857": {
       "last": 1.43,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "4519": {
       "last": 54.19,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "5401": {
       "last": 10.93,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "2413": {
       "last": 4.48,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     },
     "6645": {
       "last": 13.42,
-      "ts": "2026-09-14 20:44"
+      "ts": "2026-09-14 22:32"
     }
   },
   "pre_earnings_indicator": [
