@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-09-15 04:41",
+  "generated_at": "2026-09-15 08:38",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,629.10",
-      "change_pct": -0.36,
+      "value": "7,619.98",
+      "change_pct": -0.48,
       "asof": "9/15終値"
     },
     "dow": {
-      "value": "52,452.89",
-      "change_pct": -0.23,
+      "value": "52,421.20",
+      "change_pct": -0.29,
       "asof": "9/15終値"
     },
     "nasdaq": {
-      "value": "26,247.46",
-      "change_pct": -0.32,
+      "value": "26,186.41",
+      "change_pct": -0.56,
       "asof": "9/15終値"
     },
     "sox": {
-      "value": "11,177.53",
-      "change_pct": -5.47,
+      "value": "11,131.28",
+      "change_pct": -5.86,
       "asof": "9/15終値"
     }
   },
   "fx": {
-    "value": "154.25円",
-    "change_pct": -0.15,
+    "value": "154.40円",
+    "change_pct": 0.63,
     "asof": "9/15終値"
   },
   "nikkei_futures": {
-    "value": "63,310.00",
-    "change_pct": -2.16,
+    "value": "63,165.00",
+    "change_pct": -2.39,
     "asof": "9/15終値"
   },
   "nikkei225": {
@@ -42,6 +42,110 @@
   "tdnet_morning": [],
   "movers_morning": [],
   "tdnet_afterclose": [
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＷＴ金",
+      "title": "上場ETF（管理会社：WisdomTree、外国投資法人：CSL）に関する日々の開示事項　",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536288.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＷＴ金",
+      "title": "上場ETF（管理会社：WisdomTree、外国投資法人：MSL）に関する日々の開示事項　",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536287.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "Ｓｙｎｓ",
+      "title": "Notice Regarding Synspective OMNIA, a New Program for Sharing Small SAR Satellite Constellation Capacity",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915535430.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "Ｓｙｎｓ",
+      "title": "小型SAR衛星コンステレーションを共有する新プログラム「Synspective OMNIA」のリリースに関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536230.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ダイナマップ",
+      "title": "ダイナミックマッププラットフォームの高精度3次元地図データが 日産「エルグランド」に採用 累計採用実績は6社39車種に拡大",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915535431.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＧＡテクノ",
+      "title": "「ITANDI BB」、累計利用仲介店舗数が10万店舗を突破",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536272.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ウネリー",
+      "title": "unerry、技研トラステムが提供する商業施設向けマーケティング支援サービス「PASSER-MARKETING」と「Beacon Bank」の連携を開始",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536250.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:30",
+      "code": "―",
+      "company": "ＺＥＴＡ",
+      "title": "ZETA、Shopify App Storeでハッシュタグ活用エンジン「ZETA HASHTAG」の提供を開始",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536192.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "ＧＯ",
+      "title": "Notice Regarding the Execution of a Collaboration Agreement Based on a Strategic Partnership for the Commercialization of Fully Autonomous Taxis with",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536210.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "ＧＯ",
+      "title": "Waymo LLCとの自動運転タクシーの商用化に向けた戦略的パートナーシップに基づく協業契約締結に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536186.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "旅工房",
+      "title": "「第32回定時株主総会招集ご通知」の一部訂正について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536280.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "レオパレス",
+      "title": "[Delayed]Notice Regarding Expression of Opinion in Support of the Tender Offer for the Share Certificates, Etc. of the Company by K891, Inc. and Recom",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536286.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "08:00",
+      "code": "―",
+      "company": "揚羽",
+      "title": "揚羽、〈日本赤十字社〉の創立150周年を契機にした組織変革で伴走支援",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260911535298.pdf",
+      "tag": "他"
+    },
     {
       "time": "00:30",
       "code": "―",
@@ -86,22 +190,6 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "かどや製油、株式会社ITG-Gホールディングスによる当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨のお知らせ 他 9月14日(月) 23:45",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536265.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "かどや製油、株式会社ITG-Gホールディングスによるかどや製油株式会社（証券コード：2612）の普通株式に対する公開買付けの開始に関するお知らせ 他 9月14日(月) 23:45",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536264.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
       "title": "かどや製油、2027年3月期配当予想の修正（無配）及び株主優待制度の廃止に関するお知らせ 配当 9月14日(月) 23:45",
       "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536248.pdf",
       "tag": "他"
@@ -110,96 +198,8 @@
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "レオパレス、Notice Concerning Execution of Memorandum of Understanding regarding Transfer of Elderly Care Business (Transfer of Shares Involving Changes in Specif 他 9月14日(月) 20:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536101.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "レオパレス、株式会社K891による当社株券等に対する公開買付けに関する賛同の意見表明及び応募推奨並びに特定子会社の異動を伴う株式譲渡に関するお知らせ 他 9月14日(月) 20:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536142.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "レオパレス、Notice Concerning Revision of Interim and Year-End Dividend Forecast for the Fiscal Year Ending March 31, 2027 (No Dividend) 他 9月14日(月) 20:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536100.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "レオパレス、2027年３月期の中間配当及び期末配当予想の修正（無配）に関するお知らせ 配当 9月14日(月) 20:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536086.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "レオパレス、シルバー事業の譲渡（特定子会社の異動を伴う株式譲渡）に関する基本合意書の締結並びに特別損失の計上及び業績予想の修正に関するお知らせ 業修 9月14日(月) 20:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536068.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "光通信、公開買付け開始時点では子会社である株式会社K891における株式会社レオパレス21（証券コード：8848）の株券等に対する公開買付けの開始及び子会社の異動（関連 他 9月14日(月) 19:45",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536244.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "光通信、Notice Regarding Commencement of Tender Offer by K891, Inc. which is a subsidiary as of the date of commencement of the Tender Offer for Share Certifi 他 9月14日(月) 19:45",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536219.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "リベラウェア、2026年７月期通期決算説明会に関する質疑応答内容のお知らせ 他 9月14日(月) 19:15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536233.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "リベラウェア、2026年７月期 通期決算説明会動画公開のお知らせ 他 9月14日(月) 19:15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536232.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "アスア、（数値データ訂正）「株主優待額の増額および業績予想の修正に関するお知らせ」における数値データ（XBRL）の訂正について 追訂 9月14日(月) 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536205.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "ファイバーＧ、Sponsored report for FY2026 Full Year Financial Results by SESSA Partners 他 9月14日(月) 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536229.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "―",
-      "code": "―",
-      "company": "―",
-      "title": "北ガス、Notice Concerning Status and Completion of Acquisition of Treasury Shares 他 9月14日(月) 19:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536231.pdf",
+      "title": "かどや製油、株式会社ITG-Gホールディングスによる当社株式に対する公開買付けに関する賛同の意見表明及び応募推奨のお知らせ 他 9月14日(月) 23:45",
+      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914536265.pdf",
       "tag": "他"
     }
   ],
@@ -918,7 +918,7 @@
     {
       "code": "6954",
       "company": "ファナック",
-      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説《再配信》 - diamond.jp",
+      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説《再配信》 - ダイヤモンド・オンライン",
       "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5zdkJtcUZFQzdZZTR2RngtQjh2Mks0YTNjTDBfbVpNTm5pWkNLNEd6bWkwZUM1dUhGWEhiZ2pGdUk3QWdsdUJZcmJEYWLSAU9BVV95cUxQcGx0dnFjWW0xXzFXUlhPc1Y5cnRXbWx3ZUJfMzZRaXhKZk16N1BMSmdsSExCTnl2QUswOEpQQk5TRTJRaGJNa0ZIejlfZEY0?oc=5",
       "keyword": "設備投資",
       "asof": "9/12 04:40"
@@ -961,85 +961,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-15 04:41",
-    "tdnet_afterclose": "2026-09-15 04:41",
-    "technical": "2026-09-15 04:41",
-    "growth_candidates": "2026-09-15 04:41",
-    "pre_earnings_watch": "2026-09-15 04:41",
-    "edinet_large_holdings": "2026-09-15 04:41",
-    "economic_calendar": "2026-09-15 04:41",
-    "pre_earnings_indicator": "2026-09-15 04:42"
+    "market_quotes": "2026-09-15 08:38",
+    "tdnet_afterclose": "2026-09-15 08:38",
+    "technical": "2026-09-15 08:38",
+    "growth_candidates": "2026-09-15 08:38",
+    "pre_earnings_watch": "2026-09-15 08:38",
+    "edinet_large_holdings": "2026-09-15 08:38",
+    "economic_calendar": "2026-09-15 08:38",
+    "pre_earnings_indicator": "2026-09-15 08:39"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-15 04:42",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-15 04:42",
+      "checked_at": "2026-09-15 08:38",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-15 04:42",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-09-15 04:42",
+      "checked_at": "2026-09-15 08:38",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-15 04:42",
+      "checked_at": "2026-09-15 08:38",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:41",
+      "checked_at": "2026-09-15 08:38",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-15 04:42",
+      "checked_at": "2026-09-15 08:39",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1058,83 +1058,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6758": {
       "last": 11.73,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "8306": {
       "last": 12.07,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "9984": {
       "last": 6.7,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6861": {
       "last": 2.93,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6954": {
       "last": 20.59,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "7974": {
       "last": 9.39,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6098": {
       "last": 1.42,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "8035": {
       "last": 11.96,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "9433": {
       "last": 0.83,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "9432": {
       "last": 3.57,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "7267": {
       "last": 2.5,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6367": {
       "last": 21.73,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "9983": {
       "last": 2.77,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "4063": {
       "last": 21.13,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6857": {
       "last": 1.43,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "4519": {
       "last": 54.19,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "5401": {
       "last": 10.93,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "2413": {
       "last": 4.48,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     },
     "6645": {
       "last": 13.42,
-      "ts": "2026-09-15 04:42"
+      "ts": "2026-09-15 08:38"
     }
   },
   "pre_earnings_indicator": [
