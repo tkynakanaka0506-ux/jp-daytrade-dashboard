@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15 16:42",
+  "generated_at": "2026-09-15 20:01",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "154.86円",
-    "change_pct": 0.94,
+    "value": "154.83円",
+    "change_pct": 0.91,
     "asof": "9/15終値"
   },
   "nikkei_futures": {
-    "value": "63,225.00",
-    "change_pct": 0.11,
+    "value": "63,550.00",
+    "change_pct": 0.63,
     "asof": "9/15終値"
   },
   "nikkei225": {
@@ -41,163 +41,163 @@
   "overnight_news": [],
   "tdnet_morning": [
     {
-      "time": "16:40",
+      "time": "18:30",
       "code": "―",
-      "company": "ＫｅｅＰｅｒ",
-      "title": "Notice Concerning Stock Split, Partial Amendment to the Shareholder Benefit Program and Revision of Dividend Forecast",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536789.pdf",
+      "company": "ニプロ",
+      "title": "Notice Regarding Conversion Results and Redemption of Euro-Yen Denominated Convertible Bonds Due 2026",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536860.pdf",
       "tag": "他"
     },
     {
-      "time": "16:40",
+      "time": "18:30",
       "code": "―",
-      "company": "ＫｅｅＰｅｒ",
-      "title": "株式分割、株主優待制度の一部変更及び配当予想の修正に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536785.pdf",
+      "company": "ニプロ",
+      "title": "2026年満期ユーロ円建転換社債型新株予約権付社債の転換結果および償還に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536854.pdf",
       "tag": "エク"
     },
     {
-      "time": "16:37",
+      "time": "18:00",
       "code": "―",
-      "company": "アドヴァンＧ",
-      "title": "コーポレート・ガバナンスに関する報告書 2026/09/15",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536606.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "大成建",
-      "title": "Notice regarding the Decision of the Supreme Court on the Case for the Alleged Violation of the Antimonopoly Act",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260731505704.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "大成建",
-      "title": "独占禁止法違反容疑事件に係る最高裁判所決定に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260731505679.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "中部飼",
-      "title": "Notice of the Establishment of a Subsidiary (Specified Subsidiary) in China",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536084.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "中部飼",
-      "title": "中国における子会社（特定子会社）の設立に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536083.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "日創グループ",
-      "title": "当社連結子会社間の会社分割（吸収分割）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536726.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "フエルト",
-      "title": "自己株式立会外買付取引（ＴｏＳＴＮｅＴ－３）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536759.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "大日精",
-      "title": "自己株式の取得及び自己株式立会外買付取引（ToSTNeT-３）による自己株式の買付けに関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536324.pdf",
-      "tag": "自社"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "大日精",
-      "title": "Notice Concerning Acquisition of Treasury Shares and Purchase of Treasury Shares Through the Off-auction Own Share Repurchase Trading System",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536325.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "Ｗｅｌｂｙ",
-      "title": "第三者割当による新株式の発行に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536524.pdf",
-      "tag": "エク"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "ベストワン",
-      "title": "MSCベリッシマで航く2027年年末年始クルーズ販売開始 那覇発着4泊5日 年忘れ90,800円～/ニューイヤー114,800円～",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536712.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "ベビカレ",
-      "title": "株式会社オレンジページの株式取得（子会社化）に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260726599677.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:30",
-      "code": "―",
-      "company": "ニチリョク",
-      "title": "抽選式株主優待制度の拡充に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536647.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "ローランド",
-      "title": "人気キャラクター「ミニオン」と音楽を楽しめるキーボード『GO:KEYS 3 Minion』を発売",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536497.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:10",
-      "code": "―",
-      "company": "Ｊトラスト",
-      "title": "（開示事項の経過）当社のGroup Lease PCLに対する現状の認識について",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536745.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "16:05",
-      "code": "―",
-      "company": "ヴィス",
-      "title": "株主優待制度の新設およびパドルデザインカンパニー株式会社の株式取得に関する説明動画公開のお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536753.pdf",
+      "company": "臨時株主総会開催日時",
+      "title": "開催場所及び付議議案の決定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536484.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "営業外収益（補助金収入）の計上に関するお知らせ 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536734.pdf",
+      "title": "業績予想の修正に関するお知らせ 業修 今日 18:00",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536483.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "鹿島",
+      "title": "Regarding the Decision (Final Appeal Hearing) on Case for Violation of the Antimonopoly Act",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536832.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "鹿島",
+      "title": "独占禁止法違反事件における決定（上告審）について",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536813.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "グロースｘＰ",
+      "title": "2026年８月期連結業績予想の修正に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536821.pdf",
+      "tag": "業修"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ブルーミーム",
+      "title": "会社分割（吸収分割）の効力発生日の変更に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536828.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "リート物流Ｆ",
+      "title": "ＥＴＦの収益分配金のお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536834.pdf",
+      "tag": "配当"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ブックオフＧ",
+      "title": "Notice Regarding the Disposal of Treasury Shares as Restricted Stock Compensation",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536784.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "18:00",
+      "code": "―",
+      "company": "ブックオフＧ",
+      "title": "譲渡制限付株式報酬としての自己株式の処分に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536782.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "17:45",
+      "code": "―",
+      "company": "ゼビオＨＤ",
+      "title": "Notice Concerning the Determination of Allotment of Stock Acquisition Rights as Stock-Based Compensation-Type Stock Options to Directors",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536851.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:45",
+      "code": "―",
+      "company": "ゼビオＨＤ",
+      "title": "取締役に対する株式報酬型ストックオプションの内容確定に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536650.pdf",
+      "tag": "エク"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "2026年12月期中間発行者情報 他 今日 17:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260904531783.pdf",
       "tag": "他"
     },
     {
       "time": "―",
       "code": "―",
       "company": "―",
-      "title": "臨時株主総会招集のための基準日設定及び臨時株主総会開催並びに付議議案の決定に関するお知らせ 他 今日 16:00 New!",
-      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536588.pdf",
+      "title": "当座貸越契約の締結に関するお知らせ 他 今日 17:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536319.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "連結決算への移行に伴う連結業績予想の公表に関するお知らせ 業修 今日 17:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536316.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "子会社設立に関するお知らせ 他 今日 17:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536313.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "コーポレート・ガバナンス報告書 他 今日 17:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536217.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "―",
+      "code": "―",
+      "company": "―",
+      "title": "指名報酬委員会の設置に関するお知らせ 他 今日 17:30",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260914536216.pdf",
+      "tag": "他"
+    },
+    {
+      "time": "17:30",
+      "code": "―",
+      "company": "キューブシス",
+      "title": "「HCA-AI技術者検索」サービスの提供を開始",
+      "url": "https://tdnet-pdf.kabutan.jp/20260915/140120260915536718.pdf",
       "tag": "他"
     }
   ],
@@ -819,11 +819,11 @@
   "growth_candidates": [
     {
       "company": "アスア",
-      "title": "2027年6月期 株主優待額の増額および業績予想の修正について",
+      "title": "株主優待額の増額および業績予想の修正に関するお知らせ",
       "catalyst": "増額",
-      "reason": "TDnet適時開示「2027年6月期 株主優待額の増額および業績予想の修正について」より、増額を確認。",
+      "reason": "TDnet適時開示「株主優待額の増額および業績予想の修正に関するお知らせ」より、増額を確認。",
       "asof": "9月14日(月) 16:00",
-      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914535765.pdf",
+      "url": "https://tdnet-pdf.kabutan.jp/20260914/140120260914535943.pdf",
       "double_signal": false
     },
     {
@@ -932,14 +932,6 @@
       "asof": "9/12 04:40"
     },
     {
-      "code": "6098",
-      "company": "リクルートホールディングス",
-      "title": "「AIデータセンター」と「フィジカルAI」を支える次世代技術を発表…東証プライム・値上がり1位となった〈化学メーカー〉の正体【9月1日の国内株式市場概況】 - ゴールドオンライン",
-      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5pa2tQbHhGekYwdXNLeGlLRUY0NjF4SmRITmZrTm9NZGhuLXVIcWQ2RUJtSTc0NF9QRHJqNDdKSmE3MFYwQ21KakRZUmEzYnhjcEE?oc=5",
-      "keyword": "データセンター",
-      "asof": "9/1 17:00"
-    },
-    {
       "code": "9433",
       "company": "KDDI",
       "title": "KDDIとWi2、「ROCK IN JAPAN FESTIVAL 2026」でキャリアフリーWi-Fi提供へ 車載型基地局も増強 - EnterpriseZine",
@@ -961,85 +953,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-15 16:42",
-    "tdnet_morning": "2026-09-15 16:42",
-    "technical": "2026-09-15 16:42",
-    "growth_candidates": "2026-09-15 16:42",
-    "pre_earnings_watch": "2026-09-15 16:42",
-    "edinet_large_holdings": "2026-09-15 16:42",
-    "economic_calendar": "2026-09-15 16:42",
-    "pre_earnings_indicator": "2026-09-15 16:44"
+    "market_quotes": "2026-09-15 20:01",
+    "tdnet_morning": "2026-09-15 20:01",
+    "technical": "2026-09-15 20:01",
+    "growth_candidates": "2026-09-15 20:01",
+    "pre_earnings_watch": "2026-09-15 20:01",
+    "edinet_large_holdings": "2026-09-15 20:01",
+    "economic_calendar": "2026-09-15 20:01",
+    "pre_earnings_indicator": "2026-09-15 20:02"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-15 16:43",
+      "checked_at": "2026-09-15 20:01",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-15 16:43",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-09-15 16:43",
+      "checked_at": "2026-09-15 20:01",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-09-15 16:43",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-15 16:43",
+      "checked_at": "2026-09-15 20:01",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:42",
+      "checked_at": "2026-09-15 20:01",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-15 16:44",
+      "checked_at": "2026-09-15 20:02",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1058,83 +1050,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6758": {
       "last": 25.33,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "8306": {
       "last": 21.09,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "9984": {
       "last": 4.68,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6861": {
       "last": 3.26,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6954": {
       "last": 22.99,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "7974": {
       "last": 12.47,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6098": {
       "last": 1.63,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "8035": {
       "last": 10.83,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "9433": {
       "last": 0.75,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "9432": {
       "last": 3.21,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "7267": {
       "last": 2.38,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6367": {
       "last": 21.23,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "9983": {
       "last": 3.2,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "4063": {
       "last": 26.26,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6857": {
       "last": 1.87,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "4519": {
       "last": 66.27,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "5401": {
       "last": 12.88,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "2413": {
       "last": 4.14,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     },
     "6645": {
       "last": 19.69,
-      "ts": "2026-09-15 16:43"
+      "ts": "2026-09-15 20:01"
     }
   },
   "pre_earnings_indicator": [
@@ -1148,7 +1140,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.148,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1169,7 +1161,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.113,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1194,7 +1186,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.155,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1220,7 +1212,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.243,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1245,7 +1237,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.223,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1266,7 +1258,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.467,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1311,7 +1303,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 1.159,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1329,7 +1321,7 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": 0.747,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1346,18 +1338,14 @@
     {
       "code": "9984",
       "name": "ソフトバンクグループ",
-      "score": 45,
-      "raw_score": 12.0,
-      "signals": [
-        "売り残増加(踏み上げ期待)"
-      ],
+      "score": 28,
+      "raw_score": 0.0,
+      "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": -0.301,
-        "sell_rise": true,
-        "notes": [
-          "信用倍率が6.70→4.68に低下(売り残増加の可能性)"
-        ]
+        "delta": 0.0,
+        "sell_rise": false,
+        "notes": []
       },
       "prediction_labels": [],
       "prediction_notes": [],
@@ -1367,8 +1355,8 @@
           "note": "5日線割れでシナリオ崩れ"
         }
       ],
-      "prediction_score": 12.0,
-      "prediction_confidence": 57
+      "prediction_score": 0.0,
+      "prediction_confidence": 44
     },
     {
       "code": "6954",
@@ -1380,7 +1368,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.117,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1405,7 +1393,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.048,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1425,7 +1413,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.023,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1448,7 +1436,7 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": 0.178,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1471,7 +1459,7 @@
       "signals": [],
       "urls": [],
       "credit_flags": {
-        "delta": -0.076,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1492,7 +1480,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.328,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1519,7 +1507,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.094,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1546,7 +1534,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": 0.308,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1572,7 +1560,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.096,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
@@ -1597,7 +1585,7 @@
       ],
       "urls": [],
       "credit_flags": {
-        "delta": -0.101,
+        "delta": 0.0,
         "sell_rise": false,
         "notes": []
       },
