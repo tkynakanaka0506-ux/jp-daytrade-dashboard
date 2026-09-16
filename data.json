@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-16 19:48",
-  "run_type": "morning",
+  "generated_at": "2026-09-16 21:20",
+  "run_type": "evening",
   "us_market": {
     "sp500": {
       "value": "7,585.73",
@@ -24,13 +24,13 @@
     }
   },
   "fx": {
-    "value": "155.13円",
-    "change_pct": 0.48,
+    "value": "155.11円",
+    "change_pct": 0.47,
     "asof": "9/16終値"
   },
   "nikkei_futures": {
-    "value": "64,000.00",
-    "change_pct": 0.76,
+    "value": "64,225.00",
+    "change_pct": 1.12,
     "asof": "9/16終値"
   },
   "nikkei225": {
@@ -39,7 +39,17 @@
     "asof": "9/16終値"
   },
   "overnight_news": [],
-  "tdnet_morning": [
+  "tdnet_morning": [],
+  "movers_morning": [],
+  "tdnet_afterclose": [
+    {
+      "time": "21:10",
+      "code": "―",
+      "company": "コリー",
+      "title": "人気女性向けアプリ『ブレイクマイケース』に リズムゲームモード『ROLL'N GROOVE』が実装！",
+      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537196.pdf",
+      "tag": "他"
+    },
     {
       "time": "19:20",
       "code": "―",
@@ -108,16 +118,16 @@
       "time": "18:00",
       "code": "―",
       "company": "アエリア",
-      "title": "株式会社サイバード　『イケメン幕末◆運命の恋』Webプラットフォーム「Dreamoire（ドリモワ）」で本編ストーリー復活のためクラウドファンディング開始！",
-      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537187.pdf",
+      "title": "株式会社サイバード　TVアニメ『パーフェクトアディクション』マルイでのPOP UP STORE開催決定！アニメの場面写真を使用した限定グッズなどが販売予定",
+      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537191.pdf",
       "tag": "他"
     },
     {
       "time": "18:00",
       "code": "―",
       "company": "アエリア",
-      "title": "株式会社サイバード　TVアニメ『パーフェクトアディクション』マルイでのPOP UP STORE開催決定！アニメの場面写真を使用した限定グッズなどが販売予定",
-      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537191.pdf",
+      "title": "株式会社サイバード　『イケメン幕末◆運命の恋』Webプラットフォーム「Dreamoire（ドリモワ）」で本編ストーリー復活のためクラウドファンディング開始！",
+      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537187.pdf",
       "tag": "他"
     },
     {
@@ -180,29 +190,19 @@
       "time": "17:30",
       "code": "―",
       "company": "クリングル",
-      "title": "声帯瘢痕治療薬の日本における独占的販売許諾等に関する契約書の締結に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537121.pdf",
-      "tag": "他"
-    },
-    {
-      "time": "17:30",
-      "code": "―",
-      "company": "クリングル",
       "title": "2026年９月期業績予想の修正に関するお知らせ",
       "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260915536765.pdf",
       "tag": "業修"
     },
     {
-      "time": "17:10",
+      "time": "17:30",
       "code": "―",
-      "company": "鉄人化ＨＤ",
-      "title": "上場維持基準への適合及び当社株式の監理銘柄(確認中)指定解除に関するお知らせ",
-      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537409.pdf",
+      "company": "クリングル",
+      "title": "声帯瘢痕治療薬の日本における独占的販売許諾等に関する契約書の締結に関するお知らせ",
+      "url": "https://tdnet-pdf.kabutan.jp/20260916/140120260916537121.pdf",
       "tag": "他"
     }
   ],
-  "movers_morning": [],
-  "tdnet_afterclose": [],
   "afterclose_news": [],
   "movers_afterclose": [],
   "technical": [
@@ -916,9 +916,17 @@
       "asof": "9/15 14:06"
     },
     {
+      "code": "6954",
+      "company": "ファナック",
+      "title": "【機械業界の5年後大予測】ファナック、ダイフク、川崎重工、THK…設備投資拡大の追い風だけでない強さの秘訣と本命企業をトップアナリストが解説《再配信》 - ダイヤモンド・オンライン",
+      "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE5zdkJtcUZFQzdZZTR2RngtQjh2Mks0YTNjTDBfbVpNTm5pWkNLNEd6bWkwZUM1dUhGWEhiZ2pGdUk3QWdsdUJZcmJEYWLSAU9BVV95cUxQcGx0dnFjWW0xXzFXUlhPc1Y5cnRXbWx3ZUJfMzZRaXhKZk16N1BMSmdsSExCTnl2QUswOEpQQk5TRTJRaGJNa0ZIejlfZEY0?oc=5",
+      "keyword": "設備投資",
+      "asof": "9/12 04:40"
+    },
+    {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIとWi2、「ROCK IN JAPAN FESTIVAL 2026」でキャリアフリーWi-Fi提供へ 車載型基地局も増強 - EnterpriseZine",
+      "title": "KDDIとWi2、「ROCK IN JAPAN FESTIVAL 2026」でキャリアフリーWi-Fi提供へ 車載型基地局も増強 - enterprisezine.jp",
       "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBSRTRiWjhLTjNMdS1oNG04VkhiRElVRk1tdG1HeVJnc253MTFCdU5NU0FWV0IxMlFJUnhKNEZobHdZZ2xTbXNaSGFpVmlsdFJ3RjIxSXdR?oc=5",
       "keyword": "増強",
       "asof": "9/16 14:18"
@@ -929,85 +937,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-16 19:48",
-    "tdnet_morning": "2026-09-16 19:48",
-    "technical": "2026-09-16 19:48",
-    "growth_candidates": "2026-09-16 19:48",
-    "pre_earnings_watch": "2026-09-16 19:48",
-    "edinet_large_holdings": "2026-09-16 19:48",
-    "economic_calendar": "2026-09-16 19:48",
-    "pre_earnings_indicator": "2026-09-16 19:50"
+    "market_quotes": "2026-09-16 21:20",
+    "tdnet_afterclose": "2026-09-16 21:20",
+    "technical": "2026-09-16 21:20",
+    "growth_candidates": "2026-09-16 21:20",
+    "pre_earnings_watch": "2026-09-16 21:20",
+    "edinet_large_holdings": "2026-09-16 21:20",
+    "economic_calendar": "2026-09-16 21:20",
+    "pre_earnings_indicator": "2026-09-16 21:22"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-16 19:48",
+      "checked_at": "2026-09-16 21:20",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
-      "state": "updated",
-      "checked_at": "2026-09-16 19:48",
-      "message": "今回の実行で取得・更新しました。"
+      "state": "not_requested",
+      "checked_at": "2026-09-16 21:20",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-09-16 19:48",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "updated",
+      "checked_at": "2026-09-16 21:20",
+      "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-16 19:48",
+      "checked_at": "2026-09-16 21:20",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-16 19:48",
+      "checked_at": "2026-09-16 21:20",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-16 19:48",
+      "checked_at": "2026-09-16 21:20",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
-      "state": "unavailable",
-      "checked_at": "2026-09-16 19:49",
-      "message": "ニュース分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-09-16 21:20",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
-      "state": "not_requested",
-      "checked_at": "2026-09-16 19:49",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-09-16 21:21",
+      "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
-      "state": "unavailable",
-      "checked_at": "2026-09-16 19:49",
-      "message": "話題株分析APIで取得できませんでした。"
+      "state": "not_requested",
+      "checked_at": "2026-09-16 21:20",
+      "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
-      "state": "not_requested",
-      "checked_at": "2026-09-16 19:49",
-      "message": "今回の実行モードでは更新対象外です。"
+      "state": "unavailable",
+      "checked_at": "2026-09-16 21:21",
+      "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-16 19:49",
+      "checked_at": "2026-09-16 21:21",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-16 19:48",
+      "checked_at": "2026-09-16 21:20",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-16 19:48",
+      "checked_at": "2026-09-16 21:20",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-16 19:50",
+      "checked_at": "2026-09-16 21:22",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1026,83 +1034,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6758": {
       "last": 25.33,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "8306": {
       "last": 21.09,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "9984": {
       "last": 4.68,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6861": {
       "last": 3.26,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6954": {
       "last": 22.99,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "7974": {
       "last": 12.47,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6098": {
       "last": 1.63,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "8035": {
       "last": 10.83,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "9433": {
       "last": 0.75,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "9432": {
       "last": 3.21,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "7267": {
       "last": 2.38,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6367": {
       "last": 21.23,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "9983": {
       "last": 3.2,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "4063": {
       "last": 26.26,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6857": {
       "last": 1.87,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "4519": {
       "last": 66.27,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "5401": {
       "last": 12.88,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "2413": {
       "last": 4.14,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     },
     "6645": {
       "last": 19.69,
-      "ts": "2026-09-16 19:49"
+      "ts": "2026-09-16 21:21"
     }
   },
   "pre_earnings_indicator": [
