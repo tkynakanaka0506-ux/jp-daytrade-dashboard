@@ -1,36 +1,36 @@
 {
-  "generated_at": "2026-09-19 04:21",
+  "generated_at": "2026-09-19 07:55",
   "run_type": "evening",
   "us_market": {
     "sp500": {
-      "value": "7,641.61",
-      "change_pct": 0.05,
+      "value": "7,650.50",
+      "change_pct": 0.17,
       "asof": "9/19終値"
     },
     "dow": {
-      "value": "51,691.36",
-      "change_pct": -0.17,
+      "value": "51,682.64",
+      "change_pct": -0.18,
       "asof": "9/19終値"
     },
     "nasdaq": {
-      "value": "26,477.16",
-      "change_pct": 0.22,
+      "value": "26,522.54",
+      "change_pct": 0.39,
       "asof": "9/19終値"
     },
     "sox": {
-      "value": "11,771.47",
-      "change_pct": 1.48,
+      "value": "11,921.69",
+      "change_pct": 2.78,
       "asof": "9/19終値"
     }
   },
   "fx": {
-    "value": "156.63円",
-    "change_pct": 0.4,
+    "value": "156.85円",
+    "change_pct": 0.47,
     "asof": "9/19終値"
   },
   "nikkei_futures": {
-    "value": "64,840.00",
-    "change_pct": -0.11,
+    "value": "64,915.00",
+    "change_pct": 0.01,
     "asof": "9/19終値"
   },
   "nikkei225": {
@@ -216,14 +216,14 @@
       "rsi": 36.79,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
-      "ret_5d_pct": 1.04,
+      "ret_5d_pct": -0.2,
       "high_52w": 4000.0,
       "high_52w_dist_pct": 24.38,
       "volume": 46568200,
       "avg_volume_5d": 21734760,
       "volume_ratio": 2.14,
       "volume_surge": true,
-      "gap_pct": 0.9,
+      "gap_pct": 0.3,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/7203/analyst_consensus",
@@ -243,14 +243,14 @@
       "rsi": 29.84,
       "signal": "強気(売られ過ぎ)",
       "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
-      "ret_5d_pct": 1.57,
+      "ret_5d_pct": 1.79,
       "high_52w": 4776.0,
       "high_52w_dist_pct": 22.59,
       "volume": 15142800,
       "avg_volume_5d": 11933980,
       "volume_ratio": 1.27,
       "volume_surge": false,
-      "gap_pct": 0.38,
+      "gap_pct": -0.56,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6758/analyst_consensus",
@@ -270,14 +270,14 @@
       "rsi": 44.46,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": -1.15,
+      "ret_5d_pct": -1.12,
       "high_52w": 3813.0,
       "high_52w_dist_pct": 5.06,
       "volume": 51333500,
       "avg_volume_5d": 40334980,
       "volume_ratio": 1.27,
       "volume_surge": false,
-      "gap_pct": -0.16,
+      "gap_pct": -0.08,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/8306/analyst_consensus",
@@ -297,14 +297,14 @@
       "rsi": 64.2,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": -7.27,
+      "ret_5d_pct": -3.44,
       "high_52w": 9074.0,
       "high_52w_dist_pct": 30.41,
       "volume": 90291700,
       "avg_volume_5d": 69142780,
       "volume_ratio": 1.31,
       "volume_surge": false,
-      "gap_pct": 3.51,
+      "gap_pct": 2.45,
       "gap_up": true,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9984/analyst_consensus",
@@ -324,14 +324,14 @@
       "rsi": 19.74,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
-      "ret_5d_pct": 0.1,
+      "ret_5d_pct": 0.76,
       "high_52w": 87920.0,
       "high_52w_dist_pct": 12.9,
       "volume": 627400,
       "avg_volume_5d": 531280,
       "volume_ratio": 1.18,
       "volume_surge": false,
-      "gap_pct": 1.96,
+      "gap_pct": 1.7,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6861/analyst_consensus",
@@ -351,14 +351,14 @@
       "rsi": 42.3,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": 1.0,
+      "ret_5d_pct": 2.04,
       "high_52w": 8880.0,
       "high_52w_dist_pct": 34.1,
       "volume": 4699800,
       "avg_volume_5d": 3978060,
       "volume_ratio": 1.18,
       "volume_surge": false,
-      "gap_pct": 0.96,
+      "gap_pct": 1.73,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6954/analyst_consensus",
@@ -378,15 +378,15 @@
       "rsi": 33.7,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
-      "ret_5d_pct": 4.38,
+      "ret_5d_pct": 3.04,
       "high_52w": 14630.0,
       "high_52w_dist_pct": 43.0,
       "volume": 6274100,
       "avg_volume_5d": 7862740,
       "volume_ratio": 0.8,
       "volume_surge": false,
-      "gap_pct": 2.76,
-      "gap_up": true,
+      "gap_pct": -1.47,
+      "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/7974/analyst_consensus",
       "credit_ratio": 12.47,
@@ -405,14 +405,14 @@
       "rsi": 42.8,
       "signal": "弱気",
       "summary": "売り2/中立5/買い0。RSIは中立域。",
-      "ret_5d_pct": 9.46,
+      "ret_5d_pct": 11.94,
       "high_52w": 18215.0,
       "high_52w_dist_pct": 4.75,
       "volume": 4860600,
       "avg_volume_5d": 4769380,
       "volume_ratio": 1.02,
       "volume_surge": false,
-      "gap_pct": 1.43,
+      "gap_pct": -0.26,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6098/analyst_consensus",
@@ -432,15 +432,15 @@
       "rsi": 39.01,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": 0.57,
+      "ret_5d_pct": 3.21,
       "high_52w": 81260.0,
       "high_52w_dist_pct": 34.64,
       "volume": 4010900,
       "avg_volume_5d": 2998080,
       "volume_ratio": 1.34,
       "volume_surge": false,
-      "gap_pct": 0.79,
-      "gap_up": false,
+      "gap_pct": 2.22,
+      "gap_up": true,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/8035/analyst_consensus",
       "credit_ratio": 10.83,
@@ -459,14 +459,14 @@
       "rsi": 63.56,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
-      "ret_5d_pct": 1.73,
+      "ret_5d_pct": 0.96,
       "high_52w": 3121.0,
       "high_52w_dist_pct": 1.95,
       "volume": 15618000,
       "avg_volume_5d": 7710100,
       "volume_ratio": 2.03,
       "volume_surge": true,
-      "gap_pct": 0.39,
+      "gap_pct": -0.58,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9433/analyst_consensus",
@@ -486,14 +486,14 @@
       "rsi": 59.16,
       "signal": "弱気",
       "summary": "売り2/中立5/買い0。RSIは中立域。",
-      "ret_5d_pct": 1.2,
+      "ret_5d_pct": 0.91,
       "high_52w": 180.1,
       "high_52w_dist_pct": 1.55,
       "volume": 251021300,
       "avg_volume_5d": 178259940,
       "volume_ratio": 1.41,
       "volume_surge": false,
-      "gap_pct": 1.64,
+      "gap_pct": 0.0,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9432/analyst_consensus",
@@ -513,14 +513,14 @@
       "rsi": 46.75,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": 3.33,
+      "ret_5d_pct": 1.5,
       "high_52w": 1762.5,
       "high_52w_dist_pct": 4.17,
       "volume": 17291300,
       "avg_volume_5d": 10527620,
       "volume_ratio": 1.64,
       "volume_surge": false,
-      "gap_pct": 1.22,
+      "gap_pct": -0.2,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/7267/analyst_consensus",
@@ -540,14 +540,14 @@
       "rsi": 40.84,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": -0.53,
+      "ret_5d_pct": -0.19,
       "high_52w": 26440.0,
       "high_52w_dist_pct": 21.56,
       "volume": 2153500,
       "avg_volume_5d": 775620,
       "volume_ratio": 2.78,
       "volume_surge": true,
-      "gap_pct": 1.02,
+      "gap_pct": 0.1,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6367/analyst_consensus",
@@ -567,14 +567,14 @@
       "rsi": 25.69,
       "signal": "強気(売られ過ぎ)",
       "summary": "売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。",
-      "ret_5d_pct": 1.3,
+      "ret_5d_pct": 1.81,
       "high_52w": 88690.0,
       "high_52w_dist_pct": 23.69,
       "volume": 1275100,
       "avg_volume_5d": 919720,
       "volume_ratio": 1.39,
       "volume_surge": false,
-      "gap_pct": 1.03,
+      "gap_pct": 0.03,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/9983/analyst_consensus",
@@ -594,14 +594,14 @@
       "rsi": 38.88,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": 1.42,
+      "ret_5d_pct": 1.85,
       "high_52w": 7930.0,
       "high_52w_dist_pct": 26.31,
       "volume": 8964200,
       "avg_volume_5d": 5827080,
       "volume_ratio": 1.54,
       "volume_surge": false,
-      "gap_pct": 0.43,
+      "gap_pct": 1.44,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/4063/analyst_consensus",
@@ -621,15 +621,15 @@
       "rsi": 43.64,
       "signal": "強気",
       "summary": "売り0/中立5/買い2。RSIは中立域。",
-      "ret_5d_pct": -5.51,
+      "ret_5d_pct": 1.04,
       "high_52w": 38730.0,
       "high_52w_dist_pct": 17.25,
       "volume": 10817700,
       "avg_volume_5d": 8284380,
       "volume_ratio": 1.31,
       "volume_surge": false,
-      "gap_pct": 0.98,
-      "gap_up": false,
+      "gap_pct": 2.51,
+      "gap_up": true,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6857/analyst_consensus",
       "credit_ratio": 1.87,
@@ -648,15 +648,15 @@
       "rsi": 42.28,
       "signal": "中立(やや強気)",
       "summary": "売り0/中立6/買い1。RSIは中立域。",
-      "ret_5d_pct": 5.11,
+      "ret_5d_pct": 5.05,
       "high_52w": 10700.0,
       "high_52w_dist_pct": 36.95,
       "volume": 2850900,
       "avg_volume_5d": 2281620,
       "volume_ratio": 1.25,
       "volume_surge": false,
-      "gap_pct": 3.94,
-      "gap_up": true,
+      "gap_pct": 0.24,
+      "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/4519/analyst_consensus",
       "credit_ratio": 66.27,
@@ -675,15 +675,15 @@
       "rsi": 58.3,
       "signal": "中立(やや弱気)",
       "summary": "売り1/中立6/買い0。RSIは中立域。",
-      "ret_5d_pct": 0.64,
+      "ret_5d_pct": 1.25,
       "high_52w": 718.5,
       "high_52w_dist_pct": 3.27,
       "volume": 28895800,
       "avg_volume_5d": 24685040,
       "volume_ratio": 1.17,
       "volume_surge": false,
-      "gap_pct": 2.58,
-      "gap_up": true,
+      "gap_pct": -0.33,
+      "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/5401/analyst_consensus",
       "credit_ratio": 12.88,
@@ -702,15 +702,15 @@
       "rsi": 43.3,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
-      "ret_5d_pct": 4.23,
+      "ret_5d_pct": 4.91,
       "high_52w": 2746.0,
       "high_52w_dist_pct": 35.43,
       "volume": 3335500,
       "avg_volume_5d": 2717660,
       "volume_ratio": 1.23,
       "volume_surge": false,
-      "gap_pct": 2.26,
-      "gap_up": true,
+      "gap_pct": -0.39,
+      "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/2413/analyst_consensus",
       "credit_ratio": 4.14,
@@ -729,14 +729,14 @@
       "rsi": 31.7,
       "signal": "中立",
       "summary": "売り0/中立7/買い0。RSIは中立域。",
-      "ret_5d_pct": 2.29,
+      "ret_5d_pct": 2.75,
       "high_52w": 7245.0,
       "high_52w_dist_pct": 14.87,
       "volume": 1528800,
       "avg_volume_5d": 1152180,
       "volume_ratio": 1.33,
       "volume_surge": false,
-      "gap_pct": 1.69,
+      "gap_pct": 1.94,
       "gap_up": false,
       "gap_down": false,
       "minkabu_url": "https://minkabu.jp/stock/6645/analyst_consensus",
@@ -941,85 +941,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-19 04:21",
-    "tdnet_afterclose": "2026-09-19 04:21",
-    "technical": "2026-09-19 04:21",
-    "growth_candidates": "2026-09-19 04:21",
-    "pre_earnings_watch": "2026-09-19 04:21",
-    "edinet_large_holdings": "2026-09-19 04:21",
-    "economic_calendar": "2026-09-19 04:21",
-    "pre_earnings_indicator": "2026-09-19 04:22"
+    "market_quotes": "2026-09-19 07:55",
+    "tdnet_afterclose": "2026-09-19 07:55",
+    "technical": "2026-09-19 07:55",
+    "growth_candidates": "2026-09-19 07:55",
+    "pre_earnings_watch": "2026-09-19 07:55",
+    "edinet_large_holdings": "2026-09-19 07:55",
+    "economic_calendar": "2026-09-19 07:55",
+    "pre_earnings_indicator": "2026-09-19 07:57"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "tdnet_afterclose": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:56",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "afterclose_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:56",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "movers_morning": {
       "state": "not_requested",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:56",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_afterclose": {
       "state": "unavailable",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:56",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:56",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:21",
+      "checked_at": "2026-09-19 07:55",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-19 04:22",
+      "checked_at": "2026-09-19 07:57",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1038,83 +1038,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6758": {
       "last": 25.33,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "8306": {
       "last": 21.09,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "9984": {
       "last": 4.68,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6861": {
       "last": 3.26,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6954": {
       "last": 22.99,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "7974": {
       "last": 12.47,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6098": {
       "last": 1.63,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "8035": {
       "last": 10.83,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "9433": {
       "last": 0.75,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "9432": {
       "last": 3.21,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "7267": {
       "last": 2.38,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6367": {
       "last": 21.23,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "9983": {
       "last": 3.2,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "4063": {
       "last": 26.26,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6857": {
       "last": 1.87,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "4519": {
       "last": 66.27,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "5401": {
       "last": 12.88,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "2413": {
       "last": 4.14,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     },
     "6645": {
       "last": 19.69,
-      "ts": "2026-09-19 04:21"
+      "ts": "2026-09-19 07:56"
     }
   },
   "pre_earnings_indicator": [
@@ -1124,7 +1124,7 @@
       "score": 42,
       "raw_score": 10.0,
       "signals": [
-        "直近5日上昇 9.5%"
+        "直近5日上昇 11.9%"
       ],
       "urls": [],
       "credit_flags": {
@@ -1148,7 +1148,7 @@
       "score": 42,
       "raw_score": 10.0,
       "signals": [
-        "直近5日上昇 5.1%"
+        "直近5日上昇 5.0%"
       ],
       "urls": [],
       "credit_flags": {
@@ -1335,6 +1335,28 @@
       "prediction_confidence": 44
     },
     {
+      "code": "9984",
+      "name": "ソフトバンクグループ",
+      "score": 28,
+      "raw_score": 0.0,
+      "signals": [],
+      "urls": [],
+      "credit_flags": {
+        "delta": 0.0,
+        "sell_rise": false,
+        "notes": []
+      },
+      "prediction_labels": [
+        "クジラ追随"
+      ],
+      "prediction_notes": [
+        "出来高増・VWAP上(大口買い疑い)"
+      ],
+      "risk_triggers": [],
+      "prediction_score": 15.0,
+      "prediction_confidence": 61
+    },
+    {
       "code": "6954",
       "name": "ファナック",
       "score": 45,
@@ -1458,6 +1480,30 @@
       "prediction_confidence": 85
     },
     {
+      "code": "6857",
+      "name": "アドバンテスト",
+      "score": 45,
+      "raw_score": 12.0,
+      "signals": [
+        "為替追い風"
+      ],
+      "urls": [],
+      "credit_flags": {
+        "delta": 0.0,
+        "sell_rise": false,
+        "notes": []
+      },
+      "prediction_labels": [
+        "クジラ追随"
+      ],
+      "prediction_notes": [
+        "出来高増・VWAP上(大口買い疑い)"
+      ],
+      "risk_triggers": [],
+      "prediction_score": 27.0,
+      "prediction_confidence": 74
+    },
+    {
       "code": "5401",
       "name": "日本製鉄",
       "score": 28,
@@ -1500,55 +1546,6 @@
       "risk_triggers": [],
       "prediction_score": 15.0,
       "prediction_confidence": 61
-    },
-    {
-      "code": "9984",
-      "name": "ソフトバンクグループ",
-      "score": 17,
-      "raw_score": -8.0,
-      "signals": [
-        "直近5日下落 -7.3%(減点)"
-      ],
-      "urls": [],
-      "credit_flags": {
-        "delta": 0.0,
-        "sell_rise": false,
-        "notes": []
-      },
-      "prediction_labels": [
-        "クジラ追随"
-      ],
-      "prediction_notes": [
-        "出来高増・VWAP上(大口買い疑い)"
-      ],
-      "risk_triggers": [],
-      "prediction_score": 7.0,
-      "prediction_confidence": 52
-    },
-    {
-      "code": "6857",
-      "name": "アドバンテスト",
-      "score": 34,
-      "raw_score": 4.0,
-      "signals": [
-        "直近5日下落 -5.5%(減点)",
-        "為替追い風"
-      ],
-      "urls": [],
-      "credit_flags": {
-        "delta": 0.0,
-        "sell_rise": false,
-        "notes": []
-      },
-      "prediction_labels": [
-        "クジラ追随"
-      ],
-      "prediction_notes": [
-        "出来高増・VWAP上(大口買い疑い)"
-      ],
-      "risk_triggers": [],
-      "prediction_score": 19.0,
-      "prediction_confidence": 65
     },
     {
       "code": "9433",
