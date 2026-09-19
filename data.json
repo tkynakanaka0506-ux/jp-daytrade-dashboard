@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19 11:00",
+  "generated_at": "2026-09-19 14:16",
   "run_type": "morning",
   "us_market": {
     "sp500": {
@@ -29,8 +29,8 @@
     "asof": "9/19終値"
   },
   "nikkei_futures": {
-    "value": "64,915.00",
-    "change_pct": 0.01,
+    "value": "64,960.00",
+    "change_pct": 0.08,
     "asof": "9/19終値"
   },
   "nikkei225": {
@@ -882,7 +882,7 @@
     {
       "code": "7203",
       "company": "トヨタ自動車",
-      "title": "自動車シート生産…トヨタ紡織が新工場、投資額は約70億円 - newswitch.jp",
+      "title": "自動車シート生産…トヨタ紡織が新工場、投資額は約70億円 - ニュースイッチ by 日刊工業新聞社",
       "url": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE1tSHFZdkxWTHE0cFZXd3lVMG9OLUJOdlF0UjIzVm9aMjNLdDZ3c2FBbEdzUVhuQjFNMlgxbnVRa0E3Zw?oc=5",
       "keyword": "新工場",
       "asof": "9/13 14:04"
@@ -922,7 +922,7 @@
     {
       "code": "9433",
       "company": "KDDI",
-      "title": "KDDIら、APNとリテールロボットを活用した分散型データセンター実証を開始 - ビジネスネットワーク",
+      "title": "KDDIら、APNとリテールロボットを活用した分散型データセンター実証を開始 - businessnetwork.jp",
       "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE9wZE13LTJ3MmRvQWdUUDNsdWVUZHVBc1gtSEE1ZXBpRkcyWjdZbi1hcjhsb0U3akRYcE1fT2l3Vm01ZENPcExkVGVJLVpjTllMZmpN?oc=5",
       "keyword": "データセンター",
       "asof": "9/18 17:52"
@@ -941,85 +941,85 @@
     "code": "ＧＭＯ－ＰＰ"
   },
   "data_updated_at": {
-    "market_quotes": "2026-09-19 11:00",
-    "tdnet_morning": "2026-09-19 11:00",
-    "technical": "2026-09-19 11:00",
-    "growth_candidates": "2026-09-19 11:00",
-    "pre_earnings_watch": "2026-09-19 11:00",
-    "edinet_large_holdings": "2026-09-19 11:00",
-    "economic_calendar": "2026-09-19 11:00",
-    "pre_earnings_indicator": "2026-09-19 11:01"
+    "market_quotes": "2026-09-19 14:16",
+    "tdnet_morning": "2026-09-19 14:16",
+    "technical": "2026-09-19 14:16",
+    "growth_candidates": "2026-09-19 14:16",
+    "pre_earnings_watch": "2026-09-19 14:16",
+    "edinet_large_holdings": "2026-09-19 14:16",
+    "economic_calendar": "2026-09-19 14:16",
+    "pre_earnings_indicator": "2026-09-19 14:17"
   },
   "edinet_large_holdings": [],
   "data_status": {
     "market_quotes": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_morning": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "tdnet_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "technical": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "growth_candidates": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_watch": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "overnight_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-19 11:01",
+      "checked_at": "2026-09-19 14:16",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "afterclose_news": {
       "state": "not_requested",
-      "checked_at": "2026-09-19 11:01",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "movers_morning": {
       "state": "unavailable",
-      "checked_at": "2026-09-19 11:01",
+      "checked_at": "2026-09-19 14:16",
       "message": "話題株分析APIで取得できませんでした。"
     },
     "movers_afterclose": {
       "state": "not_requested",
-      "checked_at": "2026-09-19 11:01",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行モードでは更新対象外です。"
     },
     "us_good_news": {
       "state": "unavailable",
-      "checked_at": "2026-09-19 11:01",
+      "checked_at": "2026-09-19 14:16",
       "message": "ニュース分析APIで取得できませんでした。"
     },
     "edinet_large_holdings": {
       "state": "empty",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "取得済み・該当する大量保有報告書はありません。"
     },
     "economic_calendar": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:00",
+      "checked_at": "2026-09-19 14:16",
       "message": "今回の実行で取得・更新しました。"
     },
     "pre_earnings_indicator": {
       "state": "updated",
-      "checked_at": "2026-09-19 11:01",
+      "checked_at": "2026-09-19 14:17",
       "message": "今回の実行で取得・更新しました。"
     }
   },
@@ -1038,83 +1038,83 @@
   "credit_history": {
     "7203": {
       "last": 6.57,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6758": {
       "last": 25.33,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "8306": {
       "last": 21.09,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "9984": {
       "last": 4.68,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6861": {
       "last": 3.26,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6954": {
       "last": 22.99,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "7974": {
       "last": 12.47,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6098": {
       "last": 1.63,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "8035": {
       "last": 10.83,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "9433": {
       "last": 0.75,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "9432": {
       "last": 3.21,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "7267": {
       "last": 2.38,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6367": {
       "last": 21.23,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "9983": {
       "last": 3.2,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "4063": {
       "last": 26.26,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6857": {
       "last": 1.87,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "4519": {
       "last": 66.27,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "5401": {
       "last": 12.88,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "2413": {
       "last": 4.14,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     },
     "6645": {
       "last": 19.69,
-      "ts": "2026-09-19 11:01"
+      "ts": "2026-09-19 14:16"
     }
   },
   "pre_earnings_indicator": [

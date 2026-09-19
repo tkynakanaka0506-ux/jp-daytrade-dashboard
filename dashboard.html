@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(localStorage.getItem('jpdt_theme')==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}</script>
+<title>日本株デイトレード情報ダッシュボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #000000; --bg-mid: #07060a; --bg-soft: #0a0908;
+  --panel: linear-gradient(155deg, rgba(20,17,10,0.96), rgba(8,7,5,0.97));
+  --panel2: rgba(255,255,255,0.08);
+  --border: rgba(212,175,55,0.22); --border-soft: rgba(255,255,255,0.06);
+  --text: #f7f4ec; --muted: #d3cfc2;
+  --accent: #d4af37; --accent-bright: #f5d78e; --accent-deep: #a9812f;
+  --accent-soft: rgba(212,175,55,0.14); --accent-line: rgba(212,175,55,0.5);
+  --up: #ff6b7a; --down: #35d9b4;
+  --warn: #ffb84d; --bull: #ff6b7a; --bear: #35d9b4;
+  --radius: 14px; --radius-sm: 10px;
+  --shadow: 0 12px 34px rgba(0,0,0,0.6);
+}
+* { box-sizing: border-box; }
+a { color: var(--accent-bright); text-decoration: none; }
+a:visited { color: var(--accent-deep); }
+a:hover { color: var(--accent); text-decoration: underline; }
+body {
+  margin: 0;
+  font-family: 'Inter', "Noto Sans JP", -apple-system, "Hiragino Sans", "Yu Gothic", "Segoe UI", sans-serif;
+  color: var(--text); line-height: 1.68; letter-spacing: 0.15px;
+  font-feature-settings: "palt" 1; font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-deep);
+}
+
+/* --- 背景写真: 画質を落とさずopacityのみでゆっくりクロスフェードするスライドショー --- */
+.bg-photo-stack { position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg-deep); }
+.bg-photo {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  opacity: 0; transition: opacity 4s ease-in-out;
+  will-change: opacity;
+}
+.bg-photo.is-active { opacity: 1; }
+.bg-spacer { position: relative; height: 90vh; min-height: 650px; }
+.bg-caption {
+  position: absolute; left: 20px; bottom: 16px;
+  font-size: 11px; color: var(--text); background: rgba(0,0,0,0.62);
+  padding: 5px 12px; border-radius: 10px; border: 1px solid var(--border-soft);
+  backdrop-filter: blur(2px); letter-spacing: 0.02em;
+}
+:root[data-theme="light"] .bg-caption { background: rgba(255,255,255,0.55); color: var(--text); }
+.bg-overlay {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-repeat: no-repeat;
+  background-image:
+    radial-gradient(circle at 12% 4%, rgba(212,175,55,0.14), transparent 38%),
+    radial-gradient(circle at 90% 2%, rgba(212,175,55,0.07), transparent 42%),
+    radial-gradient(circle at 30% 94%, rgba(212,175,55,0.06), transparent 45%),
+    radial-gradient(circle at 80% 72%, rgba(212,175,55,0.04), transparent 40%),
+    linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(4,3,2,0.5) 45%, rgba(6,5,4,0.6) 100%);
+}
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { background: #000; }
+body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--accent), var(--accent-deep)); border-radius: 6px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 60px; }
+
+/* --- 固定見出しバー: 常に画面上部に表示される --- */
+.topbar {
+  position: sticky; top: 0; z-index: 25;
+  background: linear-gradient(180deg, #050403 0%, #030302 100%);
+  border-bottom: 1px solid var(--accent-line);
+  box-shadow: 0 1px 0 rgba(212,175,55,0.12), 0 10px 30px rgba(0,0,0,0.6);
+}
+.topbar-inner {
+  max-width: 1080px; margin: 0 auto; padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.topbar-title { min-width: 0; }
+.eyebrow {
+  display: block; font-size: 9.5px; font-weight: 600; letter-spacing: 2.6px; text-transform: uppercase;
+  color: var(--accent-deep); margin-bottom: 5px;
+}
+.eyebrow::before { content: "◆ "; color: var(--accent); }
+h1 {
+  font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 19px; margin: 0 0 4px; font-weight: 700; letter-spacing: 0.6px;
+  color: var(--accent);
+  background: linear-gradient(120deg, var(--accent-bright) 0%, var(--accent) 45%, var(--accent-deep) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.subtitle { color: var(--muted); font-size: 11.5px; letter-spacing: 0.3px; }
+.disclaimer {
+  background: linear-gradient(155deg, rgba(24,19,8,0.94), rgba(10,8,4,0.96));
+  border: 1px solid var(--accent-line); color: var(--text);
+  border-radius: var(--radius-sm); padding: 14px 16px; font-size: 13px; line-height: 1.7; margin: 16px 20px;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.disclaimer b { color: var(--accent-bright); }
+nav.tabs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+nav.tabs a {
+  color: var(--text); text-decoration: none; font-size: 12px; letter-spacing: 0.8px;
+  text-transform: uppercase; font-weight: 500;
+  border: 1px solid var(--border);
+  padding: 7px 16px; border-radius: 20px; background: rgba(212,175,55,0.05); white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  transition: border-color .15s ease, box-shadow .15s ease, color .15s ease, background .15s ease;
+}
+nav.tabs a:hover {
+  color: #0a0805; border-color: var(--accent);
+  background: linear-gradient(120deg, var(--accent-bright), var(--accent));
+  box-shadow: 0 0 20px rgba(212,175,55,0.35);
+}
+section { margin: 32px 20px; }
+.display-stamp {
+  display: inline-block; margin-left: 8px; padding: 2px 7px; border-radius: 10px;
+  color: var(--muted); background: rgba(212,175,55,0.10); border: 1px solid var(--border-soft);
+  font-family: "Inter", "Noto Sans JP", sans-serif; font-size: 10px; font-weight: 500;
+  letter-spacing: 0; text-transform: none; vertical-align: middle; white-space: nowrap;
+}
+.update-log-section { margin-top: 20px; }
+.update-log-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px;
+  padding: 12px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--panel);
+}
+.update-log-item {
+  padding: 7px 9px; border-radius: 6px; background: var(--panel2); color: var(--muted);
+  font-size: 11px; line-height: 1.45;
+}
+.update-log-item b { color: var(--text); }
+/* 状態別の色分け: updated=緑, partial=黄, empty=淡い灰, unavailable=赤, not_requested/pending=薄いグレー */
+.update-log-item.state-updated { background: linear-gradient(90deg, rgba(34,197,94,0.08), rgba(34,197,94,0.04)); border: 1px solid rgba(34,197,94,0.18); color: var(--text); }
+.update-log-item.state-partial { background: linear-gradient(90deg, rgba(250,204,21,0.06), rgba(250,204,21,0.03)); border: 1px solid rgba(250,204,21,0.12); color: var(--text); }
+.update-log-item.state-empty { background: linear-gradient(90deg, rgba(148,163,184,0.03), rgba(148,163,184,0.02)); border: 1px solid rgba(148,163,184,0.06); color: var(--muted); }
+.update-log-item.state-unavailable { background: linear-gradient(90deg, rgba(239,68,68,0.06), rgba(239,68,68,0.03)); border: 1px solid rgba(239,68,68,0.12); color: var(--text); }
+.update-log-item.state-not_requested, .update-log-item.state-pending { background: rgba(255,255,255,0.02); border: 1px dashed var(--border); color: var(--muted); }
+.update-log-item .state-badge { display:inline-block; margin-left:8px; font-size:10px; padding:2px 6px; border-radius:8px; vertical-align:middle; }
+.update-log-item.state-updated .state-badge { background: rgba(34,197,94,0.12); color: #064e3b; border: 1px solid rgba(34,197,94,0.18); }
+.update-log-item.state-partial .state-badge { background: rgba(250,204,21,0.12); color: #78350f; border: 1px solid rgba(250,204,21,0.12); }
+.update-log-item.state-empty .state-badge { background: rgba(148,163,184,0.06); color: #1f2937; border: 1px solid rgba(148,163,184,0.06); }
+.update-log-item.state-unavailable .state-badge { background: rgba(239,68,68,0.12); color: #7f1d1d; border: 1px solid rgba(239,68,68,0.12); }
+.update-log-item.state-not_requested .state-badge, .update-log-item.state-pending .state-badge { background: rgba(255,255,255,0.02); color: var(--muted); border: 1px dashed var(--border); }
+section > h2 {
+  font-family: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 18px; border-left: 2px solid var(--accent); padding: 5px 12px; margin-bottom: 4px;
+  font-weight: 600; letter-spacing: 0.5px; color: var(--text);
+  background: rgba(10,8,5,0.75); border-radius: 0 8px 8px 0; width: fit-content;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.section-desc {
+  color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 6px 0 14px; padding: 5px 10px;
+  background: rgba(10,8,5,0.68); border-radius: 8px; width: fit-content;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.card {
+  background: var(--panel); border: 1px solid var(--border); border-top: 1px solid var(--accent-line);
+  border-radius: var(--radius);
+  padding: 18px 20px; margin-bottom: 16px; box-shadow: var(--shadow);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.card:hover { border-color: var(--accent-line); box-shadow: var(--shadow), 0 0 24px rgba(212,175,55,0.08); }
+.card h3 {
+  font-size: 12px; margin: 0 0 12px; color: var(--text); font-weight: 600;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  padding-bottom: 8px; border-bottom: 1px solid var(--border-soft);
+  position: relative;
+}
+.card h3::after {
+  content: ""; position: absolute; left: 0; bottom: -1px; width: 34px; height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+.idx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+.idx-card {
+  background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
+  padding: 10px 12px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+.idx-card:hover {
+  border-color: var(--accent-line); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 18px rgba(212,175,55,0.16);
+  transform: translateY(-1px);
+}
+.idx-label { font-size: 11.5px; color: var(--muted); letter-spacing: 0.4px; text-transform: uppercase; }
+.idx-value { font-size: 18px; font-weight: 700; margin-top: 3px; letter-spacing: 0.3px; color: var(--text); }
+.conclusion-section { margin-bottom: 22px; }
+.conclusion-disclaimer {
+  font-size: 12.5px; line-height: 1.7; color: var(--text); margin: 4px 0 14px; padding: 10px 12px;
+  background: rgba(212,175,55,0.10); border: 1px solid var(--accent-line); border-radius: var(--radius-sm);
+}
+.pick-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.pick-card {
+  background: var(--panel2); border: 1px solid var(--border-soft); border-top: 2px solid var(--accent);
+  border-radius: var(--radius-sm); padding: 14px 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+.pick-rank { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--accent-bright); text-transform: uppercase; }
+.pick-name { font-size: 16px; font-weight: 700; margin: 4px 0 2px; color: var(--text); }
+.pick-code { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.pick-score { font-size: 13px; font-weight: 600; color: var(--accent-bright); margin-bottom: 8px; }
+.pick-summary { font-size: 12.5px; line-height: 1.6; color: var(--text); }
+.pick-date { font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+.pick-empty { font-size: 13px; color: var(--muted); }
+.conclusion-date { font-size: 12.5px; color: var(--muted); margin: -6px 0 10px; }
+.conclusion-subhead { font-size: 15px; font-weight: 700; color: var(--text); margin: 22px 0 6px; }
+.chg { font-size: 13px; font-weight: 600; }
+.chg.up, .up { color: var(--up); }
+.chg.down, .down { color: var(--down); }
+.chg.flat, .flat { color: var(--muted); }
+.note { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.news-list { list-style: none; margin: 0; padding: 0; }
+.news-list li { padding: 7px 0; border-bottom: 1px solid var(--border-soft); font-size: 13.5px; }
+.news-list li:last-child { border-bottom: none; }
+.news-list a { color: var(--text); text-decoration: none; }
+.news-list a:hover { color: var(--accent-bright); }
+.news-list .meta { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+.news-impact { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; }
+.news-impact .impact-sector, .news-impact .impact-companies {
+  display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 10px;
+  border: 1px solid var(--border-soft); color: var(--text); background: rgba(212,175,55,0.14);
+  line-height: 1.5;
+}
+.news-impact .impact-companies { color: var(--text); background: rgba(255,255,255,0.09); }
+.news-flow {
+  display: flex; align-items: flex-start; gap: 7px; margin-top: 5px; padding: 5px 9px;
+  border-radius: 8px; font-size: 12px; line-height: 1.55;
+}
+.news-flow .flow-badge {
+  flex-shrink: 0; font-weight: 700; padding: 1px 7px; border-radius: 8px;
+  font-size: 10.5px; letter-spacing: 0.2px; white-space: nowrap;
+}
+.news-flow .flow-text { color: var(--text); }
+.news-flow.flow-current { background: rgba(255,107,122,0.08); border: 1px solid rgba(255,107,122,0.25); }
+.news-flow.flow-current .flow-badge { background: rgba(255,107,122,0.22); color: var(--bull); }
+.news-flow.flow-expected { background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.25); }
+.news-flow.flow-expected .flow-badge { background: rgba(212,175,55,0.22); color: var(--accent-bright); }
+.scroll-hint { display: none; color: var(--muted); font-size: 11px; margin: 0 0 4px; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tdnet-table { min-width: 560px; }
+.movers-table { min-width: 680px; }
+.technical-table { min-width: 820px; }
+th, td { text-align: left; padding: 8px 8px; border-bottom: 1px solid var(--border-soft); }
+th {
+  color: var(--text); font-weight: 600; font-size: 11px; white-space: nowrap;
+  letter-spacing: 0.8px; text-transform: uppercase; border-bottom: 1px solid var(--accent-line);
+}
+td.mono { font-family: "SF Mono", Menlo, monospace; white-space: nowrap; }
+td.reason { color: var(--muted); }
+tbody tr:nth-child(even) { background: rgba(212,175,55,0.02); }
+tbody tr:hover { background: rgba(212,175,55,0.08); }
+.badge { padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
+.badge.bull { background: linear-gradient(120deg, rgba(255,107,122,0.2), rgba(255,107,122,0.08)); color: var(--bull); border: 1px solid rgba(255,107,122,0.3); }
+.badge.bear { background: linear-gradient(120deg, rgba(53,217,180,0.2), rgba(53,217,180,0.08)); color: var(--bear); border: 1px solid rgba(53,217,180,0.3); }
+.badge.neutral { background: rgba(212,175,55,0.16); color: var(--muted); border: 1px solid var(--border-soft); }
+.badge.double { background: linear-gradient(120deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); color: var(--accent-bright); border: 1px solid rgba(212,175,55,0.5); }
+.tag { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: rgba(255,255,255,0.1); color: var(--muted); margin-left: 4px; display: inline-block; margin-top: 2px; }
+.tag-warn { background: rgba(255,184,77,0.18); color: var(--warn); }
+.tag-good { background: rgba(255,107,122,0.16); color: var(--bull); }
+.tag-info { background: rgba(255,255,255,0.12); color: var(--text); }
+.tag-theme { background: rgba(212,175,55,0.22); color: var(--accent-bright); }
+.empty { color: var(--muted); font-size: 13px; }
+
+/* --- 4項目5段階スコアリング(材料・テクニカル・需給・期待値) --- */
+.score-cell { display: flex; flex-direction: column; gap: 2px; min-width: 120px; }
+.score-overall {
+  font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 10px;
+  display: inline-block; margin-bottom: 2px; width: fit-content;
+}
+.score-overall.score-high { background: rgba(255,107,122,0.2); color: var(--bull); }
+.score-overall.score-mid { background: rgba(212,175,55,0.2); color: var(--accent-bright); }
+.score-overall.score-low { background: rgba(53,217,180,0.16); color: var(--bear); }
+.score-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--muted); white-space: nowrap; }
+.score-axis { width: 52px; flex-shrink: 0; }
+.score-dots { letter-spacing: 1px; color: var(--accent-bright); }
+
+/* --- 需給・コンセンサス列(信用倍率・材料出尽くし警戒・みんかぶ参考リンク) --- */
+.sd-ratio { font-size: 11px; color: var(--muted); margin-bottom: 2px; }
+.ext-link-btn {
+  display: inline-block; font-size: 10px; padding: 2px 8px; margin-top: 2px;
+  border-radius: 10px; border: 1px solid var(--accent-line); color: var(--accent-bright);
+  text-decoration: none; white-space: nowrap;
+}
+.ext-link-btn:hover { background: rgba(212,175,55,0.12); }
+
+/* --- 文章中の重要な数値・キーワードの強調マーカー --- */
+.hl-good { color: var(--bull); background: rgba(255,107,122,0.16); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.hl-good-strong { color: #1a0507; background: linear-gradient(120deg, var(--bull), var(--accent-bright)); padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 1.14em; box-shadow: 0 0 0 1px rgba(255,107,122,0.5) inset; }
+.hl-bad { color: var(--bear); background: rgba(53,217,180,0.14); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.hl-bad-strong { color: #04211b; background: linear-gradient(120deg, var(--bear), #8de9d2); padding: 2px 8px; border-radius: 5px; font-weight: 800; font-size: 1.14em; box-shadow: 0 0 0 1px rgba(53,217,180,0.5) inset; }
+.hl-warn { color: var(--warn); background: rgba(255,184,77,0.22); padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+.sentiment-badge { margin-right: 6px; vertical-align: middle; cursor: help; }
+
+/* --- 市場ムード信号機 --- */
+.mood-card {
+  display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; margin-bottom: 16px;
+  border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.mood-icon { font-size: 40px; line-height: 1; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(0,0,0,0.35)); }
+.mood-label { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.3px; }
+.mood-desc { font-size: 12.5px; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+.mood-reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.mood-reasons .tag { margin-left: 0; }
+.mood-caveat { font-size: 10.5px; color: var(--muted); opacity: 0.85; margin-top: 8px; line-height: 1.6; }
+.mood-card.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 24px rgba(63,196,116,0.14); }
+.mood-card.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,184,77,0.14); }
+.mood-card.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 24px rgba(255,90,90,0.14); }
+
+/* --- 材料×テクニカル一致/矛盾分析 --- */
+.alignment-conclusion.mood-green { border-color: rgba(63,196,116,0.45); box-shadow: var(--shadow), 0 0 20px rgba(63,196,116,0.12); }
+.alignment-conclusion.mood-yellow { border-color: rgba(255,184,77,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,184,77,0.12); }
+.alignment-conclusion.mood-red { border-color: rgba(255,90,90,0.45); box-shadow: var(--shadow), 0 0 20px rgba(255,90,90,0.12); }
+.conclusion-text { font-size: 14.5px; line-height: 1.75; color: var(--text); margin: 0; }
+.align-subhead {
+  font-size: 12px; color: var(--text); font-weight: 700; letter-spacing: 0.4px;
+  margin: 16px 0 6px; padding-top: 10px; border-top: 1px dashed var(--border-soft);
+}
+.card h4.align-subhead:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.beginner-card { background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.beginner-tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.beginner-tips li { font-size: 13px; line-height: 1.7; color: var(--text); }
+
+/* --- 経済カレンダー --- */
+.calendar-list { display: flex; flex-direction: column; gap: 2px; }
+.calendar-item { display: flex; gap: 12px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border-soft); }
+.calendar-item:last-child { border-bottom: none; }
+.calendar-date { width: 76px; flex-shrink: 0; font-size: 12px; color: var(--muted); padding-top: 1px; }
+.calendar-body { flex: 1; min-width: 0; }
+.calendar-event { font-size: 13.5px; color: var(--text); font-weight: 600; }
+.calendar-stars { font-size: 13px; color: var(--accent-bright); letter-spacing: 1px; margin-top: 2px; }
+
+/* --- 本日の注目テーマ --- */
+.theme-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.theme-card {
+  background: var(--panel2); border: 1px solid var(--border-soft); border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+.theme-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--text); flex-wrap: wrap; }
+.theme-name { color: var(--text); font-weight: 700; }
+.theme-companies { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.theme-company {
+  font-size: 11px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.1); color: var(--text);
+}
+.theme-company.muted { color: var(--muted); }
+.theme-source { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+/* --- ランキング(強気シグナル数 / TDnet好材料) --- */
+.rank-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.rank-item:last-child { border-bottom: none; }
+.rank-num { width: 34px; flex-shrink: 0; font-size: 19px; text-align: center; line-height: 1.4; }
+.rank-body { flex: 1; min-width: 0; }
+.rank-head { font-size: 13.5px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.rank-desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.rank-news a { color: var(--accent-bright); }
+.rank-outlook { font-style: italic; opacity: 0.9; }
+.rank-content { color: var(--text); opacity: 0.92; }
+.rank-impact { color: var(--text); font-weight: 600; }
+.rank-impact .tag { margin-left: 6px; }
+.rank-reason { opacity: 0.9; }
+.rank-note { font-size: 11px; color: var(--muted); margin: 0 0 10px; }
+.rank-warn { color: var(--warn); font-weight: 600; opacity: 1; background: rgba(255,184,77,0.1); border-left: 2px solid var(--warn); padding: 4px 8px; border-radius: 4px; }
+.score-tag {
+  font-size: 10.5px; padding: 2px 8px; border-radius: 10px;
+  background: rgba(212,175,55,0.2); color: var(--accent-bright); border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+footer {
+  margin: 40px 20px 10px; color: var(--muted); font-size: 11.5px; line-height: 1.7;
+  border-top: 1px solid var(--accent-line);
+  background: rgba(10,8,5,0.72); border-radius: var(--radius-sm);
+  padding: 16px 18px; border: 1px solid var(--border);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+footer .disclaimer { margin: 0 0 12px; }
+.sources { font-size: 11px; color: var(--muted); }
+.run-badge {
+  display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px;
+  background: rgba(0,0,0,0.62); border:1px solid var(--accent-line); color: var(--accent-bright); margin-left:8px;
+  letter-spacing: 0.3px;
+}
+
+/* --- PC(広い画面): 余白と最大幅を少し広げて読みやすくする --- */
+@media (min-width: 1200px) {
+  .wrap { max-width: 1240px; }
+  body { font-size: 15.5px; }
+  .idx-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .topbar-inner { max-width: 1240px; }
+}
+
+/* --- スマホ(狭い画面): 余白・文字サイズを詰めてタップしやすくする --- */
+@media (max-width: 640px) {
+  .wrap { padding: 12px 12px 48px; }
+  .topbar-inner { padding: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  h1 { font-size: 15.5px; line-height: 1.4; }
+  .subtitle { font-size: 11px; }
+  .disclaimer { margin: 12px 8px; padding: 10px 12px; font-size: 12px; }
+  nav.tabs { gap: 6px; }
+  nav.tabs a { font-size: 12px; padding: 6px 10px; }
+  section { margin: 20px 8px; }
+  section > h2 { font-size: 15px; }
+  .section-desc { font-size: 11.5px; }
+  .card { padding: 12px 12px; margin-bottom: 12px; }
+  .idx-grid { grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
+  .idx-value { font-size: 16px; }
+  table { font-size: 12px; }
+  th, td { padding: 6px 6px; }
+  .scroll-hint { display: block; }
+  footer { margin: 28px 8px 10px; }
+  .rank-num { width: 26px; font-size: 15px; }
+  .rank-head { font-size: 12.5px; }
+}
+
+/* ==================== 追加機能: ライトテーマ / お気に入り / 検索・ソート / ミニグラフ / アニメーション ==================== */
+
+:root[data-theme="light"] {
+  --bg-deep: #f6f0e3; --bg-mid: #f6f0e3; --bg-soft: #f6f0e3;
+  --panel: linear-gradient(155deg, rgba(255,255,255,0.92), rgba(250,244,230,0.95));
+  --panel2: rgba(90,60,10,0.05);
+  --border: rgba(150,108,20,0.35); --border-soft: rgba(60,40,10,0.12);
+  --text: #241c0f; --muted: #6d6252;
+  --accent: #9c7a22; --accent-bright: #7c5e14; --accent-deep: #5c440e;
+  --accent-soft: rgba(156,122,34,0.14); --accent-line: rgba(156,122,34,0.55);
+  --up: #c23b4a; --down: #0f8f72;
+  --warn: #a5690a; --bull: #c23b4a; --bear: #0f8f72;
+  --shadow: 0 10px 26px rgba(90,70,20,0.14);
+}
+:root[data-theme="light"] .bg-overlay {
+  background-image:
+    radial-gradient(circle at 12% 4%, rgba(156,122,34,0.10), transparent 38%),
+    radial-gradient(circle at 90% 2%, rgba(156,122,34,0.06), transparent 42%),
+    radial-gradient(circle at 30% 94%, rgba(156,122,34,0.05), transparent 45%),
+    radial-gradient(circle at 80% 72%, rgba(156,122,34,0.03), transparent 40%),
+    linear-gradient(180deg, rgba(255,251,242,0.72) 0%, rgba(250,244,230,0.78) 45%, rgba(246,240,227,0.86) 100%);
+}
+:root[data-theme="light"] body::-webkit-scrollbar-track { background: #efe6d0; }
+
+.top-controls { display: flex; align-items: center; gap: 10px; }
+.theme-toggle {
+  border: 1px solid var(--border); background: rgba(212,175,55,0.08); color: var(--accent-bright);
+  border-radius: 20px; width: 34px; height: 34px; font-size: 15px; cursor: pointer; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center; font-family: inherit;
+  transition: border-color .15s ease, background .15s ease, transform .25s ease;
+}
+.theme-toggle:hover { border-color: var(--accent); background: rgba(212,175,55,0.18); transform: rotate(14deg); }
+
+.rel-time { color: var(--muted); font-size: 11px; margin-left: 2px; }
+
+.fav-filter {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted);
+  margin: 10px 20px 0; cursor: pointer; user-select: none;
+}
+.fav-filter input { accent-color: var(--accent); cursor: pointer; }
+
+.fav-btn {
+  background: none; border: none; cursor: pointer; color: var(--border-soft); font-size: 13px;
+  padding: 0 3px 0 0; vertical-align: middle; line-height: 1; transition: color .15s ease, transform .15s ease;
+}
+.fav-btn:hover { color: var(--accent); transform: scale(1.2); }
+.fav-btn.active { color: var(--accent-bright); }
+
+tr.fav-hidden, tr.search-hidden { display: none; }
+
+.table-tools { margin: 0 0 8px; }
+.table-search {
+  width: 100%; max-width: 280px; background: rgba(255,255,255,0.1); color: var(--text);
+  border: 1px solid var(--border-soft); border-radius: 16px; padding: 6px 12px; font-size: 12.5px;
+  font-family: inherit; outline: none; transition: border-color .15s ease, background .15s ease;
+}
+.table-search::placeholder { color: var(--muted); }
+.table-search:focus { border-color: var(--accent-line); background: rgba(212,175,55,0.06); }
+
+table[data-sortable] thead th { position: relative; user-select: none; cursor: pointer; }
+table[data-sortable] thead th:hover { color: var(--accent-bright); }
+table[data-sortable] thead th::after { content: "⇕"; margin-left: 5px; font-size: 9px; opacity: 0.35; }
+table[data-sortable] thead th[data-dir="asc"]::after { content: "▲"; opacity: 0.9; }
+table[data-sortable] thead th[data-dir="desc"]::after { content: "▼"; opacity: 0.9; }
+
+.mini-bar {
+  position: relative; display: inline-block; width: 44px; height: 6px; margin-left: 8px;
+  background: var(--border-soft); border-radius: 3px; vertical-align: middle;
+}
+.mini-bar::before {
+  content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--border-soft);
+}
+.mini-bar-fill { position: absolute; top: 0; bottom: 0; border-radius: 3px; }
+.mini-bar-fill.up { background: var(--up); }
+.mini-bar-fill.down { background: var(--down); }
+
+.rsi-gauge { display: inline-flex; align-items: center; gap: 6px; }
+.rsi-gauge-track {
+  position: relative; width: 54px; height: 6px; border-radius: 3px; flex-shrink: 0;
+  background: linear-gradient(90deg, var(--down) 0%, var(--down) 28%, var(--border-soft) 30%, var(--border-soft) 68%, var(--up) 70%, var(--up) 100%);
+}
+.rsi-gauge-marker {
+  position: absolute; top: -3px; width: 2px; height: 12px; background: var(--text);
+  border-radius: 1px; transform: translateX(-1px);
+}
+.rsi-gauge-marker.warn-hot { background: var(--warn); box-shadow: 0 0 6px rgba(255,184,77,0.7); }
+.rsi-gauge-marker.warn-cold { background: var(--down); box-shadow: 0 0 6px rgba(53,217,180,0.5); }
+.rsi-gauge-num { font-size: 11.5px; color: var(--muted); }
+
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+#backToTop {
+  position: fixed; right: 18px; bottom: 18px; z-index: 30; width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--accent-line); background: linear-gradient(155deg, rgba(20,17,10,0.92), rgba(8,7,5,0.96));
+  color: var(--accent-bright); font-size: 16px; cursor: pointer; box-shadow: var(--shadow);
+  opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+}
+#backToTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+#backToTop:hover { border-color: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .bg-photo { transition: none; }
+  #backToTop { transition: opacity .01s linear; }
+}
+
+@media (max-width: 640px) {
+  .table-search { max-width: 100%; }
+  .fav-filter { margin: 8px 8px 0; }
+  #backToTop { right: 12px; bottom: 12px; width: 38px; height: 38px; }
+  .top-controls { width: 100%; justify-content: space-between; }
+}
+
+@media print {
+  .topbar, .theme-toggle, .fav-filter, .table-tools, #backToTop, .fav-btn, .bg-photo-stack, .bg-overlay, .bg-spacer { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .card, .disclaimer, footer, section > h2, .section-desc {
+    background: #fff !important; color: #000 !important; border-color: #999 !important; box-shadow: none !important;
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  }
+  a { color: #000 !important; text-decoration: underline; }
+}
+</style>
+</head>
+<body>
+<div class="bg-photo-stack" aria-hidden="true"><div class="bg-photo is-active" style="background-image:url('https://images.unsplash.com/photo-1764418366176-0f273a921fab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="0" data-caption="伏見稲荷大社(京都)"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1711006876033-8baac5dfa718?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="1" data-caption="汐留イルミネーション"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1739614537933-11eed8f5d449?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="2" data-caption="横浜みなとみらい"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1660292318896-0c684c801e3f?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="3" data-caption="六本木ヒルズ展望台"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1764268845521-a115101cdde5?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="4" data-caption="池袋"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1493515322954-4fa727e97985?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="5" data-caption="上野の裏路地"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="6" data-caption="有楽町・銀座"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1617869884925-f8f0a51b2374?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="7" data-caption="歌舞伎町"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1626846136629-aa437fcb29a8?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="8" data-caption="西新宿の高層ビル群"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1734753050499-e766acbe80ce?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="9" data-caption="品川・高層ビル街"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1781525981877-ce6d8d80bcf8?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="10" data-caption="渋谷センター街"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1617870314635-fc819547ec11?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="11" data-caption="新宿・思い出横丁"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1759970752518-b0ffa38c130b?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="12" data-caption="東京タワー"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1749916884078-e8359b2adcdd?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="13" data-caption="渋谷スクランブル交差点"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1741097574041-d70d3fe6a3ab?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="14" data-caption="レインボーブリッジ・お台場"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1768711478173-07768f32b426?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="15" data-caption="東京スカイツリー"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1758881606455-26cc1c2c8de4?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=40&amp;con=10&amp;vib=25')" data-order="16" data-caption="新宿"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1624434512895-2d1887ebfccf?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="17" data-caption="六本木"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1646547571578-bfd7b1457a65?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="18" data-caption="秋葉原"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1690971324341-94fac8ec6873?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="19" data-caption="丸の内・東京駅"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1622767833293-8d1e6878c27f?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="20" data-caption="銀座"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1671247913568-050c0bb925f5?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="21" data-caption="表参道イルミネーション"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1771385706304-19ab1fb5fd61?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="22" data-caption="浅草・雷門"></div><div class="bg-photo" style="background-image:url('https://images.unsplash.com/photo-1703702238930-237f139e8115?auto=format&amp;fit=crop&amp;w=2400&amp;q=90&amp;sat=35&amp;con=12&amp;vib=22')" data-order="23" data-caption="神楽坂の路地"></div></div>
+<div class="bg-overlay" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-title">
+      <span class="eyebrow">TOKYO STOCK EXCHANGE ・ DAY TRADE INTELLIGENCE</span>
+      <h1>日本株(東証)デイトレード情報ダッシュボード<span class="run-badge">朝(寄り付き前)更新</span></h1>
+      <div class="subtitle">最終更新: 2026-09-19 14:16 (JST)<span class="rel-time" data-generated="2026-09-19 14:16"></span> ・ 毎日 朝6:00 / 夜21:00 に自動更新</div>
+    </div>
+    <div class="top-controls">
+      <nav class="tabs">
+        <a href="#morning">🌅 寄り付き前</a>
+        <a href="#evening">🌙 引け後</a>
+        <a href="#technical">📊 株価診断</a>
+        <a href="#alignment">🧭 分析</a>
+        <a href="#growth">🌱 成長株</a>
+      </nav>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="表示テーマを切り替え" title="ライト/ダークテーマ切替">🌗</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="disclaimer">
+    ⚠️ <b>本サイトは情報提供のみを目的とし、投資助言ではありません。</b> 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)・Google Newsなど無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、「先行材料ウォッチ」「ダブルシグナル」等の表示もニュース見出し・開示タグの単純なキーワード一致による機械的な抽出であり、AIによる分析ではありません。アナリストのコンセンサス予想(市場平均予想)は無料でリアルタイム取得できるソースがないため、本ページには含まれていません。<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
+  </div>
+  <section id="update-log" class="update-log-section">
+      <h2>🕒 データ更新記録 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">各データを今回の実行で取得できたかを示します。<b>取得不可・今回未取得の項目は空表示となり、前回の内容は表示・通知に利用しません。</b></p>
+      <div class="update-log-grid"><div class="update-log-item state-updated" role="group" aria-label="市場指数・為替: 更新済み"><b>市場指数・為替</b>: 更新済み・確認: 2026年9月19日 14:16時点 (JST)。今回の実行で取得・更新しました。 <span class="state-badge">更新済み</span></div><div class="update-log-item state-updated" role="group" aria-label="朝のTDnet開示: 更新済み"><b>朝のTDnet開示</b>: 更新済み・確認: 2026年9月19日 14:16時点 (JST)。今回の実行で取得・更新しました。 <span class="state-badge">更新済み</span></div><div class="update-log-item state-not_requested" role="group" aria-label="引け後TDnet開示: 今回未取得"><b>引け後TDnet開示</b>: 今回未取得・確認: 2026年9月19日 14:16時点 (JST)。今回の実行モードでは更新対象外です。 <span class="state-badge">今回未取得</span></div><div class="update-log-item state-updated" role="group" aria-label="テクニカル指標: 更新済み"><b>テクニカル指標</b>: 更新済み・確認: 2026年9月19日 14:16時点 (JST)。今回の実行で取得・更新しました。 <span class="state-badge">更新済み</span></div><div class="update-log-item state-updated" role="group" aria-label="成長株候補: 更新済み"><b>成長株候補</b>: 更新済み・確認: 2026年9月19日 14:16時点 (JST)。今回の実行で取得・更新しました。 <span class="state-badge">更新済み</span></div><div class="update-log-item state-updated" role="group" aria-label="決算前材料ウォッチ: 更新済み"><b>決算前材料ウォッチ</b>: 更新済み・確認: 2026年9月19日 14:16時点 (JST)。今回の実行で取得・更新しました。 <span class="state-badge">更新済み</span></div><div class="update-log-item state-unavailable" role="group" aria-label="時間外・朝ニュース: 取得不可"><b>時間外・朝ニュース</b>: 取得不可・確認: 2026年9月19日 14:16時点 (JST)。ニュース分析APIで取得できませんでした。 <span class="state-badge">取得不可</span></div><div class="update-log-item state-not_requested" role="group" aria-label="引け後ニュース: 今回未取得"><b>引け後ニュース</b>: 今回未取得・確認: 2026年9月19日 14:16時点 (JST)。今回の実行モードでは更新対象外です。 <span class="state-badge">今回未取得</span></div><div class="update-log-item state-unavailable" role="group" aria-label="朝の話題株: 取得不可"><b>朝の話題株</b>: 取得不可・確認: 2026年9月19日 14:16時点 (JST)。話題株分析APIで取得できませんでした。 <span class="state-badge">取得不可</span></div><div class="update-log-item state-not_requested" role="group" aria-label="引け後の話題株: 今回未取得"><b>引け後の話題株</b>: 今回未取得・確認: 2026年9月19日 14:16時点 (JST)。今回の実行モードでは更新対象外です。 <span class="state-badge">今回未取得</span></div><div class="update-log-item state-unavailable" role="group" aria-label="米国株好材料: 取得不可"><b>米国株好材料</b>: 取得不可・確認: 2026年9月19日 14:16時点 (JST)。ニュース分析APIで取得できませんでした。 <span class="state-badge">取得不可</span></div><div class="update-log-item state-empty" role="group" aria-label="EDINET大量保有報告: 取得済み(該当なし)"><b>EDINET大量保有報告</b>: 取得済み(該当なし)・確認: 2026年9月19日 14:16時点 (JST)。取得済み・該当する大量保有報告書はありません。 <span class="state-badge">取得済み(該当なし)</span></div><div class="update-log-item state-updated" role="group" aria-label="経済カレンダー: 更新済み"><b>経済カレンダー</b>: 更新済み・確認: 2026年9月19日 14:16時点 (JST)。今回の実行で取得・更新しました。 <span class="state-badge">更新済み</span></div></div>
+    </section>
+  <section id="conclusion" class="conclusion-section">
+              <h2>🎯 結論ファースト:現時点のスコア上位銘柄 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+              <p class="conclusion-date">📅 2026年9月19日 14:16時点の情報です。時間が経つと株価・スコアは変わるため、必ず最新の更新をご確認ください。</p>
+              <p class="conclusion-disclaimer">
+                <b>本セクションは「株価診断(テクニカル指標)」で算出済みの4項目スコア(材料・テクニカル・需給・期待値)を
+                機械的に集計し、総合スコアが高い順に最大3銘柄を表示しているだけの参考情報です。
+                AIによる推奨や将来の値上がりを保証するものではありません。投資に関する最終判断は、
+                必ずご自身の責任で行ってください。</b>
+              </p>
+              <div class="card">
+                <div class="pick-cards">
+                <div class="pick-card">
+                  <div class="pick-rank">1位</div>
+                  <div class="pick-name">ソニーグループ <span class="pick-code">(6758)</span></div>
+                  <div class="pick-score">総合スコア 3.0 / 5.0
+                    (材料1・テクニカル5・需給2・期待値4)</div>
+                  <div class="pick-summary">売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。</div>
+                </div>
+                <div class="pick-card">
+                  <div class="pick-rank">2位</div>
+                  <div class="pick-name">ダイキン工業 <span class="pick-code">(6367)</span></div>
+                  <div class="pick-score">総合スコア 3.0 / 5.0
+                    (材料1・テクニカル4・需給4・期待値3)</div>
+                  <div class="pick-summary">売り0/中立6/買い1。RSIは中立域。</div>
+                </div>
+                <div class="pick-card">
+                  <div class="pick-rank">3位</div>
+                  <div class="pick-name">ファーストリテイリング <span class="pick-code">(9983)</span></div>
+                  <div class="pick-score">総合スコア 3.0 / 5.0
+                    (材料1・テクニカル5・需給2・期待値4)</div>
+                  <div class="pick-summary">売り0/中立5/買い2。RSIが30以下で売られ過ぎ、短期的な反発余地に留意。</div>
+                </div></div>
+              </div>
+              <h3 class="conclusion-subhead">🌱 成長株ピックアップ(TDnet好材料開示ベース・別ロジック) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+              <p class="conclusion-disclaimer">
+                <b>上記のスコア上位銘柄とは異なる基準で選定しています。TDnet適時開示(増配・業績上方修正など)の
+                キーワードから機械的に抽出した候補で、株価テクニカルは考慮していません。各候補の開示日時は
+                個別に記載しているとおりで、「結論ファースト」全体の更新日時(2026年9月19日 14:16時点)とは別です。</b>
+              </p>
+              <div class="card">
+                <div class="pick-cards">
+                <div class="pick-card">
+                  <div class="pick-rank">🌱 成長株候補</div>
+                  <div class="pick-name">ラサールロジ </div>
+                  <div class="pick-score">好材料: 上方修正</div>
+                  <div class="pick-summary"><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538378.pdf" target="_blank" rel="noopener">2027年2月期の運用状況及び分配金の予想の修正（上方修正）に関するお知らせ</a></div>
+                  <div class="pick-date">開示日時: 9月18日(金) 15:30</div>
+                </div>
+                <div class="pick-card">
+                  <div class="pick-rank">🌱 成長株候補</div>
+                  <div class="pick-name">ニッカトー </div>
+                  <div class="pick-score">好材料: 増配</div>
+                  <div class="pick-summary"><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260916536942.pdf" target="_blank" rel="noopener">第２四半期業績予想の修正並びに通期業績予想の修正および配当予想の修正（増配）に関するお知らせ</a></div>
+                  <div class="pick-date">開示日時: 9月18日(金) 15:30</div>
+                </div>
+                <div class="pick-card">
+                  <div class="pick-rank">🌱 成長株候補</div>
+                  <div class="pick-name">いちごオフィ </div>
+                  <div class="pick-score">好材料: 上方修正</div>
+                  <div class="pick-summary"><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538827.pdf" target="_blank" rel="noopener">2026年10月期の運用状況および分配予想の上方修正のお知らせ</a></div>
+                  <div class="pick-date">開示日時: 9月18日(金) 15:30</div>
+                </div></div>
+              </div>
+            </section>
+  
+    <div class="mood-card mood-yellow">
+      <div class="mood-icon" aria-hidden="true">🟡</div>
+      <div class="mood-body">
+        <div class="mood-label">様子見が無難な地合い</div>
+        <div class="mood-desc">米国株や好材料の方向感が乏しく、無理に動く必要はありません。</div>
+        <div class="mood-reasons"><span class="tag">米国3指数平均 +0.13%</span></div>
+        <div class="mood-caveat">⚠️ 米国株の方向・好材料の有無・過熱感だけを組み合わせた機械的な簡易判定です。投資助言ではなく、最終判断は必ずご自身の責任で行ってください。</div>
+      </div>
+    </div>
+  <label class="fav-filter"><input type="checkbox" id="favFilterToggle"> ★ お気に入りのみ表示(コード欄の★で登録)</label>
+  <section id="morning">
+      <h2>🌅 寄り付き前セクション <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">前日の米国市場・為替・時間外ニュース・TDnet早朝までの開示・話題株をまとめています。当日の仕込み銘柄検討の参考情報です。</p>
+      <div class="card">
+        <h3>米国市場・為替・日経先物 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <div class="idx-grid">
+    <div class="idx-card">
+      <div class="idx-label">S&amp;P500</div>
+      <div class="idx-value">7,650.50</div>
+      <span class="chg up">+0.17%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:1.1%;"></span></span>
+      <div class="note">9/19終値</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-label">NYダウ</div>
+      <div class="idx-value">51,682.64</div>
+      <span class="chg down">-0.18%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:1.1%;"></span></span>
+      <div class="note">9/19終値</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-label">ナスダック総合</div>
+      <div class="idx-value">26,522.54</div>
+      <span class="chg up">+0.39%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:2.4%;"></span></span>
+      <div class="note">9/19終値</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-label">SOX指数(半導体)</div>
+      <div class="idx-value">11,921.69</div>
+      <span class="chg up">+2.78%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:17.4%;"></span></span>
+      <div class="note">9/19終値</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-label">USD/JPY</div>
+      <div class="idx-value">156.85円</div>
+      <span class="chg up">+0.47%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:2.9%;"></span></span>
+      <div class="note">9/19終値</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-label">日経225先物(CME/大阪)</div>
+      <div class="idx-value">64,960.00</div>
+      <span class="chg up">+0.08%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:0.5%;"></span></span>
+      <div class="note">9/19終値</div>
+    </div>
+    <div class="idx-card">
+      <div class="idx-label">日経平均(現物・前回終値)</div>
+      <div class="idx-value">65,018.95</div>
+      <span class="chg up">+1.38%</span><span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill up" style="right:50%; width:8.6%;"></span></span>
+      <div class="note">9/18終値</div>
+    </div></div>
+        
+      </div>
+      <div class="card">
+        <h3>📅 経済カレンダー(重要度) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="section-desc">雇用統計・CPI・日銀会合など、相場が動きやすいイベントを重要度(★)で示しています。<b>実際の相場変動を保証するものではありません。</b></p>
+        <div class="calendar-list">
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-10-02</div>
+          <div class="calendar-body">
+            <div class="calendar-event">米雇用統計(非農業部門雇用者数・失業率)</div>
+            <div class="calendar-stars" aria-label="重要度4/5" title="重要度4/5">★★★★☆</div>
+            <div class="note">原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-10-28</div>
+          <div class="calendar-body">
+            <div class="calendar-event">FOMC(米連邦公開市場委員会)政策発表</div>
+            <div class="calendar-stars" aria-label="重要度5/5" title="重要度5/5">★★★★★</div>
+            <div class="note">日本時間深夜に結果発表。市場変動が大きくなりやすい。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-10-30</div>
+          <div class="calendar-body">
+            <div class="calendar-event">日銀金融政策決定会合・「経済・物価情勢の展望」公表</div>
+            <div class="calendar-stars" aria-label="重要度5/5" title="重要度5/5">★★★★★</div>
+            <div class="note">金融政策の変更有無・総裁会見の内容次第で為替・日本株が大きく動く可能性。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-11-06</div>
+          <div class="calendar-body">
+            <div class="calendar-event">米雇用統計(非農業部門雇用者数・失業率)</div>
+            <div class="calendar-stars" aria-label="重要度4/5" title="重要度4/5">★★★★☆</div>
+            <div class="note">原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-12-04</div>
+          <div class="calendar-body">
+            <div class="calendar-event">米雇用統計(非農業部門雇用者数・失業率)</div>
+            <div class="calendar-stars" aria-label="重要度4/5" title="重要度4/5">★★★★☆</div>
+            <div class="note">原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-12-09</div>
+          <div class="calendar-body">
+            <div class="calendar-event">FOMC(米連邦公開市場委員会)政策発表・SEP(経済見通し)公表</div>
+            <div class="calendar-stars" aria-label="重要度5/5" title="重要度5/5">★★★★★</div>
+            <div class="note">日本時間深夜に結果発表。市場変動が大きくなりやすい。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2026-12-18</div>
+          <div class="calendar-body">
+            <div class="calendar-event">日銀金融政策決定会合</div>
+            <div class="calendar-stars" aria-label="重要度5/5" title="重要度5/5">★★★★★</div>
+            <div class="note">金融政策の変更有無・総裁会見の内容次第で為替・日本株が大きく動く可能性。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2027-01-01</div>
+          <div class="calendar-body">
+            <div class="calendar-event">米雇用統計(非農業部門雇用者数・失業率)</div>
+            <div class="calendar-stars" aria-label="重要度4/5" title="重要度4/5">★★★★☆</div>
+            <div class="note">原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。</div>
+          </div>
+        </div>
+        <div class="calendar-item">
+          <div class="calendar-date mono">2027-02-05</div>
+          <div class="calendar-body">
+            <div class="calendar-event">米雇用統計(非農業部門雇用者数・失業率)</div>
+            <div class="calendar-stars" aria-label="重要度4/5" title="重要度4/5">★★★★☆</div>
+            <div class="note">原則毎月第1金曜発表(祝日等により前後する場合あり)。日本時間21:30または22:30。</div>
+          </div>
+        </div></div>
+        
+      </div>
+      <div class="card">
+        <h3>🎯 本日の注目テーマと関連銘柄 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="section-desc">ニュースの投資関連分野・注目企業タグを集約した参考情報です。<b>投資助言ではなく、実際に株価が動くことを保証するものではありません。</b></p>
+        <p class="empty">現時点で投資関連分野・注目企業のデータがありません。</p>
+        <p class="empty"><b>データ状態:</b> 取得不可: ニュース分析APIで取得できませんでした。 / 今回未取得: 今回の実行モードでは更新対象外です。</p>
+      </div>
+      <div class="card">
+        <h3>時間外・朝の主要ニュース <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="empty">現時点で該当するニュースは取得できませんでした。</p>
+        <p class="empty"><b>データ状態:</b> 取得不可: ニュース分析APIで取得できませんでした。</p>
+      </div>
+      <div class="card">
+        <h3>TDnet 適時開示(朝までの分) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        
+    <div class="table-tools"><input type="search" class="table-search" placeholder="🔍 時刻・コード・会社名・タイトルで検索"></div>
+    <p class="rank-note">💡 <b>ポジティブ/ネガティブ/中立</b>は開示タイトルのキーワード一致による機械的な参考判定です。AIによる詳細分析ではなく、投資助言でもありません。</p>
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
+    <table class="tdnet-table" data-sortable="true">
+      <thead><tr><th>時刻</th><th>コード</th><th>会社名</th><th>開示タイトル</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="mono">08:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>オカムラ食品</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538757.pdf" target="_blank" rel="noopener">NOTICE OF THE 56TH ANNUAL GENERAL MEETING OF SHAREHOLDERS</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">08:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>オカムラ食品</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538748.pdf" target="_blank" rel="noopener">第56期定時株主総会招集ご通知</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">08:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>オカムラ食品</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538747.pdf" target="_blank" rel="noopener">第56期定時株主総会招集ご通知の正誤表</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">08:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>シュッピン</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538953.pdf" target="_blank" rel="noopener">Notice of Partial Correction to the Notice of Convocation of the Extraordinary General Meeting of Shareholders</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">08:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>シュッピン</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538952.pdf" target="_blank" rel="noopener">（訂正）臨時株主総会招集ご通知</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">08:00</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>シュッピン</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538951.pdf" target="_blank" rel="noopener">臨時株主総会招集通知記載事項の一部訂正について</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>王子ＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260917537559.pdf" target="_blank" rel="noopener">王子グループ統合報告書2026</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>サワイＧＨＤ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538857.pdf" target="_blank" rel="noopener">サワイグループホールディングス　統合報告書 2026</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>東洋炭素</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538810.pdf" target="_blank" rel="noopener">東洋炭素　統合報告書2026</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">00:30</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>イズミ</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260919/140120260918538903.pdf" target="_blank" rel="noopener">Integrated Report 2026</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538995.pdf" target="_blank" rel="noopener">ＲＩＺＡＰ、2026年9月18日（金）14時の開示資料についての補足に関するお知らせ 他 9月18日(金) 21:08</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538994.pdf" target="_blank" rel="noopener">データセク、大口受注（予定）に関するお知らせ 他 9月18日(金) 19:30</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260915536843.pdf" target="_blank" rel="noopener">日エンター、コーポレート・ガバナンスに関する報告書 2026/09/18 他 9月18日(金) 19:27</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538991.pdf" target="_blank" rel="noopener">フジＨＤ、独立役員届出書 他 9月18日(金) 19:00</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538992.pdf" target="_blank" rel="noopener">東邦ＨＤ、(Progress of Disclosed Matter) Notice Regarding the Result of the Petition by a Shareholder for a Provisional Injunction Prohibiting the Gratis Allotm 他 9月18日(金) 19:00</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538940.pdf" target="_blank" rel="noopener">東邦ＨＤ、（開示事項の経過）株主による新株予約権無償割当て差止めの仮処分の申立ての結果に関するお知らせ 他 9月18日(金) 19:00</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260916537273.pdf" target="_blank" rel="noopener">川崎汽、Notice Regarding the Status and Completion of Own Share Repurchase 他 9月18日(金) 19:00</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260915536375.pdf" target="_blank" rel="noopener">川崎汽、自己株式の取得状況及び取得終了のお知らせ 自社 9月18日(金) 19:00</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260917537796.pdf" target="_blank" rel="noopener">ハンモック、ログミーFinance主催「個人投資家向けIRセミナー」登壇のお知らせ 他 9月18日(金) 18:30</a> <span class="tag">他</span></td>
+        </tr>
+        <tr>
+          <td class="mono">―</td>
+          <td class="mono"><button class="fav-btn" type="button" data-code="―" aria-label="お気に入り登録" aria-pressed="false">★</button> ―</td>
+          <td>―</td>
+          <td><span class="badge neutral sentiment-badge" title="タイトルのキーワードのみで機械的に判定した参考ラベルです">中立</span><a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538852.pdf" target="_blank" rel="noopener">Ｓｃｈｏｏ、訴訟提起に関するお知らせ 他 9月18日(金) 18:15</a> <span class="tag">他</span></td>
+        </tr></tbody>
+    </table>
+    </div>
+        
+      </div>
+      <div class="card">
+        <h3>出来高・値動きで話題の銘柄 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="empty">該当データが取得できませんでした。</p>
+        <p class="empty"><b>データ状態:</b> 取得不可: 話題株分析APIで取得できませんでした。</p>
+      </div>
+    </section>
+
+    <section id="evening">
+      <h2>🌙 引け後セクション <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">本日のTDnet適時開示(決算・業績修正・自己株買いなど)と引け後の重要ニュースをまとめています。翌日以降の仕込み銘柄検討の参考情報です。</p>
+      <div class="card">
+        <h3>本日のTDnet適時開示 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="empty">本日の適時開示データはありません。</p>
+        <p class="empty"><b>データ状態:</b> 今回未取得: 今回の実行モードでは更新対象外です。</p>
+      </div>
+      <div class="card">
+        <h3>引け後の主要ニュース <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="empty">現時点で該当するニュースは取得できませんでした。</p>
+        <p class="empty"><b>データ状態:</b> 今回未取得: 今回の実行モードでは更新対象外です。</p>
+      </div>
+      <div class="card">
+        <h3>本日の値動き・出来高で話題の銘柄 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="empty">該当データが取得できませんでした。</p>
+        <p class="empty"><b>データ状態:</b> 今回未取得: 今回の実行モードでは更新対象外です。</p>
+      </div>
+      <div class="card">
+        <h3>TDnet開示 好材料ランキング(日本株 TOP5) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="rank-note">
+          本日のTDnet開示のうち、上方修正・最高益・増配など<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています
+          (下方修正・減配など弱材料の開示は対象外)。各銘柄について、①具体的に何が開示されたか、②過去の類似開示に基づく想定インパクト(参考値)、
+          ③好材料と判断する理由、④直近のテクニカル指標に基づく参考コメント、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
+          RSI(14)が75以上、または25日線から15%以上上方乖離している銘柄には
+          「⚠️ 織り込み済みの可能性あり」の警告を表示します(好材料が既に株価に反映され、材料出尽くしで
+          反落するリスクへの機械的な注意喚起であり、決算内容そのものの良し悪しを判定するものではありません)。
+        </p>
+        <p class="empty">本日はTDnet開示に基づく明確な好材料データ(日本株)がありません。</p>
+        <p class="empty"><b>データ状態:</b> 今回未取得: 今回の実行モードでは更新対象外です。</p>
+      </div>
+      <div class="card">
+        <h3>好材料ランキング(米国株 TOP5) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="rank-note">
+          決算上振れ・ガイダンス上方修正・アナリスト評価引き上げなど<b>明確な好材料のみ</b>を対象に、内容の強さで機械的に順位付けしています。
+          各銘柄について、①具体的に何が発表されたか、②過去の類似ニュースに基づく想定インパクト(参考値)、③好材料と判断する理由、を明記しています。
+          <b>想定インパクトは過去の類似ケースの一般的な傾向を示す参考値であり、株価が実際にその通り上昇することを確約・予想するものではありません。</b>
+          見出しの内容からAI(Gemini)が「既に株価に織り込まれている可能性」を推定できた場合のみ、
+          「⚠️ 織り込み済みの可能性あり」の警告を表示します(見出しテキストのみからの推定であり、
+          実際のチャートを参照した判定ではないため、必ず自身でも株価を確認してください)。
+        </p>
+        <p class="empty">本日は米国株の明確な好材料データがありません(データ取得は今後の更新に対応予定です)。</p>
+        <p class="empty"><b>データ状態:</b> 取得不可: ニュース分析APIで取得できませんでした。</p>
+      </div>
+    </section>
+
+    <section id="technical">
+      <h2>📊 株価診断(テクニカル指標) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">
+        移動平均線・RSIなど無料で取得できるテクニカル指標にもとづく客観的な「強気/弱気シグナル」の一覧です。
+        <b>将来の株価を予想・保証するものではありません。</b>
+      </p>
+      <div class="card">
+        
+    <div class="table-tools"><input type="search" class="table-search" placeholder="🔍 銘柄名・コードで検索"></div>
+    <p class="rank-note">💡 <b>スコア(材料/テクニカル/需給/期待値)</b>は既存データからのルールベース簡易採点(1〜5)です。AIによる判定ではなく、投資助言でもありません。</p>
+    <div class="scroll-hint">← 横にスクロールできます</div>
+    <div class="table-scroll">
+    <table class="technical-table" data-sortable="true">
+      <thead><tr><th>コード</th><th>銘柄名</th><th>株価</th><th>前日比</th><th>5日線乖離</th><th>25日線乖離</th><th>RSI(14)</th><th>シグナル</th><th>需給・コンセンサス</th><th>スコア</th><th>コメント</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7203" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7203.T" target="_blank" rel="noopener">7203</a></td>
+          <td>トヨタ自動車</td>
+          <td class="mono">3,025.0</td>
+          <td class="mono down">-0.30%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:1.9%;"></span></span></td>
+          <td class="mono">+0.03%</td>
+          <td class="mono">-1.22%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:36.8%;"></span></span><span class="rsi-gauge-num">36.8</span></span></td>
+          <td><span class="badge neutral">中立</span></td>
+          <td><div class="mono sd-ratio">信用倍率 6.57倍</div><span class="tag tag-good">🚀出来高急増(2.1倍)</span><span class="tag tag-info">業種: 輸送用機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/7203/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.8</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6758" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6758.T" target="_blank" rel="noopener">6758</a></td>
+          <td>ソニーグループ</td>
+          <td class="mono">3,697.0</td>
+          <td class="mono down">-1.52%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:9.5%;"></span></span></td>
+          <td class="mono">-1.06%</td>
+          <td class="mono">-2.59%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:29.8%;"></span></span><span class="rsi-gauge-num">29.8</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
+          <td><span class="badge bull">強気(売られ過ぎ)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 25.33倍</div><div class="mono sd-ratio">出来高 5日平均比 1.27倍</div><span class="tag tag-info">業種: 電気機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6758/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 3.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 5/5">●●●●●</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 4/5">●●●●○</span></div></div></td>
+          <td class="reason">売り0/中立5/買い2。RSIが30以下で<span class="hl-warn">売られ過ぎ</span>、短期的な<span class="hl-good">反発</span>余地に留意。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="8306" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8306.T" target="_blank" rel="noopener">8306</a></td>
+          <td>三菱UFJフィナンシャル・グループ</td>
+          <td class="mono">3,620.0</td>
+          <td class="mono down">-0.88%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:5.5%;"></span></span></td>
+          <td class="mono">-1.17%</td>
+          <td class="mono">-0.37%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:44.5%;"></span></span><span class="rsi-gauge-num">44.5</span></span></td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 21.09倍</div><div class="mono sd-ratio">出来高 5日平均比 1.27倍</div><span class="tag tag-info">業種: 銀行業</span><a class="ext-link-btn" href="https://minkabu.jp/stock/8306/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9984" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9984.T" target="_blank" rel="noopener">9984</a></td>
+          <td>ソフトバンクグループ</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+2.31%</td>
+          <td class="mono">+10.45%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:64.2%;"></span></span><span class="rsi-gauge-num">64.2</span></span></td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 4.68倍</div><div class="mono sd-ratio">出来高 5日平均比 1.31倍</div><span class="tag tag-good">🔺窓開け上放れ +2.45%</span><span class="tag tag-info">業種: 情報・通信業</span><a class="ext-link-btn" href="https://minkabu.jp/stock/9984/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6861" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6861.T" target="_blank" rel="noopener">6861</a></td>
+          <td>キーエンス</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+0.71%</td>
+          <td class="mono">-3.56%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:19.7%;"></span></span><span class="rsi-gauge-num">19.7</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 3.26倍</div><div class="mono sd-ratio">出来高 5日平均比 1.18倍</div><span class="tag tag-info">業種: 電気機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6861/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.8</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 4/5">●●●●○</span></div></div></td>
+          <td class="reason">売り0/中立6/買い1。RSIが30以下で<span class="hl-warn">売られ過ぎ</span>、短期的な<span class="hl-good">反発</span>余地に留意。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6954" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6954.T" target="_blank" rel="noopener">6954</a></td>
+          <td>ファナック</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+0.98%</td>
+          <td class="mono">-1.71%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:42.3%;"></span></span><span class="rsi-gauge-num">42.3</span></span></td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 22.99倍</div><div class="mono sd-ratio">出来高 5日平均比 1.18倍</div><span class="tag tag-info">業種: 機械</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6954/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.5</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7974" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7974.T" target="_blank" rel="noopener">7974</a></td>
+          <td>任天堂</td>
+          <td class="mono">8,339.0</td>
+          <td class="mono down">-1.60%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:10.0%;"></span></span></td>
+          <td class="mono">+0.89%</td>
+          <td class="mono">-3.36%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:33.7%;"></span></span><span class="rsi-gauge-num">33.7</span></span></td>
+          <td><span class="badge neutral">中立</span></td>
+          <td><div class="mono sd-ratio">信用倍率 12.47倍</div><div class="mono sd-ratio">出来高 5日平均比 0.80倍</div><span class="tag tag-info">業種: その他製品</span><a class="ext-link-btn" href="https://minkabu.jp/stock/7974/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6098" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6098.T" target="_blank" rel="noopener">6098</a></td>
+          <td>リクルートホールディングス</td>
+          <td class="mono">17,350.0</td>
+          <td class="mono down">-0.54%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:3.4%;"></span></span></td>
+          <td class="mono">+1.72%</td>
+          <td class="mono">+4.84%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:42.8%;"></span></span><span class="rsi-gauge-num">42.8</span></span></td>
+          <td><span class="badge bear">弱気</span></td>
+          <td><div class="mono sd-ratio">信用倍率 1.63倍</div><div class="mono sd-ratio">出来高 5日平均比 1.02倍</div><span class="tag tag-info">業種: サービス業</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6098/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り2/中立5/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="8035" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/8035.T" target="_blank" rel="noopener">8035</a></td>
+          <td>東京エレクトロン</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+3.19%</td>
+          <td class="mono">-1.94%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:39.0%;"></span></span><span class="rsi-gauge-num">39.0</span></span></td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 10.83倍</div><div class="mono sd-ratio">出来高 5日平均比 1.34倍</div><span class="tag tag-good">🔺窓開け上放れ +2.22%</span><span class="tag tag-info">業種: 電気機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/8035/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.5</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9433" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9433.T" target="_blank" rel="noopener">9433</a></td>
+          <td>KDDI</td>
+          <td class="mono">3,060.0</td>
+          <td class="mono down">-1.58%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:9.9%;"></span></span></td>
+          <td class="mono">-0.40%</td>
+          <td class="mono">+3.33%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:63.6%;"></span></span><span class="rsi-gauge-num">63.6</span></span></td>
+          <td><span class="badge neutral">中立</span></td>
+          <td><div class="mono sd-ratio">信用倍率 0.75倍</div><span class="tag tag-good">🚀出来高急増(2.0倍)</span><span class="tag tag-info">業種: 情報・通信業</span><span class="tag tag-good">🚀需給良好(踏み上げ期待)</span><a class="ext-link-btn" href="https://minkabu.jp/stock/9433/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.8</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 5/5">●●●●●</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 2/5">●●○○○</span></div></div></td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9432" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9432.T" target="_blank" rel="noopener">9432</a></td>
+          <td>日本電信電話</td>
+          <td class="mono">177.3</td>
+          <td class="mono down">-1.50%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:9.4%;"></span></span></td>
+          <td class="mono">-0.48%</td>
+          <td class="mono">+3.69%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:59.2%;"></span></span><span class="rsi-gauge-num">59.2</span></span></td>
+          <td><span class="badge bear">弱気</span></td>
+          <td><div class="mono sd-ratio">信用倍率 3.21倍</div><div class="mono sd-ratio">出来高 5日平均比 1.41倍</div><span class="tag tag-info">業種: 情報・通信業</span><a class="ext-link-btn" href="https://minkabu.jp/stock/9432/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 1.8</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 2/5">●●○○○</span></div></div></td>
+          <td class="reason">売り2/中立5/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="7267" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/7267.T" target="_blank" rel="noopener">7267</a></td>
+          <td>本田技研工業</td>
+          <td class="mono">1,689.0</td>
+          <td class="mono down">-1.14%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:7.1%;"></span></span></td>
+          <td class="mono">+0.11%</td>
+          <td class="mono">-0.06%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:46.8%;"></span></span><span class="rsi-gauge-num">46.8</span></span></td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 2.38倍</div><div class="mono sd-ratio">出来高 5日平均比 1.64倍</div><span class="tag tag-info">業種: 輸送用機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/7267/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.2</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6367" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6367.T" target="_blank" rel="noopener">6367</a></td>
+          <td>ダイキン工業</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+0.63%</td>
+          <td class="mono">-0.30%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:40.8%;"></span></span><span class="rsi-gauge-num">40.8</span></span></td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 21.23倍</div><span class="tag tag-good">🚀出来高急増(2.8倍)</span><span class="tag tag-info">業種: 機械</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6367/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 3.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="9983" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/9983.T" target="_blank" rel="noopener">9983</a></td>
+          <td>ファーストリテイリング</td>
+          <td class="mono">67,680.0</td>
+          <td class="mono down">-0.03%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:0.2%;"></span></span></td>
+          <td class="mono">+0.78%</td>
+          <td class="mono">-3.97%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker warn-cold" style="left:25.7%;"></span></span><span class="rsi-gauge-num">25.7</span></span> <span class="tag tag-warn">売られ過ぎ</span></td>
+          <td><span class="badge bull">強気(売られ過ぎ)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 3.20倍</div><div class="mono sd-ratio">出来高 5日平均比 1.39倍</div><span class="tag tag-info">業種: 小売業</span><a class="ext-link-btn" href="https://minkabu.jp/stock/9983/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 3.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 5/5">●●●●●</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 4/5">●●●●○</span></div></div></td>
+          <td class="reason">売り0/中立5/買い2。RSIが30以下で<span class="hl-warn">売られ過ぎ</span>、短期的な<span class="hl-good">反発</span>余地に留意。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4063" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4063.T" target="_blank" rel="noopener">4063</a></td>
+          <td>信越化学工業</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+1.22%</td>
+          <td class="mono">-1.32%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:38.9%;"></span></span><span class="rsi-gauge-num">38.9</span></span></td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 26.26倍</div><div class="mono sd-ratio">出来高 5日平均比 1.54倍</div><span class="tag tag-info">業種: 化学</span><a class="ext-link-btn" href="https://minkabu.jp/stock/4063/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.8</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6857" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6857.T" target="_blank" rel="noopener">6857</a></td>
+          <td>アドバンテスト</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+3.90%</td>
+          <td class="mono">-4.66%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:43.6%;"></span></span><span class="rsi-gauge-num">43.6</span></span></td>
+          <td><span class="badge bull">強気</span></td>
+          <td><div class="mono sd-ratio">信用倍率 1.87倍</div><div class="mono sd-ratio">出来高 5日平均比 1.31倍</div><span class="tag tag-good">🔺窓開け上放れ +2.51%</span><span class="tag tag-info">業種: 電気機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6857/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.8</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 5/5">●●●●●</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立5/買い2。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="4519" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/4519.T" target="_blank" rel="noopener">4519</a></td>
+          <td>中外製薬</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+2.87%</td>
+          <td class="mono">-0.34%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:42.3%;"></span></span><span class="rsi-gauge-num">42.3</span></span></td>
+          <td><span class="badge bull">中立(やや強気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 66.27倍</div><div class="mono sd-ratio">出来高 5日平均比 1.25倍</div><span class="tag tag-info">業種: 医薬品</span><a class="ext-link-btn" href="https://minkabu.jp/stock/4519/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-mid">総合 2.5</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 4/5">●●●●○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立6/買い1。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="5401" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/5401.T" target="_blank" rel="noopener">5401</a></td>
+          <td>日本製鉄</td>
+          <td class="mono">695.0</td>
+          <td class="mono down">-1.08%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:6.8%;"></span></span></td>
+          <td class="mono">+0.95%</td>
+          <td class="mono">+1.87%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:58.3%;"></span></span><span class="rsi-gauge-num">58.3</span></span></td>
+          <td><span class="badge bear">中立(やや弱気)</span></td>
+          <td><div class="mono sd-ratio">信用倍率 12.88倍</div><div class="mono sd-ratio">出来高 5日平均比 1.17倍</div><span class="tag tag-info">業種: 鉄鋼</span><a class="ext-link-btn" href="https://minkabu.jp/stock/5401/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.0</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り1/中立6/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="2413" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/2413.T" target="_blank" rel="noopener">2413</a></td>
+          <td>エムスリー</td>
+          <td class="mono">1,773.0</td>
+          <td class="mono down">-1.36%<span class="mini-bar" aria-hidden="true"><span class="mini-bar-fill down" style="left:50%; width:8.5%;"></span></span></td>
+          <td class="mono">+0.60%</td>
+          <td class="mono">+1.29%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:43.3%;"></span></span><span class="rsi-gauge-num">43.3</span></span></td>
+          <td><span class="badge neutral">中立</span></td>
+          <td><div class="mono sd-ratio">信用倍率 4.14倍</div><div class="mono sd-ratio">出来高 5日平均比 1.23倍</div><span class="tag tag-info">業種: サービス業</span><a class="ext-link-btn" href="https://minkabu.jp/stock/2413/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.2</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+        </tr>
+        <tr>
+          <td class="mono"><button class="fav-btn" type="button" data-code="6645" aria-label="お気に入り登録" aria-pressed="false">★</button> <a href="https://finance.yahoo.co.jp/quote/6645.T" target="_blank" rel="noopener">6645</a></td>
+          <td>オムロン</td>
+          <td class="mono">―</td>
+          <td class="mono flat">―</td>
+          <td class="mono">+1.85%</td>
+          <td class="mono">-2.35%</td>
+          <td class="mono"><span class="rsi-gauge"><span class="rsi-gauge-track"><span class="rsi-gauge-marker normal" style="left:31.7%;"></span></span><span class="rsi-gauge-num">31.7</span></span></td>
+          <td><span class="badge neutral">中立</span></td>
+          <td><div class="mono sd-ratio">信用倍率 19.69倍</div><div class="mono sd-ratio">出来高 5日平均比 1.33倍</div><span class="tag tag-info">業種: 電気機器</span><a class="ext-link-btn" href="https://minkabu.jp/stock/6645/analyst_consensus" target="_blank" rel="noopener">コンセンサス確認 ↗</a></td>
+          <td><div class="score-cell"><div class="score-overall score-low">総合 2.2</div><div class="score-row"><span class="score-axis">材料</span><span class="score-dots" title="材料 1/5">●○○○○</span></div><div class="score-row"><span class="score-axis">テクニカル</span><span class="score-dots" title="テクニカル 3/5">●●●○○</span></div><div class="score-row"><span class="score-axis">需給</span><span class="score-dots" title="需給 2/5">●●○○○</span></div><div class="score-row"><span class="score-axis">期待値</span><span class="score-dots" title="期待値 3/5">●●●○○</span></div></div></td>
+          <td class="reason">売り0/中立7/買い0。RSIは中立域。</td>
+        </tr></tbody>
+    </table>
+    </div>
+        
+      </div>
+      <div class="card">
+        <h3>強気シグナル数ランキング <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="rank-note">
+          移動平均線・RSIなど過去データに基づく機械的な「買いシグナル数」の傾向をランキング化したものです。
+          <b>あくまで過去データに基づく傾向であり、将来の株価変動を保証するものではありません。</b>
+        </p>
+        
+        <div class="rank-item">
+          <div class="rank-num">🥇</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">9983</span> ファーストリテイリング
+              <span class="mono down">-0.03%</span>
+              <span class="score-tag">強気スコア +4</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立5/売り0/買い2 ・ RSI(14) 25.69</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥈</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">6758</span> ソニーグループ
+              <span class="mono down">-1.52%</span>
+              <span class="score-tag">強気スコア +4</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立5/売り0/買い2 ・ RSI(14) 29.84</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🥉</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">6857</span> アドバンテスト
+              <span class="mono flat">―</span>
+              <span class="score-tag">強気スコア +4</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立5/売り0/買い2 ・ RSI(14) 43.64</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">4位</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">6861</span> キーエンス
+              <span class="mono flat">―</span>
+              <span class="score-tag">強気スコア +2</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立6/売り0/買い1 ・ RSI(14) 19.74</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">5位</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              <span class="mono">4063</span> 信越化学工業
+              <span class="mono flat">―</span>
+              <span class="score-tag">強気スコア +2</span>
+            </div>
+            <div class="rank-desc">シグナル判定: 中立6/売り0/買い1 ・ RSI(14) 38.88</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="alignment">
+      <h2>🧭 材料×テクニカル 一致点・矛盾点分析 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">
+        「本日の注目テーマと関連銘柄」のニュースと「株価診断(テクニカル指標)」を機械的にクロス参照し、
+        材料とテクニカルが同じ方向を示しているか、逆方向で矛盾しているかを銘柄ごとに整理した参考情報です。
+        <b>AIによる高度な分析ではなく単純なルールベースの判定であり、投資助言ではありません。</b>
+      </p>
+      
+    <div class="card alignment-conclusion mood-yellow">
+      <h3>📝 結論(まとめ) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+      <p class="conclusion-text">材料とテクニカル指標を重ね合わせても明確な方向感は出ておらず、今日時点では判断材料そのものが不足しています。また今週は重要度の高い経済イベント(FOMC・日銀会合など)を控えており、結果発表前後は相場が大きく振れやすい点にも注意してください。</p>
+      <div class="mood-reasons"></div>
+    </div>
+    <div class="card">
+      <h3>🔎 詳細: 銘柄ごとの一致点・矛盾点 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+      <p class="rank-note">
+        上の「本日の注目テーマと関連銘柄」に登場する各銘柄について、ニュースの資金フロー有無・キーワードから
+        推定した材料の方向感と、テクニカル指標(株価診断)のシグナル・RSIを機械的に重ね合わせています。
+        <b>AIによる高度な文脈分析ではなく単純なルールベースの参考情報であり、投資助言ではありません。</b>
+      </p>
+      <p class="empty">本日は「注目テーマと関連銘柄」に該当するデータがなく、分析対象がありませんでした。</p>
+    </div>
+    <div class="card beginner-card">
+      <h3>🔰 初心者向け: 今後どう対応すればいいか <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+      <ul class="beginner-tips"><li>材料とテクニカルが一致している銘柄は、少なくとも情報同士が<span class="hl-warn">矛盾</span>していない点で参考にしやすい一方、対象件数が少ない・データがやや古いケースもあるため、鵜呑みにせず自分でも最新のチャートを確認しましょう。</li><li>材料とテクニカルが<span class="hl-warn">矛盾</span>している、またはRSIが既に70以上で<span class="hl-warn">過熱感</span>が出ている銘柄は、初心者ほど今から追いかけるのは避け、いったん様子を見るのが無難です。</li><li>既に<span class="hl-good-strong">ストップ高</span>・<span class="hl-good-strong">急騰</span>している銘柄を当日中に追加で買うのは初心者には<span class="hl-warn">リスク</span>が高い行為です。値動きが落ち着くのを待つか、見送るのも十分な選択肢です。</li><li>今週はFOMCや日銀会合など相場が大きく動きやすいイベントを控えています。結果が出るまでは新規の大きなポジションを避け、いつもより小さい金額で試すか、いったん見送るのも有効な考え方です。</li><li>どの銘柄を選ぶ場合でも、買う前に<span class="hl-warn">損切り</span>ラインを決めておく、1つの銘柄に資金を集中させず失っても生活に影響しない金額で試す、このページの情報だけで判断せず取引直前に最新の株価・ニュースを自分でも確認する、という3点は徹底しましょう。</li></ul>
+      <p class="mood-caveat">⚠️ 上記は一般的なリスク管理の考え方を示す参考情報であり、個別の投資助言ではありません。投資に関する最終判断・結果の責任は、必ずご自身で負ってください。</p>
+    </div>
+    </section>
+
+    <section id="growth">
+      <h2>🌱 成長株ウォッチ(決算・好材料ベース) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">
+        主力ウォッチリストは値位置が高めの銘柄も含むため、別枠として、TDnet「業績予想の修正」開示のうち
+        <b>上方修正・増配など明確な好材料キーワードを含む開示のみ</b>を機械的に抽出した候補一覧です。
+        各候補には実際の開示PDFへの直リンクを付けており、根拠は開示原文でご確認いただけます。
+        <b>投資助言ではなく、将来の株価上昇を保証するものではありません。</b>
+      </p>
+      <div class="card">
+        <h3>好材料開示に基づく成長株候補 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              ラサールロジ
+              <span class="badge bull">上方修正</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538378.pdf" target="_blank" rel="noopener">2027年2月期の運用状況及び分配金の予想の修正（上方修正）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2027年2月期の運用状況及び分配金の予想の修正（<span class="hl-good-strong">上方修正</span>）に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 9月18日(金) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              ニッカトー
+              <span class="badge bull">増配</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260918/140120260916536942.pdf" target="_blank" rel="noopener">第２四半期業績予想の修正並びに通期業績予想の修正および配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「第２四半期業績予想の修正並びに通期業績予想の修正および配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 9月18日(金) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              いちごオフィ
+              <span class="badge bull">上方修正</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260918/140120260918538827.pdf" target="_blank" rel="noopener">2026年10月期の運用状況および分配予想の上方修正のお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2026年10月期の運用状況および分配予想の<span class="hl-good-strong">上方修正</span>のお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 9月18日(金) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              霞ヶ関Ｃ
+              <span class="badge bull">上方修正</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260917/140120260917538054.pdf" target="_blank" rel="noopener">2026年8月期 連結業績予想の上方修正に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2026年8月期 連結業績予想の<span class="hl-good-strong">上方修正</span>に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 9月17日(木) 16:00</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              アップル
+              <span class="badge bull">増配</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260917/140120260916537388.pdf" target="_blank" rel="noopener">通期業績予想及び期末配当予想の修正（増配）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「通期業績予想及び期末配当予想の修正（<span class="hl-good-strong">増配</span>）に関するお知らせ」より、<span class="hl-good-strong">増配</span>を確認。 ・ 開示日時: 9月17日(木) 15:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              電算
+              <span class="badge bull">上方修正</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260916/140120260915536407.pdf" target="_blank" rel="noopener">業績予想の修正（上方修正）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「業績予想の修正（<span class="hl-good-strong">上方修正</span>）に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 9月16日(水) 15:50</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              アスア
+              <span class="badge bull">増額</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260914/140120260914535943.pdf" target="_blank" rel="noopener">株主優待額の増額および業績予想の修正に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「株主優待額の増額および業績予想の修正に関するお知らせ」より、増額を確認。 ・ 開示日時: 9月14日(月) 16:00</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🌱</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              中本パックス
+              <span class="badge bull">上方修正</span>
+              
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://tdnet-pdf.kabutan.jp/20260914/140120260914535679.pdf" target="_blank" rel="noopener">2027年２月期第２四半期（中間期）及び通期連結業績予想の修正（上方修正）に関するお知らせ</a>
+            </div>
+            <div class="rank-desc">TDnet適時開示「2027年２月期第２四半期（中間期）及び通期連結業績予想の修正（<span class="hl-good-strong">上方修正</span>）に関するお知らせ」より、<span class="hl-good-strong">上方修正</span>を確認。 ・ 開示日時: 9月14日(月) 16:00</div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section id="pre-earnings-watch">
+      <h2>🔭 決算前 先行材料ウォッチ <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">
+        好決算・ストップ高は決算発表の当日に突然出るのではなく、四半期の途中で
+        「増産」「受注拡大」「工場増強」「データセンター」等の断片ニュースが先行することがあります
+        (例: パナソニックHDのAIインフラ関連増産報道は、2026年7月の決算発表の1〜2か月前から出ていました)。
+        ここではGoogle Newsの見出しに固定キーワードが含まれるかどうかだけを機械的に抽出しており、
+        <b>LLMによる要約・意味解釈は行っていません</b>。見出しが一致しただけでは好材料の大きさ・
+        信頼性は判断できないため、<b>必ずリンク先の原文をご確認ください。投資助言ではありません。</b>
+      </p>
+      <div class="card">
+        <h3>ウォッチリスト銘柄の先行材料ニュース(直近14日・見出しキーワード一致) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              トヨタ自動車(7203)
+              <span class="badge neutral">新工場</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMiQkFVX3lxTE1tSHFZdkxWTHE0cFZXd3lVMG9OLUJOdlF0UjIzVm9aMjNLdDZ3c2FBbEdzUVhuQjFNMlgxbnVRa0E3Zw?oc=5" target="_blank" rel="noopener">自動車シート生産…トヨタ紡織が新工場、投資額は約70億円 - ニュースイッチ by 日刊工業新聞社</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/13 14:04</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              トヨタ自動車(7203)
+              <span class="badge neutral">生産能力</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE04Mk9rY3o4Q2JpdUZIa3ZxNzNqSzRmVVlqSnB3VV9jeG1DbUJiV2lQV2c4RXU2OEJza3p2WUFfcmJBWVkwcU9nVkMtNlUySU5MWEE?oc=5" target="_blank" rel="noopener">トヨタ独自開発の「GRカート」 愛知・蒲郡に生産拠点 輸出も視野に生産能力は年1000～2000台 - netdenjd.com</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/17 09:16</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              三菱UFJフィナンシャル・グループ(8306)
+              <span class="badge neutral">データセンター</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE16dHhFY3RVdnJ5dXNEYmVqcXpCUjFER05MMGxmU1BHTTBzYUg0TE9uN1Fyb3pfOGxQT1ZMZmYtTzFiU2VXMWhDM0pNakVMUGMybTlpQnBOdFlwT1QycVFScg?oc=5" target="_blank" rel="noopener">【日本株人気ランキングTOP30】キオクシア首位、フジクラ2位 AI・データセンター関連に人気集中｜Infoseekニュース - Infoseek</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/17 11:30</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              ソフトバンクグループ(9984)
+              <span class="badge neutral">データセンター</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE1yeDhpNXc0cjJOaTBUazdOXzFvOXJYYUNqU05VQnRtVDFnX0g1WkNkQVJzTFMtSEJMNGJWMGRIQWc1VDBHYXJqZ1JZY1NreUtab2JzU2xSZzJ3cVUxcGtycl9JcHJNdHk0eHBkWXc5a0c?oc=5" target="_blank" rel="noopener">ソフトバンクグループ株が反発、データセンター子会社SBエナジーのIPO進展が追い風に 執筆 - Investing.com - FX | 株式市場 | ファイナンス | 金融ニュース</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/15 14:06</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              KDDI(9433)
+              <span class="badge neutral">データセンター</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5wQkpWejI2M3QtWkZ1SGRmWVp4UUZVWVVtZlNNekhPaGh4VEUtcE9ZSVdIUUhWWWpaekVmLWQ5d1h3aGRIRTNfby00cTkwcjhzaDN5Yi1MNmc1UzZWTmJzOVlfd2ktdGNfWmxjdg?oc=5" target="_blank" rel="noopener">リテールロボットを活用した分散型データセンター実証を開始 - KDDI ニュースルーム</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/18 11:00</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              KDDI(9433)
+              <span class="badge neutral">データセンター</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9wZE13LTJ3MmRvQWdUUDNsdWVUZHVBc1gtSEE1ZXBpRkcyWjdZbi1hcjhsb0U3akRYcE1fT2l3Vm01ZENPcExkVGVJLVpjTllMZmpN?oc=5" target="_blank" rel="noopener">KDDIら、APNとリテールロボットを活用した分散型データセンター実証を開始 - businessnetwork.jp</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/18 17:52</div>
+          </div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">🔭</div>
+          <div class="rank-body">
+            <div class="rank-head">
+              オムロン(6645)
+              <span class="badge neutral">受注</span>
+            </div>
+            <div class="rank-desc rank-news">
+              <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1FbkpHRVdSblNUWXNiQlRDMmpNWnE4TGVVMnR1Z05FWGJqbGlqREl5ckZXaUVQb08tM0RscGJFSnB0Sk0yTjlxakFFVFl6dnZyWnBqSzcxRmx6VFlZLUNaT0gxVlc?oc=5" target="_blank" rel="noopener">日本の機械受注が悪化、設備投資に逆風【今日の市場はどう動いた？】 - Yahoo!ファイナンス</a>
+            </div>
+            <div class="rank-desc">Google Newsの見出しキーワード一致 ・ 配信日時: 9/16 11:55</div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section id="edinet">
+      <h2>📑 EDINET 大量保有報告書チェック(5%ルール・プロトタイプ) <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h2>
+      <p class="section-desc">
+        金融庁EDINETに提出された大量保有報告書・変更報告書のうち、ウォッチリスト銘柄の会社名が
+        書類概要に含まれるものを抽出しています。<b>EDINET APIの利用登録・APIキー設定
+        (GitHub Secrets)が無い場合は常に「該当なし」表示になります。</b>
+        対象銘柄の特定は構造化データではなく簡易文字列一致によるプロトタイプ実装のため、
+        取りこぼしや誤検知が起こり得ます。<b>必ずEDINET原文でご確認ください。投資助言ではありません。</b>
+      </p>
+      <div class="card">
+        <h3>直近の大量保有報告書・変更報告書 <span class="display-stamp">表示: 2026年9月19日 14:16時点 (JST)</span></h3>
+        <p class="empty">現時点で該当する大量保有報告書・変更報告書は見つかりませんでした(EDINET_API_KEY未設定の場合は常にこの表示になります)。</p>
+        
+      </div>
+    </section>
+
+  <footer>
+    <div class="disclaimer">
+      ⚠️ 再掲: 本ページの情報は、Yahoo!ファイナンス・TDnet(適時開示情報閲覧サービス)・投資の森(テクニカル分析)・Google Newsなど無料で公開されている情報源をもとに自動的にまとめたものです。内容の正確性・完全性・最新性は保証されません。「強気/弱気シグナル」等の表示は移動平均線やRSIなど過去データに基づく機械的な診断であり、「先行材料ウォッチ」「ダブルシグナル」等の表示もニュース見出し・開示タグの単純なキーワード一致による機械的な抽出であり、AIによる分析ではありません。アナリストのコンセンサス予想(市場平均予想)は無料でリアルタイム取得できるソースがないため、本ページには含まれていません。<b>投資助言ではなく、将来の株価変動を保証するものでもありません。</b>投資に関する最終判断は、必ずご自身の責任で行ってください。
+    </div>
+    
+    <div class="sources">
+      主な情報源: Yahoo!ファイナンス (finance.yahoo.co.jp) / TDnet 適時開示情報閲覧サービス
+      (release.tdnet.info, 非公式API: webapi.yanoshin.jp) / 投資の森 テクニカル分析 (nikkeiyosoku.com) /
+      Google News RSS (news.google.com、先行材料ウォッチの見出し抽出のみに使用)。
+      各情報の著作権・利用条件は提供元に帰属します。転載・再配布は行わず、個人の投資判断の参考情報としてのみ利用してください。
+    </div>
+  </footer>
+</div>
+<div class="bg-spacer" aria-hidden="true">
+  <div class="bg-caption" id="bgCaption">📍 東京・伏見稲荷大社(京都)</div>
+</div>
+<button id="backToTop" type="button" aria-label="ページ上部へ戻る" title="トップへ戻る">↑</button>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduceMotion = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+  /* ---------- 背景スライドショー(画質を落とさずopacityのみでゆっくりクロスフェード) ---------- */
+  (function () {
+    var photos = document.querySelectorAll(".bg-photo-stack .bg-photo");
+    var captionEl = document.getElementById("bgCaption");
+    function updateCaption(photo) {
+      if (!captionEl || !photo) { return; }
+      var cap = photo.getAttribute("data-caption") || "";
+      captionEl.textContent = "📍 東京・" + (cap || "東京");
+    }
+    if (photos.length < 2 || reduceMotion) { return; }
+    var idx = 0;
+    setInterval(function () {
+      photos[idx].classList.remove("is-active");
+      idx = (idx + 1) % photos.length;
+      photos[idx].classList.add("is-active");
+      updateCaption(photos[idx]);
+    }, 17000);
+  })();
+
+  /* ---------- テーマ切替(ライト/ダーク) ---------- */
+  var THEME_KEY = "jpdt_theme";
+  var themeToggle = document.getElementById("themeToggle");
+  function applyTheme(mode) {
+    if (mode === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var cur = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      var next = cur === "light" ? "dark" : "light";
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    });
+  }
+
+  /* ---------- お気に入り(★) ---------- */
+  var FAV_KEY = "jpdt_favorites";
+  function loadFavorites() {
+    try {
+      var raw = localStorage.getItem(FAV_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+  function saveFavorites(list) {
+    try { localStorage.setItem(FAV_KEY, JSON.stringify(list)); } catch (e) {}
+  }
+  var favorites = loadFavorites();
+  function isFav(code) { return favorites.indexOf(code) !== -1; }
+  function paintFavButtons() {
+    var btns = document.querySelectorAll(".fav-btn");
+    for (var i = 0; i < btns.length; i++) {
+      var btn = btns[i];
+      var code = btn.getAttribute("data-code");
+      var fav = isFav(code);
+      btn.classList.toggle("active", fav);
+      btn.setAttribute("aria-pressed", fav ? "true" : "false");
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest(".fav-btn") : null;
+    if (!btn) { return; }
+    var code = btn.getAttribute("data-code");
+    if (!code) { return; }
+    var idx = favorites.indexOf(code);
+    if (idx === -1) { favorites.push(code); } else { favorites.splice(idx, 1); }
+    saveFavorites(favorites);
+    paintFavButtons();
+    applyFavFilter();
+  });
+  paintFavButtons();
+
+  var favFilter = document.getElementById("favFilterToggle");
+  function applyFavFilter() {
+    var on = !!(favFilter && favFilter.checked);
+    var rows = document.querySelectorAll("table[data-sortable] tbody tr");
+    for (var i = 0; i < rows.length; i++) {
+      var tr = rows[i];
+      if (!on) { tr.classList.remove("fav-hidden"); continue; }
+      var star = tr.querySelector(".fav-btn");
+      var fav = star && isFav(star.getAttribute("data-code"));
+      tr.classList.toggle("fav-hidden", !fav);
+    }
+  }
+  if (favFilter) { favFilter.addEventListener("change", applyFavFilter); }
+
+  /* ---------- テーブル検索 ---------- */
+  var searchInputs = document.querySelectorAll(".table-search");
+  for (var s = 0; s < searchInputs.length; s++) {
+    (function (input) {
+      input.addEventListener("input", function () {
+        var wrap = input.closest(".table-tools");
+        var card = wrap ? wrap.parentElement : null;
+        var table = card ? card.querySelector("table") : null;
+        if (!table) { return; }
+        var q = input.value.trim().toLowerCase();
+        var trs = table.querySelectorAll("tbody tr");
+        for (var i = 0; i < trs.length; i++) {
+          var tr = trs[i];
+          var hit = !q || tr.textContent.toLowerCase().indexOf(q) !== -1;
+          tr.classList.toggle("search-hidden", !hit);
+        }
+      });
+    })(searchInputs[s]);
+  }
+
+  /* ---------- テーブルソート(見出しクリック) ---------- */
+  function parseCell(text) {
+    var t = text.replace(/[,円%★]/g, "").trim();
+    var n = parseFloat(t);
+    return isNaN(n) ? null : n;
+  }
+  var sortHeads = document.querySelectorAll('table[data-sortable] thead th');
+  for (var h = 0; h < sortHeads.length; h++) {
+    (function (th) {
+      var colIndex = Array.prototype.indexOf.call(th.parentElement.children, th);
+      th.addEventListener("click", function () {
+        var table = th.closest("table");
+        var tbody = table.querySelector("tbody");
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll("tr"));
+        var dir = th.getAttribute("data-dir") === "asc" ? "desc" : "asc";
+        var heads = table.querySelectorAll("thead th");
+        for (var i = 0; i < heads.length; i++) { heads[i].removeAttribute("data-dir"); }
+        th.setAttribute("data-dir", dir);
+        rows.sort(function (a, b) {
+          var ca = a.children[colIndex] ? a.children[colIndex].textContent.trim() : "";
+          var cb = b.children[colIndex] ? b.children[colIndex].textContent.trim() : "";
+          var na = parseCell(ca), nb = parseCell(cb);
+          var cmp;
+          if (na !== null && nb !== null) { cmp = na - nb; } else { cmp = ca.localeCompare(cb, "ja"); }
+          return dir === "asc" ? cmp : -cmp;
+        });
+        for (var r = 0; r < rows.length; r++) { tbody.appendChild(rows[r]); }
+      });
+    })(sortHeads[h]);
+  }
+
+  /* ---------- スクロール時フェードイン ---------- */
+  var revealTargets = document.querySelectorAll(".card, .idx-card, .rank-item");
+  if (!reduceMotion && "IntersectionObserver" in window) {
+    for (var rt = 0; rt < revealTargets.length; rt++) { revealTargets[rt].classList.add("reveal"); }
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+          io.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    for (var rt2 = 0; rt2 < revealTargets.length; rt2++) { io.observe(revealTargets[rt2]); }
+  }
+
+  /* ---------- 指標カードの数値カウントアップ ---------- */
+  if (!reduceMotion) {
+    var idxValues = document.querySelectorAll(".idx-value");
+    for (var v = 0; v < idxValues.length; v++) {
+      (function (el) {
+        var raw = el.textContent;
+        var m = raw.match(/^-?[\d,]+(\.\d+)?/);
+        if (!m) { return; }
+        var target = parseFloat(m[0].replace(/,/g, ""));
+        if (isNaN(target)) { return; }
+        var suffix = raw.slice(m[0].length);
+        var decimals = m[1] ? (m[1].length - 1) : 0;
+        var t0 = null;
+        var duration = 700;
+        function step(ts) {
+          if (!t0) { t0 = ts; }
+          var p = Math.min(1, (ts - t0) / duration);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = target * eased;
+          el.textContent = val.toLocaleString("ja-JP", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+          if (p < 1) { requestAnimationFrame(step); }
+        }
+        requestAnimationFrame(step);
+      })(idxValues[v]);
+    }
+  }
+
+  /* ---------- 相対更新時刻 ---------- */
+  var relTimes = document.querySelectorAll(".rel-time");
+  for (var rtm = 0; rtm < relTimes.length; rtm++) {
+    (function (el) {
+      var gen = el.getAttribute("data-generated");
+      if (!gen) { return; }
+      var iso = gen.replace(" ", "T") + ":00+09:00";
+      var d = new Date(iso);
+      if (isNaN(d.getTime())) { return; }
+      var diffMin = Math.round((Date.now() - d.getTime()) / 60000);
+      var text;
+      if (diffMin < 1) { text = "たった今"; }
+      else if (diffMin < 60) { text = "約" + diffMin + "分前"; }
+      else if (diffMin < 60 * 24) { text = "約" + Math.round(diffMin / 60) + "時間前"; }
+      else { text = "約" + Math.round(diffMin / 1440) + "日前"; }
+      el.textContent = "(" + text + ")";
+    })(relTimes[rtm]);
+  }
+
+  /* ---------- トップへ戻る ---------- */
+  var backToTop = document.getElementById("backToTop");
+  if (backToTop) {
+    window.addEventListener("scroll", function () {
+      backToTop.classList.toggle("show", window.scrollY > 480);
+    }, { passive: true });
+    backToTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
