@@ -591,19 +591,31 @@ footer a{color:var(--accent)}
   #desktop-view{display:none}
   #mobile-app{display:block}
 }
+/* スモークガラス・トークン(Figmaで検証した配色を移植、2026-09-19)。
+   中立白ではなく青紫がかったティント(--glass-tint)で「未来的な冷たい
+   ガラス」の質感を出す。背景も暗めのAurora Meshに(株ボードと統一)。 */
 #mobile-app{
-  --glass-bg:rgba(14,34,25,.42); --glass-border:rgba(255,255,255,.09);
+  --glass-tint:168,184,255;
+  --glass-bg:rgba(var(--glass-tint),.06); --glass-border:rgba(var(--glass-tint),.24);
   --glass-highlight:inset 0 1px 0 rgba(255,255,255,.08);
   min-height:100vh; padding-bottom:80px;
-  font-family:var(--font-body); color:var(--text); background:var(--bg);
-  background-image:
-    radial-gradient(60% 40% at 15% 0%, rgba(34,211,238,.08), transparent 60%),
-    radial-gradient(50% 35% at 100% 15%, rgba(77,255,126,.06), transparent 60%);
+  font-family:var(--font-body); color:#fff;
+  background:
+    radial-gradient(50% 28% at 20% 4%, rgba(157,143,255,.18), transparent 68%),
+    radial-gradient(54% 30% at 82% 14%, rgba(63,224,245,.16), transparent 68%),
+    radial-gradient(50% 30% at 88% 82%, rgba(240,138,212,.13), transparent 66%),
+    radial-gradient(44% 26% at 4% 90%, rgba(255,203,112,.07), transparent 62%),
+    linear-gradient(180deg,#050814 0%,#0a0e24 38%,#111a3d 70%,#161f4d 100%);
+}
+/* ガラス板上端のsheen(反射ライン)。全ガラスカード共通。 */
+.m-row::before, .m-stat::before, .m-cta::before{
+  content:""; position:absolute; top:0; left:8%; right:8%; height:1.5px; pointer-events:none;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
 }
 .m-topbar{
   position:sticky; top:0; z-index:20; display:flex; justify-content:space-between; align-items:center;
-  padding:14px 16px; background:rgba(3,10,7,.55); backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  padding:14px 16px; background:rgba(5,8,20,.55); backdrop-filter:blur(22px) saturate(180%);
+  -webkit-backdrop-filter:blur(22px) saturate(180%);
   border-bottom:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
 }
 .m-brand{font-weight:800; font-size:16px; font-family:var(--font-head)}
@@ -616,10 +628,11 @@ footer a{color:var(--accent)}
 
 .m-list{display:flex; flex-direction:column; gap:8px}
 .m-row{
+  position:relative;
   display:flex; justify-content:space-between; align-items:center; gap:10px;
-  background:var(--glass-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
-  border-radius:16px; padding:13px 14px; text-decoration:none; color:var(--text); min-height:44px;
+  background:var(--glass-bg); backdrop-filter:blur(20px) saturate(200%); -webkit-backdrop-filter:blur(20px) saturate(200%);
+  border:1px solid var(--glass-border); box-shadow:var(--glass-highlight), 0 12px 32px -12px rgba(0,0,0,.55);
+  border-radius:14px; padding:13px 14px; text-decoration:none; color:#fff; min-height:44px;
   transition:border-color .15s ease, background .15s ease;
 }
 .m-row:active{background:rgba(34,211,238,.08); border-color:rgba(34,211,238,.35)}
@@ -640,18 +653,20 @@ footer a{color:var(--accent)}
 
 .m-stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
 .m-stat{
-  background:var(--glass-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
-  border-radius:16px; padding:14px 8px; display:flex; flex-direction:column; align-items:center; gap:4px;
+  position:relative;
+  background:var(--glass-bg); backdrop-filter:blur(20px) saturate(200%); -webkit-backdrop-filter:blur(20px) saturate(200%);
+  border:1px solid var(--glass-border); box-shadow:var(--glass-highlight), 0 12px 32px -12px rgba(0,0,0,.55);
+  border-radius:14px; padding:14px 8px; display:flex; flex-direction:column; align-items:center; gap:4px;
 }
 .m-stat-n{font-size:22px; font-weight:800; font-family:var(--font-mono); color:var(--accent-2); text-shadow:0 0 10px rgba(34,211,238,.4)}
 .m-stat-l{font-size:11px; color:var(--muted)}
 
 .m-cta{
-  display:block; width:100%; background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(77,255,126,.16));
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(34,211,238,.4); box-shadow:var(--glass-highlight), 0 0 24px -6px rgba(34,211,238,.35);
-  color:var(--accent-2); font-weight:800; font-size:15px; border-radius:16px;
+  position:relative;
+  display:block; width:100%; background:linear-gradient(135deg,rgba(157,143,255,.18),rgba(240,138,212,.16));
+  backdrop-filter:blur(20px) saturate(200%); -webkit-backdrop-filter:blur(20px) saturate(200%);
+  border:1px solid rgba(157,143,255,.4); box-shadow:var(--glass-highlight), 0 0 24px -6px rgba(157,143,255,.35);
+  color:var(--accent-2); font-weight:800; font-size:15px; border-radius:14px;
   padding:16px; margin-top:4px;
 }
 .m-cta:active{opacity:.85}

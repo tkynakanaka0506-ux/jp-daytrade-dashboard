@@ -6,11 +6,21 @@
       "Bash(py dev.py:*)",
       "Bash(python3 build_news_site.py:*)",
       "Bash(python3 -m unittest:*)",
+      "Bash(python3 -m http.server *)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git show:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(curl -s *)",
+      "Bash(curl http://127.0.0.1:*)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(grep *)",
+      "Bash(wc -l *)",
+      "Bash(rm /tmp/*)",
+      "Bash(rm /private/tmp/*)",
+      "Bash(kill *)"
     ],
     "deny": []
   }
