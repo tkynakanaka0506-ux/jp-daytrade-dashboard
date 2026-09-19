@@ -3,7 +3,7 @@
 日本株に影響しうる重要ニュースを自動収集し、各ニュースで「どの銘柄に影響が出うるか」を
 表示する静的サイト。GitHub Actions が定期生成し、GitHub Pages で公開している。
 
-公開URL: https://tkynakanaka0506-ux.github.io/jp-daytrade-dashboard/
+公開URL: https://tkynakanaka0506-ux.github.io/jp-news-dashboard/
 
 ## コマンド
 
@@ -34,7 +34,7 @@ newssite/
   analyze.py           news.json の組み立て
   policy_lifecycle.py  政策の続報系列にpolicy_event_idを割り当て、ライフサイクル
                         状態(NEW/UPDATE/MATURED/CLOSED)を管理
-  catalyst_export.py   他プロジェクト(jp-daytrade-dashboard(mjs))へのシグナル書き出し
+  catalyst_export.py   他プロジェクト(jp-stock-dashboard)へのシグナル書き出し
   backtest.py          政策材料シグナルのバックテスト基盤（記録のみ）
   rule_scorecard.py    ルール(rules.json)ごとの的中率スコアカード
   render.py            HTML生成（CSS・JSもこの中）

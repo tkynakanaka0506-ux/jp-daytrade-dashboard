@@ -56,7 +56,7 @@ def _get_ssl_context():
     return ctx
 from datetime import datetime, timezone, timedelta
 
-UA = "Mozilla/5.0 (compatible; jp-daytrade-dashboard-bot/1.0)"
+UA = "Mozilla/5.0 (compatible; jp-news-dashboard-bot/1.0)"
 GEMINI_MODEL = "gemini-2.5-flash-lite"
 GROQ_MODEL = "llama-3.3-70b-versatile"
 

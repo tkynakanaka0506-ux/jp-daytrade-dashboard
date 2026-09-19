@@ -3,7 +3,7 @@
 日本株に影響しうる重要ニュースを自動で集めて、**そのニュースでどの銘柄に影響が出うるか**を
 並べて表示する静的サイトです。GitHub Actions が定期実行し、GitHub Pages で公開されます。
 
-公開URL: https://tkynakanaka0506-ux.github.io/jp-daytrade-dashboard/
+公開URL: https://tkynakanaka0506-ux.github.io/jp-news-dashboard/
 
 > ⚠️ 投資助言ではありません。「影響が出うる銘柄」はキーワードルールにもとづく機械的な関連付けで、
 > 株価の値動きを保証するものではありません。
@@ -37,8 +37,8 @@ APIキーが無くても、キーワードルールだけでサイトは完成�
 ### 最初の1回
 
 ```bash
-git clone https://github.com/tkynakanaka0506-ux/jp-daytrade-dashboard.git
-cd jp-daytrade-dashboard
+git clone https://github.com/tkynakanaka0506-ux/jp-news-dashboard.git
+cd jp-news-dashboard
 ./setup_cursor.sh          # Windows は setup_cursor.bat をダブルクリック
 ```
 

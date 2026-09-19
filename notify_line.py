@@ -232,7 +232,7 @@ def _data_is_fresh(root, now=None):
 
 
 def _fetch_json(url, timeout=12):
-    req = urllib.request.Request(url, headers={"User-Agent": "jp-daytrade-dashboard/1.0"})
+    req = urllib.request.Request(url, headers={"User-Agent": "jp-news-dashboard/1.0"})
     ctx = _get_ssl_context()
     with urllib.request.urlopen(req, timeout=timeout, context=ctx) as res:
         return json.loads(res.read().decode("utf-8"))
