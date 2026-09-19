@@ -1,0 +1,44 @@
+[
+  {
+    "headline": "第3回日ASEAN女性・平和・安全保障(WPS)協力プロジェクトについて",
+    "wrong_theme": "defense_budget",
+    "correct_theme": null,
+    "cause": "keywords_weak「安全保障」が単独でdefense_budgetテーマを成立させてしまっていた。「安全保障」は防衛費以外の文脈(WPS=女性の安全保障協力など)でも頻出する広すぎる語だった",
+    "fix": "テーマキーワードをkeywords(強・単独成立)/keywords_medium(中・単独成立)/keywords_weak(弱・単独では絶対に成立しない)の3段階に分離し、「安全保障」はkeywords_weakに置いて単独一致では成立しないようにした"
+  },
+  {
+    "headline": "安全保障協力を強化、日米間で覚書に署名",
+    "wrong_theme": "defense_budget",
+    "correct_theme": null,
+    "cause": "弱キーワード「安全保障」と「強化」が同じ見出しに2つ重なった場合に、和で強一致相当とみなしてしまう回帰が起きかけた",
+    "fix": "弱キーワードは何個重なっても単独では成立しない、という制約をmatch_themes()側で機械的に保証(keywords_weakの扱いは絶対に緩めない、とコード中にも明記)"
+  },
+  {
+    "headline": "日経平均、AI特需の持続懸念で1811円安の急落",
+    "wrong_theme": "yen_weak",
+    "correct_theme": null,
+    "cause": "「円安」という部分文字列が、株価指数の下げ幅表現「1811円安」にも単純部分一致してしまい、為替と無関係な記事をyen_weakと誤判定した",
+    "fix": "exclude_regexに\\d+円安を追加し、直前に数字が続く「円安」(=指数の下げ幅表現)を除外するようにした"
+  },
+  {
+    "headline": "日経平均、AI特需の反動で1811円高の急騰",
+    "wrong_theme": "yen_strong",
+    "correct_theme": null,
+    "cause": "yen_weakと同じ構造のバグがyen_strong(「円高」×指数の上げ幅表現「1811円高」)にも残っていた",
+    "fix": "yen_strongにも同様のexclude_regex(\\d+円高)を追加"
+  },
+  {
+    "headline": "円が急落、ドル円は一時160円台に",
+    "wrong_theme": null,
+    "correct_theme": "yen_weak",
+    "cause": "exclude_regex対応時に「急落」を単純exclude語として追加しようとし、正当な為替記事(円が急落=円安の文脈)まで誤って除外しかけた(false negativeの一種)",
+    "fix": "単純exclude語ではなく、数字が直前に来る文脈だけを狙うexclude_regexの設計を維持し、「円が急落」のような正当なケースは除外しないことを確認する回帰テストを追加"
+  },
+  {
+    "headline": "政府、先端半導体政策の対中輸出規制を強化へ 経済安全保障を重視",
+    "wrong_theme": "semi_demand",
+    "correct_theme": "semi_policy",
+    "cause": "semi_demandの強キーワード「半導体」が単独一致では広すぎて、本来semi_policy/semi_regulationに分類すべき政策系見出しまで拾ってしまっていた",
+    "fix": "semi_demandのexcludeに「先端半導体」「経済安全保障」「規制」「補助金」等の政策系キーワードを追加し、政策文脈の見出しはsemi_policy/semi_regulation側に譲るようにした"
+  }
+]
