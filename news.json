@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19 20:55",
-  "generated_iso": "2026-09-19T20:55:55+09:00",
+  "generated_at": "2026-09-19 21:46",
+  "generated_iso": "2026-09-19T21:46:32+09:00",
   "status": "updated",
   "status_message": "40 件のニュースを取得しました。",
   "llm_used": true,
@@ -96,19 +96,19 @@
   ],
   "news": [
     {
-      "id": "f91a1622462e",
+      "id": "1c81d1f597d7",
       "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
-      "source": "news.tv-asahi.co.jp",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
+      "source": "abema.tv",
       "source_tier": "secondary",
       "source_tier_label": "二次情報",
-      "published_at": "2026-09-19 13:11",
-      "published_ts": 1789791060.0,
+      "published_at": "2026-09-19 11:17",
+      "published_ts": 1789784235.0,
       "category": "policy",
       "category_label": "金融政策・金利",
       "category_emoji": "🏦",
       "importance": 5,
-      "importance_reason": "重要語「利上げ」・影響テーマ「日銀の利上げ・金融正常化」に該当",
+      "importance_reason": "重要語「利上げ」・影響テーマ「日銀の利上げ・金融正常化」に該当・2媒体が報道",
       "future_signal": false,
       "policy_maturity": null,
       "policy_maturity_label": null,
@@ -293,7 +293,13 @@
           "policy_to_earnings_stage": null
         }
       ],
-      "related": []
+      "related": [
+        {
+          "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "source": "news.tv-asahi.co.jp"
+        }
+      ]
     },
     {
       "id": "370fa84465d9",
@@ -923,9 +929,9 @@
       "news_novelty": "high",
       "news_novelty_label": "新規",
       "policy_event_id": "boj_hike-20260919-02",
-      "policy_event_is_update": true,
+      "policy_event_is_update": false,
       "policy_event_first_seen": "2026-09-19",
-      "policy_event_state": "UPDATE",
+      "policy_event_state": "NEW",
       "themes": [
         "日銀の利上げ・金融正常化"
       ],
@@ -2316,16 +2322,16 @@
       "category_label": "金融政策・金利",
       "category_emoji": "🏦",
       "importance": 5,
-      "importance_reason": "重要語「政策金利」・影響テーマ「日銀の利上げ・金融正常化」に該当・2媒体が報道",
+      "importance_reason": "重要語「政策金利」・影響テーマ「日銀の利上げ・金融正常化」に該当・3媒体が報道",
       "future_signal": false,
       "policy_maturity": null,
       "policy_maturity_label": null,
-      "news_novelty": "high",
-      "news_novelty_label": "新規",
+      "news_novelty": "medium",
+      "news_novelty_label": "続報",
       "policy_event_id": "boj_hike-20260919-02",
-      "policy_event_is_update": false,
+      "policy_event_is_update": true,
       "policy_event_first_seen": "2026-09-19",
-      "policy_event_state": "NEW",
+      "policy_event_state": "UPDATE",
       "themes": [
         "日銀の利上げ・金融正常化"
       ],
@@ -2506,6 +2512,11 @@
           "title": "【速報】日銀 政策金利1.25％に引き上げ 利上げは3か月ぶり（2026年9月17日掲載）｜日テレNEWS NNN",
           "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1hYzN5SmQwREtQdzFHMC1lRllUbl9Gc3V5Q2FKWEFXQ0Fpb0VUOUh5UUtqTVNnS3Vqd2NTZ2xvdlkxMzFOR0FFbF9jeWhIbG1xUHZMZzF1ejBHX21UMW1PNE5IcTFET0RqUHVMa01zdFF1TzQyc21lUC0zV0Y?oc=5",
           "source": "日テレNEWS NNN"
+        },
+        {
+          "title": "【速報】日銀 政策金利1.25％に引き上げ決定 31年ぶりの高水準 金融政策決定会合",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1iLTA0VGl5SXZFb1lIYXFqdjQ1dE1mODdwZUZ6TEVIVHlNZzQyaGxzYzgwb3FsYVBtWTJZWVJpSS1lLXJGSHpCV1NpckltN0NWVVVPQUNPV0pSYWdHQXZz?oc=5",
+          "source": "TBS NEWS DIG"
         }
       ]
     },
@@ -4272,207 +4283,6 @@
       "related": []
     },
     {
-      "id": "0d967cee02ac",
-      "title": "米FRB利上げ決定後に米国株が全面反発 ナスダック1.69%高、半導体株が主導",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBnS1B1dU5RNEhnV3FjOGNpX0hIX21yRWpONjU4cEg3dk1McEJFaFJ3amd1YzFsM2lpcEs0b2VScVNicnVOM1FHZDU3TDI4bXY1ajFxb0x4V2tlNS02MDl5aTItdjM2Ykt0cnFyWkVPQWlOTjU5?oc=5",
-      "source": "BigGo ファイナンス",
-      "source_tier": "secondary",
-      "source_tier_label": "二次情報",
-      "published_at": "2026-09-18 08:38",
-      "published_ts": 1789688302.0,
-      "category": "tech",
-      "category_label": "半導体・AI",
-      "category_emoji": "🤖",
-      "importance": 4,
-      "importance_reason": "重要語「利上げ」・影響テーマ「半導体・AI投資の拡大」に該当",
-      "future_signal": false,
-      "policy_maturity": null,
-      "policy_maturity_label": null,
-      "news_novelty": "high",
-      "news_novelty_label": "新規",
-      "policy_event_id": "semi_demand-20260919-01",
-      "policy_event_is_update": true,
-      "policy_event_first_seen": "2026-09-19",
-      "policy_event_state": "UPDATE",
-      "themes": [
-        "半導体・AI投資の拡大",
-        "米国株・ハイテク株の変動"
-      ],
-      "summary": "",
-      "impact_comment": "",
-      "impacts": [
-        {
-          "code": "8035",
-          "name": "東京エレクトロン",
-          "sector": "電気機器",
-          "direction": "positive",
-          "direction_label": "追い風",
-          "strength": "大",
-          "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
-          "theme": "半導体・AI投資の拡大",
-          "theme_id": "semi_demand",
-          "origin": "rule",
-          "beneficiary_tier": null,
-          "beneficiary_tier_label": "",
-          "revenue_horizon": null,
-          "revenue_horizon_label": "",
-          "matched_keyword": "半導体",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 51,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "6857",
-          "name": "アドバンテスト",
-          "sector": "電気機器",
-          "direction": "positive",
-          "direction_label": "追い風",
-          "strength": "大",
-          "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
-          "theme": "半導体・AI投資の拡大",
-          "theme_id": "semi_demand",
-          "origin": "rule",
-          "beneficiary_tier": null,
-          "beneficiary_tier_label": "",
-          "revenue_horizon": null,
-          "revenue_horizon_label": "",
-          "matched_keyword": "半導体",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 51,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "6920",
-          "name": "レーザーテック",
-          "sector": "電気機器",
-          "direction": "positive",
-          "direction_label": "追い風",
-          "strength": "大",
-          "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
-          "theme": "半導体・AI投資の拡大",
-          "theme_id": "semi_demand",
-          "origin": "rule",
-          "beneficiary_tier": null,
-          "beneficiary_tier_label": "",
-          "revenue_horizon": null,
-          "revenue_horizon_label": "",
-          "matched_keyword": "半導体",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 51,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "6146",
-          "name": "ディスコ",
-          "sector": "機械",
-          "direction": "positive",
-          "direction_label": "追い風",
-          "strength": "大",
-          "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
-          "theme": "半導体・AI投資の拡大",
-          "theme_id": "semi_demand",
-          "origin": "rule",
-          "beneficiary_tier": null,
-          "beneficiary_tier_label": "",
-          "revenue_horizon": null,
-          "revenue_horizon_label": "",
-          "matched_keyword": "半導体",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 51,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "8604",
-          "name": "野村ホールディングス",
-          "sector": "証券",
-          "direction": "watch",
-          "direction_label": "注目",
-          "strength": "中",
-          "reason": "「米国株」に反応: 米国市場の値動きに連動しやすく、寄り付きの需給に影響が出やすい",
-          "theme": "米国株・ハイテク株の変動",
-          "theme_id": "us_stock_move",
-          "origin": "rule",
-          "beneficiary_tier": "peripheral",
-          "beneficiary_tier_label": "周辺波及",
-          "revenue_horizon": "0-3m",
-          "revenue_horizon_label": "0〜3ヶ月",
-          "matched_keyword": "米国株",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 46,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "8601",
-          "name": "大和証券グループ本社",
-          "sector": "証券",
-          "direction": "watch",
-          "direction_label": "注目",
-          "strength": "中",
-          "reason": "「米国株」に反応: 米国市場の値動きに連動しやすく、寄り付きの需給に影響が出やすい",
-          "theme": "米国株・ハイテク株の変動",
-          "theme_id": "us_stock_move",
-          "origin": "rule",
-          "beneficiary_tier": "peripheral",
-          "beneficiary_tier_label": "周辺波及",
-          "revenue_horizon": "0-3m",
-          "revenue_horizon_label": "0〜3ヶ月",
-          "matched_keyword": "米国株",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 46,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "8473",
-          "name": "SBIホールディングス",
-          "sector": "証券",
-          "direction": "watch",
-          "direction_label": "注目",
-          "strength": "中",
-          "reason": "「米国株」に反応: 米国市場の値動きに連動しやすく、寄り付きの需給に影響が出やすい",
-          "theme": "米国株・ハイテク株の変動",
-          "theme_id": "us_stock_move",
-          "origin": "rule",
-          "beneficiary_tier": "peripheral",
-          "beneficiary_tier_label": "周辺波及",
-          "revenue_horizon": "0-3m",
-          "revenue_horizon_label": "0〜3ヶ月",
-          "matched_keyword": "米国株",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 46,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        },
-        {
-          "code": "9984",
-          "name": "ソフトバンクグループ",
-          "sector": "情報・通信",
-          "direction": "watch",
-          "direction_label": "注目",
-          "strength": "中",
-          "reason": "「米国株」に反応: 米国市場の値動きに連動しやすく、寄り付きの需給に影響が出やすい",
-          "theme": "米国株・ハイテク株の変動",
-          "theme_id": "us_stock_move",
-          "origin": "rule",
-          "beneficiary_tier": "peripheral",
-          "beneficiary_tier_label": "周辺波及",
-          "revenue_horizon": "0-3m",
-          "revenue_horizon_label": "0〜3ヶ月",
-          "matched_keyword": "米国株",
-          "intelligence_layer": "government_policy",
-          "policy_impact_score": 46,
-          "ai_capex_impact_score": null,
-          "policy_to_earnings_stage": null
-        }
-      ],
-      "related": []
-    },
-    {
       "id": "fd9780c52630",
       "title": "木原内閣官房長官は技能五輪国際大会（中国・上海大会）における日本選手団による表敬を受けました",
       "url": "https://www.kantei.go.jp/jp/pages/20260918choukan_hyoukei.html",
@@ -4828,35 +4638,6 @@
           "policy_to_earnings_stage": null
         }
       ],
-      "related": []
-    },
-    {
-      "id": "c27f6757f114",
-      "title": "日銀、２日目の金融政策決定会合を開催（過去の終了時刻一覧）",
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE40WEhwOHRTMWhzTFUzX01RNzFkM0gwR1F0RVZXdHRqNnBXYXdveXd1ZGV6bFhUWUJfYnphZkZmQndVdVMzRnE2R3g0bVlXN1FNX192QVdn?oc=5",
-      "source": "QUICK Money World",
-      "source_tier": "secondary",
-      "source_tier_label": "二次情報",
-      "published_at": "2026-09-18 10:21",
-      "published_ts": 1789694460.0,
-      "category": "policy",
-      "category_label": "金融政策・金利",
-      "category_emoji": "🏦",
-      "importance": 3,
-      "importance_reason": "重要語「金融政策決定会合」",
-      "future_signal": false,
-      "policy_maturity": null,
-      "policy_maturity_label": null,
-      "news_novelty": "high",
-      "news_novelty_label": "新規",
-      "policy_event_id": null,
-      "policy_event_is_update": null,
-      "policy_event_first_seen": null,
-      "policy_event_state": null,
-      "themes": [],
-      "summary": "",
-      "impact_comment": "",
-      "impacts": [],
       "related": []
     },
     {
@@ -6512,6 +6293,64 @@
       "related": []
     },
     {
+      "id": "0392df0f4047",
+      "title": "日経平均株価の指数情報・推移",
+      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE5SRDk1ZENIQUIzSUZyMHZRNHpCR2xlcTI5UTJRYXVoMDBrM3BmNndBT29vV0dDZWdQazZHb2tURGZNYy1OMU93R0kyUUZUT3VmU2VhbA?oc=5",
+      "source": "Yahoo!ファイナンス",
+      "source_tier": "secondary",
+      "source_tier_label": "二次情報",
+      "published_at": "2026-09-19 18:43",
+      "published_ts": 1789811022.0,
+      "category": "market",
+      "category_label": "株式市況",
+      "category_emoji": "📈",
+      "importance": 1,
+      "importance_reason": "一般的な市況ニュース",
+      "future_signal": false,
+      "policy_maturity": null,
+      "policy_maturity_label": null,
+      "news_novelty": "high",
+      "news_novelty_label": "新規",
+      "policy_event_id": null,
+      "policy_event_is_update": null,
+      "policy_event_first_seen": null,
+      "policy_event_state": null,
+      "themes": [],
+      "summary": "",
+      "impact_comment": "",
+      "impacts": [],
+      "related": []
+    },
+    {
+      "id": "215df662d0e1",
+      "title": "米ドル/円【USDJPY】：外国為替相場FXレート・チャートをリアルタイム表示",
+      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTFBzbWxqc1ltSU1ndEE0VElnZldUTGdyRVJpOTdKeXBsc0RDSm40dm9kLTJqaDZlOVpoR2E5eEZIX1o0bFR1SFR2N2k4WjRiTnN5dHVBTHJn?oc=5",
+      "source": "Yahoo!ファイナンス",
+      "source_tier": "secondary",
+      "source_tier_label": "二次情報",
+      "published_at": "2026-09-19 18:19",
+      "published_ts": 1789809578.0,
+      "category": "fx",
+      "category_label": "為替",
+      "category_emoji": "💱",
+      "importance": 1,
+      "importance_reason": "一般的な市況ニュース",
+      "future_signal": false,
+      "policy_maturity": null,
+      "policy_maturity_label": null,
+      "news_novelty": "high",
+      "news_novelty_label": "新規",
+      "policy_event_id": null,
+      "policy_event_is_update": null,
+      "policy_event_first_seen": null,
+      "policy_event_state": null,
+      "themes": [],
+      "summary": "",
+      "impact_comment": "",
+      "impacts": [],
+      "related": []
+    },
+    {
       "id": "252bcb8f0d35",
       "title": "NYダウの指数情報・推移",
       "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE9RX1F0c3NoRW1WOGhKVzFzd0tzWTlBS0NtMVZFbUUyZm14Z1Y5VWhzMjctd201Y2RMTFhBSGx0Rmdqc0ZFY1R2VzZUUG9PVjdUaXc?oc=5",
@@ -6582,7 +6421,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "positive",
           "reason": "「日銀 利上げ」に反応: 利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
           "importance": 5
@@ -6615,7 +6454,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "positive",
           "reason": "「日銀 利上げ」に反応: 利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
           "importance": 5
@@ -6648,7 +6487,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "positive",
           "reason": "「日銀 利上げ」に反応: 利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
           "importance": 5
@@ -6681,7 +6520,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "positive",
           "reason": "「日銀 利上げ」に反応: 利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
           "importance": 5
@@ -6714,7 +6553,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "negative",
           "reason": "「日銀 利上げ」に反応: 調達コストの上昇や不動産市況の減速が意識されやすい",
           "importance": 5
@@ -6747,7 +6586,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "negative",
           "reason": "「日銀 利上げ」に反応: 調達コストの上昇や不動産市況の減速が意識されやすい",
           "importance": 5
@@ -6780,7 +6619,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "positive",
           "reason": "「日銀 利上げ」に反応: 利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
           "importance": 5
@@ -6813,7 +6652,7 @@
       "news": [
         {
           "title": "日銀の利上げでも円安…深夜に1円以上円高 介入準備のレートチェックあったか",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fd3NORVEzZEdoUDFwM216NDNBT2VGb0xQSkFsWG00ekIwU2FqN2RmY3RFOHZtaXZYbG1nUDhCeHByVGZwMkVXNGRIakF2aE9VcnlXOUI0WGQ2X0MzcDgycWNZSjJncWhpSHlNNUc4VzFQUQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE4yX2duVWpDNmlLQzU3WHRFYjliMEdIV3lNNlpTWEVyVUI2NXp5WVh4SmNQbDhkSDFZcDlZYlJIcWZWSUVjdHVIeTRONV93MGpMTVhoU05oU1ZNWWs?oc=5",
           "direction": "positive",
           "reason": "「日銀 利上げ」に反応: 利ざや改善・運用収益の拡大につながりやすく、金利上昇局面で買われやすい",
           "importance": 5
@@ -7202,21 +7041,14 @@
       "code": "8035",
       "name": "東京エレクトロン",
       "sector": "電気機器",
-      "positive": 3,
+      "positive": 2,
       "negative": 2,
       "watch": 0,
-      "score": 6,
+      "score": 2,
       "news": [
         {
           "title": "半導体製造装置の部品納期が最大40カ月との報道、AI増産を支える設備投資に調達の壁",
           "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFA4dFBlSThSMkQ0RlJ6VjlJMUNia24wSHNsX29GSFJqTFFpeVZLN1daNkpBODlqZUo1a0ZkTkVzdGtVWV9YWlRiQ2ltd0xsNklHVEthUWJWaGItcjRLV21mc2EwY1RGcE1GOHNJSFln?oc=5",
-          "direction": "positive",
-          "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
-          "importance": 4
-        },
-        {
-          "title": "米FRB利上げ決定後に米国株が全面反発 ナスダック1.69%高、半導体株が主導",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBnS1B1dU5RNEhnV3FjOGNpX0hIX21yRWpONjU4cEg3dk1McEJFaFJ3amd1YzFsM2lpcEs0b2VScVNicnVOM1FHZDU3TDI4bXY1ajFxb0x4V2tlNS02MDl5aTItdjM2Ykt0cnFyWkVPQWlOTjU5?oc=5",
           "direction": "positive",
           "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
           "importance": 4
@@ -7227,14 +7059,21 @@
           "direction": "positive",
           "reason": "「半導体」に反応: 半導体設備投資の増加は装置メーカーの受注に直結しやすい",
           "importance": 2
+        },
+        {
+          "title": "欧州議会、社会全体のレジリエンス構築における台湾の成功事例を評価する決議を採択",
+          "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE80S19ua0RWeFNLZ1o1aHFJNVJJbFpkRVpSbG9PT0I4NHpWZkh3NWJjaDBnazBVLUVOZ3lvMDQ4ZG9TQXVjOGtkQXl3bGM?oc=5",
+          "direction": "negative",
+          "reason": "「台湾」に反応: 中国売上比率が高く、地政学リスクの高まりは業績不透明感につながりやすい",
+          "importance": 2
         }
       ],
-      "mentions": 5
+      "mentions": 4
     }
   ],
   "counts": {
     "news": 40,
-    "high_importance": 22,
+    "high_importance": 21,
     "stocks": 20
   }
 }
