@@ -15,7 +15,7 @@ src/main/java/Main.java          データ取得ロジック本体
 ## 導入手順
 
 1. 上記3点(pom.xml, src/, .github/workflows/update.yml)を
-   `jp-daytrade-dashboard` リポジトリの**ルート**にコピーする
+   `jp-news-dashboard` リポジトリの**ルート**にコピーする
    (既存の `index.html` / `data.json` / `render_dashboard.py` と同じ階層)。
 2. GitHubリポジトリの **Settings > Actions > General > Workflow permissions** を
    **「Read and write permissions」** に変更する(これをしないと自動pushが失敗する)。

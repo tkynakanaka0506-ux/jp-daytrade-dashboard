@@ -25,7 +25,7 @@ from pathlib import Path
 from .config import JST
 
 # 同じリポジトリ内に書き出すだけ(他プロジェクトへの自動配置はしない)。
-# 受け手側(jp-daytrade-dashboard(mjs)のscraper.mjs)は、相対パスで
+# 受け手側(jp-stock-dashboardのscraper.mjs)は、相対パスで
 # このファイルを直接読みに来る形で統合済み(コピー配布はしない)。
 EXPORT_PATH = Path(__file__).resolve().parent / "data" / "policy_catalyst_signals.json"
 SCHEMA_VERSION = 1
