@@ -4,3 +4,4 @@ target/
 .DS_Store
 preview.html
 preview.news.json
+preview.dashboard.html

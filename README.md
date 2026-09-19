@@ -77,6 +77,30 @@ Cursor のコマンドパレット（Cmd/Ctrl + Shift + P →「Tasks: Run Task�
 > 公開される `index.html` / `news.json` は GitHub Actions だけが生成するので、
 > ローカルの試し打ちが公開ページを壊すことはありません（両ファイルは `.gitignore` 済み）。
 
+### Cursor の中で Claude Code を使う
+
+Cursor の内蔵ターミナル（`Ctrl + @` / Mac は `Cmd + J`）で:
+
+```bash
+npm install -g @anthropic-ai/claude-code   # 最初の1回だけ
+claude                                      # このフォルダで起動 → /login で認証
+```
+
+起動したフォルダの `CLAUDE.md` を自動で読むので、構成・コマンド・守ってほしい方針
+（依存を増やさない／APIキー無しでも動く／断定表現を書かない等）を毎回説明しなくてよくなります。
+
+用意してあるスラッシュコマンド:
+
+| コマンド | 内容 |
+| --- | --- |
+| `/preview` | プレビューサーバを起動する |
+| `/add-stock 7012 川崎重工業` | 銘柄マスタに追加して `dev.py check` まで通す |
+| `/add-rule 水素関連のニュースで反応する銘柄` | ニュース→銘柄のルールを追加してテストまで通す |
+| `/ship` | check → test → コミット → プッシュ |
+
+`.claude/settings.json` で `python3 dev.py ...` と `git status` / `git diff` などの
+読み取り系コマンドを許可済みなので、毎回の確認プロンプトが減ります。
+
 ### 手動で直接動かしたいとき
 
 ```bash
@@ -146,6 +170,8 @@ Secrets（すべて任意）: `GEMINI_API_KEY`, `GROQ_API_KEY`, `EDINET_API_KEY`
 setup_cursor.sh / .bat    初回セットアップ(Cursorで開発を始めるとき)
 dev.py                    ローカル開発コマンド(serve/sample/build/check/test)
 .vscode/tasks.json        Cursorのコマンドパレットから実行できるタスク
+CLAUDE.md                 Cursor内のClaude Code向けのプロジェクト説明
+.claude/                  Claude Code用の権限設定とスラッシュコマンド
 build_news_site.py        生成本体(GitHub Actions が実行する)
 newssite/
   config.py               収集フィード・定数
