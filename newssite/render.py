@@ -600,12 +600,16 @@ footer a{color:var(--accent)}
   --glass-highlight:inset 0 1px 0 rgba(255,255,255,.08);
   min-height:100vh; padding-bottom:80px;
   font-family:var(--font-body); color:#fff;
+  /* 黒×多色の融合を強める（ユーザー要望2026-09-19）: 漆黒ベースの面積を
+     広く保ちつつ、彩度の高い色帯を増やして黒との対比でカラフルに見せる。 */
   background:
-    radial-gradient(50% 28% at 20% 4%, rgba(157,143,255,.18), transparent 68%),
-    radial-gradient(54% 30% at 82% 14%, rgba(63,224,245,.16), transparent 68%),
-    radial-gradient(50% 30% at 88% 82%, rgba(240,138,212,.13), transparent 66%),
-    radial-gradient(44% 26% at 4% 90%, rgba(255,203,112,.07), transparent 62%),
-    linear-gradient(180deg,#050814 0%,#0a0e24 38%,#111a3d 70%,#161f4d 100%);
+    radial-gradient(46% 26% at 16% 2%, rgba(157,143,255,.30), transparent 66%),
+    radial-gradient(50% 28% at 86% 10%, rgba(63,224,245,.26), transparent 66%),
+    radial-gradient(46% 28% at 90% 78%, rgba(240,138,212,.22), transparent 64%),
+    radial-gradient(40% 24% at 6% 86%, rgba(255,203,112,.14), transparent 60%),
+    radial-gradient(34% 20% at 50% 46%, rgba(180,237,74,.08), transparent 58%),
+    radial-gradient(38% 22% at 62% 68%, rgba(255,133,149,.08), transparent 58%),
+    linear-gradient(180deg,#020309 0%,#050814 34%,#0a0e24 62%,#111a3d 100%);
 }
 /* ガラス板上端のsheen(反射ライン)。全ガラスカード共通。 */
 .m-row::before, .m-stat::before, .m-cta::before{
@@ -614,38 +618,74 @@ footer a{color:var(--accent)}
 }
 .m-topbar{
   position:sticky; top:0; z-index:20; display:flex; justify-content:space-between; align-items:center;
-  padding:14px 16px; background:rgba(5,8,20,.55); backdrop-filter:blur(22px) saturate(180%);
+  padding:14px 16px; background:rgba(2,3,9,.6); backdrop-filter:blur(22px) saturate(180%);
   -webkit-backdrop-filter:blur(22px) saturate(180%);
   border-bottom:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
 }
-.m-brand{font-weight:800; font-size:16px; font-family:var(--font-head)}
+.m-brand{font-weight:800; font-size:16px; font-family:var(--font-head); display:flex; align-items:center; gap:8px}
 .m-updated{font-size:11px; color:var(--muted); font-family:var(--font-mono); opacity:.85}
 .m-screens{padding:16px 14px 8px}
 .m-screen{display:none}
 .m-screen.is-active{display:block}
-.m-h2{font-size:12.5px; margin:22px 0 10px; color:var(--muted); letter-spacing:.09em; text-transform:uppercase; font-family:var(--font-mono)}
+.m-h2{font-size:12.5px; margin:22px 0 10px; color:var(--muted); letter-spacing:.09em; text-transform:uppercase;
+  font-family:var(--font-mono); display:flex; align-items:center; gap:7px}
 .m-h2:first-child{margin-top:4px}
+.m-h2-icon, .m-cta-icon{width:15px; height:15px; flex-shrink:0; stroke:currentColor}
+.m-brand .m-h2-icon{width:19px; height:19px; color:var(--accent-2)}
+.m-cta-icon{width:16px; height:16px; margin-right:6px; vertical-align:-3px}
+.m-h2.accent-cyan{color:var(--accent-2)}
+.m-h2.accent-amber{color:#ffcb70}
+.m-h2.accent-violet{color:#b9aeff}
+.m-h2.accent-magenta{color:#f0a8dd}
 
 .m-list{display:flex; flex-direction:column; gap:8px}
+/* 枠デザイン改良（ユーザー要望2026-09-19、株ボードと統一）:
+   左端にカラーアクセントバー、右下角を落としたチケット風シェイプ。 */
 .m-row{
   position:relative;
   display:flex; justify-content:space-between; align-items:center; gap:10px;
   background:var(--glass-bg); backdrop-filter:blur(20px) saturate(200%); -webkit-backdrop-filter:blur(20px) saturate(200%);
   border:1px solid var(--glass-border); box-shadow:var(--glass-highlight), 0 12px 32px -12px rgba(0,0,0,.55);
-  border-radius:14px; padding:13px 14px; text-decoration:none; color:#fff; min-height:44px;
-  transition:border-color .15s ease, background .15s ease;
+  border-radius:14px 14px 14px 4px; padding:13px 14px 13px 16px; text-decoration:none; color:#fff; min-height:44px;
+  transition:border-color .15s ease, background .15s ease, transform .1s ease;
+  overflow:hidden;
 }
-.m-row:active{background:rgba(34,211,238,.08); border-color:rgba(34,211,238,.35)}
-.m-row-main{display:flex; flex-direction:column; gap:4px; min-width:0}
+.m-row::after{
+  content:""; position:absolute; top:10px; bottom:10px; left:0; width:3px; border-radius:0 3px 3px 0;
+  background:var(--muted); opacity:.5;
+}
+.m-row:has(.m-chg.up)::after{background:var(--accent); box-shadow:0 0 8px rgba(77,255,126,.6); opacity:1}
+.m-row:has(.m-chg.down)::after{background:var(--up); box-shadow:0 0 8px rgba(255,93,122,.6); opacity:1}
+.m-row:active{background:rgba(34,211,238,.08); border-color:rgba(34,211,238,.35); transform:scale(.985)}
+.m-row-main{display:flex; flex-direction:column; gap:4px; min-width:0; flex:1}
 .m-row-cat{font-size:11px; color:var(--muted)}
 .m-row-title{font-size:14.5px; font-weight:700; line-height:1.4;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
 .m-row-sub{font-size:12px; color:var(--accent); letter-spacing:.06em}
 .m-code-chip{display:inline-block; margin-left:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--muted)}
-.m-rank{font-family:var(--font-mono); font-size:12px; color:var(--accent-2); margin-right:8px; text-shadow:0 0 8px rgba(34,211,238,.5)}
+/* 順位バッジは円形グロー表示、上位1-3位は金銀銅トーンで強調（株ボードと統一） */
+.m-rank{
+  flex-shrink:0; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-size:11px; font-weight:800; color:var(--accent-2); border-radius:50%;
+  background:rgba(34,211,238,.14); border:1px solid rgba(34,211,238,.4); box-shadow:0 0 8px rgba(34,211,238,.35);
+  margin-right:8px;
+}
+.m-rank[data-top="1"]{color:#ffd76b; background:rgba(255,215,107,.16); border-color:rgba(255,215,107,.5); box-shadow:0 0 10px rgba(255,215,107,.5)}
+.m-rank[data-top="2"]{color:#d9e2f2; background:rgba(217,226,242,.14); border-color:rgba(217,226,242,.4); box-shadow:0 0 8px rgba(217,226,242,.35)}
+.m-rank[data-top="3"]{color:#e3a875; background:rgba(227,168,117,.14); border-color:rgba(227,168,117,.4); box-shadow:0 0 8px rgba(227,168,117,.35)}
 .m-chg{font-family:var(--font-mono); font-size:13px; font-weight:700; flex-shrink:0}
 .m-chg.up{color:var(--accent); text-shadow:0 0 10px rgba(77,255,126,.35)} .m-chg.down{color:var(--up)} .m-chg.flat{color:var(--flat)}
 .m-empty{color:var(--muted); font-size:13px; padding:20px 4px; text-align:center}
+
+/* 便利機能: 「上へ戻る」ボタン（ユーザー要望2026-09-19、株ボードと統一） */
+#m-top-btn{
+  display:none; position:fixed; right:16px; bottom:96px; z-index:35;
+  width:42px; height:42px; border-radius:50%; align-items:center; justify-content:center;
+  background:rgba(14,34,25,.7); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border); color:var(--accent-2); box-shadow:var(--glass-highlight), 0 10px 24px -8px rgba(0,0,0,.6);
+}
+#m-top-btn.is-visible{display:flex}
+#m-top-btn svg{width:18px; height:18px}
 
 .m-cat-group{margin-bottom:22px}
 .m-cat-h3{font-size:14px; font-weight:700; margin:0 0 10px; display:flex; align-items:center; gap:8px}
@@ -975,6 +1015,18 @@ JS = r"""
     window.scrollTo(0, 0);
   };
 
+  window.mobileScrollToTop = function () {
+    window.scrollTo(0, 0);
+  };
+
+  window.addEventListener('scroll', function () {
+    var btn = document.getElementById('m-top-btn');
+    if (!btn) return;
+    var mobileApp = document.getElementById('mobile-app');
+    var isMobileVisible = mobileApp && getComputedStyle(mobileApp).display !== 'none';
+    btn.classList.toggle('is-visible', isMobileVisible && window.scrollY > 400);
+  }, { passive: true });
+
   window.mobileToggleTheme = function () {
     var toggle = document.getElementById('themeToggle');
     if (toggle) toggle.click();
@@ -1023,6 +1075,27 @@ MOBILE_TAB_ICONS = {
                 '<path d="M12 3.5v2.4M12 18.1v2.4M20.5 12h-2.4M5.9 12H3.5M17.7 6.3l-1.7 1.7M8 16l-1.7 1.7M17.7 17.7 16 16M8 8 6.3 6.3" stroke-linecap="round"/></svg>',
 }
 
+# セクション見出しのアイコン（絵文字廃止・ユーザー要望2026-09-19。株ボードと
+# 同じライン画SVGパターンで統一する）。
+MOBILE_H2_ICONS = {
+    "brand": '<svg class="m-h2-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+             '<path d="M3 16 9 10l4 4 8-9" stroke-linecap="round" stroke-linejoin="round"/>'
+             '<path d="M15 5h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    "importance": '<svg class="m-h2-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+                  '<path d="M12 3.5 14.6 9.2 21 10l-4.7 4.3L17.5 21 12 17.7 6.5 21l1.2-6.7L3 10l6.4-.8Z" stroke-linejoin="round"/></svg>',
+    "ranking": '<svg class="m-h2-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+               '<rect x="3.5" y="12" width="4" height="8" rx="1"/><rect x="10" y="7" width="4" height="13" rx="1"/>'
+               '<rect x="16.5" y="3.5" width="4" height="16.5" rx="1"/></svg>',
+    "summary": '<svg class="m-h2-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+               '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>',
+    "category": MOBILE_TAB_ICONS["category"].replace("m-tab-icon", "m-h2-icon"),
+    "settings": MOBILE_TAB_ICONS["settings"].replace("m-tab-icon", "m-h2-icon"),
+    "monitor": '<svg class="m-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+               '<rect x="3" y="4.5" width="18" height="12" rx="1.6"/><path d="M8.5 20h7M12 16.5V20" stroke-linecap="round"/></svg>',
+    "theme": '<svg class="m-cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'
+             '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" stroke-linejoin="round"/></svg>',
+}
+
 
 def mobile_news_row(item):
     stars_n = max(1, min(5, int(item.get("importance") or 1)))
@@ -1064,7 +1137,7 @@ def mobile_app_html(data, now):
     ranking_rows = "".join(f"""
   <div class="m-row m-rank-row">
     <div class="m-row-main">
-      <span class="m-rank">{i + 1}</span>
+      <span class="m-rank" data-top="{i + 1 if i + 1 <= 3 else 0}">{i + 1}</span>
       <span class="m-row-title">{esc(row['name'])}<span class="m-code-chip">{esc(row['code'])}</span></span>
     </div>
     <span class="m-chg {'up' if row['score'] > 0 else 'down' if row['score'] < 0 else 'flat'}">{row['mentions']}件</span>
@@ -1075,23 +1148,23 @@ def mobile_app_html(data, now):
     return f"""
 <div id="mobile-app">
   <header class="m-topbar">
-    <div class="m-brand">📰 日本株ニュース</div>
+    <div class="m-brand">{MOBILE_H2_ICONS['brand']}日本株ニュース</div>
     <div class="m-updated">{generated_at} 更新</div>
   </header>
 
   <div class="m-screens">
     <section class="m-screen is-active" data-screen="home">
-      <h2 class="m-h2">重要度の高いニュース</h2>
+      <h2 class="m-h2 accent-amber">{MOBILE_H2_ICONS['importance']}重要度の高いニュース</h2>
       <div class="m-list">
         {''.join(mobile_news_row(n) for n in top_news) if top_news else '<p class="m-empty">今回はニュースを取得できませんでした</p>'}
       </div>
 
-      <h2 class="m-h2">材料が集まっている銘柄</h2>
+      <h2 class="m-h2 accent-cyan">{MOBILE_H2_ICONS['ranking']}材料が集まっている銘柄</h2>
       <div class="m-list">
         {ranking_rows if ranking_rows else '<p class="m-empty">集計できる影響銘柄がありません</p>'}
       </div>
 
-      <h2 class="m-h2">サマリー</h2>
+      <h2 class="m-h2 accent-violet">{MOBILE_H2_ICONS['summary']}サマリー</h2>
       <div class="m-stat-row">
         <div class="m-stat"><span class="m-stat-n">{len(news)}</span><span class="m-stat-l">ニュース</span></div>
         <div class="m-stat"><span class="m-stat-n">{len(high_importance)}</span><span class="m-stat-l">★4以上</span></div>
@@ -1100,16 +1173,16 @@ def mobile_app_html(data, now):
     </section>
 
     <section class="m-screen" data-screen="category">
-      <h2 class="m-h2">カテゴリ別</h2>
+      <h2 class="m-h2 accent-magenta">{MOBILE_H2_ICONS['category']}カテゴリ別</h2>
       {category_sections if category_sections else '<p class="m-empty">表示できるカテゴリがありません</p>'}
     </section>
 
     <section class="m-screen" data-screen="settings">
-      <h2 class="m-h2">設定</h2>
+      <h2 class="m-h2">{MOBILE_H2_ICONS['settings']}設定</h2>
       <div class="m-settings-row"><span>最終更新</span><span>{generated_at}</span></div>
       <div class="m-settings-row"><span>ニュース件数</span><span>{len(news)}件</span></div>
-      <button class="m-cta" onclick="mobileToggleTheme()">🌗 テーマ切り替え</button>
-      <button class="m-cta" onclick="mobileShowDesktop()" style="margin-top:10px">🖥 PC版を表示</button>
+      <button class="m-cta" onclick="mobileToggleTheme()">{MOBILE_H2_ICONS['theme']}テーマ切り替え</button>
+      <button class="m-cta" onclick="mobileShowDesktop()" style="margin-top:10px">{MOBILE_H2_ICONS['monitor']}PC版を表示</button>
       <p class="m-note">このモバイル画面はβ版です。検索・お気に入り等の詳細操作はPC版でご利用ください。</p>
     </section>
   </div>
@@ -1120,7 +1193,10 @@ def mobile_app_html(data, now):
     <button class="m-tab" data-tab="settings" onclick="mobileGoTo('settings')">{MOBILE_TAB_ICONS['settings']}<i>SET</i></button>
   </nav>
 </div>
-<button id="m-back-btn" onclick="mobileShowMobile()">📱 モバイル表示に戻る</button>"""
+<button id="m-back-btn" onclick="mobileShowMobile()">{MOBILE_TAB_ICONS['home']}モバイル表示に戻る</button>
+<button id="m-top-btn" onclick="mobileScrollToTop()" aria-label="上へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V6M6 11l6-6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>"""
 
 
 def build_html(data):
