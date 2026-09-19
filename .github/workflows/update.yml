@@ -25,6 +25,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: mainが最新パイプライン(newssite)を持っているか確認(再発防止カナリア)
+        run: |
+          # 2026-09-13〜19、サイト刷新〜Policy Catalyst一式が作業ブランチに
+          # 積まれたままmainにマージされず、本番はそれと知らずに1週間分
+          # 古いコードを"成功"扱いで自動更新し続けていた事故の再発防止。
+          # newssite/が無い=作業ブランチがmainに反映されないまま停滞している
+          # 可能性が高いので、ここで気づかず成功させずに明示的に失敗させる。
+          test -f newssite/policy_lifecycle.py || {
+            echo "::error::newssite/policy_lifecycle.py が見つかりません。"
+            echo "::error::mainが開発ブランチとマージされないまま停滞している可能性があります。"
+            echo "::error::git branch -r で他のブランチの状況を確認してください。"
+            exit 1
+          }
+
       - name: 実行モードを判定
         id: mode
         run: |
