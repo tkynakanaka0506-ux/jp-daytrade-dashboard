@@ -184,7 +184,7 @@ def news_card_html(item, now):
         if source_tier in ("primary", "commentary") else ""
     )
     return f"""
-    <article class="news-card" data-category="{esc(item['category'])}" data-importance="{esc(item['importance'])}"
+    <article class="news-card" id="news-{esc(item['id'])}" data-category="{esc(item['category'])}" data-importance="{esc(item['importance'])}"
              data-codes="{esc(codes)}" data-search="{esc(search_blob)}" data-ts="{esc(item.get('published_at', ''))}"
              data-future="{'1' if item.get('future_signal') else '0'}"
              data-maturity="{esc(maturity_score) if maturity_score is not None else ''}">
@@ -579,6 +579,119 @@ footer a{color:var(--accent)}
   box-shadow:var(--shadow),var(--glass-edge);font-size:17.5px;transition:box-shadow .2s,border-color .2s}
 .back-top.is-on{display:block}
 .back-top:hover{border-color:var(--accent);box-shadow:var(--shadow),var(--glow)}
+
+/* ================================================================
+   モバイル専用UI（PWA・3画面構成、ユーザー方針2026-09-19）
+   サイバーネオン×ミニマルガラス。株ボード(jp-stock-dashboard)と
+   同じデザイン言語(SVGラインアイコン+ネオングロー+ガラスパネル)。
+   520px以下では#desktop-viewを隠し#mobile-appに完全に切り替える。
+   ================================================================ */
+#mobile-app{display:none}
+@media(max-width:520px){
+  #desktop-view{display:none}
+  #mobile-app{display:block}
+}
+#mobile-app{
+  --glass-bg:rgba(14,34,25,.42); --glass-border:rgba(255,255,255,.09);
+  --glass-highlight:inset 0 1px 0 rgba(255,255,255,.08);
+  min-height:100vh; padding-bottom:80px;
+  font-family:var(--font-body); color:var(--text); background:var(--bg);
+  background-image:
+    radial-gradient(60% 40% at 15% 0%, rgba(34,211,238,.08), transparent 60%),
+    radial-gradient(50% 35% at 100% 15%, rgba(77,255,126,.06), transparent 60%);
+}
+.m-topbar{
+  position:sticky; top:0; z-index:20; display:flex; justify-content:space-between; align-items:center;
+  padding:14px 16px; background:rgba(3,10,7,.55); backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border-bottom:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
+}
+.m-brand{font-weight:800; font-size:16px; font-family:var(--font-head)}
+.m-updated{font-size:11px; color:var(--muted); font-family:var(--font-mono); opacity:.85}
+.m-screens{padding:16px 14px 8px}
+.m-screen{display:none}
+.m-screen.is-active{display:block}
+.m-h2{font-size:12.5px; margin:22px 0 10px; color:var(--muted); letter-spacing:.09em; text-transform:uppercase; font-family:var(--font-mono)}
+.m-h2:first-child{margin-top:4px}
+
+.m-list{display:flex; flex-direction:column; gap:8px}
+.m-row{
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
+  background:var(--glass-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
+  border-radius:16px; padding:13px 14px; text-decoration:none; color:var(--text); min-height:44px;
+  transition:border-color .15s ease, background .15s ease;
+}
+.m-row:active{background:rgba(34,211,238,.08); border-color:rgba(34,211,238,.35)}
+.m-row-main{display:flex; flex-direction:column; gap:4px; min-width:0}
+.m-row-cat{font-size:11px; color:var(--muted)}
+.m-row-title{font-size:14.5px; font-weight:700; line-height:1.4;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
+.m-row-sub{font-size:12px; color:var(--accent); letter-spacing:.06em}
+.m-code-chip{display:inline-block; margin-left:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--muted)}
+.m-rank{font-family:var(--font-mono); font-size:12px; color:var(--accent-2); margin-right:8px; text-shadow:0 0 8px rgba(34,211,238,.5)}
+.m-chg{font-family:var(--font-mono); font-size:13px; font-weight:700; flex-shrink:0}
+.m-chg.up{color:var(--accent); text-shadow:0 0 10px rgba(77,255,126,.35)} .m-chg.down{color:var(--up)} .m-chg.flat{color:var(--flat)}
+.m-empty{color:var(--muted); font-size:13px; padding:20px 4px; text-align:center}
+
+.m-cat-group{margin-bottom:22px}
+.m-cat-h3{font-size:14px; font-weight:700; margin:0 0 10px; display:flex; align-items:center; gap:8px}
+.m-cat-count{font-size:11px; color:var(--muted); font-family:var(--font-mono)}
+
+.m-stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+.m-stat{
+  background:var(--glass-bg); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--glass-border); box-shadow:var(--glass-highlight);
+  border-radius:16px; padding:14px 8px; display:flex; flex-direction:column; align-items:center; gap:4px;
+}
+.m-stat-n{font-size:22px; font-weight:800; font-family:var(--font-mono); color:var(--accent-2); text-shadow:0 0 10px rgba(34,211,238,.4)}
+.m-stat-l{font-size:11px; color:var(--muted)}
+
+.m-cta{
+  display:block; width:100%; background:linear-gradient(135deg,rgba(34,211,238,.16),rgba(77,255,126,.16));
+  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(34,211,238,.4); box-shadow:var(--glass-highlight), 0 0 24px -6px rgba(34,211,238,.35);
+  color:var(--accent-2); font-weight:800; font-size:15px; border-radius:16px;
+  padding:16px; margin-top:4px;
+}
+.m-cta:active{opacity:.85}
+.m-settings-row{
+  display:flex; justify-content:space-between; padding:13px 4px; border-bottom:1px solid var(--glass-border); font-size:14px;
+}
+.m-note{font-size:12px; color:var(--muted); margin-top:16px; line-height:1.6}
+
+/* タブバー: 上端ガラスパネル+選択中タブのネオングロー */
+.m-tabbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:30; display:flex;
+  background:rgba(3,10,7,.62); backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border-top:1px solid rgba(255,255,255,.08);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 -12px 30px -14px rgba(34,211,238,.18);
+  padding:9px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.m-tab{
+  flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;
+  background:none; border:none; color:#6b8a7a; padding:6px 0 5px; border-radius:12px;
+  position:relative; transition:color .2s ease;
+}
+.m-tab-icon{width:22px; height:22px; display:block}
+.m-tab i{font-style:normal; font-size:9.5px; letter-spacing:.06em; font-family:var(--font-mono)}
+.m-tab.is-active{color:var(--accent-2)}
+.m-tab.is-active .m-tab-icon{filter:drop-shadow(0 0 6px rgba(34,211,238,.85))}
+.m-tab.is-active::before{
+  content:""; position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+  width:22px; height:2px; border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--accent-2),transparent);
+  box-shadow:0 0 8px 1px rgba(34,211,238,.9);
+}
+
+#m-back-btn{
+  display:none; position:fixed; left:50%; transform:translateX(-50%); bottom:16px; z-index:40;
+  background:rgba(14,34,25,.6); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  color:var(--accent-2); font-weight:800; font-size:13px; border:1px solid rgba(34,211,238,.4);
+  border-radius:999px; padding:10px 18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 0 20px -4px rgba(34,211,238,.4);
+}
 """
 
 JS = r"""
@@ -796,6 +909,69 @@ JS = r"""
   apply();
   onScroll();
 })();
+
+// ==================================================================
+// モバイル専用UI（#mobile-app）のタブ切り替え・「詳細を見る」→PC版該当
+// 記事へのジャンプ・テーマ切替(既存のthemeToggleボタンを叩くだけで
+// 二重実装しない)。株ボード(jp-stock-dashboard)のscraper.mjsと
+// 同じ実装パターン。
+// ==================================================================
+(function () {
+  var TAB_KEY = 'news.mobileTab';
+
+  window.mobileGoTo = function (screen) {
+    document.querySelectorAll('#mobile-app .m-screen').forEach(function (el) {
+      el.classList.toggle('is-active', el.dataset.screen === screen);
+    });
+    document.querySelectorAll('#mobile-app .m-tab').forEach(function (el) {
+      el.classList.toggle('is-active', el.dataset.tab === screen);
+    });
+    try { sessionStorage.setItem(TAB_KEY, screen); } catch (e) { }
+    var screensEl = document.querySelector('#mobile-app .m-screens');
+    if (screensEl) screensEl.scrollTop = 0;
+  };
+
+  try {
+    var savedTab = sessionStorage.getItem(TAB_KEY);
+    if (savedTab) window.mobileGoTo(savedTab);
+  } catch (e) { /* file:// で sessionStorage が使えない環境では諦める */ }
+
+  window.mobileShowDesktopNews = function (id) {
+    window.mobileShowDesktop();
+    requestAnimationFrame(function () {
+      var el = document.getElementById('news-' + id);
+      if (el) el.scrollIntoView({ block: 'start' });
+    });
+    return false;
+  };
+
+  window.mobileShowDesktop = function () {
+    document.getElementById('mobile-app').style.display = 'none';
+    document.getElementById('desktop-view').style.display = 'block';
+    var back = document.getElementById('m-back-btn');
+    if (back) back.style.display = 'block';
+  };
+
+  window.mobileShowMobile = function () {
+    document.getElementById('mobile-app').style.display = '';
+    document.getElementById('desktop-view').style.display = '';
+    var back = document.getElementById('m-back-btn');
+    if (back) back.style.display = 'none';
+    window.scrollTo(0, 0);
+  };
+
+  window.mobileToggleTheme = function () {
+    var toggle = document.getElementById('themeToggle');
+    if (toggle) toggle.click();
+  };
+
+  // PWAインストール可否の必須条件（Service Worker登録実績）を満たす。
+  // GitHub Pages配信(HTTPS)なので株ボードと違い実際にPush通知等も
+  // 将来使える。登録失敗時は他の機能に影響しないよう例外を握りつぶす。
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function () { });
+  }
+})();
 </script>
 """
 
@@ -807,6 +983,129 @@ DISCLAIMER = (
     "見出しの解釈には誤りが含まれることがあります。必ずリンク先の原文と実際の株価をご自身で確認し、"
     "投資判断はご自身の責任で行ってください。"
 )
+
+
+# ==================================================================
+# モバイル専用UI（PWA・3画面構成、ユーザー方針2026-09-19。
+# 株ボード(jp-stock-dashboard)と同じ「サイバーネオン×ミニマルガラス」
+# デザイン言語に揃える。判定ロジック・データは一切新規計算せず、
+# build_html()が既に持っているnews/categories/ranking等をそのまま
+# 参照するだけ（PC版とモバイル版で表示内容が食い違わないようにするため）。
+# 「詳細を見る」は、desktop側の該当<article id="news-${id}">まで
+# スクロールする形にして、同じ記事をモバイル用に二重に作り込まない。
+# ==================================================================
+
+MOBILE_TAB_ICONS = {
+    "home": '<svg class="m-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'
+            '<path d="M4 11.5 12 4l8 7.5" stroke-linecap="round" stroke-linejoin="round"/>'
+            '<path d="M6 10v9h12v-9" stroke-linecap="round" stroke-linejoin="round"/>'
+            '<path d="M10 19v-5h4v5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    "category": '<svg class="m-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'
+                '<rect x="3.5" y="3.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.4"/>'
+                '<rect x="3.5" y="13.5" width="7" height="7" rx="1.4"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.4"/></svg>',
+    "settings": '<svg class="m-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'
+                '<circle cx="12" cy="12" r="3.2"/>'
+                '<path d="M12 3.5v2.4M12 18.1v2.4M20.5 12h-2.4M5.9 12H3.5M17.7 6.3l-1.7 1.7M8 16l-1.7 1.7M17.7 17.7 16 16M8 8 6.3 6.3" stroke-linecap="round"/></svg>',
+}
+
+
+def mobile_news_row(item):
+    stars_n = max(1, min(5, int(item.get("importance") or 1)))
+    codes = [i["code"] for i in item.get("impacts", [])][:3]
+    code_chips = "".join(f'<span class="m-code-chip">{esc(c)}</span>' for c in codes)
+    return f"""
+  <a class="m-row" href="#news-{esc(item['id'])}" onclick="return mobileShowDesktopNews('{esc(item['id'])}')">
+    <div class="m-row-main">
+      <span class="m-row-cat">{esc(item.get('category_emoji', '📰'))} {esc(item.get('category_label', ''))}</span>
+      <span class="m-row-title">{esc(item['title'])}</span>
+      <span class="m-row-sub">{'★' * stars_n}{code_chips}</span>
+    </div>
+  </a>"""
+
+
+def mobile_app_html(data, now):
+    news = data.get("news", [])
+    categories = data.get("categories", [])
+    ranking = data.get("stock_ranking", [])[:10]
+
+    # HOME: 重要度上位5件。カテゴリ別はカテゴリ画面に譲る。
+    top_news = sorted(news, key=lambda n: -(n.get("importance") or 0))[:5]
+    high_importance = [n for n in news if (n.get("importance") or 0) >= 4]
+
+    counts = {}
+    for n in news:
+        counts[n["category"]] = counts.get(n["category"], 0) + 1
+    category_sections = "".join(
+        f"""
+    <div class="m-cat-group">
+      <h3 class="m-cat-h3">{esc(cat.get('emoji', '📰'))} {esc(cat['label'])}<span class="m-cat-count">{counts[cat['id']]}</span></h3>
+      <div class="m-list">
+        {''.join(mobile_news_row(n) for n in news if n['category'] == cat['id'])}
+      </div>
+    </div>"""
+        for cat in categories if counts.get(cat["id"])
+    )
+
+    ranking_rows = "".join(f"""
+  <div class="m-row m-rank-row">
+    <div class="m-row-main">
+      <span class="m-rank">{i + 1}</span>
+      <span class="m-row-title">{esc(row['name'])}<span class="m-code-chip">{esc(row['code'])}</span></span>
+    </div>
+    <span class="m-chg {'up' if row['score'] > 0 else 'down' if row['score'] < 0 else 'flat'}">{row['mentions']}件</span>
+  </div>""" for i, row in enumerate(ranking))
+
+    generated_at = esc(data.get("generated_at", ""))
+
+    return f"""
+<div id="mobile-app">
+  <header class="m-topbar">
+    <div class="m-brand">📰 日本株ニュース</div>
+    <div class="m-updated">{generated_at} 更新</div>
+  </header>
+
+  <div class="m-screens">
+    <section class="m-screen is-active" data-screen="home">
+      <h2 class="m-h2">重要度の高いニュース</h2>
+      <div class="m-list">
+        {''.join(mobile_news_row(n) for n in top_news) if top_news else '<p class="m-empty">今回はニュースを取得できませんでした</p>'}
+      </div>
+
+      <h2 class="m-h2">材料が集まっている銘柄</h2>
+      <div class="m-list">
+        {ranking_rows if ranking_rows else '<p class="m-empty">集計できる影響銘柄がありません</p>'}
+      </div>
+
+      <h2 class="m-h2">サマリー</h2>
+      <div class="m-stat-row">
+        <div class="m-stat"><span class="m-stat-n">{len(news)}</span><span class="m-stat-l">ニュース</span></div>
+        <div class="m-stat"><span class="m-stat-n">{len(high_importance)}</span><span class="m-stat-l">★4以上</span></div>
+        <div class="m-stat"><span class="m-stat-n">{data.get('counts', {}).get('stocks', 0)}</span><span class="m-stat-l">影響銘柄</span></div>
+      </div>
+    </section>
+
+    <section class="m-screen" data-screen="category">
+      <h2 class="m-h2">カテゴリ別</h2>
+      {category_sections if category_sections else '<p class="m-empty">表示できるカテゴリがありません</p>'}
+    </section>
+
+    <section class="m-screen" data-screen="settings">
+      <h2 class="m-h2">設定</h2>
+      <div class="m-settings-row"><span>最終更新</span><span>{generated_at}</span></div>
+      <div class="m-settings-row"><span>ニュース件数</span><span>{len(news)}件</span></div>
+      <button class="m-cta" onclick="mobileToggleTheme()">🌗 テーマ切り替え</button>
+      <button class="m-cta" onclick="mobileShowDesktop()" style="margin-top:10px">🖥 PC版を表示</button>
+      <p class="m-note">このモバイル画面はβ版です。検索・お気に入り等の詳細操作はPC版でご利用ください。</p>
+    </section>
+  </div>
+
+  <nav class="m-tabbar">
+    <button class="m-tab is-active" data-tab="home" onclick="mobileGoTo('home')">{MOBILE_TAB_ICONS['home']}<i>HOME</i></button>
+    <button class="m-tab" data-tab="category" onclick="mobileGoTo('category')">{MOBILE_TAB_ICONS['category']}<i>CATEGORY</i></button>
+    <button class="m-tab" data-tab="settings" onclick="mobileGoTo('settings')">{MOBILE_TAB_ICONS['settings']}<i>SET</i></button>
+  </nav>
+</div>
+<button id="m-back-btn" onclick="mobileShowMobile()">📱 モバイル表示に戻る</button>"""
 
 
 def build_html(data):
@@ -837,6 +1136,13 @@ def build_html(data):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="日本株に影響しうる重要ニュースと、その影響が出うる銘柄をまとめた自動更新サイト">
+<meta name="theme-color" content="#010402">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="株ニュース">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
 <title>重要ニュース × 影響銘柄 | 日本株ニュースインパクト</title>
 <script>try{{if(localStorage.getItem('news_theme')==='light'){{document.documentElement.setAttribute('data-theme','light');}}}}catch(e){{}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -845,6 +1151,8 @@ def build_html(data):
 <style>{CSS}</style>
 </head>
 <body>
+{mobile_app_html(data, now)}
+<div id="desktop-view">
 <div class="scroll-progress" id="scrollProgress"></div>
 <header class="site">
   <div class="head-inner">
@@ -925,6 +1233,7 @@ def build_html(data):
   </footer>
 </div>
 <button class="back-top" id="backTop" type="button" aria-label="上に戻る">↑</button>
+</div><!-- /#desktop-view -->
 {JS}
 </body>
 </html>
