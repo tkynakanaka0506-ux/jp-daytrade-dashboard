@@ -23,7 +23,7 @@ from newssite.sample import sample_data  # noqa: E402
 DRIFT_PRONE_FIELDS = {
     "policy_maturity", "policy_maturity_label",
     "news_novelty", "news_novelty_label",
-    "policy_event_id", "policy_event_is_update", "policy_event_first_seen",
+    "policy_event_id", "policy_event_is_update", "policy_event_first_seen", "policy_event_state",
     "future_signal",
 }
 

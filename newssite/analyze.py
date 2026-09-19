@@ -128,9 +128,9 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
         novelty, novelty_reason = _news_novelty(item, prior_norms)
         # [FACTUAL LAYER] 同じ政策の続報に安定したIDを割り当てるだけで、
         # score/direction/primary_themeの再計算はしない(policy_lifecycle.py参照)。
-        policy_event_id = policy_event_is_update = policy_event_first_seen = None
+        policy_event_id = policy_event_is_update = policy_event_first_seen = policy_event_state = None
         if themes:
-            policy_event_id, policy_event_is_update, policy_event_first_seen = (
+            policy_event_id, policy_event_is_update, policy_event_first_seen, policy_event_state = (
                 policy_lifecycle.resolve_policy_event_id(
                     lifecycle_registry,
                     theme_id=themes[0].get("id", ""),
@@ -184,6 +184,7 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             "policy_event_id": policy_event_id,
             "policy_event_is_update": policy_event_is_update,
             "policy_event_first_seen": policy_event_first_seen,
+            "policy_event_state": policy_event_state,
             "themes": [t["label"] for t in themes],
             "summary": "",
             "impact_comment": "",
@@ -191,6 +192,9 @@ def build_news(feeds=None, rules=None, master=None, use_llm=True, limit=MAX_NEWS
             "related": item.get("related", [])[:4],
         })
 
+    # 今回のニュースに含まれなかった系列も、無音のままLIFECYCLE_WINDOW_DAYS
+    # 経過していればCLOSEDにする(resolve_policy_event_id()だけでは検知できない)。
+    policy_lifecycle.sweep_expired(lifecycle_registry, today)
     if persist_lifecycle:
         policy_lifecycle._save_registry(lifecycle_registry)
 

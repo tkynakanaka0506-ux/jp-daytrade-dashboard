@@ -24,8 +24,9 @@ from pathlib import Path
 
 from .config import JST
 
-# 現時点では同じリポジトリ内に書き出すだけ(他プロジェクトへの自動配置はしない)。
-# 受け手側でこのファイルを読みに来るかコピーするかは、統合の次段階で決める。
+# 同じリポジトリ内に書き出すだけ(他プロジェクトへの自動配置はしない)。
+# 受け手側(jp-daytrade-dashboard(mjs)のscraper.mjs)は、相対パスで
+# このファイルを直接読みに来る形で統合済み(コピー配布はしない)。
 EXPORT_PATH = Path(__file__).resolve().parent / "data" / "policy_catalyst_signals.json"
 SCHEMA_VERSION = 1
 
@@ -72,6 +73,7 @@ def build_signals(news_items):
                 "news_novelty": item.get("news_novelty"),
                 "policy_event_id": item.get("policy_event_id"),
                 "policy_event_is_update": item.get("policy_event_is_update", False),
+                "policy_event_state": item.get("policy_event_state"),
                 "source_tier": item.get("source_tier"),
             })
     return records
@@ -122,6 +124,7 @@ def build_event_signals(news_items):
             "event_id": item.get("policy_event_id") or item["id"],
             "policy_event_is_update": item.get("policy_event_is_update", False),
             "policy_event_first_seen": item.get("policy_event_first_seen"),
+            "policy_event_state": item.get("policy_event_state"),
             "theme": top.get("theme", ""),
             "theme_id": top.get("theme_id"),
             "primary_theme": primary_theme,

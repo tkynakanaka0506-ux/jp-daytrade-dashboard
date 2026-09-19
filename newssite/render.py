@@ -155,6 +155,17 @@ def news_card_html(item, now):
         f'📊 {esc(item.get("policy_maturity_label", ""))} {esc(maturity_score)}</span>'
         if maturity_score is not None else ""
     )
+    # ライフサイクル状態。NEW(初出)はほとんどの記事が該当し視覚ノイズに
+    # なるため非表示にし、続報以降(UPDATE/MATURED/CLOSED)だけ明示する。
+    lifecycle_state = item.get("policy_event_state")
+    lifecycle_emoji = {"UPDATE": "🔁", "MATURED": "✅", "CLOSED": "🏁"}.get(lifecycle_state, "")
+    lifecycle_label = {"UPDATE": "続報", "MATURED": "制度成立", "CLOSED": "施策実施済み"}.get(lifecycle_state, "")
+    lifecycle_badge = (
+        f'<span class="lifecycle-badge" data-state="{esc(lifecycle_state)}" '
+        f'title="同じ政策の続報を束ねて追跡した進行状況(表示のみで銘柄判定には影響しません)">'
+        f'{lifecycle_emoji} {esc(lifecycle_label)}</span>'
+        if lifecycle_emoji else ""
+    )
     novelty_badge = (
         f'<span class="novelty-badge" data-novelty="{esc(item.get("news_novelty"))}" '
         f'title="似た見出しが過去に記録されている、または複数媒体が同時報道済みです。'
@@ -182,6 +193,7 @@ def news_card_html(item, now):
         <span class="cat">{esc(item.get('category_emoji', '📰'))} {esc(item.get('category_label', ''))}</span>
         {future_badge}
         {maturity_badge}
+        {lifecycle_badge}
         {novelty_badge}
         {source_tier_badge}
         <span class="time">{esc(_relative(item.get('published_at'), now))}</span>
@@ -434,6 +446,10 @@ header.site::before{content:"";position:absolute;inset:0;pointer-events:none;
 .source-tier-badge{border-radius:999px;padding:1px 10px;font-size:12px;white-space:nowrap;background:var(--card-2)}
 .source-tier-badge.tier-primary{border:1px solid rgba(77,255,126,.4);color:var(--accent)}
 .source-tier-badge.tier-commentary{border:1px solid rgba(224,195,74,.4);color:var(--flat)}
+.lifecycle-badge{background:var(--card-2);border:1px solid var(--line);color:var(--muted);
+  border-radius:999px;padding:1px 10px;font-size:12px;white-space:nowrap}
+.lifecycle-badge[data-state="MATURED"]{border-color:rgba(77,255,126,.4);color:var(--accent)}
+.lifecycle-badge[data-state="CLOSED"]{border-color:rgba(167,139,250,.4);color:var(--accent-3)}
 
 .scroll-progress{position:fixed;top:0;left:0;height:3px;width:0%;z-index:30;
   background:linear-gradient(90deg,var(--accent-lime),var(--accent),var(--accent-2),var(--accent-3));

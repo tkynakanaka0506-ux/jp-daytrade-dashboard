@@ -10,12 +10,29 @@ import io
 import json
 import sys
 import unittest
+from datetime import datetime
 from pathlib import Path
 from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from newssite import analyze, impact as impact_mod, render, rss, stocks as stocks_mod  # noqa: E402
+from newssite.config import JST  # noqa: E402
+
+
+class _FrozenDatetime(datetime):
+    """rss.collect()が参照するdatetime.now()を固定するテスト用サブクラス。
+
+    make_rss()のpubDateはSep 2026にハードコードされており、これをそのまま
+    max_age_hours(既定48h)のフィルタに通すには「今」も同じ時点に固定する
+    必要がある(そうしないと実行日が進むにつれ記事が古すぎると判定され、
+    テストが実行日依存でいつか壊れるタイムボムになる)。
+    """
+    _frozen_now = datetime(2026, 9, 13, 1, 0, tzinfo=JST)
+
+    @classmethod
+    def now(cls, tz=None):
+        return cls._frozen_now.astimezone(tz) if tz else cls._frozen_now
 
 RSS_TEMPLATE = """<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
@@ -68,7 +85,8 @@ class RssTest(unittest.TestCase):
             ("日銀が追加利上げを決定 市場は上昇", "B社", "https://example.com/2"),
             ("訪日客が過去最高を更新", "C社", "https://example.com/3"),
         ])
-        with mock.patch("urllib.request.urlopen", side_effect=lambda *a, **k: FakeResponse(payload)):
+        with mock.patch("urllib.request.urlopen", side_effect=lambda *a, **k: FakeResponse(payload)), \
+                mock.patch("newssite.rss.datetime", _FrozenDatetime):
             items = rss.collect([("q1", "policy", 2)])
         self.assertEqual(len(items), 2)
         merged = items[0]

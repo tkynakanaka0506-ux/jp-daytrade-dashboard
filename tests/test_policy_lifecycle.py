@@ -27,28 +27,31 @@ class PolicyLifecycleTest(unittest.TestCase):
     def test_same_policy_updates_within_window_share_one_id(self):
         """9/1発表→9/3補助金対象→9/8正式決定 は同じpolicy_event_idの更新系列。"""
         registry = {}
-        id1, is_update1, _ = _resolve(registry, maturity=20, title="政府が半導体支援策を発表", day="2026-09-01")
-        id2, is_update2, _ = _resolve(registry, maturity=35, title="補助金対象企業を発表", day="2026-09-03")
-        id3, is_update3, _ = _resolve(registry, maturity=75, title="支援策を正式決定", day="2026-09-08")
+        id1, is_update1, _, state1 = _resolve(registry, maturity=20, title="政府が半導体支援策を発表", day="2026-09-01")
+        id2, is_update2, _, state2 = _resolve(registry, maturity=35, title="補助金対象企業を発表", day="2026-09-03")
+        id3, is_update3, _, state3 = _resolve(registry, maturity=75, title="支援策を正式決定", day="2026-09-08")
 
         self.assertFalse(is_update1, "最初の1件は新規イベントであるべき")
         self.assertTrue(is_update2)
         self.assertTrue(is_update3)
         self.assertEqual(id1, id2)
         self.assertEqual(id2, id3)
+        self.assertEqual(state1, policy_lifecycle.STATE_NEW)
+        self.assertEqual(state2, policy_lifecycle.STATE_UPDATE)
+        self.assertEqual(state3, policy_lifecycle.STATE_MATURED, "maturity>=75は制度成立(MATURED)")
 
     def test_different_theme_never_merges(self):
         """テーマが違えば同日・同キーワード相当でも別イベント。"""
         registry = {}
-        id1, _, _ = _resolve(registry, theme_id="semiconductor_support", day="2026-09-01")
-        id2, _, _ = _resolve(registry, theme_id="defense_budget", day="2026-09-01")
+        id1, _, _, _ = _resolve(registry, theme_id="semiconductor_support", day="2026-09-01")
+        id2, _, _, _ = _resolve(registry, theme_id="defense_budget", day="2026-09-01")
         self.assertNotEqual(id1, id2)
 
     def test_distant_policy_in_same_theme_does_not_merge(self):
         """9/1 半導体支援策 と 10/5 別の半導体支援策(34日後、window=30日超)は別物。"""
         registry = {}
-        id1, _, _ = _resolve(registry, maturity=20, title="半導体支援策を発表", day="2026-09-01")
-        id2, is_update2, _ = _resolve(registry, maturity=20, title="別の半導体支援策を発表", day="2026-10-05")
+        id1, _, _, _ = _resolve(registry, maturity=20, title="半導体支援策を発表", day="2026-09-01")
+        id2, is_update2, _, _ = _resolve(registry, maturity=20, title="別の半導体支援策を発表", day="2026-10-05")
 
         self.assertNotEqual(id1, id2, "LIFECYCLE_WINDOW_DAYSを超えた古い系列に誤って束ねてはいけない")
         self.assertFalse(is_update2)
@@ -57,8 +60,8 @@ class PolicyLifecycleTest(unittest.TestCase):
         """一度「法案成立」まで進んだ後、同じテーマ・窓内で「検討」に戻ったら
         それは続報ではなく新しい政策の一巡目とみなす。"""
         registry = {}
-        id1, _, _ = _resolve(registry, maturity=75, title="法案成立", day="2026-09-01")
-        id2, is_update2, _ = _resolve(registry, maturity=20, title="別件の検討開始", day="2026-09-10")
+        id1, _, _, _ = _resolve(registry, maturity=75, title="法案成立", day="2026-09-01")
+        id2, is_update2, _, _ = _resolve(registry, maturity=20, title="別件の検討開始", day="2026-09-10")
 
         self.assertNotEqual(id1, id2)
         self.assertFalse(is_update2)
@@ -67,15 +70,15 @@ class PolicyLifecycleTest(unittest.TestCase):
         """成熟度キーワードに一致しない続報(Noneのまま)は、判定材料が無いだけ
         なので継続を妨げない。"""
         registry = {}
-        id1, _, _ = _resolve(registry, maturity=20, title="半導体支援策を検討", day="2026-09-01")
-        id2, is_update2, _ = _resolve(registry, maturity=None, title="半導体支援策の関連報道", day="2026-09-02")
+        id1, _, _, _ = _resolve(registry, maturity=20, title="半導体支援策を検討", day="2026-09-01")
+        id2, is_update2, _, _ = _resolve(registry, maturity=None, title="半導体支援策の関連報道", day="2026-09-02")
         self.assertEqual(id1, id2)
         self.assertTrue(is_update2)
 
     def test_same_day_repeat_still_counts_as_update(self):
         registry = {}
-        id1, _, _ = _resolve(registry, maturity=20, day="2026-09-01")
-        id2, is_update2, _ = _resolve(registry, maturity=20, day="2026-09-01")
+        id1, _, _, _ = _resolve(registry, maturity=20, day="2026-09-01")
+        id2, is_update2, _, _ = _resolve(registry, maturity=20, day="2026-09-01")
         self.assertEqual(id1, id2)
         self.assertTrue(is_update2)
 
@@ -84,13 +87,36 @@ class PolicyLifecycleTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "registry.json"
             registry = policy_lifecycle._load_registry(path)
-            id1, _, _ = _resolve(registry, maturity=20, day="2026-09-01")
+            id1, _, _, _ = _resolve(registry, maturity=20, day="2026-09-01")
             policy_lifecycle._save_registry(registry, path)
 
             reloaded = policy_lifecycle._load_registry(path)
-            id2, is_update2, _ = _resolve(reloaded, maturity=35, day="2026-09-03")
+            id2, is_update2, _, _ = _resolve(reloaded, maturity=35, day="2026-09-03")
             self.assertEqual(id1, id2, "プロセスをまたいでも同じ系列として継続認識できる")
             self.assertTrue(is_update2)
+
+    def test_high_maturity_first_sighting_is_matured_or_closed_not_new(self):
+        """初出でも高いmaturityで報じられた場合は、NEWではなく実態に沿った
+        状態(MATURED/CLOSED)にする。"""
+        registry = {}
+        _, _, _, state_matured = _resolve(registry, theme_id="a", maturity=80, day="2026-09-01")
+        _, _, _, state_closed = _resolve(registry, theme_id="b", maturity=100, day="2026-09-01")
+        self.assertEqual(state_matured, policy_lifecycle.STATE_MATURED)
+        self.assertEqual(state_closed, policy_lifecycle.STATE_CLOSED)
+
+    def test_sweep_expired_closes_silent_series_after_window(self):
+        """新しい続報が来ないままLIFECYCLE_WINDOW_DAYSを超えたら、
+        resolve_policy_event_id()を呼ばなくてもCLOSEDになる。"""
+        registry = {}
+        _resolve(registry, maturity=20, title="半導体支援策を検討", day="2026-09-01")
+        key = "semiconductor_support||半導体 支援策"
+
+        policy_lifecycle.sweep_expired(registry, "2026-09-20")
+        self.assertEqual(registry["active"][key]["state"], policy_lifecycle.STATE_NEW,
+                          "window内なのでまだCLOSEDにしない")
+
+        policy_lifecycle.sweep_expired(registry, "2026-10-05")
+        self.assertEqual(registry["active"][key]["state"], policy_lifecycle.STATE_CLOSED)
 
     def test_load_registry_missing_or_corrupt_file_does_not_crash(self):
         missing = policy_lifecycle._load_registry(Path("/nonexistent/registry.json"))

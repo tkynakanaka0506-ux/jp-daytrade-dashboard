@@ -18,7 +18,7 @@ REQUIRED_FIELDS = {
     "event_id", "code", "name", "published_at", "theme", "primary_theme",
     "direction", "tier", "policy_maturity", "time_horizon",
     "policy_impact_score", "matched_keyword", "reason", "source", "url",
-    "news_novelty", "policy_event_id", "policy_event_is_update", "source_tier",
+    "news_novelty", "policy_event_id", "policy_event_is_update", "policy_event_state", "source_tier",
     "policy_to_earnings_stage", "ai_capex_impact_score", "intelligence_layer", "theme_id",
 }
 
@@ -115,6 +115,15 @@ class CatalystExportTest(unittest.TestCase):
         events = catalyst_export.build_event_signals([item])
         self.assertEqual(events[0]["policy_to_earnings_stage"], "設備投資")
         self.assertEqual(events[0]["stocks"][0]["policy_to_earnings_stage"], "設備投資")
+
+    def test_build_signals_and_events_pass_through_policy_event_state(self):
+        item = _news_item()
+        item["policy_event_id"] = "semiconductor_support-20260901-01"
+        item["policy_event_state"] = "MATURED"
+        records = catalyst_export.build_signals([item])
+        self.assertEqual(records[0]["policy_event_state"], "MATURED")
+        events = catalyst_export.build_event_signals([item])
+        self.assertEqual(events[0]["policy_event_state"], "MATURED")
 
     def test_export_signals_writes_valid_json(self):
         with tempfile.TemporaryDirectory() as tmpdir:
