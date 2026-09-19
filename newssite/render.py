@@ -662,7 +662,25 @@ footer a{color:var(--accent)}
 .m-row-title{font-size:14.5px; font-weight:700; line-height:1.4;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden}
 .m-row-sub{font-size:12px; color:var(--accent); letter-spacing:.06em}
+.m-row-sub .up, .m-row-sub .down, .m-row-sub .flat{margin-left:7px; font-weight:700}
+.m-row-sub .up{color:var(--accent)} .m-row-sub .down{color:var(--up)} .m-row-sub .flat{color:var(--flat)}
 .m-code-chip{display:inline-block; margin-left:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--muted)}
+
+/* ニュース行は展開式: タップで影響銘柄の内訳をその場に開く(PC版へ飛ばさない、2026-09-19) */
+.m-news-row{flex-direction:column; align-items:stretch; padding:13px 14px 13px 16px}
+.m-row-head{display:flex; justify-content:space-between; align-items:center; gap:10px; width:100%;
+  background:none; border:0; padding:0; margin:0; color:inherit; font:inherit; text-align:left; cursor:pointer; min-height:44px}
+.m-row-chevron{width:14px; height:14px; flex-shrink:0; color:var(--muted); transition:transform .18s ease}
+.m-news-row.is-expanded .m-row-chevron{transform:rotate(180deg)}
+.m-impact-panel{display:none; flex-direction:column; gap:7px; margin-top:11px; padding-top:11px; border-top:1px dashed var(--glass-border)}
+.m-news-row.is-expanded .m-impact-panel{display:flex}
+.m-impact-item{display:flex; align-items:center; gap:8px; font-size:12.5px}
+.m-impact-item .mark{width:13px; flex-shrink:0; text-align:center}
+.m-impact-item.up .mark{color:var(--accent)} .m-impact-item.down .mark{color:var(--up)} .m-impact-item.flat .mark{color:var(--flat)}
+.m-impact-item .name{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#fff}
+.m-impact-item .code{font-family:var(--font-mono); font-size:11px; color:var(--muted); flex-shrink:0}
+.m-empty-sm{font-size:12.5px; color:var(--muted)}
+.m-row-link{display:inline-flex; align-items:center; gap:4px; margin-top:2px; font-size:12px; color:var(--accent-2); text-decoration:none; font-weight:700}
 /* 順位バッジは円形グロー表示、上位1-3位は金銀銅トーンで強調（株ボードと統一） */
 .m-rank{
   flex-shrink:0; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center;
@@ -991,15 +1009,6 @@ JS = r"""
     if (savedTab) window.mobileGoTo(savedTab);
   } catch (e) { /* file:// で sessionStorage が使えない環境では諦める */ }
 
-  window.mobileShowDesktopNews = function (id) {
-    window.mobileShowDesktop();
-    requestAnimationFrame(function () {
-      var el = document.getElementById('news-' + id);
-      if (el) el.scrollIntoView({ block: 'start' });
-    });
-    return false;
-  };
-
   window.mobileShowDesktop = function () {
     document.getElementById('mobile-app').style.display = 'none';
     document.getElementById('desktop-view').style.display = 'block';
@@ -1099,16 +1108,40 @@ MOBILE_H2_ICONS = {
 
 def mobile_news_row(item):
     stars_n = max(1, min(5, int(item.get("importance") or 1)))
-    codes = [i["code"] for i in item.get("impacts", [])][:3]
-    code_chips = "".join(f'<span class="m-code-chip">{esc(c)}</span>' for c in codes)
+    impacts = item.get("impacts", [])
+    pos = sum(1 for i in impacts if i["direction"] == "positive")
+    neg = sum(1 for i in impacts if i["direction"] == "negative")
+    watch = sum(1 for i in impacts if i["direction"] == "watch")
+    counts_html = "".join([
+        f'<span class="up">▲{pos}</span>' if pos else "",
+        f'<span class="down">▼{neg}</span>' if neg else "",
+        f'<span class="flat">●{watch}</span>' if watch else "",
+    ])
+    if impacts:
+        impact_items = "".join(
+            f'<div class="m-impact-item {DIRECTION_CLASS.get(i["direction"], "flat")}">'
+            f'<span class="mark">{DIRECTION_MARK.get(i["direction"], "●")}</span>'
+            f'<span class="name">{esc(i["name"])}</span>'
+            f'<span class="code">{esc(i["code"])}</span></div>'
+            for i in impacts
+        )
+    else:
+        impact_items = '<p class="m-empty-sm">影響が出うる銘柄は現在のルールでは特定できませんでした</p>'
     return f"""
-  <a class="m-row" href="#news-{esc(item['id'])}" onclick="return mobileShowDesktopNews('{esc(item['id'])}')">
-    <div class="m-row-main">
-      <span class="m-row-cat">{esc(item.get('category_emoji', '📰'))} {esc(item.get('category_label', ''))}</span>
-      <span class="m-row-title">{esc(item['title'])}</span>
-      <span class="m-row-sub">{'★' * stars_n}{code_chips}</span>
+  <div class="m-row m-news-row">
+    <button class="m-row-head" type="button" onclick="this.closest('.m-news-row').classList.toggle('is-expanded')">
+      <div class="m-row-main">
+        <span class="m-row-cat">{esc(item.get('category_emoji', '📰'))} {esc(item.get('category_label', ''))}</span>
+        <span class="m-row-title">{esc(item['title'])}</span>
+        <span class="m-row-sub">{'★' * stars_n}{counts_html}</span>
+      </div>
+      <svg class="m-row-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="m-impact-panel">
+      {impact_items}
+      <a class="m-row-link" href="{esc(item['url'])}" target="_blank" rel="noopener">元記事を読む ↗</a>
     </div>
-  </a>"""
+  </div>"""
 
 
 def mobile_app_html(data, now):
