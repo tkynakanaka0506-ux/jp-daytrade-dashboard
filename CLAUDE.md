@@ -15,7 +15,7 @@ python3 dev.py serve --watch   # プレビュー＋保存のたび自動再生�
 python3 dev.py sample          # サンプルデータで生成（ネット接続不要）
 python3 dev.py build           # 実ニュースを取得して生成（--llm でAI補強）
 python3 dev.py check           # stocks.json / rules.json の整合性チェック
-python3 dev.py test            # テスト（tests/test_pipeline.py・22件）
+python3 dev.py test            # テスト（tests/ 配下9ファイル・88件）
 ```
 
 **JSONデータを変えたら `dev.py check`、ロジックを変えたら `dev.py test` を必ず通してから終わる。**
@@ -26,17 +26,22 @@ python3 dev.py test            # テスト（tests/test_pipeline.py・22件）
 build_news_site.py   生成本体（Actionsが実行）
 dev.py               ローカル開発コマンド
 newssite/
-  config.py          収集フィード(FEEDS)・定数
-  rss.py             Google ニュースRSS取得・同じ話題の重複統合
-  stocks.py          銘柄マスタの読み込み・検索
-  impact.py          重要度/カテゴリ/影響銘柄のルール判定
-  llm.py             Gemini/Groq 補強（任意）
-  analyze.py         news.json の組み立て
-  render.py          HTML生成（CSS・JSもこの中）
-  sample.py          ネット接続なしの表示確認用データ
-  data/stocks.json   銘柄マスタ（150銘柄）
-  data/rules.json    ニュース→影響銘柄のルール（23テーマ）
-tests/test_pipeline.py
+  config.py            収集フィード(FEEDS)・定数
+  rss.py               Google ニュースRSS取得・同じ話題の重複統合
+  stocks.py            銘柄マスタの読み込み・検索
+  impact.py            重要度/カテゴリ/影響銘柄のルール判定
+  llm.py               Gemini/Groq 補強（任意）
+  analyze.py           news.json の組み立て
+  policy_lifecycle.py  政策の続報系列にpolicy_event_idを割り当て、ライフサイクル
+                        状態(NEW/UPDATE/MATURED/CLOSED)を管理
+  catalyst_export.py   他プロジェクト(jp-daytrade-dashboard(mjs))へのシグナル書き出し
+  backtest.py          政策材料シグナルのバックテスト基盤（記録のみ）
+  rule_scorecard.py    ルール(rules.json)ごとの的中率スコアカード
+  render.py            HTML生成（CSS・JSもこの中）
+  sample.py            ネット接続なしの表示確認用データ（build_news()に委譲、判定ロジックを複製しない）
+  data/stocks.json     銘柄マスタ
+  data/rules.json      ニュース→影響銘柄のルール
+tests/                 test_pipeline.py 他、機能ごとに分割（9ファイル・88件）
 ```
 
 ## 編集する場所
